@@ -1,0 +1,188 @@
+<product-slider-media data-section-id="{{ section.id }}" data-spacing="{{ settings.horizontal_spacing }}">
+  <swiper-section
+    data-thumbs="product_slider_thumbnail_media"
+    data-observeParents="true"
+    data-auto-height="true"
+    data-slides-desktop="1"
+    data-slides-tablet="1"
+    data-slides-custom="1"
+    data-slides-slider="1">
+    {% assign variant = product.selected_or_first_available_variant %}
+    <div
+      class="product_slider_main_media swiper{% if apply_bg %} has_bg{% endif %}"
+      {% if apply_bg %}
+      style="--bg: {{ bg_color }}"
+      {% endif %}>
+      <div class="swiper-wrapper">
+        {% if variant.featured_media != blank %}
+          {% assign featured_media = variant.featured_media %}
+        {% elsif product.featured_media != blank %}
+          {% assign featured_media = product.featured_media %}
+        {% endif %}
+
+        {% if featured_media != blank %}
+          {% if featured_media.media_type == 'image' %}
+            <div
+              class="main_product_slider_featured_image{% if section.settings.card_bg %} has_bg{% endif %} swiper-slide"
+              data-media-id="{{ featured_media.id }}"
+              {% if section.settings.card_bg %}
+              style="--card-bg: {{ section.settings.card_bg_color }};"
+              {% endif %}>
+              <a
+                data-fancybox="slider_gallery-{{ product.id }}"
+                aria-label="{{ featured_media.alt }}"
+                href="{{ featured_media | image_url: width: 1920 }}">
+                {{ featured_media | image_url: width: 1920 | image_tag }}
+              </a>
+            </div>
+          {% elsif featured_media.media_type == 'video' %}
+            {% assign poster_image = featured_media.preview_image | image_url: width: 1920 %}
+            <div class="main_product_slider_featured_video swiper-slide">
+              {{ featured_media
+ | video_tag: autoplay: false, playsinline: true, loop: true, controls: false, poster: poster_image
+              }}
+              <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+            </div>
+          {% elsif featured_media.media_type == 'external_video' %}
+            <div class="main_product_slider_featured_external_video swiper-slide">
+              {{ featured_media | external_video_tag }}
+              <div class="external_video_overlay"></div>
+            </div>
+          {% elsif featured_media.media_type == 'model' %}
+            <div class="main_product_slider_featured_model swiper-slide">
+              <product-model>
+                {{ featured_media | model_viewer_tag: toggleable: true }}
+              </product-model>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="main_product_slider_featured_image swiper-slide">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+
+        {% for media in product.media %}
+          {% unless media == featured_media %}
+            {% if media.media_type == 'image' %}
+              <div
+                class="main_product_slider_featured_image{% if section.settings.card_bg %} has_bg{% endif %} swiper-slide"
+                data-media-id="{{ featured_media.id }}"
+                {% if section.settings.card_bg %}
+                style="--card-bg: {{ section.settings.card_bg_color }};"
+                {% endif %}>
+                <a
+                  data-fancybox="slider_gallery-{{ product.id }}"
+                  aria-label="{{ featured_media.alt }}"
+                  href="{{ media | image_url: width: 1920 }}">
+                  {{ media | image_url: width: 1920 | image_tag }}
+                </a>
+              </div>
+            {% elsif media.media_type == 'video' %}
+              {% assign poster_image = media.preview_image | image_url: width: 1920 %}
+              <div class="main_product_slider_featured_video swiper-slide">
+                {{ media
+ | video_tag: autoplay: false, playsinline: true, loop: true, controls: false, poster: poster_image
+                }}
+                <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+              </div>
+            {% elsif media.media_type == 'external_video' %}
+              <div class="main_product_slider_featured_external_video swiper-slide">
+                {{ media | external_video_tag }}
+                <div class="external_video_overlay"></div>
+              </div>
+            {% elsif media.media_type == 'model' %}
+              <div class="main_product_slider_featured_model swiper-slide">
+                <product-model>
+                  {{ media | model_viewer_tag: toggleable: true }}
+                </product-model>
+              </div>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+      </div>
+
+    {% comment %} {% if show_arrows %}
+              <button aria-label="{{ 'accessibility.prev_btn' | t }}" class="swiper-button-prev pmmb">
+                <span class="svg_wrapper">{{ 'left-arrow.svg' | inline_asset_content }}</span>
+              </button>
+              <button aria-label="{{ 'accessibility.next_btn' | t }}" class="swiper-button-next pmmb">
+                <span class="svg_wrapper">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+              </button>
+          {% endif %} {% endcomment %}
+    </div>
+  </swiper-section>
+
+  {% if show_thumbnails and product.media.size > 1 %}
+    <swiper-section
+      data-slides-desktop="5"
+      data-slides-tablet="4"
+      data-slides-custom="4"
+      data-slides-slider="5"
+      data-gap="10"
+      data-slider-gap="10"
+      data-speed="600"
+      data-progress="true">
+      <div
+        class="product_slider_thumbnail_media swiper{% if product.media.size == 1 %} single_media{% endif %}{% if apply_bg %} has_bg{% endif %}"
+        {% if apply_bg %}
+        style="--bg: {{ bg_color }}"
+        {% endif %}>
+        <div class="swiper-wrapper">
+          {% case featured_media.media_type %}
+            {% when 'image' %}
+              <div
+                class="main_product_thumbnail_media{% if section.settings.card_bg %} has_bg{% endif %} swiper-slide"
+                {% if section.settings.card_bg %}
+                style="--card-bg: {{ section.settings.card_bg_color }};"
+                {% endif %}>
+                {{ featured_media | image_url: width: 500 | image_tag }}
+              </div>
+            {% when 'video' %}
+              <div class="main_product_thumbnail_media thumbnail_video swiper-slide">
+                {{ featured_media | image_url: width: 500 | image_tag }}
+                <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+              </div>
+            {% when 'external_video' %}
+              <div class="main_product_thumbnail_media thumbnail_video swiper-slide">
+                {{ featured_media | image_url: width: 500 | image_tag }}
+                <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+              </div>
+            {% when 'model' %}
+              <div class="main_product_thumbnail_media product_thumbnail_model swiper-slide">
+                {{ featured_media | image_url: width: 500 | image_tag }}
+              </div>
+          {% endcase %}
+          {% for media in product.media %}
+            {% unless media == featured_media %}
+              {% case media.media_type %}
+                {% when 'image' %}
+                  <div
+                    class="main_product_thumbnail_media{% if section.settings.card_bg %} has_bg{% endif %} swiper-slide"
+                    {% if section.settings.card_bg %}
+                    style="--card-bg: {{ section.settings.card_bg_color }};"
+                    {% endif %}>
+                    {{ media | image_url: width: 500 | image_tag }}
+                  </div>
+                {% when 'video' %}
+                  <div class="main_product_thumbnail_media thumbnail_video swiper-slide">
+                    {{ media | image_url: width: 500 | image_tag }}
+                    <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+                  </div>
+                {% when 'external_video' %}
+                  <div class="main_product_thumbnail_media thumbnail_video swiper-slide">
+                    {{ media | image_url: width: 500 | image_tag }}
+                    <div class="play_video_icon">{{ 'icon-play.svg' | inline_asset_content }}</div>
+                  </div>
+                {% when 'model' %}
+                  <div class="main_product_thumbnail_media product_thumbnail_model swiper-slide">
+                    {{ media | image_url: width: 500 | image_tag }}
+                    <div class="play_video_icon">{{ 'icon-3d.svg' | inline_asset_content }}</div>
+                  </div>
+              {% endcase %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    </swiper-section>
+  {% endif %}
+</product-slider-media>

@@ -1,0 +1,332 @@
+{% style %}
+  .offers_section_wrapper-{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      position: relative;
+      overflow: hidden;
+  }
+
+  @media screen and (max-width: 640px) {
+    .offers_section_wrapper-{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'offers-section.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="offers_section_wrapper-{{ section.id }} color-{{ section.settings.color_scheme }} {% if section.settings.enable_normal_cards %}normal_cards{% endif %}"
+  style="--top:{{ section.settings.top_spacing }}px;"
+>
+  <div class="containers">
+    <div class="offers_section_inner">
+      <div class="offers_tab_wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'tab' %}
+              {% assign collection = block.settings.collection %}
+              <div class="offers_section_tab_wrapper reveal stagger">
+                {% if collection != blank %}
+                  {% if block.settings.title != blank %}
+                    <h3 class="small-text">
+                      <a aria-label="{{ block.settings.title }}" href="{{ collection.url }}">
+                        {{- block.settings.title -}}
+                      </a>
+                    </h3>
+                  {% else %}
+                    <h3 class="small-text">
+                      <a aria-label="{{ block.settings.title }}" href="{{ collection.url }}">
+                        {{- collection.title -}}
+                      </a>
+                    </h3>
+                  {% endif %}
+
+                  <div class="offers_section_tab_img{% if block.settings.title == blank and collection.title == blank %} no_title{% endif %}">
+                    {% if block.settings.img != blank %}
+                      <a href="{{ collection.url }}" tabindex="-1" aria-label="{{ collection.title }}">
+                        {{- block.settings.img | image_url: width: 500 | image_tag -}}
+                      </a>
+                    {% elsif collection.featured_image != blank %}
+                      <a href="{{ collection.url }}" tabindex="-1" aria-label="{{ collection.title }}">
+                        {{- collection.featured_image | image_url: width: 500 | image_tag -}}
+                      </a>
+                    {% else %}
+                      {% assign offers_index = forloop.index | modulo: 2 %}
+                      {% if offers_index == 1 %}
+                        <a href="{{ collection.url }}" tabindex="-1" aria-label="{{ collection.title }}">
+                          {{- 'collection-1' | placeholder_svg_tag: 'placeholder_svg' -}}
+                        </a>
+                      {% else %}
+                        <a href="{{ collection.url }}" tabindex="-1" aria-label="{{ collection.title }}">
+                          {{- 'collection-2' | placeholder_svg_tag: 'placeholder_svg' -}}
+                        </a>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                {% else %}
+                  {% if block.settings.title != blank %}
+                    <h6 class="small-text">
+                      {{- block.settings.title -}}
+                    </h6>
+                  {% endif %}
+
+                  <div class="offers_section_tab_img{% if block.settings.title == blank %} no_title{% endif %}">
+                    {% if block.settings.img != blank %}
+                      {{ block.settings.img | image_url: width: 500 | image_tag }}
+                    {% else %}
+                      {% assign offers_index = forloop.index | modulo: 2 %}
+                      {% if offers_index == 1 %}
+                        {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% else %}
+                        {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.head != blank %}
+        <div class="offers_section_head" style="--head-color: {{ section.settings.head_color }};">
+          <div class="marquee_wrapper">
+            <h2 class="jumbo">{{ section.settings.head }}</h2>
+            <h2 class="jumbo">{{ section.settings.head }}</h2>
+          </div>
+        </div>
+      {% endif %}
+
+      {% assign card_count = 0 %}
+
+      {% for block in section.blocks %}
+        {% if block.type == 'card' %}
+          {% assign card_count = card_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+      <offers-card>
+        <div class="offers_card_main_wrapper">
+          <div class="offers_card_main_inner cards-{{ card_count }}">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'card' %}
+                  <div class="offers_card_wrapper" style="--block-bg: {{ block.settings.block_bg }}; --block-head:{{ block.settings.block_heading }}; --block-bg-hover:{{ block.settings.block_bg_hover }}">
+                    <div class="offers_card_content_wrapper">
+                      {% if block.settings.head != blank %}
+                        <h3 class="h4">{{ block.settings.head }}</h3>
+                      {% endif %}
+
+                      {% if block.settings.text != blank %}
+                        <div class="offers_card_text rte">
+                          {{ block.settings.text }}
+                        </div>
+                      {% endif %}
+
+                      {% if block.settings.btn_link != blank or block.settings.btn_text != blank %}
+                        <div class="offers_card_btn{% if block.settings.btn_text == blank %} empty{% endif %}">
+                          {% if block.settings.btn_link != blank %}
+                            <a
+                              href="{{ block.settings.btn_link }}"
+                              aria-label="{{ block.settings.btn_text }}"
+                              class="btn"
+                            >
+                              {{- block.settings.btn_text -}}
+                            </a>
+                          {% else %}
+                            <a role="link" aria-label="{{ block.settings.btn_text }}" class="btn">
+                              {{- block.settings.btn_text -}}
+                            </a>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.img != blank %}
+                      <div class="offers_card_img_wrapper">
+                        {{ block.settings.img | image_url: width: 1600 | image_tag }}
+                      </div>
+                    {% endif %}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
+      </offers-card>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Offers section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 7,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "OFFERS"
+    },
+    {
+      "type": "color",
+      "id": "head_color",
+      "label": "Heading color",
+      "default": "#241911"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_normal_cards",
+      "label": "Enable normal cards",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Tabs",
+      "type": "tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection title (optional)",
+          "default": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image (optional)"
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "type": "card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "color",
+          "id": "block_bg",
+          "label": "Block background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "block_bg_hover",
+          "label": "Block background color hover",
+          "default": "#D8F27D",
+          "info":"The hover effect only works on the normal card."
+        },
+        {
+          "type": "color",
+          "id": "block_heading",
+          "label": "Block heading color",
+          "default": "#233728"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image",
+          "info": "Transparent image is recommended for better look."
+        },
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Heading",
+          "default": "Card Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Write a short content describing your section or your block heading."
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button label",
+          "default": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offers section",
+      "blocks": [
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "card",
+          "settings": {
+            "block_bg": "#d8d8d8"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "block_bg": "#b9b9b9"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "block_bg": "#d8d8d8"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

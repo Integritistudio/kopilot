@@ -1,0 +1,122 @@
+<div class="header_navigation_inner {{ logo_position }}">
+  <ul class="parent_wrapper">
+    {% for link in main_menu.links %}
+      {% assign main_index = forloop.index %}
+      {% assign is_mega_menu = 'false' %}
+
+      {% assign link_title = link.title | handleize %}
+      {% for mega_menu_title in mega_menu_titles %}
+        {% assign title = mega_menu_title | handleize %}
+        {% if title == link_title %}
+          {% assign is_mega_menu = 'true' %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign img = blank %}
+      {% assign title = blank %}
+      {% assign block_link = blank %}
+      {% assign mega_menu_type = blank %}
+      {% assign cblock = blank %}
+
+      {% for block in blocks %}
+        {% assign block_title = block.settings.parent_menu_title | handleize %}
+
+        {% if block_title == link_title %}
+          {% assign mega_menu_type = block.type %}
+          {% assign cblock = block %}
+
+          {% if block.settings.img != blank %}
+            {% assign img = block.settings.img %}
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+            {% assign title = block.settings.title %}
+          {% endif %}
+
+          {% if block.settings.link != blank %}
+            {% assign block_link = block.settings.link %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      <li class="parent_li{% if is_mega_menu == 'true' %} is_mega_menu{% endif %}{% if main_index > 10 and logo_position == 'logo-center-menu-bottom' %} parent_li_inverse{% endif %}">
+        <a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ link.url }}">
+          <span class="menu_{{ font_family }}" data-link-title="{{ link.title }}">{{ link.title }}</span>
+          {% if link.links != blank %}
+            <span class="svg_wrapper">{{ 'icon-caret-down.svg' | inline_asset_content }}</span>
+          {% endif %}
+        </a>
+
+        {% if is_mega_menu == 'true' %}
+          <div class="mega_menu_wrapper">
+            <div class="container">
+              <div class="mega_menu_inner{% if img != blank %} has_img{% endif %}">
+                {% if mega_menu_type == 'mega-menu-default' %}
+                  {% render 'mega-menu', link: link, font_family: font_family %}
+
+                  {% if img != blank %}
+                    <div class="mega_menu_img_wrapper">
+                      <div class="mega_menu_img">
+                        {% if block_link != blank %}
+                          <a href="{{ block_link }}" aria-label="{{ block_link }}">
+                            {{- img | image_url: width: 800 | image_tag -}}
+                          </a>
+                        {% else %}
+                          {{ img | image_url: width: 800 | image_tag }}
+                        {% endif %}
+                      </div>
+                      {% if title != blank %}
+                        <div class="mega_menu_img_title">
+                          {% if block_link != blank %}
+                            <p>
+                              <a href="{{ block_link }}" aria-label="{{ title }}">{{ title }}</a>
+                            </p>
+                          {% else %}
+                            <p>{{ title }}</p>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% else %}
+                  {% render 'collection-mega-menu', cblock: cblock, font_family: font_family %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+        {% else %}
+          {% if link.links != blank %}
+            <ul class="child_wrapper">
+              {% for childlink in link.links %}
+                <li class="child_li">
+                  <a class="child_link menu_{{ font_family }}" aria-label="{{ childlink.title }}" href="{{ childlink.url }}">
+                    <span>{{ childlink.title }}</span>
+                    {% if childlink.links != blank %}
+                      <span class="svg_wrapper">{{ 'icon-caret-down.svg' | inline_asset_content }}</span>
+                    {% endif %}
+                  </a>
+                  {% if childlink.links != blank %}
+                    <ul class="grandchild_wrapper">
+                      {% for grandchildlink in childlink.links %}
+                        <li class="grandchild_li">
+                          <a
+                            class="grandchild_link menu_{{ font_family }}"
+                            aria-label="{{ grandchildlink.title }}"
+                            href="{{ grandchildlink.url }}"
+                          >
+                            <span>{{ grandchildlink.title }}</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

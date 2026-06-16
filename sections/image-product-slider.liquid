@@ -1,0 +1,263 @@
+{% style %}
+  .split-slider-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  @media(max-width:989px){
+
+    .split-img-slider {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+  }
+{% endstyle %}
+
+{{ 'image-product-slider.css' | asset_url | stylesheet_tag }}
+
+<section class="split-slider-{{ section.id }} split-img-slider color-{{section.settings.color_scheme }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="split-slider-header">
+        <h2 class="split-slider-heading h1">
+          {{ section.settings.heading }}
+        </h2>
+
+        {% if section.settings.show_pagination_top %}
+          <div class="split-progress-wrapper">
+            <span class="split-current-slide">01</span>
+
+            <div class="split-pagination-progress">
+              <div class="split-pagination-progress-inner"></div>
+            </div>
+
+            <span class="split-total-slide">01</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="split-slider-wrapper">
+      <div class="split-slider-swiper-wrap">
+        <swiper-section
+          data-slides-desktop="{{ section.settings.slides_desktop }}"
+          data-slides-tablet="1.5"
+          data-slides-mobile="1.1"
+
+          data-gap="24"
+          data-loop="false"
+          data-center-mode="false"
+
+          data-speed="900"
+
+          data-grab-cursor="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="swiper-slide" {{ block.shopify_attributes }}>
+                  <div class="slide-card">
+                    <div class="slide-image">
+                      {% if block.settings.image != blank %}
+                        {{
+                          block.settings.image
+                          | image_url: width: 1200
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '400,600,800,1000,1200',
+                            sizes: '(min-width: 990px) 33vw, 80vw'
+                        }}
+
+                      {% else %}
+                        {{ 'product-4' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    </div>
+
+                    {% if block.settings.product != blank %}
+                      <div class="product-card">
+                        <a href="{{ block.settings.product.url }}">
+                          {% if block.settings.product.featured_image != blank %}
+                            {{ block.settings.product.featured_image | image_url: width: 400 | image_tag }}
+                          {% endif %}
+
+                          <h6 class="product-title">
+                            {{ block.settings.product.title }}
+                          </h6>
+
+                          <span class="product-price">
+                            {{ block.settings.product.price | money }}
+                          </span>
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </swiper-section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.split-slider-{{ section.id }}');
+
+    if (!section) return;
+
+    const swiperSection = section.querySelector('swiper-section');
+
+    const currentEl = section.querySelector('.split-current-slide');
+
+    const totalEl = section.querySelector('.split-total-slide');
+
+    const progressEl = section.querySelector('.split-pagination-progress-inner');
+
+    let check = setInterval(() => {
+      if (swiperSection.swiper) {
+        clearInterval(check);
+
+        const swiper = swiperSection.swiper;
+
+        const totalSlides = swiper.slides.length;
+
+        totalEl.textContent = String(totalSlides).padStart(2, '0');
+
+        function updatePagination() {
+          const current = swiper.realIndex + 1;
+
+          currentEl.textContent = String(current).padStart(2, '0');
+
+          const progress = (current / totalSlides) * 100;
+
+          progressEl.style.width = `${progress}%`;
+        }
+
+        updatePagination();
+
+        swiper.on('slideChange', () => {
+          updatePagination();
+        });
+      }
+    }, 100);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Image product slider",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_top",
+      "label": "Show top pagination",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Slides desktop",
+      "min": 1,
+      "max": 4,
+      "step": 0.1,
+      "default": 3.3
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image product slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

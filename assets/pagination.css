@@ -1,0 +1,54 @@
+.pagination-wrapper {
+    margin: 5rem 0 0;
+    background: transparent;
+}
+
+.pagination-wrapper ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pagination-wrapper ul a {
+    display: flex;
+    width: 4.8rem;
+    height: 4.8rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--color-text);
+    background: transparent;
+    text-decoration: none;
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+    font-family: var(--font-heading-family);
+    transition: background 0.3s ease, color 0.3s ease, border .3s ease;
+}
+
+.pagination-wrapper ul a:hover, .pagination-wrapper ul a.pagination__item--current {
+    background: var(--color-secondary-background);
+    color: var(--color-secondary-text);
+    border: 2px solid var(--color-secondary-background);
+}
+
+.pagination-wrapper ul a.pagination__item--prev svg {
+    transform: rotate(90deg);
+}
+
+.pagination-wrapper ul a.pagination__item--next svg {
+    transform: rotate(-90deg);
+}
+
+.pagination-wrapper ul a.pagination__item--prev svg path, .pagination-wrapper ul a.pagination__item--next svg path {
+    fill: var(--color-text);
+}
+
+.pagination-wrapper ul a.pagination__item--prev:hover svg path, .pagination-wrapper ul a.pagination__item--next:hover svg path {
+    fill: var(--color-secondary-text);
+}

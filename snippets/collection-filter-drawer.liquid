@@ -1,0 +1,251 @@
+{%- liquid
+  if result.url
+    assign results_url = result.url
+  else
+    assign terms = result.terms | escape
+    assign results_url = '/search?q=' | append: terms
+  endif
+-%}
+
+<div
+  class="drawer_wrapper collection_filter_drawer color-{{ settings.drawer_color_scheme }}"
+  id="collection_filter_drawer"
+  inert
+  aria-hidden="true"
+>
+  <div class="drawer_wrapper_inner collection_filter_drawer_inner" tabindex="-1" data-lenis-prevent>
+    <collection-filters data-section-id="{{ section.id }}">
+      <div class="drawer_header">
+        <h2 class="h4">{{ 'templates.collection.filters' | t }}</h2>
+
+        <div class="drawer_close_btn_wrapper">
+          <button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+            <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+          </button>
+        </div>
+      </div>
+
+      {% assign has_active_filters = false %}
+      {% for filter in result.filters %}
+        {% if filter.active_values.size > 0 or filter.min_value.value != null or filter.max_value.value != null %}
+          {% assign has_active_filters = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if has_active_filters %}
+        <div class="collection_filter_drawer_active_values_wrapper">
+          <div class="active_values_wrapper">
+            <p>
+              {% if results_url contains '?' %}
+                <a href="{{ results_url }}&sort_by={{ result.sort_by }}">Clear all</a>
+              {% else %}
+                <a href="{{ results_url }}?sort_by={{ result.sort_by }}">Clear all</a>
+              {% endif %}
+            </p>
+
+            {%- for filter in result.filters -%}
+              {%- if filter.type == 'price_range' -%}
+                {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                  <p>
+                    <a href="{{ filter.url_to_remove }}">
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                      {{ min_value | money }} - {{ max_value | money }} X
+                    </a>
+                  </p>
+                {%- endif -%}
+              {%- else -%}
+                {%- for filter_value in filter.active_values -%}
+                  <p>
+                    <a href="{{ filter_value.url_to_remove }}">
+                      {{ filter.label }}: {{ filter_value.label }}
+                      <span>{{ 'icon-close.svg' | inline_asset_content }}</span></a
+                    >
+                  </p>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="collection_filters_form_values_wrapper">
+        <form id="collection_filters_form">
+          {%- for filter in result.filters -%}
+            <div class="filter_values_block">
+              <div class="filter_values_head">
+                <div class="filter_values_head_inner">
+                  <span>{{ filter.label }}</span>
+
+                  {%- if filter.active_values.size > 0 -%}
+                    <span>({{ filter.active_values.size }})</span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <div class="filter_values_list_wrapper">
+                {%- case filter.type -%}
+                  {%- when 'boolean' -%}
+                    <ul>
+                      {% if filter.true_value.value != blank %}
+                        <li>
+                          <label for="filters-{{ filter.param_name }}-{{ filter.true_value.value }}">
+                            <input
+                              type="checkbox"
+                              name="{{ filter.param_name }}"
+                              data-add-url="{{ filter.true_value.url_to_add }}"
+                              data-remove-url="{{ filter.true_value.url_to_remove }}"
+                              value="{{ filter.true_value.value }}"
+                              id="filters-{{ filter.param_name }}-{{ filter.true_value.value }}"
+                              {% if filter.true_value.active -%}
+                                checked
+                              {%- endif %}
+                              {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
+                                disabled
+                              {%- endif -%}
+                            >
+                            {{- filter.true_value.label -}}
+                          </label>
+                        </li>
+                      {% endif %}
+                      {% if filter.false_value.vale != blank %}
+                        <li>
+                          <label for="filters-{{ filter.param_name }}-{{ filter.false_value.value }}">
+                            <input
+                              type="checkbox"
+                              name="{{ filter.param_name }}"
+                              data-add-url="{{ filter.false_value.url_to_add }}"
+                              data-remove-url="{{ filter.false_value.url_to_remove }}"
+                              value="{{ filter.false_value.value }}"
+                              id="filters-{{ filter.param_name }}-{{ filter.false_value.value }}"
+                              {% if filter.false_value.active -%}
+                                checked
+                              {%- endif %}
+                              {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
+                                disabled
+                              {%- endif %}
+                            >
+                            {{- filter.false_value.label -}}
+                          </label>
+                        </li>
+                      {% endif %}
+                    </ul>
+
+                  {%- when 'list' -%}
+                    <ul class="{% if filter.presentation == 'swatch' and settings.swatch_shape != 'default' %}swatch_list_wrapper{% endif %}">
+                      {%- for filter_value in filter.values -%}
+                        <li>
+                          <label
+                            title="{{ filter_value.label }}"
+                            for="filters-{{ filter.param_name }}-{{ forloop.index }}"
+                            class="{% if filter.presentation == 'swatch' and settings.swatch_shape != 'default' %}{% if settings.swatch_shape == 'circle' %}swatch_list swatch_list--circle{% elsif settings.swatch_shape == 'square'%}swatch_list swatch_list--square{% else %}swatch_list{% endif %}{% endif %}"
+                          >
+                            <input
+                              type="checkbox"
+                              {% if filter.presentation == 'swatch' and settings.swatch_shape != 'default' %}
+                                class="visually-hidden"
+                              {% endif %}
+                              name="{{ filter_value.param_name }}"
+                              value="{{ filter_value.value }}"
+                              data-add-url="{{ filter_value.url_to_add }}"
+                              data-remove-url="{{ filter_value.url_to_remove }}"
+                              id="filters-{{ filter.param_name }}-{{ forloop.index }}"
+                              {% if filter_value.active -%}
+                                checked
+                              {%- endif %}
+                              {% if filter_value.count == 0 and filter_value.active == false -%}
+                                disabled
+                              {%- endif %}
+                            >
+                            {% if filter.presentation == 'swatch' and settings.swatch_shape != 'default' %}
+                              {%- liquid
+                                assign fallback_color = null
+
+                                for swatch in custom_swatches
+                                  assign parts = swatch | split: ':'
+                                  assign name = parts[0] | strip | downcase
+                                  assign color = parts[1] | strip
+                                  assign v = filter_value.label | downcase
+
+                                  if name == v
+                                    assign fallback_color = color
+                                  endif
+                                endfor
+
+                                if filter_value.swatch.image
+                                  assign image_url = filter_value.swatch.image | image_url: width: 50
+                                  assign swatch_value = 'url(' | append: image_url | append: ')'
+                                elsif filter_value.swatch.color
+                                  assign swatch_value = 'rgb(' | append: filter_value.swatch.color.rgb | append: ')'
+                                elsif fallback_color
+                                  assign swatch_value = fallback_color
+                                else
+                                  assign swatch_value = null
+                                endif
+                              -%}
+
+                              <div
+                                class="swatch_list_inner swatch_list_inner--{{ settings.swatch_shape }}"
+                                style="--swatch-bg: {{ swatch_value }}"
+                              >
+                                {{ filter_value.label }}
+                              </div>
+                            {% else %}
+                              {{ filter_value.label }}
+                            {% endif %}
+                          </label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+
+                  {%- when 'price_range' -%}
+                    <div class="filter-group-display__price-range">
+                      <div class="filter-group-display__price-range-from">
+                        <span>{{ cart.currency.symbol }}</span>
+
+                        <input
+                          name="{{ filter.min_value.param_name }}"
+                          id="filters-{{ filter.min_value.param_name }}"
+                          {% if filter.min_value.value -%}
+                            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                          {%- endif %}
+                          type="number"
+                          placeholder="0"
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        >
+
+                        <label for="filters-{{ filter.min_value.param_name }}">From</label>
+                      </div>
+                      <div class="filter-group-display__price-range-to">
+                        <span>{{ cart.currency.symbol }}</span>
+
+                        <input
+                          name="{{ filter.max_value.param_name }}"
+                          id="filters-{{ filter.max_value.param_name }}"
+                          {% if filter.max_value.value -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                          {%- endif %}
+                          type="number"
+                          placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        >
+
+                        <label for="filters-{{ filter.max_value.param_name }}">To</label>
+                      </div>
+                    </div>
+                {%- endcase -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </form>
+      </div>
+
+      <div class="collection_filters_apply_button_wrapper">
+        <button class="btn" aria-label="{{ 'general.submit' | t }}">{{ 'templates.collection.filters_apply' | t }}</button>
+      </div>
+    </collection-filters>
+  </div>
+</div>

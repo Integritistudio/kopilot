@@ -1,0 +1,259 @@
+.comparison-section {
+  background: rgb(var(--color-background));
+}
+
+.comparison-heading h1 {
+  margin-bottom: 30px;
+}
+
+/* MAIN */
+
+.comparison-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* =========================
+   TOP SECTION
+========================= */
+
+.comparison-top-section {
+  display: grid;
+  grid-template-columns: 320px repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.comparison-side-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.comparison-products-grid-img {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  grid-column: 2/6;
+}
+
+.comparison-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+
+/* PRODUCT CARD */
+
+.comparison-card {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comparison-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--color-input-background);
+  color: var(--color-input-text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  z-index: 2;
+}
+
+.comparison-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-image img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+
+
+/* =========================
+   COMPARISON TABLE
+========================= */
+
+.comparison-table {
+  border: 3px solid var(--color-secondary-background);
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 320px repeat(4, 1fr);
+}
+
+.comparison-label,
+.comparison-cell {
+  min-height: 60px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.comparison-label {
+  font-weight: 700;
+}
+
+.comparison-cell {
+  opacity: 0.7;
+}
+
+.comparison-row:last-child .comparison-label,
+.comparison-row:last-child .comparison-cell {
+  border-bottom: 0;
+}
+
+.comparison-row .comparison-cell:last-child {
+  border-right: 0;
+}
+
+/* PRICE */
+
+.comparison-table .price {
+  color: var(--price-col);
+  opacity: 1;
+}
+
+/* STOCK */
+
+.comparison-table .in-stock {
+  color: var(--in-stock);
+}
+
+.comparison-table.out-stock {
+  color: var(--out-stock);
+}
+
+/* LEFT IMAGE */
+
+.comparison-side-image {
+  height: 100%;
+}
+
+.comparison-side-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--img-border-radius);
+}
+
+/* PRODUCTS GRID */
+
+.comparison-products-grid-img {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  grid-column: span 4;
+}
+
+/* PRODUCT COLUMN */
+
+.comparison-product-column {
+  height: 100%;
+}
+
+/* CARD */
+
+.comparison-card {
+  position: relative;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* IMAGE AREA */
+
+.comparison-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.comparison-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TITLE */
+
+.comparison-title {
+  padding: 16px;
+  margin: 0;
+}
+
+.comparison-image svg.placeholder_svg {
+  border: 1px solid #eeeeee;
+}
+
+.comparison-product-column a {
+  text-decoration: none;
+}
+
+/* =========================
+   SHARED SCROLL
+========================= */
+
+.comparison-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.comparison-wrapper {
+  min-width: 1200px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px) {
+
+  .comparison-top-section {
+    grid-template-columns: 220px repeat(4, minmax(0, 1fr));
+  }
+
+  .comparison-row {
+    grid-template-columns: 220px repeat(4, 1fr);
+  }
+
+}
+
+
+@media(max-width:990px) {
+  .comparison-side-image {
+    min-width: 220px;
+  }
+
+  .comparison-top-section,
+  .comparison-row {
+    box-sizing: border-box;
+  }
+
+  .comparison-products-grid-img,
+  .comparison-table {
+    width: 100%;
+  }
+}

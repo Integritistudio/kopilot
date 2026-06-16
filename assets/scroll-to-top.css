@@ -1,0 +1,91 @@
+.scroll_to_top_btn {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 98;
+    width: 5rem;
+    height: 5rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    background: var(--color-background);
+    box-shadow:
+        0 0.35rem 1.4rem color-mix(in srgb, var(--color-text) 40%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--color-text) 18%, transparent);
+    transform: translate3d(0, calc(100% + 3rem), 0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.35s ease,
+        visibility 0.35s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.scroll_to_top_btn:hover {
+    background: color-mix(in srgb, var(--color-background) 88%, var(--color-text) 12%);
+    box-shadow:
+        0 0.45rem 1.6rem color-mix(in srgb, var(--color-text) 50%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--color-text) 28%, transparent);
+}
+
+.scroll_to_top_btn:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
+}
+
+.scroll_to_top_btn--visible {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.scroll_to_top_btn__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.scroll_to_top_btn__icon svg {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.scroll_to_top_btn__icon svg path {
+    fill: currentColor;
+}
+
+@media screen and (max-width: 640px) {
+    .scroll_to_top_btn {
+        right: 1.25rem;
+        bottom: 1.25rem;
+        width: 3.75rem;
+        height: 3.75rem;
+        /* transform: translate3d(0, calc(100% + 2.5rem), 0); */
+        box-shadow:
+            0 0.25rem 1rem color-mix(in srgb, var(--color-text) 38%, transparent),
+            0 0 0 1px color-mix(in srgb, var(--color-text) 16%, transparent);
+    }
+
+    .scroll_to_top_btn:hover {
+        box-shadow:
+            0 0.3rem 1.15rem color-mix(in srgb, var(--color-text) 48%, transparent),
+            0 0 0 1px color-mix(in srgb, var(--color-text) 24%, transparent);
+    }
+
+    .scroll_to_top_btn__icon svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}

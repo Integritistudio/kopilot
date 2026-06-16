@@ -1,0 +1,173 @@
+{% style %}
+  .image_text_scroller_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+    position: relative;
+    isolation: isolate;
+    background: #fff;
+  }
+
+  @media screen and (max-width: 640px) {
+    .image_text_scroller_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2  }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;      
+    }
+  }
+{% endstyle %}
+
+{{ 'vertical-image-scroller.css' | asset_url | stylesheet_tag }}
+
+<div class="image_text_scroller_wrapper image_text_scroller_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--color: {{ section.settings.color }}; --hover-color: {{ section.settings.hover_color }};"
+>
+  <vertical-image-scroller>
+    <div class="image_text_scroller_main_inner">
+      <div class="image_text_scroller_inner">
+        {% if section.settings.scroll_text != blank %}
+          <div class="image_text_scroller_text_wrapper{% if section.blocks.size == 0 %} no_blocks{% endif %}">
+            <div class="image_text_scroller_text_track reveal stagger">
+              <h2 class="h1 custom_size scroller-text">{{ section.settings.scroll_text }}</h2>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="image_text_scroller_img_wrapper">
+            {% for block in section.blocks %}
+              {% assign ratio = 0.7 %}              
+              <div class="image_text_scroller_img_block ratio" style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%;">
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}" class="image_text_scroller_overlay_link" aria-label="{{ 'sections.vertical_image_scroller.overlay_link' | t }}">{{ 'sections.vertical_image_scroller.overlay_link' | t }}</a>
+                {% endif %}
+                {% if block.settings.img != blank %}
+                  {{ block.settings.img | image_url: width: 1200 | image_tag: class: 'reveal stagger' }}
+                {% else %}
+                  {% assign index = forloop.index | modulo: 2 %}
+                  {% if index == 1 %}
+                    {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg reveal stagger' }}
+                  {% else %}
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg reveal stagger' }}
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.additional_text != blank %}
+          <div class="vertical_img_scroller_additional_text rte reveal stagger">
+            {{ section.settings.additional_text }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </vertical-image-scroller>
+</div>
+
+{% schema %}
+{
+  "name": "Vertical image scroller",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "scroll_text",
+      "label": "Enter scroll text",
+      "default": "Vertical Image Scroller"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Heading color when over images",
+      "default": "#9f9f9f"
+    },    
+    {
+      "type": "richtext",
+      "id": "additional_text",
+      "label": "Additional text (appears at the bottom)",
+      "default": "<p>Elevate your interiors with timeless designs and refined details, thoughtfully crafted to enhance comfort, style, and harmony. Our décor blends modern aesthetics with everyday functionality, creating living spaces that feel warm, elegant, and effortlessly sophisticated perfectly suited for contemporary lifestyles and beautifully designed homes.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Image link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical image scroller",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

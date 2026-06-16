@@ -1,0 +1,520 @@
+{% style %}
+  .featured_collection_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      --dots-bg: {{ section.settings.dots_color }};
+  }
+
+  @media screen and (max-width: 640px) {
+    .featured_collection_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+
+    .featured_collection_wrapper--{{ section.id }} .container:has(.featured_collection_grid) {
+      padding-right: 0;
+    }
+
+    .featured_collection_wrapper--{{ section.id }}:has(.featured_collection_grid) .featured_collection_head {
+      padding-right: 1.5rem;
+    }
+  }
+{% endstyle %}
+
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+{% assign collection = section.settings.collection %}
+
+<div class="featured_collection_wrapper--{{ section.id }} color-{{section.settings.color_scheme }}">
+  <div class="container">
+    {% if section.settings.head != blank %}
+      <div class="featured_collection_head fc_head--{{ section.settings.head_align }}{% if section.settings.view == 'slider' and section.settings.show_progress %} fc_head_with_progress{% endif %}">
+        <h2 class="h1 reveal">{{ section.settings.head }}</h2>
+        {% if section.settings.view == 'slider' %}
+          {% if section.settings.show_progress and collection != blank %}
+          <div class="fc_progress_wrapper">
+            <span class="fc_current_slide">{{ '01' }}</span>
+            <div class="fc_pagination_progress">
+              <div class="fc_pagination_progress_inner"></div>
+            </div>
+            <span class="fc_total_slide">01</span>
+          </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="featured_collection_inner mob_cols_{{ section.settings.mob_cols }} {% if section.settings.view == 'slider' %} has_slider{% endif %}{% if section.settings.show_block %} block_enabled{% endif %}">
+      {% if section.settings.show_block and section.settings.view == 'slider' %}
+        <div class="{% if section.settings.overlay-content %} cont-overlay {% endif %}  featured_collection_block reveal stagger">
+          {% if section.settings.block_head != blank %}
+            <h3>{{ section.settings.block_head }}</h3>
+          {% endif %}
+
+          {% if section.settings.block_text != blank %}
+            <p>{{ section.settings.block_text }}</p>
+          {% endif %}
+
+          {% if section.settings.block_img != blank %}
+            {{ section.settings.block_img | image_url: width: 800 | image_tag }}
+          {% endif %}
+
+          {% if section.settings.show_btn %}
+            {% if section.settings.btn_label != blank %}
+              <div class="featured_collection_btn">
+                {% if collection != blank %}
+                  <a
+                    href="{{ collection.url }}"
+                    class="btn btn--{{ section.settings.btn_style }}"
+                    aria-label="{{ section.settings.btn_label }}"
+                  >
+                    {{- section.settings.btn_label -}}
+                  </a>
+                {% else %}
+                  <a role="link" class="btn btn--disabled" aria-label="{{ section.settings.btn_label }}">
+                    {{- section.settings.btn_label -}}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <featured-collection
+        {% if section.settings.view == 'grid' %}
+          style="--columns: {{ section.settings.columns }};"
+        {% endif %}
+        data-view="{{ section.settings.view }}"
+      >
+        <swiper-section
+          {% if section.settings.show_block %}
+            data-slides-desktop="4"
+          {% else %}
+            data-slides-desktop="{{section.settings.columns }}"
+          {% endif %}
+          data-spacing="{{ settings.column_spacing }}"
+          data-slides-mobile="{{ section.settings.mob_cols }}"        
+           data-pagination-type="bullets"  
+        >
+          <div class="featured_collection_{{ section.settings.view }}{% if section.settings.view == 'grid' %} cols_{{ section.settings.columns }} mob_cols_{{ section.settings.mob_cols}}{% endif %}{% if section.settings.view == 'slider' %} swiper{% endif %}">
+            {% if section.settings.show_block and section.settings.view == 'grid' %}
+              <div class="{% if section.settings.overlay-content %} cont-overlay {% endif %} featured_collection_block reveal stagger">
+                {% if section.settings.block_head != blank %}
+                  <h3>{{ section.settings.block_head }}</h3>
+                {% endif %}
+
+                {% if section.settings.block_text != blank %}
+                  <p>{{ section.settings.block_text }}</p>
+                {% endif %}
+
+                {% if section.settings.block_img != blank %}
+                  {{ section.settings.block_img | image_url: width: 800 | image_tag }}
+                {% endif %}
+
+                {% if section.settings.show_btn %}
+                  {% if section.settings.btn_label != blank %}
+                    <div class="featured_collection_btn">
+                      {% if collection != blank %}
+                        <a
+                          href="{{ collection.url }}"
+                          class="btn btn--{{ section.settings.btn_style }}"
+                          aria-label="{{ section.settings.btn_label }}"
+                        >
+                          {{- section.settings.btn_label -}}
+                        </a>
+                      {% else %}
+                        <a role="link" class="btn btn--disabled" aria-label="{{ section.settings.btn_label }}">
+                          {{- section.settings.btn_label -}}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if section.settings.view == 'slider' %}<div class="swiper-wrapper">{% endif %}
+            {% if collection != blank %}
+              {% assign limit = section.settings.limit %}
+              {% for product in collection.products limit: limit %}
+                {% render 'product-card',
+                  product: product,
+                  index: forloop.index,
+                  view: section.settings.view,
+                  show_card_bg: section.settings.show_card_bg,
+                  card_bg: section.settings.card_bg,
+                  card_text: section.settings.card_text,
+                  card_align: section.settings.card_text_align,
+                  aspect_ratio: section.settings.aspect_ratio,
+                  show_badges: settings.show_badges,
+                  show_secondary_img: section.settings.show_secondary_img,
+                  show_custom_badges: settings.show_custom_badges,
+                  show_quick_view: section.settings.show_quick_view,
+                  show_color_swatches: section.settings.show_color_swatches,
+                  mob_cols: section.settings.mob_cols,
+                  columns: section.settings.columns,
+                  title_size: section.settings.title_size
+                %}
+              {% endfor %}
+            {% else %}
+              {% for i in (1..4) %}
+                {% render 'empty-product-card',
+                  index: forloop.index,
+                  view: section.settings.view,
+                  card_align: section.settings.card_text_align
+                %}
+              {% endfor %}
+            {% endif %}
+            {% if section.settings.view == 'slider' %}
+              </div>
+            {% endif %}
+          </div>          
+         
+          {% if section.settings.show_progress_bottom and collection != blank %}
+          <div class="swiper-pagination fc-pagination"></div>
+          {% endif %}
+
+          {% if section.settings.show_arrows and section.settings.view == 'slider' %}
+            <button aria-label="{{ 'accessibility.prev_btn' | t }}" class="fc_btn swiper-button-prev">
+              <span class="svg_wrapper">{{ 'left-arrow.svg' | inline_asset_content }}</span>
+            </button>
+
+            <button aria-label="{{ 'accessibility.next_btn' | t }}" class="fc_btn swiper-button-next">
+              <span class="svg_wrapper">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+            </button>
+          {% endif %}
+        </swiper-section>
+      </featured-collection>
+      
+    </div>
+   
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Works only when top progress bar is disabled."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block",
+      "label": "Show block",
+      "default": false
+    },
+    {
+       "type": "checkbox",
+       "id": "overlay-content",
+       "label": "Content overlay",
+       "default": false,
+       "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "text",
+      "id": "block_head",
+      "label": "Block heading",
+      "default": "Block Heading",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "block_text",
+      "label": "Block text",
+      "default": "Use this block to describe your collection.",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "block_img",
+      "label": "Select block image",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_btn",
+      "label": "Show button",
+      "default": true,
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Shop Now",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "select",
+      "id": "btn_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "primary",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "select",
+      "id": "view",
+      "label": "View",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Show top pagination progress",
+      "default": true,
+      "visible_if": "{{ section.settings.view == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bottom",
+      "label": "Show bottom pagination progress",
+      "default": false,
+      "visible_if": "{{ section.settings.view == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "dots_color",
+      "label": "Dots color",
+      "default": "#D8F27D",
+      "visible_if": "{{ section.settings.show_progress_bottom }}"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns per row",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "unit": "col",
+      "info": "Works only when block or slider is disabled."
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Number of products to load",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_bg",
+      "label": "Show card background color",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background color",
+      "default": "#F6F2F0",
+      "visible_if": "{{ section.settings.show_card_bg }}"
+    },
+    {
+      "type": "color",
+      "id": "card_text",
+      "label": "Card text color",
+      "default": "#000000",
+      "info": "Only used for quick add button svg",
+      "visible_if": "{{ section.settings.show_card_bg }}"
+    },
+    {
+      "type": "select",
+      "id": "card_text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Product title size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small text"
+        },
+        {
+          "value": "normal",
+          "label": "Normal text"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_img",
+      "label": "Show secondary image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_view",
+      "label": "Enable quick view",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color_swatches",
+      "label": "Show color swatches",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile columns"
+    },
+    {
+      "type": "select",
+      "id": "mob_cols",
+      "label": "Number of columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "One"
+        },
+        {
+          "value": "2",
+          "label": "Two"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,466 @@
+.newsletter_inner {
+    position: relative;
+}
+
+/* .newsletter_inner.ni--half {
+    height: calc(100vh * 1/2);
+}
+
+.newsletter_inner.ni--two_third {
+    height: calc(100vh * 2/3);
+}
+
+.newsletter_inner.ni--full {
+    height: 100vh;
+}
+
+.newsletter_inner.ni--adapt {
+    height: 100%;
+} */
+
+.newsletter_img_wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    position: relative;
+    align-items: flex-end;
+}
+
+.newsletter_img_wrapper:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: var(--overlay);
+}
+
+.newsletter_img_wrapper img, .newsletter_img_wrapper svg.placeholder_svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    grid-area: 1/1;
+}
+
+.newsletter_img_wrapper svg {
+    background: color-mix(in srgb, var(--color-secondary-background) 100%, transparent);
+}
+
+
+.newsletter_inner .newsletter_img_wrapper, .newsletter_inner .newsletter_img_wrapper img:not(.newsletter_scroller_img_block  img), .newsletter_inner .newsletter_img_wrapper svg.placeholder_svg  {
+    height: var(--img-height);
+}
+
+newsletter-scroller {
+    display: block;
+    overflow: hidden;
+    grid-area: 1 / 1;
+    width: 100%;
+    height: fit-content;
+    margin: 0 0 1.2rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter_img_scroller_inner {
+    display: flex;
+    height: auto;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    align-items: stretch;
+    width: max-content;
+    animation: newsletter-scroll linear infinite;
+}
+
+.newsletter_scroller_img_block {
+    max-width: 23rem;
+    min-width: 23rem;
+    width: 100%;
+    background: var(--color-background);
+    padding: 1.8rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--img-border-radius);
+    overflow: hidden;
+}
+
+.newsletter_scroller_img_block img {
+    width: 100%;
+    max-width: 11.5rem;
+    height: auto;
+    object-fit: contain;
+}
+
+@keyframes newsletter-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.newsletter_small_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 2rem));
+    background: var(--color-background);
+    max-width: 80.5rem;
+    width: 100%;
+    max-height: 23.8rem;
+    height: 100%;
+    border-radius: var(--img-border-radius);
+    padding: 4rem;
+    display: flex;
+    align-items: flex-start;    
+    gap: var(--column-spacing);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.newsletter_small_box.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.newsletter_small_box_img {
+    max-width: 27rem;
+    height: 15.8rem;
+    border-radius: var(--img-border-radius);
+    overflow: hidden;
+    flex: 1;
+    position: relative;
+}
+
+.newsletter_small_box_img img, .newsletter_small_box_img svg.placeholder_svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.newsletter_small_box_img svg.placeholder_svg {
+    background: color-mix(in srgb, var(--color-secondary-background) 30%, transparent);
+}
+
+.newsletter_small_box_form {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
+
+newsletter-form {
+    display: block;
+    width: 100%;
+}
+
+.newsletter_field_wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.newsletter_field_wrapper .input_field_wrapper {
+    border-bottom: 1px solid var(--color-border);
+}
+
+button.newsletter-form__button {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    padding: 0;
+    width: 3.3rem;
+    height: 100%;
+    background: transparent;
+    border: none;
+}
+
+button.newsletter-form__button svg {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+button.newsletter-form__button svg path {
+    fill: var(--color-input-text);
+}
+
+.newsletter_overlay_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 2rem));
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.newsletter_overlay_img.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.newsletter_overlay_img img {
+    max-width: 10.6rem;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.newsletter_small_box_form_inner {
+    width: 100%;
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 989px) {
+    .newsletter_inner.ni--full {
+        height: 100%;
+    }
+
+    .newsletter_inner.ni--full .newsletter_img_wrapper, .newsletter_inner.ni--full .newsletter_img_wrapper img:not(.newsletter_scroller_img_block  img), .newsletter_inner.ni--full .newsletter_img_wrapper svg.placeholder_svg  {
+        height: 100%;
+    }
+
+    .newsletter_small_box {
+        position: static;
+        transform: none !important;
+        max-width: calc(100% - 6rem);
+        margin: 3rem auto !important;
+        border: 1px solid var(--color-border);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsletter_scroller_img_block {
+        max-width: 23rem;
+        min-width: 16rem;
+        padding: 1rem 2rem; 
+    }
+
+    .newsletter_small_box_form_inner p {
+        margin: .4rem 0 0;
+    }
+
+    .newsletter_small_box_form submission-form {
+        margin: 1.5rem 0 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .newsletter_small_box {
+        max-width: calc(100% - 3rem);
+        padding: 1.5rem;
+        flex-flow: column;
+        max-height: fit-content;
+    }
+
+    .newsletter_scroller_img_block img {
+        max-width: 8rem;
+    }
+
+    .newsletter_small_box_img {
+        max-width: 100%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .newsletter_inner .newsletter_img_wrapper, .newsletter_inner .newsletter_img_wrapper img:not(.newsletter_scroller_img_block img), .newsletter_inner .newsletter_img_wrapper svg.placeholder_svg,
+    .newsletter_small_box_img img, .newsletter_small_box_img svg.placeholder_svg {
+        height: 100%;
+        min-height: 30rem;
+        max-height: 30rem;
+    }
+
+    .newsletter_overlay_img img {
+        height: auto !important;
+        min-height: auto !important;
+        aspect-ratio: 1;
+        object-fit: contain;
+    }
+}
+
+/* =========================================
+   STYLE 2
+========================================= */
+
+.newsletter-style_2 .newsletter_small_box {
+    position: absolute;
+    top: 75%;
+    left: 7%;
+    transform: translateY(-50%);
+    max-width: 700px;
+    width: calc(100% - 40px);
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    display: block;
+    z-index: 5;
+}
+
+.newsletter-style_2 .newsletter_small_box_form {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.newsletter-style_2 .newsletter_small_box_img {
+    display: none;
+}
+
+.newsletter-style_2 .newsletter_field_wrapper {
+    background: #fff;
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-style_2 .newsletter_field_wrapper .input_field_wrapper {
+    flex: 1;
+    border: none;
+}
+
+.newsletter-style_2 .newsletter-form__button .svg_wrapper {
+    display: none;
+}
+.newsletter-style_2 .newsletter-form__button {
+    width: 100%;
+    max-width: fit-content;
+}
+
+.news-text {
+    display: none;
+}
+
+.newsletter-style_2 .news-text {
+    display: block;
+}
+
+/* MOBILE */
+
+/* =========================================
+   STYLE 2 RESPONSIVE FIX
+========================================= */
+/* =========================================
+   IPHONE SAFARI FIX
+========================================= */
+
+/* =========================================
+   DEFAULT MOBILE (ANDROID + ALL DEVICES)
+========================================= */
+
+@media screen and (max-width: 767px) {
+
+    .newsletter-style_2 .newsletter_small_box {
+        position: absolute;
+        top: 4%;
+        left: 15px;
+        right: 15px;
+        bottom: auto;
+        transform: translateY(-50%);
+
+        width: calc(100% - 30px);
+        max-width: calc(100% - 30px);
+
+        margin: 0 !important;
+
+        z-index: 5;
+        padding: 20px;
+        border-radius: 18px;
+
+        background: rgb(var(--background-color));
+    }
+
+    .newsletter-style_2 .newsletter_small_box_form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .newsletter-style_2 .newsletter_field_wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .newsletter-style_2 .newsletter-form__button {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+
+        width: 100%;
+        max-width: 100%;
+        height: 52px;
+    }
+}
+
+
+/* =========================================
+   IPHONE SAFARI ONLY
+========================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+    @media screen and (max-width: 767px) {
+
+        .newsletter-style_2 .newsletter_small_box {
+
+            top: 45%;
+            transform: none !important;
+
+        }
+
+    }
+
+}
+
+/* @media screen and (max-width: 989px) {
+
+    .newsletter-style_2 .newsletter_small_box {
+        left: 20px;
+        right: 20px;
+        width: calc(100% - 40px);
+        transform: translateY(-50%);
+        top:55%;
+    }
+
+    .newsletter-style_2 .newsletter_field_wrapper {
+        flex-direction: column;
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .newsletter-style_2 button.newsletter-form__button {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+
+    .newsletter-style_2 .newsletter_text {
+        font-size: 15px;
+    }
+    .newsletter-style_2 .newsletter_small_box {
+        top:0%;
+        margin: 0 auto !important;
+    }
+    .newsletter-style_2 .newsletter_small_box_form {
+        gap: 0;
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 20px;
+    }
+} */

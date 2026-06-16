@@ -1,0 +1,51 @@
+{%- if settings.enable_free_shipping_bar -%}
+  {%- assign fsb_base_threshold = settings.free_shipping_threshold | default: 0 | plus: 0 -%}
+  {%- assign fsb_exchange_rate = localization.country.currency.exchange_rate | default: 1.0 -%}
+  {%- assign threshold_cents = fsb_base_threshold | times: fsb_exchange_rate | times: 100 | round -%}
+  {%- assign fsb_spend_more_template = 'sections.cart.free_shipping_bar.spend_more_html' | t: amount: '[amount]' -%}
+  {%- assign fsb_qualified_text = 'sections.cart.free_shipping_bar.qualified' | t -%}
+
+  {%- if threshold_cents > 0 -%}
+    {%- if cart.total_price < threshold_cents -%}
+      {%- assign fsb_remaining = threshold_cents | minus: cart.total_price -%}
+      {%- assign fsb_progress = cart.total_price | times: 100 | divided_by: threshold_cents -%}
+      {%- assign fsb_qualified = false -%}
+    {%- else -%}
+      {%- assign fsb_remaining = 0 -%}
+      {%- assign fsb_progress = 100 -%}
+      {%- assign fsb_qualified = true -%}
+    {%- endif -%}
+
+    {%- if fsb_progress > 100 -%}
+      {%- assign fsb_progress = 100 -%}
+    {%- endif -%}
+
+    <div
+      class="free_shipping_bar"
+      data-threshold="{{ fsb_base_threshold }}"
+      data-cart-total="{{ cart.total_price | divided_by: 100.0 }}"
+      data-exchange-rate="{{ fsb_exchange_rate }}"
+      data-currency-code="{{ localization.country.currency.iso_code }}"
+      data-locale="{{ request.locale.iso_code }}"
+      data-spend-more-template="{{ fsb_spend_more_template | escape }}"
+      data-qualified-text="{{ fsb_qualified_text | escape }}">
+      <div class="free_shipping_bar_inner">
+        <div class="free_shipping_bar_header">          
+          <div class="free_shipping_bar_copy">
+            <div class="free_shipping_bar_message">
+              {%- if fsb_qualified -%}
+                <span class="free_shipping_bar_qualified">{{ 'sections.cart.free_shipping_bar.qualified' | t }}</span>
+              {%- else -%}
+                {%- assign fsb_remaining_money = fsb_remaining | money -%}
+                <span>{{ 'sections.cart.free_shipping_bar.spend_more_html' | t: amount: fsb_remaining_money }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+        <div class="free_shipping_bar_track" aria-hidden="true">
+          <div class="free_shipping_bar_fill" style="width: {{ fsb_progress }}%;"></div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+{%- endif -%}

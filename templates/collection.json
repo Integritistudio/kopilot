@@ -1,0 +1,57 @@
+{
+    "sections": {
+        "collection_banner_XgMJ9N": {
+            "type": "collection-banner",
+            "disabled": true,
+            "name": "Collection banner",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "head": "",
+                "show_description": false,
+                "max_width": 530,
+                "show_breadcrumbs": false,
+                "show_img": false,
+                "tilt_img": false,
+                "top_spacing": 100,
+                "bottom_spacing": 100
+            }
+        },
+        "main": {
+            "type": "collection",
+            "settings": {
+                "head_color_scheme": "scheme-1",
+                "grid_color_scheme": "scheme-1",
+                "show_heading": true,
+                "show_description": true,
+                "max_width": 1200,
+                "head_align": "left",
+                "show_img": true,
+                "img_height": 350,
+                "overlay": 0,
+                "columns": 4,
+                "limit": 16,
+                "show_count": true,
+                "show_filters": true,
+                "enable_sorting": true,
+                "enable_sticky_filters": true,
+                "show_card_bg": false,
+                "card_bg": "#F6F2F0",
+                "card_text": "#ffffff",
+                "card_text_align": "left",
+                "aspect_ratio": "portrait",
+                "show_quick_view": true,
+                "show_color_swatches": false,
+                "show_secondary_img": true,
+                "pagination_color_scheme": "scheme-1",
+                "pagination_type": "default",
+                "mob_cols": "1",
+                "top_spacing": 80,
+                "bottom_spacing": 80
+            }
+        }
+    },
+    "order": [
+        "collection_banner_XgMJ9N",
+        "main"
+    ]
+}

@@ -1,0 +1,481 @@
+{% style %}
+  .main_contact_form_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .main_contact_form_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'main-contact-form.css' | asset_url | stylesheet_tag }}
+
+<div class="main_contact_form_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="main_contact_form_inner{% if section.settings.show_background %} has_bg{% endif %}">
+      {% if section.settings.head != blank %}
+        <div class="main_contact_form_head" style="--head-align: {{ section.settings.head_align }};">
+          <h2>{{ section.settings.head }}</h2>
+          {% if section.settings.text != blank %}
+            <div class="main_contact_form_text rte">
+              <p>{{ section.settings.text }}</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {%- form 'contact', id: 'ContactForm', class: 'main_contact_form' -%}
+        {%- if form.posted_successfully? -%}
+          <h5
+            class="mini-text form_success_message"
+            id="ContactFooter-success"
+            tabindex="-1"
+          >
+            <span class="icon_wrapper">
+              {{- 'success.svg' | inline_asset_content -}}
+            </span>
+            {{- 'sections.contact.form.success' | t }}
+          </h5>
+        {%- elsif form.errors -%}
+          <div class="error_msg">
+            <p
+              class="form_message"
+              role="alert"
+              tabindex="-1"
+            >
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 13 13"
+              >
+                <circle
+                  cx="6.5"
+                  cy="6.50049"
+                  r="5.5"
+                  stroke="white"
+                  stroke-width="2" />
+                <circle
+                  cx="6.5"
+                  cy="6.5"
+                  r="5.5"
+                  fill="#EB001B"
+                  stroke="#EB001B"
+                  stroke-width="0.7" />
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white" />
+                <path
+                  d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
+                  fill="white"
+                  stroke="#EB001B"
+                  stroke-width="0.7">
+              </svg>
+              {{ 'sections.contact.form.error_heading' | t }}
+            </p>
+          </div>
+          <div class="form_errors" role="alert">
+            <ul role="list">
+              <li>
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </li>
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="main_contact_form_fields{% if section.settings.two_cols %} two_cols{% endif %}">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'name' %}
+                <div class="input_field_wrapper if_name">
+                  <input
+                    autocomplete="name"
+                    type="text"
+                    id="ContactForm-name"
+                    {% if block.settings.label != blank %}
+                      name="contact[{{ block.settings.label }}]"
+                    {% else %}
+                      name="contact[{{ 'sections.contact.form.name' | t }}]"
+                    {% endif %}
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    placeholder="{{ 'sections.contact.form.name' | t }}"
+                    {% if block.settings.required %}
+                      required
+                    {% endif %}
+                  >
+                  <label for="ContactForm-name">
+                    {% if block.settings.label != blank %}
+                      {% if block.settings.required != blank %}
+                        {{ block.settings.label | append: '*' }}
+                      {% else %}
+                        {{ block.settings.label }}
+                      {% endif %}
+                    {% else %}
+                      {% if block.settings.required %}
+                        {{ 'sections.contact.form.name' | t | append: ' *' }}
+                      {% else %}
+                        {{ 'sections.contact.form.name' | t }}
+                      {% endif %}
+                    {% endif %}
+                  </label>
+                </div>
+
+              {% when 'email' %}
+                <div class="input_field_wrapper if_email">
+                  <input
+                    autocomplete="email"
+                    type="email"
+                    id="ContactForm-email"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    {% if form.errors contains 'email' %}
+                      aria-invalid="true"
+                      aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    placeholder="{{ 'sections.contact.form.email' | t }}"
+                  >
+                  <label class="" for="ContactForm-email">
+                    {{- 'sections.contact.form.email' | t | append: ' *' -}}
+                  </label>
+                </div>
+
+              {% when 'phone' %}
+                <div class="input_field_wrapper if_phone">
+                  <input
+                    type="tel"
+                    id="ContactForm-phone"
+                    autocomplete="tel"
+                    {% if block.settings.label != blank %}
+                      name="contact[{{ block.settings.label }}]"
+                    {% else %}
+                      name="contact[{{ 'sections.contact.form.phone' | t }}]"
+                    {% endif %}
+                    pattern="[0-9\-]*"
+                    value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                    placeholder="{{ 'sections.contact.form.phone' | t }}"
+                    {% if block.settings.required %}
+                      required
+                    {% endif %}
+                  >
+                  <label class="" for="ContactForm-phone">
+                    {% if block.settings.label != blank %}
+                      {% if block.settings.required != blank %}
+                        {{ block.settings.label | append: '*' }}
+                      {% else %}
+                        {{ block.settings.label }}
+                      {% endif %}
+                    {% else %}
+                      {% if block.settings.required %}
+                        {{ 'sections.contact.form.phone' | t | append: '*' }}
+                      {% else %}
+                        {{ 'sections.contact.form.phone' | t }}
+                      {% endif %}
+                    {% endif %}
+                  </label>
+                </div>
+
+              {% when 'custom-field' %}
+                <div class="input_field_wrapper if_custom_field">
+                  <input
+                    type="text"
+                    id="ContactForm-{{ block.settings.label }}"
+                    {% if block.settings.label != blank %}
+                      name="contact[{{ block.settings.label }}]"
+                    {% else %}
+                      name="contact[{{ 'sections.contact.form.custom_field' | t }}]"
+                    {% endif %}
+                    placeholder="{{ 'sections.contact.form.custom_field' | t }}"
+                    {% if block.settings.required %}
+                      required
+                    {% endif %}
+                  >
+                  <label for="ContactForm-{{ block.settings.label }}">
+                    {% if block.settings.label != blank %}
+                      {% if block.settings.required != blank %}
+                        {{ block.settings.label | append: '*' }}
+                      {% else %}
+                        {{ block.settings.label }}
+                      {% endif %}
+                    {% else %}
+                      {% if block.settings.required %}
+                        {{ 'sections.contact.form.custom_field' | t | append: ' *' }}
+                      {% else %}
+                        {{ 'sections.contact.form.custom_field' | t }}
+                      {% endif %}
+                    {% endif %}
+                  </label>
+                </div>
+
+              {% when 'message' %}
+                <div class="input_field_wrapper textarea if_message">
+                  <textarea
+                    rows="10"
+                    id="ContactForm-body"
+                    class=""
+                    {% if block.settings.label != blank %}
+                      name="contact[{{ block.settings.label }}]"
+                    {% else %}
+                      name="contact[{{ 'sections.contact.form.comment' | t }}]"
+                    {% endif %}
+                    placeholder="{{ 'sections.contact.form.comment' | t }}"
+                    {% if block.settings.required %}
+                      required
+                    {% endif -%}
+                  >
+                    {{- form.body -}}
+                  </textarea>
+                  <label class="" for="ContactForm-body">
+                    {% if block.settings.label != blank %}
+                      {% if block.settings.required %}
+                        {{ block.settings.label | append: '*' }}
+                      {% else %}
+                        {{ block.settings.label }}
+                      {% endif %}
+                    {% else %}
+                      {% if block.settings.required != blank %}
+                        {{- 'sections.contact.form.comment' | t | append: ' *' -}}
+                      {% else %}
+                        {{- 'sections.contact.form.comment' | t -}}
+                      {% endif %}
+                    {% endif %}
+                  </label>
+                </div>
+
+              {% when 'button' %}
+                <div class="input_field_wrapper if_button">
+                  <button type="submit" class="btn">
+                    {% if block.settings.label != blank %}
+                      {{ block.settings.label }}
+                    {% else %}
+                      {{ 'sections.contact.form.send' | t }}
+                    {% endif %}
+                  </button>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Contact us"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Write a short description of your contact form here. Tell customers how to reach you and what to expect after they submit the form."
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "two_cols",
+      "label": "Use two columns layout for fields (only for desktop)",
+      "default": true,
+      "info": "Works best when all the blocks are used. If all the blocks are not used, the two columns layout will break."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background",
+      "label": "Show background color",
+      "default": false,
+      "info": "Uses the secondary background color of the selected color scheme."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Name",
+      "type": "name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Enter label",
+          "default": "Full name"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Email",
+      "type": "email",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Enter label",
+          "default": "Your email address"
+        }
+      ]
+    },
+    {
+      "name": "Phone",
+      "type": "phone",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Enter label",
+          "default": "Phone number"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Custom field",
+      "type": "custom-field",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Enter label",
+          "default": "Custom field"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Message",
+      "type": "message",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Enter label",
+          "default": "Your message"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Submit button",
+      "type": "button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Submit Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form",
+      "blocks": [
+        {
+          "type": "name"
+        },
+        {
+          "type": "email"
+        },
+        {
+          "type": "phone"
+        },
+        {
+          "type": "custom-field"
+        },
+        {
+          "type": "message"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

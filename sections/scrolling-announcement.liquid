@@ -1,0 +1,248 @@
+<style>
+  #premium-announcement-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.bar_padding_top }}px ;
+    padding-bottom: {{ section.settings.bar_padding_bottom }}px ;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  #premium-announcement-{{ section.id }} .announcement-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  #premium-announcement-{{ section.id }} .announcement-track {
+    display: flex;
+    width: max-content;
+    animation: premiumAnnouncementScroll {{ section.settings.scroll_speed }}s linear infinite;
+  }
+
+  #premium-announcement-{{ section.id }} .announcement-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-left: {{ section.settings.item_spacing }}px;
+    padding-right: {{ section.settings.item_spacing }}px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  #premium-announcement-{{ section.id }} .announcement-item,
+  #premium-announcement-{{ section.id }} .announcement-item p,
+  #premium-announcement-{{ section.id }} .announcement-item * {
+    color: {{ section.settings.text_color }} !important;
+    font-size: {{ section.settings.font_size }}px;
+  }
+
+  {% if section.settings.show_separator %}
+
+  #premium-announcement-{{ section.id }} .announcement-item::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: {{ section.settings.text_color }};
+    border-radius: 50%;
+    margin-left: {{ section.settings.item_spacing }}px;
+    opacity: 0.8;
+  }
+
+  {% endif %}
+
+
+
+  @keyframes premiumAnnouncementScroll {
+
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+
+  }
+
+
+
+  {% if section.settings.pause_on_hover %}
+
+  #premium-announcement-{{ section.id }}:hover .announcement-track {
+    animation-play-state: paused;
+  }
+
+  {% endif %}
+
+
+
+  /* MOBILE */
+
+  @media screen and (max-width: 768px) {
+
+    #premium-announcement-{{ section.id }} .announcement-item {
+      font-size: {{ section.settings.mobile_font_size }}px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    #premium-announcement-{{ section.id }} .announcement-item::after {
+      margin-left: 25px;
+    }
+
+  }
+</style>
+
+<section
+  id="premium-announcement-{{ section.id }}"
+  class="premium-announcement-bar"
+>
+  <div class="announcement-wrapper">
+    <div class="announcement-track">
+      {% for i in (1..4) %}
+        {% for block in section.blocks %}
+          {% if block.settings.text != blank %}
+            <div class="announcement-item" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Scrolling announcement",
+  "tag": "section",
+  "class": "premium-scroll-announcement",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5c242"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 13
+    },
+
+    {
+      "type": "range",
+      "id": "bar_padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Item Spacing",
+      "default": 45
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 25
+    },
+
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause On Hover",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Separator Dot",
+      "default": true
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Welcome to our store.</p>"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Scrolling announcement",
+      "blocks": [
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

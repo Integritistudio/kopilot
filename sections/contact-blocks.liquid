@@ -1,0 +1,197 @@
+{% style %}
+  .contact_blocks_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .contact_blocks_wrapper--{{ section.id }} .container {
+        padding-right: 0;
+    }
+
+    .contact_blocks_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'contact-blocks.css' |  asset_url |  stylesheet_tag }}
+
+<div class="contact_blocks_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}"
+style="--columns: {{ section.settings.columns }};"
+>
+  <div class="container">
+    <div
+      class="contact_blocks_inner cols_{{ section.settings.columns }} {% if section.settings.width == 'full_width' %} full_width{% endif %}"
+      {% if section.settings.width == 'custom_width' %}
+        style="--max-width: {{ section.settings.max_width }}px;"
+      {% endif %}
+    >
+      {% for block in section.blocks %}
+      <div class="contact_block{% if section.settings.show_bg %} has_bg{% endif %}"{% if section.settings.show_bg %} style="--bg: {{ section.settings.bg_color }};"{% endif %}>
+          {% if block.settings.img != blank %}
+            <div class="contact_block_img">
+              {{ block.settings.img | image_url: width: 800 | image_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.subhead != blank or block.settings.head != blank or block.settings.text != blank %}
+          <div class="contact_block_info">
+            {% if block.settings.subhead != blank %}
+                <span>{{ block.settings.subhead }}</span>
+            {% endif %}
+
+            {% if block.settings.head != blank %}
+                <h2 class="h6">{{ block.settings.head }}</h2>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+                <div class="contact_block text rte">
+                    <p>{{ block.settings.text }}</p>
+                </div>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact blocks",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+        "type": "select",
+        "id": "width",
+        "label": "Section width",
+        "options": [
+            {
+                "value": "full_width",
+                "label": "Full width"
+            },
+            {
+                "value": "custom_width",
+                "label": "Custom width"
+            }
+        ],
+        "default": "custom_width"
+    },
+    {
+        "type": "range",
+        "id": "max_width",
+        "label": "Max. width",
+        "min": 1000,
+        "max": 1600,
+        "step": 10,
+        "default": 1230,
+        "unit": "px"
+    },
+    {
+        "type": "range",
+        "id": "columns",
+        "label": "Number of columns per row",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "default": 3,
+        "unit": "px"
+    },
+    {
+        "type": "checkbox",
+        "id": "show_bg",
+        "label": "Show background color",
+        "default": true      
+    },
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#fff",
+        "visible_if": "{{ section.settings.show_bg }}"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+        "name": "Contact block",
+        "type": "contact-block",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "Select image"
+            },
+            {
+                "type": "text",
+                "id": "subhead",
+                "label": "Sub heading",
+                "default": "Sub Heading"
+            },
+            {
+                "type": "text",
+                "id": "head",
+                "label": "Heading",
+                "default": "Heading"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "text",
+                "label": "Text",
+                "default": "Write a short description about the block."
+            }
+        ]        
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact blocks",
+      "blocks": [
+        {
+            "type": "contact-block"
+        },
+        {
+            "type": "contact-block"
+        },
+        {
+            "type": "contact-block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

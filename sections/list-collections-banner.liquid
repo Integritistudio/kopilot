@@ -1,0 +1,138 @@
+{% style %}
+  .list_collection_banner_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      overflow: hidden;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .list_collection_banner_wrapper--{{ section.id }} {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .list_collection_banner_wrapper--{{ section.id }} {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+{% endstyle %}
+
+{{ 'list-collections-banner.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="list_collection_banner_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--content-max-width: {{ section.settings.max_width }}px;"
+>
+  <div class="container">
+    <div class="list_collections_banner_inner{% if section.settings.img != blank %} has_img{% endif %}">
+      <div class="list_collections_banner_text_wrapper">
+        {% if section.settings.head != blank %}
+          <h2 class="h1">{{ section.settings.head }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="list_collections_banner_text rte">
+            <p>{{ section.settings.text }}</p>
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_breadcrumbs %}
+          {% render 'breadcrumbs' %}
+        {% endif %}
+      </div>
+
+      {% if section.settings.img != blank %}
+        <div class="list_collections_banner_img{% if section.settings.tilt_img %} tilt_img{% endif %}">
+          {{ section.settings.img | image_url: width: 1920 | image_tag }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "List collections banner",
+  "enabled_on": {
+    "templates": ["list-collections"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Discover all the collections in our store, each thoughtfully curated to offer a variety of styles, essentials, and standout pieces for every need and occasion."
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Content max. width",
+      "min": 400,
+      "max": 1200,
+      "step": 10,
+      "default": 530,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Select image"
+    },
+    {
+      "type": "checkbox",
+      "id": "tilt_img",
+      "label": "Tilt image",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "List collections banner"
+    }
+  ]
+}
+{% endschema %}

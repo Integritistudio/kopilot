@@ -1,0 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "404",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "show_bg": true,
+        "bg_color": "#ffffff",
+        "show_breadcrumbs": true,
+        "overlay": 20,
+        "img_height": "350",
+        "font_size": 100,
+        "head_color": "#180d05",
+        "subhead": "Page Not Found",
+        "text": "We’re sorry, the page you requested does not exist.",
+        "top_spacing": 40,
+        "bottom_spacing": 100
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

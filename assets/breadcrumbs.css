@@ -1,0 +1,37 @@
+.list_collections_banner_inner .breadcrumbs_wrapper, .collection_banner_inner .breadcrumbs_wrapper, .blog_page_banner_inner .breadcrumbs_wrapper {
+    margin: 7rem 0 0;
+}
+
+.list_collections_banner_inner .breadcrumbs_wrapper .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+ol.breadcrumbs__list {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+ol.breadcrumbs__list li a {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--color-text);
+    text-decoration: none;
+    text-underline-offset: 0.2rem;
+}
+
+ol.breadcrumbs__list li a:hover {
+    text-decoration: underline;
+}
+
+ol.breadcrumbs__list li.separator {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    color: color-mix(in srgb, var(--color-border) 50%, transparent);
+}

@@ -1,0 +1,93 @@
+{% assign ratio = 1 %}
+{% if aspect_ratio == 'portrait' %}
+  {% assign ratio = 0.8 %}
+{% elsif aspect_ratio == 'adapt' %}
+  {% if product.selected_or_first_available_variant.featured_image != blank %}
+    {% assign ratio = product.selected_or_first_available_variant.featured_image.aspect_ratio %}
+  {% elsif product.featured_image != blank %}
+    {% assign ratio = product.featured_image.aspect_ratio %}
+  {% else %}
+    {% assign ratio = 1 %}
+  {% endif %}
+{% endif -%}
+
+{% capture quick_view_html %}
+  <div class="quick_view_wrapper">       
+    <svg class="corner-svg-top" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1;">
+      <path fill="rgb(var(--background-color))" d="M24.0033 24H0C18.9005 23.8195 23.8918 18.3064 24.0033 0V24Z" style="fill: red;"></path>
+    </svg>
+
+    <svg class="corner-svg-bottom" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1;">
+      <path fill="rgb(var(--background-color))" d="M24.0033 24H0C18.9005 23.8195 23.8918 18.3064 24.0033 0V24Z" style="fill: red;"></path>
+    </svg>
+
+    {% assign first_variant = product.selected_or_first_available_variant %}
+
+    {% if product.has_only_default_variant %}
+    <product-form>
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ first_variant.id }}" {% unless first_variant.available %}disabled{% endunless %} />
+              <input type="hidden" name="quantity" value="1" />
+              <button aria-label="{{ 'products.product.quick_view' | t }}" class="product_form_submit_btn" {% unless first_variant.available %}disabled{% endunless %}>
+                <span class="btn_text">
+                  {{ 'icon-cart.svg' | inline_asset_content }}
+                  {{ 'icon-cart.svg' | inline_asset_content }}
+                </span>
+                <span class="loader hidden">.</span>
+              </button>
+            {% endform %}
+          </product-form>
+  {% else %}
+    <quick-add-button data-product-handle="{{ product.handle }}">
+      <button class="quick_add_btn" aria-label="{{ 'products.product.quick_add' | t }}" data-drawer="quick_add_drawer" {% unless first_variant.available %}disabled{% endunless %}>
+        <span class="btn_text">
+          {{ 'icon-eye.svg' | inline_asset_content }}
+          {{ 'icon-eye.svg' | inline_asset_content }}
+        </span>
+        <span class="loader hidden">.</span>
+      </button>
+      </quick-add-button>
+  {% endif %}
+  </div>
+{% endcapture %}
+
+<div class="complementary_product_card_wrapper product_card_wrapper swiper-slide" style="{% if show_card_bg %}--card-bg: {{ card_bg }}; --card-text: {{ card_text }}; {% endif %}">
+  <div class="product_add_error hidden"></div>
+  <div class="complementary_product_card_img ratio{% if show_card_bg %} has_bg{% endif %}{% if show_quick_view %} has_quick_view{% endif %}" style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%;">
+    {% if product.selected_or_first_available_variant.featured_image != blank %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {{ product.selected_or_first_available_variant.featured_image
+ | image_url: width: 800
+ | image_tag: class: 'main_pc_image'
+        }}
+      </a>
+    {% elsif product.featured_image != blank %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {{ product.featured_image | image_url: width: 800 | image_tag: class: 'main_pc_image' }}
+      </a>
+    {% else %}
+      {% assign pc_index = index | modulo: 2 %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {% if pc_index == 1 %}
+          {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+  <div class="complementary_product_card_info pc_info--{{ card_align }}" style="align-items: {{ card_text_align }}">
+    <h3 class="small-text">
+      <a
+        href="{{ product.url }}"
+        aria-label="{{ product.title }}"
+        tabindex="-1">{{ product.title }}</a>
+    </h3>
+    {% render 'product-card-price'
+      , product: product %}
+  </div>
+
+  {% if show_quick_view %}
+    {{ quick_view_html }}
+  {% endif %}
+</div>

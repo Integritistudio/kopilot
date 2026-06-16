@@ -1,0 +1,137 @@
+<product-media-desktop>
+    {% assign featured_ratio = 1 %}
+  {% if aspect_ratio == 'portrait' %}
+    {% assign featured_ratio = 0.8 %}
+  {% elsif aspect_ratio == 'landscape' %}
+    {% assign featured_ratio = 1.5 %}
+  {% elsif aspect_ratio == 'adapt' %}
+    {% if variant.featured_media != blank %}
+      {% assign featured_ratio = variant.featured_media.width
+        | times: 1.0
+        | divided_by: variant.featured_media.height
+      %}
+    {% elsif product.featured_media %}
+      {% assign featured_ratio = product.featured_media.width
+        | times: 1.0
+        | divided_by: product.featured_media.height
+      %}
+    {% else %}
+      {% assign featured_ratio = 1 %}
+    {% endif %}
+  {% endif %}
+
+  <div class="product_desktop_media_wrapper{% if product.media.size ==0 %} no_media{% endif %}{%if product.media.size == 1%} single_media{% endif %}{% if apply_bg %} has_bg{% endif %}"{% if apply_bg %} style="--bg: {{ bg_color }}"{% endif %}>
+    {% if product.selected_or_first_available_variant.featured_media != blank %}
+      {% assign featured_media = product.selected_or_first_available_variant.featured_media %}
+    {% elsif product.featured_media != blank %}
+      {% assign featured_media = product.featured_media %}
+    {% endif %}
+
+    {% if featured_media != blank %}
+      {% case featured_media.media_type %}
+        {% when 'image' %}
+          <div
+            class="media_wrapper product_featured_image_wrapper ratio ratio_{{ aspect_ratio }}"
+            style="--aspect-ratio: {{ 1 | times: 100 | divided_by: featured_ratio }}%;"
+          >
+            <a aria-label="{{ 'products.product.media_gallery' | t }}" class="icon_magnify" href="{{ featured_media | image_url: width: 1920 }}" data-fancybox="gallery-{{ product.id }}">
+              {{ 'icon-zoom-in.svg' | inline_asset_content }}
+            </a>
+            {{ featured_media | image_url: width: 1920 | image_tag }}
+          </div>
+        {% when 'video' %}
+          <div class="media_wrapper product_featured_video_wrapper">
+            {% assign poster_image = media.preview_image | image_url: width: 1920 %}
+
+            {{
+              featured_media
+              | video_tag: autoplay: false, playsinline: true, loop: true, controls: false, poster: poster_image
+            }}
+            <button class="play_btn">{{ 'icon-play.svg' | inline_asset_content }}</button>
+          </div>
+        {% when 'external_video' %}
+          <div class="media_wrapper product_featured_external_video_wrapper">
+            {{ featured_media | external_video_tag }}
+            <div class="video_overlay"></div>
+          </div>
+        {% when 'model' %}
+          <div class="media_wrapper product_featured_model_wrapper">
+            <product-model>
+              {{ featured_media | model_viewer_tag: toggleable: true }}
+            </product-model>
+          </div>
+      {% endcase %}
+    {% else %}
+      <div class="product_main_placeholder_wrapper">
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+      </div>
+    {% endif %}
+
+    {% if product.media.size > 1 %}
+      <div class="product_main_thumbs_wrapper{% if apply_bg %} has_bg{% endif %}"{% if apply_bg %} style="--bg: {{ bg_color }}"{% endif %}>
+    {% for media in product.media %}
+      {% unless media == featured_media %}
+        {% assign ratio = 1 %}
+        {% if aspect_ratio == 'portrait' %}
+          {% assign ratio = 0.8 %}
+        {% elsif aspect_ratio == 'landscape' %}
+          {% assign ratio = 1.5 %}
+        {% elsif aspect_ratio == 'adapt' %}
+          {% assign ratio = media.width | times: 1.0 | divided_by: media.height %}
+        {% endif %}
+
+        {% case media.media_type %}
+          {% when 'image' %}
+            <div
+              class="media_wrapper product_thumb_image_wrapper ratio"
+              style="--aspect-ratio: {{ 1 | times: 100 | divided_by: ratio }}%;"
+            >
+              <a aria-label="{{ 'products.product.media_gallery' | t }}" class="icon_magnify" href="{{ media | image_url: width: 1920 }}" data-fancybox="gallery-{{ product.id }}">
+                {{ 'icon-zoom-in.svg' | inline_asset_content }}
+              </a>
+              {{ media | image_url: width: 1920 | image_tag }}
+            </div>
+          {% when 'video' %}
+            <div class="media_wrapper product_thumb_video_wrapper ratio"
+              style="--aspect-ratio: {{ 1 | times: 100 | divided_by: ratio }}%;"
+            >
+              {% assign poster_image = media.preview_image | image_url: width: 1920 %}
+              {{
+                media
+                | video_tag: autoplay: false, playsinline: true, loop: true, controls: false, poster: poster_image
+              }}
+              <button class="play_btn">{{ 'icon-play.svg' | inline_asset_content }}</button>
+            </div>
+          {% when 'external_video' %}
+            <div class="media_wrapper product_thumb_external_video_wrapper ratio"
+              style="--aspect-ratio: {{ 1 | times: 100 | divided_by: ratio }}%;"
+            >
+              {{ media | external_video_tag }}
+              <div class="video_overlay"></div>
+            </div>
+          {% when 'model' %}
+            <div class="media_wrapper product_thumb_model_wrapper ratio"
+              style="--aspect-ratio: {{ 1 | times: 100 | divided_by: ratio }}%;"
+            >
+              <product-model>
+                {{ media | model_viewer_tag: toggleable: true }}
+              </product-model>
+            </div>
+        {% endcase %}
+      {% endunless %}
+    {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if product == blank %}
+    <div class="product_placeholder_thumbs_wrapper">
+    {% for i in(1..4) %}
+      {% assign index = i | plus: 1 %}
+      <div class="media_wrapper">
+        {{ 'product-' | append: index | placeholder_svg_tag: 'placeholder_svg' }}
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+  </div>
+</product-media-desktop>

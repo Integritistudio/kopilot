@@ -1,0 +1,584 @@
+{% style %}
+  .slideshow_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+    {% if section.settings.width == 'container_width' %}
+      background: {{ section.settings.slides_bg }};
+    {% endif %}
+  }
+
+  @media screen and (max-width: 640px) {
+    .slideshow_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'slideshow.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="slideshow_wrapper--{{ section.id }}"
+  {% if section.settings.show_dots %}
+    style="--dots-bg: {{ section.settings.dots_color }};"
+  {% endif %}
+>
+  <div class="{% if section.settings.width == 'container_width' %}container{% else %} full_width{% endif %}">
+    <slideshow-section>
+      <swiper-section
+        data-slides-desktop="1"
+        data-slides-tablet="1"
+        data-slides-custom="1"
+        data-slides-mobile="1"
+        data-speed="800"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-delay="{{ section.settings.delay | times: 1000 | json }}"
+        data-effect="{{ section.settings.effect }}"
+      >
+        <div class="slideshow_inner swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="slideshow_slide{% if forloop.first %} zoom_in{% endif %} img--{{ section.settings.slide_height }} swiper-slide color-{{ block.settings.color_scheme }}">
+                <div class="slideshow_slide_img">
+                  {% if block.settings.img != blank %}
+                    {{ block.settings.img | image_url: width: 1920 | image_tag }}
+                  {% else %}
+                    {% assign index = forloop.index | modulo: 2 %}
+                    {% if index == 1 %}
+                      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                    {% else %}
+                      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                    {% endif %}
+                  {% endif %}
+                </div>
+                {% if block.settings.head != blank
+                  or block.settings.text != blank
+                  or block.settings.btn_link != blank
+                %}
+                  <div
+                    class="slideshow_slide_content ss_content_{{ block.settings.text_position }}"
+                    style="--content-max-width: {{ block.settings.content_max_width }}px;"
+                  >
+                    <div
+                      class="slideshow_slide_content_inner text-{{ block.settings.text_align }}{% if block.settings.show_container %} with_container{% if block.settings.apply_glass_effect %} has_glass_effect{% endif %}{% endif %}"
+                      {% if block.settings.show_container %}
+                        style="--container-bg: {{ block.settings.container_bg }}; --container-text: {{ block.settings.container_text }};"
+                      {% endif %}
+                    >
+                      {% if block.settings.head != blank %}
+                        <h2 class="h1 {% if block.settings.heading_size == 'large' %}large{% endif %}">
+                          {{ block.settings.head }}
+                        </h2>
+                      {% endif %}
+
+                      {% if block.settings.text != blank %}
+                        <div class="slideshow_slide_text">
+                          <p>{{ block.settings.text }}</p>
+                        </div>
+                      {% endif %}
+
+                      {% if block.settings.btn_link != blank or block.settings.btn_text != blank %}
+                        <div class="slideshow_slide_btns{% if block.settings.btn_text == blank %} empty_text{% endif %}">
+                          {% if block.settings.btn_link != blank %}
+                            <a
+                              href="{{ block.settings.btn_link }}"
+                              aria-label="{{ block.settings.btn_text }}"
+                              class="btn"
+                            >
+                              {{- block.settings.btn_text -}}
+                            </a>
+                          {% else %}
+                            <a
+                              role="link"
+                              aria-label="{{ block.settings.btn_text }}"
+                              class="btn btn--disabled"
+                            >
+                              {{- block.settings.btn_text -}}
+                            </a>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+          {% if section.settings.show_arrows and section.blocks.size > 1 %}
+            <div class="slideshow_arrows_wrapper sa-{{ section.settings.arrows_position }} arrow-{{ section.settings.arrow_style }}">
+              <button
+                aria-label="{{ 'accessibility.prev_btn' | t }}"
+                class="swiper_btns slideshow_arrows swiper-button-prev"
+              >
+                <span class="svg_wrapper">{{ 'left-arrow.svg' | inline_asset_content }}</span>
+              </button>
+
+              <button
+                aria-label="{{ 'accessibility.next_btn' | t }}"
+                class="swiper_btns slideshow_arrows swiper-button-next"
+              >
+                <span class="svg_wrapper">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+              </button>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_dots and section.blocks.size > 1 %}
+            {% if section.settings.pagination_type == 'numbers' %}
+              <div class="ss_progress_wrapper pagination-{{ section.settings.pagination_position }}">
+                <span class="ss_current">01</span>
+
+                <div class="ss_progress_bar">
+                  <div class="ss_progress_inner"></div>
+                </div>
+
+                <span class="ss_total">0{{ section.blocks.size }}</span>
+              </div>
+
+            {% else %}
+              <div
+                class="swiper-pagination slideshow_pagination pagination-{{ section.settings.pagination_position }}"
+              ></div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </swiper-section>
+    </slideshow-section>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const root = document.querySelector('.slideshow_wrapper--{{ section.id }}');
+
+    if (!root) return;
+
+    const swiperEl = root.querySelector('.slideshow_inner');
+
+    const currentEl = root.querySelector('.ss_current');
+    const progressEl = root.querySelector('.ss_progress_inner');
+
+    const totalSlides = {{ section.blocks.size }};
+
+    const initSwiper = setInterval(() => {
+
+      if (swiperEl && swiperEl.swiper) {
+
+        const swiper = swiperEl.swiper;
+
+        function updatePagination() {
+
+          let current = swiper.realIndex + 1;
+
+          currentEl.textContent =
+            current < 10 ? '0' + current : current;
+
+          let progress = (current / totalSlides) * 100;
+
+          progressEl.style.width = progress + '%';
+        }
+
+        updatePagination();
+
+        swiper.on('slideChange', updatePagination);
+
+        clearInterval(initSwiper);
+      }
+
+    }, 100);
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Slides width",
+      "options": [
+        {
+          "value": "full_width",
+          "label": "Full width"
+        },
+        {
+          "value": "container_width",
+          "label": "Container width"
+        }
+      ],
+      "default": "container_width"
+    },
+    {
+      "type": "color",
+      "id": "slides_bg",
+      "label": "Section background color",
+      "default": "#E3EBC6",
+      "visible_if": "{{ section.settings.width == 'container_width' }}"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Slide height",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half of screen"
+        },
+        {
+          "value": "two_third",
+          "label": "Two thirds of screen"
+        },
+        {
+          "value": "full",
+          "label": "Full screen"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Change slides after every",
+      "min": 1,
+      "max": 10,
+      "default": 3,
+      "step": 1,
+      "unit": "s"
+    },
+    {
+      "type": "select",
+      "id": "effect",
+      "label": "Slide effect",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "arrows_position",
+      "label": "Arrows position",
+      "options": [
+        {
+          "value": "top_left",
+          "label": "Top left"
+        },
+        {
+          "value": "top_right",
+          "label": "Top right"
+        },
+
+        {
+          "value": "middle_left",
+          "label": "Middle left"
+        },
+        {
+          "value": "middle_right",
+          "label": "Middle right"
+        },
+        {
+          "value": "bottom_left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom_right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "middle_right"
+    },
+    {
+      "type": "select",
+      "id": "arrow_style",
+      "label": "Arrow style",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show pagination",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "dots_color",
+      "label": "Dots color",
+      "default": "#D8F27D",
+      "visible_if": "{{ section.settings.show_dots }}"
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "label": "Pagination type",
+      "options": [
+        {
+          "value": "dots",
+          "label": "Dots"
+        },
+        {
+          "value": "numbers",
+          "label": "Numbers"
+        }
+      ],
+      "default": "dots"
+    },
+    {
+      "type": "select",
+      "id": "pagination_position",
+      "label": "Pagination position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 1,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image"
+        },
+        {
+          "type": "range",
+          "id": "content_max_width",
+          "label": "Content max. width",
+          "min": 450,
+          "max": 800,
+          "step": 10,
+          "default": 650,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "options": [
+            {
+              "value": "top_left",
+              "label": "Top left"
+            },
+            {
+              "value": "top_center",
+              "label": "Top center"
+            },
+            {
+              "value": "top_right",
+              "label": "Top right"
+            },
+            {
+              "value": "middle_left",
+              "label": "Middle left"
+            },
+            {
+              "value": "middle_center",
+              "label": "Middle center"
+            },
+            {
+              "value": "middle_right",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottom_left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom_center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "bottom_right",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "bottom_left"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_container",
+          "label": "Show text container",
+          "default": true,
+          "info": "When container is disabled, text will take the colors from the selected color scheme"
+        },
+        {
+          "type": "color",
+          "id": "container_bg",
+          "label": "Container background color",
+          "default": "#ffffff",
+          "visible_if": "{{ block.settings.show_container }}"
+        },
+        {
+          "type": "color",
+          "id": "container_text",
+          "label": "Container text color",
+          "default": "#233728",
+          "visible_if": "{{ block.settings.show_container }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "apply_glass_effect",
+          "label": "Apply glass effect",
+          "default": true,
+          "info": "Works only when container is enabled. Background color will be auto adjusted and text color will be white.",
+          "visible_if": "{{ block.settings.show_container }}"
+        },
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Heading",
+          "default": "Slideshow Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Showcase featured content with a flexible slideshow designed to highlight your brand, products, and promotions."
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button label",
+          "default": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

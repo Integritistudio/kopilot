@@ -1,0 +1,30 @@
+<a
+            href="{{ routes.cart_url }}"
+            class="header_cart{% unless template contains 'cart' %}{% if settings.cart_type == 'drawer' %} drawer_open_btn{% endif %}{% endunless %}"
+            id="cart-icon-bubble"
+            aria-label="{{ 'accessibility.cart_icon' | t }}"
+            {% unless template contains 'cart' %}
+              {% if settings.cart_type == 'drawer' %}
+                data-drawer="cart_drawer"
+              {% endif %}
+            {% endunless %}
+          >
+            <div class="svg_wrapper">
+              {{ 'icon-cart.svg' | inline_asset_content }}
+            </div>
+            <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+            <div class="cart_count_text">
+              {% if cart.item_count == 1 %}
+                <span aria-hidden="true" class="cc_text" data-count="{{ cart.item_count}} {{ 'accessibility.item' | t }}">
+                  {{- cart.item_count }}
+                  {{ 'accessibility.item' | t -}}
+                </span>
+              {% else %}
+                <span aria-hidden="true" class="cc_text" data-count="{{ cart.item_count}} {{ 'accessibility.items' | t }}">
+                  {{- cart.item_count }}
+                  {{ 'accessibility.items' | t -}}
+                </span>
+              {% endif %}
+              <span class="visually-hidden">{{ 'templates.cart.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          </a>

@@ -1,0 +1,16 @@
+{% if settings.show_scroll_to_top %}
+  {{ 'scroll-to-top.css' | asset_url | stylesheet_tag }}
+
+  <button
+    type="button"
+    id="scroll_to_top_btn"
+    class="scroll_to_top_btn color-{{ settings.scroll_to_top_color_scheme }}"
+    aria-label="{{ 'accessibility.scroll_to_top' | t }}"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <span class="svg_wrapper scroll_to_top_btn__icon" aria-hidden="true">
+      {{ 'icon-chevron-up.svg' | inline_asset_content }}
+    </span>
+  </button>
+{% endif %}

@@ -1,0 +1,235 @@
+{% style %}
+  .benefits-{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing }}px;
+      margin-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  .benefits-sec .image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+  }
+
+  @media screen and (max-width: 640px) {
+      .benefits-{{ section.id }} {
+          margin-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+          margin-top: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+      }
+  }
+{% endstyle %}
+
+{{ 'benefits.css' | asset_url | stylesheet_tag }}
+
+
+  <div class="benefits-{{ section.id }} benefits-sec layout-{{ section.settings.layout_style }} color-{{section.settings.color_scheme }}">
+    <div class="wrapper" style="flex-direction: {{ section.settings.image_position }};">
+      
+      {% if section.settings.image_position == 'row-reverse' %}
+        <div class="content">
+          {% for block in section.blocks %}
+            <div class="item">
+              {% if block.settings.icon %}
+                {{ block.settings.icon | image_url: width: 100 | image_tag }}
+              {% endif %}
+              <h5 class="heading">
+                <span class="line-1 rte">{{ block.settings.heading_line_1 }}</span>
+              </h5>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="image-wrap">
+          {% if section.settings.image %}
+              {{ section.settings.image | image_url: width: 1200 | image_tag }}
+          {% else %}
+              {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+
+          <div class="image-content {{ section.settings.content_position }}">
+              <div>
+                  <h1 class="image-heading xl">{{ section.settings.image_heading }}</h1>
+                  <h5 class="image-subheading">{{ section.settings.image_subheading }}</h5>
+              </div>
+          </div>
+        </div>
+
+      {% else %}
+        <div class="image-wrap">
+          {% if section.settings.image %}
+            {{ section.settings.image | image_url: width: 1200 | image_tag }}
+          {% else %}
+              {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+
+          <div class="image-content {{ section.settings.content_position }}">
+              <div>
+                  <h1 class="image-heading xl">{{ section.settings.image_heading }}</h1>
+                  <h5 class="image-subheading">{{ section.settings.image_subheading }}</h5>
+              </div>
+          </div>
+        </div>
+
+        <div class="content">
+          {% for block in section.blocks %}
+            <div class="item">
+              {% if block.settings.icon %}
+                {{ block.settings.icon | image_url: width: 100 | image_tag }}
+              {% endif %}
+              <div class="info">
+                <h5 class="heading">
+                  <span class="line-1 rte">{{ block.settings.heading_line_1 }}</span>
+                </h5>
+                {% if block.settings.information != blank %}
+                  <p class="information">{{ block.settings.information }}</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Benefits",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "scheme-2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Main Image"
+      },
+      {
+        "type": "select",
+        "id": "image_fit",
+        "label": "Image ratio",
+        "options": [
+          { "value": "cover", "label": "Adapt" },
+          { "value": "contain", "label": "Square " }
+        ],
+        "default": "cover"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Image position",
+        "options": [
+          { "value": "row", "label": "Left" },
+          { "value": "row-reverse", "label": "Right" }
+        ],
+        "default": "row"
+      },
+      {
+        "type": "select",
+        "id": "layout_style",
+        "label": "Layout Style",
+        "options": [
+          { "value": "grid", "label": "Grid" },
+          { "value": "horizontal", "label": "Horizontal" }
+        ],
+        "default": "grid"
+      },
+      {
+        "type": "text",
+        "id": "image_heading",
+        "label": "Image Heading",
+        "default": "Main Heading"
+      },
+      {
+        "type": "text",
+        "id": "image_subheading",
+        "label": "Image Subheading",
+        "default": "Subheading"
+      },
+      {
+        "type": "select",
+        "id": "content_position",
+        "label": "Content Position",
+        "options": [
+          { "value": "top-left", "label": "Top Left" },
+          { "value": "top-center", "label": "Top Center" },
+          { "value": "top-right", "label": "Top Right" },
+          { "value": "center-left", "label": "Center Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "center-right", "label": "Center Right" },
+          { "value": "bottom-left", "label": "Bottom Left" },
+          { "value": "bottom-center", "label": "Bottom Center" },
+          { "value": "bottom-right", "label": "Bottom Right" }
+        ],
+        "default": "bottom-left"
+      },
+      {
+        "type": "header",
+        "content": "Section spacing"
+      },
+      {
+        "type": "range",
+        "id": "top_spacing",
+        "label": "Top spacin",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "bottom_spacing",
+        "label": "Bottom spacing",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "benefit",
+        "name": "Benefit",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "heading_line_1",
+            "label": "Heading Line 1",
+            "default": "This is the Main Heading",
+            "info": "Bold text will appear in a separate line"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "information",
+            "label": "Information",
+            "default": "This is the info block",
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Benefits",
+        "blocks": [
+          { "type": "benefit" },
+          { "type": "benefit" },
+          { "type": "benefit" },
+          { "type": "benefit" }
+        ]
+      }
+    ]
+  }
+  {% endschema %}

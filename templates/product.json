@@ -1,0 +1,300 @@
+{
+    "sections": {
+        "main": {
+            "type": "product",
+            "blocks": {
+                "badge_LjLGBz": {
+                    "type": "badge",
+                    "settings": {
+                        "sold_out_badge_color_scheme": "scheme-2",
+                        "sale_badge_color_scheme": "scheme-2",
+                        "custom_badge_color_scheme": "scheme-2"
+                    }
+                },
+                "title_dB8AdK": {
+                    "type": "title",
+                    "settings": {}
+                },
+                "price_mE7YdG": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "inventory_NYiF4n": {
+                    "type": "inventory",
+                    "settings": {
+                        "in_stock_color": "#007af9",
+                        "out_of_stock_color": "#ff0000",
+                        "threshold_color": "#d18d00",
+                        "threshold": 10
+                    }
+                },
+                "sku_VAVBLh": {
+                    "type": "sku",
+                    "settings": {}
+                },
+                "description_takcb3": {
+                    "type": "description",
+                    "settings": {
+                        "lines": 4
+                    }
+                },
+                "variant_picker_UXY9QK": {
+                    "type": "variant-picker",
+                    "settings": {
+                        "options_type": "button"
+                    }
+                },
+                "pickup_availability_xg98FN": {
+                    "type": "pickup-availability",
+                    "settings": {
+                        "pickup_bg": "#ebebeb",
+                        "pickup_text": "#180d05"
+                    }
+                },
+                "quantity_tdELB4": {
+                    "type": "quantity",
+                    "settings": {
+                        "show_quantity_breaks": true
+                    }
+                },
+                "add_to_cart_buttons_ThAnKY": {
+                    "type": "add-to-cart-buttons",
+                    "settings": {
+                        "show_dynamic_button": true,
+                        "show_gift_recipient_form": false
+                    }
+                },
+                "social_share_iikDcQ": {
+                    "type": "social-share",
+                    "disabled": true,
+                    "settings": {}
+                },
+                "complementary_products_pYxFTk": {
+                    "type": "complementary-products",
+                    "settings": {
+                        "head": "THE PERFECT MATCH",
+                        "limit": 8,
+                        "columns": "3",
+                        "text_align": "left",
+                        "product_card_style": "style2",
+                        "show_card_bg": true,
+                        "card_bg": "#f6f2f0",
+                        "card_text": "#000000",
+                        "card_text_align": "center",
+                        "aspect_ratio": "square",
+                        "show_quick_view": false
+                    }
+                }
+            },
+            "block_order": [
+                "badge_LjLGBz",
+                "title_dB8AdK",
+                "price_mE7YdG",
+                "inventory_NYiF4n",
+                "sku_VAVBLh",
+                "description_takcb3",
+                "variant_picker_UXY9QK",
+                "pickup_availability_xg98FN",
+                "quantity_tdELB4",
+                "add_to_cart_buttons_ThAnKY",
+                "social_share_iikDcQ",
+                "complementary_products_pYxFTk"
+            ],
+            "settings": {
+                "color_scheme": "scheme-1",
+                "gallery_layout": "horizontal",
+                "image_position": "left",
+                "media_style": "grid",
+                "use_narrow_container": false,
+                "columns": "single",
+                "aspect_ratio": "square",
+                "apply_bg": false,
+                "img_bg": "#14245c",
+                "show_social_share": true,
+                "show_sticky_add_to_cart": true,
+                "show_thumbnails": true,
+                "show_arrows": false,
+                "top_spacing": 100,
+                "bottom_spacing": 80
+            }
+        },
+        "product_tabs_VYFxHe": {
+            "type": "product-tabs",
+            "blocks": {
+                "tab_6akU7A": {
+                    "type": "tab",
+                    "settings": {
+                        "heading": "Specifications",
+                        "content": "<p>Add product specifications here.<\/p>",
+                        "show_description": false
+                    }
+                },
+                "tab_MExtik": {
+                    "type": "tab",
+                    "settings": {
+                        "heading": "Materials & Care",
+                        "content": "<p>Add materials and care instructions here.<\/p>",
+                        "show_description": false
+                    }
+                },
+                "tab_FwyBdD": {
+                    "type": "tab",
+                    "settings": {
+                        "heading": "Shipping & Returns",
+                        "content": "<p>Add shipping and returns information here.<\/p>",
+                        "show_description": false
+                    }
+                }
+            },
+            "block_order": [
+                "tab_6akU7A",
+                "tab_MExtik",
+                "tab_FwyBdD"
+            ],
+            "name": "Product tabs",
+            "settings": {
+                "color_scheme": "",
+                "show_payment_icons": true,
+                "payment_icons_heading": "Payment & Security",
+                "payment_bg": "#deefdd",
+                "payment_head": "#180d05",
+                "top_spacing": 40,
+                "bottom_spacing": 40
+            }
+        },
+        "double_image_text_WkhkyH": {
+            "type": "double-image-text",
+            "blocks": {
+                "head_nEczWB": {
+                    "type": "head",
+                    "settings": {
+                        "head": "Image With Text",
+                        "size": "h1"
+                    }
+                },
+                "content_aQBXqp": {
+                    "type": "content",
+                    "settings": {
+                        "content": "<p>Add a section that pairs images with text to highlight products, features, or content. Each block can include an image or icon alongside a title or short description, making it easy to create visually engaging and informative layouts that draw attention to your key messages.<\/p>"
+                    }
+                },
+                "button_Gn8Tqk": {
+                    "type": "button",
+                    "settings": {
+                        "btn_label": "Button Label",
+                        "btn_link": "",
+                        "btn_label1": "Button Label",
+                        "btn_link1": ""
+                    }
+                }
+            },
+            "block_order": [
+                "head_nEczWB",
+                "content_aQBXqp",
+                "button_Gn8Tqk"
+            ],
+            "name": "Double image text",
+            "settings": {
+                "color_scheme": "",
+                "use_narrow_container": false,
+                "image_position": "left",
+                "padding_top": 80,
+                "padding_bottom": 80
+            }
+        },
+        "logo_slider_tjxFPG": {
+            "type": "logo-slider",
+            "blocks": {
+                "logo_MLMiqq": {
+                    "type": "logo",
+                    "settings": {}
+                },
+                "logo_AU7Grg": {
+                    "type": "logo",
+                    "settings": {}
+                },
+                "logo_cCrr3r": {
+                    "type": "logo",
+                    "settings": {}
+                },
+                "logo_9yWycP": {
+                    "type": "logo",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "logo_MLMiqq",
+                "logo_AU7Grg",
+                "logo_cCrr3r",
+                "logo_9yWycP"
+            ],
+            "name": "Logo marquee",
+            "settings": {
+                "color_scheme": "",
+                "width": "full",
+                "direction": "left",
+                "speed": 20,
+                "gap": 30,
+                "logo_width": 120,
+                "enable_info_block": true,
+                "info_heading": "Heading",
+                "info_text": "Place info text here",
+                "padding_top": 40,
+                "padding_bottom": 40,
+                "padding_top_mobile": 20,
+                "padding_bottom_mobile": 20
+            }
+        },
+        "product_recommendations_Jt4Vbi": {
+            "type": "product-recommendations",
+            "name": "Product recommendations",
+            "settings": {
+                "color_scheme": "",
+                "head": "You may also like",
+                "head_align": "left",
+                "limit": 10,
+                "columns": 4,
+                "show_card_bg": false,
+                "card_bg": "#f6f2f0",
+                "card_text": "#000000",
+                "card_text_align": "center",
+                "title_size": "small",
+                "aspect_ratio": "portrait",
+                "show_quick_view": true,
+                "show_color_swatches": true,
+                "show_secondary_img": true,
+                "mob_cols": "1",
+                "top_spacing": 40,
+                "bottom_spacing": 40
+            }
+        },
+        "recently_viewed_TFG8ix": {
+            "type": "recently-viewed",
+            "name": "Recently viewed products",
+            "settings": {
+                "color_scheme": "",
+                "head": "Recently viewed",
+                "head_align": "left",
+                "limit": 8,
+                "columns": 4,
+                "show_card_bg": false,
+                "card_bg": "#f6f2f0",
+                "card_text": "#000000",
+                "card_text_align": "center",
+                "aspect_ratio": "portrait",
+                "show_quick_view": false,
+                "mob_cols": "1",
+                "top_spacing": 40,
+                "bottom_spacing": 40
+            }
+        }
+    },
+    "order": [
+        "main",
+        "product_tabs_VYFxHe",
+        "double_image_text_WkhkyH",
+        "logo_slider_tjxFPG",
+        "product_recommendations_Jt4Vbi",
+        "recently_viewed_TFG8ix"
+    ]
+}

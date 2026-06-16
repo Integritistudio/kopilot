@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon_img != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon_img | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    {% if template contains 'product' and product.featured_image %}
+      {{ product.featured_image | image_url: width: 1920 | preload_tag: as: 'image' }}
+    {% endif %}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {% render 'css-variables' %}
+
+    {% render 'color-schemes' %}
+
+    <!-- GLOBAL CSS -->
+    {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
+
+    <!-- LENIS CSS -->
+    {{ 'lenis.css' | asset_url | stylesheet_tag: preload: true }}
+
+    <!-- SWIPER CSS -->
+    {{ 'swiper.css' | asset_url | stylesheet_tag: preload: true }}
+
+    <!-- FANCYBOX CSS -->
+    {{ 'fancybox.css' | asset_url | stylesheet_tag: preload: true }}
+
+    {{ content_for_header }}
+
+    <script>
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+
+    <!-- LENIS JS -->
+    <script src="{{ 'lenis.js' | asset_url }}" defer></script>
+
+    <!-- SWIPER JS -->
+    <script src="{{ 'swiper.js' | asset_url }}" defer></script>
+
+    <!-- FANCYBOX JS -->
+    <script src="{{ 'fancybox.js' | asset_url }}" defer></script>
+
+    <!-- CUSTOM ANIMATIONS JS -->
+    <script src="{{ 'animations.js' | asset_url }}" defer></script>
+
+    <!-- GLOBAL JS -->
+    <script src="{{ 'scripts.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body>
+    <a class="skip-to-content-link btn visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+    </ul>
+
+    {% render 'search-drawer' %}
+
+    {% unless template contains 'cart' %}
+      {% if settings.cart_type == 'drawer' %}
+        {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+        {% render 'cart-drawer' %}
+      {% endif %}
+    {% endunless %}
+
+    {% section 'quick-add-drawer' %}
+
+    {% render 'scroll-to-top' %}
+
+    <!-- FANCYBOX INITIALIZATION SCRIPT -->
+    <script defer="defer">
+      document.addEventListener('DOMContentLoaded', function () {
+        Fancybox.bind('[data-fancybox]', {});
+      });
+    </script>
+
+    <!-- ANIMATIONS INITIALIZATION SCRIPT -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-animation]').forEach((el) => {
+          new window.ParallaxHandler(el);
+        });
+      });
+    </script>
+
+    <!-- LENIS INITIALIZATION SCRIPT -->
+    <script>
+      (() => {
+        if (window.__lenisInitialized) return;
+        window.__lenisInitialized = true;
+
+        function waitForLenis() {
+          return new Promise((resolve) => {
+            const check = () => {
+              if (window.Lenis) return resolve();
+              requestAnimationFrame(check);
+            };
+            check();
+          });
+        }
+
+        async function initLenis() {
+          await waitForLenis();
+
+          const lenis = new Lenis({
+            duration: 1.2,
+            smooth: true,
+            smoothTouch: false,
+            lerp: 0.1,
+          });
+
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+
+          requestAnimationFrame(raf);
+
+          window.lenis = lenis;
+
+          Fancybox.bind("[data-fancybox]", {
+            on: {
+              reveal: () => lenis.stop(),
+              destroy: () => lenis.start(),
+            },
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', initLenis);
+      })();
+    </script>
+  </body>
+</html>

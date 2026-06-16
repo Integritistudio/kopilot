@@ -1,0 +1,225 @@
+{%- style -%}
+  .multi-image-info--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .multi-image-info--{{ section.id }} .multi-image-info__grid {
+    gap: {{ section.settings.grid_gap }}px;
+  }
+
+  .multi-image-info--{{ section.id }} .multi-image-info__grid > * {
+    width: calc(100% / {{ section.settings.columns }});
+  }
+
+  @media screen and (max-width: 989px) {
+    .multi-image-info--{{ section.id }} .multi-image-info__grid > * {
+      width: calc(50% - ({{ section.settings.grid_gap }}px / 2));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .multi-image-info--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | divided_by: 1.5 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 1.5 }}px;
+    }
+
+    .multi-image-info--{{ section.id }} .multi-image-info__grid {
+      gap: 20px;
+    }
+  }
+{%- endstyle -%}
+
+{{ 'section-multi-image-info.css' | asset_url | stylesheet_tag }}
+
+<div class="multi-image-info multi-image-info--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="multi-image-info__grid">
+      {% for block in section.blocks %}
+        <div
+          class="multi-image-info__card image-{{ block.settings.image_position }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="multi-image-info__inner">
+            <div class="multi-image-info__media {{ section.settings.image_ratio }}">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 1600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375,550,750,1100,1500',
+                    alt: block.settings.heading
+                }}
+              {% else %}
+                {{
+                  'collection-1'
+                  | placeholder_svg_tag: 'multi-image-info__placeholder'
+                }}
+              {% endif %}
+            </div>
+
+            <div class="multi-image-info__content {{ block.settings.content_position }}">
+              {% if block.settings.subheading != blank %}
+                <p class="multi-image-info__subtitle">
+                  {{ block.settings.subheading }}
+                </p>
+              {% endif %}
+
+              {% if block.settings.heading != blank %}
+                <h2 class="multi-image-info__title">
+                  {{ block.settings.heading }}
+                </h2>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image cards",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "No of columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+        "type": "header",
+        "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Info card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub heading",
+          "default": "Your subheading"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "ADD YOUR MAIN HEADING HERE"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "bottom"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "top"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image cards",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

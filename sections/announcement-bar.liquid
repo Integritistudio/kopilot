@@ -1,0 +1,371 @@
+{% style %}
+  .announcement_bar_wrapper {
+      background-color: var(--color-secondary-background);
+      position: relative;
+      {% if section.index == 1 %}
+        z-index: 99;
+      {% else %}
+      z-index: 9;
+      {% endif %}
+  }
+
+  .announcement_bar_inner {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      background-color: var(--color-background);
+      border-radius: var(--border-radius);
+  }
+  
+  .announcement_bar_overlay_inner {
+    background: var(--color-background);
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+    border-radius: var(--border-radius);
+  }
+
+  .announcement_bar_box.container_width {
+    padding-top: 20px;
+}
+.announcement_bar_box.full_width {
+    background: var(--color-background);
+}
+
+  @media screen and (max-width: 1299px) {
+    .announcement_bar_wrapper {
+      {% if section.index == 1 %}
+        z-index: 98;
+      {% else %}
+      z-index: 8;
+      {% endif %}
+  }
+  }
+{% endstyle %}
+
+{{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+{{ 'localization.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="announcement_bar_wrapper
+  
+  color-{{ section.settings.color_scheme }}"
+  style="--border-radius: {{ section.settings.border_radius }}px;"
+>
+  {% if section.settings.announcement_overlay and request.page_type == 'index' %}
+    <div class="announcement_bar_overlay_inner">
+  {% endif %}
+<div class="announcement_bar_box {% if section.settings.width-full == 'container_width' %}
+    container_width
+  {% else %}
+    full_width
+  {% endif %}">
+  <div class="container">
+     
+    <div class="announcement_bar_inner">
+      {% if section.settings.show_category_list %}
+        <button
+          type="button"
+          class="ann_bar_menu_wrapper has_menu drawer_open_btn"
+          data-drawer="categories_drawer"
+          aria-haspopup="dialog"
+          aria-controls="categories_drawer"
+        >
+          <span class="svg_wrapper" aria-hidden="true">
+            {{ 'menu.svg' | inline_asset_content }}
+          </span>
+          {% if section.settings.menu_head != blank %}
+            <span class="ann_bar_menu_label">{{ section.settings.menu_head }}</span>
+          {% else %}
+            <span class="ann_bar_menu_label">{{ 'drawers.categories_drawer.heading' | t }}</span>
+          {% endif %}
+        </button>
+      {% endif %}
+
+      <announcement-slider>
+        <swiper-section
+          data-slides-desktop="1"
+          data-slides-custom="1"
+          data-slides-tablet="1"
+          data-slides-mobile="1"
+          data-speed="800"
+          data-effect="{{ section.settings.effect }}"
+          data-grab-cursor="true"
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-delay="{{ section.settings.delay | times: 1000 | json }}"
+        >
+          <div class="announcement_bar_text_inner swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="announcement_bar_text_block swiper-slide">
+                  <div class="at_text rte">
+                    {{ block.settings.text }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            {% if section.settings.show_arrows %}
+              <button class="swiper_btns swiper-button-prev" aria-label="{{ 'accessibility.prev_btn' | t }}">
+                <div class="svg_wrapper">{{ 'left-caret.svg' | inline_asset_content }}</div>
+              </button>
+
+              <button class="swiper_btns swiper-button-next" aria-label="{{ 'accessibility.next_btn' | t }}">
+                <div class="svg_wrapper">{{ 'right-caret.svg' | inline_asset_content }}</div>
+              </button>
+            {% endif %}
+          </div>
+        </swiper-section>
+      </announcement-slider>
+
+      {% if section.settings.show_localization %}
+        {% if localization.available_countries.size > 0 or localization.available_languages.size > 0 %}
+          <localization-wrapper>
+            <div class="ann_localization_wrapper">
+              {% if localization.available_countries.size > 0 %}
+                <button class="currency_selector_btn" aria-label="{{ 'localization.country_label' | t }}">
+                  <span>{{ localization.country.currency.iso_code }}</span>
+                  <span class="svg_wrapper">{{ 'icon-caret-down.svg' | inline_asset_content }}</span>
+                </button>
+              {% endif %}
+
+              {% if localization.available_languages.size > 0 %}
+                <button class="language_selector_btn" aria-label="{{ 'localization.language_label' | t }}">
+                  <span>{{ localization.language.name }}</span>
+                  <span class="svg_wrapper">{{ 'icon-caret-down.svg' | inline_asset_content }}</span>
+                </button>
+              {% endif %}
+
+              {% render 'localization' %}
+            </div>
+          </localization-wrapper>
+        {% endif %}
+      {% endif %}
+    </div>
+    </div>
+  </div>
+  {% if section.settings.announcement_overlay and request.page_type == 'index' %}
+    </div>
+  {% endif %}
+</div>
+
+{% if section.settings.show_category_list %}
+  {% render 'categories-drawer', heading: section.settings.menu_head %}
+{% endif %}
+
+<script>
+  function getAnnouncementBarPosition() {
+    const bar = document.querySelector('.announcement_bar_wrapper');
+    if (!bar) return;
+    const index = bar.dataset.index;
+      document.documentElement.setAttribute('announcement-bar-position', `${index}`);   
+  }
+
+  document.querySelector('DOMContentLoaded', getAnnouncementBarPosition());
+  {% comment %} document.querySelector('resize', calculateAnnouncementBarHeight()); {% endcomment %}
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const bar = document.querySelector('.announcement-overlay');
+
+    if (!bar) return;
+
+    function setHeight() {
+      const height = bar.offsetHeight;
+      document.documentElement.style.setProperty('--announcement-height', height + 'px');
+    }
+
+    setHeight();
+    window.addEventListener('resize', setHeight);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "select",
+      "id": "width-full",
+      "label": "Width",
+      "options": [
+        {
+          "value": "full_width",
+          "label": "Full width"
+        },
+        {
+          "value": "container_width",
+          "label": "Container width"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Slider settings"
+    },
+    {
+      "type": "select",
+      "id": "effect",
+      "label": "Effect",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": false,
+      
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Change slides after every",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "unit": "s"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category_list",
+      "label": "Show category list",
+      "default": true,
+      "info": "Displays a list of all the collections in the store."
+    },
+    {
+      "type": "text",
+      "id": "menu_head",
+      "label": "Menu heading",
+      "default": "Shop by categories"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_localization",
+      "label": "Show localization",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Announcement bar overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_overlay",
+      "label": "Enable overlay",
+      "default": false,
+      "info": "Enable header overlay when announcement bar overlay is enabled."
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "full_width",
+          "label": "Full width"
+        },
+        {
+          "value": "container_width",
+          "label": "Container width"
+        }
+      ],
+      "default": "container_width",
+      "info": "Works when overlay is enabled."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_top_margin",
+      "label": "Enable top margin",
+      "default": true,
+      "info": "Works when overlay is enabled."
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4,
+      "unit": "px",
+      "info": "Works when overlay is enabled."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Welcome to our store.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

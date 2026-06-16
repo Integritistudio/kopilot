@@ -1,0 +1,247 @@
+{% style %}
+  .faq_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+      .faq_wrapper--{{ section.id }} {
+          padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+          padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+      }
+  }
+{% endstyle %}
+
+{{ 'faq-section.css' |  asset_url | stylesheet_tag }}
+
+<div class="faq_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    {% if section.settings.head != blank and section.settings.show_head %}
+      <div class="faq_heading_wrapper" style="--head-align: {{ section.settings.head_align }};">
+        <h2>{{ section.settings.head }}</h2>
+      </div>
+    {% endif %}
+
+    <faq-section>
+    {% if section.settings.image != blank %}
+      <div class="faq_content_wrapper faq_with_image img_pos--{{ section.settings.image_position }}">
+        {% if section.settings.image_position == 'left' %}
+          <div class="faq_image_wrapper" style="--image-height: {{ section.settings.image_height }}px;">
+            {{ section.settings.image | image_url: width: 800 | image_tag }}
+          </div>
+        {% endif %}
+        
+        <div class="faq_inner" style="--border-radius: {{ section.settings.border_radius }}px;">
+            {% for block in section.blocks %}
+                <div class="faq_item">
+                <button class="faq_question">
+                    <h3 class="h6">{{ block.settings.question }}</h3>
+                    <span class="faq_arrow">
+                        <span class="faq_hori"></span>
+                        <span class="faq_vert"></span>
+                    </span>
+                </button>
+                <div class="faq_answer">
+                    <div class="faq_answer_inner rte">
+                    {{ block.settings.answer }}
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if section.settings.image_position == 'right' %}
+          <div class="faq_image_wrapper" style="--image-height: {{ section.settings.image_height }}px;">
+            {{ section.settings.image | image_url: width: 800 | image_tag }}
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="faq_inner" style="max-width: {{ section.settings.max_width }}px; --border-radius: {{ section.settings.border_radius }}px;">
+          {% for block in section.blocks %}
+              <div class="faq_item">
+              <button class="faq_question">
+                  <h3 class="h6">{{ block.settings.question }}</h3>
+                  <span class="faq_arrow">
+                      <span class="faq_hori"></span>
+                      <span class="faq_vert"></span>
+                  </span>
+              </button>
+              <div class="faq_answer">
+                  <div class="faq_answer_inner rte">
+                  {{ block.settings.answer }}
+                  </div>
+              </div>
+              </div>
+          {% endfor %}
+      </div>
+    {% endif %}
+    </faq-section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_head",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+        "type": "range",
+        "id": "max_width",
+        "label": "Max. width",
+        "min": 600,
+        "max": 1400,
+        "step": 10, 
+        "default": 1200,
+        "unit": "px",
+        "info": "Only applies when no image is selected. When an image is present, the section takes full width."
+    },
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Select image"
+    },
+    {
+        "type": "select",
+        "id": "image_position",
+        "label": "Image position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left of FAQs"
+          },
+          {
+            "value": "right",
+            "label": "Right of FAQs"
+          }
+        ],
+        "default": "left",
+        "visible_if": "{{ section.settings.image != blank }}"
+    },
+    {
+        "type": "range",
+        "id": "image_height",
+        "label": "Image height",
+        "min": 200,
+        "max": 800,
+        "step": 50,
+        "default": 500,
+        "unit": "px",
+        "visible_if": "{{ section.settings.image != blank }}"
+    },
+    {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Blocks border radius",
+        "min": 0,
+        "max": 20,
+        "step": 1, 
+        "default": 10,
+        "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "question",
+          "label": "Question",
+          "default": "FAQ question goes here?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>FAQ answer goes here. You can use this space to provide a detailed answer to the frequently asked question. This helps your customers find the information they need quickly and easily.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

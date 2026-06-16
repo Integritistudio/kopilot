@@ -1,0 +1,50 @@
+{%- assign pick_up_availabilities = variant.store_availabilities | where: 'pick_up_enabled', true -%}
+
+<pickup-availability-drawer>
+  <div
+    class="drawer_wrapper pickup_availability_drawer color-{{ settings.drawer_color_scheme }}"
+    id="pickup_availability_drawer"
+    inert
+    aria-hidden="true"
+    data-variant-id="{{ variant.id }}"
+  >
+    <div class="drawer_wrapper_inner pickup_availability_drawer_inner" tabindex="-1" data-lenis-prevent>
+      <div class="drawer_header pickup_availability_header">
+        <div class="pickup_availability_header_inner">
+          <h4>{{ product.title }}</h4>
+          <h5>{{ variant.title }}</h5>
+        </div>
+
+        <div class="drawer_close_btn_wrapper">
+          <button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+            <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="pickup_availability_content_wrapper">
+        {% for pickup_location in pick_up_availabilities %}
+          <div class="pickup_availability_block{% if pickup_location.available %} pickup_available{% endif %}">
+            <h4 class="h5">{{ pickup_location.location.name }}</h4>
+
+            {% if pickup_location.available %}
+              <div class="pickup_availability_available_indicator">
+                <div class="pickup_availability_available_icon available">
+                    <span>{{ 'icon-pickup.svg' | inline_asset_content }}</span>
+                </div>
+                <p>
+                  {{ 'products.product.pickup_availability.pick_up_available' | t }},
+                  {{ pickup_location.pick_up_time | downcase }}
+                </p>
+              </div>
+            {% endif %}
+
+            <address>
+              {{ pickup_location.location.address | format_address }}
+            </address>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</pickup-availability-drawer>

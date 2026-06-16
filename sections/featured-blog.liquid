@@ -1,0 +1,257 @@
+{% style %}
+  .featured_blog_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      background: transparent;
+  }
+
+  .featured_blog_wrapper--{{ section.id }} .container.half_col {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 640px) {
+    .featured_blog_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+
+    .featured_blog_wrapper--{{ section.id }} .container.half_col {
+      padding-right: 1.5rem;
+      margin-right: 0;
+    }
+  }
+{% endstyle %}
+
+{{ 'featured-blog.css' | asset_url | stylesheet_tag }}
+
+{% assign blog = section.settings.blog %}
+
+<div class="featured_blog_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }} fb--{{ section.settings.card_style }} img--{{ section.settings.image_position }} btn--{{ section.settings.button_style }}">
+  <div class="container{% if section.settings.columns == 1.5 %} half_col{% endif %}">
+    <featured-blog>
+    <swiper-section
+      {% if section.settings.columns == 1.5 %}
+        data-slides-desktop="1.62"
+      {% else %}
+        data-slides-desktop="{{ section.settings.columns }}"
+      {% endif %}
+      data-slides-custom="1.2"
+      data-slides-tablet="1.2"
+      data-slides-mobile="1"
+      data-gap="{{ settings.column_spacing }}"
+      data-speed="800"
+      data-free-mode="false"
+      data-grab-cursor="true"
+    >
+      {% if section.settings.head != blank %}
+        <div class="featured_blog_head fb_head--{% unless section.settings.show_progress %}{{ section.settings.head_align }}{% endunless %}{% if section.settings.show_progress %} fb_head_with_progress{% endif %}">
+          <div class="featured_blog_head_inner">
+            <h1 class="reveal">{{ section.settings.head }}</h1>
+            {% if section.settings.show_progress %}
+            <div class="fb_progress_wrapper">
+              <span class="fb_current_slide">{{ '01' }}</span>
+              <div class="fb_pagination_progress">
+                <div class="fb_pagination_progress_inner"></div>
+              </div>
+              <span class="fb_total_slide">01</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="featured_blog_inner swiper">
+        <div class="swiper-wrapper">
+          {% if blog != blank %}
+            {% for article in blog.articles %}              
+              {% assign ratio = 1.53 %}
+              
+              <div class="article_card_wrapper swiper-slide">
+                {% render 'article-card',
+                  article: article,
+                  index: forloop.index,
+                  show_date: section.settings.show_date,
+                  in-card: section.settings.in-card,
+                  show_author: section.settings.show_author,
+                  show_tags: section.settings.show_tags,
+                  ratio: ratio,
+                  style: section.settings.card_style
+                %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..4) %}
+              <div class="empty_article_card_wrapper swiper-slide">
+                {% render 'empty-article-card', index: i %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </swiper-section>
+    </featured-blog>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured blog",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Featured blog"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Works only when progress bar is disabled."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Show pagination progress",
+      "default": false
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns per row",
+      "min": 1,
+      "max": 3,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        { "value": "style1", "label": "Style 1 " },
+        { "value": "style2", "label": "Style 2 " },
+        { "value": "style3", "label": "Style 3 " }
+      ],
+      "default": "style1"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "bottom",
+      "info": "Works only for style 2 "
+    },
+
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "style1",
+          "label": "Circle"
+        },
+        {
+          "value": "style2",
+          "label": "Squair"
+        }
+      ],
+      "default": "style1",
+      "info": "Works only for style 1 "
+    },
+    {
+      "type": "header",
+      "content": "Article cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "in-card",
+      "label": "Date in card",
+      "info": "Only work on style1",
+      "visible_if": "{{ section.settings.show_date }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": false
+    },    
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured blog"
+    }
+  ]
+}
+{% endschema %}

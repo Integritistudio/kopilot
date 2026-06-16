@@ -1,0 +1,43 @@
+<div class="main_product_price_inner">
+  <div class="fpp_inner">
+    <span class="main_product_regular_price">
+      {% if settings.currency_code_enabled %}
+        {{ variant.price | money_with_currency }}
+      {% else %}
+        {{ variant.price | money }}
+      {% endif %}
+    </span>
+
+    {% if product.compare_at_price != blank
+      and product.compare_at_price != 0
+      and product.compare_at_price != product.price
+    %}
+      <s class="main_product_cap">
+        {% if settings.currency_code_enabled %}
+          {{ variant.compare_at_price | money_with_currency }}
+        {% else %}
+          {{ variant.compare_at_price | money }}
+        {% endif %}
+      </s>
+    {% endif %}
+  </div>  
+</div>
+
+<small class="unit-price{% if variant.unit_price_measurement == nil %} hidden{% endif %}">
+  <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+  <span class="price-item price-item--last">
+    <span>{{- variant.unit_price | money -}}</span>
+    <span aria-hidden="true">/</span>
+    <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+    <span>
+      {%- if variant.unit_price_measurement.reference_value != 1 -%}
+        {{- variant.unit_price_measurement.reference_value -}}
+      {%- endif -%}
+      {{ variant.unit_price_measurement.reference_unit }}
+    </span>
+  </span>
+</small>
+
+{% if variant.quantity_price_breaks != blank %}
+  <span class="variant_qty_break_info">{{ 'products.product.volume_pricing' | t }}</span>
+{% endif %}

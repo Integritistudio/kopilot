@@ -1,0 +1,314 @@
+.search_drawer_content_wrapper {
+    padding: 1rem 6rem 6rem;
+}
+
+.search_drawer_input .input_field_wrapper {
+    height: 5.2rem;
+    border-radius: 0.6rem;
+}
+
+.search_drawer_input .input_field_wrapper input {
+    width: calc(100% - 5rem);
+    padding-inline: 3rem;
+    border-radius: 6px 0 0 6px;
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+}
+
+.search_drawer_input .input_field_wrapper label {
+    font-family: var(--font-body-family);
+    left: 3rem;
+}
+
+button#search_drawer_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0 6px 6px 0;
+}
+
+button#search_drawer_btn svg path, button.search_drawer_reset_btn svg {
+    fill: var(--color-input-text)
+}
+
+.search_drawer_input .input_field_wrapper input, .search_drawer_input .input_field_wrapper button {
+    outline-offset: -1px;
+}
+
+.search_drawer_input {
+    border: 2px solid color-mix(in srgb, var(--color-input-border) 10%, transparent);
+}
+
+button.search_drawer_reset_btn {
+    position: absolute;
+    top: 0;
+    right: 5rem;
+    width: 2.6rem;
+    height: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.search_drawer_reset_btn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.search_drawer_empty {
+    margin: 3rem 0 0px;
+}
+
+.empty_search_drawer_keywords_inner {
+    margin: 1.2rem 0 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.empty_search_drawer_keyword {
+    background: var(--color-secondary-background);
+    width: fit-content;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.empty_search_drawer_keyword:hover {
+    background: var(--color-secondary-text);
+}
+
+.empty_search_drawer_keyword a {
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    display: flex;
+    padding: .8rem 2.4rem;
+    border-radius: 6px;
+    transition: color 0.3s ease;
+}
+
+.empty_search_drawer_keyword:hover a {
+    color: var(--color-secondary-background);
+}
+
+.empty_search_drawer_product_list_wrapper.has_keywords_list {
+    margin: 3rem 0 0;
+}
+
+.empty_search_drawer_product_list_inner {
+    margin: 1.8rem 0 0;
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+}
+
+.empty_product_block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;    
+}
+
+.empty_product_block_img {
+    max-width: 8rem;
+    background: var(--color-secondary-background);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.empty_product_block_img img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.empty_product_block_info h4 a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.empty_product_block_price_wrapper {
+    margin: 1rem 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.empty_product_block_price_wrapper p {
+    font-size: 1.4rem;
+    color: var(--color-highlight);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.empty_product_block_price_wrapper s {
+    font-size: 1.1rem;
+    margin-left: 6px;
+    opacity: 0.5;
+}
+
+.empty_product_block_img:has(a:focus-visible) {
+    outline: 1px solid var(--color-text);
+    outline-offset: 2px;
+}
+
+.empty_search_drawer_collection_wrapper {
+    margin: 3rem 0 0;
+}
+
+.empty_drawer_collection_img_wrapper {
+    margin: 1.8rem 0 0;
+    height: 24.5rem;
+    max-width: 48rem;
+    width: auto;
+    border-radius: var(--img-border-radius);
+    overflow: hidden;
+}
+
+.empty_drawer_collection_img_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--img-border-radius);
+    transition: transform 0.6s ease;
+}
+
+.empty_drawer_collection_img_wrapper:hover img {
+    transform: scale(1.1);
+}
+
+.empty_drawer_collection_img_wrapper:has(a:focus-visible) {
+    outline: 1px solid var(--color-text);
+    outline-offset: 3px;
+}
+
+.search_results_wrapper {
+    margin: 3rem 0 0;
+}
+
+.search_results_inner {
+    display: flex;
+    flex-flow: column;
+    gap: 3rem;
+}
+
+.search_result_block h3 {
+    margin: 0 0 1.3rem;
+}
+
+.search_result_block p a {
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 2;
+}
+
+.search_result_block p mark {
+    font-weight: bold;
+}
+
+.search_result_product_card, .search_result_article_card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;
+    margin: 0 0 1rem;
+}
+
+.search_result_product_card:last-child, .search_result_article_card:last-child {
+    margin: 0;
+}
+
+.search_result_product_card_img, .search_result_article_card_img {
+    max-width: 8rem;
+    background: var(--color-secondary-background);
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.search_result_product_card_img:has(a:focus-visible), .search_result_article_card_img:has(a:focus-visible) {
+    outline: 1px solid var(--color-text);
+    outline-offset: 2px;
+}    
+
+.search_result_product_card_img img, .search_result_article_card_img img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.search_result_product_card_img img[src=null], .search_result_article_card_img img[src=null] {
+    font-size: 0;
+}
+
+.search_result_product_card_info h4 a, .search_result_article_card_info h4 a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.search_result_product_price {
+    margin: 1rem 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.search_result_product_price p {
+    font-size: 1.4rem;
+    color: var(--color-highlight);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.search_result_product_price s {
+    font-size: 1.1rem;
+    margin-left: 6px;
+    opacity: .5;
+}   
+
+.search_drawer_loading .skeleton {
+  height: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #ddd 37%,
+    #eee 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1024px) {
+    .search_drawer_content_wrapper {
+        padding-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .search_drawer_content_wrapper {
+        padding-inline: 1.5rem;
+    }
+}

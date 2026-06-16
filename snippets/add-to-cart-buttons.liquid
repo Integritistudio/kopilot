@@ -1,0 +1,68 @@
+{% assign form_suffix = form_suffix | default: '' %}
+{% assign product_form = 'product_form--' | append: section.id | append: form_suffix %}
+<product-form>
+  {% if product != blank %}
+    {% form 'product', product, id: product_form %}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ variant.id }}"
+        {% unless variant.available %}
+          disabled
+        {% endunless %}
+      >
+      <input type="hidden" name="quantity" value="1">
+
+      {% if gift_card_feature %}
+        {% render 'giftcard-recipient-form', product: product, section: section %}
+      {% endif %} 
+
+      <div class="product_add_error hidden"></div>
+
+      <div class="product_form_add_to_cart_buttons_wrapper{% unless show_dynamic_button %} no_dynamic_btn{% endunless %}">
+        <button
+          type="submit"
+          class="product_form_submit_btn add_to_cart_btn btn"
+          data-available="{{ variant.available }}"
+          {% unless variant and variant.available %}
+            disabled
+          {% endunless %}
+        >
+          {% if variant %}
+            {% if variant.inventory_management != blank %}
+              {% if variant.inventory_quantity <= 0 %}
+                {% if variant.inventory_policy == 'continue' %}
+                  <span class="btn_text">{{ 'products.product.pre_order' | t }}</span>
+                {% else %}
+                  <span class="btn_text">{{ 'products.product.sold_out' | t }}</span>
+                {% endif %}
+              {% elsif variant.inventory_quantity > 0 %}
+                <span class="btn_text"> {{ 'products.product.add_to_cart' | t }}</span>
+              {% endif %}
+            {% else %}
+              <span class="btn_text">{{ 'products.product.add_to_cart' | t }}</span>
+            {% endif %}
+          {% else %}
+            <span class="btn_text">{{ 'products.product.unavailable' | t }}</span>
+          {% endif %}
+
+          <span class="loader hidden">.</span>
+        </button>       
+
+        {% if show_dynamic_button %}
+          {{ form | payment_button }}
+        {% endif %}
+      </div>
+    {% endform %}
+  {% else %}
+    <div class="product_form_add_to_cart_buttons_wrapper">
+      <button
+        type="submit"
+        class="add_to_cart_btn btn btn--disabled"
+        disabled
+      >
+        <span class="btn_text">{{ 'products.product.sold_out' | t }}</span>
+      </button>
+    </div>
+  {% endif %} 
+</product-form>

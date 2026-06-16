@@ -1,0 +1,261 @@
+{% style %}
+  .recently_viewed_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .recently_viewed_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'recently-viewed.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
+
+<recently-viewed-products
+  class="recently-viewed-root"
+  data-section-id="{{ section.id }}"
+  data-limit="{{ section.settings.limit }}"
+  data-columns="{{ section.settings.columns }}"
+  data-slides-custom="2"
+  data-slides-tablet="3"
+  data-mob-cols="{{ section.settings.mob_cols }}"
+  data-spacing="{{ settings.column_spacing }}"
+  data-show-card-bg="{{ section.settings.show_card_bg }}"
+  data-card-bg="{{ section.settings.card_bg }}"
+  data-card-text="{{ section.settings.card_text }}"
+  data-card-align="{{ section.settings.card_text_align }}"
+  data-aspect-ratio="{{ section.settings.aspect_ratio }}"
+  data-show-quick-view="{{ section.settings.show_quick_view }}"
+  data-show-badges="{{ settings.show_badges }}"
+  data-currency-code-enabled="{{ settings.currency_code_enabled }}"
+  data-money-format="{{ shop.money_format | escape }}"
+  data-money-with-currency-format="{{ shop.money_with_currency_format | escape }}"
+  data-root-url="{{ routes.root_url }}"
+  data-empty-message="{{ 'sections.recently_viewed.empty' | t | escape }}"
+  data-placeholder-url="{{ 'product_placeholder.svg' | asset_url }}"
+  data-badge-position="{{ settings.badge_position }}"
+  data-sale-style="{{ settings.sale_style }}"
+  data-sale-badge-scheme="{{ settings.sale_badge_color_scheme }}"
+  data-sold-out-badge-scheme="{{ settings.sold_out_badge_color_scheme }}"
+  data-custom-badge-scheme="{{ settings.custom_badge_color_scheme }}"
+  data-show-custom-badges="{{ settings.show_custom_badges }}"
+  data-label-sold-out="{{ 'products.product.sold_out' | t | escape }}"
+  data-label-sale="{{ 'products.product.sale' | t | escape }}"
+  data-label-off="{{ 'products.product.off' | t: value: '__P__' | escape }}"
+  data-label-quick-view="{{ 'products.product.quick_view' | t | escape }}"
+  data-label-quick-add="{{ 'products.product.quick_add' | t | escape }}"
+  data-from-price-template="{{ 'products.product.price.from_price_html' | t: price: '[price]' | escape }}">
+  <div class="recently_viewed_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }} recently-viewed-products__inner">
+    <div class="container">
+      {% if section.settings.head != blank %}
+        <div class="recently_viewed_head" style="--head-align: {{ section.settings.head_align }};">
+          <h3 class="h2">{{ section.settings.head }}</h3>
+        </div>
+      {% endif %}
+
+      <div class="recently_viewed_swiper_wrap" style="--qa_radius: {{ settings.qa_add_border_radius }}px;">
+        <swiper-section
+          data-slides-desktop="{{ section.settings.columns }}"
+          data-slides-custom="2"
+          data-slides-tablet="3"
+          data-slides-mobile="{{ section.settings.mob_cols }}"
+          data-gap="{{ settings.column_spacing }}">
+          <div class="recently_viewed_inner swiper mob_cols_{{ section.settings.mob_cols }}">
+            <div class="swiper-wrapper" data-recently-viewed-track></div>
+          </div>
+
+          <button
+            type="button"
+            aria-label="{{ 'accessibility.prev_btn' | t }}"
+            class="rv_btn swiper-button-prev"
+            data-recently-viewed-prev>
+            <span class="svg_wrapper">{{ 'left-arrow.svg' | inline_asset_content }}</span>
+          </button>
+
+          <button
+            type="button"
+            aria-label="{{ 'accessibility.next_btn' | t }}"
+            class="rv_btn swiper-button-next"
+            data-recently-viewed-next>
+            <span class="svg_wrapper">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+          </button>
+        </swiper-section>
+      </div>
+
+      <p
+        class="recently_viewed_empty visually-hidden"
+        data-recently-viewed-empty
+        hidden>
+        {{ 'sections.recently_viewed.empty' | t }}
+      </p>
+    </div>
+  </div>
+</recently-viewed-products>
+
+{% schema %}
+  {
+    "name": "Recently viewed products",
+    "enabled_on": {
+      "templates": ["product"]
+    },
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "head",
+        "label": "Heading",
+        "default": "Recently viewed"
+      },
+      {
+        "type": "select",
+        "id": "head_align",
+        "label": "Heading alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "range",
+        "id": "limit",
+        "label": "Maximum products",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 8
+      }, {
+        "type": "range",
+        "id": "columns",
+        "label": "Slides per row (desktop)",
+        "min": 2,
+        "max": 6,
+        "step": 1,
+        "default": 4
+      }, {
+        "type": "header",
+        "content": "Product cards"
+      }, {
+        "type": "checkbox",
+        "id": "show_card_bg",
+        "label": "Show card background color",
+        "default": true
+      }, {
+        "type": "color",
+        "id": "card_bg",
+        "label": "Card background color",
+        "default": "#F6F2F0",
+        "visible_if": "{{ section.settings.show_card_bg }}"
+      }, {
+        "type": "color",
+        "id": "card_text",
+        "label": "Card text color",
+        "default": "#000000",
+        "info": "Used for quick add button icon",
+        "visible_if": "{{ section.settings.show_card_bg }}"
+      }, {
+        "type": "select",
+        "id": "card_text_align",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }, {
+        "type": "select",
+        "id": "aspect_ratio",
+        "label": "Image aspect ratio",
+        "options": [
+          {
+            "value": "square",
+            "label": "Square"
+          }, {
+            "value": "portrait",
+            "label": "Portrait"
+          }, {
+            "value": "adapt",
+            "label": "Adapt to image"
+          }
+        ],
+        "default": "portrait"
+      }, {
+        "type": "checkbox",
+        "id": "show_quick_view",
+        "label": "Enable quick add / quick view",
+        "default": true,
+        "info": "Uses theme quick-add for products with multiple variants."
+      }, {
+        "type": "header",
+        "content": "Mobile layout"
+      }, {
+        "type": "select",
+        "id": "mob_cols",
+        "label": "Mobile columns",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          }, {
+            "value": "2",
+            "label": "2"
+          }
+        ],
+        "default": "1"
+      }, {
+        "type": "header",
+        "content": "Section spacing"
+      }, {
+        "type": "range",
+        "id": "top_spacing",
+        "label": "Top spacing",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 40
+      }, {
+        "type": "range",
+        "id": "bottom_spacing",
+        "label": "Bottom spacing",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 40
+      }
+    ],
+    "presets": [
+      {
+        "name": "Recently viewed products"
+      }
+    ]
+  }
+{% endschema %}

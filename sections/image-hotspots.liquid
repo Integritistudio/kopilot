@@ -1,0 +1,375 @@
+{% style %}
+  .image_hotspots_wrapper--{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing }}px;
+      margin-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .image_hotspots_wrapper--{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'image-hotspots.css' | asset_url | stylesheet_tag }}
+
+<div class="image_hotspots_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }} {% if section.settings.enable_card_overlay %}overlay-enabled{% else %}overlay-disabled{% endif %}">
+  <div class="{% if section.settings.width == "container_width" %}container{% else %}full_width{% endif %}">
+    <image-hotspots>
+      <div class="image_hotspots_inner ih--{{ section.settings.img_height }}">
+        <div class="image_hotspots_img_wrapper">
+          <div class="image_hotspots_img_inner">
+            {% if section.settings.img != blank %}
+              {{ section.settings.img | image_url: width: 1920 | image_tag }}
+            {% else %}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg main_placeholder_svg' }}
+            {% endif %}
+
+            {% for block in section.blocks %}
+              {% assign horizontal_position = block.settings.horizontal_position %}
+              {% assign vertical_position = block.settings.vertical_position %}
+
+              {% if horizontal_position > 87 %}
+                {% assign horizontal_position = 87 %}
+              {% endif %}
+
+              {% if vertical_position > 68 %}
+                {% assign vertical_position = 68 %}
+              {% endif %}
+
+              {% unless section.settings.enable_card_overlay %}
+                <div class="ih_for_mobile">
+                  <div
+                    class="image_hotspot_block{% if forloop.first %} active{% endif %}"
+                    data-index="{{ forloop.index }}"
+                    style="--horizontal-position: {{ horizontal_position }}%; --vertical-position: {{ vertical_position }}%;"
+                  >
+                    <span class="image_hotspot_block_inner"></span>
+                  </div>
+                </div>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+
+        {% if section.settings.enable_card_overlay %}
+         <div class="image_hotspots_small_block_wrapper ihsb-{{ section.settings.box_position }}">
+          <div class="ih_side_titles ih_left_titles">
+            {% assign left_count = section.blocks.size | divided_by: 2 | ceil %}
+            {% for block in section.blocks limit: left_count %}
+              {% assign product = block.settings.product %}
+              <button 
+                class="ih_product_title{% if forloop.first %} active{% endif %}"
+                data-index="{{ forloop.index }}"
+                aria-label="{{ product.title }}"
+              >
+                {{ product.title }}
+              </button>
+            {% endfor %}
+          </div>
+
+          <div class="image_hotspots_small_block_track">
+            <div class="image_hotspots_small_block">
+              <div class="image_hotspots_small_block_img">
+                {% if section.settings.img != blank %}
+                  {{ section.settings.img | image_url: width: 1920 | image_tag }}
+                {% else %}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% endif %}
+
+                {% for block in section.blocks %}
+                  {% assign product = block.settings.product %}
+                  <div
+                    class="image_hotspot_block{% if forloop.first %} active{% endif %}"
+                    data-index="{{ forloop.index }}"
+                    style="--horizontal-position: {{ block.settings.horizontal_position }}%; --vertical-position: {{ block.settings.vertical_position }}%;"
+                  >
+                    <button
+                      aria-label="{% if product != blank %}{{ 'sections.image_hotspots.image_hotspot' | t }}: {{ product.title }}{% else %}{{ 'sections.image_hotspots.image_hotspot' | t }} {{ forloop.index }}{% endif %}"
+                    >
+                      <span class="image_hotspot_block_inner"></span>
+                    </button>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="ih_side_titles ih_right_titles">
+            {% assign left_count = section.blocks.size | divided_by: 2 | ceil %}
+            {% for block in section.blocks offset: left_count %}
+              {% assign product = block.settings.product %}
+              <button 
+                class="ih_product_title"
+                data-index="{{ forloop.index | plus: left_count }}"
+                aria-label="{{ product.title }}"
+              >
+                {{ product.title }}
+              </button>
+            {% endfor %}
+          </div>
+         </div>
+        {% endif %}
+
+        <div class="image_hotspots_cards_layer">
+          {% for block in section.blocks %}
+            {% assign horizontal_position = block.settings.horizontal_position %}
+            {% assign vertical_position = block.settings.vertical_position %}
+
+            {% if horizontal_position > 87 %}
+              {% assign horizontal_position = 87 %}
+            {% endif %}
+
+            {% if vertical_position > 68 %}
+              {% assign vertical_position = 68 %}
+            {% endif %}
+
+            <div
+              class="image_hotspot_card{% if forloop.first %} active{% endif %}{% unless section.settings.enable_card_overlay %}{% if vertical_position > 60 %} pos-bottom{% elsif vertical_position < 25 %} pos-top{% elsif horizontal_position > 70 %} pos-right{% elsif horizontal_position < 25 %} pos-left{% else %} pos-center{% endif %}{% endunless %}"
+              {% unless forloop.first %}inert{% endunless %}
+              data-index="{{ forloop.index }}"
+              style="--horizontal-position: {{ horizontal_position }}%; --vertical-position: {{ vertical_position }}%;"
+            >
+              <div class="image_hotspot_card_inner">
+                {% if block.settings.product != blank %}
+                  {% assign product = block.settings.product %}
+                  <div class="ih_card_img_wrapper ratio" style="--aspect-ratio: 100%;">
+                    {% if product.featured_image != blank %}
+                      <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                        {{ product.featured_image | image_url: width: 800 | image_tag }}
+                      </a>
+                    {% else %}
+                      <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder_svg' }}
+                      </a>
+                    {% endif %}
+                  </div>
+
+                  <div class="ih_card_info">
+                    <h3 class="small-text">
+                      <a href="{{ product.url }}" aria-label="{{ product.title }}">{{ product.title }}</a>
+                    </h3>
+                    <p>{{ product.price | money }}</p>
+                  </div>
+                {% else %}
+                  <div class="ih_card_img_wrapper ratio" style="--aspect-ratio: 100%;">
+                    {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder_svg' }}
+                  </div>
+                  <div class="ih_card_info">
+                    <h3 class="small-text">{{ 'onboarding.product_title' | t }}</h3>
+                    <p>{{ 'onboarding.product_price' | t | money }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ih_card_for_mobile">
+        {% for block in section.blocks %}
+          {% assign horizontal_position = block.settings.horizontal_position %}
+          {% assign vertical_position = block.settings.vertical_position %}
+
+          {% if horizontal_position > 87 %}
+            {% assign horizontal_position = 87 %}
+          {% endif %}
+
+          {% if vertical_position > 68 %}
+            {% assign vertical_position = 68 %}
+          {% endif %}
+
+          <div
+            class="image_hotspot_card{% if forloop.first %} active{% endif %}{% unless section.settings.enable_card_overlay %}{% if vertical_position > 60 %} pos-bottom{% elsif vertical_position < 25 %} pos-top{% elsif horizontal_position > 70 %} pos-right{% elsif horizontal_position < 25 %} pos-left{% else %} pos-center{% endif %}{% endunless %}"
+            data-index="{{ forloop.index }}"
+            style="--horizontal-position: {{ horizontal_position }}%; --vertical-position: {{ vertical_position }}%;"
+          >
+            <div class="image_hotspot_card_inner">
+              {% if block.settings.product != blank %}
+                {% assign product = block.settings.product %}
+                <div class="ih_card_img_wrapper ratio" style="--aspect-ratio: 100%;">
+                  {% if product.featured_image != blank %}
+                    <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                      {{ product.featured_image | image_url: width: 800 | image_tag }}
+                    </a>
+                  {% else %}
+                    <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                      {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder_svg' }}
+                    </a>
+                  {% endif %}
+                </div>
+
+                <div class="ih_card_info">
+                  <h3 class="small-text">
+                    <a href="{{ product.url }}" aria-label="{{ product.title }}">{{ product.title }}</a>
+                  </h3>
+                  <p>{{ product.price | money }}</p>
+                </div>
+              {% else %}
+                <div class="ih_card_img_wrapper ratio" style="--aspect-ratio: 100%;">
+                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder_svg' }}
+                </div>
+                <div class="ih_card_info">
+                  <h3 class="small-text">{{ 'onboarding.product_title' | t }}</h3>
+                  <p>{{ 'onboarding.product_price' | t | money }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </image-hotspots>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image hotspots",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Select image"
+    },
+    {
+      "type": "select",
+      "id": "img_height",
+      "label": "Image height",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half screen"
+        },
+        {
+          "value": "two-third",
+          "label": "Two third of screen"
+        },
+        {
+          "value": "full",
+          "label": "Full screen"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_card_overlay",
+      "label": "Enable card overlay hotspots",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "box_position",
+      "label": "Small box position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Hotspot",
+      "type": "hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "horizontal_position",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 90,
+          "step": 1,
+          "default": 40,
+          "unit": "%"
+        },
+        {
+          "type": "range",
+          "id": "vertical_position",
+          "label": "Vertical position",
+          "min": 0,
+          "max": 90,
+          "step": 1,
+          "default": 40,
+          "unit": "%"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image hotspots",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "horizontal_position": 80,
+            "vertical_position": 16
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "horizontal_position": 17,
+            "vertical_position": 37
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

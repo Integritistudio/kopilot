@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu_MwHpBX": {
+          "type": "menu",
+          "settings": {
+            "head": "Heading",
+            "menu": "footer",
+            "width": 25
+          }
+        },
+        "menu_Fcq8G6": {
+          "type": "menu",
+          "settings": {
+            "head": "Heading",
+            "menu": "footer",
+            "width": 25
+          }
+        },
+        "menu_xwwEqW": {
+          "type": "menu",
+          "settings": {
+            "head": "Heading",
+            "menu": "footer",
+            "width": 25
+          }
+        },
+        "text_CjPEbw": {
+          "type": "text",
+          "settings": {
+            "head": "Heading",
+            "text": "<p>Stay up to date with our latest offers and product launches & be the first to get exclusive offers and sale information.</p>",
+            "width": 25
+          }
+        }
+      },
+      "block_order": [
+        "menu_MwHpBX",
+        "menu_Fcq8G6",
+        "menu_xwwEqW",
+        "text_CjPEbw"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "logo_size": 260,
+        "logo": "top",
+        "show_localization": true,
+        "localization_position": "top",
+        "show_payment_icons": true,
+        "payment_icons_position": "top",
+        "show_social_icons": true,
+        "so_apply_background": true,
+        "social_position": "top",
+        "apply_background": true,
+        "enable_newsletter": false,
+        "head": "Heading",
+        "text": "Subscribe to our newsletter for exclusive offers.",
+        "enable_background": false,
+        "enable_follow_on_shop": true,
+        "enable_copyright_bg": false,
+        "copyright_text": "#ffffff",
+        "show_policies": false,
+        "top_spacing": 100,
+        "bottom_spacing": 50
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

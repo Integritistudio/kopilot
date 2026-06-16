@@ -1,0 +1,17 @@
+<div class="empty_article_card reveal stagger">
+    <div class="empty_article_img">
+        {% assign article_index = index | modulo: 3 %}
+        {% if article_index == 1 %}
+            {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% endif %}
+    </div>
+    <div class="empty_article_info">
+        <div class="empty_article_date_author"></div>
+        <div class="empty_article_title">
+            <h4 class="h5">{{ 'onboarding.article_title' | t }}</h4>
+            <p>{{ 'onboarding.article_content' | t }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+{%- liquid
+  assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+  assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+  assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+%}
+
+{% style %}
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+  {{ body_font_bold | font_face: font_display: 'swap' }}
+  {{ body_font_italic | font_face: font_display: 'swap' }}
+  {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+
+  :root {
+    /* FONTS */
+    --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-body-style: {{ settings.type_body_font.style }};
+    --font-body-weight: {{ settings.type_body_font.weight }};
+    --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+
+    --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-heading-style: {{ settings.type_header_font.style }};
+    --font-heading-weight: {{ settings.type_header_font.weight }};
+
+    --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+    --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
+
+    /* CONTAINER */
+    --container: {{ settings.container_width }}px;
+
+    /* GRID SPACINGS */
+    --column-spacing: {{ settings.column_spacing }}px;
+    --row-spacing: {{ settings.row_spacing }}px;
+
+    /* BORDER RADIUS */
+    --btn-border-radius: {{ settings.btn_border_radius }}px;
+    --img-border-radius: {{ settings.img_border_radius }}px;
+
+
+  }
+
+  * {
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    word-break: break-word;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: calc(var(--font-body-scale) * 62.5%);
+    height: 100%;
+    padding-bottom: 0 !important;
+  }
+
+  body::selection {
+    background: #000;
+    color: #fff;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100svh;
+  }
+
+  main#MainContent {
+    flex: 1;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  p:empty {
+    display: none;
+  }
+
+  .shopify-challenge__container {
+    margin: 5rem auto !important;
+  }
+
+  .shopify-policy__container {
+    max-width: var(--container) !important;
+    margin-inline: auto;
+    padding: 5rem !important;
+  }
+
+  .shopify-policy__title {
+    margin: 0 0 4rem;
+  }
+
+  @media screen and (max-width: 1299px) {
+    .shopify-policy__container {
+      padding: 5rem 3rem !important;
+    }
+  }
+
+  @media screen and (max-width: 1299px) {
+    .shopify-policy__container {
+      padding: 3rem 1.5rem !important;
+    }
+
+    .shopify-policy__title {
+      margin: 0 0 3rem;
+    }
+  }
+{% endstyle %}

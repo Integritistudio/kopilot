@@ -1,0 +1,404 @@
+{% style %}
+.logo-marquee-{{ section.id }}{
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-marquee-{{ section.id }}{
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  overflow:hidden;
+}
+
+.logo-marquee-{{ section.id }} .logo-marquee-wrap{
+  width:100%;
+  overflow:hidden;
+}
+
+.logo-marquee-{{ section.id }} .logo-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  will-change:transform;
+  animation: logo-marquee-{{ section.id }}
+  {{ section.settings.speed }}s
+  linear
+  infinite;
+}
+
+.logo-marquee-{{ section.id }} .logo-group{
+  display:flex;
+  align-items:center;
+  gap:{{ section.settings.gap }}px;
+
+  flex-shrink:0;
+
+  padding-right:{{ section.settings.gap }}px;
+}
+
+.logo-marquee-{{ section.id }} .logo-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  padding:18px 28px;
+  border-radius:10px;
+  background: var(--color-secondary-background);
+}
+
+.logo-marquee-{{ section.id }} .logo-item img,
+.logo-marquee-{{ section.id }} .logo-item svg{
+  width:{{ section.settings.logo_width }}px;
+  height:auto;
+
+  display:block;
+
+  object-fit:contain;
+}
+
+.logo-marquee-{{ section.id }} .placeholder-svg{
+  width:{{ section.settings.logo_width }}px;
+  height:auto;
+}
+
+.logo-marquee-{{ section.id }}.is-full .logo-inner{
+  width: 100%;
+  padding: 0;
+}
+
+.logo-marquee-{{ section.id }} .logo-bg-image{
+  position: absolute;
+  inset: 0;
+  background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.logo-marquee-{{ section.id }} .logo-marquee-wrap{
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes logo-marquee-{{ section.id }}{
+  0%{
+    transform:translate3d(0,0,0);
+  }
+
+  100%{
+    transform:translate3d(-50%,0,0);
+  }
+}
+
+{% if section.settings.direction == 'right' %}
+.logo-marquee-{{ section.id }} .logo-track{
+  animation-direction:reverse;
+}
+{% endif %}
+
+.logo-marquee-{{ section.id }}{
+  position: relative;
+  overflow: hidden;
+}
+
+/* OUTER STACKING CONTEXT */
+.logo-section-inner{
+  position: relative;
+  width: 100%;
+}
+
+/* BACKGROUND IMAGE */
+.logo-bg-image{
+  position: absolute;
+  inset: 0;
+  background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* CONTENT OVER IMAGE */
+.logo-content-layer{
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 60px;
+}
+
+/* INFO BLOCK */
+.logo-info-block{
+  flex: 0 0 260px;
+}
+
+/* MARQUEE */
+.logo-marquee-wrap{
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* LOGO ITEM SAFE */
+.logo-item{
+  background: rgba(255,255,255,0.9);
+  padding: 15px 25px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 749px){
+
+  .logo-marquee-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .logo-marquee-{{ section.id }} .logo-group{
+    gap: calc({{ section.settings.gap }}px / 1.5);
+  }
+
+  .logo-marquee-{{ section.id }} .logo-item{
+    padding:14px 20px;
+  }
+
+  .logo-marquee-{{ section.id }} .logo-item img,
+  .logo-marquee-{{ section.id }} .logo-item svg,
+  .logo-marquee-{{ section.id }} .placeholder-svg{
+    width: calc({{ section.settings.logo_width }}px * .8);
+  }
+}
+{% endstyle %}
+
+<section class="logo-marquee-{{ section.id }} color-{{ section.settings.color_scheme }} {% if section.settings.width == 'container' %}container{% else %}is-full{% endif %}">
+
+  <div class="logo-section-inner">
+
+    <!-- BACKGROUND -->
+    {% if section.settings.bg_image != blank %}
+      <div class="logo-bg-image"></div>
+    {% endif %}
+
+    <!-- CONTENT (ALL OVER IMAGE) -->
+    <div class="logo-content-layer">
+
+      {% if section.settings.enable_info_block %}
+        <div class="logo-info-block">
+            <h1>{{ section.settings.info_heading }}</h1>
+            <p>{{ section.settings.info_text }}</p>
+        </div>
+      {% endif %}
+
+      <div class="logo-marquee-wrap">
+
+        <div class="logo-inner">
+          <div class="logo-track">
+
+            {% for i in (1..3) %}
+              <div class="logo-group">
+                {% for block in section.blocks %}
+                  <div class="logo-item">
+                    {% if block.settings.logo != blank %}
+                      {{ block.settings.logo | image_url: width: 500 | image_tag }}
+                    {% else %}
+                      {% assign index = forloop.index | modulo: 2 %}
+                      {% if index == 1 %}
+                        {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% else %}
+                        {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Logo marquee",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "container",
+          "label": "Container"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 20,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 40,
+      "max": 240,
+      "step": 5,
+      "default": 120,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_info_block",
+      "label": "Enable info block",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info heading",
+      "default": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text",
+      "label": "Info text",
+      "default": "Place info text here"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20,
+      "unit": "px"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo marquee",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

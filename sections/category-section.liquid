@@ -1,0 +1,356 @@
+{% style %}
+  .category_section_wrapper-{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing }}px;
+      margin-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+{% endstyle %}
+
+{{ 'category-section.css' | asset_url | stylesheet_tag }}
+
+<div class="category_section_wrapper-{{ section.id }} color-{{ section.settings.color_scheme }} layout--{{ section.settings.layout_style }}">
+  <div class="{% if section.settings.width == "container_width" %}container{% else %}full_width{% endif %}">
+    <category-section>
+      <div class="category_section_inner cs--{{ section.settings.img_height }}">
+        <div class="category_track">
+          {% for block in section.blocks %}
+            <div class="category_section_block category_slide" data-index="{{ forloop.index0 }}">
+              <div class="category_section_img">
+                {% if block.settings.img != blank %}
+                  {{ block.settings.img | image_url: width: 1920 | image_tag }}
+                {% else %}
+                  {% assign img_index = forloop.index | modulo: 2 %}
+                  {% if img_index == 1 %}
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                  {% else %}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if section.blocks.size > 0 %}
+          <div class="category_small_block_wrapper csb-{{ section.settings.box_position }}">
+            <div class="block_start_wrapper">
+              {% for block in section.blocks %}
+                <div class="block_start_item" data-index="{{ forloop.index0 }}">
+                  {{ forloop.index | prepend: '0' }}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="block_end">{{ section.blocks.size | prepend: '0' }}</div>
+            <div class="category_section_collection_wrapper">
+              {% for block in section.blocks %}
+                {% assign collection = block.settings.collection %}
+                {% if collection != blank %}
+                  <div class="category_section_collection_block" data-index="{{ forloop.index0 }}">
+                    <h5 class="h6">
+                      {% if block.settings.title != blank %}
+                        <a href="{{ collection.url }}" aria-label="{{ collection.title }}">
+                          {{- block.settings.title -}}
+                        </a>
+                      {% else %}
+                        <a href="{{ collection.url }}" aria-label="{{ collection.title }}">{{ collection.title }}</a>
+                      {% endif %}
+                    </h5>
+                  </div>
+                {% else %}
+                  <div class="category_section_collection_block" data-index="{{ forloop.index0 }}">
+                    <h5 class="h6">{{ block.settings.title }}</h5>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <div class="category_small_block_track">
+              {% for block in section.blocks %}
+                {% assign collection = block.settings.collection %}
+                <div class="category_small_block category_small_block_slide" data-index="{{ forloop.index0 }}">
+                  <div class="category_small_block_img">
+                    {% if block.settings.img != blank %}
+                      {% if collection != blank %}
+                        <a href="{{ collection.url }}" aria-label="{{ collection.title }}">
+                          {{ block.settings.img | image_url: width: 1920 | image_tag }}
+                        </a>
+                      {% else %}
+                        {{ block.settings.img | image_url: width: 1920 | image_tag }}
+                      {% endif %}
+                    {% else %}
+                      {% assign img_index = forloop.index | modulo: 2 %}
+                      {% if img_index == 1 %}
+                        {% if collection != blank %}
+                          <a href="{{ collection.url }}" aria-label="{{ collection.title }}">
+                            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                          </a>
+                        {% else %}
+                          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                        {% endif %}
+                      {% else %}
+                        {% if collection != blank %}
+                          <a href="{{ collection.url }}" aria-label="{{ collection.title }}">
+                            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                          </a>
+                        {% else %}
+                          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if section.blocks.size > 1 %}
+              <div class="category_section_arrow">
+                <button aria-label="{{ 'accessibility.prev_btn' | t }}" class="cat-prev">
+                  <span class="svg_wrapper">
+                    {{ 'left-arrow.svg' | inline_asset_content }}
+                  </span>
+                </button>
+                <button class="cat-next" aria-label="{{'accessibility.next_btn' | t}}">
+                  <span class="svg_wrapper">
+                    {{ 'right-arrow.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.layout_style == 'style2' %}
+
+        <div class="category_style2">
+
+          <!-- BACKGROUND -->
+          <div class="category_bg_wrapper"
+          style="
+            --overlay-color: {{ section.settings.overlay_color }};
+            --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+          ">
+            {% for block in section.blocks %}
+              <div class="category_bg_slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                {% if block.settings.img != blank %}
+                  {{ block.settings.img | image_url: width: 1920 | image_tag }}
+                {% else %}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% endif %}
+                 <div class="category_overlay"></div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- CENTER TEXT -->
+          <div class="category_center_content">
+            {% for block in section.blocks %}
+              <div class="category_content_item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                <h2>
+                  {% if block.settings.title != blank %}
+                    {{ block.settings.title |  truncate: 40 }}
+                  {% else %}
+                    {{ block.settings.collection.title |  truncate: 40 }}
+                  {% endif %}
+                </h2>
+                {% if block.settings.collection != blank %}
+                  <a class="h6" href="{{ collection.url }}" aria-label="{{ collection.title }}">
+                        {{ 'accessibility.shop_now' | t }}
+                  </a>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- BOTTOM TABS -->
+          <div class="category_tabs">
+            {% for block in section.blocks %}
+              <div class="category_tab {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                
+                {% if block.settings.img != blank %}
+                  {{ block.settings.img | image_url: width: 300 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  {% assign img_index = forloop.index | modulo: 2 %}
+                  {% if img_index == 1 %}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                  {% else %}
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                  {% endif %}
+                {% endif %}
+
+              </div>
+            {% endfor %}
+          </div>
+
+        </div>
+
+        {% endif %}
+
+      </div>
+    </category-section>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.category_tab').forEach(tab => {
+  tab.addEventListener('click', function () {
+    const index = this.dataset.index;
+
+    // REMOVE ACTIVE
+    document.querySelectorAll('.category_tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.category_bg_slide').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.category_content_item').forEach(t => t.classList.remove('active'));
+
+    // ADD ACTIVE
+    this.classList.add('active');
+    document.querySelector(`.category_bg_slide[data-index="${index}"]`).classList.add('active');
+    document.querySelector(`.category_content_item[data-index="${index}"]`).classList.add('active');
+  });
+});
+
+
+</script>
+
+{% schema %}
+{
+  "name": "Category section",
+  "max_blocks": 5,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout Style",
+      "options": [
+        { "value": "style1", "label": "Style1" },
+        { "value": "style2", "label": "Style2" }
+      ],
+      "default": "style1"
+    },
+    {
+      "type": "select",
+      "id": "img_height",
+      "label": "Image height",
+      "options": [        
+        {
+          "value": "full",
+          "label": "Full screen"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "adapt",
+      "info": "Height will auto adjust on medium and small screens."
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000",
+      "info": "The Overlay color option will only work for Style 2."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "%",
+      "info": "This option will only work for Style 2."
+    },
+    {
+      "type": "select",
+      "id": "box_position",
+      "label": "Small box position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center",
+      "info": "This option will only work for Style 1."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Category",
+      "type": "category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection title (optional)",
+          "default": "Featured collection",
+          "info": "Recommended: Maximum 40 characters. Longer headings may break the design or overlap elements."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category section",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

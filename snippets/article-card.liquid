@@ -1,0 +1,60 @@
+<div class="article_card style-{{ style }} reveal stagger">
+  <div class="article_card_img ratio" style="--aspect-ratio: {{ 1 | times: 100 | divided_by: ratio }}%;">
+    {% if article.image != blank %}
+      <a href="{{ article.url }}" aria-label="{{ article.title }}">
+        {{- article.image | image_url: width: 1200 | image_tag -}}
+      </a>
+    {% else %}
+      {% assign article_index = forloop.index | modulo: 2 %}
+      {% if article_index == 1 %}
+        {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+      {% else %}
+        {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+      {% endif %}
+    {% endif %}
+
+    {% if show_tags %}
+      <div class="article_card_tags">
+        {% for tag in article.tags %}
+          <span>{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+  </div>
+  <div class="article_card_info{% if show_date %} date_enabled{% endif %} {% if in-card %} in-card {% endif %}">
+    {% if show_date %}
+      <div class="article_card_date_author">
+        <h3 class="{% if columns == '1' %}h4{% else %}h5{% endif %}">{{ article.published_at | date: '%d' }}</h3>
+        <span>{{ article.published_at | date: '%b %Y' }}</span>
+      </div>
+    {% endif %}
+    <div class="article_card_title">
+      <div class="article_card_title_inner">
+        <h4 class="{% if style contains '2' or '3' %}h3{% else %}h5{% endif %}">
+          <a href="{{ article.url }}" aria-label="{{ article.title }}">{{ article.title }}</a>
+        </h4>
+        <div class="article_card_content rte">
+          {{ article.excerpt_or_content | strip_html | strip_newlines }}
+        </div>
+      </div>
+
+      <div class="article_card_arrow">
+        <a
+          data-read-more="{{ 'accessibility.read_more' | t }}"
+          aria-label="{{ article.title }}"
+          href="{{ article.url }}"
+        >
+          <span class="svg_wrapper arrow_icon">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+        </a>
+      </div>
+
+      {% if show_author %}
+        <span class="article_card_author">
+          {{- 'sections.featured_blog.by' | t | append: ' - ' }}
+          {{ article.author -}}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+</div>

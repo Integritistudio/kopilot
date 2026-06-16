@@ -1,0 +1,192 @@
+{% style %}
+  .before_after_wrapper-{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing }}px;
+      margin-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .before_after_wrapper-{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'before-after.css' | asset_url | stylesheet_tag }}
+
+<div class="before_after_wrapper-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="{% if section.settings.width == 'container_width' %}container{% else %}full_width{% endif %}">
+    <before-after>
+      <div class="before_after_inner ba_inner--{{ section.settings.img_height }}">
+        <div class="before_after_first_img {{ section.settings.width }}">
+          {% if section.settings.before_img != blank %}
+            {{ section.settings.before_img | image_url: width: 1920 | image_tag }}
+          {% else %}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+          {% if section.settings.show_labels and section.settings.show_box == false %}
+            <div class="before_after_first_img_text">
+              <p class="h4">{{ 'sections.before_after.before' | t }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="before_after_second_img {{ section.settings.width }}">
+          {% if section.settings.after_img != blank %}
+            {{ section.settings.after_img | image_url: width: 1920 | image_tag }}
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+
+          {% if section.settings.show_labels and section.settings.show_box == false %}
+            <div class="before_after_second_img_text">
+              <p class="h4">{{ 'sections.before_after.after' | t }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_box %}
+          <div class="before_after_small_box_wrapper">
+            <div class="before_after_before_text">
+              <p>{{ 'sections.before_after.before' | t }}</p>
+            </div>
+            <div class="before_after_small_box_img_wrapper">
+              <div class="ba_small_box_before_img">
+                {% if section.settings.before_img != blank %}
+                  {{ section.settings.before_img | image_url: width: 600 | image_tag }}
+                {% else %}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% endif %}
+              </div>
+              <div class="ba_small_box_after_img">
+                {% if section.settings.after_img != blank %}
+                  {{ section.settings.after_img | image_url: width: 600 | image_tag }}
+                {% else %}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% endif %}
+              </div>
+            </div>
+            <div class="before_after_after_text">
+              <p>{{ 'sections.before_after.after' | t }}</p>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="before_after_slider">
+          <button class="before_after_thumb" aria-label="{{ 'sections.before_after.slider' | t }}">
+            <div class="before_after_thumb_inner"></div>
+            </button>
+        </div>
+      </div>
+    </before-after>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Before/after",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "container_width",
+          "label": "Container width"
+        },
+        {
+          "value": "full_width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full_width"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_img",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_img",
+      "label": "After image"
+    },
+    {
+      "type": "select",
+      "id": "img_height",
+      "label": "Image height",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half of screen"
+        },
+        {
+          "value": "two_third",
+          "label": "Two thirds of screen"
+        },
+        {
+          "value": "full",
+          "label": "Full screen"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_box",
+      "label": "Show small box",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Show before/after text on image",
+      "default": true,
+      "info": "When the small box is off, it works."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before/after"
+    }
+  ]
+}
+{% endschema %}

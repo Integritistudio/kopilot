@@ -1,0 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "show_breadcrumbs": true,
+        "show_heading": true,
+        "head_align": "center",
+        "columns": 4,
+        "limit": 16,
+        "show_count": true,
+        "show_filters": true,
+        "enable_sorting": true,
+        "show_card_bg": true,
+        "card_bg": "#f6f2f0",
+        "card_text_align": "center",
+        "aspect_ratio": "portrait",
+        "pagination_color_scheme": "scheme-8",
+        "mob_cols": "1",
+        "top_spacing": 40,
+        "bottom_spacing": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

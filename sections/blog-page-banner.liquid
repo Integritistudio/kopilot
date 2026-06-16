@@ -1,0 +1,141 @@
+{% style %}
+  .blog_page_banner_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      overflow: hidden;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .blog_page_banner_wrapper--{{ section.id }} {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .blog_page_banner_wrapper--{{ section.id }} {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+{% endstyle %}
+
+{{ 'blog-page-banner.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="blog_page_banner_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--content-max-width: {{ section.settings.max_width }}px;"
+>
+  <div class="container">
+    <div class="blog_page_banner_inner{% if section.settings.img != blank %} has_img{% endif %}">
+      <div class="blog_page_banner_text_wrapper">
+        {% if section.settings.head != blank %}
+          <h2 class="h1">{{ section.settings.head }}</h2>
+        {% else %}
+            <h2 class="h1">{{ blog.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="blog_page_banner_text rte">
+            <p>{{ section.settings.text }}</p>
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_breadcrumbs %}
+          {% render 'breadcrumbs' %}
+        {% endif %}
+      </div>
+
+      {% if section.settings.img != blank %}
+        <div class="blog_page_banner_img{% if section.settings.tilt_img %} tilt_img{% endif %}">
+          {{ section.settings.img | image_url: width: 1920 | image_tag }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog page banner",
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Blog",
+      "info": "Leave blank to display the blog title."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Discover all the articles in this blog, each card thoughtfully designed to match your theme style."
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Content max. width",
+      "min": 400,
+      "max": 1200,
+      "step": 10,
+      "default": 530,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Select image"
+    },
+    {
+      "type": "checkbox",
+      "id": "tilt_img",
+      "label": "Tilt image",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog page banner"
+    }
+  ]
+}
+{% endschema %}

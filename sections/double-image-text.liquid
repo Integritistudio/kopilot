@@ -1,0 +1,495 @@
+
+{% style %}
+.double-image-text-{{ section.id }} {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  background: rgb(var(--color-background));
+}
+
+.double-image-grid-{{ section.id }} {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--column-spacing);
+}
+
+.double-image-grid-{{ section.id }}.image-left {
+  direction: rtl;
+}
+
+.double-image-grid-{{ section.id }}.image-left > * {
+  direction: ltr;
+}
+
+.double-image-media-{{ section.id }} {
+  position: relative;
+  min-height: 650px;
+}
+
+.double-image-media-{{ section.id }} .image-first {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 58%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.double-image-media-{{ section.id }} .image-second {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 58%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.double-image-media-{{ section.id }} img,
+.double-image-placeholder-{{ section.id }} {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.double-image-placeholder-{{ section.id }} {
+  background: #e5e5e5;
+}
+
+.double-image-placeholder-{{ section.id }} svg {
+  width: 100%;
+  height: 100%;
+}
+
+.button-image-text {
+    display: flex;
+    gap: 20px;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  .double-image-grid-{{ section.id }} {
+    gap: 40px;
+  }
+
+  .double-image-media-{{ section.id }} {
+    min-height: 430px;
+  }
+
+  .double-image-media-{{ section.id }} .image-first {
+    width: 65%;
+    height: 360px;
+  }
+
+  .double-image-media-{{ section.id }} .image-second {
+    width: 65%;
+    height: 360px;
+    top: 50px;
+  }
+
+  .double-image-buttons-{{ section.id }} {
+    flex-direction: column;
+  }
+
+  .double-image-btn-primary-{{ section.id }},
+  .double-image-btn-secondary-{{ section.id }} {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 640px){
+    .double-image-grid-{{ section.id }} {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .double-image-text-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+    }
+}
+{% endstyle %}
+
+{{ 'image-with-text.css' | asset_url | stylesheet_tag }}
+
+<div class="double-image-text-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="double-image-text-wrapper-{{ section.id }} {% if section.settings.use_narrow_container %}
+          narrow-container
+        {% else %}
+          container
+        {% endif %}">
+
+    <div class="double-image-grid-{{ section.id }} {% if section.settings.image_position == 'left' %}image-left{% endif %}">
+
+      <!-- CONTENT -->
+      <div class="double-image-content-{{ section.id }}">
+
+        {% for block in section.blocks %}
+
+          {% case block.type %}
+              {% when 'subhead' %}
+                {% if block.settings.subhead != blank %}
+                  <div class="iwt_subhead reveal stagger">
+                    <span
+                      class="{{ block.settings.size }} {{ block.settings.font_type }} {{block.settings.color }}"
+                      style="--text-transform: {{ block.settings.text_transform }};"
+                    >
+                      {{- block.settings.subhead -}}
+                    </span>
+                  </div>
+                {% endif %}
+              {% when 'head' %}
+                {% if block.settings.head != blank %}
+                  <div class="iwt_head reveal stagger">
+                    <h2 class="{{block.settings.size }}">{{ block.settings.head }}</h2>
+                  </div>
+                {% endif %}
+              {% when 'content' %}
+                {% if block.settings.content != blank %}
+                  <div class="iwt_content rte reveal stagger">
+                    {{ block.settings.content }}
+                  </div>
+                {% endif %}
+              {% when 'button' %}
+                <div class="button-image-text">
+                    {% if block.settings.btn_label != blank or block.settings.btn_link != blank %}
+                    <div class="iwt_btn reveal stagger">
+                        {% if block.settings.btn_link != blank %}
+                        <a
+                            class="btn "
+                            aria-label="{{ block.settings.btn_label }}"
+                            href="{{ block.settings.btn_link }}"
+                        >
+                            {{- block.settings.btn_label -}}
+                        </a>
+                        {% else %}
+                        <a
+                            class="btn btn--disabled "
+                            aria-label="{{ block.settings.btn_label }}"
+                            role="link"
+                        >
+                            {{- block.settings.btn_label -}}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if block.settings.btn_label1 != blank or block.settings.btn_link1 != blank %}
+                    <div class="iwt_btn reveal stagger">
+                        {% if block.settings.btn_link1 != blank %}
+                        <a
+                            class="btn btn--secondary "
+                            aria-label="{{ block.settings.btn_label1 }}"
+                            href="{{ block.settings.btn_link1 }}"
+                        >
+                            {{- block.settings.btn_label1 -}}
+                        </a>
+                        {% else %}
+                        <a
+                            class="btn btn--disabled btn--secondary"
+                            aria-label="{{ block.settings.btn_label1 }}"
+                            role="link"
+                        >
+                            {{- block.settings.btn_label1 -}}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endcase %}
+
+        {% endfor %}
+
+      </div>
+
+      <!-- IMAGES -->
+      <div class="double-image-media-{{ section.id }}">
+
+        <div class="image-first">
+          {% if section.settings.image_1 != blank %}
+            {{
+              section.settings.image_1
+              | image_url: width: 900
+              | image_tag:
+                loading: 'lazy',
+                widths: '375, 550, 750, 900',
+                sizes: '(min-width: 990px) 50vw, 100vw'
+            }}
+          {% else %}
+            <div class="double-image-placeholder-{{ section.id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="image-second">
+          {% if section.settings.image_2 != blank %}
+            {{
+              section.settings.image_2
+              | image_url: width: 900
+              | image_tag:
+                loading: 'lazy',
+                widths: '375, 550, 750, 900',
+                sizes: '(min-width: 990px) 50vw, 100vw'
+            }}
+          {% else %}
+            <div class="double-image-placeholder-{{ section.id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Double image text",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_narrow_container",
+      "label": "Narrow container",
+      "default": false,
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "First image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Sub heading",
+      "type": "subhead",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "subhead",
+          "label": "Sub heading",
+          "default": "Sub Heading"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Font size",
+          "options": [
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h6"
+        },
+        {
+          "type": "select",
+          "id": "font_type",
+          "label": "Font type",
+          "options": [
+            {
+              "value": "font_heading",
+              "label": "Heading"
+            },
+            {
+              "value": "font_body",
+              "label": "Body"
+            }
+          ],
+          "default": "font_body"
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Color",
+          "options": [
+            {
+              "value": "color_heading",
+              "label": "Heading"
+            },
+            {
+              "value": "color_body",
+              "label": "Body"
+            },
+            {
+              "value": "color_highlight",
+              "label": "Highlight"
+            }
+          ],
+          "default": "color_highlight"
+        },
+        {
+          "type": "select",
+          "id": "text_transform",
+          "label": "Text transform",
+          "options": [
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "inherit",
+              "label": "Default"
+            }
+          ],
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "name": "Heading",
+      "type": "head",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Heading",
+          "default": "Image With Text"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Font size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "type": "content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Add a section that pairs images with text to highlight products, features, or content. Each block can include an image or icon alongside a title or short description, making it easy to create visually engaging and informative layouts that draw attention to your key messages.</p>"
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label 1",
+          "default": "Button Label "
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link 1"
+        },
+        {
+          "type": "text",
+          "id": "btn_label1",
+          "label": "Button label 2",
+          "default": "Button Label "
+        },
+        {
+          "type": "url",
+          "id": "btn_link1",
+          "label": "Button link 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Double image text",
+      "blocks": [
+        {
+          "type": "head"
+        },
+        {
+          "type": "content"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

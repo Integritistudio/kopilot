@@ -1,0 +1,520 @@
+{% style %}
+  .video-review-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  .video-review-{{ section.id }} .video-review__heading {
+    color: {{ section.settings.heading_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .video-review-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  
+
+  }
+{% endstyle %}
+
+{{ 'video-review-slider.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="video-review-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="video-review-section color-{{ section.settings.color_scheme }}">
+
+    <div class="container">
+      {% if section.settings.heading != blank %}
+        <div class="video-review__top">
+          <h1 class="video-review__heading">
+            {{ section.settings.heading }}
+          </h1>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="video-review__slider-full">
+     <div class="video-review__slider-inner container">
+
+      <swiper-section
+        data-slides-desktop="{{ section.settings.slides_desktop }}"
+        data-slides-tablet="2.2"
+        data-slides-mobile="{{ section.settings.slides_mobile }}"
+        data-gap="{{ section.settings.slider_gap }}"
+        data-center-mode="false"
+      >
+
+        <div class="swiper video-review-swiper">
+          <div class="swiper-wrapper">
+
+            {% for block in section.blocks %}
+              <div
+                class="swiper-slide"
+                {{ block.shopify_attributes }}
+              >
+                <div class="video-review-card">
+
+                  <!-- LEFT VIDEO -->
+                  <div class="video-review-card__left">
+
+                    {% if block.settings.video != blank %}
+
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          image_size: '900x',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false,
+                          playsinline: true,
+                          class: 'video-review-card__video'
+                      }}
+
+                    {% elsif block.settings.video_url != blank %}
+
+                      <div class="video-review-card__iframe">
+                        {{
+                          block.settings.video_url
+                          | external_video_url:
+                            autoplay: false,
+                            loop: false
+                          | external_video_tag
+                        }}
+                      </div>
+
+                    {% elsif block.settings.image != blank %}
+
+                      {{
+                        block.settings.image
+                        | image_url: width: 900
+                        | image_tag:
+                          loading: 'lazy',
+                          class: 'video-review-card__image'
+                      }}
+
+                    {% else %}
+
+                      {{ 'product-1' | placeholder_svg_tag: 'video-review-placeholder' }}
+
+                    {% endif %}
+
+                  </div>
+
+                  <!-- RIGHT PRODUCT -->
+                  <div class="video-review-card__right">
+
+                    <div class="video-review-product-wrap">
+
+                      {% if block.settings.product != blank %}
+
+                        {% if block.settings.badge != blank %}
+                          <span class="video-review-badge">
+                            {{ block.settings.badge }}
+                          </span>
+                        {% endif %}
+
+                        <a
+                          href="{{ block.settings.product.url }}"
+                          class="video-review-product"
+                        >
+
+                          <div class="video-review-product__image">
+
+                            {% if block.settings.product.featured_image != blank %}
+
+                              {{
+                                block.settings.product.featured_image
+                                | image_url: width: 400
+                                | image_tag:
+                                  loading: 'lazy'
+                              }}
+
+                            {% else %}
+
+                              {{ 'product-2' | placeholder_svg_tag: 'video-review-product-placeholder' }}
+
+                            {% endif %}
+
+                          </div>
+
+                          <div class="video-review-product__content">
+
+                            <h6 class="video-review-product__title">
+                              {{ block.settings.product.title }}
+                            </h6>
+
+                            <p class="video-review-product__price">
+                              {{ block.settings.product.price | money }}
+                            </p>
+
+                          </div>
+
+                        </a>
+
+                      {% else %}
+
+                        <div class="video-review-product video-review-product--placeholder">
+
+                          <span class="video-review-badge">
+                            BEST SELLER
+                          </span>
+
+                          <div class="video-review-product__image">
+                            {{ 'product-2' | placeholder_svg_tag: 'video-review-product-placeholder' }}
+                          </div>
+
+                          <div class="video-review-product__content">
+
+                            <h6 class="video-review-product__title">
+                              SteelArc Welding Machine
+                            </h6>
+
+                            <p class="video-review-product__price">
+                              {{ 370000 | money }}
+                            </p>
+
+                          </div>
+
+                        </div>
+
+                      {% endif %}
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            {% endfor %}
+
+          </div>
+
+          {% if section.settings.show_navigation %}
+            <div class="video-review-nav">
+              <div class="swiper-button-prev video-review-prev-{{ section.id }}"></div>
+              <div class="swiper-button-next video-review-next-{{ section.id }}"></div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_pagination %}
+            <div class="vi-review_progress_wrapper">
+              <span class="vi-review_current_slide">{{ '01' }}</span>
+              <div class="vi-review_pagination_progress">
+                <div class="vi-review_pagination_progress_inner"></div>
+              </div>
+              <span class="vi-review_total_slide">01</span>
+            </div>
+          {% endif %}
+
+        </div>
+      
+      </swiper-section>
+     </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  class VideoReviewSlider {
+    constructor(section) {
+      this.section = section;
+      this.swiper = null;
+
+      this.waitForSwiper();
+    }
+
+    waitForSwiper() {
+
+      const swiperSection =
+        this.section.querySelector('swiper-section');
+
+      if (!swiperSection) return;
+
+      // swiper already initialized
+      if (swiperSection.swiper) {
+
+        this.swiper = swiperSection.swiper;
+
+        this.initSlider();
+
+        return;
+      }
+
+      // wait for swiper
+      let count = 0;
+
+      const interval = setInterval(() => {
+
+        count++;
+
+        if (swiperSection.swiper) {
+
+          clearInterval(interval);
+
+          this.swiper = swiperSection.swiper;
+
+          this.initSlider();
+        }
+
+        if (count > 60) {
+          clearInterval(interval);
+        }
+
+      }, 100);
+    }
+
+    initSlider() {
+
+      if (!this.swiper) return;
+
+      const sectionId =
+        this.section.dataset.sectionId;
+
+      /* ---------------- NAVIGATION ---------------- */
+
+      this.swiper.params.navigation = {
+        nextEl: `.video-review-next-${sectionId}`,
+        prevEl: `.video-review-prev-${sectionId}`,
+      };
+
+      /* ---------------- INIT SWIPER ---------------- */
+
+      this.swiper.update();
+
+      if (this.swiper.navigation) {
+
+        this.swiper.navigation.init();
+
+        this.swiper.navigation.update();
+      }
+
+      /* ---------------- PAGINATION ---------------- */
+
+      this.totalSlides =
+        this.swiper.slides.length;
+
+      const total =
+        String(this.totalSlides).padStart(2, '0');
+
+      const totalEl =
+        this.section.querySelector(
+          '.vi-review_total_slide'
+        );
+
+      if (totalEl) {
+        totalEl.textContent = total;
+      }
+
+      // initial state
+      this.updatePagination();
+
+      // slide change
+      this.swiper.on('slideChange', () => {
+        this.updatePagination();
+      });
+    }
+
+    updatePagination() {
+
+      if (!this.swiper) return;
+
+      const current =
+        this.swiper.realIndex + 1;
+
+      const currentFormatted =
+        String(current).padStart(2, '0');
+
+      const progress =
+        (current / this.totalSlides) * 100;
+
+      /* CURRENT NUMBER */
+
+      const currentEl =
+        this.section.querySelector(
+          '.vi-review_current_slide'
+        );
+
+      if (currentEl) {
+
+        currentEl.textContent =
+          currentFormatted;
+      }
+
+      /* PROGRESS BAR */
+
+      const progressEl =
+        this.section.querySelector(
+          '.vi-review_pagination_progress_inner'
+        );
+
+      if (progressEl) {
+
+        progressEl.style.width =
+          `${progress}%`;
+      }
+    }
+  }
+
+  document
+    .querySelectorAll('[data-section-id]')
+    .forEach((section) => {
+
+      new VideoReviewSlider(section);
+
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Video review ",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WATCH PRODUCT REVIEWS"
+    },    
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Desktop slides",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "default": 3.2
+    },
+    {
+      "type": "range",
+      "id": "slides_mobile",
+      "label": "Mobile slides",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "slider_gap",
+      "label": "Slider gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_review",
+      "name": "Video Review",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Upload video"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "YouTube/Vimeo URL",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Fallback image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "BEST SELLER"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video review",
+      "blocks": [
+        {
+          "type": "video_review"
+        },
+        {
+          "type": "video_review"
+        },
+        {
+          "type": "video_review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

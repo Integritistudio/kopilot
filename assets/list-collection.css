@@ -1,0 +1,188 @@
+.list_collections_wrapper_inner {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+}
+
+.list_collections_wrapper_inner.gap_enabled {
+    column-gap: var(--column-spacing);
+    row-gap: var(--row-spacing);
+}
+
+svg.placeholder_svg.even_svg {
+    background: color-mix(in srgb, var(--color-secondary-background) 50%, transparent);
+}
+
+.list_collections_block_img {
+    display: grid;
+    position: relative;
+    height: fit-content;
+}
+
+.list_collections_block_img_inner {
+    grid-area: 1 / 1;
+}
+
+.list_collections_block_img img, .list_collections_block_img svg.placeholder_svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list_collections_block_text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+    padding: 5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.list_collections_block_text_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.list_collections_block_btn {
+    display: flex;
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1299px) {
+    .list_collections_block_text {
+        padding: 3rem;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .list_collections_wrapper_inner:not(.cols2) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 899px) {
+    .list_collections_wrapper_inner {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .list_collections_wrapper_inner {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* =========================
+   STYLE 2
+========================= */
+
+.style--style2 .list_collections_block_img {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.style--style2 .list_collections_block_img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.15) 50%,
+        rgba(0,0,0,0.05) 100%
+    );
+    z-index: 1;
+}
+
+.style--style2 .list_collections_block_img img {
+    transition: transform .6s ease;
+}
+
+.style--style2 .list_collections_block_img:hover img {
+    transform: scale(1.05);
+}
+
+.style--style2 .list_collections_block_text {
+    z-index: 2;
+    padding: 4rem;
+}
+
+.style--style2 .list_collections_block_text_inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.style--style2 .list_collections_content {
+    transform: translateY(40px);
+    transition: all .4s ease;
+}
+
+.style--style2 .list_collections_content h3 {
+    color: #fff;
+    margin: 0;
+    
+}
+
+.style--style2 .list_collections_block_btn {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all .4s ease;
+}
+
+.style--style2 .list_collections_block_img:hover .list_collections_content {
+    transform: translateY(0);
+}
+
+.style--style2 .list_collections_block_img:hover .list_collections_block_btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.style--style2 .list_collections_block_btn .btn {
+    min-width: 160px;
+    text-align: center;
+}
+
+.style--style2 .list_collections_info {
+    transform: translateY(25px);
+    transition: all .4s ease;
+}
+.style--style2 .list_collections_block_img:hover .list_collections_info {
+    transform: translateY(0);
+}
+
+/* MOBILE */
+@media screen and (max-width: 767px) {
+
+    .style--style2 .list_collections_block_text {
+        padding: 2rem;
+    }
+
+    .style--style2 .list_collections_content {
+        transform: none;
+    }
+
+    .style--style2 .list_collections_block_btn {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    .style--style2 .list_collections_info {
+        transform: translateY(0px);
+        transition: all .4s ease;
+    }
+    .style--style2 .list_collections_block_btn .btn {
+        min-width: 100%;
+    }
+}

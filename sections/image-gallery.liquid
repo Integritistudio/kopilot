@@ -1,0 +1,345 @@
+{% style %}
+  .image_gallery_wrapper--{{section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .image_gallery_wrapper--{{section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+
+    .image_gallery_wrapper--{{section.id }} .container {
+      padding-right: 0;
+    }
+  }
+{% endstyle %}
+
+{{ 'image-gallery.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="image_gallery_wrapper--{{section.id }} color-{{ section.settings.color_scheme }}"
+  style="--columns: {{ section.settings.columns }};"
+>
+  <div class="container">
+    {% if section.settings.head != blank %}
+      <div class="image_gallery_head reveal{% if section.settings.head_icon != blank %} has_icon{% endif %} ig_head--{{ section.settings.head_align }}">
+        {% if section.settings.head_icon != blank %}
+          <div class="ig_head_icon">
+            {{ section.settings.head_icon | image_url: width: 50 | image_tag }}
+          </div>
+        {% endif %}
+        <h1>{{ section.settings.head }}</h1>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="image_gallery_main_inner">
+        {% for block in section.blocks %}
+          {% assign ratio = 1 %}
+          {% if section.settings.aspect_ratio == 'portrait' %}
+            {% assign ratio = 0.7 %}
+          {% elsif section.settings.aspect_ratio == 'adapt' %}
+            {% if block.settings.img != blank %}
+              {% assign ratio = block.settings.img.width | times: 1.0 | divided_by: block.settings.img.height %}
+            {% endif %}
+          {% endif %}
+
+          <div
+            class="image_gallery_block ig_block--{{ block.settings.position }} reveal stagger"
+            style="--max-width: {{ block.settings.max_width }}%"
+          >
+            <div
+              class="image_gallery_block_img ratio"
+              style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%;"
+            >
+              {% if block.settings.link != blank %}
+                <a
+                  class="ig_overlay_link"
+                  href="{{ block.settings.link }}"
+                  {% if section.settings.new_tab %}
+                    target="_blank"
+                  {% endif %}
+                  aria-label="{{ 'sections.image_gallery.link_title' | t }}"
+                ></a>
+              {% endif %}
+
+              {% if section.settings.hover_icon != blank %}
+                {{ section.settings.hover_icon | image_url: width: 50 | image_tag: class: 'ig_hover_icon' }}
+              {% endif %}
+
+              {% if block.settings.img != blank %}
+                {{ block.settings.img | image_url: width: 1200 | image_tag }}
+              {% else %}
+                {% assign index = forloop.index | modulo: 2 %}
+                {% if index == 1 %}
+                  {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_btn %}
+      {% if section.settings.btn_link != blank or section.settings.btn_label != blank %}
+        <div class="ig_btn{% if section.settings.btn_label == blank %} empty_label{% endif %}">
+          {% if section.settings.btn_link != blank %}
+            <a
+              class="btn btn--{{ section.settings.btn_style }}"
+              aria-label="{{ section.settings.btn_label }}"
+              href="{{ section.settings.btn_link }}"
+            >
+              {{- section.settings.btn_label -}}
+            </a>
+          {% else %}
+            <a class="btn btn--disabled" aria-label="{{ section.settings.btn_label }}" role="link">
+              {{- section.settings.btn_label -}}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image gallery",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Image gallery"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "head_icon",
+      "label": "Select icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "hover_icon",
+      "label": "Select icon for image hover"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns per row",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "checkbox",
+      "id": "new_tab",
+      "label": "Open links in a new tab",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_btn",
+      "label": "Show button",
+      "default": true
+    },
+    {
+        "type": "text",
+        "id": "btn_label",
+        "label": "Button label",
+        "default": "Button Label"
+    },
+    {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+    },
+    {
+        "type": "select",
+        "id": "btn_style",
+        "label": "Button style",
+        "options": [
+            {
+                "value": "primary",
+                "label": "Primary"
+            },
+            {
+                "value": "secondary",
+                "label": "Secondary"
+            }
+        ],
+        "default": "secondary"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Block max. width",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 15,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Block position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "top"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Image link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image gallery",
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "max_width": 14,
+            "position": "center"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "max_width": 14,
+            "position": "top"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "max_width": 24,
+            "position": "top"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "max_width": 14,
+            "position": "center"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "max_width": 14,
+            "position": "top"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

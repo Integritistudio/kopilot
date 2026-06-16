@@ -1,0 +1,124 @@
+.gift_card_section_inner {
+    max-width: 109.9rem;
+    margin-inline: auto;
+}
+
+.gift_card_section_inner {
+    max-width: 109.9rem;
+    margin-inline: auto;
+    background: var(--color-secondary-background);
+    padding: 1.4rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.gift_card_section_img_wrapper img {
+    max-height: 34.4rem;
+    object-fit: var(--object-fit);
+    border-radius: 1.2rem;
+}
+
+.gift_card_qr_code_wrapper {
+    background: var(--color-secondary-background);
+    padding: 1.2rem;
+    margin-inline: auto;
+    width: fit-content;
+    border-radius: 1.2rem;
+    margin-top: -7.4rem;
+    z-index: 6;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.gift_card_logo_wrapper {
+    margin: 1rem auto 0;
+    width: fit-content;
+}
+
+.gift_card_logo_wrapper img {
+    margin: 4rem 0 0;
+}
+
+.gift_card_logo_wrapper h1 a {
+    color: var(--color-heading);
+    text-decoration: none;
+}
+
+.gift_card_logo_wrapper h1 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.gift_card_section_header {
+    margin: 3rem auto 0;
+    width: fit-content;
+}
+
+.gift_card_section_header h2 {
+    font-size: 3rem;
+}
+
+.gift_card_section_info_wrapper {
+    margin: 3rem 0 0;
+    text-align: center;
+}
+
+.gift_card_section_info_wrapper .use_at_checkout {
+    font-size: 1.4rem;
+    color: var(--color-text);
+}
+
+p.gift_card_code {
+    margin: 2rem auto 0;
+    border: 2px dashed var(--color-border);
+    padding: 1rem;
+    min-width: 40rem;
+    width: fit-content;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: var(--font-heading-family);
+}
+
+.gift-card_btns_wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem 0 2rem;
+    gap: 1rem;
+    position: relative;
+}
+
+.gift-card_btns_wrapper a {
+    color: var(--color-link);
+    text-underline-offset: 2px;
+}
+
+span.gift_card_copy_success.form__message {
+    opacity: 0;
+    pointer-events: none;
+    background: color-mix(in srgb, green 20%, transparent);
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: color-mix(in srgb, green 100%, transparent);
+    font-size: 1.2rem;
+    line-height: 1;
+    position: absolute;
+    top: 0;
+    transform: translateY(0);
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+span.gift_card_copy_success.form__message.show {
+    opacity: 1;
+    transform: translateY(-34px);
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+    p.gift_card_code {
+        min-width: 100%;
+    }
+}

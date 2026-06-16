@@ -1,0 +1,333 @@
+{% comment %} {% assign showQA = settings.show_quick_view %} {% endcomment %}
+{% assign qa_pos = settings.qa_position | default: 'over_image' %}
+
+{% assign ratio = 1 %}
+{% if aspect_ratio == 'portrait' %}
+  {% assign ratio = 0.8 %}
+{% elsif aspect_ratio == 'adapt' %}
+  {% if product.selected_or_first_available_variant.featured_image != blank %}
+    {% assign ratio = product.selected_or_first_available_variant.featured_image.aspect_ratio %}
+  {% elsif product.featured_image != blank %}
+    {% assign ratio = product.featured_image.aspect_ratio %}
+  {% else %}
+    {% assign ratio = 1 %}
+  {% endif %}
+{% endif -%}
+
+{% capture badges_html %}
+  <div class="badge badge--{{ settings.badge_position }} mob_cols_{{ mob_cols }}">
+          {% assign first_variant = product.selected_or_first_available_variant %}
+
+          {% if first_variant.available == false and first_variant.inventory_policy == 'deny' %}
+            <span class="badge_inner badge_sold--out color-{{ settings.sold_out_badge_color_scheme }} "
+                  style="--radius:{{ settings.badges_border_radius }}px">
+              <span>{{- 'products.product.sold_out' | t -}}</span>
+            </span>
+          {% elsif first_variant.compare_at_price != blank
+            and first_variant.compare_at_price > first_variant.price
+            and first_variant.compare_at_price != 0
+          %}
+            <span class="badge_inner badge_sale color-{{ settings.sale_badge_color_scheme }}"
+            style="--radius:{{ settings.badges_border_radius }}px">
+              {% if settings.sale_style == 'text' %}
+                <span>{{- 'products.product.sale' | t -}}</span>
+              {% else %}
+                {% assign per = first_variant.compare_at_price
+                  | minus: first_variant.price
+                  | times: 100
+                  | divided_by: first_variant.compare_at_price
+                %}
+                <span>{{- 'products.product.off' | t: value: per -}}</span>
+              {% endif %}
+            </span>
+          {% endif %}
+        </div>
+{% endcapture %}
+
+{% capture quick_view_html %}
+  <div class="quick_view_wrapper" style="--qa_radius:{{ settings.qa_add_border_radius }}px">    
+    {% if settings.qa_add_border_radius > 0 %}       
+    <svg class="corner-svg-top" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1;">
+      <path fill="rgb(var(--background-color))" d="M24.0033 24H0C18.9005 23.8195 23.8918 18.3064 24.0033 0V24Z" style="fill: red;"></path>
+    </svg>
+
+    <svg class="corner-svg-bottom" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1;">
+      <path fill="rgb(var(--background-color))" d="M24.0033 24H0C18.9005 23.8195 23.8918 18.3064 24.0033 0V24Z" style="fill: red;"></path>
+    </svg>
+    {% endif %}
+
+    {% assign first_variant = product.selected_or_first_available_variant %}
+
+    {% if product.has_only_default_variant %}
+    <product-form>
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ first_variant.id }}" {% unless first_variant.available %}disabled{% endunless %} />
+              <input type="hidden" name="quantity" value="1" />
+              <button aria-label="{{ 'products.product.quick_view' | t }}" class="product_form_submit_btn btn" {% unless first_variant.available %}disabled{% endunless %}>
+                <span class="btn_text">
+                  {{ 'icon-cart.svg' | inline_asset_content }}
+                  {{ 'icon-cart.svg' | inline_asset_content }}
+                </span>
+                <span class="btn_text1"> ADD TO CART </span>
+                <span class="loader hidden">.</span>
+              </button>
+            {% endform %}
+          </product-form>
+  {% else %}
+    <quick-add-button data-product-handle="{{ product.handle }}">
+      <button class="quick_add_btn btn" aria-label="{{ 'products.product.quick_add' | t }}" data-drawer="quick_add_drawer" {% unless first_variant.available %}disabled{% endunless %}>
+        <span class="btn_text">
+          {{ 'icon-eye.svg' | inline_asset_content }}
+          {{ 'icon-eye.svg' | inline_asset_content }}
+        </span>
+        <span class="btn_text1"> QUICK ADD </span>
+        <span class="loader hidden">.</span>
+      </button>
+      </quick-add-button>
+  {% endif %}
+  </div>
+{% endcapture %}
+
+{% capture custom_badges_html %}
+  <div class="custom_badge{% if settings.badge_position == 'top_left' or settings.badge_position == 'bottom_left' or settings.badge_position == 'bottom_right' %} cb--top_right{% else %} cb--top_left{% endif %}">
+    <div class="custom_badge_inner color-{{ settings.custom_badge_color_scheme }}" style="--radius:{{ settings.badges_border_radius }}px">
+      {% for tag in product.tags %}
+        {% if tag contains 'badge_' %}
+          {% assign t = tag | split: 'badge_' | last %}
+          <span>{{ t | replace: '-', ' ' }}</span>
+          {%endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endcapture %}
+
+<div class="product_card_wrapper{% if view == 'slider' %} swiper-slide{% if index <= columns %} reveal stagger{% endif %}{% endif %}{% if view != 'slider' %} reveal stagger{% endif %}">
+  <div
+    class="
+      product_card_img {% if qa_pos == 'on_hover' %} has_hover_qa {% endif %} {% if qa_pos == 'on_hover_btn' %} btn_hover_qa {% endif %}
+      {% if show_secondary_img and product.images.size > 1 %} has_secondary_img{% endif %} ratio{% if show_card_bg %} has_bg{% endif %}{% if show_quick_view %} has_quick_view {% endif %}
+    "
+    style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%; {% if show_card_bg %}--card-bg: {{ card_bg }}; --card-text: {{ card_text }}; {% endif %}"
+  >
+    {% if product.selected_or_first_available_variant.featured_image != blank %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {{
+          product.selected_or_first_available_variant.featured_image
+          | image_url: width: 800
+          | image_tag: class: 'main_pc_image'
+        }}
+
+        {% if show_secondary_img and product.images.size > 1 %}
+          {{ product.images[1] | image_url: width: 800 | image_tag: class: 'secondary_pc_image' }}
+        {% endif %}
+      </a>
+    {% elsif product.featured_image != blank %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {{ product.featured_image | image_url: width: 800 | image_tag: class: 'main_pc_image' }}
+
+        {% if show_secondary_img and product.images.size > 1 %}
+          {{ product.images[1] | image_url: width: 800 | image_tag: class: 'secondary_pc_image' }}
+        {% endif %}
+      </a>
+    {% else %}
+      {% assign pc_index = index | modulo: 2 %}
+      <a aria-label="{{ product.title }}" href="{{ product.url }}">
+        {% if pc_index == 1 %}
+          {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {% if show_badges %}
+      {{ badges_html }}
+    {% endif %}
+
+    {% if show_custom_badges %}
+      {{ custom_badges_html }}
+    {% endif %}
+
+    {% if show_quick_view %}
+      {% if qa_pos == 'over_image' or qa_pos == 'on_hover' or qa_pos == 'on_hover_btn' %}
+        <div class="qa_container {% if qa_pos == 'on_hover' %}qa_on_hover{% endif %} {% if qa_pos == 'on_hover_btn' %} btn_hover_qa {% endif %}">
+          {{ quick_view_html }}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+  <div
+    class="product_card_info{% if show_quick_view and qa_pos == 'besides_text' %} besides_text{% endif %} pc_info--{{ card_align }}"
+    style="--text-align: {{ card_align }}"
+  >
+    <div class="pci_besides_text">
+      <div class="card-info-pro">
+        <div class="product_add_error hidden"></div>
+        <h4 class="{% if title_size == 'normal' %}normal-text{% else %}small-text{% endif %}">
+          <a href="{{ product.url }}" aria-label="{{ product.title }}" tabindex="-1">{{ product.title }}</a>
+        </h4>
+        {% render 'product-card-price', product: product %}
+      </div>
+      {% if show_quick_view and qa_pos == 'besides_text' %}
+        <div
+          class="{% if show_card_bg %} has_bg{% endif %}"
+          style="{% if show_card_bg %}--card-bg: {{ card_bg }}; --card-text: {{ card_text }}; {% endif %}"
+        >
+          <div class="quick_view_wrapper besides_text " style="--qa_radius:{{ settings.qa_add_border_radius }}px">
+            {% assign first_variant = product.selected_or_first_available_variant %}
+
+            {% if product.has_only_default_variant %}
+              <product-form>
+                {% form 'product', product %}
+                  <input
+                    type="hidden"
+                    name="id"
+                    value="{{ first_variant.id }}"
+                    {% unless first_variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                  <input type="hidden" name="quantity" value="1">
+                  <button
+                    aria-label="{{ 'products.product.quick_view' | t }}"
+                    class="product_form_submit_btn btn"
+                    {% unless first_variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    <span class="btn_text">
+                      {{ 'icon-cart.svg' | inline_asset_content }}
+                      {{ 'icon-cart.svg' | inline_asset_content }}
+                    </span>
+                    <span class="btn_text1"> ADD TO CART </span>
+                    <span class="loader hidden">.</span>
+                  </button>
+                {% endform %}
+              </product-form>
+            {% else %}
+              <quick-add-button data-product-handle="{{ product.handle }}">
+                <button
+                  class="quick_add_btn btn"
+                  aria-label="{{ 'products.product.quick_add' | t }}"
+                  data-drawer="quick_add_drawer"
+                  {% unless first_variant.available %}
+                    disabled
+                  {% endunless %}
+                >
+                  <span class="btn_text">
+                    {{ 'icon-eye.svg' | inline_asset_content }}
+                    {{ 'icon-eye.svg' | inline_asset_content }}
+                  </span>
+                  <span class="loader hidden">.</span>
+                  <span class="btn_text1"> QUICK ADD </span>
+                </button>
+              </quick-add-button>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {%- if show_color_swatches != false -%}
+      {%- assign pc_color_option_names = 'Color,Colors,Colour,Colours,Couleur,Couleurs,Farbe,Farben,Colore,Colori,颜色,颜色选项,색상,색상들'
+        | split: ','
+      -%}
+      {%- assign pc_color_option = null -%}
+      {%- for option in product.options_with_values -%}
+        {%- if pc_color_option_names contains option.name -%}
+          {%- assign pc_color_option = option -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if pc_color_option != null -%}
+        {%- if settings.swatch_shape == 'default' -%}
+          <div class="pc_swatches pc_swatches--default">
+            {%- assign pc_active_set = false -%}
+            {%- for value in pc_color_option.values -%}
+              {%- assign pc_variant_img = null -%}
+              {%- if value.variant.featured_image != blank -%}
+                {%- assign pc_variant_img = value.variant.featured_image | image_url: width: 800 -%}
+              {%- endif -%}
+              {%- assign pc_is_active = false -%}
+              {%- if value.variant.available and pc_active_set == false -%}
+                {%- assign pc_is_active = true -%}
+                {%- assign pc_active_set = true -%}
+              {%- endif -%}
+              <span
+                class="pc_swatch_label{% if pc_is_active %} pc_swatch--active{% endif %}{% unless value.variant.available %} disabled{% endunless %}"
+                title="{{ value | escape }}"
+                aria-label="{{ value | escape }}"
+                {% if value.variant.available %}
+                  role="button"
+                  tabindex="0"
+                {% else %}
+                  role="button"
+                  aria-disabled="true"
+                  tabindex="-1"
+                {% endif %}
+                data-available="{{ value.variant.available }}"
+                {% if pc_variant_img != null %}
+                  data-image="{{ pc_variant_img }}"
+                {% endif %}
+              >
+                {{- value | escape -}}
+              </span>
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <div class="pc_swatches pc_swatches--{{ settings.swatch_shape }}">
+            {%- assign pc_active_set = false -%}
+            {%- for value in pc_color_option.values -%}
+              {%- liquid
+                assign pc_swatch_bg = null
+                assign pc_v_lower = value | downcase
+                assign pc_custom_swatches = settings.custom_color_swatches | split: ', '
+                for pc_swatch in pc_custom_swatches
+                  assign pc_parts = pc_swatch | split: ':'
+                  assign pc_s_name = pc_parts[0] | strip | downcase
+                  assign pc_s_color = pc_parts[1] | strip
+                  if pc_s_name == pc_v_lower
+                    assign pc_swatch_bg = pc_s_color
+                  endif
+                endfor
+                if value.swatch.image
+                  assign pc_swatch_img_url = value.swatch.image | image_url: width: 50
+                  assign pc_swatch_bg = 'url(' | append: pc_swatch_img_url | append: ')'
+                elsif value.swatch.color
+                  assign pc_swatch_bg = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                endif
+                assign pc_variant_img = null
+                if value.variant.featured_image != blank
+                  assign pc_variant_img = value.variant.featured_image | image_url: width: 800
+                endif
+                assign pc_is_active = false
+                if value.variant.available and pc_active_set == false
+                  assign pc_is_active = true
+                  assign pc_active_set = true
+                endif
+              -%}
+              <span
+                class="pc_swatch{% if pc_is_active %} pc_swatch--active{% endif %}{% unless value.variant.available %} disabled{% endunless %}"
+                title="{{ value | escape }}"
+                aria-label="{{ value | escape }}"
+                {% if value.variant.available %}
+                  role="button"
+                  tabindex="0"
+                {% else %}
+                  role="button"
+                  aria-disabled="true"
+                  tabindex="-1"
+                {% endif %}
+                data-available="{{ value.variant.available }}"
+                style="background: {% if pc_swatch_bg != nil %}{{ pc_swatch_bg }}{% else %}{{ value | downcase }}{% endif %};"
+                {% if pc_variant_img != null %}
+                  data-image="{{ pc_variant_img }}"
+                {% endif %}
+              ></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>

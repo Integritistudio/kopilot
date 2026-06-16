@@ -1,0 +1,264 @@
+{% style %}
+  .testimonials_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .testimonials_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'testimonials.css' | asset_url | stylesheet_tag }}
+
+<div class="testimonials_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  {% if section.settings.head != blank %}
+    <div class="testimonials_head reveal{% unless section.settings.show_progress %} t_head--{{ section.settings.head_align }}{% endunless %}{% if section.settings.show_progress %} t_head_with_progress{% endif %}">
+      <div class="container">
+        <div class="testimonials_head_inner">
+          <h2>{{ section.settings.head }}</h2>
+          {% if section.settings.show_progress %}
+          <div class="t_progress_wrapper">
+            <span class="t_current_slide">{{ '01' }}</span>
+            <div class="t_pagination_progress">
+              <div class="t_pagination_progress_inner"></div>
+            </div>
+            <span class="t_total_slide">01</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <testimonials-section>
+    <swiper-section
+      data-slides-desktop="1.7"
+      data-slides-custom="1.2"
+      data-slides-tablet="1.2"
+      data-slides-mobile="1.2"
+      data-gap="100"
+      data-custom-gap="40"
+      data-center-mode="true"
+      data-speed="800"
+      data-loop="true"
+      data-grab-cursor="true"
+    >
+      <div class="testimonials_inner swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="testimonial_block swiper-slide reveal stagger">
+              <div class="testimonial_content" style="--block-bg: {{ block.settings.block_bg }}; --quote-color: {{ block.settings.quote_color }};">
+                <div class="testimonial_content_inner">
+                  {% if block.settings.content != blank %}
+                    <span>{{ 'quote.svg' | inline_asset_content }}</span>
+                    <p>{{ block.settings.content }}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="testimonial_info">
+                <div class="testimonial_info_top">
+                  {% if block.settings.author_img != blank %}
+                    <div class="testimonial_author_img{% if block.settings.product == blank %} no_product{% endif %}">
+                      {{ block.settings.author_img | image_url: width: 500 | image_tag }}
+                    </div>
+                {% else %}
+                    <div class="testimonial_author_img{% if block.settings.product == blank %} no_product{% endif %}">
+                      {{ 'user.svg' | inline_asset_content  }}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.product != blank %}
+                    <div class="testimonial_product{% if block.settings.author_img == blank %} no_author_img{% endif %}">
+                      <div class="testimonial_product_img">
+                        <a {% if forloop.index > 3 %} tabindex="-1"{% endif %} aria-label="{{ block.settings.product.title }}" href="{{ block.settings.product.url }}">
+                        {% if block.settings.product.featured_image != blank %}
+                          {{ block.settings.product.featured_image | image_url: width: 150 | image_tag }}
+                        {% else %}
+                          {% assign img_index = forloop.index | modulo: 2 %}
+                          {% if img_index == 1 %}
+                            {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                          {% else %}
+                            {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                          {% endif %}
+                        {% endif %}
+                        </a>
+                      </div>
+
+                      <div class="testimonial_product_title">
+                        <p><a {% if forloop.index > 3 %} tabindex="-1"{% endif %} aria-label="{{ block.settings.product.title }}" href="{{ block.settings.product.url }}">{{ block.settings.product.title | truncatewords: 15 }}</a></p>
+                        <span>{{ block.settings.product.price | money }}</span>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="testimonial_info_bottom">
+                  {% if block.settings.author_name != blank %}
+                    <p>{{ block.settings.author_name }}</p>
+                    {% if block.settings.author_designation != blank %}
+                      <span>{{ block.settings.author_designation }}</span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </swiper-section>
+    </testimonials-section>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Works only when progress bar is disabled."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Show pagination progress",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Testimonial",
+      "type": "testimonial",
+      "settings": [
+        {
+            "type": "color",
+            "id": "block_bg",
+            "label": "Block background color",
+            "default": "#DBF2F4"
+        },
+        {
+            "type": "color",
+            "id": "quote_color",
+            "label": "Quote color",
+            "default": "#59D4DF"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_img",
+          "label": "Select author image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "Showcase the best reviews by the customers about the website or a product."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Author"
+        },
+        {
+          "type": "text",
+          "id": "author_designation",
+          "label": "Author designation",
+          "default": "Author Designation"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        },        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+            "type": "testimonial"
+        },
+        {
+            "type": "testimonial",
+            "settings": {
+                "block_bg": "#E0DFEF",
+                "quote_color": "#9E9ED9"
+            }
+        },
+        {
+            "type": "testimonial"
+        },
+        {
+            "type": "testimonial",
+            "settings": {
+                "block_bg": "#E0DFEF",
+                "quote_color": "#9E9ED9"
+            }
+        },
+      ]
+    }
+  ]
+}
+{% endschema %}

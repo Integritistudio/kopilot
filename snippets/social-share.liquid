@@ -1,0 +1,46 @@
+<div class="social_share_links_wrapper">
+  <p class="social_sharing_label">{{ 'general.social.share_heading' | t | append: ': ' }}</p>
+  <ul class="social_sharing_list">
+    <li class="facebook">
+      <a
+        class="social_sharing_link"
+        {% if new_tab %}
+        target="_blank"
+        {% endif %}
+        rel="noopener"
+        href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}"
+      >
+        <span aria-hidden="true" class="svg_wrapper">{{ 'icon-facebook.svg' | inline_asset_content }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+      </a>
+    </li>
+    <li class="twitter">
+      <a
+        class="social_sharing_link"
+        {% if new_tab %}
+        target="_blank"
+        {% endif %}
+        rel="noopener"
+        href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}"
+      >
+        <span aria-hidden="true" class="svg_wrapper">{{ 'icon-twitter.svg' | inline_asset_content }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+      </a>
+    </li>
+    {% if share_image %}
+      <li class="pinterest">
+        <a
+          class="social_sharing_link"
+          {% if new_tab %}
+          target="_blank"
+          {% endif %}
+          rel="noopener"
+          href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | image_url: width: 1024 }}&amp;description={{ share_title | url_param_escape }}"
+        >
+          <span aria-hidden="true" class="svg_wrapper">{{ 'icon-pinterest.svg' | inline_asset_content }}</span>
+          <span class="visually-hidden">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

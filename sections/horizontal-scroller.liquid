@@ -1,0 +1,361 @@
+
+{% style %}
+  .horizontal_scroller_wrapper--{{ section.id }} {    
+    background: transparent;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: {{ section.settings.left_spacing }}px;
+    margin-right: {{ section.settings.right_spacing }}px;
+  }
+
+  .ticker-row.ticker-row--light,
+  .ticker-row.ticker-row--dark {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+    border-radius: {{ section.settings.border-radius }}px;
+  }
+
+{% endstyle %}
+
+{{ 'horizontal-scroller.css' | asset_url | stylesheet_tag }}
+
+<div class="horizontal_scroller_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--gap: {{ section.settings.gap }}px; --img-size: {{ section.settings.img_size }}px;"
+>
+
+  {% if section.settings.button_text != blank %}
+    <div class="scroller-btn-wrap">
+
+      <a
+        href="{{ section.settings.button_link }}"
+        class="scroller-btn btn"
+      >
+        {{ section.settings.button_text }}
+      </a>
+
+    </div>
+  {% endif %}
+
+  <horizontal-scroller
+    class="horizontal-ticker {% if section.settings.layout_style == 'cross' %}is-tilted{% endif %}"
+    style="--speed: {{ section.settings.speed }};"
+    data-direction="{{ section.settings.direction }}"
+  >
+
+    <!-- FIRST ROW -->
+    <div class="ticker-row ticker-row--light">
+
+      <div class="ticker-track" data-track>
+
+        <div class="ticker-inner">
+
+          {% for block in section.blocks %}
+
+            <div class="ticker-item overlay-item">
+
+              {% if block.settings.image %}
+                {{
+                  block.settings.image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'overlay-image'
+                }}
+              {% endif %}
+
+              <span class="{{ section.settings.text_size }}">
+                {{ block.settings.text }}
+              </span>
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SECOND ROW -->
+    {% if section.settings.enable_tilt %}
+
+      <div class="ticker-row ticker-row--dark">
+
+        <div class="ticker-track reverse" data-track>
+
+          <div class="ticker-inner">
+
+            {% for block in section.blocks %}
+
+              <div class="ticker-item">
+
+                {% if block.settings.image %}
+                  {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+                {% endif %}
+
+                <span class="{{ section.settings.text_size }}">
+                  {{ block.settings.text }}
+                </span>
+
+              </div>
+
+            {% endfor %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    {% endif %}
+
+  </horizontal-scroller>
+
+</div>
+
+{% schema %}
+{
+  "name": "Horizontal scroller",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (px/sec)",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Scroll direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Right to left"
+        },
+        {
+          "value": "right",
+          "label": "Left to right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between elements",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 50,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_tilt",
+      "label": "Enable tilt + second row",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "Horizontal"
+        },
+        {
+          "value": "cross",
+          "label": "Cross (Tilt)"
+        }
+      ],
+      "default": "horizontal"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "h4"
+    },
+    {
+      "type": "range",
+      "id": "img_size",
+      "label": "Image size",
+      "min": 40,
+      "max": 120,
+      "step": 1,
+      "default": 70,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Center Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button Background",
+      "default": "#1473e6"
+    },
+    {
+      "type": "color",
+      "id": "btn_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Section spacing"
+    }, 
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "left_spacing",
+      "label": "Left spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "right_spacing",
+      "label": "Right spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border-radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 6,
+      "unit": "px"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon / Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Featured Text"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Horizontal scroller",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

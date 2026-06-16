@@ -1,0 +1,382 @@
+{% style %}
+  .main_search_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+{% endstyle %}
+
+{{ 'main-search.css' | asset_url | stylesheet_tag }}
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<div class="main_search_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    {% if section.settings.show_breadcrumbs %}
+      {% render 'breadcrumbs' %}
+    {% endif %}
+
+    <div class="main_search_header_wrapper{% if section.settings.show_heading %} main_search_head--{{ section.settings.head_align }}{% endif %}">
+      {% if section.settings.show_heading %}
+        <h2 class="h1 reveal">{{ 'templates.search.heading' | t }}</h2>
+      {% endif %}
+
+      <div class="main_search_form_wrapper">
+        <form action="{{ routes.search_url }}" method="get" role="search">
+          <div class="main_search_header_form_inner">
+            <div class="input_field_wrapper">
+              <input
+                type="search"
+                size="50"
+                name="q"
+                id="Mainsearch_input-{{ section.id }}"
+                value="{{ search.terms | escape }}"
+                placeholder="{{ 'templates.search.placeholder' | t }}"
+              >
+              <label for="Mainsearch_input-{{ section.id }}">{{ 'templates.search.placeholder' | t }}</label>
+            </div>
+            <div class="main_search_btns">
+              <clear-search-button>
+                <button class="clear_search" type="button">{{ 'templates.search.reset' | t }}</button>
+              </clear-search-button>
+              <button class="search_btn" aria-label="{{ 'templates.search.placeholder' | t }}" type="submit">
+                {{ 'icon-search.svg' | inline_asset_content }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="main_search_inner_wrapper">
+      {% if section.settings.show_count or section.settings.show_filters or section.settings.enable_sorting %}
+        <div class="main_search_info_wrapper reveal stagger">
+          {% if section.settings.show_filters %}
+            <div class="main_search_product_filters_wrapper">
+              <button
+                class="search_filter_icon_button"
+                aria-label="{{ 'templates.collection.filter_icon' | t }}"
+                data-drawer="collection_filter_drawer"
+              >
+                <collection-filter-icon>
+                  <div class="svg_wrapper">{{ 'icon-filter.svg' | inline_asset_content }}</div>
+                  <span>{{ 'templates.collection.filters' | t }}</span>
+                </collection-filter-icon>
+              </button>
+            </div>
+
+            <div class="main_search_product_filters_for_mobile">
+              <button
+                class="search_mobile_filter_icon_button"
+                aria-label="{{ 'templates.collection.filter_icon' | t }}"
+                data-drawer="mobile_filter_drawer"
+              >
+                <collection-mobile-filter-icon>
+                  <div class="svg_wrapper">{{ 'icon-filter.svg' | inline_asset_content }}</div>
+                  <span>{{ 'templates.collection.filters' | t }}</span>
+                </collection-mobile-filter-icon>
+              </button>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_count %}
+            <div class="main_search_products_count_wrapper{% unless section.settings.show_filters %} no_filters{% endunless %}{% unless section.settings.enable_sorting %} no_sorting{% endunless %}">
+              <p>{{ 'templates.collection.products_count' | t: count: search.results_count }}</p>
+            </div>
+          {% endif %}
+
+          {% if section.settings.enable_sorting %}
+            <div class="main_search_product_count_sorting_filter_wrapper">
+              {% if section.settings.enable_sorting %}
+                <collection-sorting data-section-id="{{ section.id }}">
+                  <div class="main_search_sort_wrapper">
+                    <form id="main_search_sort_form">
+                      {% assign sort_by = search.sort_by | default: search.default_sort_by %}
+                      <label class="filter_heading" for="sortby-{{ section.id }}">
+                        {{- 'templates.collection.sort_by' | t | append: ': ' -}}
+                      </label>
+                      <div class="search_filter_sort_dropdown">
+                        {{ 'icon-caret-down.svg' | inline_asset_content }}
+                        <select name="sort_by" id="sortby-{{ section.id }}">
+                          {% for option in search.sort_options %}
+                            <option
+                              value="{{ option.value }}"
+                              {% if option.value == sort_by %}
+                                selected
+                              {% endif %}
+                            >
+                              {{ option.name }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </form>
+                  </div>
+                </collection-sorting>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="main_search_results_grid_wrapper" style="--columns: {{ section.settings.columns }};">
+        {% paginate search.results by section.settings.limit %}
+          <div class="main_search_results_grid{% if search.results_count <= 0 %} empty_search{% endif %} cols_{{ section.settings.columns }} mob_cols_{{ section.settings.mob_cols }}">
+            {% if search.results_count == 0 %}
+              <div class="no_results_wrapper">
+                <h4>{{ 'templates.collection.no_results_query' | t }}</h4>
+              </div>
+            {% endif %}
+
+            {% for result in search.results %}
+              {% if result.object_type == 'product' %}
+                <div class="main_product_card_wrapper reveal stagger">
+                  {% render 'product-card',
+                    product: result,
+                    index: forloop.index,
+                    show_card_bg: section.settings.show_card_bg,
+                    card_bg: section.settings.card_bg,
+                    card_align: section.settings.card_text_align,
+                    aspect_ratio: section.settings.aspect_ratio,
+                    show_badges: settings.show_badges,
+                    show_custom_badges: settings.show_custom_badges
+                  %}
+                </div>
+              {% elsif result.object_type == 'article' %}
+                <div class="main_article_card_wrapper reveal stagger">
+                  {% render 'search-article-card',
+                    article: result,
+                    index: forloop.index,
+                    show_card_bg: section.settings.show_card_bg,
+                    card_bg: section.settings.card_bg,
+                    card_align: section.settings.card_text_align,
+                    aspect_ratio: section.settings.aspect_ratio
+                  %}
+                </div>
+              {% elsif result.object_type == 'page' %}
+                <div class="main_page_card_wrapper reveal stagger">
+                  {% render 'search-page-card',
+                    page: result,
+                    index: forloop.index,
+                    show_card_bg: section.settings.show_card_bg,
+                    card_bg: section.settings.card_bg,
+                    card_align: section.settings.card_text_align,
+                    aspect_ratio: section.settings.aspect_ratio
+                  %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% render 'pagination', paginate: paginate, color_scheme: section.settings.pagination_color_scheme %}
+        {% endpaginate %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% render 'collection-filter-drawer',
+  result: search,
+  open_by_default: section.settings.open_by_default,
+  section_id: section.id
+%}
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "visible_if": "{{ section.settings.show_heading }}"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Number of products per page",
+      "min": 3,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Product count"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show products count",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Filters & Sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show filters",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product cards / Article cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_bg",
+      "label": "Show card background color",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background color",
+      "default": "#F6F2F0"
+    },
+    {
+      "type": "select",
+      "id": "card_text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "header",
+      "content": "Pagination"
+    },
+    {
+      "type": "color_scheme",
+      "id": "pagination_color_scheme",
+      "label": "Pagination color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "mob_cols",
+      "label": "Number of columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "One"
+        },
+        {
+          "value": "2",
+          "label": "Two"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}

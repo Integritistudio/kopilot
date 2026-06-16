@@ -1,0 +1,76 @@
+.localization_dropdown_wrapper {
+    position: absolute;
+    top: calc(100% + 2rem);
+    right: 0;
+    background: var(--color-background);
+    padding: 1rem 0;
+    min-width: 35rem;
+    height: 20rem;
+    overflow: hidden;
+    overflow-y: auto;
+    border-radius: var(--border-radius);
+    opacity: 0;
+    pointer-events: none; 
+    transition: opacity 0.3s ease;
+}
+
+.localization_dropdown_wrapper.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.localization_dropdown_inner {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.localization_dropdown_inner::-webkit-scrollbar {
+    width: 7px;
+    background: color-mix(in srgb, var(--color-background) 50%, transparent);
+}
+
+.localization_dropdown_inner::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-text) 100%, transparent);
+
+}
+
+.localization_dropdown_inner {
+    height: 100%;    
+}
+
+.localization_country_list h6, .localization_language_list h6 {
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 0 1rem;
+    padding: 0 2rem 1rem;
+}
+
+.currency_list, .language_list {
+    display: flex;
+    flex-flow: column;
+}
+
+.currency_list button, .language_list button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    color: var(--color-text);
+    background: var(--color-background);
+    padding: 1rem 2rem;
+    border: none;
+}
+
+.currency_list button.active, .language_list button.active {
+    background: var(--color-secondary-background);
+    color: var(--color-secondary-text);
+}
+
+.currency_list button.active:only-child, .language_list button.active:only-child {
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+.ann_localization_wrapper button:focus-visible {
+    outline-offset: -2px;
+}

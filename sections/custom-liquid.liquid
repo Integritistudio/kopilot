@@ -1,0 +1,71 @@
+{% style %}
+.custom_liquid_wrapper-{{ section.id }} {
+  padding-top: {{ section.settings.top_spacing }}px;
+  padding-bottom: {{ section.settings.bottom_spacing }}px;  
+}
+
+@media screen and (max-width: 640px) {
+  .custom_liquid_wrapper-{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;  
+  }
+}
+{% endstyle %}
+
+<div class="custom_liquid_wrapper-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="custom_liquid_inner">
+      {{ section.settings.custom_liquid }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom liquid",
+  "class": "custom-liquid-section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },  
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom liquid code",
+      "info": "Add app snippets or other code to create advanced customizations."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom liquid"
+    }
+  ]
+}
+{% endschema %}

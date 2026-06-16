@@ -1,0 +1,343 @@
+{% style %}
+  .fcl-{{ section.id }} {
+    padding-top: {{ section.settings.top_padding }}px;
+    padding-bottom: {{ section.settings.bottom_padding }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .fcl-swiper-{{ section.id }} {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .fcl-{{ section.id }} {
+      padding-top: {{ section.settings.top_padding | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_padding | divided_by: 2 }}px;
+    }
+
+    .fcl-swiper-{{ section.id }}
+    .swiper-slide {
+      width: auto;
+    }
+  }
+{% endstyle %}
+
+{{ 'featured-collection-list.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="fcl-{{ section.id }} feature-coll-list color-{{section.settings.color_scheme }}"
+  style="--columns: {{ section.settings.columns }}; --border-radius: {{ section.settings.border_radius }}px;"
+>
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="fcl_head fcl_head--{{ section.settings.head_align }}">
+        <h2 class="h1 reveal">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="fcl-container {% if section.settings.full_width %}full_width{% else %}container{% endif %}">
+    {% if section.settings.enable_slider %}
+      <swiper-section
+        data-slides-desktop="{{ section.settings.columns }}"
+        data-slides-mobile="1"
+        data-spacing="20"
+        data-pagination-type="bullets"
+      >
+        <div class="swiper fcl-swiper-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% assign collection = block.settings.collection %}
+
+              <div class="swiper-slide{% if forloop.index <= section.settings.columns %} reveal stagger{% endif %}">
+                <div class="fcl-card">
+                  {% if collection != blank %}
+                    <a href="{{ collection.url }}">
+                  {% endif %}
+
+                  {% if block.settings.image != blank %}
+                    {{ block.settings.image | image_url: width: 1200 | image_tag }}
+                  {% elsif collection.featured_image %}
+                    {{ collection.featured_image | image_url: width: 1200 | image_tag }}
+                  {% else %}
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  {% endif %}
+
+                  <div class="fcl-overlay h6">
+                    <span>
+                      {{ block.settings.title | default: collection.title }}
+                    </span>
+
+                    {% if section.settings.show_count %}
+                      <span>{{ collection.all_products_count }}</span>
+                    {% else %}
+                      <span class="svg_wrapper">{{ 'coll-arrow.svg' | inline_asset_content }}</span>
+                    {% endif %}
+                  </div>
+
+                  {% if collection != blank %}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- arrows -->
+        {% comment %} {% if section.settings.show_arrows %} {% endcomment %}
+        <div class="fcl-nav-{{ section.id }} fcl-nav arrow-{{ section.settings.arrow_style }}">
+          <button class="fc_btn swiper-button-prev">
+            <span class="svg_wrapper">{{ 'left-arrow.svg' | inline_asset_content }}</span>
+          </button>
+
+          <button class="fc_btn swiper-button-next">
+            <span class="svg_wrapper">{{ 'right-arrow.svg' | inline_asset_content }}</span>
+          </button>
+        </div>
+        {% comment %} {% endif %} {% endcomment %}
+      </swiper-section>
+
+    {% else %}
+      <div class="fcl-grid {% if section.settings.show_gap %}has-gap{% else %}no-gap{% endif %}">
+        {% for block in section.blocks %}
+          {% assign collection = block.settings.collection %}
+
+          <div class="fcl-card reveal stagger">
+            {% if collection != blank %}
+              <a href="{{ collection.url }}">
+            {% endif %}
+
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag }}
+            {% elsif collection.featured_image %}
+              {{ collection.featured_image | image_url: width: 1200 | image_tag }}
+            {% else %}
+              {% assign img_index = forloop.index | modulo: 1 %}
+              {% if img_index == 1 %}
+                {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+              {% endif %}
+            {% endif %}
+
+            <div class="fcl-overlay h6">
+              <span>
+                {{ block.settings.title | default: collection.title }}
+              </span>
+
+              {% if section.settings.show_count %}
+                <span>{{ collection.all_products_count }}</span>
+              {% else %}
+                <span class="svg_wrapper">{{ 'coll-arrow.svg' | inline_asset_content }}</span>
+              {% endif %}
+            </div>
+
+            {% if collection != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if section.settings.enable_slider %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const sectionId = "{{ section.id }}";
+      const root = document.querySelector('.fcl-{{ section.id }}');
+      const swiperEl = root?.querySelector('.fcl-swiper-' + sectionId);
+      const navWrap = root?.querySelector('.fcl-nav-{{ section.id }}');
+
+      if (!swiperEl) return;
+
+      const spaceBetween = {{ section.settings.show_gap | json }} ? 20 : 0;
+
+      new Swiper(swiperEl, {
+        slidesPerView: {{ section.settings.columns }},
+        spaceBetween: spaceBetween,
+        loop: false,
+        centeredSlides: false,
+        slidesOffsetAfter: 0,
+
+        navigation: {
+          nextEl: navWrap?.querySelector('.swiper-button-next'),
+          prevEl: navWrap?.querySelector('.swiper-button-prev'),
+        },
+
+        breakpoints: {
+          320: { slidesPerView: 1, spaceBetween: 12 },
+          640: { slidesPerView: 2, spaceBetween: spaceBetween },
+          1024: { slidesPerView: 3, spaceBetween: spaceBetween },
+          1150: { slidesPerView: {{ section.settings.columns }}, spaceBetween: spaceBetween }
+        }
+      });
+
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Featured collection list",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured collections"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gap",
+      "label": "Show gap",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "arrow_style",
+      "label": "Arrow style",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 10,
+      "label": "Border radius"
+    },
+    {
+      "type": "range",
+      "id": "top_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection block",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection title",
+          "default": "Collection title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection list",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

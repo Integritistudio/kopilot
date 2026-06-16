@@ -1,0 +1,155 @@
+.main_contact_form_inner {
+    max-width: 122.8rem;
+    margin: 0 auto;
+}
+
+.main_contact_form_inner:has(.main_contact_form_fields:not(.two_cols)) {
+    max-width: 70rem;
+}
+
+.main_contact_form_inner.has_bg {
+    background: var(--color-secondary-background);
+    padding: 6rem 2rem;
+    border-radius: 1.2rem;
+}
+
+.main_contact_form_head {
+    text-align: var(--head-align);
+    margin: 0 0 2.6rem;
+}
+
+.main_contact_form_head h2 + .main_contact_form_text {
+    margin: 1rem 0 0;
+}
+
+.main_contact_form_inner .input_field_wrapper {
+    margin: 0;
+    height: 100%;
+    border-radius: 0.6rem;
+}
+
+.main_contact_form_inner .input_field_wrapper.textarea {
+    height: auto;
+    display: flex;
+}
+
+.main_contact_form_inner .input_field_wrapper.textarea textarea {
+    width: 100%;    
+    height: auto;
+    background: transparent;
+    border: none;
+    padding: 1.2rem;
+    font-family: var(--font-heading-family);
+    color: var(--color-input-text);
+}
+
+.main_contact_form_inner .input_field_wrapper.textarea textarea::placeholder {
+    opacity: 0;
+}
+
+.main_contact_form_inner .input_field_wrapper.textarea textarea + label {
+    top: 2rem;
+    font-family: var(--font-heading-family);
+    color: var(--color-input-text);
+    transition: top 0.3s ease;
+}
+
+.main_contact_form_inner .input_field_wrapper.textarea textarea:focus + label,
+.main_contact_form_inner .input_field_wrapper.textarea textarea:focus-visible + label,
+.main_contact_form_inner .input_field_wrapper.textarea textarea:not(:placeholder-shown) + label {
+    top: -100%;
+}
+
+.main_contact_form_inner .main_contact_form_fields:not(.two_cols) .input_field_wrapper:has(button) {
+    margin: 3rem 0 0;
+    background: transparent;
+}
+
+.main_contact_form_fields.two_cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+    grid-template-areas: 
+    "name message"
+    "email message"
+    "phone message"    
+    "custom_field button"
+    ;
+}
+
+.main_contact_form_fields.two_cols .input_field_wrapper button {
+    height: 4.8rem;
+    width: 100%;
+}
+
+.main_contact_form_fields:not(.two_cols) {
+    display: flex;
+    flex-flow: column;
+    gap: 1.1rem;
+}
+
+.main_contact_form_fields:not(.two_cols) .input_field_wrapper {
+    height: 4.8rem;
+}
+
+.main_contact_form_inner .form_success_message {
+    position: static;
+    margin: 0 0 2rem;
+    gap: 6px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 769px) {
+    .if_name {
+        grid-area: name;
+    }
+
+    .if_email {
+        grid-area: email;
+    }
+
+    .if_phone {
+        grid-area: phone;
+    }
+
+    .if_custom_field {
+        grid-area: custom_field;
+    }
+
+    .if_message {
+        grid-area: message;
+    }
+
+    .if_button {
+        grid-area: button;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main_contact_form_fields.two_cols {
+        grid-template-columns: 1fr;
+        grid-template-areas: unset;
+    }
+
+    .main_contact_form_inner .main_contact_form_fields.two_cols .input_field_wrapper {
+        height: 4.8rem;
+    }
+
+    .main_contact_form_inner .main_contact_form_fields.two_cols .input_field_wrapper.textarea {
+        height: auto;
+    }
+
+    .main_contact_form_inner .main_contact_form_fields:not(.two_cols) .input_field_wrapper:has(button) {
+        margin: 0;
+    }
+
+    .main_contact_form_inner .main_contact_form_fields:not(.two_cols) .input_field_wrapper:has(button) button {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .main_contact_form_inner.has_bg {
+        padding: 3rem 1.5rem;
+    }
+}

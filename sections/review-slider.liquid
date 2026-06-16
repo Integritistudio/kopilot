@@ -1,0 +1,562 @@
+{% style %}
+  .testimonials-{{ section.id }} .testimonials-review  {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom : {{ section.settings.bottom_spacing }}px;
+     --dots-bg: {{ section.settings.dots_color }};
+  }
+
+  .testimonials-{{ section.id }} .heading {
+    color: {{ section.settings.heading_color }};
+    margin-bottom: 40px;
+  }
+
+
+  @media(max-width: 989px){
+    .testimonials-{{ section.id }} .testimonials-review  {
+      padding-top: {{ section.settings.top_spacing_mobile }}px;
+      padding-bottom : {{ section.settings.bottom_spacing_mobile }}px;
+    }
+    .testimonials-{{ section.id }} .heading {
+      margin-bottom: 20px;
+    }
+  }
+{% endstyle %}
+
+{{ 'review-slider.css' | asset_url | stylesheet_tag }}
+
+<review-slider class="testimonials-{{ section.id }} review-slider style-{{ section.settings.card_style }}">
+  <div class="testimonials-review color-{{section.settings.color_scheme }}">
+    <div class="container">
+      {% if section.settings.heading != blank %}
+        <div class="review_head">
+          <h1 class="heading">{{ section.settings.heading }}</h1>
+
+          {% if section.settings.show_pagination_top %}
+            <div class="review_progress_wrapper">
+              <span class="review_current_slide">{{ '01' }}</span>
+              <div class="review_pagination_progress">
+                <div class="review_pagination_progress_inner"></div>
+              </div>
+              <span class="review_total_slide">01</span>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="slider-full ">
+      
+      <div class="container left-only {% if section.settings.show_block %} block_enabled{% endif %} ">
+        {% if section.settings.show_block  %}
+        <div class="review_block reveal stagger">
+          {% if section.settings.block_head != blank %}
+            <h1>{{ section.settings.block_head }}</h1>
+          {% endif %}
+
+          {% if section.settings.block_text != blank %}
+            <p>{{ section.settings.block_text }}</p>
+          {% endif %}
+    
+          <div class="review_progress_wrapper-block">
+              <span class="review_current_slide-block">{{ '01' }}</span>
+              <div class="review_pagination_progress-block">
+                <div class="review_pagination_progress_inner-block"></div>
+              </div>
+              <span class="review_total_slide-block">01</span>
+          </div>
+          
+        </div>
+      {% endif %}
+
+        <swiper-section
+          data-slides-desktop="{{ section.settings.slides_desktop }}"
+          data-slides-mobile="1.1"
+          data-slides-tablet="1.5"
+          data-gap="30"
+          data-loop="false"
+          data-center-mode="false"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% assign slides = section.settings.slides_desktop | plus: 1 %}
+                <div class="swiper-slide{% if forloop.index <= slides %} reveal stagger{% endif %}">
+                  <div
+                    class="card"
+                    style="--quote-color: {{ block.settings.quote_color }}; --quote-color-hover: {{ block.settings.quote_color_hover }};"
+                  >
+                    <div class="quote">
+                      {% if section.settings.card_style == 'style2' %}
+                        {{ 'quote-style2.svg' | inline_asset_content }}
+                      {% else %}
+                        {{ 'quote-new.svg' | inline_asset_content }}
+                      {% endif %}
+                    </div>
+
+                    <h3 class="review {% if section.settings.card_style == 'style2' %} h6 {% endif %}">
+                      {{ block.settings.text }}
+                    </h3>
+
+                    <div class="bottom">
+                      <div class="author">
+                        {% if block.settings.image != blank %}
+                          {{ block.settings.image | image_url: width: 100, height: 130, crop: 'center' | image_tag }}
+                        {% else %}
+                          {{ 'product-4' | placeholder_svg_tag: 'placeholder_svg' }}
+                        {% endif %}
+                        <div>
+                          <h5 class="author-name {% if section.settings.card_style == 'style2' %} h6 {% endif %}">
+                            {{ block.settings.name }}
+                          </h5>
+                          <p class="role">{{ block.settings.role }}</p>
+                        </div>
+                      </div>
+
+                      {% if block.settings.product != blank %}
+                        <div class="product">
+                          <a href="{{ block.settings.product.url }}">
+                            {% if block.settings.product.featured_image != blank %}
+                              {{
+                                block.settings.product.featured_image
+                                | image_url: width: 100, height: 130, crop: 'center'
+                                | image_tag
+                              }}
+                            {% endif %}
+
+                            <div class="product-info">
+                              <div class="{% if section.settings.card_style == 'style2' %} h6 {% endif %}">
+                                {% if block.settings.product.title.size > 30 %}
+                                  {{ block.settings.product.title | slice: 0, 30 }}...
+                                {% else %}
+                                  {{ block.settings.product.title }}
+                                {% endif %}
+                              </div>
+                              <small>{{ block.settings.product.price | money }}</small>
+                            </div>
+                          </a>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if section.settings.show_pagination_bottom %}
+            <div class="review_pagination_bottom">
+              <div class="swiper-pagination review-pagination"></div>
+            </div>
+          {% endif %}
+        </swiper-section>
+      </div>
+    </div>
+  </div>
+</review-slider>
+
+<script>
+  class ReviewSlider extends HTMLElement {
+    constructor() {
+      super();
+
+      this.currentSlideNumber = 1;
+      this.totalSlides = 1;
+      this.navigableSlides = 1;
+      this.swiper = null;
+      this.headingWrapper = null;
+    }
+
+    connectedCallback() {
+
+      this.headingWrapper = this.querySelector('.review_head');
+
+      // detect any pagination
+      const topPagination =
+        this.querySelector('.review_pagination_progress_inner');
+
+      const blockPagination =
+        this.querySelector('.review_pagination_progress_inner-block');
+
+      // if no pagination exists stop
+      if (!topPagination && !blockPagination) {
+        return;
+      }
+
+      this.waitForSwiper();
+    }
+
+    waitForSwiper() {
+
+      const swiperSection = this.querySelector('swiper-section');
+
+      if (!swiperSection) {
+        console.warn('ReviewSlider: Could not find swiper-section');
+        return;
+      }
+
+      // already initialized
+      if (swiperSection.swiper) {
+        this.swiper = swiperSection.swiper;
+        this.initSwiper();
+        return;
+      }
+
+      // wait for swiper
+      let checkCount = 0;
+
+      const checkInterval = setInterval(() => {
+
+        checkCount++;
+
+        if (swiperSection.swiper) {
+
+          clearInterval(checkInterval);
+
+          this.swiper = swiperSection.swiper;
+
+          this.initSwiper();
+
+        } else if (checkCount > 50) {
+
+          clearInterval(checkInterval);
+
+          console.warn('ReviewSlider: Swiper init timeout');
+        }
+
+      }, 100);
+    }
+
+    initSwiper() {
+
+      if (!this.swiper) return;
+
+      const swiperEl = this.querySelector('.swiper');
+
+      if (!swiperEl) return;
+
+      // count real slides
+      const slides =
+        swiperEl.querySelectorAll(
+          '.swiper-slide:not(.swiper-slide-duplicate)'
+        );
+
+      this.totalSlides =
+        slides.length > 0
+          ? slides.length
+          : this.swiper.slides.length;
+
+      this.navigableSlides = this.totalSlides;
+
+      const totalValue =
+        String(this.totalSlides).padStart(2, '0');
+
+      // TOP TOTAL
+      const totalSlideElement =
+        this.querySelector('.review_total_slide');
+
+      if (totalSlideElement) {
+        totalSlideElement.textContent = totalValue;
+      }
+
+      // BLOCK TOTAL
+      const totalSlideBlock =
+        this.querySelector('.review_total_slide-block');
+
+      if (totalSlideBlock) {
+        totalSlideBlock.textContent = totalValue;
+      }
+
+      // slide change
+      this.swiper.on('slideChange', () => {
+        this.updateSlideNumber();
+      });
+
+      // initial
+      this.updateSlideNumber();
+    }
+
+    updateSlideNumber() {
+
+      if (!this.swiper) return;
+
+      this.currentSlideNumber =
+        this.swiper.realIndex + 1;
+
+      this.updateDisplay();
+    }
+
+    updateDisplay() {
+
+      const currentValue =
+        String(this.currentSlideNumber).padStart(2, '0');
+
+      const progress =
+        Math.min(
+          (this.currentSlideNumber / this.navigableSlides) * 100,
+          100
+        );
+
+      /* ---------------- TOP PAGINATION ---------------- */
+
+      const currentTop =
+        this.querySelector('.review_current_slide');
+
+      const progressTop =
+        this.querySelector('.review_pagination_progress_inner');
+
+      if (currentTop) {
+
+        currentTop.style.opacity = '0';
+        currentTop.style.transform = 'scale(0.8)';
+
+        setTimeout(() => {
+
+          currentTop.textContent = currentValue;
+
+          currentTop.style.opacity = '1';
+          currentTop.style.transform = 'scale(1)';
+
+        }, 150);
+      }
+
+      if (progressTop) {
+        progressTop.style.width = `${progress}%`;
+      }
+
+      /* ---------------- BLOCK PAGINATION ---------------- */
+
+      const currentBlock =
+        this.querySelector('.review_current_slide-block');
+
+      const progressBlock =
+        this.querySelector('.review_pagination_progress_inner-block');
+
+      if (currentBlock) {
+
+        currentBlock.style.opacity = '0';
+        currentBlock.style.transform = 'scale(0.8)';
+
+        setTimeout(() => {
+
+          currentBlock.textContent = currentValue;
+
+          currentBlock.style.opacity = '1';
+          currentBlock.style.transform = 'scale(1)';
+
+        }, 150);
+      }
+
+      if (progressBlock) {
+        progressBlock.style.width = `${progress}%`;
+      }
+    }
+  }
+
+  customElements.define('review-slider', ReviewSlider);
+</script>
+
+{% schema %}
+{
+  "name": "Review slider",
+  "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Review slider"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1b4332"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card Style",
+      "options": [
+        { "value": "style1", "label": "Style 1" },
+        { "value": "style2", "label": "Style 2" },
+        { "value": "style3", "label": "Style 3" }
+      ],
+      "default": "style1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_top",
+      "label": "Show top pagination",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_bottom",
+      "label": "Show bottom pagination",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "dots_color",
+      "label": "Dots color",
+      "default": "#D8F27D",
+      "visible_if": "{{ section.settings.show_pagination_bottom }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block",
+      "label": "Show block",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "block_head",
+      "label": "Block heading",
+      "default": "Block Heading",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "block_text",
+      "label": "Block text",
+      "default": "Use this block to describe your collection.",
+      "visible_if": "{{ section.settings.show_block }}"
+    },
+    
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Slides per view (Desktop)",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 2.5
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "top_spacing_mobile",
+      "label": "Top spacing (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing_mobile",
+      "label": "Bottom spacing (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text",
+          "default": "Showcase the best reviews by the customers about the website or a product."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Author Name",
+          "default": "Author Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Designation"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Author image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "color",
+          "id": "quote_color",
+          "label": "Quote color",
+          "default": "#D8F27D"
+        },
+        {
+          "type": "color",
+          "id": "quote_color_hover",
+          "label": "Quote color hover",
+          "default": "#233728"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review slider",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Showcase the best reviews by the customers about the website or a product.",
+            "name": "Author Name",
+            "role": "Finance Manager"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Showcase the best reviews by the customers about the website or a product.",
+            "name": "Author Name",
+            "role": "Designer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Showcase the best reviews by the customers about the website or a product.",
+            "name": "Author Name",
+            "role": "Entrepreneur"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

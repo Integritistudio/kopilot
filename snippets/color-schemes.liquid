@@ -1,0 +1,46 @@
+{% style %}
+  {% for scheme in settings.color_schemes -%}
+    {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+    {% if forloop.index == 1 %}
+      :root,
+    {% endif %}
+    .color-{{ scheme.id }} {
+        --color-background: rgba({{ scheme.settings.background.rgba }});
+        --color-secondary-background: rgba({{ scheme.settings.secondary_background.rgba }});
+        --color-heading: rgba({{ scheme.settings.heading.rgba }});
+        --color-secondary-heading: rgba({{ scheme.settings.secondary_heading.rgba }});
+        --color-text: rgba({{ scheme.settings.text.rgba }});
+        --color-secondary-text: rgba({{ scheme.settings.secondary_text.rgba }});
+        --color-link: rgba({{ scheme.settings.link.rgba }});
+        --color-link-hover: rgba({{ scheme.settings.link_hover.rgba }});
+        --color-border: rgba({{ scheme.settings.border.rgba }});
+        --color-shadow: rgba({{ scheme.settings.shadow.rgba }});
+        --color-primary-button-background: rgba({{ scheme.settings.primary_button_background.rgba }});
+        --color-primary-button-text: rgba({{ scheme.settings.primary_button_text.rgba }});
+        --color-primary-button-border: rgba({{ scheme.settings.primary_button_border.rgba }});
+        --color-primary-button-hover-background: rgba({{ scheme.settings.primary_button_hover_background.rgba }});
+        --color-primary-button-hover-text: rgba({{ scheme.settings.primary_button_hover_text.rgba }});
+        --color-primary-button-hover-border: rgba({{ scheme.settings.primary_button_hover_border.rgba }});
+        --color-secondary-button-background: rgba({{ scheme.settings.secondary_button_background.rgba }});
+        --color-secondary-button-text: rgba({{ scheme.settings.secondary_button_text.rgba }});
+        --color-secondary-button-border: rgba({{ scheme.settings.secondary_button_border.rgba }});
+        --color-secondary-button-hover-background: rgba({{ scheme.settings.secondary_button_hover_background.rgba }});
+        --color-secondary-button-hover-text: rgba({{ scheme.settings.secondary_button_hover_text.rgba }});
+        --color-secondary-button-hover-border: rgba({{ scheme.settings.secondary_button_hover_border.rgba }});
+        --color-disbled-button-background: rgba({{ scheme.settings.disabled_button_background.rgba }});
+        --color-disabled-button-text: rgba({{ scheme.settings.disabled_button_text.rgba }});
+        --color-input-background: rgba({{ scheme.settings.input_background.rgba }});
+        --color-input-text: rgba({{ scheme.settings.input_text_color.rgba }});
+        --color-input-border: rgba({{ scheme.settings.input_border_color.rgba }});
+        --color-highlight: rgba({{ scheme.settings.color_highlight.rgba }});
+        --color-arrows-bg: rgba({{ scheme.settings.color_arrows_bg.rgba }});
+        --color-arrows: rgba({{ scheme.settings.color_arrows_text.rgba }});
+        --color-arrows-border: rgba({{ scheme.settings.color_arrows_border.rgba }});
+      }
+  {% endfor %}
+
+  {{ scheme_classes | prepend: 'body' }} {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+{% endstyle %}

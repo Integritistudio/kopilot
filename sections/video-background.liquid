@@ -1,0 +1,355 @@
+{% style %}
+  .video_background_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      --video-border-radius: {{ section.settings.border-radius }}px;
+
+      {% if section.settings.enable_split_bg %}
+        background: linear-gradient(
+          to bottom,
+          {{ section.settings.split_bg_top }} 0%,
+          {{ section.settings.split_bg_top }} 50%,
+          {{ section.settings.split_bg_bottom }} 50%,
+          {{ section.settings.split_bg_bottom }} 100%
+        );
+      {% endif %}
+  }
+{% endstyle %}
+
+{{ 'video-background.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="video_background_wrapper--{{ section.id }} video_background_wrap color-{{ section.settings.color_scheme }} {% if section.settings.enable_split_bg %}split_background_enabled{% endif %}
+  {% if section.settings.enable_normal %}normal{% endif %}" data-position="{{ section.settings.text_position }}"
+  style="--opacity: {{ section.settings.opacity }}%;"
+>
+  <div class="
+  {% if section.settings.width == 'container_width' %}
+    container
+  {% elsif section.settings.width == 'narrow_container' %}
+    narrow_container
+  {% else %}
+    full_width
+  {% endif %}
+">
+    <video-background>
+      <div class="video_background_inner">
+        <div class="video_background_sticky_inner">
+          {% if section.settings.show_ticker_text %}
+            <div class="video_bg_ticker_list">
+              {% if section.settings.ticker1 != blank %}
+                <div class="ticker_1">{{ section.settings.ticker1 | split: ' ' | slice: 0, 2 | join: ' ' }}</div>
+              {% endif %}
+              {% if section.settings.ticker2 != blank %}
+                <div class="ticker_2">{{ section.settings.ticker2 | split: ' ' | slice: 0, 2 | join: ' ' }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="video_bg_vdo_wrapper">
+            {% if section.settings.poster_img != blank %}
+              {% assign poster = section.settings.poster_img | image_url: width: 1920 %}
+            {% elsif section.settings.video != blank %}
+              {% assign poster = section.settings.video.preview_image | image_url: width: 1920 %}
+            {% else %}
+              {% assign poster = 'lifestyle-2' | placeholder_svg_tag: 'placeholder_svg' %}
+            {% endif %}
+
+            {% if section.settings.video != blank %}
+              {{
+                section.settings.video
+                | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, poster: poster
+              }}
+            {% elsif section.settings.poster_img != blank %}
+              {{ section.settings.poster_img | image_url: width: 1920 | image_tag }}
+            {% else %}
+              {{ poster }}
+            {% endif %}
+          </div>
+          <div class="video_bg_text_wrapper ">
+            <div class="video_bg_text_inner {% if section.settings.show_container %} with_container{% if section.settings.apply_glass_effect %} has_glass_effect{% endif %}{% endif %}"
+                      {% if section.settings.show_container %}
+                        style="--container-bg: {{ section.settings.container_bg }}; --container-text: {{ section.settings.container_text }};"
+                      {% endif %}>
+              {% if section.settings.head != blank %}
+                <h2 class="reveal stagger {{ section.settings.text_alignment }}">{{ section.settings.head }}</h2>
+              {% endif %}
+
+              {% if section.settings.text != blank %}
+                <p class="reveal stagger {{ section.settings.text_alignment }}">{{ section.settings.text }}</p>
+              {% endif %}
+
+               {% if section.settings.btn_link != blank or section.settings.btn_label != blank %}
+                 <div class="video_bg_btn{% if section.settings.btn_label == blank %} is_empty{% endif %} reveal stagger {{ section.settings.text_alignment }}">
+                   {% if section.settings.btn_link != blank %}
+                    <a
+                      class="btn"
+                      aria-label="{{ section.settings.btn_label }}"
+                      href="{{ section.settings.btn_link }}"
+                      data-video-bg-cta
+                      tabindex="-1"
+                    >
+                       {{- section.settings.btn_label -}}
+                     </a>
+                    {% else %}
+                    <a
+                      class="btn btn--disabled"
+                      aria-label="{{ section.settings.btn_label }}"
+                      role="link"
+                      data-video-bg-cta
+                      tabindex="-1"
+                    >
+                       {{- section.settings.btn_label -}}
+                     </a>
+                   {% endif %}
+                 </div>
+               {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </video-background>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video background",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "container_width",
+          "label": "Container width"
+        },
+        {
+          "value": "full_width",
+          "label": "Full width"
+        },
+        {
+          "value": "narrow_container",
+          "label": "Norrow container"
+        }
+      ],
+      "default": "full_width"
+    },
+    {
+      "type": "header",
+      "content": "Split background"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_split_bg",
+      "label": "Enable split background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "split_bg_top",
+      "label": "Top background color",
+      "default": "#f5f5f5",
+      "visible_if": "{{ section.settings.enable_split_bg }}"
+    },
+    {
+      "type": "color",
+      "id": "split_bg_bottom",
+      "label": "Bottom background color",
+      "default": "#e5e5e5",
+      "visible_if": "{{ section.settings.enable_split_bg }}"
+    },
+    {
+        "type": "header",
+        "content": "Ticker text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ticker_text",
+      "label": "Show ticker text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ticker1",
+      "label": "Ticker text 01",
+      "default": "VIDEO PLAY",
+      "info": "Max. 2 words",
+      "visible_if": "{{ section.settings.show_ticker_text }}"
+    },
+    {
+      "type": "text",
+      "id": "ticker2",
+      "label": "Ticker text 02",
+      "default": "VIDEO PLAY",
+      "info": "Max. 2 words",
+      "visible_if": "{{ section.settings.show_ticker_text }}"
+    },
+    {
+        "type": "header",
+        "content": "Image / Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Select video"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_img",
+      "label": "Poster image"
+    },
+    {
+      "type": "range",
+      "id": "opacity",
+      "label": "Image/video opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_normal",
+      "label": "Enable normal video",
+      "default": false
+    },
+     {
+      "type": "range",
+      "id": "border-radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+        "type": "header",
+        "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Video Background"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Use this section to showcase a video or image. Add a short description to explain what the content represents."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "default": "center",
+      "options": [
+        { "value": "top-left", "label": "Top left" },
+        { "value": "top-center", "label": "Top center" },
+        { "value": "top-right", "label": "Top right" },
+
+        { "value": "center-left", "label": "Center left" },
+        { "value": "center", "label": "Center" },
+        { "value": "center-right", "label": "Center right" },
+
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "bottom-center", "label": "Bottom center" },
+        { "value": "bottom-right", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" },
+      ]
+    },
+    { 
+      "type": "checkbox",
+      "id": "show_container",
+      "label": "Show text container",
+      "default": true,
+      "info": "When container is disabled, text will take the colors from the selected color scheme"
+    },
+    {
+      "type": "color",
+      "id": "container_bg",
+      "label": "Container background color",
+      "default": "#ffffff",
+      "visible_if": "{{ section.settings.show_container }}"
+    },
+    {
+      "type": "color",
+      "id": "container_text",
+      "label": "Container text color",
+      "default": "#233728",
+      "visible_if": "{{ section.settings.show_container }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "apply_glass_effect",
+      "label": "Apply glass effect",
+      "default": true,
+      "info": "Works only when container is enabled. Background color will be auto adjusted and text color will be white.",
+      "visible_if": "{{ section.settings.show_container }}"
+    },    
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video background"
+    }
+  ]
+}
+{% endschema %}

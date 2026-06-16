@@ -1,0 +1,45 @@
+{%- assign pick_up_availabilities = variant.store_availabilities | where: 'pick_up_enabled', true -%}
+
+{% if pick_up_availabilities.size > 0 %}
+  {% assign closest_location = pick_up_availabilities.first %}
+
+  <pickup-availability-preview
+    data-variant-id="{{ variant.id }}"
+  >
+    <div class="pickup_availability_container{% if closest_location.available %} has_pickup_available{% endif %}">
+      <div class="pickup_availability_inner">
+        <div class="pickup_availability_acknowledgement">
+          {% if closest_location.available %}
+            <div class="pickup_available_indicator">
+                <span>{{ 'icon-pickup.svg' | inline_asset_content }}</span>
+            </div>         
+          {% endif %}
+        </div>
+
+        <div class="pickup_availability_title_wrapper">
+          {% if closest_location.available %}
+            <p class="pickup_availability_title">
+              {{ 'products.product.pickup_availability.pick_up_available_at_html'
+                | t: location_name: closest_location.location.name }}
+            </p>
+            <p class="pickup_availability_time">{{ closest_location.pick_up_time }}</p>
+          {% else %}
+            <p class="pickup_availability_title">
+              {{ 'products.product.pickup_availability.pick_up_unavailable_at_html'
+                | t: location_name: closest_location.location.name }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if pick_up_availabilities.size > 1 or closest_location.available %}
+        <button
+          class="pickup_availability_button_wrapper drawer_open_btn"
+          data-drawer="pickup_availability_drawer"
+        >
+          {{ 'products.product.pickup_availability.check_other_stores' | t }}
+        </button>
+      {% endif %}
+    </div>
+  </pickup-availability-preview>
+{% endif %}

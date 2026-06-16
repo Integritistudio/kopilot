@@ -1,0 +1,14 @@
+<div class="empty_product_card_wrapper reveal stagger{% if view == 'slider' %} swiper-slide{% endif %}">
+    <div class="empty_product_card_img">
+        {% assign pc_index = index | modulo: 2 %}
+        {% if pc_index == 1 %}
+            {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+        {% endif %}
+    </div>
+    <div class="empty_product_card_info" style="--text-align: {{ card_align }}">
+        <h4 class="small-text">{{ 'onboarding.product_title' | t }}</h4>
+        <p>{{ 'onboarding.product_price' | t | money }}</p>
+    </div>
+</div>

@@ -1,0 +1,270 @@
+.benefits-sec .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+
+  .benefits-sec .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 110px;
+  }
+
+  .benefits-sec .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+  }
+
+  .benefits-sec .item img {
+    width: 82px;
+  }
+
+  .benefits-sec .heading {
+    letter-spacing: -1px;
+    text-align: center;
+    line-height: 1.5;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefits-sec .information {
+      text-align: center;
+  }
+
+  .benefits-sec .image-wrap {
+    position: relative;
+  }
+
+  .benefits-sec .image-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    padding: 9rem;
+  }
+
+  /* Vertical alignment */
+  .image-content.top-left,
+  .image-content.top-center,
+  .image-content.top-right {
+    align-items: flex-start;
+  }
+
+  .image-content.center-left,
+  .image-content.center,
+  .image-content.center-right {
+    align-items: center;
+  }
+
+  .image-content.bottom-left,
+  .image-content.bottom-center,
+  .image-content.bottom-right {
+    align-items: flex-end;
+  }
+
+  /* Horizontal alignment */
+  .image-content.top-left,
+  .image-content.center-left,
+  .image-content.bottom-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .image-content.top-center,
+  .image-content.center,
+  .image-content.bottom-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .image-content.top-right,
+  .image-content.center-right,
+  .image-content.bottom-right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+
+  .benefits-sec .image-heading.xl {
+      font-size: 9rem;
+      line-height: 1.2;
+  }
+
+  .benefits-sec .heading .line-1,
+  .benefits-sec .heading .line-2 {
+    display: block;
+  }
+
+  .heading .rte strong {
+    display: block;
+    font-weight: 400;
+}
+      
+
+  .benefits-sec .image-subheading {
+    margin-top: 8px;
+    letter-spacing: 0px;
+    font-family: var(--font-body-family);
+    font-weight: 500;
+  }
+
+  .benefits-sec .content {
+    position: relative;
+  }
+
+  /* Vertical line */
+  .benefits-sec .content::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 50%;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  /* Horizontal line */
+  .benefits-sec .content::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .benefits-sec .image-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .benefits-sec .image-wrap img {
+    width: 100%;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 1);
+    will-change: transform;
+  }
+
+  .benefits-sec .image-wrap:hover img {
+    transform: scale(1.07);
+  }
+
+  .benefits-sec .item {
+  position: relative;
+  padding: 24px;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+}
+
+/* soft spotlight layer */
+.benefits-sec .item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255,255,255,0.25),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+/* icon smooth motion */
+.benefits-sec .item img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* HOVER EFFECT */
+.benefits-sec .item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+}
+
+/* spotlight appears */
+.benefits-sec .item:hover::after {
+  opacity: 1;
+}
+
+/* icon lifts nicely */
+.benefits-sec .item:hover img {
+  transform: translateY(-6px) scale(1.15);
+}
+
+  @media (max-width: 1200px){
+    .benefits-sec .content {
+      padding: 40px;
+    }
+  }
+
+  @media (max-width: 989px){
+    .benefits-sec .image-heading.xl {
+      font-size: 7rem;
+    }
+  }
+
+  @media(max-width: 768px){
+    .benefits-sec .wrapper {
+      grid-template-columns: 1fr;
+    }
+    .benefits-sec .item img {
+        width:  55px;
+    }
+    
+    .benefits-sec .item {
+        padding: 15px;
+    }
+
+    .benefits-sec .content {
+      padding: 15px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .benefits-sec .image-heading.xl {
+      font-size: 4rem;
+    }
+  }
+
+.benefits-sec.layout-horizontal .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.benefits-sec.layout-horizontal .content::before,
+.benefits-sec.layout-horizontal .content::after {
+  display: none;
+}
+
+.benefits-sec.layout-horizontal .item {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  padding: 60px 20px;
+}
+
+.benefits-sec.layout-horizontal .item img {
+  width: 73px;
+}
+
+.benefits-sec.layout-horizontal .heading {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.benefits-sec.layout-horizontal .information {
+    text-align: left;
+}

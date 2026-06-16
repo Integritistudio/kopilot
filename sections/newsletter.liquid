@@ -1,0 +1,298 @@
+{% style %}
+  .newsletter_wrapper--{{ section.id }} {
+      margin-top: {{ section.settings.top_spacing }}px;
+      margin-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media (max-width: 749px){
+    .newsletter_wrapper--{{ section.id }} {
+      margin-top: 30px;
+      margin-bottom: 30px;
+  }
+  }
+{% endstyle %}
+
+{{ 'newsletter.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="newsletter_wrapper--{{ section.id }} newsletter-{{ section.settings.newsletter_style }} color-{{ section.settings.color_scheme }}"
+  style="--overlay: {{ section.settings.overlay }}%;"
+>
+  <div class="{% if section.settings.width == 'container_width' %}container{% else %}full_width{% endif %}">
+    <newsletter-section data-speed="{{ section.settings.speed }}" data-direction="{{ section.settings.direction }}">
+      <div class="newsletter_inner" style="--img-height: {{ section.settings.img_height }}px;">
+        <div class="newsletter_img_wrapper">
+          {% if section.settings.img != blank %}
+            {{ section.settings.img | image_url: width: 1920 | image_tag }}
+          {% else %}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+
+          {% if section.blocks.size > 0 and section.settings.newsletter_style != 'style_2' %}
+            <newsletter-scroller
+              data-direction="{{ section.settings.direction }}"
+              data-speed="{{ section.settings.speed }}"
+            >
+              <div class="newsletter_img_scroller_wrapper">
+                <div class="newsletter_img_scroller_inner">
+                  {% for block in section.blocks %}
+                    <div class="newsletter_scroller_img_block reveal stagger">
+                      {% if block.settings.img != blank %}
+                        {{ block.settings.img | image_url: width: 200 | image_tag }}
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+
+                  {% for block in section.blocks %}
+                    <div class="newsletter_scroller_img_block reveal stagger">
+                      {% if block.settings.img != blank %}
+                        {{ block.settings.img | image_url: width: 200 | image_tag }}
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </newsletter-scroller>
+          {% endif %}
+        </div>
+
+        <div class="newsletter_small_box">
+          <div class="newsletter_small_box_img">
+            {% if section.settings.img != blank %}
+              {{ section.settings.img | image_url: width: 600 | image_tag }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder_svg' }}
+            {% endif %}
+
+            {% if section.settings.overlay_img != blank %}
+              <div class="newsletter_overlay_img">
+                {{ section.settings.overlay_img | image_url: width: 120 | image_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="newsletter_small_box_form">
+            <div class="newsletter_small_box_form_inner">
+              <h2 class="newsletter_heading">
+                {{ section.settings.heading }}
+              </h2>
+
+              <p class="newsletter_text">
+                {{ section.settings.text }}
+              </p>
+            </div>
+            <submission-form>
+              {% assign id = 'newsletter_form-' | append: section.id %}
+              {%- form 'customer', id: id -%}
+                <input type="hidden" name="contact[tags]" value="">
+
+                <div class="newsletter_field_wrapper">
+                  <div class="input_field_wrapper">
+                    <input
+                      id="NewsletterCustom--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      autocomplete="email"
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="label_field" for="NewsletterCustom--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="newsletter-form__button"
+                    aria-label="{{ 'newsletter.button_label' | t }}"
+                  >
+                    <span class="svg_wrapper">
+                      {{ 'plane.svg' | inline_asset_content }}
+                    </span>
+                    <span class="news-text btn"> 
+                      SUBSCRIBE
+                    </span>
+                  </button>
+
+                  <p class="mini-text manual_form_error_msg hidden">{{ 'newsletter.valid_email_error' | t }}</p>
+
+                  {% if form.posted_successfully? %}
+                    <h5 class="mini-text form_success_message">
+                      <span class="svg_wrapper">{{ 'success.svg' | inline_asset_content }}</span>
+                      {{ 'newsletter.success' | t }}
+                    </h5>
+                  {% endif %}
+                </div>
+              {%- endform -%}
+            </submission-form>
+          </div>
+        </div>
+      </div>
+    </newsletter-section>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Newsletter",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "container_width",
+          "label": "Container width"
+        },
+        {
+          "value": "full_width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full_width"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Select background image"
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "label": "Background image overlay",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "img_height",
+      "label": "Image height",
+      "min": 550,
+      "max": 800,
+      "step": 50,
+      "default": 600,
+      "unit": "px",
+      "info": "Image will adapt on mobile screens."
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_img",
+      "label": "Select overlay image",
+      "info": "It will appear over the small image in the box."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "JOIN OUR NEWSLETTER"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Get Early Access To New Products, Special Deals, And Workspace Tips."
+    },
+    {
+      "type": "header",
+      "content": "Horizontal scroller"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Scroll direction",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "s",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "newsletter_style",
+      "label": "Newsletter style",
+      "options": [
+        {
+          "value": "style_1",
+          "label": "Style 1"
+        },
+        {
+          "value": "style_2",
+          "label": "Style 2"
+        }
+      ],
+      "default": "style_1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Logo",
+      "type": "logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Select image",
+          "info": "Working only for style1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

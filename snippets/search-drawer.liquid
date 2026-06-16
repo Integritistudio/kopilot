@@ -1,0 +1,175 @@
+{% style %}
+  .search_result_product_card_img img[src=null]:after, .search_result_article_card_img img[src=null]:after {
+      content: '';
+      background-color: #f5f5f5;
+      background-image: url({{ 'product_placeholder.svg' | asset_url }});
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+  }
+{% endstyle %}
+
+{{ 'search-drawer.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="drawer_wrapper main_search_drawer color-{{ settings.drawer_color_scheme }}"
+  id="search_drawer"
+  inert
+  aria-hidden="true"
+>
+  <div class="drawer_wrapper_inner search_drawer_inner" tabindex="-1" data-lenis-prevent>
+    <div class="drawer_header">
+      <h2 class="h4">{{ 'drawers.search_drawer.heading' | t }}</h2>
+
+      <div class="drawer_close_btn_wrapper">
+        <button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+          <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="search_drawer_content_wrapper">
+      <search-drawer>
+        <form method="GET" action="{{ routes.search_url }}" class="search_drawer__form">
+          <input type="hidden" value="last" name="options[prefix]">
+          <div class="search_drawer_input" style="border-radius:  {{ settings.search_drawer_border_radius }}px ;">
+            <div class="input_field_wrapper"style="border-radius:  {{ settings.search_drawer_border_radius }}px ;">
+              <input
+                type="text"
+                name="q"
+                id="search_drawer_input"
+                placeholder="{{ 'drawers.search_drawer.label' | t }}"
+                autocomplete="off"
+              >
+              <label for="search_drawer_input">{{ 'drawers.search_drawer.label' | t | append: '...' }}</label>
+
+              <button class="search_drawer_reset_btn hidden" aria-label="{{ 'drawers.search_drawer.reset_label' | t }}">
+                {{ 'icon-close.svg' | inline_asset_content }}
+              </button>
+
+              <button
+                id="search_drawer_btn"
+                aria-label="{{ 'drawers.search_drawer.label' | t }}"
+                type="submit"
+                class="search_drawer_btn"
+              >
+                {{ 'icon-search-drawer.svg' | inline_asset_content }}
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="search_drawer_empty">
+          {% if settings.show_keywords %}
+            <div class="empty_search_drawer_keywords_wrapper">
+              {% if settings.keywords_head != blank %}
+                <h3 class="h6">{{ settings.keywords_head }}</h3>
+              {% endif %}
+
+              {% if settings.keywords_list != blank %}
+                {% assign keywords_list = settings.keywords_list | split: ',' %}
+                <div class="empty_search_drawer_keywords_inner">
+                  {% for keyword in keywords_list %}
+                    {% assign query = keyword | replace: ' ', '+' %}
+                    <div class="empty_search_drawer_keyword">
+                      <a href="{{ routes.search_url | append: "?q=" | append: query }}" aria-label="{{ keyword }}">
+                        {{- keyword -}}
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if settings.show_products_list %}
+            <div class="empty_search_drawer_product_list_wrapper{% if settings.show_keywords %} has_keywords_list{% endif %}">
+              {% if settings.products_list_head != blank %}
+                <h3 class="h6">{{ settings.products_list_head }}</h3>
+              {% endif %}
+
+              {% if settings.products_list != blank %}
+                <div class="empty_search_drawer_product_list_inner">
+                  {% for empty_product in settings.products_list %}
+                    <div class="empty_product_block">
+                      <div class="empty_product_block_img">
+                        {% if empty_product.featured_image != blank %}
+                          <a href="{{ empty_product.url }}" aria-label="{{ empty_product.title }}">
+                            {{- empty_product.featured_image | image_url: width: 500 | image_tag -}}
+                          </a>
+                        {% else %}
+                          {% assign index = forloop.index | modulo: 2 %}
+                          {% if index == 1 %}
+                            <a href="{{ empty_product.url }}" aria-label="{{ empty_product.title }}">
+                              {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                            </a>
+                          {% else %}
+                            <a href="{{ empty_product.url }}" aria-label="{{ empty_product.title }}">
+                              {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+                            </a>
+                          {% endif %}
+                        {% endif %}
+                      </div>
+
+                      <div class="empty_product_block_info">
+                        <h4 class="small-text">
+                          <a href="{{ empty_product.url }}" aria-label="{{ empty_product.title }}">
+                            {{- empty_product.title -}}
+                          </a>
+                        </h4>
+                        <div class="empty_product_block_price_wrapper">
+                          <p>{{ empty_product.price | money }}</p>
+                          {% if empty_product.compare_at_price != blank
+                            and empty_product.compare_at_price != 0
+                            and empty_product.compare_at_price > empty_product.price
+                          %}
+                            <s>{{ empty_product.compare_at_price | money }}</s>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if settings.show_collection %}
+            <div class="empty_search_drawer_collection_wrapper">
+              {% if settings.collection_head != blank %}
+                <h3 class="h6">{{ settings.collection_head }}</h3>
+              {% endif %}
+
+              {% if settings.search_collection != blank %}
+                <div class="empty_drawer_collection_img_wrapper">
+                  {% if settings.search_collection_img != blank %}
+                    <a href="{{ settings.search_collection.url }}" aria-label="{{ settings.search_collection.title }}">
+                      {{- settings.search_collection_img | image_url: width: 800 | image_tag -}}
+                    </a>
+                  {% elsif settings.search_collection.featured_image != blank %}
+                    <a href="{{ settings.search_collection.url }}" aria-label="{{ settings.search_collection.title }}">
+                      {{- settings.search_collection.featured_image | image_url: width: 800 | image_tag -}}
+                    </a>
+                  {% else %}
+                    <a href="{{ settings.search_collection.url }}" aria-label="{{ settings.search_collection.title }}">
+                      {{- 'collection-2' | placeholder_svg_tag: 'placeholder_svg' -}}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="search_results_wrapper">
+          <div class="search_results_inner"></div>
+        </div>
+      </search-drawer>
+    </div>
+  </div>
+</div>

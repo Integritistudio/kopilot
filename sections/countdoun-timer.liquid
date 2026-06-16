@@ -1,0 +1,254 @@
+{% style %}
+.timer-wrapper-{{ section.id }} {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  --radius: {{ section.settings.border_radius }}px;
+}
+
+@media(max-width:768px){
+
+  .timer-wrapper-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+}
+{% endstyle %}
+
+{{ 'countdown-timer.css' | asset_url | stylesheet_tag }}
+
+<div class="timer-wrapper-{{ section.id }}  color-{{section.settings.color_scheme }}"
+
+>
+  <div class="{% if section.settings.full_width %}page-width-full{% else %}container{% endif %}">
+
+    <div class="timer-{{ section.id }} count-timer {{ section.settings.timer_style }}" 
+    {% if section.settings.bg_image != blank %}
+    style="
+      border-radius: {{ section.settings.border_radius }}px;
+      background-image:url('{{ section.settings.bg_image | image_url: width: 2500 }}');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    "
+  {% endif %}>
+      <div class="left">
+        <h1>{{ section.settings.heading }}</h1>
+        <p>{{ section.settings.subtext }}</p>
+      </div>
+
+      <div class="timer-box" id="timer-{{ section.id }}">
+        <h1 class="time"><span id="days">00</span><small>DAYS</small></h1>
+        <h1 class="time"><span id="hours">00</span><small>HRS</small></h1>
+        <h1 class="time"><span id="minutes">00</span><small>MIN</small></h1>
+        <h1 class="time"><span id="seconds">00</span><small>SEC</small></h1>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+
+      {% if section.settings.side_image != blank %}
+        <div class="image">
+          {% if section.settings.side_image %}
+              {{ section.settings.side_image | image_url: width: 350 | image_tag }}
+          {% else %}
+              {{ 'collection-1' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const endDate = new Date("{{ section.settings.end_date }}").getTime();
+
+  let prev = {
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null
+  };
+
+  function update(id, value, key){
+    const el = document.querySelector(`#timer-{{ section.id }} #${id}`);
+    if(!el) return;
+
+    if(prev[key] !== value){
+      el.classList.add("animate");
+
+      setTimeout(() => {
+        el.innerText = value.toString().padStart(2, '0');
+        el.classList.remove("animate");
+      }, 150);
+
+      prev[key] = value;
+    }
+  }
+
+  const timer = setInterval(function(){
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    if(distance < 0){
+      clearInterval(timer);
+      return;
+    }
+
+    update("days",
+      Math.floor(distance / (1000 * 60 * 60 * 24)),
+      "days"
+    );
+
+    update("hours",
+      Math.floor((distance / (1000 * 60 * 60)) % 24),
+      "hours"
+    );
+
+    update("minutes",
+      Math.floor((distance / (1000 * 60)) % 60),
+      "minutes"
+    );
+
+    update("seconds",
+      Math.floor((distance / 1000) % 60),
+      "seconds"
+    );
+
+  }, 1000);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Countdown timer banner",
+  "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Enable Full Width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "timer_style",
+      "label": "Timer style",
+      "default": "style-1",
+      "options": [
+        {
+          "value": "style-1",
+          "label": "Style 1"
+        },
+        {
+          "value": "style-2",
+          "label": "Style 2"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "GREEN DEALS ARE BLOOMING"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Subheading is here "
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date (YYYY-MM-DD)",
+      "default": "2026-12-31"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (Desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (Desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+   
+  ],
+  "presets": [
+    {
+      "name": "Countdown timer banner"
+    }
+  ]
+}
+{% endschema %}

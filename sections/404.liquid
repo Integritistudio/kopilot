@@ -1,0 +1,183 @@
+{% style %}
+.main_404_wrapper {
+  padding-top: {{ section.settings.top_spacing }}px;
+  padding-bottom: {{ section.settings.bottom_spacing }}px;
+}
+
+@media screen and (max-width: 640px) {
+  .main_404_wrapper {
+    padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+  }
+}
+{%endstyle %}
+
+{{ '404.css' | asset_url | stylesheet_tag }}
+
+<div class="main_404_wrapper{% if section.settings.show_bg %} has_bg{% endif %} color-{{ section.settings.color_scheme }}"
+  style="--img_height: {{ section.settings.img_height }}px; --font-size: {{ section.settings.font_size }}px; --color: {{ section.settings.head_color }}; --overlay: {{ section.settings.overlay }}%; {% if section.settings.show_bg %}--bg-color: {{ section.settings.bg_color }}{% endif %};"
+>
+  <div class="container">
+
+    {% if section.settings.show_breadcrumbs %}
+      {% render 'breadcrumbs' %}
+    {% endif %}
+
+    <div class="main_404_inner">
+      <div class="main_404_head{% if section.settings.img != blank %} has_img{% endif %}"{% if section.settings.img != blank %} style="--img-height: {{ section.settings.img_height }}px;"{% endif %}>
+        {% if section.settings.img != blank %}
+          <div class="main_404_img">
+            {{ section.settings.img | image_url: width: 1920 | image_tag }}
+          </div>
+        {% endif %}
+
+        <h1>{{ "templates.404.heading" | t }}</h1>
+      </div>
+
+      <div class="main_404_content_wrapper">
+        {% if section.settings.subhead != blank %}
+          <h2 class="h4">{{section.settings.subhead }}</h2>
+          {%endif %}
+
+          {% if section.settings.text != blank %}
+            <p>{{ section.settings.text }}</p>
+          {% endif %}
+
+          <div class="main_404_btn">
+            <a href="{{ routes.all_products_collection_url }}" class="btn" aria-label="{{ 'general.continue_shopping' | t }}">{{ 'general.continue_shopping' | t }}</a>
+          <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}" class="btn btn--secondary">{{ 'general.back_to_home' | t }}</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "404",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bg",
+      "label": "Show background color",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#fff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Select image"
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "label": "Image overlay",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20,
+      "unit": "%",
+      "visible_if": "{{ section.settings.img != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "img_height",
+      "label": "Image height",
+      "options": [
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "350",
+          "label": "350"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "450",
+          "label": "450"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        }
+      ],
+      "default": "350",
+      "visible_if": "{{ section.settings.img != blank }}",
+      "info": "Image will auto adjust on mobile screens."
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Heading font size",
+      "min": 40,
+      "max": 240,
+      "step": 2,
+      "default": 100,
+      "unit": "px",
+      "info": "Font size will auto adjust on mobile screens."
+    },
+    {
+      "type": "color",
+      "id": "head_color",
+      "label": "Heading color",
+      "default": "#180D05"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+      "label": "Sub heading",
+      "default": "Page Not Found"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "We’re sorry, the page you requested does not exist."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}

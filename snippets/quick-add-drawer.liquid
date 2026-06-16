@@ -1,0 +1,171 @@
+{{ 'quick-add-drawer.css' | asset_url | stylesheet_tag }}
+
+{{ 'product_3dmodel.css' | asset_url | stylesheet_tag }}
+<link
+  id="ModelViewerStyle"
+  rel="stylesheet"
+  href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+  media="print"
+  onload="this.media='all'"
+>
+<link
+  id="ModelViewerOverride"
+  rel="stylesheet"
+  href="{{ 'product-model-viewer-ui.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'"
+>
+<script src="{{ 'product-3dmodel.js' | asset_url }}" defer></script>
+
+<div
+  class="drawer_wrapper quick_add_drawer_wrapper color-{{ settings.drawer_color_scheme }}"
+  id="quick_add_drawer"
+  inert
+  aria-hidden="true"
+>
+  <div
+    class="drawer_wrapper_inner quick_add_drawer_inner"
+    tabindex="-1"
+    data-lenis-prevent
+  >
+    <div class="drawer_header cart_drawer_header">
+      <h2 class="h4">
+        {{ 'drawers.quick_add_drawer.heading' | t }}
+      </h2>
+
+      <div class="drawer_close_btn_wrapper">
+        <button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+          <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="quick_add_inner">
+      <div class="quick_add_skeleton hidden">
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-price"></div>
+        <div class="skeleton skeleton-media"></div>
+        <div class="skeleton skeleton-button"></div>
+      </div>
+
+      <div class="quick_add_content">
+        <quick-add-product data-product-url="{{ product.url }}">
+          {% assign product = product %}
+
+          <div
+            class="quick_add_product_images{% if settings.qa_add_bg %} has_bg{% endif %}"
+            {% if settings.qa_add_bg %}
+              style="--qa-bg: {{ settings.qa_bg }};"
+            {% endif %}
+          >
+            {% render 'quick-add-product-media',
+              product: product,
+              variant: product.selected_or_first_available_variant,
+              aspect_ratio: 'square',
+              show_arrows: true,
+              apply_bg: settings.qa_add_bg,
+              bg_color: settings.qa_bg
+            %}
+          </div>
+          <div class="quick_add_product_info">
+            {% if settings.quick_add_show_vendor %}
+              {% if product.vendor != blank %}
+                <div class="quick_add_product_vendor">
+                  <span>{{ product.vendor }}</span>
+                </div>
+              {% endif %}
+            {% endif %}
+            <h2 class="h4">
+              <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                {% if product != blank %}
+                  {{ product.title }}
+                {% else %}
+                  {{ 'onboarding.product_title' | t }}
+                {% endif %}
+              </a>
+            </h2>
+            <div class="quick_add_product_price">
+              {% if product != blank %}
+                {% render 'featured-product-price',
+                  product: product,
+                  variant: product.selected_or_first_available_variant
+                %}
+                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
+                  <div class="product_page product_tax">
+                    {%- if cart.duties_included and cart.taxes_included -%}
+                      {{ 'products.product.duties_and_taxes_included' | t }}
+                    {%- elsif cart.taxes_included -%}
+                      {{ 'products.product.taxes_included' | t }}
+                    {%- elsif cart.duties_included -%}
+                      {{ 'products.product.duties_included' | t }}
+                    {%- endif -%}
+                    {%- if shop.shipping_policy.body != blank -%}
+                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                {% if product != blank %}
+                  <div class="product_installments_wrapper">
+                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                    {% assign class = 'installment' %}
+                    {%- form 'product', product, id: product_form_installment_id, class: class -%}
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ product.selected_or_first_available_variant.id }}"
+                      >
+                      {{ form | payment_terms }}
+                    {%- endform -%}
+                  </div>
+                {% endif %}
+
+              {% else %}
+                {{ 'onboarding.product_price' | t | money }}
+              {% endif %}
+            </div>
+
+            <div class="quick_add_inventory_wrapper">
+              {% render 'product-inventory',
+                product: product,
+                variant: product.selected_or_first_available_variant,
+                threshold: settings.threshold,
+                in_stock_color: settings.in_stock_color,
+                out_of_stock_color: settings.out_of_stock_color,
+                threshold_color: settings.threshold_color
+              %}
+            </div>
+
+            <div class="quick_add_variant_picker_wrapper">
+              {% render 'quick-add-variant-picker',
+                product: product,
+                variant: product.selected_or_first_available_variant,
+                picker_type: settings.options_type,
+                swatch_shape: settings.swatch_shape,
+                section: section
+              %}
+            </div>
+
+            <div class="quick_add_quantity_wrapper">
+              <p>{{ 'products.product.quantity' | t }}</p>
+              {% render 'quantity-selector', product: product, variant: product.selected_or_first_available_variant %}
+            </div>
+
+            <div class="quick_add_action_buttons_wrapper{% if settings.show_dynamic_button %} has_dynamic_btn{% endif %}">
+              {% assign gift_card_feature = false %}
+              {% if settings.show_gift_recipient_form and product.gift_card? %}
+                {% assign gift_card_feature = true %}
+              {% endif %}
+              {% render 'add-to-cart-buttons',
+                product: product,
+                variant: product.selected_or_first_available_variant,
+                show_dynamic_button: settings.show_dynamic_button,
+                gift_card_feature: gift_card_feature
+              %}
+            </div>
+          </div>
+        </quick-add-product>
+      </div>
+    </div>
+  </div>
+</div>

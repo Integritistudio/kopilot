@@ -1,0 +1,267 @@
+{% style %}
+  .list_collections_wrapper-{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .list_collections_wrapper-{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'list-collection.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="list_collections_wrapper-{{ section.id }} color-{{section.settings.color_scheme }}"
+  style="--columns: {{ section.settings.columns }}; "
+>
+  <div class="{% if section.settings.full_width %}full_width{% else %}container{% endif %}">
+    {% if section.settings.head != blank %}
+      <div class="list_collections_wrapper_head" style="--text-align: {{ section.settings.head_align }}">
+        <h2 class="reveal">{{ section.settings.head }}</h2>
+      </div>
+    {% endif %}
+    <div class="list_collections_wrapper_inner style--{{ section.settings.card_style }}{% if section.settings.enable_gap %} gap_enabled{% endif %} cols{{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.collection %}
+        {% assign ratio = 1 %}
+        {% if section.settings.aspect_ratio == 'portrait' %}
+          {% assign ratio = 0.7 %}
+        {% elsif section.settings.aspect_ratio == 'adapt' %}
+          {% if block.settings.image != blank %}
+            {% assign ratio = block.settings.image.width | times: 1.0 | divided_by: block.settings.image.height %}
+          {% elsif collection.featured_image != blank %}
+            {% assign ratio = collection.featured_image.aspect_ratio %}
+          {% else %}
+
+          {% endif %}
+        {% else %}
+          {% assign ratio = 1 %}
+        {% endif %}
+        {% if collection != blank %}
+          <div
+            class="list_collections_block_img"
+          >
+            <div
+              class="list_collections_block_img_inner ratio"
+              style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%;"
+            >
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 800 | image_tag }}
+              {% elsif collection.featured_image != blank %}
+                {{ collection.featured_image | image_url: width: 800 | image_tag }}
+              {% else %}
+                {% assign img_index = forloop.index | modulo: 2 %}
+                {% if img_index == 1 %}
+                  {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg even_svg' }}
+                {% endif %}
+              {% endif %}
+            </div>
+
+            <div class="list_collections_block_text">
+              <div class="list_collections_block_text_inner">
+
+                <div class="list_collections_content">
+                  {% if block.settings.title != blank %}
+                    <h3 class="{% if section.settings.card_style == 'style2' %}h2{% endif %}">{{ block.settings.title }}</h3>
+                  {% else %}
+                    <h3 class="{% if section.settings.card_style == 'style2' %}h2{% endif %}">{{ collection.title }}</h3>
+                  {% endif %}
+                </div>
+
+                <div class="list_collections_info">
+                  {% if block.settings.info != blank %}
+                    <p>{{ block.settings.info }}</p>
+                  {% else %}
+                    <p>{{ collection.info }}</p>
+                  {% endif %}
+                </div>
+
+                <div class="list_collections_block_btn{% if block.settings.btn_label == blank %} is_empty{% endif %}">
+                  <a aria-label="{{ 'collection.title' }}" class="btn" href="{{ collection.url }}">
+                    {{- block.settings.btn_label -}}
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="list_collections_block reveal stagger">
+            <div
+              class="list_collections_block_img"
+            >
+              <div
+                class="list_collections_block_img_inner ratio"
+                style="--aspect-ratio: {{ 1 | divided_by: ratio | times: 100 }}%;"
+              >
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 800 | image_tag }}
+                {% else %}
+                  {% assign img_index = forloop.index | modulo: 2 %}
+                  {% if img_index == 1 %}
+                    {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                  {% else %}
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg even_svg' }}
+                  {% endif %}
+                {% endif %}
+              </div>
+
+              <div class="list_collections_block_text">
+                <div class="list_collections_block_text_inner">
+
+                  <div class="list_collections_content">
+                    {% if block.settings.title != blank %}
+                      <h3 class="{% if section.settings.card_style == 'style2' %}h2{% endif %}">{{ block.settings.title |  truncatewords: 12  }}</h3>
+                    {% endif %}
+                  </div>
+
+                  <div class="list_collections_block_btn{% if block.settings.btn_label == blank %} is_empty{% endif %}">
+                    <a role="link" class="btn btn--disabled">{{ block.settings.btn_label }}</a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "List collections",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Enable full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_gap",
+      "label": "Enable gap between blocks",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "adapt", "label": "Adapt to image" }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        {
+          "value": "style1",
+          "label": "Style 1"
+        },
+        {
+          "value": "style2",
+          "label": "Style 2"
+        }
+      ],
+      "default": "style1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title (optional)",
+          "default": "Collection Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "info",
+          "label": "Custom information (optional)",
+          "default": "Collection information add here."
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label",
+          "default": "Button Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "List collections",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+{% style %}
+    .custom_section_wrapper--{{ section.id }} {
+        padding-top: {{ section.settings.top_spacing }}px;
+        padding-bottom: {{ section.settings.bottom_spacing }}px;
+    }  
+
+    @media screen and (max-width: 640px) {
+        .custom_section_wrapper--{{ section.id }} {
+            padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+            padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+        }
+    }
+
+{% endstyle %}
+
+<div class="custom_section_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+    <div class="container">
+        <div class="custom_section_inner">
+            {% content_for 'blocks' %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "Section spacing"
+      },
+      {
+        "type": "range",
+        "id": "top_spacing",
+        "label": "Top spacing",
+        "min": 0,       
+        "max": 100, 
+        "step": 1,
+        "unit": "px",   
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "bottom_spacing",
+        "label": "Bottom spacing",
+        "min": 0,       
+        "max": 100, 
+        "step": 1,
+        "unit": "px",   
+        "default": 40
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",        
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom section"
+      }
+    ]
+  }
+{% endschema %}

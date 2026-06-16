@@ -1,0 +1,61 @@
+  <div class="localization_dropdown_wrapper currency_dropdown color-{{ settings.localization_color_scheme }}" data-lenis-prevent inert aria-hidden="true"
+    style="--border-radius: {{ settings.localization_border_radius }}px;"
+>
+    <div class="localization_dropdown_inner">
+      {% if localization.available_countries.size > 0 %}
+        <div class="localization_country_list">
+          <h6>{{ 'localization.country_label' | t }} - {{ localization.available_countries.size }}</h6>
+          {% assign id = 'currency_selector_form' %}
+          {% form 'localization', id: id %}
+            <div class="currency_list">
+              {% for country in localization.available_countries %}
+                <button
+                  aria-label="{{ country.currency.iso_code }}"
+                  data-value="{{ country.iso_code }}"
+                  {% if country.iso_code == localization.country.iso_code %}
+                    class="active"
+                  {% endif %}
+                >
+                  <span>
+                    {{ country.name }}
+                  </span>
+                  <span>{{- country.currency.iso_code }} ({{ country.currency.symbol }}) </span>
+                </button>
+              {% endfor %}
+            </div>
+            <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+          {% endform %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="localization_dropdown_wrapper language_dropdown color-{{ settings.localization_color_scheme }}" data-lenis-prevent inert aria-hidden="true"
+    style="--border-radius: {{ settings.localization_border_radius }}px;"
+>
+    <div class="localization_dropdown_inner">
+       {% if localization.available_languages.size > 0 %}
+          <div class="localization_language_list">
+            <h6>{{ 'localization.language_label' | t }} - {{ localization.available_languages.size }}</h6>
+            {% assign id = 'language_selector_form' %}
+            {% form 'localization', id: id %}
+              <div class="language_list">
+                {% for language in localization.available_languages %}
+                  <button
+                    aria-label="{{ language.iso_code }}"
+                    data-value="{{ language.iso_code }}"
+                    {% if language.iso_code == localization.language.iso_code %}
+                      class="active"
+                    {% endif %}
+                  >
+                    {{- language.endonym_name }} ({{ language.iso_code }})
+                  </button>
+                {% endfor %}
+              </div>
+
+              <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
+            {% endform %}
+          </div>
+        {% endif %}
+    </div>
+  </div>

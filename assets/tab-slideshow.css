@@ -1,0 +1,190 @@
+
+  .power-tabs-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .power-tabs-slider {
+    position: relative;
+  }
+
+  .power-tabs-slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .power-tabs-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+
+  .power-tabs-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 80px;
+  }
+
+  .content-left {
+    justify-content: flex-start;
+  }
+
+  .content-center {
+    justify-content: center;
+  }
+
+  .content-right {
+    justify-content: flex-end;
+  }
+
+  .power-tabs-content-inner h2 {
+    font-size: 68px;
+    line-height: 0.95;
+    margin: 0 0 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .power-tabs-content-inner p {
+    margin: 0 0 30px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .power-tabs-navigation {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 35px;
+    z-index: 5;
+    padding: 0 80px;
+  }
+
+  .power-tabs-nav-wrap {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 18px;
+  }
+
+  .power-tabs-nav-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .power-tab-btn {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0;
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      color 0.4s ease;
+  }
+
+  .power-tab-btn:hover {
+    opacity: 1;
+  }
+
+  .power-tab-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.4s ease;
+  }
+
+  .power-tab-btn.active::after {
+    width: 100%;
+  }
+
+  .power-tab-number {
+    display: block;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .power-tab-title {
+    display: block;
+    font-size: 15px;
+  }
+
+  .power-tab-btn.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -19px;
+    width: 100%;
+    height: 3px;
+    background: var(--color-border);
+  }
+  .power-tab-btn.active .power-tab-number {
+      color: var(--color-link-hover);
+  }
+
+  @media screen and (max-width: 991px) {
+
+    .power-tabs-content {
+      padding: 40px 25px 140px;
+      align-items: flex-end;
+    }
+
+    .power-tabs-content-inner h2 {
+      font-size: 38px;
+    }
+
+    .power-tabs-content-inner p {
+      font-size: 14px;
+    }
+
+    .power-tabs-navigation {
+      padding: 0 20px;
+      bottom: 20px;
+    }
+
+    .power-tabs-nav-wrap {
+      gap: 24px;
+    }
+
+    .power-tab-number {
+      font-size: 22px;
+    }
+
+    .power-tab-title {
+      font-size: 13px;
+    }
+
+    .power-tabs-nav-wrap {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+    }
+
+    .power-tab-btn {
+      min-width: 140px;
+      text-align: left;
+    }
+  }

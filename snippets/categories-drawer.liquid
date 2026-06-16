@@ -1,0 +1,69 @@
+{{ 'categories-drawer.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign drawer_title = heading
+  if drawer_title == blank
+    assign drawer_title = 'drawers.categories_drawer.heading' | t
+  endif
+-%}
+
+<div
+  class="drawer_wrapper categories_drawer_wrapper color-{{ settings.drawer_color_scheme }}"
+  id="categories_drawer"
+  inert
+  aria-hidden="true"
+>
+  <div class="drawer_wrapper_inner categories_drawer_inner" tabindex="-1" data-lenis-prevent>
+    <div class="drawer_header categories_drawer_header">
+      <h2 class="h4">{{ drawer_title }}</h2>
+
+      <div class="drawer_close_btn_wrapper">
+        <button type="button" class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+          <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="categories_drawer_content_wrapper">
+      {% assign categories_sorted = collections | sort: 'title' %}
+      {% if categories_sorted.size > 0 %}
+        <ul class="categories_drawer_list" role="list">
+          {% for collection in categories_sorted %}
+            <li class="categories_drawer_item">
+              <a href="{{ collection.url }}" class="categories_drawer_link">
+                <span class="categories_drawer_main">
+                  <span class="categories_drawer_img_wrap">
+                    {% if collection.featured_image != blank %}
+                      {{
+                        collection.featured_image
+                        | image_url: width: 160
+                        | image_tag:
+                          class: 'categories_drawer_img',
+                          loading: 'lazy',
+                          widths: '80, 120, 160',
+                          sizes: '56px'
+                      }}
+                    {% else %}
+                      <span class="categories_drawer_img_placeholder" aria-hidden="true">
+                        {{ 'product_placeholder.svg' | inline_asset_content }}
+                      </span>
+                    {% endif %}
+                  </span>
+                  <span class="categories_drawer_title">{{ collection.title }}</span>
+                </span>
+                <span
+                  class="categories_drawer_count"
+                  aria-label="{{ 'drawers.categories_drawer.product_count' | t: count: collection.products_count }}"
+                >
+                  {{- collection.products_count -}}
+                </span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="categories_drawer_empty">{{ 'drawers.categories_drawer.empty' | t }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>

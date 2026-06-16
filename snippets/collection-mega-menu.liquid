@@ -1,0 +1,104 @@
+{% if cblock.settings.side_menu != blank %}
+  <div class="collection_mega_menu_side_menu_wrapper">
+    <ul>
+      {% for link in cblock.settings.side_menu.links limit: 4 %}
+        <li>
+          <a class="menu_{{ font_family }}" aria-label="{{ link.title }}" href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{% if cblock.settings.collection1 != blank
+  or cblock.settings.collection2 != blank
+  or cblock.settings.collection3 != blank
+  or cblock.settings.collection4 != blank
+%}
+  <div class="collection_mega_menu_colls_wrapper">
+    {% if cblock.settings.collection1 != blank %}
+      <div class="cblock cblock1">
+        <div class="cblock_img ratio-{{ cblock.settings.coll1_ratio }}">
+          <a href="{{ cblock.settings.collection1.url }}" aria-label="{{ cblock.settings.collection1.title }}">
+            {{- cblock.settings.collection1.title -}}
+          </a>
+          {% if cblock.settings.coll1_img != blank %}
+            {{ cblock.settings.coll1_img | image_url: width: 800 | image_tag }}
+          {% elsif cblock.settings.collection1.featured_image != blank %}
+            {{ cblock.settings.collection1.featured_image | image_url: width: 800 | image_tag }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+        </div>
+        <div class="cblock_title menu_{{ font_family }}">
+            <p><a href="{{ cblock.settings.collection1.url }}" aria-label="{{ cblock.settings.collection1.title }}">{{ cblock.settings.collection1.title }}</a></p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if cblock.settings.collection2 != blank %}
+      <div class="cblock cblock2">
+        <div class="cblock_img ratio-{{ cblock.settings.coll1_ratio }}">
+          <a href="{{ cblock.settings.collection2.url }}" aria-label="{{ cblock.settings.collection2.title }}">
+            {{- cblock.settings.collection2.title -}}
+          </a>
+
+          {% if cblock.settings.coll2_img != blank %}
+            {{ cblock.settings.coll2_img | image_url: width: 800 | image_tag }}
+          {% elsif cblock.settings.collection2.featured_image != blank %}
+            {{ cblock.settings.collection2.featured_image | image_url: width: 800 | image_tag }}
+          {% else %}
+            {{ 'collection-2' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+        </div>
+
+        <div class="cblock_title menu_{{ font_family }}">
+            <p><a href="{{ cblock.settings.collection2.url }}" aria-label="{{ cblock.settings.collection2.title }}">{{ cblock.settings.collection2.title }}</a></p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if cblock.settings.collection3 != blank %}
+      <div class="cblock cblock3">
+        <div class="cblock_img ratio-{{ cblock.settings.coll1_ratio }}">
+          <a href="{{ cblock.settings.collection3.url }}" aria-label="{{ cblock.settings.collection3.title }}">
+            {{- cblock.settings.collection3.title -}}
+          </a>
+
+          {% if cblock.settings.coll3_img != blank %}
+            {{ cblock.settings.coll3_img | image_url: width: 800 | image_tag }}
+          {% elsif cblock.settings.collection3.featured_image != blank %}
+            {{ cblock.settings.collection3.featured_image | image_url: width: 800 | image_tag }}
+          {% else %}
+            {{ 'collection-3' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+        </div>
+
+        <div class="cblock_title menu_{{ font_family }}">
+            <p><a href="{{ cblock.settings.collection3.url }}" aria-label="{{ cblock.settings.collection3.title }}">{{ cblock.settings.collection3.title }}</a></p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if cblock.settings.collection4 != blank %}
+      <div class="cblock cblock4">
+        <div class="cblock_img ratio-{{ cblock.settings.coll1_ratio }}">
+          <a href="{{ cblock.settings.collection4.url }}" aria-label="{{ cblock.settings.collection4.title }}">
+            {{- cblock.settings.collection4.title -}}
+          </a>
+
+          {% if cblock.settings.coll4_img != blank %}
+            {{ cblock.settings.coll4_img | image_url: width: 800 | image_tag }}
+          {% elsif cblock.settings.collection4.featured_image != blank %}
+            {{ cblock.settings.collection4.featured_image | image_url: width: 800 | image_tag }}
+          {% else %}
+            {{ 'collection-4' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+        </div>
+        <div class="cblock_title menu_{{ font_family }}">
+            <p><a href="{{ cblock.settings.collection4.url }}" aria-label="{{ cblock.settings.collection4.title }}">{{ cblock.settings.collection4.title }}</a></p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

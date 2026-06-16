@@ -1,0 +1,98 @@
+promo-tile {    
+    display: grid;
+    width: 100%;  
+}
+
+.promo_tile_inner {
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(5px);
+    height: 100%;
+    transition: transform .5s ease;
+}
+
+.shopify-design-mode .promo_tile_inner {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.promo_tile_img {
+    overflow: hidden;
+    max-height: 4.4rem;
+}
+
+.promo_tile_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.2);
+    transition: transform 1s ease;
+}
+
+.promo_tile_img img.zoom_out {
+    transform: scale(1);
+}
+
+.promo_tile_inner.visible {
+    transform: translateY(0); 
+    opacity: 1;
+}
+
+.promo_tile_separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.promo_tile_separator span {
+    display: flex;
+    width: 1.6rem;
+    height: 0.2rem;
+    background: var(--color-text);
+}
+
+.promo_title_link a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+.promo_tile_countdown_inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+promo-countdown p:not(.colon p) {
+    min-width: 2.2rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    transition: opacity 0.35s ease;
+}
+
+promo-countdown p.is-fading {
+    opacity: 0;
+}
+
+.promo_title_link, .promo_tile_countdown {
+    flex: 0 0 auto;
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 640px) {
+    .promo_tile_inner {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .promo_tile_separator {
+        display: none;
+    }
+}

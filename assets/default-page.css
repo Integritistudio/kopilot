@@ -1,0 +1,27 @@
+  .breadcrumbs_wrapper + .default_page_header {
+    margin: 3rem 0 0;
+  }
+
+  .default_page_header.dph--left {
+    text-align: left;
+  }
+
+  .default_page_header.dph--center {
+    text-align: center;
+  }
+
+  .default_page_header.dph--right {
+    text-align: right;
+  }
+
+  .default_page_content {
+    margin: 5rem 0 0;
+  }
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 640px) {
+    .default_page_content {
+        margin: 3rem 0 0;
+    }
+}

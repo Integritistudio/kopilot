@@ -1,0 +1,63 @@
+<div class="product_inventory_inner">
+  {% if variant.inventory_management == 'Shopify' or variant.inventory_management == 'shopify' %}
+    {% if variant and variant.inventory_quantity == 0 and variant.inventory_policy == 'continue' %}
+      <span class="in_stock_pre_order" style="--color: {{ in_stock_color }}">
+        <span class="inventory_dot"><span></span></span>
+        <span class="inventory_text">
+          {{ 'products.product.in_stock_pre_order' | t }}
+        </span>
+        <span class="inventory_progress">
+          <span class="inventory_progress_inner" style="width: {{ variant.inventory_quantity }}%;"></span>
+        </span>
+        <span class="inventory_count">
+          <span>{{ 'products.product.in_stock_count' | t: quantity: variant.inventory_quantity }}</span>
+        </span>
+      </span>
+    {% elsif variant and variant.available == false and variant.inventory_policy == 'deny' %}
+      <span class="out_of_stock" style="--color: {{ out_of_stock_color }}">
+        <span class="inventory_dot"><span></span></span>
+        <span class="inventory_text">
+          {{ 'products.product.out_of_stock' | t }}
+        </span>
+        <span class="inventory_progress">
+          <span class="inventory_progress_inner" style="width: {{ variant.inventory_quantity }}%;"></span>
+        </span>
+        <span class="inventory_count">
+          <span>{{ 'products.product.out_of_stock_count' | t: quantity: variant.inventory_quantity }}</span>
+        </span>
+      </span>
+    {% elsif variant and variant.available %}
+      {% if variant.inventory_quantity <= threshold %}
+        <span class="threshold" style="--color: {{ threshold_color }}">
+          <span class="inventory_dot"><span></span></span>
+          <span class="inventory_text">
+            {{ 'products.product.in_stock' | t }}
+          </span>
+          <span class="inventory_progress">
+            <span class="inventory_progress_inner" style="width: {{ variant.inventory_quantity }}%;"></span>
+          </span>
+          <span class="inventory_count">
+            <span>{{ 'products.product.inventory_threshold' | t: quantity: variant.inventory_quantity }}</span>
+          </span>
+        </span>
+      {% else %}
+        <div class="in_stock" style="--color: {{ in_stock_color }}">
+          <span class="inventory_dot"><span></span></span>
+          <span class="inventory_text">
+            {{ 'products.product.in_stock' | t }}
+          </span>
+          <span class="inventory_progress">
+            {% assign width = variant.inventory_quantity %}
+            {% if variant.inventory_quantity > 100 %}
+              {% assign width = 100 %}
+            {% endif %}
+            <span class="inventory_progress_inner" style="--width: {{ width }}%;"></span>
+          </span>
+          <span class="inventory_count">
+            <span>{{ 'products.product.in_stock_count' | t: quantity: variant.inventory_quantity }}</span>
+          </span>
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</div>

@@ -1,0 +1,195 @@
+{% style %}
+  .promo_tile_wrapper-{{ section.id }} {
+    display: grid;
+  }
+
+  .promo_tile_img, .promo_tile_wrapper-{{ section.id }} .container {
+    grid-area: 1 / 1;
+  }
+
+  .promo_tile_wrapper-{{ section.id }} .promo_tile_inner {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .promo_tile_wrapper-{{ section.id }}.hide_on_mobile {
+      display: none;
+    }    
+  }  
+{% endstyle %}
+
+{{ 'promo-tile.css' | asset_url | stylesheet_tag }}
+
+<div class="promo_tile_wrapper-{{ section.id }} color-{{ section.settings.color_scheme }}{% if section.settings.hide_on_mobile %} hide_on_mobile{% endif %}">
+  <promo-tile>
+    {% if section.settings.bg_img != blank %}
+      <div class="promo_tile_img">
+        {{ section.settings.bg_img | image_url: width: 1920 | image_tag }}
+      </div>
+    {% endif %}
+    <div class="container">
+      <div class="promo_tile_inner">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'text' %}
+              {% if block.settings.text != blank %}
+                <div class="promo_tile_text">
+                  <p>{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+            {% when 'countdown' %}
+              {% if block.settings.date != blank %}
+                <div class="promo_tile_countdown">
+                  <promo-countdown data-date="{{ block.settings.date }}">
+                    <div class="promo_tile_countdown_inner">
+                      <div class="promo_days" data-promo-days><p>00</p></div>
+                      <div class="colon">
+                        <p>{{ ':' }}</p>
+                      </div>
+                      <div class="promo_hours" data-promo-hours><p>00</p></div>
+                      <div class="colon">
+                        <p>{{ ':' }}</p>
+                      </div>
+                      <div class="promo_minutes" data-promo-minutes><p>00</p></div>
+                      <div class="colon">
+                        <p>{{ ':' }}</p>
+                      </div>
+                      <div class="promo_seconds" data-promo-seconds><p>00</p></div>
+                    </div>
+                  </promo-countdown>
+                </div>
+              {% endif %}
+            {% when 'separator' %}
+              <div class="promo_tile_separator">
+                <span></span>
+              </div>
+            {% when 'link' %}
+              {% if block.settings.link != blank %}
+                <div class="promo_title_link">
+                  <p>
+                    <a class="text_decoration" aria-label="{{ block.settings.label }}" href="{{ block.settings.link }}">
+                      {{- block.settings.label -}}
+                    </a>
+                  </p>
+                </div>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </promo-tile>
+</div>
+
+{% schema %}
+{
+  "name": "Promo tile",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Select background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_mobile",
+      "label": "Hide on mobile screens",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Enter Promo Text Here"
+        }
+      ]
+    },
+    {
+      "name": "Separator",
+      "type": "separator"
+    },
+    {
+      "name": "Countdown",
+      "type": "countdown",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Countdown end date",
+          "default": "2026-07-31 00:00:00",
+          "info": "format: YYYY-MM-DD 00:00:00:00"
+        }
+      ]
+    },
+    {
+      "name": "Link",
+      "type": "link",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Promo label",
+          "default": "Promo Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Promo link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo tile",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

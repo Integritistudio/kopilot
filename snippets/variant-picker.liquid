@@ -1,0 +1,217 @@
+{% unless product.has_only_default_variant %}
+  <variant-picker class="product_variant_picker">
+    {% for option in product.options_with_values %}
+      <div class="product_options_wrapper {{ picker_type }}">
+        <div class="product_options_header">
+          <p>{{ option.name | append: ': ' }}</p>
+        </div>
+
+        <div class="product_option_values_wrapper{% if picker_type == 'button' or picker_type == 'mixed' %}  type_button{% endif %}">
+          {% if picker_type == 'button' %}
+            {% for value in option.values %}
+              <div class="product_values_wrapper">
+                <input
+                  type="radio"
+                  class="visually-hidden"
+                  name="{{ section.id }}-{{ option.name }}"
+                  data-value="{{ value.id }}"
+                  id="{{ section.id }}--{{ option.name }}-{{ value.id }}"
+                  value="{{ value }}"
+                  {% unless value.available %}
+                    disabled
+                  {% endunless %}
+                  {% if option.selected_value == value %}
+                    checked
+                  {% endif %}
+                >
+
+                {% assign custom_swatches = settings.custom_color_swatches | split: ', ' %}
+
+                {% assign fallback_color = null %}
+
+                {% for swatch in custom_swatches %}
+                  {% assign parts = swatch | split: ':' %}
+                  {% assign name = parts[0] | strip | downcase %}
+                  {% assign color = parts[1] | strip %}
+                  {% assign v = value | downcase %}
+
+                  {% if name == v %}
+                    {% assign fallback_color = color %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign color_options = 'Color,Colors,Couleur,Couleurs,Farbe,Farben,Colore,Colori,颜色,颜色选项,색상,색상들'
+                  | split: ','
+                %}
+                {%- liquid
+                  if value.swatch.image
+                    assign image_url = value.swatch.image | image_url: width: 50
+                    assign swatch_value = 'url(' | append: image_url | append: ')'
+                  elsif value.swatch.color
+                    assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                  elsif fallback_color
+                    assign swatch_value = fallback_color
+                  else
+                    assign swatch_value = null
+                  endif
+                -%}
+
+                {% if color_options contains option.name %}
+                  {% if swatch_shape == 'default' %}
+                    <label for="{{ section.id }}--{{ option.name }}-{{ value.id }}">{{ value }}</label>
+                  {% else %}
+                    <label
+                      for="{{ section.id }}--{{ option.name }}-{{ value.id }}"
+                      class="swatch_label{% if swatch_shape == 'circle' %} circle{% elsif swatch_shape == 'square' %} square{% endif %}{% if use_variant_image %} use_variant_image{% endif %}"
+                      title="{{ value | escape }}"
+                    >
+                      <div
+                        class="swatch_label_inner {{ swatch_value }}"
+                        {% if use_variant_image %}
+                          style="{% if value.variant.featured_image != null %}background: url({{ value.variant.featured_image | image_url: width: 200 }});background-size: cover;background-position: center;background-repeat:no-repeat;{% elsif swatch_value != null %}background: {{ swatch_value }}{% else %}background: #f8f8f8; opacity: 0.5;{% endif %}"
+                        {% else %}
+                          style="{% if swatch_value != null %}background: {{ swatch_value }};{% else %}background: #c9c9c9; opacity: 0.5;{% endif %}"
+                        {% endif %}
+                      >
+                        {{ value | escape }}
+                      </div>
+                    </label>
+                  {% endif %}
+                {% else %}
+                  <label for="{{ section.id }}--{{ option.name }}-{{ value.id }}">{{ value }}</label>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% elsif picker_type == 'dropdown' %}
+            <div class="product_values_wrapper">
+              <div class="product_select">
+                {{ 'icon-caret-down.svg' | inline_asset_content }}
+                <select name="{{ section.id }}--{{ option.name }}" id="{{ section.id }}--{{ option.name }}">
+                  {% for value in option.values %}
+                    <option
+                      value="{{ value | escape }}"
+                      data-value="{{ value.id }}"
+                      {% if option.selected_value == value %}
+                        selected
+                      {% endif %}
+                      {% unless value.available %}
+                        disabled
+                      {% endunless %}
+                    >
+                      {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <label for="{{ section.id }}--{{ option.name }}" class="visually-hidden">{{ option.name }}</label>
+              </div>
+            </div>
+          {% else %}
+            {% if option.name == 'Color' or option.name == 'Colors' or option.name == 'Couleur' or option.name == 'Couleurs' or option.name == 'Farbe' or option.name == 'Farben' or option.name == 'Colore' or option.name == 'Colori' or option.name == '颜色' or option.name == '颜色选项' or option.name == '색상' or option.name == '색상들' %}
+              {% for value in option.values %}
+                <div class="product_values_wrapper">
+                  <input
+                    type="radio"
+                    class="visually-hidden"
+                    name="{{ section.id }}-{{ option.name }}"
+                    data-value="{{ value.id }}"
+                    id="{{ section.id }}--{{ option.name }}-{{ value.id }}"
+                    value="{{ value }}"
+                    {% unless value.available %}
+                      disabled
+                    {% endunless %}
+                    {% if option.selected_value == value %}
+                      checked
+                    {% endif %}
+                  >
+
+                  {% assign custom_swatches = settings.custom_color_swatches | split: ', ' %}
+
+                  {% assign fallback_color = null %}
+
+                  {% for swatch in custom_swatches %}
+                    {% assign parts = swatch | split: ':' %}
+                    {% assign name = parts[0] | strip | downcase %}
+                    {% assign color = parts[1] | strip %}
+                    {% assign v = value | downcase %}
+
+                    {% if name == v %}
+                      {% assign fallback_color = color %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% assign color_options = 'Color,Colors,Couleur,Couleurs,Farbe,Farben,Colore,Colori,颜色,颜色选项,색상,색상들'
+                    | split: ','
+                  %}
+                  {%- liquid
+                    if value.swatch.image
+                      assign image_url = value.swatch.image | image_url: width: 50
+                      assign swatch_value = 'url(' | append: image_url | append: ')'
+                    elsif value.swatch.color
+                      assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                    elsif fallback_color
+                      assign swatch_value = fallback_color
+                    else
+                      assign swatch_value = null
+                    endif
+                  -%}
+
+                  {% if color_options contains option.name %}
+                    {% if swatch_shape == 'default' %}
+                      <label for="{{ section.id }}--{{ option.name }}-{{ value.id }}">{{ value }}</label>
+                    {% else %}
+                      <label
+                        for="{{ section.id }}--{{ option.name }}-{{ value.id }}"
+                        class="swatch_label{% if swatch_shape == 'circle' %} circle{% elsif swatch_shape == 'square' %} square{% endif %}{% if use_variant_image %} use_variant_image{% endif %}"
+                        title="{{ value | escape }}"
+                      >
+                        <div
+                          class="swatch_label_inner {{ swatch_value }}"
+                          {% if use_variant_image %}
+                            style="{% if value.variant.featured_image != null %}background: url({{ value.variant.featured_image | image_url: width: 200 }});background-size: cover;background-position: center;background-repeat:no-repeat;{% elsif swatch_value != null %}background: {{ swatch_value }}{% else %}background: #f8f8f8; opacity: 0.5;{% endif %}"
+                          {% else %}
+                            style="{% if swatch_value != null %}background: {{ swatch_value }};{% else %}background: #c9c9c9; opacity: 0.5;{% endif %}"
+                          {% endif %}
+                        >
+                          {{ value | escape }}
+                        </div>
+                      </label>
+                    {% endif %}
+                  {% else %}
+                    <label for="{{ section.id }}--{{ option.name }}-{{ value.id }}">{{ value }}</label>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="product_values_wrapper">
+                <div class="product_select">
+                  {{ 'icon-caret-down.svg' | inline_asset_content }}
+                  <select name="{{ section.id }}--{{ option.name }}" id="{{ section.id }}--{{ option.name }}">
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        data-value="{{ value.id }}"
+                        {% if option.selected_value == value %}
+                          selected
+                        {% endif %}
+                        {% unless value.available %}
+                          disabled
+                        {% endunless %}
+                      >
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                  <label for="{{ section.id }}--{{ option.name }}" class="visually-hidden">{{ option.name }}</label>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+
+    <script type="application/json" data-selected-variant>
+      {{ product.selected_or_first_available_variant | json }}
+    </script>
+  </variant-picker>
+{% endunless %}

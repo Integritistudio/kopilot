@@ -1,0 +1,547 @@
+{% assign mobile_slides = section.settings.slides_mobile | plus: 0 %}
+
+{% style %}
+  .si-wrapper-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+
+  /*
+
+   .si-container, 
+   .si-outer { 
+   border-radius: {{ section.settings.section_radius }}px; 
+   overflow: hidden; 
+   } 
+*/
+
+  .si-container {
+    border-radius: {{ section.settings.section_radius }}px;
+    overflow: hidden;
+  }
+
+  .si-outer {
+    overflow: visible;
+    /* IMPORTANT */
+  }
+
+  .si-track {
+    display: flex;
+    gap: {{ section.settings.gap }}px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .si-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .si-item {
+    flex: 0 0 calc((100% -({{ section.settings.slides_desktop }} - 1) * {{ section.settings.gap }}px) / {{ section.settings.slides_desktop }});
+    scroll-snap-align: start;
+    position: relative;
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+  }
+
+  /* IMAGE */
+  .si-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+    transition: transform 1s ease;
+  }
+  .si-item:hover img {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+  .si-image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .si-image-wrapper--adapt img {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .si-image-wrapper--square img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .si-image-wrapper--portrait img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .si-image-wrapper img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .si-swiper-{{ section.id }} {
+    overflow: hidden;
+  }
+
+  .si-swiper-{{ section.id }}
+  .swiper-slide {
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+  }
+
+  .si-swiper-{{ section.id }}
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .si-head {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+
+  .si-head.si-head--left .si-head-inner {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .si-head.si-head--center .si-head-inner {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .si-head.si-head--right .si-head-inner {
+    text-align: right;
+    justify-content: flex-end;
+  }
+
+  .si-head.si-head-with-progress {
+    justify-content: space-between;
+  }
+
+  .si-head-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    padding-right: 5rem;
+  }
+
+  .si-progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .si-progress-bar {
+    width: 12rem;
+    height: 2px;
+    background: var(--color-background);
+    filter: brightness(0.9);
+    position: relative;
+  }
+
+  .si-progress-bar-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    background: var(--color-text);
+    transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .si-current-slide {
+    transition: opacity 0.3s ease
+    , transform 0.3s ease;
+  }
+
+  .si-current-slide,
+  .si-total-slide {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text);
+    min-width: 2.5rem;
+    text-align: center;
+  }
+
+  .si-outer .slider-full {
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 30px
+  }
+
+  .si-outer .left-only {
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0;
+    /* max-width: none; */
+  }
+
+
+  @media (max-width: 989px) {
+    .si-wrapper-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+
+  /* MOBILE */
+  @media(max-width: 768px) {
+
+    .si-dots {
+      display: flex;
+    }
+
+    .si-item {
+      flex: 0 0 calc((100% -({{ mobile_slides }} - 1) * {{ section.settings.gap }}px) / {{ mobile_slides }});
+    }
+
+    .si-content {
+      opacity: 1;
+      transform: none;
+      bottom: 20px;
+      left: 15px;
+      text-align: left;
+    }
+    .si-outer .left-only {
+      padding-left: 1.5rem;
+    }
+  }
+{% endstyle %}
+
+<div class="si-wrapper-{{ section.id }} color-{{ section.settings.color_scheme }} ">
+  <div class="si-outer">
+    <div class="si-container-left">
+      {% if section.settings.head != blank %}
+        <div class="container si-head si-head--{% unless section.settings.show_progress %}{{ section.settings.head_align }}{% endunless %}{% if section.settings.show_progress %} si-head-with-progress{% endif %}">
+          <div class="si-head-inner">
+            <h1 class="si-title">{{ section.settings.head }}</h1>
+            {% if section.settings.show_progress %}
+              <div class="si-progress-wrapper">
+                <span class="si-current-slide">{{ '01' }}</span>
+                <div class="si-progress-bar">
+                  <div class="si-progress-bar-inner"></div>
+                </div>
+                <span class="si-total-slide">01</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      <div class="slider-full">
+        <div class="container left-only">
+          <div class="swiper si-swiper-{{ section.id }}">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% assign slides = section.settings.slides_desktop | plus: 1 %}
+                <div class="swiper-slide si-item{% if forloop.index <= slides %} reveal stagger{% endif %}">
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}" class="si-link">
+                  {% endif %}
+
+                  <div class="si-image-wrapper si-image-wrapper--{{ section.settings.image_ratio }}">
+                    {% if block.settings.image != blank %}
+                      {{ block.settings.image | image_url: width: 1000 | image_tag }}
+                    {% else %}
+                      {% assign img_index = forloop.index | modulo: 2 %}
+                      {% if img_index == 1 %}
+                        {{ 'product-5' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% else %}
+                        {{ 'product-6' | placeholder_svg_tag: 'placeholder_svg' }}
+                      {% endif %}
+
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.link != blank %}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+  
+    const swiper = new Swiper(".si-swiper-{{ section.id }}", {
+      slidesPerView: {{ section.settings.slides_desktop }},
+      spaceBetween: {{ section.settings.gap }},
+      loop: true,
+  
+      {% comment %} autoplay: {
+        delay: {{ section.settings.slide_speed }},
+        disableOnInteraction: false,
+      }, {% endcomment %}
+  
+      speed: 800,
+  
+      breakpoints: {
+        0: {
+          slidesPerView: {{ mobile_slides }}
+        },
+        768: {
+          slidesPerView: {{ section.settings.slides_desktop }}
+        }
+      },
+  
+      on: {
+      init: function () {
+          updateNumbers(this);
+      },
+      slideChange: function () {
+          updateNumbers(this);
+      }
+      }
+  
+    });
+  
+    function updateNumbers(swiper){
+  
+    const current = document.querySelector(".si-current-slide");
+    const total = document.querySelector(".si-total-slide");
+    const progress = document.querySelector(".si-progress-bar-inner");
+  
+    if(!current || !total) return;
+  
+    const totalSlides = document.querySelectorAll(".si-swiper-{{ section.id }} .swiper-slide:not(.swiper-slide-duplicate)").length;
+  
+    let currentIndex = swiper.realIndex + 1;
+  
+    current.textContent = currentIndex < 10 ? '0' + currentIndex : currentIndex;
+    total.textContent = totalSlides < 10 ? '0' + totalSlides : totalSlides;
+  
+    if(progress){
+      const percent = (currentIndex / totalSlides) * 100;
+      progress.style.width = percent + "%";
+    }
+  
+   }
+  {% comment %} function fixAccessibility(){
+  
+    const duplicates = document.querySelectorAll(
+      ".si-swiper-{{ section.id }} .swiper-slide-duplicate a"
+    );
+  
+    duplicates.forEach(el => {
+      el.setAttribute("tabindex", "-1");
+      el.setAttribute("aria-hidden", "true");
+    });
+  
+  } {% endcomment %}
+  
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Social image",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "head",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "head_align",
+        "label": "Heading alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left",
+        "info": "Works only when progress bar is disabled."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_progress",
+        "label": "Show progress",
+        "default": false
+      }, {
+        "type": "select",
+        "id": "image_ratio",
+        "label": "Image ratio",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "Adapt"
+          }, {
+            "value": "square",
+            "label": "Square"
+          }, {
+            "value": "portrait",
+            "label": "Portrait"
+          }
+        ],
+        "default": "adapt"
+      }, {
+        "type": "header",
+        "content": "Card setting"
+      }, {
+        "type": "range",
+        "id": "card_radius",
+        "label": "Card radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "default": 20
+      }, {
+        "type": "header",
+        "content": "Slider setting"
+      }, {
+        "type": "range",
+        "id": "gap",
+        "label": "Gap between slides",
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "default": 10
+      }, {
+        "type": "range",
+        "id": "slides_desktop",
+        "label": "Slides per row (desktop)",
+        "min": 2,
+        "max": 8,
+        "step": 0.5,
+        "default": 6
+      }, {
+        "type": "select",
+        "id": "slides_mobile",
+        "label": "Slides per row (mobile)",
+        "options": [
+          {
+            "value": "1",
+            "label": "1 slide"
+          }, {
+            "value": "2",
+            "label": "2 slides"
+          }
+        ],
+        "default": "1"
+      }, {
+        "type": "range",
+        "id": "slide_speed",
+        "label": "Auto slide speed",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "default": 2500
+      }, {
+        "type": "header",
+        "content": "Spacing"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Top padding",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 60
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom padding",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 60
+      }, {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "label": "Top padding mobile",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 40
+      }, {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "label": "Bottom padding mobile",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 40
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Image link"
+          }
+        ]
+      }
+    ],
+
+    "presets": [
+      {
+        "name": "Social image",
+        "blocks": [
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          }, {
+            "type": "slide"
+          }, {
+            "type": "slide"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,183 @@
+{% style %}
+  .related_articles_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+      background: transparent;
+  }
+
+  .related_articles_wrapper--{{ section.id }} .container.half_col {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 640px) {
+    .related_articles_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+
+    .related_articles_wrapper--{{ section.id }} .container.half_col {
+      padding-right: 1.5rem;
+      margin-right: 0;
+    }
+  }
+{% endstyle %}
+
+{{ 'related-articles.css' | asset_url | stylesheet_tag }}
+
+<div class="related_articles_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container{% if section.settings.columns == 1.5 %} half_col{% endif %}">
+    <swiper-section
+      {% if section.settings.columns == 1.5 %}
+        data-slides-desktop="1.62"
+      {% else %}
+        data-slides-desktop="{{ section.settings.columns }}"
+      {% endif %}
+      data-slides-custom="1.2"
+      data-slides-tablet="1.2"
+      data-slides-mobile="1"
+      data-gap="{{ settings.column_spacing }}"
+      data-speed="800"
+      data-free-mode="false"
+      data-grab-cursor="true"
+    >
+      {% if section.settings.head != blank %}
+        <div class="related_articles_head fb_head--{{ section.settings.head_align }}">
+          <h2 class="reveal">{{ section.settings.head }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="related_articles_inner swiper">
+        <div class="swiper-wrapper">
+          {% if blog != blank %}
+            {% for related_article in blog.articles %}
+              {% assign ratio = 1.53 %}
+
+              {% unless article.title == related_article.title %}
+                <div class="article_card_wrapper swiper-slide">
+                  {% render 'article-card',
+                    article: related_article,
+                    index: forloop.index,
+                    show_date: section.settings.show_date,
+                    show_author: section.settings.show_author,
+                    show_tags: section.settings.show_tags,
+                    ratio: ratio
+                  %}
+                </div>
+              {% endunless %}
+            {% endfor %}
+          {% else %}
+            {% for i in (1..4) %}
+              <div class="empty_article_card_wrapper swiper-slide">
+                {% render 'empty-article-card', index: i %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </swiper-section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related articles",
+  "enabled_on": {
+    "templates": ["article"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "head",
+      "label": "Heading",
+      "default": "Related posts"
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns per row",
+      "min": 1,
+      "max": 2,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Article cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related articles"
+    }
+  ]
+}
+{% endschema %}

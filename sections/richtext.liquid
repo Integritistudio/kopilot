@@ -1,0 +1,295 @@
+{% style %}
+  .richtext_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing }}px;
+      padding-bottom: {{ section.settings.bottom_spacing }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+      .richtext_wrapper--{{ section.id }} {
+          padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+          padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+      }
+  }
+{% endstyle %}
+
+{{ 'richtext.css' |  asset_url | stylesheet_tag }}
+
+<div class="richtext_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div
+      class="richtext_inner ri--{{ section.settings.content_alignment }}"
+      style="--max-width: {{ section.settings.max_width }}px;"
+    >
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'subhead' %}
+            {% if block.settings.subhead != blank %}
+              <div class="richtext_subhead_wrapper rsw--{{ block.settings.text_style }} rsw_color--{{ block.settings.subhead_color }}" style="--text-transform: {{ block.settings.transform }};">
+                <span>{{ block.settings.subhead }}</span>
+              </div>
+            {% endif %}
+          {% when 'head' %}
+            {% if block.settings.head != blank %}
+              <div class="richtext_head_wrapper">
+                <h2 class="{{ block.settings.head_size }}">{{ block.settings.head }}</h2>
+              </div>
+            {% endif %}
+          {% when 'text' %}
+            {% if block.settings.text != blank %}
+              <div class="richtext_text_wrapper reveal stagger">
+                <div class="rte">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+            {% endif %}
+          {% when 'button' %}
+            {% if block.settings.btn_text != blank or block.settings.btn_link != blank %}
+              <div class="richtext_btn_wrapper reveal stagger{% if block.settings.btn_text == blank %} is_empty{% endif %}">
+                {% if block.settings.btn_link != blank %}
+                  <a href="{{ block.settings.btn_link }}" aria-label="{{ block.settings.btn_text }}" class="btn btn--{{ block.settings.btn_type }}">
+                    {{- block.settings.btn_text -}}
+                  </a>
+                {% else %}
+                  <a role="link" aria-label="{{ block.settings.btn_text }}" class="btn btn--disabled btn--{{ block.settings.btn_type }}">
+                    {{ block.settings.btn_text }}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max. width",
+      "min": 600,
+      "max": 1400,
+      "step": 10,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Sub heading",
+      "type": "subhead",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "subhead",
+          "label": "Sub heading",
+          "default": "Sub Heading"
+        },
+        {
+            "type": "select",
+            "id": "text_style",
+            "label": "Text style",
+            "options": [
+                {
+                    "value": "heading",
+                    "label": "Heading"
+                },
+                {
+                    "value": "body",
+                    "label": "Body"
+                }
+            ],
+            "default": "body"
+        },
+        {
+            "type": "select",
+            "id": "transform",
+            "label": "Text transform",
+            "options": [                
+                {
+                    "value": "uppercase",
+                    "label": "Uppercase"
+                },
+                {
+                    "value": "inherit",
+                    "label": "Default"
+                },
+            ],
+            "default": "uppercase"
+        },
+        {
+            "type": "select",
+            "id": "subhead_color",
+            "label": "Sub heading color",
+            "options": [
+                {
+                    "value": "heading",
+                    "label": "Heading"
+                },
+                {
+                    "value": "body",
+                    "label": "Body"
+                },
+                {
+                    "value": "highlight",
+                    "label": "Highlight"
+                }
+            ],
+            "default": "highlight"
+        }
+      ]
+    },
+    {
+      "name": "Heading",
+      "type": "head",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+            "type": "select",
+            "id": "head_size",  
+            "label": "Heading size",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "H1"
+                },
+                {
+                    "value": "h2",
+                    "label": "H2"
+                },
+                {
+                    "value": "h3",
+                    "label": "H3"
+                }                
+            ],
+            "default": "h2"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>The richtext section allows you to write a short description featuring a subheading, heading, a small description with a call-to-action button.</p>"
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        },
+        {
+            "type": "select",
+            "id": "btn_type",
+            "label": "Button type",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary"
+                }
+            ],
+            "default": "primary"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text",
+      "blocks": [
+        {
+          "type": "head"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

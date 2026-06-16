@@ -1,0 +1,171 @@
+{% style %}
+  .main_blog_wrapper--{{ section.id }} {
+    padding-top: {{ section.settings.top_spacing }}px;
+    padding-bottom: {{ section.settings.bottom_spacing }}px;
+    background: transparent;
+  }
+
+  @media screen and (max-width: 640px) {
+    .main_blog_wrapper--{{ section.id }} {
+      padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'blog.css' | asset_url | stylesheet_tag }}
+{{ 'featured-blog.css' | asset_url | stylesheet_tag }}
+
+
+<div class="main_blog_wrapper--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    {% if section.settings.show_title %}
+      <div class="blog_page_header bp_head--{{ section.settings.head_align }}">
+        <h1 class="reveal">{{ blog.title }}</h1>
+      </div>
+    {% endif %}
+
+    {% paginate blog.articles by section.settings.limit %}
+    <div class="main_blog_inner mbi--cols_{{ section.settings.columns }}">
+      {% for article in blog.articles %}       
+        {% if section.settings.columns == '1' %}
+          {% assign ratio = 1.53 %}
+        {% else %}
+          {% assign ratio = 1 %}
+        {% endif %}
+
+        <div class="article_card_wrapper reveal stagger">
+          {% render 'article-card',
+            article: article,
+            index: forloop.index,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
+            show_tags: section.settings.show_tags,
+            ratio: ratio,
+            columns: section.settings.columns
+          %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% render 'pagination', paginate: paginate, color_scheme: section.settings.pagination_color_scheme %}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "head_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Number of articles per page",
+      "min": 4,
+      "max": 32,
+      "step": 4,
+      "default": 16,      
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "1",
+          "label": "Single column"
+        },
+        {
+          "value": "2",
+          "label": "Double column"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Article cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": false
+    },    
+    {
+      "type": "color_scheme",
+      "id": "pagination_color_scheme",
+      "label": "Pagination color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}

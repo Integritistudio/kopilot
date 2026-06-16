@@ -1,0 +1,26 @@
+{% if link.links != blank %}
+  <ul class="mega_menu_child_wrapper">
+    {% for childlink in link.links %}
+      <li class="mega_menu_child_li">
+        <a class="h6 mega_menu_child_link menu_{{ font_family }}" href="{{ childlink.url }}" aria-label="{{ childlink.title }}">
+          {{- childlink.title -}}
+        </a>
+        {% if childlink.links != blank %}
+          <ul class="mega_menu_grandchild_wrapper">
+            {% for grandchild_link in childlink.links %}
+              <li class="mega_menu_grandchild_li">
+                <a
+                  class="mega_menu_grandchild_link menu_{{ font_family }}"
+                  href="{{ grandchild_link.url }}"
+                  aria-label="{{ grandchild_link.title }}"
+                >
+                  {{- grandchild_link.title -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

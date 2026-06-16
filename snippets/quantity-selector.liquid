@@ -1,0 +1,91 @@
+<quantity-picker>
+  <div class="quantity_inner">
+    <button
+      class="btn_minus"
+      aria-label="{{ 'products.product.quantity_decrease' | t }}"
+      data-minus
+      disabled
+    >
+      <span
+        class="q_hori"
+      ></span>
+    </button>
+    <input
+      type="text"
+      value="{{ variant.quantity_rule.min | default: 1 }}"
+      {% if section %}
+        id="{{ section.id }}--qty_input"
+      {% else %}
+        id="quick_view_qty_input"
+      {% endif %}
+      name="product_quantity"
+      data-min="{{ variant.quantity_rule.min }}"
+      min="{{ variant.quantity_rule.min }}"
+      {% if variant.quantity_rule.max != null %}
+        data-max="{{ variant.quantity_rule.max }}"
+        max="{{ variant.quantity_rule.max }}"
+      {% endif %}
+      step="{{ variant.quantity_rule.increment }}"
+    >
+    {% if section %}
+      <label class="visually-hidden" for="{{ section.id }}--qty_input">{{ 'products.product.quantity' | t }}</label>
+    {% else %}
+      <label class="visually-hidden" for="quick_view_qty_input">{{ 'products.product.quantity' | t }}</label>
+    {% endif %}
+    <button
+      class="btn_plus"
+      aria-label="{{ 'products.product.quantity_increase' | t }}"
+      data-plus
+    >
+      <span class="q_hori"></span>
+      <span class="q_vert"></span>
+    </button>
+  </div>
+
+  {% if variant.quantity_rule and variant.quantity_rule.increment != 1 %}
+    <div class="main_product_quantity_rule_wrapper">
+      <span>
+        {{- 'products.product.min' | t: quantity: variant.quantity_rule.min -}}
+      </span>
+      <span class="dot">|</span>
+      <span>
+        {{- 'products.product.max' | t: quantity: variant.quantity_rule.max -}}
+      </span>
+      <span class="dot">|</span>
+      <span>
+        {{-
+          'products.product.increment'
+          | t: quantity: variant.quantity_rule.increment
+        -}}
+      </span>
+    </div>
+  {% endif %}
+
+  {% if show_quantity_breaks %}
+    {% if variant.quantity_price_breaks != blank %}
+      <div class="main_product_quantity_breaks_prices_wrapper">
+        <div class="main_product_quantity_breaks_prices_inner">
+          <div class="quantity_breaks_prices_heading">
+            <span>{{ 'products.product.quantity' | t }}</span>
+            <span>{{ 'products.product.price.price' | t }}</span>
+          </div>
+
+          <div class="quantity_breaks_prices_content">
+            <div>
+              <span>
+                {{- variant.quantity_rule.min | append: '+' -}}
+              </span>
+              <span>{{ variant.price | money }}</span>
+            </div>
+            {% for break in variant.quantity_price_breaks %}
+              <div>
+                <span>{{ break.minimum_quantity | append: '+' }}</span>
+                <span>{{ break.price | money }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+</quantity-picker>
