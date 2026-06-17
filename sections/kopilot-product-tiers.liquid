@@ -1,0 +1,219 @@
+{% style %}
+  .kopilot-product-tiers--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .kopilot-product-tiers--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-product-tiers.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-product-tiers kopilot-product-tiers--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-product-tiers__header">
+    {% if section.settings.heading != blank %}
+      <h2 class="kopilot-product-tiers__heading kopilot-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+  </div>
+
+  <div class="kopilot-product-tiers__grid">
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      <article class="kopilot-product-tiers__card" {{ block.shopify_attributes }}>
+        {% if block.settings.badge != blank %}
+          <span class="kopilot-product-tiers__card-badge">{{ block.settings.badge }}</span>
+        {% endif %}
+
+        <div class="kopilot-product-tiers__card-media">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+          {% elsif product != blank and product.featured_image != blank %}
+            {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+          {% endif %}
+        </div>
+
+        <div class="kopilot-product-tiers__card-title-row">
+          <h3 class="kopilot-product-tiers__card-title kopilot-body">
+            {% if block.settings.title != blank %}
+              {{ block.settings.title }}
+            {% elsif product != blank %}
+              {{ product.title }}
+            {% endif %}
+          </h3>
+          {% if block.settings.save_badge != blank %}
+            <span class="kopilot-product-tiers__save-badge">{{ block.settings.save_badge }}</span>
+          {% endif %}
+        </div>
+
+        <div class="kopilot-product-tiers__meta">
+          {% if block.settings.show_reviews %}
+            <div class="kopilot-product-tiers__reviews kopilot-body">
+              <span>{{ block.settings.review_count }} Reviews</span>
+              <span class="kopilot-product-tiers__stars" aria-hidden="true">★★★★★</span>
+            </div>
+          {% endif %}
+          <p class="kopilot-product-tiers__price kopilot-body">
+            {% if block.settings.price != blank %}
+              {{ block.settings.price }}
+            {% elsif product != blank %}
+              {{ product.price | money }}
+            {% endif %}
+          </p>
+        </div>
+
+        {% if block.settings.description != blank %}
+          <p class="kopilot-product-tiers__description kopilot-body">{{ block.settings.description }}</p>
+        {% endif %}
+
+        {% if block.settings.feature_1 != blank or block.settings.feature_2 != blank %}
+          <ul class="kopilot-product-tiers__features kopilot-body">
+            {% if block.settings.feature_1 != blank %}
+              <li>{{ block.settings.feature_1 }}</li>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+              <li>{{ block.settings.feature_2 }}</li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+        {% if block.settings.button_label != blank %}
+          <a
+            href="{% if product != blank %}{{ product.url }}{% else %}{{ block.settings.button_link }}{% endif %}"
+            class="kopilot-btn kopilot-product-tiers__btn"
+          >
+            {{ block.settings.button_label }}
+          </a>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Product tiers",
+  "tag": "section",
+  "class": "kopilot-product-tiers-section",
+  "max_blocks": 3,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Be prepared on every ride."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Product tier",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "text", "id": "badge", "label": "Badge (e.g. Best Value)" },
+        { "type": "text", "id": "title", "label": "Title override" },
+        { "type": "text", "id": "save_badge", "label": "Save badge (e.g. SAVE 10%)" },
+        { "type": "checkbox", "id": "show_reviews", "label": "Show reviews", "default": true },
+        { "type": "text", "id": "review_count", "label": "Review count", "default": "47" },
+        { "type": "text", "id": "price", "label": "Price override" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "feature_1", "label": "Feature 1" },
+        { "type": "text", "id": "feature_2", "label": "Feature 2" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "GET 1 TAG" },
+        { "type": "url", "id": "button_link", "label": "Button link (if no product)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Product tiers",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "title": "1 Tag",
+            "description": "Get started with one tag for your most-used piece of gear.",
+            "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
+            "feature_2": "A simple, reliable solution for riders who stick to one setup",
+            "button_label": "GET 1 TAG"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "2 Tags",
+            "save_badge": "SAVE 10%",
+            "description": "Save with an additional tag for equipping more gear, or share one with a friend or family member.",
+            "feature_1": "Multiple mounting solutions for various gear",
+            "feature_2": "Second tag makes a great gift",
+            "button_label": "GET 2 TAGS"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "3 Tags",
+            "badge": "Best Value",
+            "save_badge": "SAVE 20%",
+            "description": "Extensive coverage for your gear, or your crew.",
+            "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
+            "feature_2": "Greatest savings, most coverage",
+            "button_label": "GET 3 TAGS"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+{% style %}
+  .kopilot-partners--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-partners.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-partners kopilot-partners--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-partners__inner">
+    <div class="kopilot-partners__logos">
+      {% for block in section.blocks %}
+        {% if block.settings.logo != blank %}
+          <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
+            {{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.logo_alt }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.text != blank %}
+      <p class="kopilot-partners__text kopilot-body">{{ section.settings.text }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Partners",
+  "tag": "section",
+  "class": "kopilot-partners-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Trusted by the biggest names in off-road racing. An official safety partner for riders and race series nationwide."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo", "label": "Logo" },
+        { "type": "text", "id": "logo_alt", "label": "Alt text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Partners",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

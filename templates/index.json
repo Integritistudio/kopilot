@@ -1,1 +1,381 @@
-{"sections":{"hero_banner_AjKdAD":{"type":"hero-banner","blocks":{"slide_MhFFpJ":{"type":"slide","settings":{"product":""}},"slide_Kx36f8":{"type":"slide","settings":{"product":""}},"slide_Dqey3H":{"type":"slide","settings":{"product":""}},"slide_fQpBzw":{"type":"slide","settings":{"product":""}},"slide_fmMB86":{"type":"slide","settings":{"product":""}}},"block_order":["slide_MhFFpJ","slide_Kx36f8","slide_Dqey3H","slide_fQpBzw","slide_fmMB86"],"name":"Hero banner","settings":{"color_scheme":"scheme-3","aspect_ratio":"portrait","show_ticker_text":true,"ticker1":"RENOVATE","ticker2":"RENOVATE","head":"Hero Banner","text":"Use this section to highlight important content at the top of your page. Add images, promotional text, and optional ticker messaging to showcase campaigns, collections, or brand highlights.","btn_label":"Button Label","btn_link":"","show_progress_bar":true,"top_spacing":60,"bottom_spacing":60}},"featured_collection_tTb3NB":{"type":"featured-collection","name":"Featured collection","settings":{"color_scheme":"scheme-1","head":"Featured Collection","head_align":"left","collection":"","show_block":false,"block_head":"Block Heading","block_text":"Use this block to describe your collection.","show_btn":true,"btn_label":"Shop Now","btn_style":"primary","view":"slider","show_progress":true,"columns":4,"limit":10,"show_arrows":true,"show_card_bg":true,"card_bg":"#f6f2f0","card_text":"#000000","card_text_align":"center","aspect_ratio":"portrait","show_secondary_img":true,"show_quick_view":true,"show_color_swatches":true,"mob_cols":"1","top_spacing":60,"bottom_spacing":60}},"category_section_qz9Y8r":{"type":"category-section","blocks":{"category_VRLtd3":{"type":"category","settings":{"collection":"","title":"Collection title"}},"category_Pmgbb4":{"type":"category","settings":{"collection":"","title":"Collection title"}}},"block_order":["category_VRLtd3","category_Pmgbb4"],"name":"Category section","settings":{"color_scheme":"scheme-1","img_height":"adapt","box_position":"center","top_spacing":0,"bottom_spacing":80}},"collection_list_K3GxP8":{"type":"collection-list","blocks":{"collection_jHAPA9":{"type":"collection","settings":{"collection":"","title":"Collection Title"}},"collection_TDzJJe":{"type":"collection","settings":{"collection":"","title":"Collection Title"}},"collection_cqarEd":{"type":"collection","settings":{"collection":"","title":"Collection Title"}},"collection_9cd7pt":{"type":"collection","settings":{"collection":"","title":"Collection Title"}},"collection_QfRTzW":{"type":"collection","settings":{"collection":"","title":"Collection Title"}},"collection_ywfctY":{"type":"collection","settings":{"collection":"","title":"Collection Title"}}},"block_order":["collection_jHAPA9","collection_TDzJJe","collection_cqarEd","collection_9cd7pt","collection_QfRTzW","collection_ywfctY"],"name":"Collection list","settings":{"color_scheme":"scheme-3","head":"Collection List","head_align":"left","columns":3,"top_spacing":60,"bottom_spacing":60}},"video_background_L4PHVF":{"type":"video-background","name":"Video background","settings":{"color_scheme":"scheme-3","width":"full_width","show_ticker_text":true,"ticker1":"VIDEO PLAY","ticker2":"VIDEO PLAY","opacity":20,"head":"Video Background","text":"Use this section to showcase a video or image. Add a short description to explain what the content represents.","btn_label":"Button Label","btn_link":"","text_position":"center","text_alignment":"center","show_container":false,"container_bg":"#ffffff","container_text":"#ffffff","apply_glass_effect":true,"top_spacing":40,"bottom_spacing":0}},"horizontal_scroller_eFqWBX":{"type":"horizontal-scroller","blocks":{"item_xQz6mX":{"type":"item","settings":{"text":"Featured Text"}},"item_7yVBB6":{"type":"item","settings":{"text":"Featured Text"}},"item_ydiLYV":{"type":"item","settings":{"text":"Featured Text"}},"item_A9HH3L":{"type":"item","settings":{"text":"Featured Text"}}},"block_order":["item_xQz6mX","item_7yVBB6","item_ydiLYV","item_A9HH3L"],"name":"Horizontal Scroller","settings":{"color_scheme":"scheme-2","speed":80,"direction":"left","gap":50,"enable_tilt":false,"layout_style":"horizontal","text_size":"h4","img_size":70,"button_text":"","button_link":"","btn_bg":"#f6f2f0","btn_text":"#ffffff","top_spacing":30,"bottom_spacing":30,"left_spacing":0,"right_spacing":0,"border-radius":0}},"image_with_text_BBrW9n":{"type":"image-with-text","blocks":{"head_HW7jdY":{"type":"head","settings":{"head":"Image With Text","size":"h1"}},"content_mK4L7g":{"type":"content","settings":{"content":"<p>Add a section that pairs images with text to highlight products, features, or content. Each block can include an image or icon alongside a title or short description, making it easy to create visually engaging and informative layouts that draw attention to your key messages.<\/p>"}},"button_bAmVgE":{"type":"button","settings":{"btn_type":"primary","btn_label":"Button Label","btn_link":""}}},"block_order":["head_HW7jdY","content_mK4L7g","button_bAmVgE"],"name":"Image with text","settings":{"color_scheme":"scheme-1","width":"container_width","max_width":1380,"img_max_width":84,"img_alignment":"right","show_icon":false,"icon_position":50,"top_spacing":40,"bottom_spacing":40}},"image_hotspots_VgVPLq":{"type":"image-hotspots","blocks":{"hotspot_neiQYK":{"type":"hotspot","settings":{"horizontal_position":80,"vertical_position":16,"product":""}},"hotspot_WBpGxp":{"type":"hotspot","settings":{"horizontal_position":17,"vertical_position":37,"product":""}}},"block_order":["hotspot_neiQYK","hotspot_WBpGxp"],"name":"Image hotspots","settings":{"color_scheme":"scheme-1","img_height":"adapt","box_position":"center","top_spacing":40,"bottom_spacing":40}},"featured_product_giMaF9":{"type":"featured-product","blocks":{"badge_hDWyzd":{"type":"badge","settings":{"sold_out_badge_color_scheme":"","sale_badge_color_scheme":"","custom_badge_color_scheme":""}},"title_pnmTWB":{"type":"title","settings":{}},"price_qUUPaP":{"type":"price","settings":{}},"separator_tnBPg7":{"type":"separator","settings":{}},"variant_picker_BfxtBL":{"type":"variant-picker","settings":{"options_type":"dropdown"}},"quantity_YEWTDQ":{"type":"quantity","settings":{"show_quantity_breaks":true}},"add_to_cart_buttons_t4DG7K":{"type":"add-to-cart-buttons","settings":{"show_dynamic_button":true,"show_gift_recipient_form":true}}},"block_order":["badge_hDWyzd","title_pnmTWB","price_qUUPaP","separator_tnBPg7","variant_picker_BfxtBL","quantity_YEWTDQ","add_to_cart_buttons_t4DG7K"],"name":"Featured product","settings":{"color_scheme":"scheme-1","product":"","columns":"single","aspect_ratio":"portrait","apply_bg":true,"img_bg":"#f6f2f0","show_social_share":true,"show_thumbnails":true,"show_arrows":true,"top_spacing":40,"bottom_spacing":40}},"offers_section_zbckTL":{"type":"offers-section","blocks":{"tab_k8gtRL":{"type":"tab","settings":{"collection":"","title":"Title"}},"tab_LnFcM7":{"type":"tab","settings":{"collection":"","title":"Title"}},"tab_xjrdeX":{"type":"tab","settings":{"collection":"","title":"Title"}},"card_BBBBFN":{"type":"card","settings":{"block_bg":"#d8d8d8","block_heading":"#ffffff","head":"Card Heading","text":"Write a short content describing your section or your block heading.","btn_text":"Button Label","btn_link":""}},"card_nU3XJM":{"type":"card","settings":{"block_bg":"#b9b9b9","block_heading":"#ffffff","head":"Card Heading","text":"Write a short content describing your section or your block heading.","btn_text":"Button Label","btn_link":""}},"card_RpcQhb":{"type":"card","settings":{"block_bg":"#d8d8d8","block_heading":"#ffffff","head":"Card Heading","text":"Write a short content describing your section or your block heading.","btn_text":"Button Label","btn_link":""}}},"block_order":["tab_k8gtRL","tab_LnFcM7","tab_xjrdeX","card_BBBBFN","card_nU3XJM","card_RpcQhb"],"name":"Offers section","settings":{"color_scheme":"scheme-2","head":"OFFERS","head_color":"#241911","top_spacing":100,"bottom_spacing":0}},"vertical_image_scroller_pLdTTp":{"type":"vertical-image-scroller","blocks":{"image_kVRfD9":{"type":"image","settings":{"link":""}},"image_nVdiRb":{"type":"image","settings":{"link":""}},"image_a9eBNm":{"type":"image","settings":{"link":""}},"image_MMRBGd":{"type":"image","settings":{"link":""}},"image_RXz6LT":{"type":"image","settings":{"link":""}},"image_dVPyzr":{"type":"image","settings":{"link":""}}},"block_order":["image_kVRfD9","image_nVdiRb","image_a9eBNm","image_MMRBGd","image_RXz6LT","image_dVPyzr"],"name":"Vertical image scroller","settings":{"color_scheme":"scheme-1","scroll_text":"Vertical Image Scroller","color":"#000000","hover_color":"#9f9f9f","additional_text":"<p>Elevate your interiors with timeless designs and refined details, thoughtfully crafted to enhance comfort, style, and harmony. Our décor blends modern aesthetics with everyday functionality, creating living spaces that feel warm, elegant, and effortlessly sophisticated perfectly suited for contemporary lifestyles and beautifully designed homes.<\/p>","top_spacing":80,"bottom_spacing":40}},"before_after_rrKgir":{"type":"before-after","name":"Before\/after","settings":{"color_scheme":"scheme-1","width":"full_width","img_height":"adapt","show_box":true,"top_spacing":40,"bottom_spacing":40}},"testimonials_QYV8fH":{"type":"testimonials","blocks":{"testimonial_g3y6gd":{"type":"testimonial","settings":{"block_bg":"#dbf2f4","quote_color":"#59d4df","content":"Showcase the best reviews by the customers about the website or a product.","author_name":"Author","author_designation":"Author Designation","product":""}},"testimonial_8Qd3tb":{"type":"testimonial","settings":{"block_bg":"#e0dfef","quote_color":"#9e9ed9","content":"Showcase the best reviews by the customers about the website or a product.","author_name":"Author","author_designation":"Author Designation","product":""}},"testimonial_X3QcXt":{"type":"testimonial","settings":{"block_bg":"#dbf2f4","quote_color":"#59d4df","content":"Showcase the best reviews by the customers about the website or a product.","author_name":"Author","author_designation":"Author Designation","product":""}},"testimonial_4Rc4X3":{"type":"testimonial","settings":{"block_bg":"#e0dfef","quote_color":"#9e9ed9","content":"Showcase the best reviews by the customers about the website or a product.","author_name":"Author","author_designation":"Author Designation","product":""}}},"block_order":["testimonial_g3y6gd","testimonial_8Qd3tb","testimonial_X3QcXt","testimonial_4Rc4X3"],"name":"Testimonials","settings":{"color_scheme":"scheme-1","head":"Testimonials","head_align":"left","show_progress":true,"top_spacing":40,"bottom_spacing":40}},"newsletter_eHDaHB":{"type":"newsletter","name":"Newsletter","settings":{"color_scheme":"scheme-1","width":"full_width","overlay":0,"img_height":600,"direction":"left","speed":40,"top_spacing":40,"bottom_spacing":40}},"featured_blog_BkAt87":{"type":"featured-blog","name":"Featured blog","settings":{"color_scheme":"scheme-1","head":"Featured blog","head_align":"left","show_progress":false,"blog":"","columns":1.5,"show_date":true,"show_author":true,"show_tags":false,"top_spacing":20,"bottom_spacing":40}},"image_gallery_FLaDFA":{"type":"image-gallery","blocks":{"image_9nnLKk":{"type":"image","settings":{"max_width":14,"position":"center","link":""}},"image_RXhDMU":{"type":"image","settings":{"max_width":14,"position":"top","link":""}},"image_GJR4wn":{"type":"image","settings":{"max_width":24,"position":"top","link":""}},"image_Kff9wk":{"type":"image","settings":{"max_width":14,"position":"center","link":""}},"image_BcVwpK":{"type":"image","settings":{"max_width":14,"position":"top","link":""}}},"block_order":["image_9nnLKk","image_RXhDMU","image_GJR4wn","image_Kff9wk","image_BcVwpK"],"name":"Image gallery","settings":{"color_scheme":"scheme-1","head":"Image gallery","head_align":"left","columns":5,"aspect_ratio":"portrait","new_tab":false,"show_btn":true,"btn_label":"Button Label","btn_link":"","btn_style":"secondary","top_spacing":20,"bottom_spacing":60}}},"order":["hero_banner_AjKdAD","featured_collection_tTb3NB","category_section_qz9Y8r","collection_list_K3GxP8","video_background_L4PHVF","horizontal_scroller_eFqWBX","image_with_text_BBrW9n","image_hotspots_VgVPLq","featured_product_giMaF9","offers_section_zbckTL","vertical_image_scroller_pLdTTp","before_after_rrKgir","testimonials_QYV8fH","newsletter_eHDaHB","featured_blog_BkAt87","image_gallery_FLaDFA"]}
+{
+  "sections": {
+    "kopilot_hero": {
+      "type": "kopilot-hero",
+      "blocks": {
+        "logo_1": { "type": "logo", "settings": {} },
+        "logo_2": { "type": "logo", "settings": {} }
+      },
+      "block_order": ["logo_1", "logo_2"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_overlay": true,
+        "eyebrow": "Off-Road Motorcycle Riders",
+        "heading_line_1": "Accidents happen fast.",
+        "heading_line_2": "Be prepared with KOPILOT.ID.",
+        "description": "Stay prepared with our durable, waterproof NFC tag that makes your medical details instantly accessible, even in remote terrain—no signal or battery needed.",
+        "button_label": "Get KOPILOT.ID",
+        "button_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_image_text": {
+      "type": "kopilot-image-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "image_position": "left",
+        "heading": "If something goes wrong, first responders need more than your name.",
+        "text": "<p>After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.</p>",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_features": {
+      "type": "kopilot-features",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "label": "Durable and waterproof" } },
+        "f2": { "type": "feature", "settings": { "label": "No battery/ charging needed" } },
+        "f3": { "type": "feature", "settings": { "label": "No subscription required" } },
+        "f4": { "type": "feature", "settings": { "label": "Instant medical & contact info" } },
+        "f5": { "type": "feature", "settings": { "label": "Translates into 24 languages" } },
+        "f6": { "type": "feature", "settings": { "label": "Works everywhere" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_position": "right",
+        "heading": "For the rides you plan and the moments you don't.",
+        "text": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_info_cards": {
+      "type": "kopilot-info-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Your Information, Ready in Seconds",
+            "text": "<p>Your profile stores your medical information and emergency contacts. Anyone with a smartphone can access it in an emergency.</p>"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "Quick to Set Up & Easy to Attach",
+            "text": "<p>Setup takes a minute, and you only need to add the information you're willing to share. Then, attach it to your gear with one of the included mounts.</p>"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "title": "Everything Managed in One App",
+            "text": "<p>Manage tags, gear setups, family members, and receive scan notifications with location — all in one free, easy-to-use app.</p>"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "The information they need when every second counts.",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_ambassadors": {
+      "type": "kopilot-ambassadors",
+      "blocks": {
+        "a1": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Hillary Allen",
+            "role": "- Team USA // Ultra Marathon Trail Runner",
+            "quote": "KOPILOT.ID gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage."
+          }
+        },
+        "a2": {
+          "type": "card",
+          "settings": {
+            "badge": "Event",
+            "name": "The Breck Epic",
+            "role": "Renowned Multi-Stage Mountain Bike Race",
+            "quote": "One of the most legendary races in mountain biking, the Breck Epic relies on KOPILOT.ID as a critical part of their emergency response protocol."
+          }
+        },
+        "a3": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Kait Boyle",
+            "role": "- Cyclist",
+            "quote": "Love my KOPILOT.ID! Small, lightweight and easy to use… all my adventure pals got one for Christmas."
+          }
+        }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Used on race day and every day in between.",
+        "text": "From race days to training days to fun-focused days, KOPILOT.ID gives riders the confidence to push their limits, knowing help will have the information they need if something goes wrong.",
+        "show_progress": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_partners": {
+      "type": "kopilot-partners",
+      "blocks": {
+        "p1": { "type": "logo", "settings": {} },
+        "p2": { "type": "logo", "settings": {} },
+        "p3": { "type": "logo", "settings": {} },
+        "p4": { "type": "logo", "settings": {} },
+        "p5": { "type": "logo", "settings": {} },
+        "p6": { "type": "logo", "settings": {} }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "text": "Trusted by the biggest names in off-road racing. An official safety partner for riders and race series nationwide.",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "kopilot_product_tiers": {
+      "type": "kopilot-product-tiers",
+      "blocks": {
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "title": "1 Tag",
+            "description": "Get started with one tag for your most-used piece of gear.",
+            "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
+            "feature_2": "A simple, reliable solution for riders who stick to one setup",
+            "button_label": "GET 1 TAG",
+            "show_reviews": true,
+            "review_count": "47"
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "title": "2 Tags",
+            "save_badge": "SAVE 10%",
+            "description": "Save with an additional tag for equipping more gear, or share one with a friend or family member.",
+            "feature_1": "Multiple mounting solutions for various gear",
+            "feature_2": "Second tag makes a great gift",
+            "button_label": "GET 2 TAGS",
+            "show_reviews": true,
+            "review_count": "47"
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "title": "3 Tags",
+            "badge": "Best Value",
+            "save_badge": "SAVE 20%",
+            "description": "Extensive coverage for your gear, or your crew.",
+            "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
+            "feature_2": "Greatest savings, most coverage",
+            "button_label": "GET 3 TAGS",
+            "show_reviews": true,
+            "review_count": "47"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Be prepared on every ride.",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_guarantees": {
+      "type": "kopilot-guarantees",
+      "blocks": {
+        "g1": { "type": "guarantee", "settings": { "label": "Money-back guarantee" } },
+        "g2": { "type": "guarantee", "settings": { "label": "No subscription. Ever." } },
+        "g3": { "type": "guarantee", "settings": { "label": "Lifetime warranty" } },
+        "g4": { "type": "guarantee", "settings": { "label": "Works Everywhere" } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "kopilot_reviews": {
+      "type": "kopilot-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Don M",
+            "verified": true,
+            "date": "04/16/2026",
+            "text": "Easy to set up and mount on my helmet"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Richard",
+            "verified": true,
+            "date": "03/24/2026",
+            "text": "My other half was diagnosed with a brain tumour a few years ago... KOPILOT.ID gives us piece of mind that regardless of which activity she is participating in, if anything happens someone can quickly find essential information."
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Jerry",
+            "verified": false,
+            "date": "03/03/2026",
+            "text": "What a great idea/product. I found a motorcycle helmet on the side of the interstate yesterday with one of these tags on it."
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "James",
+            "verified": true,
+            "date": "02/17/2026",
+            "text": "Love it!"
+          }
+        }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Customer Reviews",
+        "average_rating": "5.00",
+        "total_reviews": 8,
+        "star_5_count": 8,
+        "star_4_count": 0,
+        "star_3_count": 0,
+        "star_2_count": 0,
+        "star_1_count": 0,
+        "write_review_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_faq": {
+      "type": "kopilot-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What is an NFC tag and how does it work?",
+            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do NFC tags work without cell service?",
+            "answer": "<p>Yes. Once your profile is set up, the tag works without cell service or battery power on the tag itself.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What information can I store on my NFC medical ID?",
+            "answer": "<p>You control what you share — medical conditions, allergies, medications, emergency contacts, and more.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How do I use an NFC tag like KOPILOT.ID?",
+            "answer": "<p>Set up your profile in the app, attach the tag to your gear, and anyone can tap it with a smartphone in an emergency.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Where should I place my NFC emergency tag?",
+            "answer": "<p>Helmet, gear, or anywhere first responders are likely to find it. Mounting options are included.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How long do NFC tags last? Do they need charging?",
+            "answer": "<p>NFC tags have no battery and are designed to last for years of regular use.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Is this useful even if I already ride with safety gear?",
+            "answer": "<p>Yes. Safety gear protects your body — KOPILOT.ID ensures responders have the information they need to help you.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Questions",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_cta_banner": {
+      "type": "kopilot-cta-banner",
+      "blocks": {
+        "tr1": { "type": "trust", "settings": { "label": "Money-back guarantee" } },
+        "tr2": { "type": "trust", "settings": { "label": "No subscription" } },
+        "tr3": { "type": "trust", "settings": { "label": "Works anywhere" } }
+      },
+      "block_order": ["tr1", "tr2", "tr3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Wherever you ride, KOPILOT.ID has your back.",
+        "button_label": "Get KOPILOT.ID",
+        "button_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "kopilot_hero",
+    "kopilot_image_text",
+    "kopilot_features",
+    "kopilot_info_cards",
+    "kopilot_ambassadors",
+    "kopilot_partners",
+    "kopilot_product_tiers",
+    "kopilot_guarantees",
+    "kopilot_reviews",
+    "kopilot_faq",
+    "kopilot_cta_banner"
+  ]
+}

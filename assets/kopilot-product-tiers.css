@@ -1,0 +1,161 @@
+.kopilot-product-tiers {
+  background: #fff;
+}
+
+.kopilot-product-tiers__header {
+  text-align: center;
+  padding: 4.8rem 2rem 3rem;
+}
+
+.kopilot-product-tiers__heading {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.kopilot-product-tiers__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 0 2rem 4rem;
+}
+
+.kopilot-product-tiers__card {
+  border: 1px solid #e5e5e5;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.kopilot-product-tiers__card-badge {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+  padding: 0.8rem 2.2rem;
+  background: var(--kopilot-dark);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.kopilot-product-tiers__card-media {
+  aspect-ratio: 379 / 220;
+  margin-bottom: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  overflow: hidden;
+}
+
+.kopilot-product-tiers__card-media img {
+  max-width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+.kopilot-product-tiers__card-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kopilot-product-tiers__card-title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.kopilot-product-tiers__save-badge {
+  padding: 0.4rem 2.6rem;
+  background: var(--kopilot-red);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.kopilot-product-tiers__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.kopilot-product-tiers__reviews {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.kopilot-product-tiers__stars {
+  display: flex;
+  gap: 0.3rem;
+  color: #f5a623;
+}
+
+.kopilot-product-tiers__price {
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.kopilot-product-tiers__description {
+  font-size: 1.6rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.2;
+}
+
+.kopilot-product-tiers__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kopilot-product-tiers__features li {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.kopilot-product-tiers__features li::before {
+  content: "›";
+  color: var(--kopilot-red);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.kopilot-product-tiers__btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 1.7rem 2rem;
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 990px) {
+  .kopilot-product-tiers__heading {
+    font-size: 4.3rem;
+  }
+
+  .kopilot-product-tiers__grid {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.4rem;
+    padding: 0 5.5rem 6rem;
+  }
+
+  .kopilot-product-tiers__card {
+    flex: 0 0 42.7rem;
+    max-width: calc(33.333% - 1.6rem);
+  }
+}

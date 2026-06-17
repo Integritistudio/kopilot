@@ -1,14 +1,23 @@
 {% style %}
+  :root {
+    --kopilot-header-bg: {{ section.settings.header_bg_color }};
+    --kopilot-nav-color: {{ section.settings.nav_link_color }};
+    --kopilot-nav-size: {{ section.settings.nav_font_size }}px;
+    --kopilot-cta-bg: {{ section.settings.cta_bg_color }};
+    --kopilot-cta-color: {{ section.settings.cta_text_color }};
+  }
+
   .header_wrapper {
     padding-top: {{ section.settings.top_spacing }}px;
     padding-bottom: {{ section.settings.bottom_spacing }}px;
+    background: var(--kopilot-header-bg) !important;
   }
 
   .header_wrapper.has-divider {
     border-bottom: 1px solid {{ section.settings.divider_color }};
   }
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1299px) {
     .header_wrapper {
       padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
       padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
@@ -61,15 +70,24 @@
   >
     <div class="container">
       <div class="header_inner {{ section.settings.logo_position }} {% if section.settings.enable-search-bar %} enable-search-bar {% endif %}">
-        <!-- HAMBURGER -->
-        <button
-          id="mobile_menu_drawer_btn"
-          class="mobile_menu_trigger_btn drawer_open_btn"
-          aria-label="{{ 'accessibility.mobile_menu_trigger_button' | t }}"
-          data-drawer="mobile_menu_drawer"
-        >
-          <div class="svg_wrapper">{{ 'icon-hamburger.svg' | inline_asset_content }}</div>
-        </button>
+        <!-- HAMBURGER + MOBILE SEARCH -->
+        <div class="header_mobile_left">
+          <button
+            id="mobile_menu_drawer_btn"
+            class="mobile_menu_trigger_btn drawer_open_btn"
+            aria-label="{{ 'accessibility.mobile_menu_trigger_button' | t }}"
+            data-drawer="mobile_menu_drawer"
+          >
+            <div class="svg_wrapper">{{ 'icon-hamburger.svg' | inline_asset_content }}</div>
+          </button>
+          <button
+            class="header_mobile_search_btn drawer_open_btn"
+            aria-label="{{ 'accessibility.header_search_icon' | t }}"
+            data-drawer="search_drawer"
+          >
+            <div class="svg_wrapper">{{ 'icon-search.svg' | inline_asset_content }}</div>
+          </button>
+        </div>
 
         {% if section.settings.logo_position == 'logo-center-menu-bottom' %}
           <!-- HEADER SEARCH -->
@@ -112,7 +130,7 @@
                     alt: shop.name
                 }}
               {%- else -%}
-                <span class="h2">{{ shop.name }}</span>
+                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
               {%- endif -%}
             </a>
 
@@ -168,7 +186,7 @@
                     alt: shop.name
                 }}
               {%- else -%}
-                <span class="h2">{{ shop.name }}</span>
+                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
               {%- endif -%}
             </a>
 
@@ -179,6 +197,26 @@
         {% endif %}
 
         <div class="header_action_wrapper">
+          <!-- KOPILOT CTA BUTTON -->
+          {% if section.settings.cta_button_url != blank %}
+            {% assign cta_href = section.settings.cta_button_url %}
+          {% else %}
+            {% assign cta_href = routes.cart_url %}
+          {% endif %}
+          <a
+            href="{{ cta_href }}"
+            class="header_kopilot_cta{% unless template contains 'cart' %}{% if settings.cart_type == 'drawer' and section.settings.cta_button_url == blank %} drawer_open_btn{% endif %}{% endunless %}"
+            aria-label="{{ section.settings.cta_button_text }}"
+            {% unless template contains 'cart' %}
+              {% if settings.cart_type == 'drawer' and section.settings.cta_button_url == blank %}
+                data-drawer="cart_drawer"
+              {% endif %}
+            {% endunless %}
+          >
+            <span class="header_cta_text">{{ section.settings.cta_button_text }}</span>
+            <div class="svg_wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</div>
+          </a>
+
           <!-- ACCOUNTS -->
           {%- if shop.customer_accounts_enabled -%}
             <div class="header_account font_{{ section.settings.font_family }}">
@@ -338,7 +376,7 @@
                     alt: shop.name
                 }}
               {%- else -%}
-                <span class="h2">{{ shop.name }}</span>
+                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
               {%- endif -%}
             </a>
 
@@ -633,6 +671,56 @@
       "label": "Enable sticky header",
       "default": true,
       "visible_if": "{{ section.settings.header_overlay == false }}"
+    },
+    {
+      "type": "header",
+      "content": "Kopilot Design"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Header background color",
+      "default": "#EEEEEE"
+    },
+    {
+      "type": "color",
+      "id": "nav_link_color",
+      "label": "Nav link color",
+      "default": "#3B3B3B"
+    },
+    {
+      "type": "range",
+      "id": "nav_font_size",
+      "label": "Nav font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA button text",
+      "default": "Get KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url",
+      "label": "CTA button link",
+      "info": "Leave blank to use cart link"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA button background",
+      "default": "#EF0008"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA button text color",
+      "default": "#FFFFFF"
     },
     {
       "type": "header",

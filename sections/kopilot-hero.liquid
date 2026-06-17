@@ -1,0 +1,246 @@
+{% style %}
+  .kopilot-hero--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .kopilot-hero--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-hero__bg">
+    {% if section.settings.background_image != blank %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '750,1100,1500,2000,2400',
+          sizes: '100vw',
+          alt: section.settings.heading_line_1
+      }}
+    {% else %}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder_svg' }}
+    {% endif %}
+    {% if section.settings.show_overlay %}
+      <div class="kopilot-hero__overlay"></div>
+    {% endif %}
+  </div>
+
+  <div class="kopilot-hero__inner">
+    <div class="kopilot-hero__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="kopilot-hero__eyebrow kopilot-body">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      <div class="kopilot-hero__title-group">
+        {% if section.settings.heading_line_1 != blank %}
+          <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium">
+            {{ section.settings.heading_line_1 }}
+          </h1>
+        {% endif %}
+        {% if section.settings.heading_line_2 != blank %}
+          <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading">
+            {{ section.settings.heading_line_2 }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% if section.settings.description != blank %}
+        <p class="kopilot-hero__description kopilot-body">{{ section.settings.description }}</p>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link | default: '#' }}"
+          class="kopilot-btn"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="kopilot-hero__logos kopilot-hero__logos--mobile">
+          {% for block in section.blocks %}
+            {% if block.settings.logo != blank %}
+              <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+                {{
+                  block.settings.logo
+                  | image_url: width: 200
+                  | image_tag: loading: 'lazy', alt: block.settings.logo_alt
+                }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.product_image != blank %}
+      <div class="kopilot-hero__product">
+        <div class="kopilot-hero__product-img">
+          {{
+            section.settings.product_image
+            | image_url: width: 500
+            | image_tag: loading: 'eager', alt: 'KOPILOT.ID product'
+          }}
+        </div>
+        <div class="kopilot-hero__logos kopilot-hero__logos--desktop">
+          {% for block in section.blocks %}
+            {% if block.settings.logo != blank %}
+              <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+                {{
+                  block.settings.logo
+                  | image_url: width: 200
+                  | image_tag: loading: 'lazy', alt: block.settings.logo_alt
+                }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Hero",
+  "tag": "section",
+  "class": "kopilot-hero-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show gradient overlay",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (desktop)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Off-Road Motorcycle Riders"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Accidents happen fast."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "Be prepared with KOPILOT.ID."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Stay prepared with our durable, waterproof NFC tag that makes your medical details instantly accessible, even in remote terrain—no signal or battery needed."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Partner logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Logo alt text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Hero",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

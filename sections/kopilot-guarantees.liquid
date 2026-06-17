@@ -1,0 +1,83 @@
+{% style %}
+  .kopilot-guarantees--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-guarantees.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-guarantees kopilot-guarantees--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-guarantees__grid">
+    {% for block in section.blocks %}
+      <div class="kopilot-guarantees__item" {{ block.shopify_attributes }}>
+        {% if block.settings.icon != blank %}
+          <div class="kopilot-guarantees__icon">
+            {{ block.settings.icon | image_url: width: 160 | image_tag: loading: 'lazy', alt: block.settings.label }}
+          </div>
+        {% endif %}
+        {% if block.settings.label != blank %}
+          <p class="kopilot-guarantees__label kopilot-body">{{ block.settings.label }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Guarantees",
+  "tag": "section",
+  "class": "kopilot-guarantees-section",
+  "max_blocks": 4,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guarantee",
+      "name": "Guarantee",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Money-back guarantee" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Guarantees",
+      "blocks": [
+        { "type": "guarantee", "settings": { "label": "Money-back guarantee" } },
+        { "type": "guarantee", "settings": { "label": "No subscription. Ever." } },
+        { "type": "guarantee", "settings": { "label": "Lifetime warranty" } },
+        { "type": "guarantee", "settings": { "label": "Works Everywhere" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

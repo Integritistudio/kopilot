@@ -1,0 +1,126 @@
+.kopilot-features {
+  background: #fff;
+  overflow: hidden;
+}
+
+.kopilot-features__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4.1rem;
+  padding: 2rem 0 4rem;
+}
+
+.kopilot-features__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+  padding: 3.7rem 2.5rem 0;
+  text-align: center;
+  align-items: center;
+}
+
+.kopilot-features__heading {
+  font-size: 3rem;
+  margin: 0;
+  max-width: 33.2rem;
+}
+
+.kopilot-features__text {
+  font-size: 1.5rem;
+  margin: 0;
+  max-width: 31rem;
+  line-height: 1.3;
+}
+
+.kopilot-features__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4.5rem 2rem;
+  padding: 0 2.5rem;
+  justify-items: center;
+}
+
+.kopilot-features__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 16rem;
+  text-align: center;
+}
+
+.kopilot-features__icon {
+  width: 5.8rem;
+  height: 5.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kopilot-features__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.kopilot-features__label {
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.kopilot-features__media {
+  width: 100%;
+  aspect-ratio: 744 / 711;
+  overflow: hidden;
+}
+
+.kopilot-features__media img,
+.kopilot-features__media .placeholder_svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 990px) {
+  .kopilot-features__inner--image-left {
+    flex-direction: row-reverse;
+  }
+
+  .kopilot-features__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 7.3rem;
+    padding: 3.5rem 6.1rem;
+  }
+
+  .kopilot-features__content {
+    text-align: left;
+    align-items: flex-start;
+    padding: 0;
+    flex: 0 0 56.2rem;
+    gap: 7.3rem;
+  }
+
+  .kopilot-features__heading {
+    font-size: 6rem;
+    max-width: 57.1rem;
+  }
+
+  .kopilot-features__text {
+    font-size: 2rem;
+    max-width: 53.6rem;
+  }
+
+  .kopilot-features__grid {
+    grid-template-columns: repeat(3, 14.7rem);
+    gap: 3.6rem 2rem;
+    padding: 0;
+    justify-content: start;
+  }
+
+  .kopilot-features__media {
+    flex: 0 0 74.4rem;
+    max-width: 52%;
+  }
+}

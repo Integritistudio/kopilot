@@ -1,0 +1,82 @@
+.kopilot-cta-banner {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+.kopilot-cta-banner__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 7.7rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.6rem;
+}
+
+.kopilot-cta-banner__heading {
+  font-size: 3rem;
+  margin: 0;
+  max-width: 79.3rem;
+}
+
+.kopilot-cta-banner__trust {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.kopilot-cta-banner__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+}
+
+.kopilot-cta-banner__trust-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  flex-shrink: 0;
+}
+
+.kopilot-cta-banner__trust-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.kopilot-cta-banner__media {
+  width: 100%;
+  aspect-ratio: 1440 / 536;
+  overflow: hidden;
+}
+
+.kopilot-cta-banner__media img,
+.kopilot-cta-banner__media .placeholder_svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 990px) {
+  .kopilot-cta-banner__content {
+    padding: 7.7rem 2rem 4.8rem;
+    gap: 3.6rem;
+  }
+
+  .kopilot-cta-banner__heading {
+    font-size: 6rem;
+  }
+
+  .kopilot-cta-banner__trust {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .kopilot-cta-banner__trust-item {
+    font-size: 2rem;
+  }
+}
