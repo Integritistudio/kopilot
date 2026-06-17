@@ -1,0 +1,32 @@
+{% doc %}
+  Renders the header logo from theme settings or the bundled logo.svg asset.
+  @param {object} section - Header section object
+  @param {boolean} [is_overlay] - Whether overlay logo should be used
+{% enddoc %}
+
+{% liquid
+  assign logo_image = section.settings.logo
+
+  if is_overlay and section.settings.overlay_logo != blank
+    assign logo_image = section.settings.overlay_logo
+  endif
+%}
+
+{%- if logo_image != blank -%}
+  {{
+    logo_image
+    | image_url: width: 600
+    | image_tag:
+      class: 'header_logo_img motion-reduce',
+      width: section.settings.logo_width,
+      alt: shop.name
+  }}
+{%- else -%}
+  <img
+    src="{{ 'logo.svg' | asset_url }}"
+    class="header_logo_img motion-reduce header_logo_asset"
+    width="{{ section.settings.logo_width }}"
+    alt="{{ shop.name | escape }}"
+    loading="eager"
+  >
+{%- endif -%}

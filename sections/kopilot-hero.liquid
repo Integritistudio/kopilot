@@ -17,23 +17,28 @@
 
 <section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-hero__bg">
-    {% if section.settings.background_image != blank %}
-      {{
-        section.settings.background_image
-        | image_url: width: 2400
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          widths: '750,1100,1500,2000,2400',
-          sizes: '100vw',
-          alt: section.settings.heading_line_1
-      }}
-    {% else %}
-      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder_svg' }}
-    {% endif %}
+    {% render 'kopilot-image',
+      image: section.settings.background_image,
+      fallback: 'kopilot-hero-bg.jpg',
+      alt: section.settings.heading_line_1,
+      width: 2400,
+      loading: 'eager',
+      widths: '750,1100,1500,2000,2400',
+      sizes: '100vw'
+    %}
     {% if section.settings.show_overlay %}
       <div class="kopilot-hero__overlay"></div>
     {% endif %}
+  </div>
+
+  <div class="kopilot-hero__product-mobile" aria-hidden="true">
+    {% render 'kopilot-image',
+      image: section.settings.product_image,
+      fallback: 'kopilot-hero-product.png',
+      alt: '',
+      width: 500,
+      loading: 'eager'
+    %}
   </div>
 
   <div class="kopilot-hero__inner">
@@ -60,55 +65,54 @@
       {% endif %}
 
       {% if section.settings.button_label != blank %}
-        <a
-          href="{{ section.settings.button_link | default: '#' }}"
-          class="kopilot-btn"
-        >
+        <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn">
           {{ section.settings.button_label }}
         </a>
       {% endif %}
 
       {% if section.blocks.size > 0 %}
         <div class="kopilot-hero__logos kopilot-hero__logos--mobile">
+          {% assign hero_logo_fallbacks = 'kopilot-hero-logo-1.png,kopilot-hero-logo-2.png' | split: ',' %}
           {% for block in section.blocks %}
-            {% if block.settings.logo != blank %}
-              <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
-                {{
-                  block.settings.logo
-                  | image_url: width: 200
-                  | image_tag: loading: 'lazy', alt: block.settings.logo_alt
-                }}
-              </div>
-            {% endif %}
+            <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+              {% render 'kopilot-image',
+                image: block.settings.logo,
+                fallback: hero_logo_fallbacks[forloop.index0],
+                alt: block.settings.logo_alt,
+                width: 200
+              %}
+            </div>
           {% endfor %}
         </div>
       {% endif %}
     </div>
 
-    {% if section.settings.product_image != blank %}
-      <div class="kopilot-hero__product">
-        <div class="kopilot-hero__product-img">
-          {{
-            section.settings.product_image
-            | image_url: width: 500
-            | image_tag: loading: 'eager', alt: 'KOPILOT.ID product'
-          }}
-        </div>
+    <div class="kopilot-hero__product">
+      <div class="kopilot-hero__product-img">
+        {% render 'kopilot-image',
+          image: section.settings.product_image,
+          fallback: 'kopilot-hero-product.png',
+          alt: 'KOPILOT.ID product',
+          width: 500,
+          loading: 'eager'
+        %}
+      </div>
+      {% if section.blocks.size > 0 %}
         <div class="kopilot-hero__logos kopilot-hero__logos--desktop">
+          {% assign hero_logo_fallbacks = 'kopilot-hero-logo-1.png,kopilot-hero-logo-2.png' | split: ',' %}
           {% for block in section.blocks %}
-            {% if block.settings.logo != blank %}
-              <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
-                {{
-                  block.settings.logo
-                  | image_url: width: 200
-                  | image_tag: loading: 'lazy', alt: block.settings.logo_alt
-                }}
-              </div>
-            {% endif %}
+            <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+              {% render 'kopilot-image',
+                image: block.settings.logo,
+                fallback: hero_logo_fallbacks[forloop.index0],
+                alt: block.settings.logo_alt,
+                width: 200
+              %}
+            </div>
           {% endfor %}
         </div>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -141,7 +145,7 @@
     {
       "type": "image_picker",
       "id": "product_image",
-      "label": "Product image (desktop)"
+      "label": "Product image"
     },
     {
       "type": "text",

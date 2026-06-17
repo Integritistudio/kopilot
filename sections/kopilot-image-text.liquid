@@ -19,18 +19,13 @@
   <div class="{% unless section.settings.full_width %}container{% endunless %}">
     <div class="kopilot-image-text__inner{% if section.settings.image_position == 'right' %} kopilot-image-text__inner--image-right{% endif %}">
       <div class="kopilot-image-text__media">
-        {% if section.settings.image != blank %}
-          {{
-            section.settings.image
-            | image_url: width: 1400
-            | image_tag:
-              loading: 'lazy',
-              widths: '375,550,750,1100,1400',
-              alt: section.settings.heading
-          }}
-        {% else %}
-          {{ 'image' | placeholder_svg_tag: 'placeholder_svg' }}
-        {% endif %}
+        {% render 'kopilot-image',
+          image: section.settings.image,
+          fallback: 'kopilot-image-text.jpg',
+          alt: section.settings.heading,
+          width: 1400,
+          widths: '375,550,750,1100,1400'
+        %}
       </div>
 
       <div class="kopilot-image-text__content">

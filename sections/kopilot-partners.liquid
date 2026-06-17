@@ -11,12 +11,16 @@
 <section class="kopilot-section kopilot-partners kopilot-partners--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-partners__inner">
     <div class="kopilot-partners__logos">
+      {% assign partner_fallbacks = 'kopilot-partner-1.png,kopilot-partner-2.png,kopilot-partner-3.png,kopilot-partner-4.png,kopilot-partner-5.png,kopilot-partner-6.png' | split: ',' %}
       {% for block in section.blocks %}
-        {% if block.settings.logo != blank %}
-          <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
-            {{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.logo_alt }}
-          </div>
-        {% endif %}
+        <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
+          {% render 'kopilot-image',
+            image: block.settings.logo,
+            fallback: partner_fallbacks[forloop.index0],
+            alt: block.settings.logo_alt,
+            width: 300
+          %}
+        </div>
       {% endfor %}
     </div>
 

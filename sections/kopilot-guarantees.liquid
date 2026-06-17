@@ -10,13 +10,17 @@
 
 <section class="kopilot-section kopilot-guarantees kopilot-guarantees--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-guarantees__grid">
+    {% assign guarantee_fallbacks = 'kopilot-guarantee-moneyback.png,kopilot-guarantee-nosub.png,kopilot-guarantee-warranty.png,kopilot-guarantee-works.png' | split: ',' %}
     {% for block in section.blocks %}
       <div class="kopilot-guarantees__item" {{ block.shopify_attributes }}>
-        {% if block.settings.icon != blank %}
-          <div class="kopilot-guarantees__icon">
-            {{ block.settings.icon | image_url: width: 160 | image_tag: loading: 'lazy', alt: block.settings.label }}
-          </div>
-        {% endif %}
+        <div class="kopilot-guarantees__icon">
+          {% render 'kopilot-image',
+            image: block.settings.icon,
+            fallback: guarantee_fallbacks[forloop.index0],
+            alt: block.settings.label,
+            width: 160
+          %}
+        </div>
         {% if block.settings.label != blank %}
           <p class="kopilot-guarantees__label kopilot-body">{{ block.settings.label }}</p>
         {% endif %}

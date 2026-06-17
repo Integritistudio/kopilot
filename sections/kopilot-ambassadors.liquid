@@ -25,6 +25,8 @@
     {% endif %}
   </div>
 
+  {% assign ambassador_fallbacks = 'kopilot-ambassador-hillary.jpg,kopilot-ambassador-breck.jpg,kopilot-ambassador-kait.jpg' | split: ',' %}
+
   <div class="kopilot-ambassadors__slider">
     <swiper-section
       data-slides-desktop="3"
@@ -40,11 +42,12 @@
             <div class="swiper-slide" {{ block.shopify_attributes }}>
               <article class="kopilot-ambassadors__card">
                 <div class="kopilot-ambassadors__card-media">
-                  {% if block.settings.image != blank %}
-                    {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.name }}
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder_svg' }}
-                  {% endif %}
+                  {% render 'kopilot-image',
+                    image: block.settings.image,
+                    fallback: ambassador_fallbacks[forloop.index0],
+                    alt: block.settings.name,
+                    width: 800
+                  %}
                   {% if block.settings.badge != blank %}
                     <span class="kopilot-ambassadors__badge">{{ block.settings.badge }}</span>
                   {% endif %}

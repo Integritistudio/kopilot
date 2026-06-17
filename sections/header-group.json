@@ -1,1 +1,36 @@
-{"type":"header","name":"Header","sections":{"promo_tile_nAcgbN":{"type":"promo-tile","blocks":{"text_Kg3fXJ":{"type":"text","settings":{"text":"Countdown text"}},"separator_qmq6zx":{"type":"separator","settings":{}},"countdown_rUbqtE":{"type":"countdown","settings":{"date":"2026-04-31 00:00:00"}}},"block_order":["text_Kg3fXJ","separator_qmq6zx","countdown_rUbqtE"],"name":"Promo tile","settings":{"color_scheme":"scheme-2","hide_on_mobile":true,"top_spacing":11,"bottom_spacing":11}},"header":{"type":"header","settings":{"color_scheme":"scheme-1","width":"full_width","header_bg":"#f6f2f0","header_border_radius":0,"logo_width":210,"logo_position":"logo-center","menu":"main-menu","font_family":"body","enable_sticky_header":true,"customer_account_menu":"customer-account-main-menu","top_spacing":20,"bottom_spacing":20}},"announcement_bar_LY3Yex":{"type":"announcement-bar","blocks":{"text_EBBwdi":{"type":"text","settings":{"text":"<p>Welcome to our store.<\/p>"}}},"block_order":["text_EBBwdi"],"name":"Announcement bar","settings":{"color_scheme":"","effect":"slide","autoplay":false,"delay":3,"show_arrows":true,"show_category_list":true,"menu_head":"Shop by categories","show_localization":true,"top_spacing":12,"bottom_spacing":12}}},"order":["promo_tile_nAcgbN","header","announcement_bar_LY3Yex"]}
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "width": "full_width",
+        "show_divider_home": false,
+        "show_divider_inner": true,
+        "divider_color": "#e5e5e5",
+        "header_overlay": false,
+        "logo_width": 130,
+        "logo_position": "logo-left-menu-right",
+        "enable-search-bar": false,
+        "menu": "main-menu",
+        "font_family": "heading",
+        "enable_sticky_header": true,
+        "header_bg_color": "#eeeeee",
+        "nav_link_color": "#3b3b3b",
+        "nav_font_size": 13,
+        "cta_button_text": "Get KOPILOT.ID",
+        "cta_button_url": "",
+        "cta_bg_color": "#ef0008",
+        "cta_text_color": "#ffffff",
+        "customer_account_menu": "customer-account-main-menu",
+        "top_spacing": 15,
+        "bottom_spacing": 15
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

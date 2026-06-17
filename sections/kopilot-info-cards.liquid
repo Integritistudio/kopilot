@@ -16,25 +16,40 @@
 {{ 'kopilot-info-cards.css' | asset_url | stylesheet_tag }}
 
 <section class="kopilot-section kopilot-info-cards kopilot-info-cards--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  {% if section.settings.background_image != blank %}
-    <div class="kopilot-info-cards__bg">
-      {{ section.settings.background_image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '100vw' }}
-    </div>
-  {% endif %}
+  <div class="kopilot-info-cards__bg">
+    {% render 'kopilot-image',
+      image: section.settings.background_image,
+      fallback: 'kopilot-info-cards-bg.jpg',
+      alt: '',
+      width: 2000,
+      sizes: '100vw'
+    %}
+  </div>
 
   <div class="kopilot-info-cards__inner">
     {% if section.settings.heading != blank %}
       <h2 class="kopilot-info-cards__heading kopilot-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
+    {% assign card_image_fallbacks = 'kopilot-card-1-bg.jpg,kopilot-card-2-setup.jpg,kopilot-card-3-app.jpg' | split: ',' %}
     <div class="kopilot-info-cards__grid">
       {% for block in section.blocks %}
         <article class="kopilot-info-cards__card" {{ block.shopify_attributes }}>
           <div class="kopilot-info-cards__card-media">
-            {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.title }}
-            {% else %}
-              {{ 'image' | placeholder_svg_tag: 'placeholder_svg' }}
+            {% render 'kopilot-image',
+              image: block.settings.image,
+              fallback: card_image_fallbacks[forloop.index0],
+              alt: block.settings.title,
+              width: 800
+            %}
+            {% if block.settings.overlay_image != blank %}
+              <div class="kopilot-info-cards__card-overlay">
+                {{ block.settings.overlay_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              </div>
+            {% elsif forloop.first %}
+              <div class="kopilot-info-cards__card-overlay">
+                <img src="{{ 'kopilot-card-1-phone.png' | asset_url }}" alt="" loading="lazy" width="260" height="200">
+              </div>
             {% endif %}
           </div>
           <div class="kopilot-info-cards__card-body">
@@ -68,7 +83,7 @@
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Background image (optional)"
+      "label": "Background image"
     },
     {
       "type": "text",
@@ -119,6 +134,7 @@
       "name": "Card",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "image_picker", "id": "overlay_image", "label": "Overlay image (optional)" },
         {
           "type": "text",
           "id": "title",

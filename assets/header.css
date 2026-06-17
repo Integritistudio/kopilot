@@ -1127,14 +1127,11 @@ a.mega_menu_child_link.menu_body {
   color: var(--kopilot-nav-color, #3B3B3B);
 }
 
-/* Logo SVG fallback sizing */
-.header_logo_svg_fallback {
-  display: flex;
-  align-items: center;
-}
-
-.header_logo_svg_fallback svg {
-  width: 131px;
+/* Logo asset fallback sizing */
+.header_logo_asset {
+  display: block;
+  width: auto;
+  max-width: 100%;
   height: auto;
 }
 
@@ -1156,6 +1153,7 @@ a.mega_menu_child_link.menu_body {
 
 .header_kopilot_cta:hover {
   opacity: 0.85;
+  color: var(--kopilot-cta-color, #FFFFFF);
 }
 
 .header_kopilot_cta .header_cta_text {
@@ -1163,22 +1161,21 @@ a.mega_menu_child_link.menu_body {
   font-size: 11.5px;
   line-height: 1;
   text-transform: uppercase;
-  color: var(--kopilot-cta-color, #FFFFFF);
+  color: inherit;
 }
 
-.header_kopilot_cta .svg_wrapper {
+.header_kopilot_cta .header_cta_icon {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
 }
 
-.header_kopilot_cta .svg_wrapper svg {
+.header_kopilot_cta .header_cta_icon svg {
   width: 23px;
   height: 23px;
-}
-
-.header_kopilot_cta .svg_wrapper svg path {
-  fill: var(--kopilot-cta-color, #FFFFFF);
-  stroke: var(--kopilot-cta-color, #FFFFFF);
+  display: block;
 }
 
 /* Mobile left wrapper: hidden on desktop, groups hamburger + search on mobile */

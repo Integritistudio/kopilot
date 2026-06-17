@@ -129,10 +129,11 @@
 }
 
 .kopilot-product-tiers__features li::before {
-  content: "›";
-  color: var(--kopilot-red);
-  font-weight: 700;
+  content: "";
+  width: 1rem;
+  height: 1.4rem;
   flex-shrink: 0;
+  background: url('kopilot-checkmark.svg') no-repeat center / contain;
 }
 
 .kopilot-product-tiers__btn {

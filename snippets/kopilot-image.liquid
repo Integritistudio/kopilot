@@ -1,0 +1,41 @@
+{% doc %}
+Renders a theme editor image or falls back to a bundled asset.
+@param {image} [image] - Image from theme editor
+@param {string} [fallback] - Asset filename in /assets
+@param {string} [alt] - Alt text
+@param {number} [width] - Max width for image_url
+@param {number} [height] - Height for fallback img tag
+@param {string} [class] - CSS class on img element
+@param {string} [loading] - lazy or eager
+@param {string} [sizes] - sizes attribute
+@param {string} [widths] - widths for responsive image_tag
+@example
+{% render 'kopilot-image', image: section.settings.image, fallback: 'kopilot-hero-bg.jpg', alt: 'Hero', width: 2400, loading: 'eager' %}
+{% enddoc %}
+
+{% liquid
+  assign img_width = width | default: 1600
+  assign img_height = height | default: img_width
+  assign img_loading = loading | default: 'lazy'
+%}
+
+{% if image != blank %}
+  {% if widths != blank %}
+    {{
+      image
+      | image_url: width: img_width
+      | image_tag: loading: img_loading, alt: alt, class: class, widths: widths, sizes: sizes
+    }}
+  {% else %}
+    {{ image | image_url: width: img_width | image_tag: loading: img_loading, alt: alt, class: class }}
+  {% endif %}
+{% elsif fallback != blank %}
+  <img
+    src="{{ fallback | asset_url }}"
+    alt="{{ alt | escape }}"
+    {% if class != blank %}class="{{ class }}"{% endif %}
+    loading="{{ img_loading }}"
+    width="{{ img_width }}"
+    height="{{ img_height }}"
+  >
+{% endif %}

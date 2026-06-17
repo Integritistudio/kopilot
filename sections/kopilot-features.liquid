@@ -27,14 +27,18 @@
       {% endif %}
 
       {% if section.blocks.size > 0 %}
+        {% assign feature_icon_fallbacks = 'kopilot-icon-durable.png,kopilot-icon-battery.png,kopilot-icon-subscription.png,kopilot-icon-medical.png,kopilot-icon-languages.png,kopilot-icon-works.png' | split: ',' %}
         <div class="kopilot-features__grid">
           {% for block in section.blocks %}
             <div class="kopilot-features__item" {{ block.shopify_attributes }}>
-              {% if block.settings.icon != blank %}
-                <div class="kopilot-features__icon">
-                  {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.label }}
-                </div>
-              {% endif %}
+              <div class="kopilot-features__icon">
+                {% render 'kopilot-image',
+                  image: block.settings.icon,
+                  fallback: feature_icon_fallbacks[forloop.index0],
+                  alt: block.settings.label,
+                  width: 120
+                %}
+              </div>
               {% if block.settings.label != blank %}
                 <p class="kopilot-features__label kopilot-body">{{ block.settings.label }}</p>
               {% endif %}
@@ -45,15 +49,13 @@
     </div>
 
     <div class="kopilot-features__media">
-      {% if section.settings.image != blank %}
-        {{
-          section.settings.image
-          | image_url: width: 1600
-          | image_tag: loading: 'lazy', widths: '550,750,1100,1600', alt: section.settings.heading
-        }}
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
-      {% endif %}
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'kopilot-features-main.jpg',
+        alt: section.settings.heading,
+        width: 1600,
+        widths: '550,750,1100,1600'
+      %}
     </div>
   </div>
 </section>

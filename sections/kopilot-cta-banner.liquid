@@ -39,11 +39,13 @@
   </div>
 
   <div class="kopilot-cta-banner__media">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '100vw', alt: section.settings.heading }}
-    {% else %}
-      {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder_svg' }}
-    {% endif %}
+    {% render 'kopilot-image',
+      image: section.settings.image,
+      fallback: 'kopilot-cta-banner.jpg',
+      alt: section.settings.heading,
+      width: 2000,
+      sizes: '100vw'
+    %}
   </div>
 </section>
 

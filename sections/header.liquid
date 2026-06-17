@@ -114,24 +114,7 @@
             {%- endif -%}
 
             <a href="{{ routes.root_url }}" class="header_logo_link">
-              {% assign logo_image = section.settings.logo %}
-
-              {% if is_overlay and section.settings.overlay_logo != blank %}
-                {% assign logo_image = section.settings.overlay_logo %}
-              {% endif %}
-
-              {%- if logo_image != blank -%}
-                {{
-                  logo_image
-                  | image_url: width: 600
-                  | image_tag:
-                    class: 'header_logo_img motion-reduce',
-                    width: section.settings.logo_width,
-                    alt: shop.name
-                }}
-              {%- else -%}
-                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
-              {%- endif -%}
+              {% render 'header-logo', section: section, is_overlay: is_overlay %}
             </a>
 
             {%- if request.page_type == 'index' -%}
@@ -170,24 +153,7 @@
             {%- endif -%}
 
             <a href="{{ routes.root_url }}" class="header_logo_link">
-              {% assign logo_image = section.settings.logo %}
-
-              {% if is_overlay and section.settings.overlay_logo != blank %}
-                {% assign logo_image = section.settings.overlay_logo %}
-              {% endif %}
-
-              {%- if logo_image != blank -%}
-                {{
-                  logo_image
-                  | image_url: width: 600
-                  | image_tag:
-                    class: 'header_logo_img motion-reduce',
-                    width: section.settings.logo_width,
-                    alt: shop.name
-                }}
-              {%- else -%}
-                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
-              {%- endif -%}
+              {% render 'header-logo', section: section, is_overlay: is_overlay %}
             </a>
 
             {%- if request.page_type == 'index' -%}
@@ -214,7 +180,9 @@
             {% endunless %}
           >
             <span class="header_cta_text">{{ section.settings.cta_button_text }}</span>
-            <div class="svg_wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</div>
+            <span class="header_cta_icon svg_wrapper" aria-hidden="true">
+              {{ 'icon-header-cart.svg' | inline_asset_content }}
+            </span>
           </a>
 
           <!-- ACCOUNTS -->
@@ -360,24 +328,7 @@
             {%- endif -%}
 
             <a href="{{ routes.root_url }}" class="header_logo_link">
-              {% assign logo_image = section.settings.logo %}
-
-              {% if is_overlay and section.settings.overlay_logo != blank %}
-                {% assign logo_image = section.settings.overlay_logo %}
-              {% endif %}
-
-              {%- if logo_image != blank -%}
-                {{
-                  logo_image
-                  | image_url: width: 600
-                  | image_tag:
-                    class: 'header_logo_img motion-reduce',
-                    width: section.settings.logo_width,
-                    alt: shop.name
-                }}
-              {%- else -%}
-                <span class="header_logo_svg_fallback">{{ 'logo.svg' | inline_asset_content }}</span>
-              {%- endif -%}
+              {% render 'header-logo', section: section, is_overlay: is_overlay %}
             </a>
 
             {%- if request.page_type == 'index' -%}

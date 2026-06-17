@@ -19,14 +19,22 @@
 }
 
 .kopilot-image-text__heading {
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
   font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -1px;
   margin: 0;
   color: #000;
   max-width: 33.2rem;
 }
 
 .kopilot-image-text__text {
+  font-family: var(--kopilot-body-font-family);
+  font-weight: 400;
   font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: 0;
   margin: 0;
   color: #000;
   max-width: 32.8rem;
@@ -70,12 +78,12 @@
   }
 
   .kopilot-image-text__heading {
-    font-size: 6rem;
+    font-size: 5rem;
     max-width: none;
   }
 
   .kopilot-image-text__text {
-    font-size: 2rem;
+    font-size: 1.8rem;
     max-width: 40.4rem;
   }
 
@@ -83,5 +91,15 @@
     flex: 0 0 63.6rem;
     max-width: 44%;
     aspect-ratio: 636 / 550;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-image-text__heading {
+    font-size: 6rem;
+  }
+
+  .kopilot-image-text__text {
+    font-size: 2rem;
   }
 }

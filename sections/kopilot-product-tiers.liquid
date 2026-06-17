@@ -22,6 +22,8 @@
     {% endif %}
   </div>
 
+  {% assign tier_image_fallbacks = 'kopilot-product-1tag.png,kopilot-product-2tags.png,kopilot-product-3tags.png' | split: ',' %}
+
   <div class="kopilot-product-tiers__grid">
     {% for block in section.blocks %}
       {% assign product = block.settings.product %}
@@ -36,7 +38,13 @@
           {% elsif product != blank and product.featured_image != blank %}
             {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
           {% else %}
-            {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
+            <img
+              src="{{ tier_image_fallbacks[forloop.index0] | asset_url }}"
+              alt="{{ block.settings.title | escape }}"
+              loading="lazy"
+              width="600"
+              height="349"
+            >
           {% endif %}
         </div>
 
