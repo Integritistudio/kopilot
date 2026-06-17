@@ -1,12 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "kopilot_hero": {
       "type": "kopilot-hero",
       "blocks": {
-        "logo_1": { "type": "logo", "settings": {} },
-        "logo_2": { "type": "logo", "settings": {} }
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "logo_alt": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "logo_alt": ""
+          }
+        }
       },
-      "block_order": ["logo_1", "logo_2"],
+      "block_order": [
+        "logo_1",
+        "logo_2"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "show_overlay": true,
@@ -24,6 +46,7 @@
     },
     "kopilot_image_text": {
       "type": "kopilot-image-text",
+      "custom_css": [],
       "settings": {
         "color_scheme": "scheme-1",
         "full_width": true,
@@ -39,14 +62,54 @@
     "kopilot_features": {
       "type": "kopilot-features",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "label": "Durable and waterproof" } },
-        "f2": { "type": "feature", "settings": { "label": "No battery/ charging needed" } },
-        "f3": { "type": "feature", "settings": { "label": "No subscription required" } },
-        "f4": { "type": "feature", "settings": { "label": "Instant medical & contact info" } },
-        "f5": { "type": "feature", "settings": { "label": "Translates into 24 languages" } },
-        "f6": { "type": "feature", "settings": { "label": "Works everywhere" } }
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "label": "Durable and waterproof"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "label": "No battery/ charging needed"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_38.svg",
+            "label": "No subscription required"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "label": "Instant medical & contact info"
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_37.svg",
+            "label": "Translates into 24 languages"
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_34.svg",
+            "label": "Works everywhere"
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "image_position": "right",
@@ -83,7 +146,11 @@
           }
         }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "The information they need when every second counts.",
@@ -124,7 +191,11 @@
           }
         }
       },
-      "block_order": ["a1", "a2", "a3"],
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Used on race day and every day in between.",
@@ -139,18 +210,61 @@
     "kopilot_partners": {
       "type": "kopilot-partners",
       "blocks": {
-        "p1": { "type": "logo", "settings": {} },
-        "p2": { "type": "logo", "settings": {} },
-        "p3": { "type": "logo", "settings": {} },
-        "p4": { "type": "logo", "settings": {} },
-        "p5": { "type": "logo", "settings": {} },
-        "p6": { "type": "logo", "settings": {} }
+        "p1": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659500.png",
+            "logo_alt": ""
+          }
+        },
+        "p2": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_united-states-hard-enduro.png",
+            "logo_alt": ""
+          }
+        },
+        "p3": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659502.png",
+            "logo_alt": ""
+          }
+        },
+        "p4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659503.png",
+            "logo_alt": ""
+          }
+        },
+        "p5": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659484.png",
+            "logo_alt": ""
+          }
+        },
+        "p6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659485.png",
+            "logo_alt": ""
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "text": "Trusted by the biggest names in off-road racing. An official safety partner for riders and race series nationwide.",
-        "padding_top": 0,
+        "padding_top": 52,
         "padding_bottom": 0
       }
     },
@@ -160,44 +274,60 @@
         "t1": {
           "type": "tier",
           "settings": {
+            "product": "",
+            "badge": "",
             "title": "1 Tag",
+            "save_badge": "",
+            "show_reviews": true,
+            "review_count": "47",
+            "price": "",
             "description": "Get started with one tag for your most-used piece of gear.",
             "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
             "feature_2": "A simple, reliable solution for riders who stick to one setup",
             "button_label": "GET 1 TAG",
-            "show_reviews": true,
-            "review_count": "47"
+            "button_link": ""
           }
         },
         "t2": {
           "type": "tier",
           "settings": {
+            "product": "",
+            "badge": "",
             "title": "2 Tags",
             "save_badge": "SAVE 10%",
+            "show_reviews": true,
+            "review_count": "47",
+            "price": "",
             "description": "Save with an additional tag for equipping more gear, or share one with a friend or family member.",
             "feature_1": "Multiple mounting solutions for various gear",
             "feature_2": "Second tag makes a great gift",
             "button_label": "GET 2 TAGS",
-            "show_reviews": true,
-            "review_count": "47"
+            "button_link": ""
           }
         },
         "t3": {
           "type": "tier",
           "settings": {
-            "title": "3 Tags",
+            "product": "",
             "badge": "Best Value",
+            "title": "3 Tags",
             "save_badge": "SAVE 20%",
+            "show_reviews": true,
+            "review_count": "47",
+            "price": "",
             "description": "Extensive coverage for your gear, or your crew.",
             "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
             "feature_2": "Greatest savings, most coverage",
             "button_label": "GET 3 TAGS",
-            "show_reviews": true,
-            "review_count": "47"
+            "button_link": ""
           }
         }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Be prepared on every ride.",
@@ -210,12 +340,37 @@
     "kopilot_guarantees": {
       "type": "kopilot-guarantees",
       "blocks": {
-        "g1": { "type": "guarantee", "settings": { "label": "Money-back guarantee" } },
-        "g2": { "type": "guarantee", "settings": { "label": "No subscription. Ever." } },
-        "g3": { "type": "guarantee", "settings": { "label": "Lifetime warranty" } },
-        "g4": { "type": "guarantee", "settings": { "label": "Works Everywhere" } }
+        "g1": {
+          "type": "guarantee",
+          "settings": {
+            "label": "Money-back guarantee"
+          }
+        },
+        "g2": {
+          "type": "guarantee",
+          "settings": {
+            "label": "No subscription. Ever."
+          }
+        },
+        "g3": {
+          "type": "guarantee",
+          "settings": {
+            "label": "Lifetime warranty"
+          }
+        },
+        "g4": {
+          "type": "guarantee",
+          "settings": {
+            "label": "Works Everywhere"
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3", "g4"],
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 40,
@@ -266,7 +421,12 @@
           }
         }
       },
-      "block_order": ["r1", "r2", "r3", "r4"],
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Customer Reviews",
@@ -337,7 +497,15 @@
           }
         }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Questions",
@@ -350,11 +518,30 @@
     "kopilot_cta_banner": {
       "type": "kopilot-cta-banner",
       "blocks": {
-        "tr1": { "type": "trust", "settings": { "label": "Money-back guarantee" } },
-        "tr2": { "type": "trust", "settings": { "label": "No subscription" } },
-        "tr3": { "type": "trust", "settings": { "label": "Works anywhere" } }
+        "tr1": {
+          "type": "trust",
+          "settings": {
+            "label": "Money-back guarantee"
+          }
+        },
+        "tr2": {
+          "type": "trust",
+          "settings": {
+            "label": "No subscription"
+          }
+        },
+        "tr3": {
+          "type": "trust",
+          "settings": {
+            "label": "Works anywhere"
+          }
+        }
       },
-      "block_order": ["tr1", "tr2", "tr3"],
+      "block_order": [
+        "tr1",
+        "tr2",
+        "tr3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Wherever you ride, KOPILOT.ID has your back.",
