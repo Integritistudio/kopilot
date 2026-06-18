@@ -30,7 +30,7 @@
 
   {% if section.blocks.size > 0 %}
     <div class="kopilot-cta-banner__trust">
-      {% assign trust_fallbacks = 'kopilot-guarantee-moneyback.png,kopilot-guarantee-works.png' | split: ',' %}
+      {% assign trust_fallbacks = 'kopilot-guarantee-moneyback.png,kopilot-guarantee-nosub.png,kopilot-guarantee-works.png' | split: ',' %}
       {% for block in section.blocks %}
         <div class="kopilot-cta-banner__trust-item" {{ block.shopify_attributes }}>
           <span class="kopilot-cta-banner__trust-icon">
@@ -149,6 +149,7 @@
       "name": "Kopilot CTA banner",
       "blocks": [
         { "type": "trust", "settings": { "label": "Money-back guarantee" } },
+        { "type": "trust", "settings": { "label": "No subscription" } },
         { "type": "trust", "settings": { "label": "Works anywhere" } }
       ]
     }
