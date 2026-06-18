@@ -606,6 +606,7 @@
         "tr1": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Vector.png",
             "label": "Money-back guarantee"
           }
         },
