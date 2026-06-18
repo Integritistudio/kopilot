@@ -616,16 +616,26 @@
         "tr2": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327569.png",
+            "label": "No subscription"
+          }
+        },
+        "trust_4kpwPg": {
+          "type": "trust",
+          "settings": {
+            "icon": "shopify://shop_images/Group.png",
             "label": "Works anywhere"
           }
         }
       },
       "block_order": [
         "tr1",
-        "tr2"
+        "tr2",
+        "trust_4kpwPg"
       ],
       "settings": {
         "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/bad64fb19fb42742653b28527e5a419202fe681f.png",
         "heading": "Wherever you ride, KOPILOT.ID has your back.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
