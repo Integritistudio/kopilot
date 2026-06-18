@@ -15,10 +15,19 @@
   gap: 3.6rem;
 }
 
-.kopilot-cta-banner__heading {
+.kopilot-cta-banner__heading,
+.kopilot-cta-banner__heading.kopilot-heading {
+  font-family: var(--kopilot-font-family);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
   font-size: 3rem;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #403a3a;
   margin: 0;
-  max-width: 79.3rem;
+  max-width: 85.5rem;
 }
 
 .kopilot-cta-banner__trust {
@@ -62,12 +71,13 @@
 
 @media screen and (min-width: 990px) {
   .kopilot-cta-banner__content {
-    padding: 7.7rem 2rem 4.8rem;
+    padding: 7.7rem 2rem 4rem;
     gap: 3.6rem;
   }
 
-  .kopilot-cta-banner__heading {
-    font-size: 6rem;
+  .kopilot-cta-banner__heading,
+  .kopilot-cta-banner__heading.kopilot-heading {
+    font-size: 60px;
   }
 
   .kopilot-cta-banner__trust {
@@ -78,5 +88,25 @@
 
   .kopilot-cta-banner__trust-item {
     font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-cta-banner__trust {
+    width: 728px;
+    max-width: 100%;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .kopilot-cta-banner__trust-item,
+  .kopilot-cta-banner__trust-item.kopilot-body {
+    width: auto;
+    flex: 0 1 auto;
+    height: 93px;
+    gap: 9.44px;
+    padding: 20px 34.92px;
+    box-sizing: border-box;
+    justify-content: center;
   }
 }

@@ -419,17 +419,61 @@
             "date": "02/17/2026",
             "text": "Love it!"
           }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Didukhksenia",
+            "verified": false,
+            "date": "01/07/2026",
+            "text": "Great!"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Sarah K",
+            "verified": true,
+            "date": "12/15/2025",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+          }
+        },
+        "r7": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Mike T",
+            "verified": true,
+            "date": "11/22/2025",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero sed cursus ante dapibus diam. Sed nisi nulla quis sem at nibh elementum imperdiet."
+          }
+        },
+        "r8": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Alex P",
+            "verified": false,
+            "date": "10/08/2025",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
         }
       },
       "block_order": [
         "r1",
         "r2",
         "r3",
-        "r4"
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Customer Reviews",
+        "heading": "Customer Reviews.",
         "average_rating": "5.00",
         "total_reviews": 8,
         "star_5_count": 8,
@@ -437,6 +481,7 @@
         "star_3_count": 0,
         "star_2_count": 0,
         "star_1_count": 0,
+        "reviews_per_page": 5,
         "write_review_url": "",
         "padding_top": 0,
         "padding_bottom": 0,

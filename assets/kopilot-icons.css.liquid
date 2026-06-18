@@ -1,0 +1,33 @@
+@font-face {
+  font-family: svgfont;
+  src: url('{{ 'svgfont.woff2' | asset_url }}') format('woff2'),
+    url('{{ 'svgfont.woff' | asset_url }}') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.icon,
+[class^='icon-'],
+[class*=' icon-'] {
+  font-family: svgfont;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+}
+
+.icon-close:before {
+  content: '\ea01';
+}
+
+.icon-instagram:before {
+  content: '\ea02';
+}
+
+.icon-arrow:before {
+  content: '\ea04';
+}

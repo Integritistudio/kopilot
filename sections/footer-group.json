@@ -1,84 +1,61 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "footer",
-  "name": "Footer",
+  "name": "Footer Group",
   "sections": {
-    "footer": {
+    "main-footer": {
       "type": "footer",
       "blocks": {
-        "menu_MwHpBX": {
-          "type": "menu",
+        "instagram_image_ra4JrN": {
+          "type": "instagram_image",
+          "disabled": true,
           "settings": {
-            "head": "Heading",
-            "menu": "footer",
-            "width": 25
+            "image": "shopify://shop_images/julian-hochgesang-cYDNv_K38vw-unsplash.jpg",
+            "link": "shopify://blogs/our-blog"
           }
         },
-        "menu_Fcq8G6": {
-          "type": "menu",
+        "instagram_image_gFywdQ": {
+          "type": "instagram_image",
+          "disabled": true,
           "settings": {
-            "head": "Heading",
-            "menu": "footer",
-            "width": 25
-          }
-        },
-        "menu_xwwEqW": {
-          "type": "menu",
-          "settings": {
-            "head": "Heading",
-            "menu": "footer",
-            "width": 25
-          }
-        },
-        "text_CjPEbw": {
-          "type": "text",
-          "settings": {
-            "head": "Heading",
-            "text": "<p>Stay up to date with our latest offers and product launches & be the first to get exclusive offers and sale information.</p>",
-            "width": 25
+            "image": "shopify://shop_images/instagram-3.webp",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "menu_MwHpBX",
-        "menu_Fcq8G6",
-        "menu_xwwEqW",
-        "text_CjPEbw"
+        "instagram_image_ra4JrN",
+        "instagram_image_gFywdQ"
       ],
       "settings": {
-        "color_scheme": "scheme-4",
-        "logo_size": 260,
-        "logo": "top",
-        "show_localization": true,
-        "localization_position": "top",
-        "show_payment_icons": true,
-        "payment_icons_position": "top",
-        "show_social_icons": true,
-        "so_apply_background": true,
-        "social_position": "top",
-        "apply_background": true,
-        "enable_newsletter": false,
-        "head": "Heading",
-        "text": "Subscribe to our newsletter for exclusive offers.",
-        "enable_background": false,
-        "enable_follow_on_shop": true,
-        "enable_copyright_bg": false,
-        "copyright_text": "#ffffff",
-        "show_policies": false,
-        "top_spacing": 100,
-        "bottom_spacing": 50
+        "dev_by_text": "Developed by",
+        "dev_by_logo": "shopify://shop_images/wss_logo_Kopilot.svg",
+        "dev_by_url": "https://web-systems.solutions/en/",
+        "dev_by_tooltip": "eCommerce development without borders",
+        "instagram_block_heading": "kopilot.ID",
+        "instagram_link": "",
+        "contact_block_heading": "Contact",
+        "phone_label": "",
+        "phone": "",
+        "email_label": "email us",
+        "email": "info@kopilot.id",
+        "contact_link_label": "",
+        "contact_link_url": "shopify://pages/contact",
+        "logo_list_label": "App stores",
+        "google_play_link": "https://play.google.com/store/apps/details?id=com.kopilotid.kopilot",
+        "google_play_logo": "shopify://shop_images/1aaa5f59-0130-44ea-a277-a318e65b3e06.jpg",
+        "apple_store_link": "https://apps.apple.com/us/app/kopilot-id/id6605922319",
+        "apple_store_logo": "shopify://shop_images/86118c9a-d122-4ad8-b62a-170e00b2107c.jpg",
+        "corporate_block_heading": "Corporate",
+        "corporate_menu": "footer",
+        "contact_us_label": "Contact Us",
+        "social_block_heading": "Social Media",
+        "privacy_menu": "policy-menu",
+        "pdf_link_label": "",
+        "pdf_link_url": ""
       }
     }
   },
   "order": [
-    "footer"
+    "main-footer"
   ]
 }

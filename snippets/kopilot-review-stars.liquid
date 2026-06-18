@@ -1,0 +1,40 @@
+{% doc %}
+  Renders a 5-star rating row.
+  @param {number} rating - Filled stars (1-5)
+  @param {string} [size] - sm, md, or lg
+{% enddoc %}
+
+{% liquid
+  assign star_rating = rating | default: 5 | plus: 0
+  assign star_size = size | default: 'md'
+
+  case star_size
+    when 'sm'
+      assign star_width = 13
+      assign star_height = 12
+      assign star_gap = 4
+    when 'lg'
+      assign star_width = 24
+      assign star_height = 22
+      assign star_gap = 4
+    else
+      assign star_width = 16
+      assign star_height = 16
+      assign star_gap = 4
+  endcase
+%}
+
+<span class="kopilot-review-stars kopilot-review-stars--{{ star_size }}" aria-hidden="true">
+  {% for i in (1..5) %}
+    {% if i <= star_rating %}
+      {% assign star_color = '#F20008' %}
+    {% else %}
+      {% assign star_color = '#232526' %}
+    {% endif %}
+    <span class="kopilot-review-stars__icon" style="--star-color: {{ star_color }};">
+      <svg width="{{ star_width }}" height="{{ star_height }}" viewBox="0 0 8.00808 8.00731" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M1.8078 7.72842C1.6144 7.82782 1.39542 7.6541 1.43436 7.43217L1.8496 5.06526L0.0868239 3.3854C-0.077917 3.22841 0.00736101 2.94137 0.228057 2.91002L2.67953 2.56176L3.77259 0.396515C3.87106 0.201467 4.13778 0.201467 4.23625 0.396515L5.32931 2.56176L7.78078 2.91002C8.00148 2.94137 8.08676 3.22841 7.92202 3.3854L6.15924 5.06526L6.57448 7.43217C6.61342 7.6541 6.39444 7.82782 6.20104 7.72842L4.00442 6.59941L1.8078 7.72842Z" fill="var(--star-color)"/>
+      </svg>
+    </span>
+  {% endfor %}
+</span>

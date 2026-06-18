@@ -1,0 +1,43 @@
+<div class="contact-form-popup">
+  <div class="contact-form-popup-inner">
+    <button type="button" class="contact-form-popup-close js-close-contact">
+      <span class="icon icon-close"></span>
+      <span>close</span>
+    </button>
+    <div class="contact-form-popup-title section-title column-title">
+      <span>get in touch</span>
+      <span><span class="highlight">with us</span></span>
+    </div>
+    <div class="contact-form-popup-content js-form-validation">
+      {%- form 'contact', id: 'KopilotContactForm', class: 'contact-form' -%}
+        <div class="form-inputs-wrapper">
+          <div class="form-input-wrap">
+            <input type="text" name="contact[name]" placeholder="Name" class="form-input" required>
+            <span class="error"></span>
+          </div>
+          <div class="form-input-wrap">
+            <input type="email" name="contact[email]" placeholder="Email" class="form-input" required>
+            <span class="error"></span>
+          </div>
+          <div class="form-input-wrap">
+            <textarea placeholder="Message" name="contact[body]" class="form-input" required></textarea>
+            <span class="error"></span>
+          </div>
+        </div>
+        <div class="form-policy">
+          <input type="checkbox" name="policy" id="kopilot-contact-policy" required>
+          <label for="kopilot-contact-policy">
+            <span class="icon"></span>
+            <span>
+              I accept the <a href="{{ shop.privacy_policy.url }}">Privacy Policy</a> and
+              <a href="{{ shop.terms_of_service.url }}">Terms and Conditions.</a>
+            </span>
+          </label>
+        </div>
+        <button type="submit" class="btn form-btn">GET IN TOUCH</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<div class="contact-form-popup-overflow"></div>

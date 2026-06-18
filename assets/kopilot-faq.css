@@ -5,17 +5,45 @@
 .kopilot-faq__inner {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 5rem 2rem 8rem;
+  gap: 3.9rem;
+  padding: 6rem 3rem 6rem;
 }
 
-.kopilot-faq__heading {
+.kopilot-faq__heading,
+.kopilot-faq__heading.kopilot-heading {
+  font-family: var(--kopilot-font-family);
   font-size: 3rem;
+  font-weight: 700;
+  line-height: 6rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
   margin: 0;
+  text-align: center;
+  align-self: center;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.4px #403a3a;
+  paint-order: stroke fill;
+}
+
+.kopilot-faq__list {
+  width: 100%;
 }
 
 .kopilot-faq__list .faq_item {
-  border-bottom: 1px solid #e5e5e5;
+  margin: 0 0 1.5rem;
+  background: #eaeaea;
+  border: 1.4px solid transparent;
+}
+
+.kopilot-faq__list .faq_item:last-child {
+  margin-bottom: 0;
+}
+
+.kopilot-faq__list .faq_item:has(.faq_question.active) {
+  background: #fff;
+  border-color: #403a3a;
+  border-width: 1.4px;
 }
 
 .kopilot-faq__list .faq_question {
@@ -23,21 +51,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  padding: 2rem 0;
+  gap: 1.5rem;
+  min-height: auto;
+  padding: 1rem 1.9rem;
   background: none;
   border: none;
+  border-bottom: 1px solid transparent;
   text-align: left;
   cursor: pointer;
-  font-size: 1.8rem;
-  font-weight: 500;
   color: inherit;
 }
 
-.kopilot-faq__list .faq_question .h6 {
-  font-size: inherit;
-  font-weight: inherit;
+.kopilot-faq__list .faq_item:has(.faq_question.active) .faq_question {
+  border-bottom-color: #403a3a;
+}
+
+.kopilot-faq__list .faq_question .h6,
+.kopilot-faq__list .faq_question .h6.kopilot-body {
+  font-family: var(--kopilot-font-family);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.36px;
   margin: 0;
+  text-align: left;
+}
+
+.kopilot-faq__list .faq_question.active .h6,
+.kopilot-faq__list .faq_question.active .h6.kopilot-body {
+  font-weight: 600;
 }
 
 .kopilot-faq__list .faq_arrow {
@@ -78,10 +120,14 @@
   transition: height 0.3s ease;
 }
 
-.kopilot-faq__list .faq_answer_inner {
-  padding: 0 0 2rem;
-  font-size: 1.6rem;
-  line-height: 1.4;
+.kopilot-faq__list .faq_answer_inner,
+.kopilot-faq__list .faq_answer_inner.kopilot-body {
+  font-family: var(--kopilot-font-family);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  padding: 1rem 1.5rem 1.8rem;
 }
 
 .kopilot-faq__list .faq_answer_inner p {
@@ -91,23 +137,63 @@
 @media screen and (min-width: 990px) {
   .kopilot-faq__inner {
     flex-direction: row;
-    gap: 4rem;
-    padding: 10.5rem 5.1rem 10rem;
     align-items: flex-start;
+    gap: 3.9rem;
+    padding: 10.5rem 5.1rem 10.5rem;
   }
 
-  .kopilot-faq__heading {
-    font-size: 6rem;
-    flex: 0 0 22.9rem;
+  .kopilot-faq__heading,
+  .kopilot-faq__heading.kopilot-heading {
+    font-size: 4rem;
+    flex: 0 0 auto;
+    width: auto;
+    text-align: left;
+    align-self: flex-start;
   }
 
   .kopilot-faq__list {
     flex: 1;
-    max-width: 95.4rem;
+    max-width: 95.5rem;
+  }
+
+  .kopilot-faq__list .faq_item {
+    margin-bottom: 1.6rem;
+    background: #eaeaea;
+    border: 1.4px solid transparent;
+  }
+
+  .kopilot-faq__list .faq_item:has(.faq_question.active) {
+    border-color: #403a3a;
+    border-width: 1.4px;
   }
 
   .kopilot-faq__list .faq_question {
-    font-size: 2rem;
+    min-height: 6.8rem;
     padding: 2rem 2.4rem;
+    border-bottom: 1.4px solid #403a3a;
+  }
+
+  .kopilot-faq__list .faq_item:has(.faq_question.active) .faq_question {
+    border-bottom-color: #403a3a;
+  }
+
+  .kopilot-faq__list .faq_question .h6,
+  .kopilot-faq__list .faq_question .h6.kopilot-body {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .kopilot-faq__list .faq_question.active .h6,
+  .kopilot-faq__list .faq_question.active .h6.kopilot-body {
+    font-weight: 600;
+  }
+
+  .kopilot-faq__list .faq_answer_inner,
+  .kopilot-faq__list .faq_answer_inner.kopilot-body {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    padding: 1.2rem 2.4rem 2.4rem;
   }
 }

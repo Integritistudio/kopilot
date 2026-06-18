@@ -1,0 +1,16 @@
+{% doc %}
+  Renders a responsive theme editor image.
+  @param {image} image - Image from theme editor
+{% enddoc %}
+
+{% if image != blank %}
+  {{
+    image
+    | image_url: width: 814
+    | image_tag:
+      alt: image.alt | default: 'image',
+      loading: 'lazy',
+      widths: '288, 576, 550, 767, 814',
+      sizes: '(max-width: 767px) 767px, (max-width: 576px) 567px, (max-width: 550px) 550px, (max-width: 288px) 288px, 100vw'
+  }}
+{% endif %}

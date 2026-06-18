@@ -14,75 +14,120 @@
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-reviews.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-reviews.js' | asset_url }}" defer></script>
 
-<section class="kopilot-section kopilot-reviews kopilot-reviews--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-reviews__header">
+<section
+  class="kopilot-section kopilot-reviews kopilot-reviews--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  data-kopilot-reviews
+  data-reviews-per-page="{{ section.settings.reviews_per_page }}"
+  aria-labelledby="KopilotReviewsHeading-{{ section.id }}"
+>
+  <div class="kopilot-reviews__inner">
     {% if section.settings.heading != blank %}
-      <h2 class="kopilot-reviews__heading kopilot-heading">{{ section.settings.heading }}</h2>
+      <h2 id="KopilotReviewsHeading-{{ section.id }}" class="kopilot-reviews__heading">
+        {{ section.settings.heading }}
+      </h2>
     {% endif %}
-  </div>
 
-  <div class="kopilot-reviews__summary">
-    <div class="kopilot-reviews__rating-block">
-      <div class="kopilot-reviews__rating-score kopilot-body">
-        <span class="kopilot-reviews__stars" aria-hidden="true">★★★★★</span>
-        <span>{{ section.settings.average_rating }} out of 5</span>
+    <div class="kopilot-reviews__summary">
+      <div class="kopilot-reviews__rating-col">
+        <div class="kopilot-reviews__score-row">
+          {% render 'kopilot-review-stars', rating: 5, size: 'md' %}
+          <span class="kopilot-reviews__score-text">{{ section.settings.average_rating }} out of 5</span>
+        </div>
       </div>
-      <p class="kopilot-reviews__based-on kopilot-body">Based on {{ section.settings.total_reviews }} reviews</p>
+
+      <div class="kopilot-reviews__distribution" aria-label="Rating distribution">
+        {% for i in (1..5) reversed %}
+          {% assign star_key = 'star_' | append: i | append: '_count' %}
+          {% assign count = section.settings[star_key] | default: 0 %}
+          {% assign percent = 0 %}
+          {% if section.settings.total_reviews > 0 %}
+            {% assign percent = count | times: 100 | divided_by: section.settings.total_reviews %}
+          {% endif %}
+          <div class="kopilot-reviews__dist-row">
+            {% render 'kopilot-review-stars', rating: i, size: 'sm' %}
+            <div class="kopilot-reviews__dist-bar" aria-hidden="true">
+              <div class="kopilot-reviews__dist-fill" style="width: {{ percent }}%;"></div>
+            </div>
+            <span class="kopilot-reviews__dist-count">{{ count }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="kopilot-reviews__actions">
+        {% if section.settings.write_review_url != blank %}
+          <a href="{{ section.settings.write_review_url }}" class="kopilot-reviews__write-btn" target="_blank" rel="noopener">
+            Write a review
+          </a>
+        {% else %}
+          <button type="button" class="kopilot-reviews__write-btn js-open-contact">
+            Write a review
+          </button>
+        {% endif %}
+      </div>
+
+      <p class="kopilot-reviews__based-on">Based on {{ section.settings.total_reviews }} reviews</p>
     </div>
 
-    <div class="kopilot-reviews__distribution">
-      {% for i in (1..5) reversed %}
-        {% assign star_key = 'star_' | append: i | append: '_count' %}
-        {% assign count = section.settings[star_key] | default: 0 %}
-        {% assign percent = 0 %}
-        {% if section.settings.total_reviews > 0 %}
-          {% assign percent = count | times: 100 | divided_by: section.settings.total_reviews %}
-        {% endif %}
-        <div class="kopilot-reviews__dist-row">
-          <span class="kopilot-reviews__dist-stars" aria-hidden="true">
-            {% for s in (1..5) %}{% if s <= i %}★{% else %}☆{% endif %}{% endfor %}
-          </span>
-          <div class="kopilot-reviews__dist-bar">
-            <div class="kopilot-reviews__dist-fill" style="width: {{ percent }}%;"></div>
+    <div class="kopilot-reviews__toolbar">
+      <label class="kopilot-reviews__sort-wrap">
+        <span class="visually-hidden">Sort reviews</span>
+        <select class="kopilot-reviews__sort" data-reviews-sort>
+          <option value="recent">Most Recent</option>
+          <option value="oldest">Oldest</option>
+          <option value="highest">Highest Rated</option>
+          <option value="lowest">Lowest Rated</option>
+        </select>
+        <span class="kopilot-reviews__sort-icon" aria-hidden="true">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </span>
+      </label>
+    </div>
+
+    <div class="kopilot-reviews__list" data-reviews-list>
+      {% for block in section.blocks %}
+        <article
+          class="kopilot-reviews__item"
+          data-review-item
+          data-rating="{{ block.settings.rating | default: 5 }}"
+          data-date="{{ block.settings.date | escape }}"
+          data-order="{{ forloop.index0 }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="kopilot-reviews__item-top">
+            {% assign rating = block.settings.rating | default: 5 %}
+            {% render 'kopilot-review-stars', rating: rating, size: 'lg' %}
+            {% if block.settings.date != blank %}
+              <time class="kopilot-reviews__item-date" datetime="{{ block.settings.date }}">{{ block.settings.date }}</time>
+            {% endif %}
           </div>
-          <span class="kopilot-reviews__dist-count kopilot-body">{{ count }}</span>
-        </div>
+
+          <div class="kopilot-reviews__item-author">
+            <span class="kopilot-reviews__avatar" aria-hidden="true">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 13.5C14.7614 13.5 17 11.2614 17 8.5C17 5.73858 14.7614 3.5 12 3.5C9.23858 3.5 7 5.73858 7 8.5C7 11.2614 9.23858 13.5 12 13.5Z" fill="#232526"/>
+                <path d="M5 21.5C5 17.634 8.13401 14.5 12 14.5C15.866 14.5 19 17.634 19 21.5" stroke="#232526" stroke-width="2"/>
+              </svg>
+            </span>
+            {% if block.settings.author != blank %}
+              <p class="kopilot-reviews__item-name">{{ block.settings.author }}</p>
+            {% endif %}
+            {% if block.settings.verified %}
+              <span class="kopilot-reviews__verified">Verified</span>
+            {% endif %}
+          </div>
+
+          {% if block.settings.text != blank %}
+            <p class="kopilot-reviews__item-body">{{ block.settings.text }}</p>
+          {% endif %}
+        </article>
       {% endfor %}
     </div>
 
-    {% if section.settings.write_review_url != blank %}
-      <a href="{{ section.settings.write_review_url }}" class="kopilot-reviews__write-btn kopilot-body" target="_blank" rel="noopener">
-        Write a review
-      </a>
-    {% endif %}
-  </div>
-
-  <div class="kopilot-reviews__list">
-    {% for block in section.blocks %}
-      <article class="kopilot-reviews__item" {{ block.shopify_attributes }}>
-        <div class="kopilot-reviews__item-header">
-          <span class="kopilot-reviews__item-stars" aria-label="{{ block.settings.rating }} out of 5 stars">
-            {% assign rating = block.settings.rating | default: 5 %}
-            {% for s in (1..5) %}{% if s <= rating %}★{% else %}☆{% endif %}{% endfor %}
-          </span>
-          {% if block.settings.date != blank %}
-            <time class="kopilot-reviews__item-date kopilot-body">{{ block.settings.date }}</time>
-          {% endif %}
-        </div>
-        <div class="kopilot-reviews__item-author">
-          {% if block.settings.author != blank %}
-            <p class="kopilot-reviews__item-name kopilot-body">{{ block.settings.author }}</p>
-          {% endif %}
-          {% if block.settings.verified %}
-            <span class="kopilot-reviews__verified kopilot-body">Verified</span>
-          {% endif %}
-        </div>
-        {% if block.settings.text != blank %}
-          <p class="kopilot-reviews__item-body kopilot-body">{{ block.settings.text }}</p>
-        {% endif %}
-      </article>
-    {% endfor %}
+    <nav class="kopilot-reviews__pagination" data-reviews-pagination aria-label="Reviews pagination" hidden></nav>
   </div>
 </section>
 
@@ -103,7 +148,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Customer Reviews"
+      "default": "Customer Reviews."
     },
     {
       "type": "text",
@@ -148,9 +193,19 @@
       "default": 0
     },
     {
+      "type": "range",
+      "id": "reviews_per_page",
+      "label": "Reviews per page",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
       "type": "url",
       "id": "write_review_url",
-      "label": "Write a review URL"
+      "label": "Write a review URL",
+      "info": "Leave empty to open the contact popup instead."
     },
     {
       "type": "range",
@@ -197,7 +252,7 @@
         { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "text", "id": "author", "label": "Author name" },
         { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true },
-        { "type": "text", "id": "date", "label": "Date" },
+        { "type": "text", "id": "date", "label": "Date", "info": "Use MM/DD/YYYY for sorting." },
         { "type": "textarea", "id": "text", "label": "Review text" }
       ]
     }
@@ -220,7 +275,8 @@
           "settings": {
             "author": "Richard",
             "date": "03/24/2026",
-            "verified": true
+            "verified": true,
+            "text": "My other half was diagnosed with a brain tumour a few years ago, resulting in surgery and radio/chemotherapy. She is now on various medications alongside the fear of serious seizures. KOPILOT.ID gives us piece of mind that regardless of which activity she is participating in, if anything happens someone can quickly find essential information."
           }
         }
       ]
