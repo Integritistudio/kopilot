@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   gap: clamp(3.2rem, 11.39vw, 4.1rem);
-  padding: clamp(1.6rem, 5.56vw, 2rem) 0 0;
+  padding: 0 0 0;
 }
 
 .kopilot-features__content {
@@ -122,11 +122,11 @@
     flex-direction: row;
     align-items: center;
     gap: 7.3rem;
-    padding: 3.5rem 0 3.5rem 6.1rem;
+    padding: 0 0 3.5rem 6.1rem;
   }
 
   .kopilot-features__inner--image-left {
-    padding: 3.5rem 6.1rem 3.5rem 0;
+    padding: 0 6.1rem 3.5rem 0;
   }
 
   .kopilot-features__content {
@@ -195,7 +195,7 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .kopilot-features__inner {
     gap: clamp(2rem, 3vw, 3rem);
-    padding: clamp(2.4rem, 4vw, 3.5rem) 0 clamp(2.4rem, 4vw, 3.5rem) clamp(1.6rem, 3vw, 2.4rem);
+    padding: 0 0 clamp(2.4rem, 4vw, 3.5rem) clamp(1.6rem, 3vw, 2.4rem);
   }
 
   .kopilot-features__content {
@@ -240,12 +240,12 @@
 
 @media screen and (min-width: 1025px) and (max-width: 1279px) {
   .kopilot-features__inner {
-    padding: 3.5rem 0 3.5rem clamp(2rem, 4vw, 6.1rem);
+    padding: 0 0 3.5rem clamp(2rem, 4vw, 6.1rem);
     gap: 4rem;
   }
 
   .kopilot-features__inner--image-left {
-    padding: 3.5rem clamp(2rem, 4vw, 6.1rem) 3.5rem 0;
+    padding: 0 clamp(2rem, 4vw, 6.1rem) 3.5rem 0;
   }
 
   .kopilot-features__content {
@@ -262,13 +262,13 @@
   .kopilot-features__inner {
     max-width: none;
     margin: 0;
-    padding: 3.5rem 0 3.5rem 6.1rem;
+    padding: 0 0 3.5rem 6.1rem;
     box-sizing: border-box;
     gap: 7.3rem;
   }
 
   .kopilot-features__inner--image-left {
-    padding: 3.5rem 6.1rem 3.5rem 0;
+    padding: 0 6.1rem 3.5rem 0;
   }
 
   .kopilot-features__content {
