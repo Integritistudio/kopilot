@@ -7,15 +7,16 @@
 .kopilot-info-cards__bg {
   position: absolute;
   inset: 0;
-  top: auto;
-  height: 52.5rem;
   z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .kopilot-info-cards__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .kopilot-info-cards__inner {
@@ -83,16 +84,24 @@
   background: #d6d6d6;
 }
 
-.kopilot-info-cards__card-title {
-  font-size: 1.6rem;
+.kopilot-info-cards__card-title,
+.kopilot-info-cards__card-title.kopilot-body {
+  font-family: var(--kopilot-font-family);
   font-weight: 500;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: 0;
   margin: 0 0 1rem;
 }
 
-.kopilot-info-cards__card-text {
-  font-size: 1.6rem;
+.kopilot-info-cards__card-text,
+.kopilot-info-cards__card-text.kopilot-body {
+  font-family: var(--kopilot-font-family);
   font-weight: 300;
-  line-height: 1.2;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-align: center;
   margin: 0;
 }
 
@@ -121,13 +130,5 @@
   .kopilot-info-cards__card-body {
     padding: 2rem 1.3rem 3rem;
     background: #fff;
-  }
-
-  .kopilot-info-cards__card-title {
-    font-size: 2.4rem;
-  }
-
-  .kopilot-info-cards__card-text {
-    font-size: 1.6rem;
   }
 }

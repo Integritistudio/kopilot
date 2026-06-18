@@ -19,7 +19,7 @@
   <div class="kopilot-info-cards__bg">
     {% render 'kopilot-image',
       image: section.settings.background_image,
-      fallback: 'kopilot-info-cards-bg.jpg',
+      fallback: 'cardsBg.png',
       alt: '',
       width: 2000,
       sizes: '100vw'
@@ -31,7 +31,7 @@
       <h2 class="kopilot-info-cards__heading kopilot-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    {% assign card_image_fallbacks = 'kopilot-card-1-bg.jpg,kopilot-card-2-setup.jpg,kopilot-card-3-app.jpg' | split: ',' %}
+    {% assign card_image_fallbacks = 'Group 2106667232.png,kopilot-card-2-setup.jpg,Group 2106667232.png' | split: ',' %}
     <div class="kopilot-info-cards__grid">
       {% for block in section.blocks %}
         <article class="kopilot-info-cards__card" {{ block.shopify_attributes }}>
@@ -45,10 +45,6 @@
             {% if block.settings.overlay_image != blank %}
               <div class="kopilot-info-cards__card-overlay">
                 {{ block.settings.overlay_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: block.settings.title }}
-              </div>
-            {% elsif forloop.first %}
-              <div class="kopilot-info-cards__card-overlay">
-                <img src="{{ 'kopilot-card-1-phone.png' | asset_url }}" alt="" loading="lazy" width="260" height="200">
               </div>
             {% endif %}
           </div>

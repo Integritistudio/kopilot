@@ -44,6 +44,6 @@
   .kopilot-guarantees__grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 4rem;
-    padding: 4rem 26rem;
+    /* padding: 4rem 26rem; */
   }
 }
