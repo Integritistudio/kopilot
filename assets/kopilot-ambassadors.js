@@ -4,6 +4,8 @@ class KopilotAmbassadors {
     this.swiperEl = section.querySelector('.kopilot-ambassadors__swiper');
     this.fill = section.querySelector('.kopilot-ambassadors__progress-fill');
     this.track = section.querySelector('.kopilot-ambassadors__progress-track');
+    this.prevBtn = section.querySelector('.kopilot-ambassadors__nav-btn--prev');
+    this.nextBtn = section.querySelector('.kopilot-ambassadors__nav-btn--next');
     this.swiper = null;
 
     if (!this.swiperEl) return;
@@ -24,14 +26,23 @@ class KopilotAmbassadors {
   init() {
     if (this.swiper) return;
 
+    const navigation =
+      this.prevBtn && this.nextBtn
+        ? {
+            prevEl: this.prevBtn,
+            nextEl: this.nextBtn,
+          }
+        : undefined;
+
     this.swiper = new Swiper(this.swiperEl, {
       slidesPerView: 'auto',
-      spaceBetween: 16,
+      spaceBetween: 50,
       grabCursor: true,
       watchOverflow: true,
       slidesOffsetBefore: 0,
+      navigation,
       breakpoints: {
-        990: {
+        991: {
           spaceBetween: 30,
           slidesOffsetBefore: 0,
         },

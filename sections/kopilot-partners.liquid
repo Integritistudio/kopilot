@@ -3,6 +3,13 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+
+  @media screen and (max-width: 990px) {
+    .kopilot-partners--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
 {% endstyle %}
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
@@ -13,6 +20,11 @@
     <div class="kopilot-partners__logos">
       {% assign partner_fallbacks = 'kopilot-partner-1.png,kopilot-partner-2.png,kopilot-partner-3.png,kopilot-partner-4.png,kopilot-partner-5.png,kopilot-partner-6.png' | split: ',' %}
       {% for block in section.blocks %}
+        {% assign row_index = forloop.index0 | divided_by: 3 %}
+        {% assign col_index = forloop.index0 | modulo: 3 %}
+        {% if col_index == 0 %}
+          <div class="kopilot-partners__logos-row kopilot-partners__logos-row--{{ row_index | plus: 1 }}">
+        {% endif %}
         <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
           {% render 'kopilot-image',
             image: block.settings.logo,
@@ -21,11 +33,14 @@
             width: 300
           %}
         </div>
+        {% if col_index == 2 or forloop.last %}
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
 
     {% if section.settings.text != blank %}
-      <p class="kopilot-partners__text kopilot-body">{{ section.settings.text }}</p>
+      <p class="kopilot-partners__text">{{ section.settings.text }}</p>
     {% endif %}
   </div>
 </section>
@@ -56,7 +71,8 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 0
+      "default": 0,
+      "unit": "px"
     },
     {
       "type": "range",
@@ -65,7 +81,28 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 0
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
     }
   ],
   "blocks": [

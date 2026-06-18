@@ -3,45 +3,56 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+
+  @media screen and (max-width: 989px) {
+    .kopilot-cta-banner--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
 {% endstyle %}
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-cta-banner.css' | asset_url | stylesheet_tag }}
 
 <section class="kopilot-section kopilot-cta-banner kopilot-cta-banner--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-cta-banner__content">
+  <div class="kopilot-cta-banner__intro">
     {% if section.settings.heading != blank %}
       <h2 class="kopilot-cta-banner__heading kopilot-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.button_label != blank %}
-      <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn kopilot-cta-banner__btn">
         {{ section.settings.button_label }}
       </a>
     {% endif %}
-
-    {% if section.blocks.size > 0 %}
-      <div class="kopilot-cta-banner__trust">
-        {% for block in section.blocks %}
-          <div class="kopilot-cta-banner__trust-item kopilot-body" {{ block.shopify_attributes }}>
-            {% if block.settings.icon != blank %}
-              <span class="kopilot-cta-banner__trust-icon">
-                {{ block.settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', alt: '' }}
-              </span>
-            {% endif %}
-            {% if block.settings.label != blank %}
-              <span>{{ block.settings.label }}</span>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    {% endif %}
   </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="kopilot-cta-banner__trust">
+      {% assign trust_fallbacks = 'kopilot-guarantee-moneyback.png,kopilot-guarantee-works.png' | split: ',' %}
+      {% for block in section.blocks %}
+        <div class="kopilot-cta-banner__trust-item" {{ block.shopify_attributes }}>
+          <span class="kopilot-cta-banner__trust-icon">
+            {% render 'kopilot-image',
+              image: block.settings.icon,
+              fallback: trust_fallbacks[forloop.index0],
+              alt: block.settings.label,
+              width: 64
+            %}
+          </span>
+          {% if block.settings.label != blank %}
+            <span class="kopilot-cta-banner__trust-label">{{ block.settings.label }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
   <div class="kopilot-cta-banner__media">
     {% render 'kopilot-image',
       image: section.settings.image,
-      fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
+      fallback: 'kopilot-cta-banner.jpg',
       alt: section.settings.heading,
       width: 2000,
       sizes: '100vw'
@@ -101,6 +112,24 @@
       "max": 80,
       "step": 4,
       "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
     }
   ],
   "blocks": [
@@ -118,7 +147,6 @@
       "name": "Kopilot CTA banner",
       "blocks": [
         { "type": "trust", "settings": { "label": "Money-back guarantee" } },
-        { "type": "trust", "settings": { "label": "No subscription" } },
         { "type": "trust", "settings": { "label": "Works anywhere" } }
       ]
     }

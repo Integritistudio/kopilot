@@ -1342,6 +1342,27 @@ a.mega_menu_child_link.menu_body {
   }
 }
 
+.header_inner.kopilot-header button#mobile_menu_drawer_btn .svg_wrapper svg {
+  width: 16px;
+  height: 20px;
+  display: block;
+}
+
+.header_inner.kopilot-header button#mobile_menu_drawer_btn svg path {
+  fill: none;
+  stroke: #090a11;
+}
+
+.header_inner.kopilot-header .header_mobile_search_btn .svg_wrapper svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.header_inner.kopilot-header .header_mobile_search_btn .svg_wrapper svg path {
+  stroke: #090a11;
+}
+
 /* Mobile left wrapper: hidden on desktop, groups hamburger + search on mobile */
 .header_mobile_left {
   display: none;
@@ -1373,8 +1394,82 @@ a.mega_menu_child_link.menu_body {
   stroke: var(--color-link);
 }
 
-/* Mobile/tablet (≤1299px) */
-@media screen and (max-width: 1299px) {
+/* Mobile (≤990px) — Figma */
+@media screen and (max-width: 990px) {
+  .header_inner.kopilot-header {
+    display: grid !important;
+    grid-template-areas: "hamburger logo actions" !important;
+    grid-template-columns: auto 1fr auto !important;
+    gap: 1rem !important;
+    min-height: 30px;
+  }
+
+  .header_inner.kopilot-header .header_navigation_wrapper {
+    display: none;
+  }
+
+  .header_inner.kopilot-header .header_mobile_left {
+    display: flex;
+    gap: 17px;
+  }
+
+  .header_mobile_left {
+    display: flex;
+    gap: 17px;
+  }
+
+  .header_mobile_left button#mobile_menu_drawer_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    min-width: 16px;
+    min-height: 20px;
+    padding: 0;
+    grid-area: unset;
+  }
+
+  .header_mobile_search_btn {
+    display: flex;
+    width: 30px;
+    height: 30px;
+  }
+
+  .header_action_wrapper .header_kopilot_search {
+    display: none !important;
+  }
+
+  .header_kopilot_cta {
+    display: none;
+  }
+
+  .header_kopilot_actions {
+    gap: 12px;
+  }
+
+  .header_kopilot_cart {
+    display: flex !important;
+    min-width: auto;
+    min-height: auto;
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+
+  .header_wrapper {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    background: #eee !important;
+  }
+
+  .header_wrapper > .container {
+    padding-inline: 32px;
+  }
+}
+
+/* Tablet header fallback (991px–1299px) */
+@media screen and (min-width: 991px) and (max-width: 1299px) {
   .header_inner.kopilot-header {
     display: grid !important;
     grid-template-areas: "hamburger logo actions" !important;
@@ -1423,21 +1518,5 @@ a.mega_menu_child_link.menu_body {
     display: flex !important;
     min-width: 4.4rem;
     min-height: 4.4rem;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .header_mobile_left {
-    gap: 8px;
-  }
-
-  .header_mobile_search_btn {
-    width: 24px;
-    height: 24px;
-  }
-
-  .header_mobile_search_btn .svg_wrapper svg {
-    width: 24px;
-    height: 24px;
   }
 }

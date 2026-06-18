@@ -132,10 +132,14 @@
         {% for link in corporate_menu.links %}
           {% assign link_title_downcase = link.title | downcase %}
           {% assign is_search_link = false %}
+          {% assign is_wholesale_link = false %}
           {% if link_title_downcase contains 'search' or link.url contains '/search' %}
             {% assign is_search_link = true %}
           {% endif %}
-          {% unless is_search_link %}
+          {% if link_title_downcase contains 'wholesale' %}
+            {% assign is_wholesale_link = true %}
+          {% endif %}
+          {% unless is_search_link or is_wholesale_link %}
             <a href="{{ link.url }}" class="footer-menu-link">
               {{ link.title }}
             </a>

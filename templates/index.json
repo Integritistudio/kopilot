@@ -235,8 +235,8 @@
         "show_progress": true,
         "padding_top": 48,
         "padding_bottom": 48,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
       }
     },
     "kopilot_partners": {
@@ -296,8 +296,10 @@
       "settings": {
         "color_scheme": "scheme-1",
         "text": "Trusted by the biggest names in off-road racing. An official safety partner for riders and race series nationwide.",
-        "padding_top": 52,
-        "padding_bottom": 0
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "kopilot_product_tiers": {
@@ -318,7 +320,7 @@
             "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
             "feature_2": "A simple, reliable solution for riders who stick to one setup",
             "button_label": "GET 1 TAG",
-            "button_style": "outline",
+            "button_style": "solid",
             "button_link": ""
           }
         },
@@ -356,7 +358,7 @@
             "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
             "feature_2": "Greatest savings, most coverage",
             "button_label": "GET 3 TAGS",
-            "button_style": "solid",
+            "button_style": "outline",
             "button_link": ""
           }
         }
@@ -612,22 +614,13 @@
         "tr2": {
           "type": "trust",
           "settings": {
-            "icon": "shopify://shop_images/Group_2087327569.png",
-            "label": "No subscription"
-          }
-        },
-        "tr3": {
-          "type": "trust",
-          "settings": {
-            "icon": "shopify://shop_images/Group.png",
             "label": "Works anywhere"
           }
         }
       },
       "block_order": [
         "tr1",
-        "tr2",
-        "tr3"
+        "tr2"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -635,7 +628,9 @@
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     }
   },

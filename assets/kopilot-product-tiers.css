@@ -5,6 +5,7 @@
   font-synthesis: none;
 }
 
+/* Mobile ≤990px — Figma 360px frame (node 3114-2451) */
 .kopilot-product-tiers__inner {
   max-width: 1440px;
   margin: 0 auto;
@@ -12,13 +13,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
-  padding: 48px 20px 50px;
+  gap: clamp(4rem, 13.89vw, 5rem);
+  padding: clamp(4rem, 13.89vw, 5rem) clamp(2rem, 10.5vw, 7.1rem);
+  box-sizing: border-box;
 }
 
 .kopilot-product-tiers__header {
   width: 100%;
-  max-width: 909px;
+  max-width: 19.6rem;
   text-align: center;
 }
 
@@ -26,10 +28,9 @@
   margin: 0;
   font-family: var(--kopilot-font-family);
   font-weight: 300;
-  font-style: normal;
-  font-size: 3.2rem;
+  font-size: clamp(2.6rem, 8.33vw, 3rem);
   line-height: 110%;
-  letter-spacing: 0;
+  letter-spacing: -1px;
   text-align: center;
   color: #000;
 }
@@ -38,15 +39,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: clamp(1.4rem, 4.44vw, 1.598rem);
   width: 100%;
+  max-width: 28.423rem;
 }
 
 .kopilot-product-tiers__card {
   box-sizing: border-box;
   width: 100%;
-  max-width: 427px;
-  padding: 24px;
+  max-width: 28.423rem;
+  padding: clamp(1.4rem, 4.44vw, 1.598rem);
   background: #eee;
   position: relative;
   display: flex;
@@ -55,7 +57,7 @@
 
 .kopilot-product-tiers__card--bordered {
   background: #fff;
-  border: 2px solid #000;
+  border: 1.3313px solid #000;
 }
 
 .kopilot-product-tiers__card--gray {
@@ -65,33 +67,33 @@
 
 .kopilot-product-tiers__card-badge {
   position: absolute;
-  top: 13px;
-  left: 13px;
+  top: clamp(0.7rem, 2.4vw, 0.865rem);
+  left: clamp(0.7rem, 2.4vw, 0.865rem);
   z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 22px;
+  padding: clamp(0.35rem, 1.2vw, 0.432rem) clamp(1.2rem, 4.07vw, 1.464rem);
   background: #000;
   color: #fff;
   font-family: var(--kopilot-font-family);
-  font-size: 16px;
+  font-size: clamp(1.4rem, 4.44vw, 1.6rem);
   font-weight: 600;
-  line-height: 17px;
+  line-height: 1.06;
   text-transform: uppercase;
 }
 
 .kopilot-product-tiers__card-inner {
   display: flex;
   flex-direction: column;
-  gap: 42px;
+  gap: clamp(2.4rem, 7.77vw, 2.796rem);
   flex: 1;
 }
 
 .kopilot-product-tiers__card-media {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: clamp(13rem, 40.56vw, 14.6rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,28 +134,28 @@
 .kopilot-product-tiers__card-body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(1.2rem, 3.7vw, 1.331rem);
   flex: 1;
 }
 
 .kopilot-product-tiers__card-head {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(1.2rem, 3.7vw, 1.331rem);
 }
 
 .kopilot-product-tiers__card-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-height: 40px;
+  gap: clamp(1rem, 3.2vw, 1.6rem);
+  min-height: clamp(2.4rem, 7.4vw, 2.663rem);
 }
 
 .kopilot-product-tiers__card-title {
   margin: 0;
   font-family: var(--kopilot-font-family);
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 7.4vw, 2.663rem);
   font-weight: 600;
   line-height: 0.97;
   color: #000;
@@ -164,14 +166,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 26px;
-  border: 1px solid #000;
+  padding: clamp(0.45rem, 1.46vw, 0.526rem) clamp(1.4rem, 4.81vw, 1.731rem);
+  border: 0.665651px solid #000;
   background: transparent;
   color: #000;
   font-family: var(--kopilot-font-family);
-  font-size: 14px;
+  font-size: clamp(1.2rem, 3.61vw, 1.3rem);
   font-weight: 600;
-  line-height: 20px;
+  line-height: 1.04;
   white-space: nowrap;
 }
 
@@ -180,27 +182,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-height: 39px;
+  gap: clamp(1rem, 3.2vw, 1.6rem);
+  min-height: clamp(2rem, 5.9vw, 2.13rem);
 }
 
 .kopilot-product-tiers__reviews {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(0.5rem, 1.85vw, 0.666rem);
   font-family: var(--kopilot-font-family);
-  font-size: 13px;
+  font-size: clamp(1.1rem, 3.33vw, 1.2rem);
   font-weight: 500;
-  line-height: 25px;
+  line-height: 1.42;
   color: #000;
+}
+
+.kopilot-product-tiers__reviews .kopilot-review-stars--tier {
+  gap: 2px;
+}
+
+.kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg {
+  width: clamp(0.72rem, 2.22vw, 0.801rem);
+  height: clamp(0.72rem, 2.22vw, 0.801rem);
 }
 
 .kopilot-product-tiers__price {
   margin: 0;
   font-family: var(--kopilot-font-family);
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 6.85vw, 2.466rem);
   font-weight: 600;
-  line-height: 39px;
+  line-height: 1.05;
   color: #000;
   white-space: nowrap;
 }
@@ -212,13 +223,13 @@
 .kopilot-product-tiers__card-copy {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: clamp(0.8rem, 2.77vw, 0.998rem);
 }
 
 .kopilot-product-tiers__description {
   margin: 0;
   font-family: var(--kopilot-font-family);
-  font-size: 16px;
+  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
   font-weight: 600;
   line-height: 120%;
   color: #000;
@@ -230,15 +241,15 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(0.5rem, 1.85vw, 0.666rem);
 }
 
 .kopilot-product-tiers__features li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: clamp(0.5rem, 1.85vw, 0.666rem);
   font-family: var(--kopilot-font-family);
-  font-size: 16px;
+  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
   font-weight: 400;
   line-height: 120%;
   color: #000;
@@ -246,11 +257,15 @@
 
 .kopilot-product-tiers__features li::before {
   content: '';
-  width: 10px;
-  height: 15px;
+  width: clamp(0.55rem, 1.9vw, 0.685rem);
+  height: clamp(0.8rem, 2.7vw, 0.972rem);
   flex-shrink: 0;
-  margin-top: 2px;
-  background: url('kopilot-checkmark.svg') no-repeat center / contain;
+  margin-top: 0.25rem;
+  border: 0.931911px solid #000;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  background: none;
 }
 
 .kopilot-product-tiers__btn {
@@ -258,54 +273,59 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 51px;
-  padding: 17px 24px;
-  border: 2px solid #ef0008;
-  background: transparent;
+  min-height: clamp(3rem, 9.34vw, 3.363rem);
+  padding: clamp(1rem, 3.14vw, 1.132rem) clamp(2rem, 23.11vw, 8.321rem);
+  border: 1.3313px solid #ef0008;
+  background: #fff;
   color: #ef0008;
   font-family: var(--kopilot-font-family);
-  font-size: 20px;
+  font-size: clamp(1.2rem, 3.7vw, 1.331rem);
   font-weight: 600;
-  line-height: 16px;
+  line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   margin-top: auto;
-}
-
-.kopilot-product-tiers__card--gray .kopilot-product-tiers__btn {
-  background: #fff;
+  box-sizing: border-box;
 }
 
 .kopilot-product-tiers__card--solid-btn .kopilot-product-tiers__btn {
   background: #ef0008;
   color: #fff;
+  border-color: #ef0008;
 }
 
 .kopilot-product-tiers__btn:hover {
   opacity: 0.9;
-  color: #ef0008;
 }
 
 .kopilot-product-tiers__card--solid-btn .kopilot-product-tiers__btn:hover {
   color: #fff;
 }
 
-@media screen and (min-width: 990px) {
+/* Desktop: 991px+ */
+@media screen and (min-width: 991px) {
   .kopilot-product-tiers__inner {
+    gap: 60px;
     padding: 48px 71px 50px;
+  }
+
+  .kopilot-product-tiers__header {
+    max-width: 909px;
   }
 
   .kopilot-product-tiers__heading {
     font-size: 60px;
+    letter-spacing: 0;
   }
 
   .kopilot-product-tiers__grid {
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
+    gap: 24px;
     max-width: 1329px;
   }
 
@@ -313,6 +333,35 @@
     flex: 0 0 427px;
     max-width: 427px;
     min-height: 632px;
+    padding: 24px;
+  }
+
+  .kopilot-product-tiers__card--bordered {
+    border-width: 2px;
+  }
+
+  .kopilot-product-tiers__card-badge {
+    top: 13px;
+    left: 13px;
+    padding: 6px 22px;
+    font-size: 16px;
+    line-height: 17px;
+  }
+
+  .kopilot-product-tiers__card-inner {
+    gap: 42px;
+  }
+
+  .kopilot-product-tiers__card-media {
+    height: 220px;
+  }
+
+  .kopilot-product-tiers__card-body {
+    gap: 20px;
+  }
+
+  .kopilot-product-tiers__card-head {
+    gap: 20px;
   }
 
   .kopilot-product-tiers__card-title {
@@ -320,8 +369,83 @@
     line-height: 39px;
   }
 
+  .kopilot-product-tiers__save-badge {
+    padding: 8px 26px;
+    font-size: 14px;
+    line-height: 20px;
+    border-width: 1px;
+  }
+
+  .kopilot-product-tiers__meta {
+    min-height: 39px;
+    gap: 16px;
+  }
+
+  .kopilot-product-tiers__reviews {
+    font-size: 13px;
+    line-height: 25px;
+    gap: 10px;
+  }
+
+  .kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
   .kopilot-product-tiers__price {
     font-size: 37px;
+    line-height: 39px;
+  }
+
+  .kopilot-product-tiers__card-copy {
+    gap: 15px;
+  }
+
+  .kopilot-product-tiers__description,
+  .kopilot-product-tiers__features li {
+    font-size: 16px;
+  }
+
+  .kopilot-product-tiers__features {
+    gap: 10px;
+  }
+
+  .kopilot-product-tiers__features li {
+    gap: 10px;
+  }
+
+  .kopilot-product-tiers__features li::before {
+    width: 10px;
+    height: 15px;
+    margin-top: 2px;
+    border: none;
+    transform: none;
+    background: url('kopilot-checkmark.svg') no-repeat center / contain;
+  }
+
+  .kopilot-product-tiers__btn {
+    min-height: 51px;
+    padding: 17px 24px;
+    font-size: 20px;
+    line-height: 16px;
+    border-width: 2px;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1439px) {
+  .kopilot-product-tiers__inner {
+    padding-inline: clamp(20px, 4vw, 71px);
+  }
+
+  .kopilot-product-tiers__grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kopilot-product-tiers__card {
+    flex: 0 1 380px;
+    max-width: 380px;
+    min-height: auto;
   }
 }
 

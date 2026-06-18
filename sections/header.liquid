@@ -36,7 +36,18 @@
     border-bottom: 1px solid {{ section.settings.divider_color }};
   }
 
-  @media screen and (max-width: 1299px) {
+  @media screen and (max-width: 990px) {
+    .header_wrapper {
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+    }
+
+    .header_wrapper > .container {
+      padding-inline: 32px;
+    }
+  }
+
+  @media screen and (min-width: 991px) and (max-width: 1299px) {
     .header_wrapper {
       padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
       padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
@@ -101,14 +112,14 @@
             aria-label="{{ 'accessibility.mobile_menu_trigger_button' | t }}"
             data-drawer="mobile_menu_drawer"
           >
-            <div class="svg_wrapper">{{ 'icon-hamburger.svg' | inline_asset_content }}</div>
+            <div class="svg_wrapper">{{ 'hamburgur.svg' | inline_asset_content }}</div>
           </button>
           <button
             class="header_mobile_search_btn drawer_open_btn"
             aria-label="{{ 'accessibility.header_search_icon' | t }}"
             data-drawer="search_drawer"
           >
-            <div class="svg_wrapper">{{ 'icon-search.svg' | inline_asset_content }}</div>
+            <div class="svg_wrapper">{{ 'mobile-search.svg' | inline_asset_content }}</div>
           </button>
         </div>
 

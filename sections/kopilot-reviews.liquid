@@ -67,7 +67,17 @@
         {% endif %}
       </div>
 
-      <p class="kopilot-reviews__based-on">Based on {{ section.settings.total_reviews }} reviews</p>
+      <p class="kopilot-reviews__based-on">
+        <span>Based on {{ section.settings.total_reviews }} reviews</span>
+        <img
+          class="kopilot-reviews__based-on-icon"
+          src="{{ 'verified-checkmark.svg' | asset_url }}"
+          alt=""
+          width="17"
+          height="16"
+          loading="lazy"
+        >
+      </p>
     </div>
 
     <div class="kopilot-reviews__toolbar">

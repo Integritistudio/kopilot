@@ -31,41 +31,45 @@
     {% endif %}
   </div>
 
-  <div class="kopilot-hero__product-mobile" aria-hidden="true">
-    {% render 'kopilot-image',
-      image: section.settings.product_image,
-      fallback: 'Mask group.png',
-      alt: '',
-      width: 500,
-      loading: 'eager'
-    %}
-  </div>
-
   <div class="kopilot-hero__inner">
-    <div class="kopilot-hero__content">
-      {% if section.settings.eyebrow != blank %}
-        <p class="kopilot-hero__eyebrow kopilot-body">{{ section.settings.eyebrow }}</p>
-      {% endif %}
+    <div class="kopilot-hero__product-mobile" aria-hidden="true">
+      {% render 'kopilot-image',
+        image: section.settings.product_image,
+        fallback: 'Mask group.png',
+        alt: '',
+        width: 500,
+        loading: 'eager'
+      %}
+    </div>
 
-      <div class="kopilot-hero__title-group">
-        {% if section.settings.heading_line_1 != blank %}
-          <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium">
-            {{ section.settings.heading_line_1 }}
-          </h1>
+    <div class="kopilot-hero__content-column">
+      <div class="kopilot-hero__content">
+        {% if section.settings.eyebrow != blank %}
+          <p class="kopilot-hero__eyebrow kopilot-body">{{ section.settings.eyebrow }}</p>
         {% endif %}
-        {% if section.settings.heading_line_2 != blank %}
-          <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading">
-            {{ section.settings.heading_line_2 }}
-          </p>
-        {% endif %}
+
+        <div class="kopilot-hero__copy">
+          <div class="kopilot-hero__title-group">
+            {% if section.settings.heading_line_1 != blank %}
+              <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium">
+                {{ section.settings.heading_line_1 }}
+              </h1>
+            {% endif %}
+            {% if section.settings.heading_line_2 != blank %}
+              <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading">
+                {{ section.settings.heading_line_2 }}
+              </p>
+            {% endif %}
+          </div>
+
+          {% if section.settings.description != blank %}
+            <p class="kopilot-hero__description kopilot-body">{{ section.settings.description }}</p>
+          {% endif %}
+        </div>
       </div>
 
-      {% if section.settings.description != blank %}
-        <p class="kopilot-hero__description kopilot-body">{{ section.settings.description }}</p>
-      {% endif %}
-
       {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn kopilot-hero__cta">
           {{ section.settings.button_label }}
         </a>
       {% endif %}

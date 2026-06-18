@@ -1,58 +1,117 @@
 .kopilot-partners {
   background: #fff;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
 }
 
+/* Mobile ≤990px — Figma 360px frame (node 3127-3719) */
 .kopilot-partners__inner {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  gap: clamp(2.4rem, 8.61vw, 3.1rem);
+  padding: clamp(4.4rem, 13.61vw, 4.9rem) clamp(1.6rem, 4.44vw, 2rem);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .kopilot-partners__logos {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2rem 3rem;
+  gap: clamp(1.8rem, 6.37vw, 2.294rem);
+  width: 100%;
+  max-width: 32.04rem;
 }
 
-.kopilot-partners__logo img {
-  height: 6rem;
+.kopilot-partners__logos-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(1.8rem, 6.44vw, 2.319rem);
+  width: 100%;
+}
+
+.kopilot-partners__logos-row--2 {
+  max-width: 23.113rem;
+}
+
+.kopilot-partners__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.kopilot-partners__logos-row--1 .kopilot-partners__logo img {
+  max-height: clamp(3.6rem, 11.68vw, 4.206rem);
+  width: auto;
+  object-fit: contain;
+}
+
+.kopilot-partners__logos-row--2 .kopilot-partners__logo img {
+  max-height: clamp(4.4rem, 14.55vw, 5.238rem);
   width: auto;
   object-fit: contain;
 }
 
 .kopilot-partners__text {
-  font-size: 1.5rem;
-  line-height: 1.3;
   margin: 0;
+  width: 100%;
   max-width: 37.4rem;
+  font-family: var(--kopilot-font-family);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
+  line-height: 120%;
+  text-align: center;
+  color: #000;
 }
 
-@media screen and (min-width: 990px) {
+/* Desktop: 991px+ */
+@media screen and (min-width: 991px) {
+  .kopilot-partners {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
   .kopilot-partners__inner {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
     padding: 1.3rem 8.8rem;
     text-align: left;
   }
 
   .kopilot-partners__logos {
-    flex-wrap: nowrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     gap: 3.3rem;
+    max-width: none;
+    flex: 1;
+  }
+
+  .kopilot-partners__logos-row {
+    display: contents;
+  }
+
+  .kopilot-partners__logos-row--2 {
+    max-width: none;
   }
 
   .kopilot-partners__logo img {
-    height: 7.4rem;
+    max-height: 7.4rem;
+    width: auto;
+    object-fit: contain;
   }
 
   .kopilot-partners__text {
     font-size: 2rem;
+    line-height: 1.3;
     flex: 0 0 37.4rem;
+    text-align: left;
   }
 }

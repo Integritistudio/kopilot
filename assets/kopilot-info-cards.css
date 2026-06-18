@@ -19,55 +19,74 @@
   object-position: center;
 }
 
+/* Mobile ≤990px — Figma 360px frame (node 3227-335) */
 .kopilot-info-cards__inner {
   position: relative;
   z-index: 1;
-  margin-top: 4.3rem;
-  padding: 0rem 0 9.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5rem, 18.61vw, 6.7rem);
+  margin-top: 0;
+  padding: clamp(5rem, 16.67vw, 6rem) 0 clamp(8rem, 26.39vw, 9.5rem);
+  box-sizing: border-box;
 }
 
 .kopilot-info-cards__heading {
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
   text-align: center;
-  font-size: 3rem;
-  margin: 0 auto 4.2rem;
-  max-width: 85.4rem;
-  padding: 0 2rem;
+  font-size: clamp(2.6rem, 8.33vw, 3rem);
+  line-height: 110%;
+  letter-spacing: -1px;
+  margin: 0;
+  max-width: 32.2rem;
+  padding: 0 clamp(1.6rem, 4.44vw, 2rem);
+  box-sizing: border-box;
 }
 
 .kopilot-info-cards__grid {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 0 2rem 4rem;
+  align-items: center;
+  gap: clamp(1.6rem, 5.56vw, 2rem);
+  width: min(29.4rem, calc(100% - 3.2rem));
+  margin: 0 auto;
+  padding: 0;
 }
 
 .kopilot-info-cards__card {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  width: 100%;
+  max-width: 29.4rem;
+  background: transparent;
 }
 
 .kopilot-info-cards__card-media {
   position: relative;
-  aspect-ratio: 369 / 271;
+  width: 100%;
+  aspect-ratio: 294 / 215.92;
   overflow: hidden;
-  background: #f5f5f5;
+  background: #c7c7c7;
+  flex: none;
 }
 
 .kopilot-info-cards__card-overlay {
   position: absolute;
-  left: 50%;
-  top: 26%;
-  transform: translateX(-50%);
-  width: 70%;
-  max-width: 20.6rem;
+  left: 15.18%;
+  top: 26.57%;
+  transform: none;
+  width: 69.92%;
+  max-width: none;
   pointer-events: none;
 }
 
 .kopilot-info-cards__card-overlay img {
   width: 100%;
   height: auto;
-  border-radius: 3.2rem 3.2rem 0 0;
+  border-radius: clamp(2.8rem, 8.85vw, 3.187rem) clamp(2.8rem, 8.85vw, 3.187rem) 0 0;
   object-fit: cover;
 }
 
@@ -79,45 +98,69 @@
 }
 
 .kopilot-info-cards__card-body {
-  padding: 2rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.8rem, 2.78vw, 1rem);
+  padding: clamp(1.6rem, 5.56vw, 2rem) clamp(1.1rem, 3.61vw, 1.3rem);
   text-align: center;
   background: #d6d6d6;
+  box-sizing: border-box;
 }
 
 .kopilot-info-cards__card-title,
 .kopilot-info-cards__card-title.kopilot-body {
   font-family: var(--kopilot-font-family);
   font-weight: 500;
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4.44vw, 1.6rem);
   line-height: 120%;
   letter-spacing: 0;
-  margin: 0 0 1rem;
+  margin: 0;
+  width: 100%;
+  max-width: 26.8rem;
+  text-align: center;
 }
 
 .kopilot-info-cards__card-text,
 .kopilot-info-cards__card-text.kopilot-body {
   font-family: var(--kopilot-font-family);
   font-weight: 300;
-  font-size: 2rem;
-  line-height: 120%;
+  font-size: clamp(1.4rem, 4.44vw, 1.6rem);
+  line-height: 110%;
   letter-spacing: 0;
   text-align: center;
   margin: 0;
+  width: 100%;
+  max-width: 26.8rem;
 }
 
 .kopilot-info-cards__card-text p {
   margin: 0;
 }
 
-@media screen and (min-width: 990px) {
+/* Desktop: 991px+ */
+@media screen and (min-width: 991px) {
+  .kopilot-info-cards__inner {
+    gap: 0;
+    padding: 0 0 5rem;
+    margin-top: 4.3rem;
+  }
+
   .kopilot-info-cards__heading {
     font-size: 5.5rem;
-    margin-bottom: 6rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 0 auto 6rem;
+    max-width: 85.4rem;
+    padding: 0 2rem;
   }
 
   .kopilot-info-cards__grid {
     flex-direction: row;
+    align-items: stretch;
     gap: 2.9rem;
+    width: auto;
+    max-width: none;
     padding: 0 13.75rem 5rem;
     justify-content: center;
   }
@@ -125,10 +168,53 @@
   .kopilot-info-cards__card {
     flex: 0 0 36.9rem;
     max-width: calc(33.333% - 2rem);
+    background: #fff;
+  }
+
+  .kopilot-info-cards__card-media {
+    aspect-ratio: 369 / 271;
+  }
+
+  .kopilot-info-cards__card-overlay {
+    left: 50%;
+    top: 26%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 20.6rem;
+  }
+
+  .kopilot-info-cards__card-overlay img {
+    border-radius: 3.2rem 3.2rem 0 0;
   }
 
   .kopilot-info-cards__card-body {
     padding: 2rem 1.3rem 3rem;
     background: #fff;
+    gap: 1rem;
+  }
+
+  .kopilot-info-cards__card-title,
+  .kopilot-info-cards__card-title.kopilot-body {
+    font-size: 2rem;
+    line-height: 120%;
+    max-width: none;
+  }
+
+  .kopilot-info-cards__card-text,
+  .kopilot-info-cards__card-text.kopilot-body {
+    font-size: 2rem;
+    line-height: 120%;
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1279px) {
+  .kopilot-info-cards__grid {
+    padding-inline: clamp(2rem, 6vw, 8rem);
+  }
+
+  .kopilot-info-cards__card {
+    flex: 1 1 calc(33.333% - 2rem);
+    max-width: calc(33.333% - 2rem);
   }
 }

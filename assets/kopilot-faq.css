@@ -1,20 +1,25 @@
 .kopilot-faq {
   background: #fff;
+  font-family: var(--kopilot-font-family);
+  font-synthesis: none;
 }
 
+/* Mobile ≤990px — Figma 360px frame (node 2948-1164) */
 .kopilot-faq__inner {
   display: flex;
   flex-direction: column;
-  gap: 3.9rem;
-  padding: 6rem 3rem 6rem;
+  align-items: center;
+  gap: clamp(3rem, 10.83vw, 3.9rem);
+  padding: clamp(4rem, 16.67vw, 6rem) clamp(2rem, 8.33vw, 3rem);
+  box-sizing: border-box;
 }
 
 .kopilot-faq__heading,
 .kopilot-faq__heading.kopilot-heading {
   font-family: var(--kopilot-font-family);
-  font-size: 3rem;
+  font-size: clamp(2.6rem, 8.33vw, 3rem);
   font-weight: 700;
-  line-height: 6rem;
+  line-height: 2;
   letter-spacing: 0;
   text-transform: uppercase;
   margin: 0;
@@ -28,12 +33,13 @@
 
 .kopilot-faq__list {
   width: 100%;
+  max-width: 30.1rem;
 }
 
 .kopilot-faq__list .faq_item {
   margin: 0 0 1.5rem;
   background: #eaeaea;
-  border: 1.4px solid transparent;
+  border: none;
 }
 
 .kopilot-faq__list .faq_item:last-child {
@@ -41,9 +47,13 @@
 }
 
 .kopilot-faq__list .faq_item:has(.faq_question.active) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 1.8rem 1.5rem;
   background: #fff;
-  border-color: #403a3a;
-  border-width: 1.4px;
+  border: 1px solid #000;
 }
 
 .kopilot-faq__list .faq_question {
@@ -51,19 +61,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  min-height: auto;
+  gap: 1rem;
+  min-height: 5.6rem;
   padding: 1rem 1.9rem;
   background: none;
   border: none;
-  border-bottom: 1px solid transparent;
   text-align: left;
   cursor: pointer;
-  color: inherit;
+  color: #000;
+  box-sizing: border-box;
 }
 
 .kopilot-faq__list .faq_item:has(.faq_question.active) .faq_question {
-  border-bottom-color: #403a3a;
+  min-height: 3.4rem;
+  padding: 0;
 }
 
 .kopilot-faq__list .faq_question .h6,
@@ -75,11 +86,16 @@
   letter-spacing: -0.36px;
   margin: 0;
   text-align: left;
+  color: #000;
+  flex: 1;
+  max-width: calc(100% - 2.8rem);
 }
 
 .kopilot-faq__list .faq_question.active .h6,
 .kopilot-faq__list .faq_question.active .h6.kopilot-body {
   font-weight: 600;
+  line-height: 1.12;
+  max-width: 18.2rem;
 }
 
 .kopilot-faq__list .faq_arrow {
@@ -92,25 +108,24 @@
 .kopilot-faq__list .faq_hori,
 .kopilot-faq__list .faq_vert {
   position: absolute;
-  background: currentColor;
   top: 50%;
   left: 50%;
+  background: #000;
   transform: translate(-50%, -50%);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .kopilot-faq__list .faq_hori {
-  width: 1.6rem;
-  height: 0.2rem;
+  width: 1.25rem;
+  height: 0.15rem;
 }
 
 .kopilot-faq__list .faq_vert {
-  width: 0.2rem;
-  height: 1.6rem;
+  width: 0.15rem;
+  height: 1.25rem;
 }
 
 .kopilot-faq__list .faq_question.active .faq_vert {
-  transform: translate(-50%, -50%) rotate(90deg);
   opacity: 0;
 }
 
@@ -127,24 +142,35 @@
   font-size: 1.5rem;
   line-height: 1.2;
   letter-spacing: 0;
-  padding: 1rem 1.5rem 1.8rem;
+  color: #000;
+  padding: 0;
+}
+
+.kopilot-faq__list .faq_item:has(.faq_question.active) .faq_answer_inner,
+.kopilot-faq__list .faq_item:has(.faq_question.active) .faq_answer_inner.kopilot-body {
+  border-top: 1px solid #000;
+  padding-top: 1rem;
 }
 
 .kopilot-faq__list .faq_answer_inner p {
   margin: 0;
 }
 
-@media screen and (min-width: 990px) {
+/* Desktop: 991px+ */
+@media screen and (min-width: 991px) {
   .kopilot-faq__inner {
     flex-direction: row;
     align-items: flex-start;
     gap: 3.9rem;
-    padding: 10.5rem 5.1rem 10.5rem;
+    padding: 10.5rem 5.1rem;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   .kopilot-faq__heading,
   .kopilot-faq__heading.kopilot-heading {
     font-size: 4rem;
+    line-height: 6rem;
     flex: 0 0 auto;
     width: auto;
     text-align: left;
@@ -159,21 +185,24 @@
   .kopilot-faq__list .faq_item {
     margin-bottom: 1.6rem;
     background: #eaeaea;
-    border: 1.4px solid transparent;
+    border: none;
   }
 
   .kopilot-faq__list .faq_item:has(.faq_question.active) {
-    border-color: #403a3a;
-    border-width: 1.4px;
+    padding: 0;
+    gap: 0;
+    border: 1.4px solid #403a3a;
   }
 
   .kopilot-faq__list .faq_question {
     min-height: 6.8rem;
     padding: 2rem 2.4rem;
-    border-bottom: 1.4px solid #403a3a;
+    border-bottom: 1.4px solid transparent;
   }
 
   .kopilot-faq__list .faq_item:has(.faq_question.active) .faq_question {
+    min-height: 6.8rem;
+    padding: 2rem 2.4rem;
     border-bottom-color: #403a3a;
   }
 
@@ -183,11 +212,20 @@
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0;
+    max-width: none;
   }
 
   .kopilot-faq__list .faq_question.active .h6,
   .kopilot-faq__list .faq_question.active .h6.kopilot-body {
     font-weight: 600;
+    line-height: 1.4;
+    max-width: none;
+  }
+
+  .kopilot-faq__list .faq_item:has(.faq_question.active) .faq_answer_inner,
+  .kopilot-faq__list .faq_item:has(.faq_question.active) .faq_answer_inner.kopilot-body {
+    border-top: none;
+    padding: 1.2rem 2.4rem 2.4rem;
   }
 
   .kopilot-faq__list .faq_answer_inner,

@@ -1,25 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
 
 .kopilot-ambassadors {
-  --kopilot-ambassadors-pad-y: 48px;
+  --kopilot-ambassadors-pad-y: 50px;
   --kopilot-ambassadors-slider-inset: 78px;
-  --kopilot-ambassadors-progress-inset: 305px;
   --kopilot-ambassadors-progress-width: 859.45px;
-  --kopilot-ambassadors-card-width: 400px;
-  --kopilot-ambassadors-card-gap: 30px;
+  --kopilot-ambassadors-card-width: 33rem;
+  --kopilot-ambassadors-card-gap: 5rem;
   background: #fff;
   overflow: hidden;
 }
 
+/* Mobile ≤990px — Figma 360px frame (node 3114-2951) */
 .kopilot-ambassadors__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 60px;
+  justify-content: center;
+  gap: clamp(4rem, 13.89vw, 5rem);
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: var(--kopilot-ambassadors-pad-y) 0;
+  padding: clamp(4rem, 13.89vw, 5rem) 0;
   box-sizing: border-box;
 }
 
@@ -27,10 +28,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 29px;
+  gap: clamp(1.4rem, 5vw, 1.8rem);
   width: 100%;
-  max-width: 626px;
-  padding: 0 20px;
+  max-width: 27.8rem;
+  padding: 0 clamp(1.6rem, 4.44vw, 2rem);
   text-align: center;
   box-sizing: border-box;
 }
@@ -38,22 +39,20 @@
 .kopilot-ambassadors__heading {
   margin: 0;
   width: 100%;
-  max-width: 555px;
   font-family: Elza, sans-serif;
   font-weight: 300;
-  font-size: 32px;
+  font-size: clamp(2.6rem, 8.33vw, 3rem);
   line-height: 110%;
-  letter-spacing: 0;
+  letter-spacing: -1px;
   color: #000;
 }
 
 .kopilot-ambassadors__text {
   margin: 0;
   width: 100%;
-  max-width: 626px;
   font-family: Elza, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
   line-height: 120%;
   color: #000;
 }
@@ -61,10 +60,9 @@
 .kopilot-ambassadors__slider-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 27px;
+  align-items: center;
+  gap: clamp(3.2rem, 12.5vw, 4.4rem);
   width: 100%;
-  max-width: 1444px;
 }
 
 .kopilot-ambassadors__slider {
@@ -74,13 +72,13 @@
 
 .kopilot-ambassadors__swiper {
   overflow: visible;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: max(1.5rem, calc((100vw - var(--kopilot-ambassadors-card-width)) / 2));
+  padding-right: max(1.5rem, calc((100vw - var(--kopilot-ambassadors-card-width)) / 2));
   box-sizing: border-box;
 }
 
 .kopilot-ambassadors__swiper .swiper-slide {
-  width: min(var(--kopilot-ambassadors-card-width), calc(100vw - 40px));
+  width: var(--kopilot-ambassadors-card-width);
   height: auto;
 }
 
@@ -97,7 +95,8 @@
 .kopilot-ambassadors__card-media {
   position: relative;
   width: 100%;
-  height: 254.15px;
+  aspect-ratio: 330 / 254.15;
+  height: auto;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -133,8 +132,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 21.52px;
-  padding: 30.67px 40px;
+  gap: clamp(1.2rem, 4.17vw, 1.5rem);
+  padding: clamp(1.6rem, 5.56vw, 2rem) clamp(1.5rem, 4.72vw, 1.7rem);
   background: #eee;
   flex: 1;
   box-sizing: border-box;
@@ -143,13 +142,14 @@
 .kopilot-ambassadors__card-meta {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(0.8rem, 2.78vw, 1rem);
+  width: 100%;
 }
 
 .kopilot-ambassadors__name {
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: 18px;
+  font-size: clamp(1.5rem, 4.17vw, 2rem);
   font-weight: 600;
   line-height: 120%;
   color: #000;
@@ -159,7 +159,7 @@
 .kopilot-ambassadors__role {
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: 14px;
+  font-size: clamp(1.4rem, 4.17vw, 1.6rem);
   font-weight: 400;
   line-height: 120%;
   color: #000;
@@ -168,13 +168,14 @@
 .kopilot-ambassadors__quote {
   margin: 0;
   font-family: Elza, sans-serif;
-  font-size: 16px;
+  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
   font-weight: 300;
   line-height: 142%;
   color: #6e6e6e;
 }
 
 .kopilot-ambassadors__progress {
+  display: none;
   width: 100%;
   max-width: var(--kopilot-ambassadors-progress-width);
   padding: 0 20px;
@@ -199,17 +200,79 @@
   will-change: transform, width;
 }
 
-@media screen and (min-width: 990px) {
+.kopilot-ambassadors__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4rem, 18.06vw, 6.5rem);
+}
+
+.kopilot-ambassadors__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(4rem, 12.33vw, 4.438rem);
+  height: clamp(4rem, 12.33vw, 4.438rem);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: rgba(242, 242, 242, 0.8);
+  cursor: pointer;
+  flex: none;
+  transition: opacity 0.2s ease;
+}
+
+.kopilot-ambassadors__nav-btn:hover {
+  opacity: 0.85;
+}
+
+.kopilot-ambassadors__nav-btn:disabled,
+.kopilot-ambassadors__nav-btn.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.kopilot-ambassadors__nav-btn img {
+  display: block;
+  width: clamp(0.9rem, 2.94vw, 1.057rem);
+  height: auto;
+}
+
+/* Desktop: 991px+ */
+@media screen and (min-width: 991px) {
+  .kopilot-ambassadors {
+    --kopilot-ambassadors-pad-y: 48px;
+    --kopilot-ambassadors-card-width: 400px;
+    --kopilot-ambassadors-card-gap: 30px;
+  }
+
+  .kopilot-ambassadors__inner {
+    gap: 60px;
+    padding: var(--kopilot-ambassadors-pad-y) 0;
+  }
+
   .kopilot-ambassadors__header {
+    gap: 29px;
+    max-width: 626px;
     padding: 0;
   }
 
   .kopilot-ambassadors__heading {
+    max-width: 555px;
     font-size: 60px;
+    letter-spacing: 0;
   }
 
   .kopilot-ambassadors__text {
+    max-width: 626px;
     font-size: 20px;
+  }
+
+  .kopilot-ambassadors__slider-group {
+    align-items: flex-start;
+    gap: 27px;
+    max-width: 1444px;
   }
 
   .kopilot-ambassadors__swiper {
@@ -225,6 +288,20 @@
     min-height: 582px;
   }
 
+  .kopilot-ambassadors__card-media {
+    height: 254.15px;
+    aspect-ratio: auto;
+  }
+
+  .kopilot-ambassadors__card-body {
+    gap: 21.52px;
+    padding: 30.67px 40px;
+  }
+
+  .kopilot-ambassadors__card-meta {
+    gap: 10px;
+  }
+
   .kopilot-ambassadors__name {
     font-size: 20px;
   }
@@ -238,22 +315,20 @@
   }
 
   .kopilot-ambassadors__progress {
+    display: block;
     width: min(var(--kopilot-ambassadors-progress-width), calc(100% - clamp(20px, 21.2vw, 305px) - 20px));
     margin-left: clamp(20px, 21.2vw, 305px);
     padding: 0;
   }
+
+  .kopilot-ambassadors__nav {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (min-width: 991px) and (max-width: 1279px) {
   .kopilot-ambassadors {
-    --kopilot-ambassadors-pad-y: 32px;
-  }
-
-  .kopilot-ambassadors__inner {
-    gap: 40px;
-  }
-
-  .kopilot-ambassadors__slider-group {
-    gap: 20px;
+    --kopilot-ambassadors-slider-inset: 40px;
+    --kopilot-ambassadors-progress-width: min(859.45px, calc(100vw - 160px));
   }
 }

@@ -83,6 +83,15 @@
           </div>
         </div>
       {% endif %}
+
+      <div class="kopilot-ambassadors__nav" aria-label="Ambassador slider navigation">
+        <button type="button" class="kopilot-ambassadors__nav-btn kopilot-ambassadors__nav-btn--prev" aria-label="Previous slide">
+          <img src="{{ 'vl.svg' | asset_url }}" alt="" width="13" height="19" loading="lazy">
+        </button>
+        <button type="button" class="kopilot-ambassadors__nav-btn kopilot-ambassadors__nav-btn--next" aria-label="Next slide">
+          <img src="{{ 'vr.svg' | asset_url }}" alt="" width="13" height="19" loading="lazy">
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -145,7 +154,7 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 32,
+      "default": 48,
       "unit": "px"
     },
     {
@@ -155,7 +164,7 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 32,
+      "default": 48,
       "unit": "px"
     }
   ],
