@@ -400,6 +400,7 @@
         "g4": {
           "type": "guarantee",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327575.png",
             "label": "Works Everywhere"
           }
         }
