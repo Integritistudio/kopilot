@@ -175,6 +175,7 @@
         "a2": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/43d29b58295bdd34c0b79327ef5d4c93c289d4a7.jpg",
             "badge": "Event",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
@@ -184,6 +185,7 @@
         "a3": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/54be919ffa61653f81de40bafbaea78e03149ffd.png",
             "badge": "Ambassador",
             "name": "Kait Boyle",
             "role": "- Cyclist",
@@ -305,8 +307,6 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "",
-            "image_hover": "",
             "badge": "",
             "card_style": "bordered",
             "title": "1 TAG",
@@ -326,8 +326,6 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "",
-            "image_hover": "",
             "badge": "",
             "card_style": "gray",
             "title": "2 TAGS",
@@ -347,8 +345,6 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "",
-            "image_hover": "",
             "badge": "Best Value",
             "card_style": "gray",
             "title": "3 TAGS",
@@ -404,6 +400,7 @@
         "g4": {
           "type": "guarantee",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327575.png",
             "label": "Works Everywhere"
           }
         }

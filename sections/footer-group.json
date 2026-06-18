@@ -1,50 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
-  "name": "Footer Group",
+  "name": "Footer",
   "sections": {
-    "main-footer": {
+    "footer": {
       "type": "footer",
-      "blocks": {
-        "instagram_image_ra4JrN": {
-          "type": "instagram_image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/julian-hochgesang-cYDNv_K38vw-unsplash.jpg",
-            "link": "shopify://blogs/our-blog"
-          }
-        },
-        "instagram_image_gFywdQ": {
-          "type": "instagram_image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/instagram-3.webp",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "instagram_image_ra4JrN",
-        "instagram_image_gFywdQ"
-      ],
       "settings": {
         "dev_by_text": "Developed by",
-        "dev_by_logo": "shopify://shop_images/wss_logo_Kopilot.svg",
-        "dev_by_url": "https://web-systems.solutions/en/",
+        "dev_by_url": "",
         "dev_by_tooltip": "eCommerce development without borders",
         "instagram_block_heading": "kopilot.ID",
         "instagram_link": "",
         "contact_block_heading": "Contact",
-        "phone_label": "",
-        "phone": "",
+        "phone_label": "Call us",
+        "phone": "31-0-22-222-2222",
         "email_label": "email us",
-        "email": "info@kopilot.id",
-        "contact_link_label": "",
-        "contact_link_url": "shopify://pages/contact",
+        "email": "info.kopilot.id",
+        "contact_link_label": "Our contacts",
+        "contact_link_url": "",
         "logo_list_label": "App stores",
-        "google_play_link": "https://play.google.com/store/apps/details?id=com.kopilotid.kopilot",
-        "google_play_logo": "shopify://shop_images/1aaa5f59-0130-44ea-a277-a318e65b3e06.jpg",
-        "apple_store_link": "https://apps.apple.com/us/app/kopilot-id/id6605922319",
-        "apple_store_logo": "shopify://shop_images/86118c9a-d122-4ad8-b62a-170e00b2107c.jpg",
+        "google_play_link": "",
+        "google_play_logo": "shopify://shop_images/1aaa5f59-0130-44ea-a277-a318e65b3e06.webp",
+        "apple_store_link": "",
+        "apple_store_logo": "shopify://shop_images/86118c9a-d122-4ad8-b62a-170e00b2107c.webp",
         "corporate_block_heading": "Corporate",
         "corporate_menu": "footer",
         "contact_us_label": "Contact us",
@@ -60,6 +46,6 @@
     }
   },
   "order": [
-    "main-footer"
+    "footer"
   ]
 }
