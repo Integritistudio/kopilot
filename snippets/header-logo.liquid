@@ -15,7 +15,7 @@
 {%- if logo_image != blank -%}
   {{
     logo_image
-    | image_url: width: 600
+    | image_url: width: 262
     | image_tag:
       class: 'header_logo_img motion-reduce',
       width: section.settings.logo_width,
@@ -23,7 +23,7 @@
   }}
 {%- else -%}
   <img
-    src="{{ 'logo.svg' | asset_url }}"
+    src="{{ 'kopilot-logo.svg' | asset_url }}"
     class="header_logo_img motion-reduce header_logo_asset"
     width="{{ section.settings.logo_width }}"
     alt="{{ shop.name | escape }}"

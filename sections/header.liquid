@@ -1,3 +1,5 @@
+{{ 'Elza.css' | asset_url | stylesheet_tag }}
+
 {% style %}
   :root {
     --kopilot-header-bg: {{ section.settings.header_bg_color }};
@@ -5,12 +7,18 @@
     --kopilot-nav-size: {{ section.settings.nav_font_size }}px;
     --kopilot-cta-bg: {{ section.settings.cta_bg_color }};
     --kopilot-cta-color: {{ section.settings.cta_text_color }};
+    --kopilot-logo-width: {{ section.settings.logo_width }}px;
   }
 
   .header_wrapper {
     padding-top: {{ section.settings.top_spacing }}px;
     padding-bottom: {{ section.settings.bottom_spacing }}px;
     background: var(--kopilot-header-bg) !important;
+  }
+
+  .header_wrapper > .container {
+    max-width: 1440px;
+    padding-inline: clamp(1.5rem, 10.2vw, 147px);
   }
 
   .header_wrapper.has-divider {
@@ -69,7 +77,7 @@
     "
   >
     <div class="container">
-      <div class="header_inner {{ section.settings.logo_position }} {% if section.settings.enable-search-bar %} enable-search-bar {% endif %}">
+      <div class="header_inner kopilot-header {{ section.settings.logo_position }} {% if section.settings.enable-search-bar %} enable-search-bar {% endif %}">
         <!-- HAMBURGER + MOBILE SEARCH -->
         <div class="header_mobile_left">
           <button
@@ -125,19 +133,9 @@
 
         {% unless section.settings.logo_position == 'logo-center-menu-bottom' %}
           <!-- NAVIGATION -->
-          {% assign mega_menu_title = '' %}
-
-          {%- for block in section.blocks -%}
-            {%- assign mega_menu_title = mega_menu_title | append: block.settings.parent_menu_title | append: ',' -%}
-          {%- endfor -%}
-
           <div class="header_navigation_wrapper">
-            {%- assign mega_menu_titles = mega_menu_title | downcase | split: ',' | compact -%}
-            {% render 'navigation',
-              main_menu: section.settings.menu,
+            {% render 'kopilot-header-nav',
               logo_position: section.settings.logo_position,
-              mega_menu_titles: mega_menu_titles,
-              blocks: section.blocks,
               font_family: section.settings.font_family
             %}
           </div>
@@ -163,27 +161,57 @@
         {% endif %}
 
         <div class="header_action_wrapper">
-          <!-- KOPILOT CTA BUTTON -->
-          {% if section.settings.cta_button_url != blank %}
-            {% assign cta_href = section.settings.cta_button_url %}
-          {% else %}
-            {% assign cta_href = routes.cart_url %}
-          {% endif %}
-          <a
-            href="{{ cta_href }}"
-            class="header_kopilot_cta{% unless template contains 'cart' %}{% if settings.cart_type == 'drawer' and section.settings.cta_button_url == blank %} drawer_open_btn{% endif %}{% endunless %}"
-            aria-label="{{ section.settings.cta_button_text }}"
-            {% unless template contains 'cart' %}
-              {% if settings.cart_type == 'drawer' and section.settings.cta_button_url == blank %}
-                data-drawer="cart_drawer"
-              {% endif %}
-            {% endunless %}
-          >
-            <span class="header_cta_text">{{ section.settings.cta_button_text }}</span>
-            <span class="header_cta_icon svg_wrapper" aria-hidden="true">
-              {{ 'icon-header-cart.svg' | inline_asset_content }}
-            </span>
-          </a>
+          <div class="header_kopilot_actions">
+            <!-- KOPILOT CTA BUTTON -->
+            {% if section.settings.cta_button_url != blank %}
+              {% assign cta_href = section.settings.cta_button_url %}
+            {% else %}
+              {% assign cta_href = '/#kopilot-product-tiers' %}
+            {% endif %}
+            <a
+              href="{{ cta_href }}"
+              class="header_kopilot_cta"
+              aria-label="{{ section.settings.cta_button_text }}"
+            >
+              <span class="header_cta_text">{{ section.settings.cta_button_text }}</span>
+            </a>
+
+            <!-- CART ICON -->
+            <a
+              href="{{ routes.cart_url }}"
+              class="header_cart header_kopilot_cart{% unless template contains 'cart' %}{% if settings.cart_type == 'drawer' %} drawer_open_btn{% endif %}{% endunless %}"
+              id="cart-icon-bubble"
+              aria-label="{{ 'accessibility.cart_icon' | t }}"
+              {% unless template contains 'cart' %}
+                {% if settings.cart_type == 'drawer' %}
+                  data-drawer="cart_drawer"
+                {% endif %}
+              {% endunless %}
+            >
+              <img
+                src="{{ 'cart.png' | asset_url }}"
+                class="header_cart_icon"
+                width="23"
+                height="23"
+                alt=""
+                aria-hidden="true"
+                loading="eager"
+              >
+              <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+            </a>
+
+            <!-- HEADER SEARCH -->
+            <button
+              id="header_search"
+              class="header_search header_kopilot_search drawer_open_btn"
+              aria-label="{{ 'accessibility.header_search_icon' | t }}"
+              data-drawer="search_drawer"
+            >
+              <div class="icon_wrapper">
+                {{ 'icon-kopilot-search.svg' | inline_asset_content }}
+              </div>
+            </button>
+          </div>
 
           <!-- ACCOUNTS -->
           {%- if shop.customer_accounts_enabled -%}
@@ -208,75 +236,13 @@
               {% endunless %}
             </div>
           {%- endif -%}
-
-          <!-- HEADER SEARCH -->
-          <button
-            id="header_search"
-            class="header_search drawer_open_btn"
-            aria-label="{{ 'accessibility.header_search_icon' | t }}"
-            data-drawer="search_drawer"
-          >
-            <div class="icon_wrapper">
-              {{ 'icon-search.svg' | inline_asset_content }}
-            </div>
-          </button>
-
-          <!-- CART ICON -->
-          <a
-            href="{{ routes.cart_url }}"
-            class="header_cart{% unless template contains 'cart' %}{% if settings.cart_type == 'drawer' %} drawer_open_btn{% endif %}{% endunless %} font_{{ section.settings.font_family }}"
-            id="cart-icon-bubble"
-            aria-label="{{ 'accessibility.cart_icon' | t }}"
-            {% unless template contains 'cart' %}
-              {% if settings.cart_type == 'drawer' %}
-                data-drawer="cart_drawer"
-              {% endif %}
-            {% endunless %}
-          >
-            <div class="svg_wrapper">
-              {{ 'icon-cart.svg' | inline_asset_content }}
-            </div>
-            <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-            <div class="cart_count_text">
-              {% if cart.item_count == 1 %}
-                <span
-                  aria-hidden="true"
-                  class="cc_text"
-                  data-count="{{ cart.item_count}} {{ 'accessibility.item' | t }}"
-                >
-                  {{- cart.item_count }}
-                  {{ 'accessibility.item' | t -}}
-                </span>
-              {% else %}
-                <span
-                  aria-hidden="true"
-                  class="cc_text"
-                  data-count="{{ cart.item_count}} {{ 'accessibility.items' | t }}"
-                >
-                  {{- cart.item_count }}
-                  {{ 'accessibility.items' | t -}}
-                </span>
-              {% endif %}
-              <span class="visually-hidden">{{ 'templates.cart.cart_count' | t: count: cart.item_count }}</span>
-            </div>
-          </a>
         </div>
 
         {% if section.settings.logo_position == 'logo-center-menu-bottom' %}
           <!-- NAVIGATION -->
-          {% assign mega_menu_title = '' %}
-
-          {%- for block in section.blocks -%}
-            {%- assign mega_menu_title = mega_menu_title | append: block.settings.parent_menu_title | append: ',' -%}
-          {%- endfor -%}
-
           <div class="header_navigation_wrapper">
-            {%- assign mega_menu_titles = mega_menu_title | downcase | split: ',' | compact -%}
-            {% render 'navigation',
-              main_menu: section.settings.menu,
+            {% render 'kopilot-header-nav',
               logo_position: section.settings.logo_position,
-              mega_menu_titles: mega_menu_titles,
-              blocks: section.blocks,
               font_family: section.settings.font_family
             %}
           </div>
@@ -345,7 +311,7 @@
 </main-header>
 
 <mobile-menu-drawer>
-  {% render 'mobile-menu-drawer', menu: section.settings.menu %}
+  {% render 'mobile-menu-drawer', menu: section.settings.menu, kopilot_nav: true %}
 </mobile-menu-drawer>
 
 <script>
@@ -659,7 +625,7 @@
       "type": "url",
       "id": "cta_button_url",
       "label": "CTA button link",
-      "info": "Leave blank to use cart link"
+      "info": "Leave blank to scroll to product tiers on the homepage"
     },
     {
       "type": "color",

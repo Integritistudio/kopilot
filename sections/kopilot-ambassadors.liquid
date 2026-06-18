@@ -1,11 +1,19 @@
 {% style %}
   .kopilot-ambassadors--{{ section.id }} {
+    --kopilot-ambassadors-pad-y: {{ section.settings.padding_top }}px;
+  }
+
+  .kopilot-ambassadors--{{ section.id }} .kopilot-ambassadors__inner {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   @media screen and (max-width: 989px) {
     .kopilot-ambassadors--{{ section.id }} {
+      --kopilot-ambassadors-pad-y: {{ section.settings.padding_top_mobile }}px;
+    }
+
+    .kopilot-ambassadors--{{ section.id }} .kopilot-ambassadors__inner {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
@@ -14,70 +22,69 @@
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-ambassadors.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-ambassadors.js' | asset_url }}" defer></script>
 
-<section class="kopilot-section kopilot-ambassadors kopilot-ambassadors--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-ambassadors__header">
-    {% if section.settings.heading != blank %}
-      <h2 class="kopilot-ambassadors__heading kopilot-heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    {% if section.settings.text != blank %}
-      <p class="kopilot-ambassadors__text kopilot-body">{{ section.settings.text }}</p>
-    {% endif %}
-  </div>
+<section id="kopilot-brand-ambassador" class="kopilot-section kopilot-ambassadors kopilot-ambassadors--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-ambassadors__inner">
+    <div class="kopilot-ambassadors__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="kopilot-ambassadors__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <p class="kopilot-ambassadors__text">{{ section.settings.text }}</p>
+      {% endif %}
+    </div>
 
-  {% assign ambassador_fallbacks = 'kopilot-ambassador-hillary.jpg,kopilot-ambassador-breck.jpg,kopilot-ambassador-kait.jpg' | split: ',' %}
+    {% assign ambassador_fallbacks = 'kopilot-ambassador-hillary.jpg,kopilot-ambassador-breck.jpg,kopilot-ambassador-kait.jpg,kopilot-ambassador-karen.jpg,kopilot-ambassador-hillary.jpg,kopilot-ambassador-breck.jpg' | split: ',' %}
 
-  <div class="kopilot-ambassadors__slider">
-    <swiper-section
-      data-slides-desktop="3"
-      data-slides-tablet="2"
-      data-slides-mobile="1.15"
-      data-gap="24"
-      data-loop="false"
-      data-center-mode="false"
-    >
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          {% for block in section.blocks %}
-            <div class="swiper-slide" {{ block.shopify_attributes }}>
-              <article class="kopilot-ambassadors__card">
-                <div class="kopilot-ambassadors__card-media">
-                  {% render 'kopilot-image',
-                    image: block.settings.image,
-                    fallback: ambassador_fallbacks[forloop.index0],
-                    alt: block.settings.name,
-                    width: 800
-                  %}
-                  {% if block.settings.badge != blank %}
-                    <span class="kopilot-ambassadors__badge">{{ block.settings.badge }}</span>
-                  {% endif %}
-                </div>
-                <div class="kopilot-ambassadors__card-body">
-                  {% if block.settings.name != blank %}
-                    <p class="kopilot-ambassadors__name kopilot-body">{{ block.settings.name }}</p>
-                  {% endif %}
-                  {% if block.settings.role != blank %}
-                    <p class="kopilot-ambassadors__role kopilot-body">{{ block.settings.role }}</p>
-                  {% endif %}
-                  {% if block.settings.quote != blank %}
-                    <p class="kopilot-ambassadors__quote kopilot-body">{{ block.settings.quote }}</p>
-                  {% endif %}
-                </div>
-              </article>
-            </div>
-          {% endfor %}
+    <div class="kopilot-ambassadors__slider-group">
+      <div class="kopilot-ambassadors__slider">
+        <div class="swiper kopilot-ambassadors__swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% assign fallback_index = forloop.index0 | modulo: ambassador_fallbacks.size %}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                <article class="kopilot-ambassadors__card">
+                  <div class="kopilot-ambassadors__card-media">
+                    {% render 'kopilot-image',
+                      image: block.settings.image,
+                      fallback: ambassador_fallbacks[fallback_index],
+                      alt: block.settings.name,
+                      width: 800
+                    %}
+                    {% if block.settings.badge != blank %}
+                      <span class="kopilot-ambassadors__badge">{{ block.settings.badge }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="kopilot-ambassadors__card-body">
+                    <div class="kopilot-ambassadors__card-meta">
+                      {% if block.settings.name != blank %}
+                        <p class="kopilot-ambassadors__name">{{ block.settings.name }}</p>
+                      {% endif %}
+                      {% if block.settings.role != blank %}
+                        <p class="kopilot-ambassadors__role">{{ block.settings.role }}</p>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.quote != blank %}
+                      <p class="kopilot-ambassadors__quote">{{ block.settings.quote }}</p>
+                    {% endif %}
+                  </div>
+                </article>
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
-    </swiper-section>
-  </div>
 
-  {% if section.settings.show_progress %}
-    <div class="kopilot-ambassadors__progress">
-      <div class="kopilot-ambassadors__progress-bar">
-        <div class="kopilot-ambassadors__progress-fill"></div>
-      </div>
+      {% if section.settings.show_progress %}
+        <div class="kopilot-ambassadors__progress">
+          <div class="kopilot-ambassadors__progress-track">
+            <div class="kopilot-ambassadors__progress-fill"></div>
+          </div>
+        </div>
+      {% endif %}
     </div>
-  {% endif %}
+  </div>
 </section>
 
 {% schema %}
@@ -118,7 +125,8 @@
       "min": 0,
       "max": 120,
       "step": 4,
-      "default": 0
+      "default": 48,
+      "unit": "px"
     },
     {
       "type": "range",
@@ -127,7 +135,8 @@
       "min": 0,
       "max": 120,
       "step": 4,
-      "default": 0
+      "default": 48,
+      "unit": "px"
     },
     {
       "type": "range",
@@ -136,7 +145,8 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 0
+      "default": 32,
+      "unit": "px"
     },
     {
       "type": "range",
@@ -145,7 +155,8 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 0
+      "default": 32,
+      "unit": "px"
     }
   ],
   "blocks": [

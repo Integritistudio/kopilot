@@ -7,12 +7,18 @@
 {% liquid
   assign star_rating = rating | default: 5 | plus: 0
   assign star_size = size | default: 'md'
+  assign star_filled_color = filled_color | default: '#F20008'
+  assign star_empty_color = empty_color | default: '#232526'
 
   case star_size
     when 'sm'
       assign star_width = 13
       assign star_height = 12
       assign star_gap = 4
+    when 'tier'
+      assign star_width = 12
+      assign star_height = 12
+      assign star_gap = 3
     when 'lg'
       assign star_width = 24
       assign star_height = 22
@@ -27,9 +33,9 @@
 <span class="kopilot-review-stars kopilot-review-stars--{{ star_size }}" aria-hidden="true">
   {% for i in (1..5) %}
     {% if i <= star_rating %}
-      {% assign star_color = '#F20008' %}
+      {% assign star_color = star_filled_color %}
     {% else %}
-      {% assign star_color = '#232526' %}
+      {% assign star_color = star_empty_color %}
     {% endif %}
     <span class="kopilot-review-stars__icon" style="--star-color: {{ star_color }};">
       <svg width="{{ star_width }}" height="{{ star_height }}" viewBox="0 0 8.00808 8.00731" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

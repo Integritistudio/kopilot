@@ -15,7 +15,7 @@
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-image-text.css' | asset_url | stylesheet_tag }}
 
-<section class="kopilot-section kopilot-image-text kopilot-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section id="kopilot-why-kopilot" class="kopilot-section kopilot-image-text kopilot-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="{% unless section.settings.full_width %}container{% endunless %}">
     <div class="kopilot-image-text__inner{% if section.settings.image_position == 'right' %} kopilot-image-text__inner--image-right{% endif %}">
       <div class="kopilot-image-text__media">

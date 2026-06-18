@@ -15,7 +15,7 @@
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-features.css' | asset_url | stylesheet_tag }}
 
-<section class="kopilot-section kopilot-features kopilot-features--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section id="kopilot-how-it-works" class="kopilot-section kopilot-features kopilot-features--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-features__inner{% if section.settings.image_position == 'left' %} kopilot-features__inner--image-left{% endif %}">
     <div class="kopilot-features__content">
       {% if section.settings.heading != blank %}

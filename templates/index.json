@@ -189,22 +189,52 @@
             "role": "- Cyclist",
             "quote": "Love my KOPILOT.ID! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻"
           }
+        },
+        "a4": {
+          "type": "card",
+          "settings": {
+            "badge": "Event",
+            "name": "Karen",
+            "role": "- Cyclist",
+            "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+          }
+        },
+        "a5": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Marcus Reid",
+            "role": "- Enduro Mountain Biker",
+            "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        },
+        "a6": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Sofia Martinez",
+            "role": "- Gravel Racer",
+            "quote": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. KOPILOT.ID keeps my emergency profile ready on every ride."
+          }
         }
       },
       "block_order": [
         "a1",
         "a2",
-        "a3"
+        "a3",
+        "a4",
+        "a5",
+        "a6"
       ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Used on race day and every day in between.",
         "text": "From race days to training days to fun-focused days, KOPILOT.ID gives riders the confidence to push their limits, knowing help will have the information they need if something goes wrong.",
         "show_progress": true,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
       }
     },
     "kopilot_partners": {
@@ -275,17 +305,20 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_5.png",
+            "image": "",
+            "image_hover": "",
             "badge": "",
-            "title": "1 Tag",
+            "card_style": "bordered",
+            "title": "1 TAG",
             "save_badge": "",
             "show_reviews": true,
             "review_count": "47",
-            "price": "",
+            "price": "$39.99",
             "description": "Get started with one tag for your most-used piece of gear.",
             "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
             "feature_2": "A simple, reliable solution for riders who stick to one setup",
             "button_label": "GET 1 TAG",
+            "button_style": "outline",
             "button_link": ""
           }
         },
@@ -293,17 +326,20 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "shopify://shop_images/Group_2106667226.png",
+            "image": "",
+            "image_hover": "",
             "badge": "",
-            "title": "2 Tags",
+            "card_style": "gray",
+            "title": "2 TAGS",
             "save_badge": "SAVE 10%",
             "show_reviews": true,
             "review_count": "47",
-            "price": "",
+            "price": "$71.99",
             "description": "Save with an additional tag for equipping more gear, or share one with a friend or family member.",
             "feature_1": "Multiple mounting solutions for various gear",
             "feature_2": "Second tag makes a great gift",
             "button_label": "GET 2 TAGS",
+            "button_style": "outline",
             "button_link": ""
           }
         },
@@ -311,17 +347,20 @@
           "type": "tier",
           "settings": {
             "product": "",
-            "image": "shopify://shop_images/Group_2106667227.png",
+            "image": "",
+            "image_hover": "",
             "badge": "Best Value",
-            "title": "3 Tags",
+            "card_style": "gray",
+            "title": "3 TAGS",
             "save_badge": "SAVE 20%",
             "show_reviews": true,
             "review_count": "47",
-            "price": "",
+            "price": "$95.99",
             "description": "Extensive coverage for your gear, or your crew.",
             "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
             "feature_2": "Greatest savings, most coverage",
             "button_label": "GET 3 TAGS",
+            "button_style": "solid",
             "button_link": ""
           }
         }
