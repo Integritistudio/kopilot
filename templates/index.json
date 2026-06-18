@@ -275,6 +275,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_5.png",
             "badge": "",
             "title": "1 Tag",
             "save_badge": "",
@@ -292,6 +293,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image": "shopify://shop_images/Group_2106667226.png",
             "badge": "",
             "title": "2 Tags",
             "save_badge": "SAVE 10%",
@@ -309,6 +311,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image": "shopify://shop_images/Group_2106667227.png",
             "badge": "Best Value",
             "title": "3 Tags",
             "save_badge": "SAVE 20%",
@@ -349,6 +352,7 @@
         "g2": {
           "type": "guarantee",
           "settings": {
+            "icon": "shopify://shop_images/Group_38.svg",
             "label": "No subscription. Ever."
           }
         },
@@ -572,12 +576,14 @@
         "tr2": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327569.png",
             "label": "No subscription"
           }
         },
         "tr3": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group.png",
             "label": "Works anywhere"
           }
         }
