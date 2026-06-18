@@ -70,11 +70,15 @@
 }
 
 .kopilot-hero__title.kopilot-heading--medium {
+  font-family: var(--kopilot-font-family);
   font-weight: 500;
+  font-synthesis: none;
 }
 
 .kopilot-hero__title--light {
+  font-family: var(--kopilot-font-family);
   font-weight: 300;
+  font-synthesis: none;
   letter-spacing: 0;
 }
 
@@ -101,6 +105,7 @@
   font-family: var(--kopilot-font-family);
   font-size: 2.357rem;
   font-weight: 600;
+  font-synthesis: none;
   line-height: 100%;
   letter-spacing: 0;
   text-transform: uppercase;

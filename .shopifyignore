@@ -1,0 +1,2 @@
+# Shopify themes only support flat files in /assets (no subfolders).
+assets/elza-rounded-font-*/
