@@ -345,6 +345,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image_hover": "shopify://shop_images/7579f74444688bf963178b6fcd8d2c66bb76ea89.jpg",
             "badge": "Best Value",
             "card_style": "gray",
             "title": "3 TAGS",
