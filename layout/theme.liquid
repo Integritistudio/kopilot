@@ -38,6 +38,7 @@
 
     <!-- GLOBAL CSS -->
     {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'kopilot-responsive.css' | asset_url | stylesheet_tag }}
 
     <!-- LENIS CSS -->
     {{ 'lenis.css' | asset_url | stylesheet_tag: preload: true }}

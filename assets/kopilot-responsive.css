@@ -1,0 +1,300 @@
+/* Kopilot cross-section responsive adjustments */
+
+.kopilot-section {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* ----- Hero ----- */
+@media screen and (max-width: 989px) {
+  .kopilot-hero {
+    min-height: auto;
+  }
+
+  .kopilot-hero__inner {
+    padding: 2.9rem clamp(1.6rem, 4vw, 2.3rem) 4.4rem;
+  }
+
+  .kopilot-hero__content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .kopilot-hero__description,
+  .kopilot-hero__title-group {
+    max-width: 100%;
+  }
+
+  .kopilot-hero__content .kopilot-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    min-height: 5.6rem;
+    padding: 1.6rem 2rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    white-space: normal;
+  }
+
+  .kopilot-hero__eyebrow {
+    margin-bottom: 3rem;
+  }
+
+  .kopilot-hero__title-group {
+    margin-bottom: 2.5rem;
+  }
+
+  .kopilot-hero__description {
+    margin-bottom: 3rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  .kopilot-hero__title {
+    font-size: 4.2rem;
+  }
+
+  .kopilot-hero__inner {
+    padding: 5rem 3rem;
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1439px) {
+  .kopilot-hero__inner {
+    padding: 8rem clamp(2rem, 5vw, 12rem);
+  }
+
+  .kopilot-hero__content {
+    max-width: min(46.9rem, 48vw);
+  }
+
+  .kopilot-hero__content .kopilot-btn {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    padding-inline: clamp(2rem, 4vw, 8.25rem);
+    font-size: clamp(1.8rem, 2vw, 2.357rem);
+  }
+}
+
+/* ----- Shared section padding ----- */
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  .kopilot-image-text__inner {
+    padding: 6rem 3rem;
+  }
+
+  .kopilot-image-text__heading {
+    font-size: 4.2rem;
+    max-width: none;
+  }
+
+  .kopilot-features__inner {
+    padding: 3rem 3rem 4rem;
+  }
+
+  .kopilot-features__heading {
+    font-size: 4.2rem;
+    max-width: none;
+  }
+
+  .kopilot-info-cards__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline: 3rem;
+  }
+
+  .kopilot-info-cards__card {
+    flex: 0 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+
+  .kopilot-product-tiers__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kopilot-product-tiers__card {
+    flex: 0 1 calc(50% - 12px);
+    max-width: calc(50% - 12px);
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1279px) {
+  .kopilot-image-text__inner {
+    padding: 8rem clamp(2rem, 4vw, 5.4rem);
+  }
+
+  .kopilot-image-text__media {
+    flex: 0 1 50%;
+    max-width: 50%;
+  }
+
+  .kopilot-features__inner {
+    padding: 3.5rem clamp(2rem, 4vw, 6.1rem);
+    gap: 4rem;
+  }
+
+  .kopilot-features__content {
+    flex: 1 1 40rem;
+  }
+
+  .kopilot-features__media {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+
+  .kopilot-info-cards__grid {
+    padding-inline: clamp(2rem, 6vw, 8rem);
+  }
+
+  .kopilot-info-cards__card {
+    flex: 1 1 calc(33.333% - 2rem);
+    max-width: calc(33.333% - 2rem);
+  }
+}
+
+/* ----- CTA banner ----- */
+@media screen and (max-width: 639px) {
+  .kopilot-cta-banner__heading,
+  .kopilot-cta-banner__heading.kopilot-heading {
+    font-size: 2.4rem;
+  }
+
+  .kopilot-cta-banner__content {
+    padding: 4rem 1.6rem 3rem;
+    gap: 2.4rem;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 989px) {
+  .kopilot-cta-banner__heading,
+  .kopilot-cta-banner__heading.kopilot-heading {
+    font-size: 4rem;
+  }
+}
+
+/* ----- Product tiers ----- */
+@media screen and (max-width: 767px) {
+  .kopilot-product-tiers__inner {
+    padding-inline: 16px;
+  }
+
+  .kopilot-product-tiers__card {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1439px) {
+  .kopilot-product-tiers__inner {
+    padding-inline: clamp(20px, 4vw, 71px);
+  }
+
+  .kopilot-product-tiers__grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kopilot-product-tiers__card {
+    flex: 0 1 380px;
+    max-width: 380px;
+    min-height: auto;
+  }
+}
+
+/* ----- Ambassadors ----- */
+@media screen and (max-width: 767px) {
+  .kopilot-ambassadors__inner {
+    gap: 40px;
+    padding-block: 40px;
+  }
+
+  .kopilot-ambassadors__heading {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  .kopilot-ambassadors {
+    --kopilot-ambassadors-slider-inset: 40px;
+    --kopilot-ambassadors-progress-inset: 80px;
+    --kopilot-ambassadors-progress-width: min(859.45px, calc(100vw - 160px));
+  }
+}
+
+/* ----- Footer ----- */
+@media screen and (max-width: 1024px) {
+  .footer-menu-wrapper,
+  .footer-bottom,
+  .footer-instagram-slider {
+    padding-left: clamp(20px, 8vw, 100px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer-instagram-title {
+    flex-wrap: wrap;
+  }
+
+  .footer-instagram-slider {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .footer-menu-wrapper {
+    padding-left: 0;
+  }
+
+  .footer-bottom {
+    padding-inline: 0;
+  }
+
+  .footer-bottom-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px 20px;
+    padding-right: 0;
+  }
+
+  .footer-bottom-menu-item.created-by,
+  .footer-bottom-menu-item.developed-by {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+}
+
+/* ----- Guarantees & FAQ spacing ----- */
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  .kopilot-guarantees__grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 4rem 3rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .kopilot-guarantees__grid {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    padding: 3rem 1.6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-reviews__inner {
+    padding-inline: 16px;
+  }
+
+  .kopilot-reviews__heading {
+    font-size: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .kopilot-btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

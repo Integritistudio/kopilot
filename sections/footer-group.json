@@ -47,9 +47,13 @@
         "apple_store_logo": "shopify://shop_images/86118c9a-d122-4ad8-b62a-170e00b2107c.jpg",
         "corporate_block_heading": "Corporate",
         "corporate_menu": "footer",
-        "contact_us_label": "Contact Us",
+        "contact_us_label": "Contact us",
+        "wholesale_label": "Wholesale",
+        "wholesale_url": "",
         "social_block_heading": "Social Media",
-        "privacy_menu": "policy-menu",
+        "privacy_policy_url": "",
+        "terms_url": "",
+        "cookie_policy_url": "",
         "pdf_link_label": "",
         "pdf_link_url": ""
       }

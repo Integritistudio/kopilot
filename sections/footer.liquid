@@ -21,16 +21,22 @@
   assign corporate_block_heading = section.settings.corporate_block_heading
   assign corporate_menu = section.settings.corporate_menu
   assign contact_us_label = section.settings.contact_us_label
+  assign wholesale_label = section.settings.wholesale_label
+  assign wholesale_url = section.settings.wholesale_url
 
   assign social_block_heading = section.settings.social_block_heading
+  assign instagram_link = section.settings.instagram_link | default: settings.social_instagram_link
+  assign instagram_url = settings.social_instagram_link | default: instagram_link
+  assign facebook_url = settings.social_facebook_link
 
-  assign privacy_menu = section.settings.privacy_menu
+  assign privacy_policy_url = section.settings.privacy_policy_url | default: shop.privacy_policy.url
+  assign terms_url = section.settings.terms_url | default: shop.terms_of_service.url
+  assign cookie_policy_url = section.settings.cookie_policy_url
 
   assign pdf_link_label = section.settings.pdf_link_label
   assign pdf_link_url = section.settings.pdf_link_url
 
   assign instagram_block_heading = section.settings.instagram_block_heading
-  assign instagram_link = section.settings.instagram_link | default: settings.social_instagram_link
 %}
 <div class="container">
   <div class="footer-instagram">
@@ -124,68 +130,87 @@
       </div>
       <div class="footer-menu-contacts">
         {% for link in corporate_menu.links %}
-          <a href="{{ link.url }}" class="footer-menu-link">
-            {{ link.title }}
-          </a>
+          {% assign link_title_downcase = link.title | downcase %}
+          {% assign is_search_link = false %}
+          {% if link_title_downcase contains 'search' or link.url contains '/search' %}
+            {% assign is_search_link = true %}
+          {% endif %}
+          {% unless is_search_link %}
+            <a href="{{ link.url }}" class="footer-menu-link">
+              {{ link.title }}
+            </a>
+          {% endunless %}
         {% endfor %}
+        {% if wholesale_label != blank %}
+          <a href="{{ wholesale_url | default: '#' }}" class="footer-menu-link">
+            {{ wholesale_label }}
+          </a>
+        {% endif %}
+        {% if contact_us_label != blank %}
+          <a href="#" class="footer-menu-link js-open-contact">
+            {{ contact_us_label }}
+          </a>
+        {% endif %}
         {% if pdf_link_label != blank and pdf_link_url != blank %}
           <a href="{{ pdf_link_url }}" target="_blank" rel="nofollow" class="footer-menu-link">
             {{ pdf_link_label }}
           </a>
         {% endif %}
       </div>
-      <a href="#" class="footer-menu-link js-open-contact">
-        {{ contact_us_label }}
-      </a>
     </div>
     <div class="footer-menu">
       <div class="footer-menu-title">
         {{ social_block_heading }}
       </div>
-      {% if settings.social_instagram_link != blank %}
-        <a href="{{ settings.social_instagram_link }}" class="footer-menu-link footer-menu-link-bold">
-          {{ 'general.social.links.instagram' | t }}
-        </a>
-      {% endif %}
-      {% if settings.social_facebook_link != blank %}
-        <a href="{{ settings.social_facebook_link }}" class="footer-menu-link footer-menu-link-bold">
-          {{ 'general.social.links.facebook' | t }}
-        </a>
-      {% endif %}
-      {% if settings.social_twitter_link != blank %}
-        <a href="{{ settings.social_twitter_link }}" class="footer-menu-link footer-menu-link-bold">
-          {{ 'general.social.links.twitter' | t }}
-        </a>
-      {% endif %}
+      <a
+        href="{{ instagram_url | default: '#' }}"
+        class="footer-menu-link footer-menu-link-bold"
+        {% if instagram_url == blank %}aria-disabled="true"{% endif %}
+      >
+        Instagram
+      </a>
+      <a
+        href="{{ facebook_url | default: '#' }}"
+        class="footer-menu-link footer-menu-link-bold"
+        {% if facebook_url == blank %}aria-disabled="true"{% endif %}
+      >
+        Facebook
+      </a>
     </div>
   </div>
   <div class="footer-bottom">
     <ul class="footer-bottom-menu">
-      {% for link in privacy_menu.links %}
-        <li class="footer-bottom-menu-item">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-      {% endfor %}
+      <li class="footer-bottom-menu-item">
+        <a href="{{ privacy_policy_url | default: '/policies/privacy-policy' }}">Privacy policy</a>
+      </li>
+      <li class="footer-bottom-menu-item">
+        <a href="{{ terms_url | default: '/policies/terms-of-service' }}">Terms and conditions</a>
+      </li>
+      <li class="footer-bottom-menu-item">
+        <a href="{{ cookie_policy_url | default: '/policies/privacy-policy' }}">Cookie policy</a>
+      </li>
       <li class="footer-bottom-menu-item created-by">
         <span>Designed by</span>
-        <a href="https://league.design/"> LEAGUE DESIGN AGENCY</a>
+        <a href="https://league.design/">LEAGUE DESIGN AGENCY</a>
       </li>
-      {% if section.settings.dev_by_text != blank and section.settings.dev_by_logo != blank %}
-        <li class="footer-bottom-menu-item developed-by">
-          <span>{{ section.settings.dev_by_text }}</span>
-          <a href="{{ section.settings.dev_by_url }}" target="_blank" rel="noopener">
-            <img
-              src="{{ section.settings.dev_by_logo | image_url: width: 120 }}"
-              alt="{{ section.settings.dev_by_text }}"
-              title="{{ section.settings.dev_by_tooltip }}"
-              class="footer__dev-logo"
-              loading="lazy"
-              width="120"
-              height="auto"
-            >
-          </a>
-        </li>
-      {% endif %}
+      <li class="footer-bottom-menu-item developed-by">
+        <span>{{ section.settings.dev_by_text | default: 'Developed by' }}</span>
+        <a
+          href="{{ section.settings.dev_by_url | default: 'https://web-systems.solutions/en/' }}"
+          target="_blank"
+          rel="noopener"
+          title="{{ section.settings.dev_by_tooltip }}"
+        >
+          <img
+            src="{{ 'wss_logo_Kopilot.svg' | asset_url }}"
+            alt="{{ section.settings.dev_by_text | default: 'Developed by' }}"
+            class="footer__dev-logo"
+            loading="lazy"
+            width="20"
+            height="20"
+          >
+        </a>
+      </li>
     </ul>
   </div>
 </div>
@@ -327,7 +352,18 @@
       "type": "text",
       "id": "contact_us_label",
       "label": "Contact us label",
-      "default": "contact us"
+      "default": "Contact us"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_label",
+      "label": "Wholesale label",
+      "default": "Wholesale"
+    },
+    {
+      "type": "url",
+      "id": "wholesale_url",
+      "label": "Wholesale link"
     },
     {
       "type": "header",
@@ -344,9 +380,19 @@
       "content": "Privacy block settings"
     },
     {
-      "type": "link_list",
-      "id": "privacy_menu",
-      "label": "Menu"
+      "type": "url",
+      "id": "privacy_policy_url",
+      "label": "Privacy policy URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Terms and conditions URL"
+    },
+    {
+      "type": "url",
+      "id": "cookie_policy_url",
+      "label": "Cookie policy URL"
     },
     {
       "type": "text",

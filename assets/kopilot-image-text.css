@@ -32,12 +32,20 @@
   max-width: 33.2rem;
 }
 
-.kopilot-image-text__text {
-  font-family: Figtree, sans-serif;
+.kopilot-image-text__text.kopilot-body.rte,
+.kopilot-image-text__text.kopilot-body.rte p,
+.kopilot-image-text__text.kopilot-body.rte ul li,
+.kopilot-image-text__text.kopilot-body.rte ol li {
+  font-family: var(--kopilot-body-font-family);
   font-weight: 400;
-  font-size: 1.5rem;
+  font-style: normal;
+  font-size: 2rem;
   line-height: 120%;
   letter-spacing: 0;
+  vertical-align: middle;
+}
+
+.kopilot-image-text__text {
   margin: 0;
   color: #000;
   max-width: 32.8rem;
@@ -85,7 +93,6 @@
   }
 
   .kopilot-image-text__text {
-    font-size: 2rem;
     max-width: 40.4rem;
   }
 

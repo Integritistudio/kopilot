@@ -1121,7 +1121,7 @@ a.mega_menu_child_link.menu_body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 111px;
+    /* gap: 111px; */
     min-height: 39px;
   }
 
@@ -1316,6 +1316,30 @@ a.mega_menu_child_link.menu_body {
 
 .header_kopilot_search {
   color: #090a11;
+}
+
+.header_inner.kopilot-header button#header_search.header_kopilot_search:after {
+  display: none;
+}
+
+.header_inner.kopilot-header a#cart-icon-bubble {
+  padding-left: 0;
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1439px) {
+  .header_inner.kopilot-header {
+    gap: clamp(24px, 5vw, 80px);
+  }
+
+  .header_kopilot_cta {
+    width: auto;
+    min-width: 0;
+    padding-inline: 24px;
+  }
+
+  .header_kopilot_actions {
+    gap: 20px;
+  }
 }
 
 /* Mobile left wrapper: hidden on desktop, groups hamburger + search on mobile */

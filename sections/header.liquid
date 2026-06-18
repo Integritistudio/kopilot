@@ -21,6 +21,17 @@
     padding-inline: clamp(1.5rem, 10.2vw, 147px);
   }
 
+  @media screen and (min-width: 1440px) {
+    main-header > .container {
+      max-width: 100%;
+      padding-inline: 0;
+    }
+
+    .header_wrapper > .container {
+      padding-inline: 147px;
+    }
+  }
+
   .header_wrapper.has-divider {
     border-bottom: 1px solid {{ section.settings.divider_color }};
   }
@@ -29,6 +40,10 @@
     .header_wrapper {
       padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
       padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;
+    }
+
+    .header_wrapper > .container {
+      padding-inline: clamp(1.5rem, 4vw, 3rem);
     }
   }
 {% endstyle %}
