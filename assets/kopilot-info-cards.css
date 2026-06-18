@@ -21,7 +21,8 @@
 .kopilot-info-cards__inner {
   position: relative;
   z-index: 1;
-  padding: 6rem 0 9.5rem;
+  margin-top: 4.3rem;
+  padding: 0rem 0 9.5rem;
 }
 
 .kopilot-info-cards__heading {
