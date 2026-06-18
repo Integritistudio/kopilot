@@ -616,13 +616,22 @@
         "tr2": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327569.png",
+            "label": "No subscription"
+          }
+        },
+        "trust_4kpwPg": {
+          "type": "trust",
+          "settings": {
+            "icon": "shopify://shop_images/Group.png",
             "label": "Works anywhere"
           }
         }
       },
       "block_order": [
         "tr1",
-        "tr2"
+        "tr2",
+        "trust_4kpwPg"
       ],
       "settings": {
         "color_scheme": "scheme-1",
