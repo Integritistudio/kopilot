@@ -197,7 +197,7 @@ span.vi-review_total_slide-block {
 }
 
 /* MOBILE */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
 
   .video-review-card {
     grid-template-columns: 1fr;

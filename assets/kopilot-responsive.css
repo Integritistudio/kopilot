@@ -5,10 +5,46 @@
   overflow-x: clip;
 }
 
+/* ----- Tablet: 768px–1024px — desktop layout with tighter spacing ----- */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-section .kopilot-btn:not(.kopilot-cta-banner__btn) {
+    padding: clamp(1.2rem, 1.5vw, 1.6rem) clamp(2rem, 4vw, 4rem);
+    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
+  }
+
+  .kopilot-heading {
+    word-break: break-word;
+  }
+
+  .kopilot-hero__inner {
+    align-items: center;
+  }
+
+  .kopilot-partners__inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kopilot-faq__inner {
+    align-items: flex-start;
+  }
+
+  .kopilot-reviews__summary {
+    width: 100%;
+  }
+
+  .kopilot-reviews__toolbar,
+  .kopilot-reviews__list,
+  .kopilot-reviews__pagination {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* ----- Hero (tablet tweaks handled in kopilot-hero.css) ----- */
 
-/* ----- Mobile homepage (≤990px) — section-specific CSS handles layout ----- */
-@media screen and (max-width: 990px) {
+/* ----- Mobile homepage (≤767px) — section-specific CSS handles layout ----- */
+@media screen and (max-width: 767px) {
   .kopilot-partners__heading {
     font-size: 1.5rem;
   }

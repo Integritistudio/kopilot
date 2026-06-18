@@ -174,13 +174,13 @@
   }
 
   /* MEDIA QUERIES */
-  @media (max-width: 989px) {
+  @media (max-width: 767px) {
     .fcl-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  @media(max-width: 768px) {   
+  @media(max-width: 767px) {   
     .fcl-overlay {
       bottom: 10px;
       left: 10px;

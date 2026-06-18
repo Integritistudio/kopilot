@@ -779,7 +779,7 @@ discount-code.copied:after {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .featured_product_full_details_wrapper {
         flex-flow: column;
         align-items: flex-start;

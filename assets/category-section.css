@@ -259,7 +259,7 @@ category-section {
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .category_section_inner {
         height: 100% !important;
     }
@@ -497,9 +497,9 @@ category-section {
 
 
 /* =========================
-   TABLET (<= 989px)
+   MOBILE (<= 767px)
 ========================= */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
 
     .category_bg_wrapper {
         height: 70vh; 
@@ -526,7 +526,7 @@ category-section {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .category_bg_wrapper {
         height: 40vh;
     }

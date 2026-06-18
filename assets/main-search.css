@@ -318,7 +318,7 @@ form#main_search_sort_form {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .main_search_product_filters_wrapper, .main_search_product_filters_for_mobile, .main_search_products_count_wrapper, .main_search_product_count_sorting_filter_wrapper {
         flex: 1 1 auto;
     }

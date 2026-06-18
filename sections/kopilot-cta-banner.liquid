@@ -4,7 +4,7 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  @media screen and (max-width: 989px) {
+  @media screen and (max-width: 767px) {
     .kopilot-cta-banner--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
@@ -52,9 +52,11 @@
   <div class="kopilot-cta-banner__media">
     {% render 'kopilot-image',
       image: section.settings.image,
-      fallback: 'kopilot-cta-banner.jpg',
+      fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
       alt: section.settings.heading,
-      width: 2000,
+      width: 1889,
+      height: 833,
+      class: 'kopilot-cta-banner__image',
       sizes: '100vw'
     %}
   </div>

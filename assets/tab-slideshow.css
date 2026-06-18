@@ -145,7 +145,7 @@
       color: var(--color-link-hover);
   }
 
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: 767px) {
 
     .power-tabs-content {
       padding: 40px 25px 140px;

@@ -381,7 +381,7 @@
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .offers_card_main_inner {
         margin: 5rem 0 0;
         gap: 2rem;

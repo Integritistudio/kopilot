@@ -331,7 +331,7 @@ video-background.is-complete .video_bg_text_wrapper {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .video_bg_text_inner {
         max-width: 100%;
         padding: 2rem 1.5rem;

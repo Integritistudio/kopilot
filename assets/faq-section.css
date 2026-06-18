@@ -121,7 +121,7 @@ span.faq_vert {
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .faq_content_wrapper.faq_with_image {
         flex-flow: column
     }  

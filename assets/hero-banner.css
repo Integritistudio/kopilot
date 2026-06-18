@@ -478,7 +478,7 @@ span.hero_banner_current_slide, span.hero_banner_total_slide {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .hero_banner_block:nth-child(4) {
         justify-content: flex-end;
     }
@@ -520,7 +520,7 @@ span.hero_banner_current_slide, span.hero_banner_total_slide {
     }    
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .hero_banner_slider_box.blocks-2 .hero_banner_block:nth-child(2) {
         flex: 1 1 100%;
     }

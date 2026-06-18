@@ -207,13 +207,13 @@
     }
   }
 
-  @media (max-width: 989px){
+  @media (max-width: 767px){
     .benefits-sec .image-heading.xl {
       font-size: 7rem;
     }
   }
 
-  @media(max-width: 768px){
+  @media(max-width: 767px){
     .benefits-sec .wrapper {
       grid-template-columns: 1fr;
     }

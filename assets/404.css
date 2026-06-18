@@ -88,7 +88,7 @@
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .main_404_head.has_img h1 {
         padding: 3rem;
     }

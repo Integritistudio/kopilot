@@ -118,7 +118,7 @@
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .image_with_text_inner {
         flex-flow: column !important;
     }
@@ -212,7 +212,7 @@
 }
 
 /* MOBILE */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
  .iwt_img_inner.style2 {
     display: flex;

@@ -2,7 +2,7 @@
   background: #fff;
 }
 
-/* Mobile ≤990px — Figma 360px frame (node 3127-3719) */
+/* Mobile ≤767px — Figma 360px frame (node 3127-3719) */
 .kopilot-partners__inner {
   display: flex;
   flex-direction: column;
@@ -68,8 +68,8 @@
   color: #000;
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ */
+@media screen and (min-width: 768px) {
   .kopilot-partners {
     border-top: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
@@ -113,5 +113,25 @@
     line-height: 1.3;
     flex: 0 0 37.4rem;
     text-align: left;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-partners__inner {
+    padding: 1.2rem clamp(2rem, 4vw, 4rem);
+    gap: 1.6rem;
+  }
+
+  .kopilot-partners__text {
+    font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+    flex: 0 1 24rem;
+  }
+
+  .kopilot-partners__logos {
+    gap: clamp(1.6rem, 2.5vw, 2.4rem);
+  }
+
+  .kopilot-partners__logo img {
+    max-height: clamp(4rem, 5vw, 5.6rem);
   }
 }

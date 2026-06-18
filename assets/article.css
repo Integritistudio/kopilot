@@ -245,7 +245,7 @@ p.main_article_comment_moderated_text {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .main_article_header_wrapper {
         flex-flow: column;
         align-items: flex-start;

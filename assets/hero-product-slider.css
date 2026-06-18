@@ -224,7 +224,7 @@
   }
 
     /* MOBILE */
-    @media (max-width:768px){
+    @media (max-width:767px){
       .nxpsx-slide{
         flex-direction:column;
         height:auto!important;

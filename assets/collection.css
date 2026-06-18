@@ -489,7 +489,7 @@ html[data-sticky-header] .main_collection_info_wrapper.sticky_filters {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .main_collection_product_filters_wrapper, .main_collection_product_filters_for_mobile, .main_collection_products_count_wrapper, .main_collection_product_count_sorting_filter_wrapper {
         flex: 1 1 auto;
     }

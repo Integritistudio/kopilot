@@ -114,7 +114,7 @@ ul.product_tabs_payment_icons_ul {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .product_tabs_container {
         flex-flow: column;
     }

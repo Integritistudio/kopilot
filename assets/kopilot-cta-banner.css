@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 
-/* Mobile ≤990px — Figma 360px frame (node 2948-1204) */
+/* Mobile ≤767px — Figma 360px frame (node 2948-1204) */
 .kopilot-cta-banner__intro {
   display: flex;
   flex-direction: column;
@@ -122,23 +122,46 @@
   color: #000;
 }
 
-.kopilot-cta-banner__media {
-  width: 100%;
-  aspect-ratio: 674 / 251;
-  overflow: hidden;
+/* Figma 360px — pinned, do not change */
+@media screen and (max-width: 360px) {
+  .kopilot-cta-banner__media {
+    width: 100%;
+    aspect-ratio: 674 / 251;
+    overflow: hidden;
+  }
+
+  .kopilot-cta-banner__media img,
+  .kopilot-cta-banner__media .placeholder_svg,
+  .kopilot-cta-banner__media .kopilot-cta-banner__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
 }
 
-.kopilot-cta-banner__media img,
-.kopilot-cta-banner__media .placeholder_svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: bottom center;
+/* Fluid image scale 361px–767px */
+@media screen and (min-width: 361px) and (max-width: 767px) {
+  .kopilot-cta-banner__media {
+    width: 100%;
+    aspect-ratio: 1889 / 833;
+    overflow: hidden;
+  }
+
+  .kopilot-cta-banner__media img,
+  .kopilot-cta-banner__media .placeholder_svg,
+  .kopilot-cta-banner__media .kopilot-cta-banner__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ */
+@media screen and (min-width: 768px) {
   .kopilot-cta-banner {
     gap: 3.6rem;
     padding: 7.7rem 2rem 0;
@@ -193,9 +216,55 @@
   }
 
   .kopilot-cta-banner__media img,
-  .kopilot-cta-banner__media .placeholder_svg {
+  .kopilot-cta-banner__media .placeholder_svg,
+  .kopilot-cta-banner__media .kopilot-cta-banner__image {
     object-fit: cover;
     object-position: center;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-cta-banner {
+    gap: clamp(2rem, 3vw, 2.8rem);
+    padding: clamp(4rem, 6vw, 5.6rem) clamp(1.6rem, 3vw, 2rem) 0;
+  }
+
+  .kopilot-cta-banner__intro {
+    gap: clamp(2rem, 3vw, 2.8rem);
+  }
+
+  .kopilot-cta-banner__heading,
+  .kopilot-cta-banner__heading.kopilot-heading {
+    font-size: clamp(3.2rem, 5vw, 4.4rem);
+  }
+
+  .kopilot-cta-banner .kopilot-cta-banner__btn.kopilot-btn {
+    width: auto;
+    min-width: min(100%, 28rem);
+    max-width: 31.1rem;
+    min-height: clamp(5rem, 6vw, 5.8rem);
+    height: auto;
+    padding: clamp(1.4rem, 2vw, 1.8rem) clamp(3rem, 5vw, 5rem);
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .kopilot-cta-banner__trust {
+    max-width: min(72.8rem, 100%);
+    gap: clamp(1.2rem, 2vw, 1.6rem);
+    padding-inline: clamp(1.6rem, 3vw, 2rem);
+  }
+
+  .kopilot-cta-banner__trust-item {
+    flex: 1 1 calc(50% - 0.8rem);
+    min-width: min(100%, 16rem);
+    min-height: auto;
+    height: auto;
+    padding: clamp(1.2rem, 2vw, 1.6rem) clamp(1.6rem, 2.5vw, 2.4rem);
+  }
+
+  .kopilot-cta-banner__trust-label {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
   }
 }
 
@@ -204,5 +273,30 @@
     width: 72.8rem;
     gap: 0;
     justify-content: space-between;
+  }
+
+  .kopilot-cta-banner .kopilot-cta-banner__btn.kopilot-btn {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    flex: none;
+    width: 31.1rem;
+    min-width: 31.1rem;
+    max-width: 31.1rem;
+    height: 6.643rem;
+    min-height: 6.643rem;
+    padding: 2.121rem 8.25rem;
+    gap: 1.179rem;
+    background: #ef0008;
+    font-family: var(--kopilot-font-family);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
   }
 }

@@ -117,7 +117,7 @@ span.gift_card_copy_success.form__message.show {
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     p.gift_card_code {
         min-width: 100%;
     }

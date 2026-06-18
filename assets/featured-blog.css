@@ -300,7 +300,7 @@ span.article_card_author {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .article_card {
         flex-flow: column;
     }
@@ -833,7 +833,7 @@ span.article_card_author {
       color: var(--color-primary-button-hover-text);
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
 
     .fb--style3 .article_card {
         min-height: 58rem;
@@ -845,7 +845,7 @@ span.article_card_author {
 
 /* MOBILE */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     .fb--style3 .article_card {
         min-height: 52rem;

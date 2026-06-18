@@ -19,7 +19,7 @@
   object-position: center;
 }
 
-/* Mobile ≤990px — Figma 360px frame (node 3227-335) */
+/* Mobile ≤767px — Figma 360px frame (node 3227-335) */
 .kopilot-info-cards__inner {
   position: relative;
   z-index: 1;
@@ -138,8 +138,8 @@
   margin: 0;
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ */
+@media screen and (min-width: 768px) {
   .kopilot-info-cards__inner {
     gap: 0;
     padding: 0 0 5rem;
@@ -208,7 +208,42 @@
   }
 }
 
-@media screen and (min-width: 991px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-info-cards__inner {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+  }
+
+  .kopilot-info-cards__heading {
+    font-size: clamp(3.2rem, 5vw, 4.4rem);
+    margin-bottom: clamp(3rem, 5vw, 4rem);
+    padding-inline: clamp(1.6rem, 3vw, 2rem);
+  }
+
+  .kopilot-info-cards__grid {
+    padding-inline: clamp(1.6rem, 3vw, 2.4rem);
+    gap: clamp(1.2rem, 2vw, 1.6rem);
+  }
+
+  .kopilot-info-cards__card {
+    flex: 1 1 calc(33.333% - 1.2rem);
+    max-width: calc(33.333% - 1.2rem);
+    min-width: 0;
+  }
+
+  .kopilot-info-cards__card-title,
+  .kopilot-info-cards__card-title.kopilot-body,
+  .kopilot-info-cards__card-text,
+  .kopilot-info-cards__card-text.kopilot-body {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  }
+
+  .kopilot-info-cards__card-body {
+    padding: clamp(1.2rem, 2vw, 1.6rem) clamp(1rem, 1.5vw, 1.3rem) clamp(1.6rem, 2.5vw, 2rem);
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
   .kopilot-info-cards__grid {
     padding-inline: clamp(2rem, 6vw, 8rem);
   }

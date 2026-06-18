@@ -37,8 +37,8 @@
   display: none;
 }
 
-/* Mobile ≤990px — scales from 360px Figma frame */
-@media screen and (max-width: 990px) {
+/* Mobile ≤767px — scales from 360px Figma frame */
+@media screen and (max-width: 767px) {
   .kopilot-hero {
     --kopilot-hero-pad-x: clamp(1.6rem, 6.39vw, 2.3rem);
     --kopilot-hero-pad-y: clamp(2.4rem, 8.06vw, 2.9rem);
@@ -58,7 +58,7 @@
   isolation: isolate;
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 767px) {
   .kopilot-hero {
     min-height: 72rem;
   }
@@ -228,8 +228,8 @@
   }
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ (1024 layout) */
+@media screen and (min-width: 768px) {
   .kopilot-hero {
     min-height: clamp(60rem, 78vh, 81.1rem);
     align-items: center;
@@ -377,6 +377,71 @@
     height: 100%;
     width: auto;
     object-fit: contain;
+  }
+}
+
+/* Tablet: 768px–1024px — desktop layout with tighter spacing */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-hero {
+    min-height: clamp(52rem, 70vh, 65rem);
+  }
+
+  .kopilot-hero__bg img {
+    object-position: 68% center;
+  }
+
+  .kopilot-hero__inner {
+    padding: clamp(3.2rem, 5vw, 5rem) clamp(1.6rem, 3vw, 2.4rem);
+    gap: clamp(1.2rem, 2vw, 2rem);
+  }
+
+  .kopilot-hero__content-column {
+    max-width: min(42rem, 55%);
+  }
+
+  .kopilot-hero__eyebrow {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    margin-bottom: clamp(1.2rem, 2vw, 2rem);
+  }
+
+  .kopilot-hero__title-group {
+    margin-bottom: clamp(1.2rem, 2vw, 2rem);
+    gap: clamp(0.8rem, 1.2vw, 1rem);
+  }
+
+  .kopilot-hero__title {
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
+  }
+
+  .kopilot-hero__description {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    margin-bottom: clamp(1.6rem, 2.5vw, 2.4rem);
+  }
+
+  .kopilot-hero__cta {
+    min-width: min(100%, 22rem);
+    max-width: 28rem;
+    min-height: clamp(4.4rem, 5vw, 5.2rem);
+    padding: clamp(1.2rem, 1.5vw, 1.4rem) clamp(1.6rem, 3vw, 2.4rem);
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  }
+
+  .kopilot-hero__product {
+    width: clamp(11rem, 14vw, 16rem);
+    max-width: 34%;
+    gap: clamp(1.2rem, 2vw, 2rem);
+  }
+
+  .kopilot-hero__product-img {
+    width: clamp(10rem, 12vw, 14rem);
+  }
+
+  .kopilot-hero__logo {
+    height: clamp(3.6rem, 4.5vw, 5rem);
+  }
+
+  .kopilot-hero__logos--desktop {
+    gap: clamp(0.8rem, 1.2vw, 1.2rem);
   }
 }
 

@@ -368,7 +368,7 @@ ul.social_icons_wrapper svg path {
     /* margin: 0; */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .footer_center.footer_center_full_width {
         padding-inline: 2rem;
     }
@@ -390,7 +390,7 @@ ul.social_icons_wrapper svg path {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .footer_newsletter_inner {
         flex-flow: column;
     }
@@ -414,7 +414,7 @@ ul.social_icons_wrapper svg path {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .footer_top {
         flex-flow: column;
         justify-content: center;

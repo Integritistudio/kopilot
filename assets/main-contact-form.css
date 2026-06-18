@@ -125,7 +125,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .main_contact_form_fields.two_cols {
         grid-template-columns: 1fr;
         grid-template-areas: unset;

@@ -781,7 +781,7 @@ span.main_cart_item_discount {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .main_cart_items_footer_wrapper {
         padding: 3rem;
     }

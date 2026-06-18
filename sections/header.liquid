@@ -36,7 +36,7 @@
     border-bottom: 1px solid {{ section.settings.divider_color }};
   }
 
-  @media screen and (max-width: 990px) {
+  @media screen and (max-width: 767px) {
     .header_wrapper {
       padding-top: 15px !important;
       padding-bottom: 15px !important;
@@ -47,7 +47,7 @@
     }
   }
 
-  @media screen and (min-width: 991px) and (max-width: 1299px) {
+  @media screen and (min-width: 768px) and (max-width: 1299px) {
     .header_wrapper {
       padding-top: {{ section.settings.top_spacing | divided_by: 2 }}px;
       padding-bottom: {{ section.settings.bottom_spacing | divided_by: 2 }}px;

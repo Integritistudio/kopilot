@@ -198,7 +198,7 @@
   transform: translateY(-20px);
 }
 
-  @media(max-width:989px){
+  @media(max-width:767px){
 
     .split-img-slider .split-slider-header{
       flex-direction:column;

@@ -145,7 +145,7 @@ button.ann_bar_menu_wrapper.has_menu svg path {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .announcement_bar_wrapper.announcement-overlay {
         position: static;
         transform: none;

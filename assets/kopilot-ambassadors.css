@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-/* Mobile ≤990px — Figma 360px frame (node 3114-2951) */
+/* Mobile ≤767px — Figma 360px frame (node 3114-2951) */
 .kopilot-ambassadors__inner {
   display: flex;
   flex-direction: column;
@@ -239,8 +239,8 @@
   height: auto;
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ */
+@media screen and (min-width: 768px) {
   .kopilot-ambassadors {
     --kopilot-ambassadors-pad-y: 48px;
     --kopilot-ambassadors-card-width: 400px;
@@ -326,7 +326,40 @@
   }
 }
 
-@media screen and (min-width: 991px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-ambassadors {
+    --kopilot-ambassadors-card-width: clamp(280px, 38vw, 340px);
+    --kopilot-ambassadors-slider-inset: 24px;
+    --kopilot-ambassadors-progress-width: min(640px, calc(100vw - 80px));
+  }
+
+  .kopilot-ambassadors__inner {
+    gap: clamp(32px, 5vw, 48px);
+    padding-block: clamp(32px, 5vw, 48px);
+  }
+
+  .kopilot-ambassadors__heading {
+    font-size: clamp(32px, 5vw, 44px);
+  }
+
+  .kopilot-ambassadors__text {
+    font-size: clamp(16px, 1.8vw, 18px);
+  }
+
+  .kopilot-ambassadors__card {
+    min-height: auto;
+  }
+
+  .kopilot-ambassadors__card-body {
+    padding: clamp(20px, 3vw, 28px) clamp(20px, 3vw, 32px);
+  }
+
+  .kopilot-ambassadors__quote {
+    font-size: clamp(16px, 1.8vw, 18px);
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
   .kopilot-ambassadors {
     --kopilot-ambassadors-slider-inset: 40px;
     --kopilot-ambassadors-progress-width: min(859.45px, calc(100vw - 160px));

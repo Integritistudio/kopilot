@@ -115,7 +115,7 @@
 
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
   .multi-image-info__grid {
     flex-wrap: wrap;
   }

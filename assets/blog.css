@@ -64,7 +64,7 @@
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .main_blog_inner.mbi--cols_1 .article_card {
         flex-flow: column;
     }

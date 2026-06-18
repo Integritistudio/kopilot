@@ -219,7 +219,7 @@
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .before_after_small_box_wrapper {
         display: none;
     }

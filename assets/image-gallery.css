@@ -129,13 +129,13 @@ img.ig_hover_icon {
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .image_gallery_main_inner {
         gap: 2rem;
     }
 }
 
-@media screen and (max-width: 768px) {   
+@media screen and (max-width: 767px) {   
     .image_gallery_block {
         margin: 0 !important;
         max-width: 100% !important;

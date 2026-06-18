@@ -322,7 +322,7 @@ featured-collection .fc_btn:hover svg path {
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 767px){
     .swiper-pagination.fc-pagination {
         position: static;
         padding-top: 2rem;

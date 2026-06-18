@@ -220,7 +220,7 @@ button.newsletter-form__button svg path {
 
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .newsletter_inner.ni--full {
         height: 100%;
     }
@@ -426,7 +426,7 @@ button.newsletter-form__button svg path {
 
 }
 
-/* @media screen and (max-width: 989px) {
+/* @media screen and (max-width: 767px) {
 
     .newsletter-style_2 .newsletter_small_box {
         left: 20px;

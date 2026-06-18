@@ -59,7 +59,7 @@
 
 
 /* MOBILE */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
 
   .trust-highlights__full {
     padding-inline: 15px;

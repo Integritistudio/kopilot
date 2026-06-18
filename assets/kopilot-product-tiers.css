@@ -5,7 +5,7 @@
   font-synthesis: none;
 }
 
-/* Mobile ≤990px — Figma 360px frame (node 3114-2451) */
+/* Mobile ≤767px — Figma 360px frame (node 3114-2451) */
 .kopilot-product-tiers__inner {
   max-width: 1440px;
   margin: 0 auto;
@@ -305,8 +305,8 @@
   color: #fff;
 }
 
-/* Desktop: 991px+ */
-@media screen and (min-width: 991px) {
+/* Desktop: 768px+ */
+@media screen and (min-width: 768px) {
   .kopilot-product-tiers__inner {
     gap: 60px;
     padding: 48px 71px 50px;
@@ -432,7 +432,48 @@
   }
 }
 
-@media screen and (min-width: 991px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-product-tiers__inner {
+    gap: clamp(24px, 4vw, 40px);
+    padding: clamp(24px, 4vw, 40px) clamp(16px, 3vw, 32px) clamp(32px, 4vw, 50px);
+  }
+
+  .kopilot-product-tiers__header {
+    max-width: 100%;
+  }
+
+  .kopilot-product-tiers__heading {
+    font-size: clamp(32px, 5vw, 44px);
+  }
+
+  .kopilot-product-tiers__grid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+
+  .kopilot-product-tiers__card {
+    flex: none;
+    width: 100%;
+    max-width: min(42.7rem, 100%);
+    min-width: 0;
+    min-height: auto;
+  }
+
+  .kopilot-product-tiers__card-title {
+    font-size: clamp(28px, 3.5vw, 34px);
+    line-height: 1.1;
+  }
+
+  .kopilot-product-tiers__price {
+    font-size: clamp(28px, 3.5vw, 34px);
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
   .kopilot-product-tiers__inner {
     padding-inline: clamp(20px, 4vw, 71px);
   }

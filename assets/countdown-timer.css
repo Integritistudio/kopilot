@@ -169,7 +169,7 @@
   }
 }
 
-@media (max-width: 989px){
+@media (max-width: 767px){
   .count-timer.style-2 {
     padding: 45px;
     display: flex;
@@ -209,7 +209,7 @@
   }
 }
 
-@media(max-width:768px){
+@media(max-width:767px){
 
   .count-timer {
     flex-direction: column;

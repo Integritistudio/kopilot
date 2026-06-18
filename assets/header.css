@@ -1047,7 +1047,7 @@ a.mega_menu_child_link.menu_body {
     }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 767px) {
     .header_inner, .header_inner.logo-center {
         grid-template-columns: 1fr 2fr 1fr !important;
         gap: 2rem !important;
@@ -1067,7 +1067,7 @@ a.mega_menu_child_link.menu_body {
     }    
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .header-overlay {
         position: static;
         opacity: 1;
@@ -1394,8 +1394,8 @@ a.mega_menu_child_link.menu_body {
   stroke: var(--color-link);
 }
 
-/* Mobile (≤990px) — Figma */
-@media screen and (max-width: 990px) {
+/* Mobile (≤767px) — Figma */
+@media screen and (max-width: 767px) {
   .header_inner.kopilot-header {
     display: grid !important;
     grid-template-areas: "hamburger logo actions" !important;
@@ -1468,8 +1468,8 @@ a.mega_menu_child_link.menu_body {
   }
 }
 
-/* Tablet header fallback (991px–1299px) */
-@media screen and (min-width: 991px) and (max-width: 1299px) {
+/* Tablet header fallback (768px–1299px) */
+@media screen and (min-width: 768px) and (max-width: 1299px) {
   .header_inner.kopilot-header {
     display: grid !important;
     grid-template-areas: "hamburger logo actions" !important;
