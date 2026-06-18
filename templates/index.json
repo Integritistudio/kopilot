@@ -528,12 +528,14 @@
         "tr2": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group_2087327569.png",
             "label": "No subscription"
           }
         },
         "tr3": {
           "type": "trust",
           "settings": {
+            "icon": "shopify://shop_images/Group.png",
             "label": "Works anywhere"
           }
         }
