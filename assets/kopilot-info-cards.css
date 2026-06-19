@@ -134,7 +134,14 @@
   max-width: 26.8rem;
 }
 
-.kopilot-info-cards__card-text p {
+.kopilot-info-cards__card-text.kopilot-body.rte p {
+  font-family: Elza, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-align: center;
   margin: 0;
 }
 
@@ -147,7 +154,7 @@
   }
 
   .kopilot-info-cards__heading {
-    font-size: 5.5rem;
+    font-size: 6rem;
     line-height: 1.1;
     letter-spacing: -1px;
     margin: 0 auto 6rem;
@@ -236,6 +243,11 @@
   .kopilot-info-cards__card-text,
   .kopilot-info-cards__card-text.kopilot-body {
     font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  }
+
+  .kopilot-info-cards__card-text.kopilot-body.rte p {
+    font-size: 2rem;
+    line-height: 120%;
   }
 
   .kopilot-info-cards__card-body {

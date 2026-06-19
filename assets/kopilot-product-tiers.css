@@ -190,11 +190,16 @@
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 1.85vw, 0.666rem);
-  font-family: var(--kopilot-font-family);
-  font-size: clamp(1.1rem, 3.33vw, 1.2rem);
-  font-weight: 500;
-  line-height: 1.42;
   color: #000;
+}
+
+.kopilot-product-tiers__reviews span {
+  font-family: Elza, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.3rem;
+  line-height: 25px;
+  letter-spacing: 0;
 }
 
 .kopilot-product-tiers__reviews .kopilot-review-stars--tier {
@@ -382,9 +387,12 @@
   }
 
   .kopilot-product-tiers__reviews {
+    gap: 10px;
+  }
+
+  .kopilot-product-tiers__reviews span {
     font-size: 13px;
     line-height: 25px;
-    gap: 10px;
   }
 
   .kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg {
