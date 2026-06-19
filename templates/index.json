@@ -336,7 +336,7 @@
             "review_count": "47",
             "price": "$71.99",
             "description": "<p>Save with an additional tag for equipping more gear, or share one with a friend or family member.</p>",
-            "features": "<ul><li>Multiple mounting solutions for various gear</li><li>Second tag makes a great gift</li></ul>",
+            "features": "<ul><li>Multiple mounting solutions <br/>for various gear</li><li>Second tag makes <br/>a great gift</li></ul>",
             "button_label": "GET 2 TAGS",
             "button_style": "outline",
             "button_link": ""
@@ -354,8 +354,8 @@
             "show_reviews": true,
             "review_count": "47",
             "price": "$95.99",
-            "description": "<p>Extensive coverage for your gear, or your crew.</p>",
-            "features": "<ul><li>Equip multiple helmets, gear setups, or friends and family members</li><li>Greatest savings, most coverage</li></ul>",
+            "description": "<p>Extensive coverage for your gear, <br/>or your crew.</p>",
+            "features": "<ul><li>Equip multiple helmets, gear setups, or friends and family members</li><li>Greatest savings, <br/>most coverage</li></ul>",
             "button_label": "GET 3 TAGS",
             "button_style": "outline",
             "button_link": ""
