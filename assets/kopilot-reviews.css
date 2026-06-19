@@ -45,12 +45,18 @@
   justify-content: center;
   gap: 0.6rem;
   margin: 0 0 clamp(2.4rem, 8.6vw, 3.2rem);
-  font-family: var(--kopilot-font-family);
-  font-weight: 400;
-  font-size: 1.8rem;
-  line-height: 1.4;
   text-align: center;
   color: #232526;
+}
+
+.kopilot-reviews__based-on span {
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+  vertical-align: middle;
 }
 
 .kopilot-reviews__based-on-icon {
@@ -428,8 +434,11 @@
     display: block;
     margin: 0;
     text-align: left;
-    font-size: 2.4rem;
-    line-height: 3.4rem;
+  }
+
+  .kopilot-reviews__based-on span {
+    font-size: 24px;
+    line-height: 33.6px;
   }
 
   .kopilot-reviews__based-on-icon {
@@ -581,7 +590,7 @@
     line-height: 1.2;
   }
 
-  .kopilot-reviews__based-on {
+  .kopilot-reviews__based-on span {
     font-size: clamp(1.4rem, 1.8vw, 1.8rem);
     line-height: 1.3;
   }
