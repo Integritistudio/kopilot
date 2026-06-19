@@ -337,7 +337,7 @@
   box-sizing: border-box;
 }
 
-.kopilot-product-tiers__card--solid-btn .kopilot-product-tiers__btn {
+.kopilot-product-tiers__card--best-value .kopilot-product-tiers__btn {
   background: #ef0008;
   color: #fff;
   border-color: #ef0008;
@@ -347,7 +347,7 @@
   opacity: 0.9;
 }
 
-.kopilot-product-tiers__card--solid-btn .kopilot-product-tiers__btn:hover {
+.kopilot-product-tiers__card--best-value .kopilot-product-tiers__btn:hover {
   color: #fff;
 }
 

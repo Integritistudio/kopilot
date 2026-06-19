@@ -32,9 +32,16 @@
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
         {% assign card_index = forloop.index0 %}
+        {% assign is_best_value = false %}
+        {% if block.settings.badge != blank %}
+          {% assign badge_label = block.settings.badge | downcase | strip %}
+          {% if badge_label == 'best value' %}
+            {% assign is_best_value = true %}
+          {% endif %}
+        {% endif %}
 
         <article
-          class="kopilot-product-tiers__card{% if block.settings.card_style == 'bordered' %} kopilot-product-tiers__card--bordered{% endif %}{% if block.settings.card_style == 'gray' %} kopilot-product-tiers__card--gray{% endif %}{% if block.settings.button_style == 'solid' %} kopilot-product-tiers__card--solid-btn{% endif %}"
+          class="kopilot-product-tiers__card{% if block.settings.card_style == 'bordered' %} kopilot-product-tiers__card--bordered{% endif %}{% if block.settings.card_style == 'gray' %} kopilot-product-tiers__card--gray{% endif %}{% if is_best_value %} kopilot-product-tiers__card--best-value{% endif %}"
           {{ block.shopify_attributes }}
         >
           {% if block.settings.badge != blank %}
