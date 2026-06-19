@@ -25,19 +25,20 @@
         {% if col_index == 0 %}
           <div class="kopilot-partners__logos-row kopilot-partners__logos-row--{{ row_index | plus: 1 }}">
         {% endif %}
-        <div
-          class="kopilot-partners__logo{% if block.settings.logo_width > 0 %} kopilot-partners__logo--custom-desktop{% endif %}{% if block.settings.logo_width_mobile > 0 %} kopilot-partners__logo--custom-mobile{% endif %}"
-          {% if block.settings.logo_width > 0 or block.settings.logo_width_mobile > 0 %}
-            style="{% if block.settings.logo_width > 0 %}--kopilot-partner-logo-width-desktop: {{ block.settings.logo_width }}px;{% endif %}{% if block.settings.logo_width_mobile > 0 %}--kopilot-partner-logo-width-mobile: {{ block.settings.logo_width_mobile }}px;{% endif %}"
-          {% endif %}
-          {{ block.shopify_attributes }}
-        >
-          {% render 'kopilot-image',
-            image: block.settings.logo,
-            fallback: partner_fallbacks[forloop.index0],
-            alt: block.settings.logo_alt,
-            width: 300
-          %}
+        <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
+          <div
+            class="kopilot-partners__logo-media{% if block.settings.logo_width > 0 %} kopilot-partners__logo-media--custom-desktop{% endif %}{% if block.settings.logo_width_mobile > 0 %} kopilot-partners__logo-media--custom-mobile{% endif %}"
+            {% if block.settings.logo_width > 0 or block.settings.logo_width_mobile > 0 %}
+              style="{% if block.settings.logo_width > 0 %}--kopilot-partner-logo-width-desktop: {{ block.settings.logo_width }}px;{% endif %}{% if block.settings.logo_width_mobile > 0 %}--kopilot-partner-logo-width-mobile: {{ block.settings.logo_width_mobile }}px;{% endif %}"
+            {% endif %}
+          >
+            {% render 'kopilot-image',
+              image: block.settings.logo,
+              fallback: partner_fallbacks[forloop.index0],
+              alt: block.settings.logo_alt,
+              width: 300
+            %}
+          </div>
         </div>
         {% if col_index == 2 or forloop.last %}
           </div>

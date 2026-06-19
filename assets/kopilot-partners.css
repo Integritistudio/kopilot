@@ -44,13 +44,19 @@
   flex: none;
 }
 
-.kopilot-partners__logos-row--1 .kopilot-partners__logo img {
+.kopilot-partners__logo-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kopilot-partners__logos-row--1 .kopilot-partners__logo-media img {
   max-height: clamp(3.6rem, 11.68vw, 4.206rem);
   width: auto;
   object-fit: contain;
 }
 
-.kopilot-partners__logos-row--2 .kopilot-partners__logo img {
+.kopilot-partners__logos-row--2 .kopilot-partners__logo-media img {
   max-height: clamp(4.4rem, 14.55vw, 5.238rem);
   width: auto;
   object-fit: contain;
@@ -69,13 +75,22 @@
 }
 
 @media screen and (max-width: 767px) {
-  .kopilot-partners__logo--custom-mobile img,
-  .kopilot-partners__logos-row--1 .kopilot-partners__logo--custom-mobile img,
-  .kopilot-partners__logos-row--2 .kopilot-partners__logo--custom-mobile img {
+  .kopilot-partners__logos-row--1 .kopilot-partners__logo-media--custom-mobile {
     width: var(--kopilot-partner-logo-width-mobile);
-    max-width: var(--kopilot-partner-logo-width-mobile);
+    height: clamp(3.6rem, 11.68vw, 4.206rem);
+  }
+
+  .kopilot-partners__logos-row--2 .kopilot-partners__logo-media--custom-mobile {
+    width: var(--kopilot-partner-logo-width-mobile);
+    height: clamp(4.4rem, 14.55vw, 5.238rem);
+  }
+
+  .kopilot-partners__logo-media--custom-mobile img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
     max-height: none;
-    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -113,17 +128,23 @@
     max-width: none;
   }
 
-  .kopilot-partners__logo img {
+  .kopilot-partners__logo-media img {
     max-height: 7.4rem;
     width: auto;
     object-fit: contain;
   }
 
-  .kopilot-partners__logo--custom-desktop img {
+  .kopilot-partners__logo-media--custom-desktop {
     width: var(--kopilot-partner-logo-width-desktop);
-    max-width: var(--kopilot-partner-logo-width-desktop);
+    height: 7.4rem;
+  }
+
+  .kopilot-partners__logo-media--custom-desktop img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
     max-height: none;
-    height: auto;
+    object-fit: contain;
   }
 
   .kopilot-partners__text {
@@ -149,14 +170,20 @@
     gap: clamp(1.6rem, 2.5vw, 2.4rem);
   }
 
-  .kopilot-partners__logo img {
+  .kopilot-partners__logo-media img {
     max-height: clamp(4rem, 5vw, 5.6rem);
   }
 
-  .kopilot-partners__logo--custom-desktop img {
+  .kopilot-partners__logo-media--custom-desktop {
     width: var(--kopilot-partner-logo-width-desktop);
-    max-width: var(--kopilot-partner-logo-width-desktop);
+    height: clamp(4rem, 5vw, 5.6rem);
+  }
+
+  .kopilot-partners__logo-media--custom-desktop img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
     max-height: none;
-    height: auto;
+    object-fit: contain;
   }
 }
