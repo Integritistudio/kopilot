@@ -111,16 +111,26 @@
             {% assign rating = block.settings.rating | default: 5 %}
             {% render 'kopilot-review-stars', rating: rating, size: 'lg' %}
             {% if block.settings.date != blank %}
-              <time class="kopilot-reviews__item-date" datetime="{{ block.settings.date }}">{{ block.settings.date }}</time>
+              {% assign date_segments = block.settings.date | split: '/' %}
+              <time class="kopilot-reviews__item-date" datetime="{{ block.settings.date }}">
+                {% if date_segments.size == 3 %}
+                  <span class="kopilot-reviews__item-date-line">{{ date_segments[0] }}/{{ date_segments[1] }}/</span><span class="kopilot-reviews__item-date-year">{{ date_segments[2] }}</span>
+                {% else %}
+                  {{ block.settings.date }}
+                {% endif %}
+              </time>
             {% endif %}
           </div>
 
           <div class="kopilot-reviews__item-author">
             <span class="kopilot-reviews__avatar" aria-hidden="true">
-              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 13.5C14.7614 13.5 17 11.2614 17 8.5C17 5.73858 14.7614 3.5 12 3.5C9.23858 3.5 7 5.73858 7 8.5C7 11.2614 9.23858 13.5 12 13.5Z" fill="#232526"/>
-                <path d="M5 21.5C5 17.634 8.13401 14.5 12 14.5C15.866 14.5 19 17.634 19 21.5" stroke="#232526" stroke-width="2"/>
-              </svg>
+              <img
+                src="{{ 'Overlay.svg' | asset_url }}"
+                width="36"
+                height="36"
+                alt=""
+                loading="lazy"
+              >
             </span>
             {% if block.settings.author != blank %}
               <p class="kopilot-reviews__item-name">{{ block.settings.author }}</p>

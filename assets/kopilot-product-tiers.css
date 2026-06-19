@@ -206,7 +206,8 @@
   gap: 2px;
 }
 
-.kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg {
+.kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg,
+.kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon img {
   width: clamp(0.72rem, 2.22vw, 0.801rem);
   height: clamp(0.72rem, 2.22vw, 0.801rem);
 }
@@ -435,7 +436,8 @@
     line-height: 25px;
   }
 
-  .kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg {
+  .kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon svg,
+.kopilot-product-tiers__reviews .kopilot-review-stars--tier .kopilot-review-stars__icon img {
     width: 12px;
     height: 12px;
   }
