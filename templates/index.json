@@ -170,7 +170,7 @@
             "badge": "Ambassador",
             "name": "Hillary Allen",
             "role": "- Team USA // Ultra Marathon Trail Runner",
-            "quote": "<p>KOPILOT.ID gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
+            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
           }
         },
         "a2": {
@@ -180,7 +180,7 @@
             "badge": "Event",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
-            "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on KOPILOT.ID as a critical part of their emergency response protocol.</p>"
+            "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
           }
         },
         "a3": {
@@ -190,7 +190,7 @@
             "badge": "Ambassador",
             "name": "Kait Boyle",
             "role": "- Cyclist",
-            "quote": "<p>Love my KOPILOT.ID! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻</p>"
+            "quote": "<p>Love my <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a>! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻</p>"
           }
         },
         "a4": {
@@ -317,7 +317,7 @@
             "show_reviews": true,
             "review_count": "47",
             "price": "$39.99",
-            "description": "<p>Get started with one tag for your most-used piece of gear.</p>",
+            "description": "<p>Get started with one tag for your </p><p>most-used piece of gear.</p>",
             "features": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>",
             "button_label": "GET 1 TAG",
             "button_style": "solid",
