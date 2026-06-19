@@ -17,15 +17,28 @@
 
 <section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-hero__bg">
-    {% render 'kopilot-image',
-      image: section.settings.background_image,
-      fallback: 'kopilot-hero-bg.jpg',
-      alt: section.settings.heading_line_1,
-      width: 2400,
-      loading: 'eager',
-      widths: '750,1100,1500,2000,2400',
-      sizes: '100vw'
-    %}
+    <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
+      {% render 'kopilot-image',
+        image: section.settings.background_image,
+        fallback: 'kopilot-hero-bg.jpg',
+        alt: section.settings.heading_line_1,
+        width: 2400,
+        loading: 'eager',
+        widths: '750,1100,1500,2000,2400',
+        sizes: '100vw'
+      %}
+    </div>
+    <div class="kopilot-hero__bg-image kopilot-hero__bg-image--mobile">
+      {% render 'kopilot-image',
+        image: section.settings.background_image_mobile,
+        fallback: '534e09e74dba5f2840077260761a394727c97e76.png',
+        alt: section.settings.heading_line_1,
+        width: 800,
+        loading: 'eager',
+        widths: '360,540,750',
+        sizes: '100vw'
+      %}
+    </div>
     {% if section.settings.show_overlay %}
       <div class="kopilot-hero__overlay"></div>
     {% endif %}
@@ -138,7 +151,12 @@
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Background image"
+      "label": "Background image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)"
     },
     {
       "type": "checkbox",
