@@ -152,7 +152,14 @@
   padding-top: 1rem;
 }
 
-.kopilot-faq__list .faq_answer_inner p {
+.kopilot-faq__list .faq_answer_inner.kopilot-body.rte p {
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 26px;
+  letter-spacing: 0;
+  vertical-align: middle;
   margin: 0;
 }
 
@@ -233,6 +240,11 @@
     font-size: 1.6rem;
     line-height: 1.2;
     padding: 1.2rem 2.4rem 2.4rem;
+  }
+
+  .kopilot-faq__list .faq_answer_inner.kopilot-body.rte p {
+    font-size: 2rem;
+    line-height: 26px;
   }
 }
 
