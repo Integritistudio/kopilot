@@ -317,7 +317,7 @@
             "show_reviews": true,
             "review_count": "47",
             "price": "$39.99",
-            "description": "<p>Get started with one tag for your most-used piece of gear.</p>",
+            "description": "<p>Get started with one tag for your </p><p>most-used piece of gear.</p>",
             "features": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>",
             "button_label": "GET 1 TAG",
             "button_style": "solid",
