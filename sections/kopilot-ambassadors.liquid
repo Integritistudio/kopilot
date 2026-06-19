@@ -66,7 +66,7 @@
                       {% endif %}
                     </div>
                     {% if block.settings.quote != blank %}
-                      <p class="kopilot-ambassadors__quote">{{ block.settings.quote }}</p>
+                      <div class="kopilot-ambassadors__quote rte">{{ block.settings.quote }}</div>
                     {% endif %}
                   </div>
                 </article>
@@ -177,7 +177,7 @@
         { "type": "text", "id": "badge", "label": "Badge", "default": "Ambassador" },
         { "type": "text", "id": "name", "label": "Name", "default": "Hillary Allen" },
         { "type": "text", "id": "role", "label": "Role", "default": "- Team USA // Ultra Marathon Trail Runner" },
-        { "type": "textarea", "id": "quote", "label": "Quote" }
+        { "type": "richtext", "id": "quote", "label": "Quote" }
       ]
     }
   ],

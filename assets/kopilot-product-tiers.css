@@ -233,14 +233,34 @@
 
 .kopilot-product-tiers__description {
   margin: 0;
-  font-family: var(--kopilot-font-family);
-  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
+  font-family: Elza, sans-serif;
+  font-size: 16px;
   font-weight: 600;
+  font-style: normal;
   line-height: 120%;
+  letter-spacing: 0;
+  vertical-align: middle;
   color: #000;
 }
 
-.kopilot-product-tiers__features {
+.kopilot-product-tiers__description.rte p {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: inherit;
+  color: inherit;
+}
+
+.kopilot-product-tiers__description.rte a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.kopilot-product-tiers__features.rte ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -249,18 +269,38 @@
   gap: clamp(0.5rem, 1.85vw, 0.666rem);
 }
 
-.kopilot-product-tiers__features li {
+.kopilot-product-tiers__features.rte li {
   display: flex;
   align-items: flex-start;
-  gap: clamp(0.5rem, 1.85vw, 0.666rem);
-  font-family: var(--kopilot-font-family);
-  font-size: clamp(1.4rem, 4.17vw, 1.5rem);
+  gap: 3px;
+  font-family: Elza, sans-serif;
+  font-size: 16px;
   font-weight: 400;
+  font-style: normal;
   line-height: 120%;
+  letter-spacing: 0;
+  vertical-align: middle;
   color: #000;
 }
 
-.kopilot-product-tiers__features li::before {
+.kopilot-product-tiers__features.rte li p {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: inherit;
+  color: inherit;
+}
+
+.kopilot-product-tiers__features.rte a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.kopilot-product-tiers__features.rte li::before {
   content: '';
   width: clamp(0.55rem, 1.9vw, 0.685rem);
   height: clamp(0.8rem, 2.7vw, 0.972rem);
@@ -409,20 +449,11 @@
     gap: 15px;
   }
 
-  .kopilot-product-tiers__description,
-  .kopilot-product-tiers__features li {
-    font-size: 16px;
-  }
-
-  .kopilot-product-tiers__features {
+  .kopilot-product-tiers__features.rte ul {
     gap: 10px;
   }
 
-  .kopilot-product-tiers__features li {
-    gap: 10px;
-  }
-
-  .kopilot-product-tiers__features li::before {
+  .kopilot-product-tiers__features.rte li::before {
     width: 10px;
     height: 15px;
     margin-top: 2px;

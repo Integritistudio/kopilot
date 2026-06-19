@@ -118,18 +118,11 @@
 
               <div class="kopilot-product-tiers__card-copy">
                 {% if block.settings.description != blank %}
-                  <p class="kopilot-product-tiers__description">{{ block.settings.description }}</p>
+                  <div class="kopilot-product-tiers__description rte">{{ block.settings.description }}</div>
                 {% endif %}
 
-                {% if block.settings.feature_1 != blank or block.settings.feature_2 != blank %}
-                  <ul class="kopilot-product-tiers__features">
-                    {% if block.settings.feature_1 != blank %}
-                      <li>{{ block.settings.feature_1 }}</li>
-                    {% endif %}
-                    {% if block.settings.feature_2 != blank %}
-                      <li>{{ block.settings.feature_2 }}</li>
-                    {% endif %}
-                  </ul>
+                {% if block.settings.features != blank %}
+                  <div class="kopilot-product-tiers__features rte">{{ block.settings.features }}</div>
                 {% endif %}
               </div>
 
@@ -230,9 +223,18 @@
         { "type": "checkbox", "id": "show_reviews", "label": "Show reviews", "default": true },
         { "type": "text", "id": "review_count", "label": "Review count", "default": "47" },
         { "type": "text", "id": "price", "label": "Price override" },
-        { "type": "textarea", "id": "description", "label": "Description" },
-        { "type": "text", "id": "feature_1", "label": "Feature 1" },
-        { "type": "text", "id": "feature_2", "label": "Feature 2" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Get started with one tag for your most-used piece of gear.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "features",
+          "label": "Features",
+          "default": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>"
+        },
         { "type": "text", "id": "button_label", "label": "Button label", "default": "GET 1 TAG" },
         {
           "type": "select",
@@ -258,9 +260,8 @@
             "card_style": "bordered",
             "title": "1 TAG",
             "price": "$39.99",
-            "description": "Get started with one tag for your most-used piece of gear.",
-            "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
-            "feature_2": "A simple, reliable solution for riders who stick to one setup",
+            "description": "<p>Get started with one tag for your most-used piece of gear.</p>",
+            "features": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>",
             "button_label": "GET 1 TAG",
             "button_style": "solid"
           }
@@ -272,9 +273,8 @@
             "title": "2 TAGS",
             "save_badge": "SAVE 10%",
             "price": "$71.99",
-            "description": "Save with an additional tag for equipping more gear, or share one with a friend or family member.",
-            "feature_1": "Multiple mounting solutions for various gear",
-            "feature_2": "Second tag makes a great gift",
+            "description": "<p>Save with an additional tag for equipping more gear, or share one with a friend or family member.</p>",
+            "features": "<ul><li>Multiple mounting solutions for various gear</li><li>Second tag makes a great gift</li></ul>",
             "button_label": "GET 2 TAGS",
             "button_style": "outline"
           }
@@ -287,9 +287,8 @@
             "badge": "Best Value",
             "save_badge": "SAVE 20%",
             "price": "$95.99",
-            "description": "Extensive coverage for your gear, or your crew.",
-            "feature_1": "Equip multiple helmets, gear setups, or friends and family members",
-            "feature_2": "Greatest savings, most coverage",
+            "description": "<p>Extensive coverage for your gear, or your crew.</p>",
+            "features": "<ul><li>Equip multiple helmets, gear setups, or friends and family members</li><li>Greatest savings, most coverage</li></ul>",
             "button_label": "GET 3 TAGS",
             "button_style": "outline"
           }
