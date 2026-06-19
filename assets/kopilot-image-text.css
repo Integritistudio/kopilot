@@ -19,7 +19,7 @@
   align-items: center;
   gap: clamp(2rem, 6.94vw, 2.5rem);
   width: min(32.8rem, 100%);
-  padding: 0 clamp(1.2rem, 4.44vw, 1.6rem);
+  padding: 0;
   box-sizing: border-box;
   text-align: center;
 }

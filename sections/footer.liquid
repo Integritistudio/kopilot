@@ -5,8 +5,6 @@
 
 {% liquid
   assign contact_block_heading = section.settings.contact_block_heading
-  assign phone_label = section.settings.phone_label
-  assign phone = section.settings.phone
   assign email_label = section.settings.email_label
   assign email = section.settings.email
   assign contact_link_label = section.settings.contact_link_label
@@ -67,18 +65,6 @@
       <div class="footer-menu-title">
         {{ contact_block_heading }}
       </div>
-      {% if phone_label != blank and phone != blank %}
-        <div class="footer-menu-contacts">
-          <div class="footer-menu-link-label">
-            {{ phone_label }}
-          </div>
-          {% if phone != blank %}
-            <a href="tel:+{{ phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' | remove: '+' }}" class="footer-menu-link">
-              {{ phone }}
-            </a>
-          {% endif %}
-        </div>
-      {% endif %}
       {% if email_label != blank and email != blank %}
         <div class="footer-menu-contacts">
           <div class="footer-menu-link-label">
@@ -271,18 +257,6 @@
       "id": "contact_block_heading",
       "label": "Block heading",
       "default": "Contact"
-    },
-    {
-      "type": "text",
-      "id": "phone_label",
-      "label": "Phone label",
-      "default": "Call us"
-    },
-    {
-      "type": "text",
-      "id": "phone",
-      "label": "Phone",
-      "default": "31-0-22-222-2222"
     },
     {
       "type": "text",
