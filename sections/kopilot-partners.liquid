@@ -25,7 +25,13 @@
         {% if col_index == 0 %}
           <div class="kopilot-partners__logos-row kopilot-partners__logos-row--{{ row_index | plus: 1 }}">
         {% endif %}
-        <div class="kopilot-partners__logo" {{ block.shopify_attributes }}>
+        <div
+          class="kopilot-partners__logo{% if block.settings.logo_width > 0 %} kopilot-partners__logo--custom-desktop{% endif %}{% if block.settings.logo_width_mobile > 0 %} kopilot-partners__logo--custom-mobile{% endif %}"
+          {% if block.settings.logo_width > 0 or block.settings.logo_width_mobile > 0 %}
+            style="{% if block.settings.logo_width > 0 %}--kopilot-partner-logo-width-desktop: {{ block.settings.logo_width }}px;{% endif %}{% if block.settings.logo_width_mobile > 0 %}--kopilot-partner-logo-width-mobile: {{ block.settings.logo_width_mobile }}px;{% endif %}"
+          {% endif %}
+          {{ block.shopify_attributes }}
+        >
           {% render 'kopilot-image',
             image: block.settings.logo,
             fallback: partner_fallbacks[forloop.index0],
@@ -111,7 +117,29 @@
       "name": "Logo",
       "settings": [
         { "type": "image_picker", "id": "logo", "label": "Logo" },
-        { "type": "text", "id": "logo_alt", "label": "Alt text" }
+        { "type": "text", "id": "logo_alt", "label": "Alt text" },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width (desktop)",
+          "info": "Set to 0 to use the default size.",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "logo_width_mobile",
+          "label": "Logo width (mobile)",
+          "info": "Set to 0 to use the default size.",
+          "min": 0,
+          "max": 200,
+          "step": 4,
+          "default": 0,
+          "unit": "px"
+        }
       ]
     }
   ],

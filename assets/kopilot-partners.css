@@ -68,6 +68,17 @@
   color: #000;
 }
 
+@media screen and (max-width: 767px) {
+  .kopilot-partners__logo--custom-mobile img,
+  .kopilot-partners__logos-row--1 .kopilot-partners__logo--custom-mobile img,
+  .kopilot-partners__logos-row--2 .kopilot-partners__logo--custom-mobile img {
+    width: var(--kopilot-partner-logo-width-mobile);
+    max-width: var(--kopilot-partner-logo-width-mobile);
+    max-height: none;
+    height: auto;
+  }
+}
+
 /* Desktop: 768px+ */
 @media screen and (min-width: 768px) {
   .kopilot-partners {
@@ -108,6 +119,13 @@
     object-fit: contain;
   }
 
+  .kopilot-partners__logo--custom-desktop img {
+    width: var(--kopilot-partner-logo-width-desktop);
+    max-width: var(--kopilot-partner-logo-width-desktop);
+    max-height: none;
+    height: auto;
+  }
+
   .kopilot-partners__text {
     font-size: 2rem;
     line-height: 1.3;
@@ -133,5 +151,12 @@
 
   .kopilot-partners__logo img {
     max-height: clamp(4rem, 5vw, 5.6rem);
+  }
+
+  .kopilot-partners__logo--custom-desktop img {
+    width: var(--kopilot-partner-logo-width-desktop);
+    max-width: var(--kopilot-partner-logo-width-desktop);
+    max-height: none;
+    height: auto;
   }
 }
