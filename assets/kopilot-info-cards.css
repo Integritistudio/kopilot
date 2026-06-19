@@ -138,8 +138,8 @@
   font-family: Elza, sans-serif;
   font-weight: 300;
   font-style: normal;
-  font-size: 2rem;
-  line-height: 120%;
+  font-size: 16px;
+  line-height: 110%;
   letter-spacing: 0;
   text-align: center;
   margin: 0;
@@ -212,6 +212,11 @@
     font-size: 2rem;
     line-height: 120%;
     max-width: none;
+  }
+
+  .kopilot-info-cards__card-text.kopilot-body.rte p {
+    font-size: 2rem;
+    line-height: 120%;
   }
 }
 

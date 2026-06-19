@@ -35,7 +35,10 @@
 }
 
 .kopilot-reviews__rating-col {
-  display: none;
+  display: block;
+  order: 0;
+  width: 100%;
+  margin: 0 0 clamp(1.2rem, 4.44vw, 1.6rem);
 }
 
 .kopilot-reviews__based-on {
@@ -64,6 +67,12 @@
   width: 1.7rem;
   height: 1.6rem;
   flex: none;
+}
+
+@media screen and (max-width: 360px) {
+  .kopilot-reviews__rating-col {
+    margin-bottom: 4px;
+  }
 }
 
 .kopilot-reviews__distribution {
