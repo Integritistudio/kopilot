@@ -317,7 +317,7 @@
             "show_reviews": true,
             "review_count": "47",
             "price": "$39.99",
-            "description": "Get started with one tag for your most-used piece of gear.",
+            "description": "Get started with one tag for your \nmost-used piece of gear.",
             "feature_1": "Attach it to your helmet or gear with any of the three included mounts",
             "feature_2": "A simple, reliable solution for riders who stick to one setup",
             "button_label": "GET 1 TAG",
@@ -385,27 +385,27 @@
         "g1": {
           "type": "guarantee",
           "settings": {
-            "label": "Money-back guarantee"
+            "label": "MONEY-BACK GUARANTEE"
           }
         },
         "g2": {
           "type": "guarantee",
           "settings": {
             "icon": "shopify://shop_images/Group_38.svg",
-            "label": "No subscription. Ever."
+            "label": "NO SUBSCRIPTION. EVER."
           }
         },
         "g3": {
           "type": "guarantee",
           "settings": {
-            "label": "Lifetime warranty"
+            "label": "LIFETIME WARRANTY"
           }
         },
         "g4": {
           "type": "guarantee",
           "settings": {
             "icon": "shopify://shop_images/Group_2087327575.png",
-            "label": "Works Everywhere"
+            "label": "WORKS EVERYWHERE"
           }
         }
       },
