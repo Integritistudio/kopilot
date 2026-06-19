@@ -91,9 +91,9 @@
   box-sizing: border-box;
 }
 
-/* Mobile: hide 3rd trust item; show first two in a row */
+/* Mobile: hide 2nd trust item; show 1st and 3rd in a row */
 @media screen and (max-width: 767px) {
-  .kopilot-cta-banner__trust-item:nth-child(3) {
+  .kopilot-cta-banner__trust-item:nth-child(2) {
     display: none;
   }
 
@@ -108,11 +108,12 @@
 
   .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(3)) .kopilot-cta-banner__trust-item:nth-child(1) {
     width: 11rem;
+    padding: 3px;
   }
 
-  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(3)) .kopilot-cta-banner__trust-item:nth-child(2) {
+  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(3)) .kopilot-cta-banner__trust-item:nth-child(3) {
     width: 10.9rem;
-    padding: 2rem;
+    padding: 3px;
   }
 }
 
@@ -127,11 +128,12 @@
 
   .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(2)):not(:has(.kopilot-cta-banner__trust-item:nth-child(3))) .kopilot-cta-banner__trust-item:first-child {
     width: 11rem;
+    padding: 3px;
   }
 
   .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(2)):not(:has(.kopilot-cta-banner__trust-item:nth-child(3))) .kopilot-cta-banner__trust-item:last-child {
     width: 10.9rem;
-    padding: 2rem;
+    padding: 3px;
   }
 }
 
@@ -176,6 +178,14 @@
     line-height: 120%;
     letter-spacing: -0.34px;
     text-align: center;
+  }
+
+  .kopilot-cta-banner__trust-item,
+  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(3)) .kopilot-cta-banner__trust-item:nth-child(1),
+  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(3)) .kopilot-cta-banner__trust-item:nth-child(3),
+  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(2)):not(:has(.kopilot-cta-banner__trust-item:nth-child(3))) .kopilot-cta-banner__trust-item:first-child,
+  .kopilot-cta-banner__trust:has(.kopilot-cta-banner__trust-item:nth-child(2)):not(:has(.kopilot-cta-banner__trust-item:nth-child(3))) .kopilot-cta-banner__trust-item:last-child {
+    padding: 3px;
   }
 
   .kopilot-cta-banner__media {
