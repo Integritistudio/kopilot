@@ -8,7 +8,7 @@
 .kopilot-tag img.big-tag{background:transparent}
 .kopilot-tag #model-tag-container{left:-20px;top:-20px;width:105px;height:105px}
 .kopilot-tag #model-tag-container{width:100px;height:100px}
-.footer{position:relative}
+.footer{position:relative;background-color:#D6DAE0}
 .footer .kopilot-tag{transform:translateY(0);top:50%;position:absolute;left:-28px;display:block}
 .kopilot-tag{opacity:0;top:0;animation:showTag 3s steps(1,end) forwards}
 .footer-menu-contacts-logo-list,.banner-app-store-wrapper{display:flex;align-items:center;gap:15px}
