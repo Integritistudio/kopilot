@@ -198,8 +198,9 @@
   .kopilot-cta-banner__media .kopilot-cta-banner__image {
     display: block;
     width: 100%;
+    min-height: 251px;
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
     object-position: bottom center;
   }
 

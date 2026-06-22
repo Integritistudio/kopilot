@@ -558,6 +558,10 @@
 
 @media screen and (min-width: 1440px) {
   .kopilot-hero__inner {
-    padding-right: 273px;
+    padding-right: 215px;
+  }
+
+  .kopilot-hero__product {
+    padding-top: 60px;
   }
 }
