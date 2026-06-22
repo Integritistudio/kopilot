@@ -39,6 +39,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "background_image": "shopify://shop_images/56e0395dc08933ec28c8cfb943bb109531af9fbf.png",
+        "background_image_mobile": "shopify://shop_images/image_18659469.png",
         "show_overlay": true,
         "eyebrow": "Off-Road Motorcycle Riders",
         "heading_line_1": "Accidents happen fast.",
@@ -669,6 +670,10 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "17821454143943bb02": {
+      "type": "apps",
+      "settings": {}
     }
   },
   "order": [
@@ -682,6 +687,7 @@
     "kopilot_guarantees",
     "kopilot_reviews",
     "kopilot_faq",
-    "kopilot_cta_banner"
+    "kopilot_cta_banner",
+    "17821454143943bb02"
   ]
 }
