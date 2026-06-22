@@ -7,7 +7,6 @@
 
 /* Mobile ≤767px — Figma 360px frame (node 2948-967) */
 .kopilot-reviews__inner {
-  max-width: 33.2rem;
   margin: 0 auto;
   padding: 0 clamp(1.4rem, 4.44vw, 2rem);
   box-sizing: border-box;
@@ -83,6 +82,8 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  padding: 0 50px;
+  box-sizing: border-box;
 }
 
 .kopilot-reviews__score-row {
@@ -443,6 +444,7 @@
     display: block;
     margin: 0;
     text-align: left;
+    align-self: end;
   }
 
   .kopilot-reviews__based-on span {
@@ -459,8 +461,19 @@
     order: unset;
     align-items: flex-end;
     max-width: 554px;
+    padding: 0;
     margin: 0;
     position: relative;
+  }
+
+  .kopilot-reviews__distribution::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #2325261A;
   }
 
   .kopilot-reviews__actions {
@@ -527,8 +540,8 @@
 
   .kopilot-reviews__toolbar {
     max-width: 1340px;
-    margin: 29px auto 0;
-    padding: 19px 0 0;
+    margin: 0;
+    padding: 20px 0 0;
   }
 
   .kopilot-reviews__list {
@@ -634,13 +647,7 @@
   }
 
   .kopilot-reviews__distribution::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #2325261A;
+    left: 150px;
   }
 
   .kopilot-reviews__actions {
@@ -658,5 +665,11 @@
   .kopilot-reviews__item-date-line,
   .kopilot-reviews__item-date-year {
     display: block;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .kopilot-reviews__distribution::before {
+    left: 0;
   }
 }
