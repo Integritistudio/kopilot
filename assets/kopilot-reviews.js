@@ -45,7 +45,6 @@ class KopilotReviews {
       }
 
       this.applyPagination();
-      this.root.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
