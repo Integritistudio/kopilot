@@ -460,6 +460,7 @@
     align-items: flex-end;
     max-width: 554px;
     margin: 0;
+    position: relative;
   }
 
   .kopilot-reviews__actions {
@@ -469,6 +470,18 @@
     align-items: center;
     min-height: 110px;
     width: auto;
+    align-self: stretch;
+    position: relative;
+  }
+
+  .kopilot-reviews__actions::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #2325261A;
   }
 
   .kopilot-reviews__rating-col {
@@ -618,6 +631,16 @@
   .kopilot-reviews__distribution {
     width: 554px;
     max-width: none;
+  }
+
+  .kopilot-reviews__distribution::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #2325261A;
   }
 
   .kopilot-reviews__actions {
