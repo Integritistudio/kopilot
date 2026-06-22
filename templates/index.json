@@ -670,10 +670,6 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
-    },
-    "17821454143943bb02": {
-      "type": "apps",
-      "settings": {}
     }
   },
   "order": [
@@ -687,7 +683,6 @@
     "kopilot_guarantees",
     "kopilot_reviews",
     "kopilot_faq",
-    "kopilot_cta_banner",
-    "17821454143943bb02"
+    "kopilot_cta_banner"
   ]
 }
