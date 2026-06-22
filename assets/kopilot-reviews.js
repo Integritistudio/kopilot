@@ -45,6 +45,11 @@ class KopilotReviews {
       }
 
       this.applyPagination();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: this.root.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+        });
+      });
     });
   }
 
