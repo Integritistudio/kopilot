@@ -235,7 +235,7 @@
 @media screen and (min-width: 361px) and (max-width: 767px) {
   .kopilot-cta-banner__media {
     width: 100%;
-    aspect-ratio: 1889 / 833;
+    /* aspect-ratio: 1889 / 833; */
     overflow: hidden;
   }
 
@@ -298,9 +298,9 @@
     gap: 0.944rem;
   }
 
-  .kopilot-cta-banner__media {
+  /* .kopilot-cta-banner__media {
     aspect-ratio: 1440 / 536;
-  }
+  } */
 
   .kopilot-cta-banner__media img,
   .kopilot-cta-banner__media .placeholder_svg,
