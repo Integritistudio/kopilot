@@ -30,9 +30,9 @@
 
       <div class="kopilot-image-text__content">
         {% if section.settings.heading != blank %}
-          <h2 class="kopilot-image-text__heading kopilot-heading">
+          <div class="kopilot-image-text__heading kopilot-heading rte">
             {{ section.settings.heading }}
-          </h2>
+          </div>
         {% endif %}
 
         {% if section.settings.text != blank %}
@@ -82,10 +82,10 @@
       "default": "left"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "If something goes wrong, first responders need more than your name."
+      "default": "<p>If something goes wrong, first responders need more than your name.</p>"
     },
     {
       "type": "richtext",
