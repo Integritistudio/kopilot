@@ -150,6 +150,12 @@
   object-fit: contain;
 }
 
+@media screen and (min-width: 1440px) {
+  .kopilot-hero2__product {
+    right: 241px;
+  }
+}
+
 /* Responsive */
 @media screen and (max-width: 1279px) {
   .kopilot-hero2__inner {
@@ -198,36 +204,16 @@
   }
 
   .kopilot-hero2__bg::after {
-    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3));
   }
 
   .kopilot-hero2__inner {
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 200px 30px 50px;
-    min-height: 520px;
-    gap: 32px;
-  }
-
-  .kopilot-hero2__content {
-    width: 100%;
-    gap: 32px;
-  }
-
-  .kopilot-hero2__heading {
-    font-size: clamp(2.6rem, 8.33vw, 3.6rem);
-  }
-
-  .kopilot-hero2__body {
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-  }
-
-  .kopilot-hero2__btn {
-    width: 100%;
-    font-size: 15px;
-    padding: 15px 30px;
-    height: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 30px 60px;
+    min-height: 635px;
+    gap: 72px;
   }
 
   .kopilot-hero2__product {
@@ -235,7 +221,45 @@
     right: auto;
     top: auto;
     transform: none;
-    width: 120px;
-    height: auto;
+    width: 142px;
+    height: 156.69px;
+    flex-shrink: 0;
+    order: 0;
+  }
+
+  .kopilot-hero2__content {
+    width: 100%;
+    max-width: 282px;
+    gap: 70px;
+    align-items: flex-start;
+    order: 1;
+  }
+
+  .kopilot-hero2__text-group {
+    gap: 40px;
+  }
+
+  .kopilot-hero2__heading-group {
+    gap: 15px;
+  }
+
+  .kopilot-hero2__heading {
+    font-size: 30px;
+    line-height: 110%;
+    width: 100%;
+  }
+
+  .kopilot-hero2__body {
+    font-size: 15px;
+    line-height: 130%;
+    width: 100%;
+  }
+
+  .kopilot-hero2__btn {
+    width: 281px;
+    max-width: 100%;
+    font-size: 15px;
+    padding: 15px 82.5px;
+    height: 48px;
   }
 }
