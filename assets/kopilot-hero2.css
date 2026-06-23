@@ -65,14 +65,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
-  width: 100%;
-}
-
-.kopilot-hero2__heading-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   gap: 15px;
   width: 100%;
 }
@@ -211,7 +203,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 48px 30px 60px;
+    padding: 48px 39px 60px;
     min-height: 635px;
     gap: 72px;
   }
@@ -233,14 +225,6 @@
     gap: 70px;
     align-items: flex-start;
     order: 1;
-  }
-
-  .kopilot-hero2__text-group {
-    gap: 40px;
-  }
-
-  .kopilot-hero2__heading-group {
-    gap: 15px;
   }
 
   .kopilot-hero2__heading {

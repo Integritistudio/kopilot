@@ -40,17 +40,15 @@
     <!-- Left content -->
     <div class="kopilot-hero2__content">
       <div class="kopilot-hero2__text-group">
-        <div class="kopilot-hero2__heading-group">
-          {% if section.settings.heading != blank %}
-            <h1 class="kopilot-hero2__heading">{{ section.settings.heading }}</h1>
-          {% endif %}
-          {% if section.settings.body != blank %}
-            <p class="kopilot-hero2__body">{{ section.settings.body }}</p>
-          {% endif %}
-        </div>
+        {% if section.settings.heading != blank %}
+          <h1 class="kopilot-hero2__heading">{{ section.settings.heading }}</h1>
+        {% endif %}
+        {% if section.settings.body != blank %}
+          <p class="kopilot-hero2__body">{{ section.settings.body }}</p>
+        {% endif %}
       </div>
-      {% if section.settings.button_label != blank and section.settings.button_url != blank %}
-        <a href="{{ section.settings.button_url }}" class="kopilot-hero2__btn">
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_url | default: '#' }}" class="kopilot-hero2__btn">
           {{ section.settings.button_label }}
         </a>
       {% endif %}
