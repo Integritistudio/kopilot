@@ -38,7 +38,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "background_image": "shopify://shop_images/56e0395dc08933ec28c8cfb943bb109531af9fbf.png",
+        "background_image": "shopify://shop_images/07255306b95ae338c42297084848570221e1638a.png",
         "background_image_mobile": "shopify://shop_images/image_18659469.png",
         "show_overlay": true,
         "eyebrow": "Off-Road Motorcycle Riders",
@@ -59,13 +59,56 @@
       "settings": {
         "color_scheme": "scheme-1",
         "full_width": true,
+        "image": "shopify://shop_images/IMG_6956.jpg",
         "image_position": "left",
-        "heading": "If something goes wrong, first responders need more than your name.",
-        "text": "<p>After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.</p>",
+        "heading": "The gear you never think about… until you need it.",
+        "text": "<p>You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?<br/><br/></p>",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_why_kopilot": {
+      "type": "kopilot-why-kopilot",
+      "blocks": {
+        "w1": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2106667240.svg",
+            "label": "Peace of mind for the people who love you"
+          }
+        },
+        "w2": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2106667238.svg",
+            "label": "Available for anyone to help"
+          }
+        },
+        "w3": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Vector_3.svg",
+            "label": "Go further and worry less"
+          }
+        },
+        "w4": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2106667241.svg",
+            "label": "Ready the second something happens"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1"
       }
     },
     "kopilot_features": {
@@ -121,25 +164,15 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/fea9a2f964d1439c2cb5d4a69d34e8c706844672.jpg",
         "image_position": "right",
-        "heading": "For the rides you plan and the moments you don't.",
-        "text": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
+        "heading": "The details that matter.",
+        "text": "KOPILOT.ID gives responders a clear view of your medical conditions, medications, allergies, and emergency contacts. Set it up once and keep it with your gear, ready for every run, ride, or route.",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
-    },
-    "kopilot_why_kopilot": {
-      "type": "kopilot-why-kopilot",
-      "blocks": {
-        "w1": { "type": "card", "settings": { "label": "Peace of mind for the people who love you" } },
-        "w2": { "type": "card", "settings": { "label": "Available for anyone to help" } },
-        "w3": { "type": "card", "settings": { "label": "Go further and worry less" } },
-        "w4": { "type": "card", "settings": { "label": "Ready the second something happens" } }
-      },
-      "block_order": ["w1", "w2", "w3", "w4"],
-      "settings": { "color_scheme": "scheme-1" }
     },
     "kopilot_info_cards": {
       "type": "kopilot-info-cards",
@@ -147,8 +180,8 @@
         "c1": {
           "type": "card",
           "settings": {
-            "title": "Your Information, Ready in Seconds",
-            "text": "<p>Your profile stores your medical information and emergency contacts. Anyone with a smartphone can access it in an emergency.</p>"
+            "title": "Your Emergency Information, Delivered Instantly",
+            "text": "<p>Your profile contains your medical and emergency contact information. Anyone with a smartphone can access it in an emergency.</p>"
           }
         },
         "c2": {
@@ -180,23 +213,33 @@
         "padding_bottom_mobile": 0
       }
     },
-        "kopilot_accidents": {
+    "kopilot_accidents": {
       "type": "kopilot-accidents",
       "blocks": {
         "s1": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f_1.jpg"
+          }
         },
         "s2": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/9648162c1c4607f7f4f02afa33d5c16c4c73c3e8_1.png"
+          }
         },
         "s3": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/21b0005e7aad898c734d5bb41e31997c0670ae42_1.jpg"
+          }
         }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Accidents happen when you least expect them.",
@@ -235,44 +278,14 @@
             "badge": "Ambassador",
             "name": "Kait Boyle",
             "role": "- Cyclist",
-            "quote": "<p>Love my <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a>! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻</p>"
-          }
-        },
-        "a4": {
-          "type": "card",
-          "settings": {
-            "badge": "Event",
-            "name": "Karen",
-            "role": "- Cyclist",
-            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>"
-          }
-        },
-        "a5": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Marcus Reid",
-            "role": "- Enduro Mountain Biker",
-            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
-          }
-        },
-        "a6": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Sofia Martinez",
-            "role": "- Gravel Racer",
-            "quote": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. KOPILOT.ID keeps my emergency profile ready on every ride.</p>"
+            "quote": "<p>As a wife, dog mom, daughter, sister, friend, and community member, I deeply understand the importance of managing risk of solo recreation in the backcountry. <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> is the simplest, easiest way to add a layer of assurance and safety.</p>"
           }
         }
       },
       "block_order": [
         "a1",
         "a2",
-        "a3",
-        "a4",
-        "a5",
-        "a6"
+        "a3"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -288,28 +301,19 @@
     "kopilot_partners": {
       "type": "kopilot-partners",
       "blocks": {
-        "p1": {
+        "p3": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
+            "logo": "shopify://shop_images/image_18659502_8b7bc8c5-eb77-46df-920f-1673c025bd9f.png",
             "logo_alt": "",
-            "logo_width": 60,
-            "logo_width_mobile": 44
+            "logo_width": 165,
+            "logo_width_mobile": 116
           }
         },
         "p2": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/image_18659501.png",
-            "logo_alt": "",
-            "logo_width": 165,
-            "logo_width_mobile": 116
-          }
-        },
-        "p3": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/image_18659502_8b7bc8c5-eb77-46df-920f-1673c025bd9f.png",
             "logo_alt": "",
             "logo_width": 165,
             "logo_width_mobile": 116
@@ -322,6 +326,15 @@
             "logo_alt": "",
             "logo_width": 100,
             "logo_width_mobile": 52
+          }
+        },
+        "p1": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
+            "logo_alt": "",
+            "logo_width": 60,
+            "logo_width_mobile": 44
           }
         },
         "p5": {
@@ -344,10 +357,10 @@
         }
       },
       "block_order": [
-        "p1",
-        "p2",
         "p3",
+        "p2",
         "p4",
+        "p1",
         "p5",
         "p6"
       ],
@@ -698,7 +711,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/bad64fb19fb42742653b28527e5a419202fe681f.png",
+        "image": "shopify://shop_images/Mask_group_1.png",
         "heading": "Wherever you ride, KOPILOT.ID has your back.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
@@ -712,10 +725,10 @@
   "order": [
     "kopilot_hero",
     "kopilot_image_text",
-    "kopilot_features",
-    "kopilot_accidents",
     "kopilot_why_kopilot",
+    "kopilot_features",
     "kopilot_info_cards",
+    "kopilot_accidents",
     "kopilot_ambassadors",
     "kopilot_partners",
     "kopilot_product_tiers",
