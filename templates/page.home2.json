@@ -76,28 +76,28 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Group_2106667240.svg",
-            "label": "Peace of mind for the people who love you"
+            "label": "<p>Peace of mind for the people<br/>who love you</p>"
           }
         },
         "w2": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Group_2106667238.svg",
-            "label": "Available for anyone to help"
+            "label": "<p>Available for <br/>anyone to help</p>"
           }
         },
         "w3": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Vector_3.svg",
-            "label": "Go further and worry less"
+            "label": "<p>Go further and <br/>worry less</p>"
           }
         },
         "w4": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Group_2106667241.svg",
-            "label": "Ready the second something happens"
+            "label": "<p>Ready the second <br/>something happens</p>"
           }
         }
       },
