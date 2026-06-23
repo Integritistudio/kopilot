@@ -24,28 +24,14 @@
   text-align: center;
 }
 
-.kopilot-image-text__heading {
+.kopilot-image-text__heading,
+.kopilot-image-text__heading * {
   font-family: var(--kopilot-font-family);
   font-weight: 300;
   font-style: normal;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-size: clamp(2.6rem, 8.33vw, 3rem);
-  line-height: 104%;
-  letter-spacing: -1px;
-  margin: 0;
-  color: #000;
-  max-width: 30.2rem;
-  text-align: center;
-}
-
-.kopilot-image-text__heading h2, .kopilot-image-text__heading h1, .kopilot-image-text__heading p, .kopilot-image-text__heading h3, .kopilot-image-text__heading h4, .kopilot-image-text__heading h5, .kopilot-image-text__heading h6 {
-  font-family: var(--kopilot-font-family);
-  font-weight: 300;
-  font-style: normal;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  font-size: clamp(2.6rem, 8.33vw, 3rem);
+  font-size: 30px;
   line-height: 104%;
   letter-spacing: -1px;
   margin: 0;
@@ -117,17 +103,11 @@
     flex: 1;
   }
 
-  .kopilot-image-text__heading {
-    font-size: 6rem;
+  .kopilot-image-text__heading,
+  .kopilot-image-text__heading * {
+    font-size: 60px;
     line-height: 110%;
-    max-width: none;
-    text-align: left;
-    margin: 0 0 2.5rem;
-  }
-
-    .kopilot-image-text__heading *{
-    font-size: 6rem;
-    line-height: 110%;
+    letter-spacing: 0;
     max-width: none;
     text-align: left;
     margin: 0 0 2.5rem;
@@ -160,13 +140,11 @@
     padding: clamp(4rem, 6vw, 6rem) clamp(1.6rem, 3vw, 2.4rem);
   }
 
-  .kopilot-image-text__heading {
-    font-size: clamp(2.8rem, 4.5vw, 3.6rem);
-    margin-bottom: clamp(1.2rem, 2vw, 2rem);
-  }
-
-    .kopilot-image-text__heading *{
-    font-size: clamp(2.8rem, 4.5vw, 3.6rem);
+  .kopilot-image-text__heading,
+  .kopilot-image-text__heading * {
+    font-size: clamp(3rem, 4.5vw, 60px);
+    line-height: 110%;
+    letter-spacing: 0;
     margin-bottom: clamp(1.2rem, 2vw, 2rem);
   }
 
