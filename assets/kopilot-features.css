@@ -153,6 +153,7 @@
     max-width: 53.6rem;
     text-align: left;
     margin: 0 0 4rem;
+    padding-right: 20px;
   }
 
   .kopilot-features__grid {

@@ -167,25 +167,25 @@
         "w1": {
           "type": "card",
           "settings": {
-            "label": "Peace of mind for the people who love you"
+            "label": "<p>Peace of mind for the people who love you</p>"
           }
         },
         "w2": {
           "type": "card",
           "settings": {
-            "label": "Available for anyone to help"
+            "label": "<p>Available for anyone to help</p>"
           }
         },
         "w3": {
           "type": "card",
           "settings": {
-            "label": "Go further and worry less"
+            "label": "<p>Go further and worry less</p>"
           }
         },
         "w4": {
           "type": "card",
           "settings": {
-            "label": "Ready the second something happens"
+            "label": "<p>Ready the second something happens</p>"
           }
         }
       },

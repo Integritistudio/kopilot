@@ -26,7 +26,7 @@
             {% endif %}
           </div>
           {% if block.settings.label != blank %}
-            <p class="kopilot-why-kopilot__label">{{ block.settings.label }}</p>
+            <div class="kopilot-why-kopilot__label rte">{{ block.settings.label }}</div>
           {% endif %}
         </div>
       {% endfor %}
@@ -59,10 +59,10 @@
           "label": "Icon (optional, defaults to Group2106667242.svg)"
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "label",
           "label": "Label",
-          "default": "Peace of mind for the people who love you"
+          "default": "<p>Peace of mind for the people who love you</p>"
         }
       ]
     }
@@ -71,10 +71,10 @@
     {
       "name": "Why Kopilot",
       "blocks": [
-        { "type": "card", "settings": { "label": "Peace of mind for the people who love you" } },
-        { "type": "card", "settings": { "label": "Available for anyone to help" } },
-        { "type": "card", "settings": { "label": "Go further and worry less" } },
-        { "type": "card", "settings": { "label": "Ready the second something happens" } }
+        { "type": "card", "settings": { "label": "<p>Peace of mind for the people who love you</p>" } },
+        { "type": "card", "settings": { "label": "<p>Available for anyone to help</p>" } },
+        { "type": "card", "settings": { "label": "<p>Go further and worry less</p>" } },
+        { "type": "card", "settings": { "label": "<p>Ready the second something happens</p>" } }
       ]
     }
   ]
