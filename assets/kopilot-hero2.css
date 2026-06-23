@@ -1,0 +1,241 @@
+.kopilot-hero2 {
+  position: relative;
+  width: 100%;
+  min-height: 659px;
+  background: #000;
+  overflow: hidden;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+/* Full-bleed background media (image or video) */
+.kopilot-hero2__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.kopilot-hero2__bg img,
+.kopilot-hero2__bg video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Gradient overlay — left bright, right dark (mirrored from Figma matrix(-1,0,0,1)) */
+.kopilot-hero2__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0) 40.55%, rgba(0,0,0,0.4) 63.13%);
+  z-index: 1;
+}
+
+/* Inner layout */
+.kopilot-hero2__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 126px 187px;
+  gap: 0;
+  min-height: 659px;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Left content */
+.kopilot-hero2__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 70px;
+  width: 469px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.kopilot-hero2__text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.kopilot-hero2__heading-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  width: 100%;
+}
+
+.kopilot-hero2__heading {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-style: normal;
+  font-size: 60px;
+  line-height: 110%;
+  letter-spacing: 0;
+  color: #fff;
+  max-width: 572px;
+}
+
+.kopilot-hero2__body {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0;
+  color: #fff;
+  max-width: 469px;
+}
+
+.kopilot-hero2__btn {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 21px 82.5px;
+  gap: 12px;
+  width: 319px;
+  height: 66.43px;
+  background: #ef0008;
+  color: #fff;
+  font-family: var(--kopilot-font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.kopilot-hero2__btn:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
+/* Right product image */
+.kopilot-hero2__product {
+  position: absolute;
+  width: 214.39px;
+  height: 236.57px;
+  right: 187px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  flex-shrink: 0;
+}
+
+.kopilot-hero2__product img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media screen and (max-width: 1279px) {
+  .kopilot-hero2__inner {
+    padding: 80px 80px;
+  }
+
+  .kopilot-hero2__heading {
+    font-size: clamp(3.6rem, 5vw, 5.2rem);
+  }
+
+  .kopilot-hero2__product {
+    right: 60px;
+    width: 160px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .kopilot-hero2__inner {
+    padding: 60px 40px;
+    min-height: 520px;
+  }
+
+  .kopilot-hero2__content {
+    width: 420px;
+    gap: 48px;
+  }
+
+  .kopilot-hero2__heading {
+    font-size: clamp(3.2rem, 4.5vw, 4.8rem);
+  }
+
+  .kopilot-hero2__body {
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+  }
+
+  .kopilot-hero2__product {
+    right: 30px;
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-hero2 {
+    min-height: 0;
+  }
+
+  .kopilot-hero2__bg::after {
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+  }
+
+  .kopilot-hero2__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 200px 30px 50px;
+    min-height: 520px;
+    gap: 32px;
+  }
+
+  .kopilot-hero2__content {
+    width: 100%;
+    gap: 32px;
+  }
+
+  .kopilot-hero2__heading {
+    font-size: clamp(2.6rem, 8.33vw, 3.6rem);
+  }
+
+  .kopilot-hero2__body {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+
+  .kopilot-hero2__btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 15px 30px;
+    height: auto;
+  }
+
+  .kopilot-hero2__product {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 120px;
+    height: auto;
+  }
+}

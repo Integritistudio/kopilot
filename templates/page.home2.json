@@ -713,8 +713,20 @@
         "padding_bottom_mobile": 0
       }
     }
+    ,
+    "kopilot_hero2": {
+      "type": "kopilot-hero2",
+      "settings": {
+        "heading": "This could help someone save your life.",
+        "body": "You could be unconscious or unable to speak. Would responders know your allergies, medications, medical conditions, or who to contact? KOPILOT.ID keeps that information with you.",
+        "button_label": "GET KOPILOT.ID",
+        "button_url": "",
+        "color_scheme": "scheme-1"
+      }
+    }
   },
   "order": [
+    "kopilot_hero2",
     "kopilot_hero",
     "kopilot_image_text",
     "kopilot_why_kopilot",

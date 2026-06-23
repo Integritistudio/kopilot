@@ -1,0 +1,149 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-hero2.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-hero2 kopilot-hero2--{{ section.id }} color-{{ section.settings.color_scheme }}">
+
+  <!-- Background: video or image -->
+  <div class="kopilot-hero2__bg">
+    {% if section.settings.video != blank %}
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="{% if section.settings.background_image != blank %}{{ section.settings.background_image | image_url: width: 1440 }}{% endif %}"
+      >
+        <source src="{{ section.settings.video }}" type="video/mp4">
+      </video>
+    {% elsif section.settings.background_image != blank %}
+      {{ section.settings.background_image | image_url: width: 1920 | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: section.settings.heading,
+        width: section.settings.background_image.width,
+        height: section.settings.background_image.height
+      }}
+    {% else %}
+      <img
+        src="{{ 'ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f.jpg' | asset_url }}"
+        alt="{{ section.settings.heading }}"
+        loading="eager"
+        fetchpriority="high"
+        width="1440"
+        height="659"
+      >
+    {% endif %}
+  </div>
+
+  <div class="kopilot-hero2__inner">
+
+    <!-- Left content -->
+    <div class="kopilot-hero2__content">
+      <div class="kopilot-hero2__text-group">
+        <div class="kopilot-hero2__heading-group">
+          {% if section.settings.heading != blank %}
+            <h1 class="kopilot-hero2__heading">{{ section.settings.heading }}</h1>
+          {% endif %}
+          {% if section.settings.body != blank %}
+            <p class="kopilot-hero2__body">{{ section.settings.body }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="kopilot-hero2__btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Right product image -->
+    {% if section.settings.product_image != blank %}
+      <div class="kopilot-hero2__product">
+        {{ section.settings.product_image | image_url: width: 430 | image_tag:
+          loading: 'eager',
+          alt: section.settings.product_image.alt | default: 'KOPILOT.ID',
+          width: section.settings.product_image.width,
+          height: section.settings.product_image.height
+        }}
+      </div>
+    {% else %}
+      <div class="kopilot-hero2__product">
+        <img
+          src="{{ 'Mask group.png' | asset_url }}"
+          alt="KOPILOT.ID"
+          loading="eager"
+          width="214"
+          height="237"
+        >
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero 2",
+  "tag": "section",
+  "class": "kopilot-hero2-section",
+  "disabled_on": { "groups": ["footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Background video URL (.mp4)",
+      "info": "Paste a direct .mp4 URL. Video overrides the background image."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "This could help someone save your life."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "You could be unconscious or unable to speak. Would responders know your allergies, medications, medical conditions, or who to contact? KOPILOT.ID keeps that information with you."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "GET KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (right side)",
+      "info": "Defaults to Mask group.png if left empty."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero 2",
+      "settings": {
+        "heading": "This could help someone save your life.",
+        "body": "You could be unconscious or unable to speak. Would responders know your allergies, medications, medical conditions, or who to contact? KOPILOT.ID keeps that information with you.",
+        "button_label": "GET KOPILOT.ID"
+      }
+    }
+  ]
+}
+{% endschema %}
