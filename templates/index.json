@@ -220,6 +220,7 @@
         "c3": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/9bc6c998f40378ffc7b8bcf5282ca36d90a8ea23.png",
             "title": "Everything Managed in One App",
             "text": "<p>Manage tags, gear setups, family members, and receive scan notifications with location — all in one free, easy-to-use app.</p>"
           }
