@@ -62,58 +62,68 @@
 }
 
 /* Label */
-.kopilot-why-kopilot__label {
+.kopilot-why-kopilot__label,
+.kopilot-why-kopilot__label * {
   font-family: var(--kopilot-font-family);
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 120%;
+  letter-spacing: 0;
   text-align: center;
   color: #000;
   margin: 0;
   z-index: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .kopilot-why-kopilot__label,
+  .kopilot-why-kopilot__label * {
+    font-size: 20px;
+  }
+}
+
 /* Responsive */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 768px) {
   .kopilot-why-kopilot__inner {
     padding: 60px 40px;
-  }
-
-  .kopilot-why-kopilot__label {
-    font-size: clamp(1.4rem, 1.8vw, 2rem);
   }
 }
 
 @media screen and (max-width: 767px) {
   .kopilot-why-kopilot__inner {
-    padding: clamp(5rem, 11vw, 6rem) clamp(1.6rem, 4.44vw, 2rem) clamp(4rem, 8vw, 5rem);
+    padding: 50px 0 40px;
   }
 
   .kopilot-why-kopilot__cards {
-    gap: clamp(2.4rem, 6vw, 3.2rem) clamp(1.2rem, 3vw, 1.8rem);
+    flex-direction: column;
+    align-items: center;
+    gap: 18.37px;
+    width: 100%;
   }
 
   .kopilot-why-kopilot__card {
-    flex: 1 1 calc(50% - 1rem);
-    min-width: 140px;
-    padding: 44px 10px 24px;
-    min-height: 110px;
+    flex: none;
+    width: 270px;
+    max-width: 100%;
+    min-height: 0;
+    padding: 51px 13.27px 30.62px;
+    gap: 11.23px;
+  }
+
+  .kopilot-why-kopilot__card:first-child {
+    padding-top: 40px;
   }
 
   .kopilot-why-kopilot__icon {
-    top: -28px;
-    width: 56px;
-    height: 56px;
+    top: -33.89px;
+    width: 67px;
+    height: 67px;
   }
 
   .kopilot-why-kopilot__icon img,
   .kopilot-why-kopilot__icon svg {
-    width: 34px;
-    height: 34px;
-  }
-
-  .kopilot-why-kopilot__label {
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    width: 44px;
+    height: 44px;
   }
 }
