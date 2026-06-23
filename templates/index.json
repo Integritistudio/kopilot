@@ -130,6 +130,17 @@
         "padding_bottom_mobile": 0
       }
     },
+    "kopilot_why_kopilot": {
+      "type": "kopilot-why-kopilot",
+      "blocks": {
+        "w1": { "type": "card", "settings": { "label": "Peace of mind for the people who love you" } },
+        "w2": { "type": "card", "settings": { "label": "Available for anyone to help" } },
+        "w3": { "type": "card", "settings": { "label": "Go further and worry less" } },
+        "w4": { "type": "card", "settings": { "label": "Ready the second something happens" } }
+      },
+      "block_order": ["w1", "w2", "w3", "w4"],
+      "settings": { "color_scheme": "scheme-1" }
+    },
     "kopilot_info_cards": {
       "type": "kopilot-info-cards",
       "blocks": {
@@ -167,6 +178,32 @@
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
+      }
+    },
+        "kopilot_accidents": {
+      "type": "kopilot-accidents",
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {}
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {}
+        },
+        "s3": {
+          "type": "slide",
+          "settings": {}
+        }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Accidents happen when you least expect them.",
+        "subtitle": "Designed for everyday use.",
+        "body": "KOPILOT.ID is designed to stay with your gear through everyday training, remote rides, travel, and everything in between. Whether it's for you, your partner, or someone you care about, it keeps important emergency information accessible when it matters most.",
+        "button_label": "GET KOPILOT.ID",
+        "button_url": "/"
       }
     },
     "kopilot_ambassadors": {
@@ -676,6 +713,8 @@
     "kopilot_hero",
     "kopilot_image_text",
     "kopilot_features",
+    "kopilot_accidents",
+    "kopilot_why_kopilot",
     "kopilot_info_cards",
     "kopilot_ambassadors",
     "kopilot_partners",

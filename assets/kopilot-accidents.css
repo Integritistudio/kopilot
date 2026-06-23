@@ -1,0 +1,223 @@
+.kopilot-accidents {
+  background: #f1f1f1;
+  box-sizing: border-box;
+}
+
+.kopilot-accidents__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 31px;
+  padding: 80px 100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  max-width: 1440px;
+  min-height: 782px;
+}
+
+/* Left content column */
+.kopilot-accidents__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 52px;
+  flex: none;
+  width: 576px;
+  max-width: 100%;
+}
+
+.kopilot-accidents__text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 45px;
+  width: 100%;
+}
+
+.kopilot-accidents__heading {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 110%;
+  color: #000;
+}
+
+.kopilot-accidents__body-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.kopilot-accidents__subtitle {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000;
+}
+
+.kopilot-accidents__body {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000;
+  max-width: 519px;
+}
+
+.kopilot-accidents__btn {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 21px 82px;
+  gap: 12px;
+  background: #ef0008;
+  color: #fff;
+  font-family: var(--kopilot-font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  box-sizing: border-box;
+}
+
+.kopilot-accidents__btn:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
+/* Right slider column */
+.kopilot-accidents__slider-wrap {
+  position: relative;
+  flex: none;
+  width: 632px;
+  height: 622px;
+  overflow: hidden;
+}
+
+.kopilot-accidents__swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.kopilot-accidents__swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.kopilot-accidents__swiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dots pagination */
+.kopilot-accidents__swiper .swiper-pagination {
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.kopilot-accidents__swiper .swiper-pagination-bullet {
+  width: 13.07px;
+  height: 13.07px;
+  border-radius: 50%;
+  background: rgba(214, 214, 214, 0.54);
+  opacity: 1;
+  margin: 0 !important;
+}
+
+.kopilot-accidents__swiper .swiper-pagination-bullet-active {
+  background: #d9d9d9;
+  opacity: 1;
+}
+
+/* Responsive */
+@media screen and (max-width: 1279px) {
+  .kopilot-accidents__inner {
+    padding: 60px 80px;
+    gap: 24px;
+  }
+
+  .kopilot-accidents__content {
+    width: 45%;
+  }
+
+  .kopilot-accidents__slider-wrap {
+    width: 50%;
+    height: auto;
+    aspect-ratio: 632 / 622;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .kopilot-accidents__inner {
+    padding: 60px 40px;
+    min-height: 0;
+  }
+
+  .kopilot-accidents__heading {
+    font-size: clamp(3.2rem, 5vw, 4.8rem);
+  }
+
+  .kopilot-accidents__subtitle,
+  .kopilot-accidents__body {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-accidents__inner {
+    flex-direction: column;
+    padding: clamp(4rem, 11vw, 5rem) clamp(1.6rem, 4.44vw, 2rem);
+    gap: clamp(3rem, 8vw, 4rem);
+    min-height: 0;
+  }
+
+  .kopilot-accidents__content {
+    width: 100%;
+    gap: clamp(2.4rem, 6vw, 3.2rem);
+  }
+
+  .kopilot-accidents__text-group {
+    gap: clamp(2rem, 5vw, 2.8rem);
+  }
+
+  .kopilot-accidents__heading {
+    font-size: clamp(2.6rem, 8.33vw, 3.6rem);
+  }
+
+  .kopilot-accidents__subtitle,
+  .kopilot-accidents__body {
+    font-size: clamp(1.4rem, 4.44vw, 1.8rem);
+  }
+
+  .kopilot-accidents__body {
+    max-width: 100%;
+  }
+
+  .kopilot-accidents__btn {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    padding: 1.6rem clamp(3rem, 8vw, 5rem);
+  }
+
+  .kopilot-accidents__slider-wrap {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 632 / 622;
+  }
+}

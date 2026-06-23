@@ -1,0 +1,119 @@
+.kopilot-why-kopilot {
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.kopilot-why-kopilot__inner {
+  margin: 0 auto;
+  padding: 80px 52px 80px;
+  max-width: 1440px;
+  box-sizing: border-box;
+}
+
+/* Cards row */
+.kopilot-why-kopilot__cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18.37px;
+  flex-wrap: wrap;
+}
+
+/* Individual card */
+.kopilot-why-kopilot__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 51px 13px 31px;
+  gap: 11px;
+  flex: 1 1 0;
+  min-width: 200px;
+  min-height: 129.64px;
+  background: #d6d6d6;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+/* Icon badge — centered above card top edge */
+.kopilot-why-kopilot__icon {
+  position: absolute;
+  top: -33.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 67px;
+  height: 67px;
+  background: #fff;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.kopilot-why-kopilot__icon img,
+.kopilot-why-kopilot__icon svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+/* Label */
+.kopilot-why-kopilot__label {
+  font-family: var(--kopilot-font-family);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 120%;
+  text-align: center;
+  color: #000;
+  margin: 0;
+  z-index: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .kopilot-why-kopilot__inner {
+    padding: 60px 40px;
+  }
+
+  .kopilot-why-kopilot__label {
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-why-kopilot__inner {
+    padding: clamp(5rem, 11vw, 6rem) clamp(1.6rem, 4.44vw, 2rem) clamp(4rem, 8vw, 5rem);
+  }
+
+  .kopilot-why-kopilot__cards {
+    gap: clamp(2.4rem, 6vw, 3.2rem) clamp(1.2rem, 3vw, 1.8rem);
+  }
+
+  .kopilot-why-kopilot__card {
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 140px;
+    padding: 44px 10px 24px;
+    min-height: 110px;
+  }
+
+  .kopilot-why-kopilot__icon {
+    top: -28px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .kopilot-why-kopilot__icon img,
+  .kopilot-why-kopilot__icon svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .kopilot-why-kopilot__label {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  }
+}

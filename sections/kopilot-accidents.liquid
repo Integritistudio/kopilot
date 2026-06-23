@@ -1,0 +1,126 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-accidents.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-accidents.js' | asset_url }}" defer></script>
+
+<section
+  class="kopilot-section kopilot-accidents kopilot-accidents--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  data-kopilot-accidents
+>
+  <div class="kopilot-accidents__inner">
+
+    <!-- Left: content -->
+    <div class="kopilot-accidents__content">
+      <div class="kopilot-accidents__text-group">
+        <h2 class="kopilot-accidents__heading">{{ section.settings.heading }}</h2>
+        <div class="kopilot-accidents__body-group">
+          <p class="kopilot-accidents__subtitle">{{ section.settings.subtitle }}</p>
+          <p class="kopilot-accidents__body">{{ section.settings.body }}</p>
+        </div>
+      </div>
+      {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="kopilot-accidents__btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Right: image slider -->
+    <div class="kopilot-accidents__slider-wrap">
+      <div class="swiper kopilot-accidents__swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 1264 | image_tag:
+                  loading: 'lazy',
+                  alt: block.settings.image.alt | default: section.settings.heading,
+                  width: block.settings.image.width,
+                  height: block.settings.image.height
+                }}
+              {% else %}
+                <img
+                  src="{{ block.settings.fallback_src | default: 'ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f.jpg' | asset_url }}"
+                  alt="{{ section.settings.heading }}"
+                  loading="lazy"
+                  width="632"
+                  height="622"
+                >
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Accidents",
+  "tag": "section",
+  "class": "kopilot-accidents-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Accidents happen when you least expect them."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Designed for everyday use."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "KOPILOT.ID is designed to stay with your gear through everyday training, remote rides, travel, and everything in between. Whether it's for you, your partner, or someone you care about, it keeps important emergency information accessible when it matters most."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "GET KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Accidents",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}
