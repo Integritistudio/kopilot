@@ -73,6 +73,10 @@
   border: none;
 }
 
+.kopilot-product-tiers__card--gray.kopilot-product-tiers__card--best-value {
+  padding-top: 48px;
+}
+
 .kopilot-product-tiers__card-badge {
   position: absolute;
   top: 24.63px;
