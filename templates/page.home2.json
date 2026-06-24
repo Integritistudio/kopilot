@@ -409,7 +409,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Choose the setup that works for you.",
+        "heading": "<p>Choose the setup that <br/>works for you.</p>",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
