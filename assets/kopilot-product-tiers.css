@@ -75,8 +75,8 @@
 
 .kopilot-product-tiers__card-badge {
   position: absolute;
-  top: clamp(2.3125rem, 2.4vw, 0.865rem);
-  left: clamp(2.3125rem, 2.4vw, 0.865rem);
+  top: 24.63px;
+  left: 24.63px;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -411,8 +411,6 @@
   }
 
   .kopilot-product-tiers__card-badge {
-    top: 13px;
-    left: 13px;
     padding: 6px 22px;
     font-size: 16px;
     line-height: 17px;
@@ -558,5 +556,10 @@
 @media screen and (min-width: 1440px) {
   .kopilot-product-tiers__card {
     width: 427px;
+  }
+
+  .kopilot-product-tiers__card-badge {
+    top: 45.3px;
+    left: 45.3px;
   }
 }

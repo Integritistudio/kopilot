@@ -15,23 +15,39 @@
       >
         <source src="{{ section.settings.video }}" type="video/mp4">
       </video>
-    {% elsif section.settings.background_image != blank %}
-      {{ section.settings.background_image | image_url: width: 1920 | image_tag:
-        loading: 'eager',
-        fetchpriority: 'high',
-        alt: section.settings.heading,
-        width: section.settings.background_image.width,
-        height: section.settings.background_image.height
-      }}
     {% else %}
-      <img
-        src="{{ 'ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f.jpg' | asset_url }}"
-        alt="{{ section.settings.heading }}"
-        loading="eager"
-        fetchpriority="high"
-        width="1440"
-        height="659"
-      >
+      {% assign mobile_img = section.settings.background_image_mobile %}
+      {% assign desktop_img = section.settings.background_image %}
+      {% if desktop_img != blank %}
+        {{ desktop_img | image_url: width: 1920 | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: section.settings.heading,
+          width: desktop_img.width,
+          height: desktop_img.height,
+          class: 'kopilot-hero2__bg-desktop'
+        }}
+      {% else %}
+        <img
+          src="{{ 'ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f.jpg' | asset_url }}"
+          alt="{{ section.settings.heading }}"
+          loading="eager"
+          fetchpriority="high"
+          width="1440"
+          height="659"
+          class="kopilot-hero2__bg-desktop"
+        >
+      {% endif %}
+      {% if mobile_img != blank %}
+        {{ mobile_img | image_url: width: 767 | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: section.settings.heading,
+          width: mobile_img.width,
+          height: mobile_img.height,
+          class: 'kopilot-hero2__bg-mobile'
+        }}
+      {% endif %}
     {% endif %}
   </div>
 
@@ -95,7 +111,13 @@
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Background image"
+      "label": "Background image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)",
+      "info": "Shown on screens ≤767px. Falls back to desktop image if left empty."
     },
     {
       "type": "text",

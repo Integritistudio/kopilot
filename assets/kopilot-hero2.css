@@ -25,6 +25,10 @@
   object-position: center;
 }
 
+.kopilot-hero2__bg-mobile {
+  display: none;
+}
+
 /* Gradient overlay — left bright, right dark (mirrored from Figma matrix(-1,0,0,1)) */
 .kopilot-hero2__bg::after {
   content: '';
@@ -191,6 +195,14 @@
 }
 
 @media screen and (max-width: 767px) {
+  .kopilot-hero2__bg-desktop {
+    display: none;
+  }
+
+  .kopilot-hero2__bg-mobile {
+    display: block;
+  }
+
   .kopilot-hero2 {
     min-height: 0;
   }
