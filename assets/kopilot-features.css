@@ -103,6 +103,14 @@
   width: 100%;
 }
 
+.kopilot-features__label p,
+.kopilot-features__label ul,
+.kopilot-features__label ol {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
 .kopilot-features__media {
   flex: none;
   order: 1;

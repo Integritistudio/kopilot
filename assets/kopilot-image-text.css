@@ -174,3 +174,9 @@
     max-width: 50%;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .kopilot-image-text__inner {
+    padding-left: 54px;
+  }
+}
