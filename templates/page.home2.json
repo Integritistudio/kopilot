@@ -57,7 +57,7 @@
         "w3": {
           "type": "card",
           "settings": {
-            "icon": "shopify://shop_images/Vector_3.svg",
+            "icon": "shopify://shop_images/Vector_3.png",
             "label": "<p>Go further and <br/>worry less</p>"
           }
         },
@@ -91,7 +91,7 @@
         "f2": {
           "type": "feature",
           "settings": {
-            "label": "No battery/ charging needed"
+            "label": "No battery/ no charging"
           }
         },
         "f3": {
@@ -104,7 +104,7 @@
         "f4": {
           "type": "feature",
           "settings": {
-            "label": "Instant medical & contact info"
+            "label": "Instantly access emergency info"
           }
         },
         "f5": {
