@@ -40,7 +40,7 @@
                 %}
               </div>
               {% if block.settings.label != blank %}
-                <p class="kopilot-features__label kopilot-body">{{ block.settings.label }}</p>
+                <div class="kopilot-features__label kopilot-body rte">{{ block.settings.label }}</div>
               {% endif %}
             </div>
           {% endfor %}
@@ -143,7 +143,7 @@
       "name": "Feature",
       "settings": [
         { "type": "image_picker", "id": "icon", "label": "Icon" },
-        { "type": "text", "id": "label", "label": "Label", "default": "Feature label" }
+        { "type": "richtext", "id": "label", "label": "Label", "default": "<p>Feature label</p>" }
       ]
     }
   ],

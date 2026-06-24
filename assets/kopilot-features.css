@@ -83,7 +83,15 @@
 }
 
 .kopilot-features__label,
-.kopilot-features__label.kopilot-body {
+.kopilot-features__label.kopilot-body,
+.kopilot-features__label.kopilot-body *,
+.kopilot-features__label.kopilot-body p,
+.kopilot-features__label.kopilot-body strong,
+.kopilot-features__label.kopilot-body em,
+.kopilot-features__label.kopilot-body a,
+.kopilot-features__label.kopilot-body span,
+.kopilot-features__label.kopilot-body ul li,
+.kopilot-features__label.kopilot-body ol li {
   font-family: var(--kopilot-font-family);
   font-weight: 400;
   font-size: clamp(1.8rem, 5.56vw, 2rem);
@@ -179,7 +187,15 @@
   }
 
   .kopilot-features__label,
-  .kopilot-features__label.kopilot-body {
+  .kopilot-features__label.kopilot-body,
+  .kopilot-features__label.kopilot-body *,
+  .kopilot-features__label.kopilot-body p,
+  .kopilot-features__label.kopilot-body strong,
+  .kopilot-features__label.kopilot-body em,
+  .kopilot-features__label.kopilot-body a,
+  .kopilot-features__label.kopilot-body span,
+  .kopilot-features__label.kopilot-body ul li,
+  .kopilot-features__label.kopilot-body ol li {
     font-size: 2rem;
     text-align: left;
   }
@@ -229,7 +245,15 @@
   }
 
   .kopilot-features__label,
-  .kopilot-features__label.kopilot-body {
+  .kopilot-features__label.kopilot-body,
+  .kopilot-features__label.kopilot-body *,
+  .kopilot-features__label.kopilot-body p,
+  .kopilot-features__label.kopilot-body strong,
+  .kopilot-features__label.kopilot-body em,
+  .kopilot-features__label.kopilot-body a,
+  .kopilot-features__label.kopilot-body span,
+  .kopilot-features__label.kopilot-body ul li,
+  .kopilot-features__label.kopilot-body ol li {
     font-size: clamp(1.4rem, 1.6vw, 1.6rem);
   }
 
