@@ -24,7 +24,15 @@
   text-align: center;
 }
 
-.kopilot-product-tiers__heading {
+.kopilot-product-tiers__heading,
+.kopilot-product-tiers__heading *,
+.kopilot-product-tiers__heading p,
+.kopilot-product-tiers__heading strong,
+.kopilot-product-tiers__heading em,
+.kopilot-product-tiers__heading a,
+.kopilot-product-tiers__heading span,
+.kopilot-product-tiers__heading ul li,
+.kopilot-product-tiers__heading ol li {
   margin: 0;
   font-family: var(--kopilot-font-family);
   font-weight: 300;
@@ -370,7 +378,15 @@
     max-width: 909px;
   }
 
-  .kopilot-product-tiers__heading {
+  .kopilot-product-tiers__heading,
+  .kopilot-product-tiers__heading *,
+  .kopilot-product-tiers__heading p,
+  .kopilot-product-tiers__heading strong,
+  .kopilot-product-tiers__heading em,
+  .kopilot-product-tiers__heading a,
+  .kopilot-product-tiers__heading span,
+  .kopilot-product-tiers__heading ul li,
+  .kopilot-product-tiers__heading ol li {
     font-size: 60px;
     letter-spacing: 0;
   }
