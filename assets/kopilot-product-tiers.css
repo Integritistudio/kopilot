@@ -507,15 +507,7 @@
     max-width: 100%;
   }
 
-  .kopilot-product-tiers__heading,
-  .kopilot-product-tiers__heading *,
-  .kopilot-product-tiers__heading p,
-  .kopilot-product-tiers__heading strong,
-  .kopilot-product-tiers__heading em,
-  .kopilot-product-tiers__heading a,
-  .kopilot-product-tiers__heading span,
-  .kopilot-product-tiers__heading ul li,
-  .kopilot-product-tiers__heading ol li {
+  .kopilot-product-tiers__heading {
     font-size: clamp(32px, 5vw, 44px);
   }
 

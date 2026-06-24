@@ -62,7 +62,7 @@
         "image_position": "left",
         "text_font_family": "Figtree",
         "text_alignment_mobile": "center",
-        "heading": "<p>If something goes wrong, first responders need more than your name.</p>",
+        "heading": "<h2>If something goes wrong, first responders need more than your name.</h2>",
         "text": "<p>After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.</p>",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -462,7 +462,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Be prepared on every ride.",
+        "heading": "<p>Be prepared on every ride.</p>",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,

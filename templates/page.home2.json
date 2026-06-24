@@ -409,7 +409,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Choose the setup that works for you.",
+        "heading": "<p>Choose the setup that <br/>works for you.</p>",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
@@ -674,7 +674,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "image": "shopify://shop_images/Mask_group_1.png",
-        "heading": "Wherever you ride, KOPILOT.ID has your back.",
+        "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
         "padding_top": 0,
