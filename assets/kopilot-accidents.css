@@ -146,6 +146,10 @@
   opacity: 1;
 }
 
+.kopilot-accidents__btn--mobile {
+  display: none;
+}
+
 /* Responsive */
 @media screen and (max-width: 1279px) {
   .kopilot-accidents__inner {
@@ -243,5 +247,15 @@
     width: 100%;
     height: auto;
     aspect-ratio: 299 / 367;
+  }
+
+  .kopilot-accidents__btn--desktop {
+    display: none;
+  }
+
+  .kopilot-accidents__btn--mobile {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
   }
 }

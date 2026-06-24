@@ -77,9 +77,14 @@
   box-sizing: border-box;
 }
 
+.kopilot-ambassadors__swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
 .kopilot-ambassadors__swiper .swiper-slide {
   width: var(--kopilot-ambassadors-card-width);
   height: auto;
+  display: flex;
 }
 
 .kopilot-ambassadors__card {

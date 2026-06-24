@@ -18,7 +18,7 @@
         </div>
       </div>
       {% if section.settings.button_label != blank and section.settings.button_url != blank %}
-        <a href="{{ section.settings.button_url }}" class="kopilot-accidents__btn">
+        <a href="{{ section.settings.button_url }}" class="kopilot-accidents__btn kopilot-accidents__btn--desktop">
           {{ section.settings.button_label }}
         </a>
       {% endif %}
@@ -52,6 +52,12 @@
         <div class="swiper-pagination"></div>
       </div>
     </div>
+
+    {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+      <a href="{{ section.settings.button_url }}" class="kopilot-accidents__btn kopilot-accidents__btn--mobile">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
 
   </div>
 </section>
