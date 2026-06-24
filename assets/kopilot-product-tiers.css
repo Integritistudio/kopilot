@@ -67,8 +67,8 @@
 
 .kopilot-product-tiers__card-badge {
   position: absolute;
-  top: clamp(0.7rem, 2.4vw, 0.865rem);
-  left: clamp(0.7rem, 2.4vw, 0.865rem);
+  top: clamp(2.3125rem, 2.4vw, 0.865rem);
+  left: clamp(2.3125rem, 2.4vw, 0.865rem);
   z-index: 2;
   display: inline-flex;
   align-items: center;
