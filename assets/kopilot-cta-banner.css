@@ -18,7 +18,7 @@
   align-items: center;
   gap: clamp(3rem, 10vw, 3.6rem);
   width: 100%;
-  max-width: 24.4rem;
+  max-width: 25.4rem;
   padding: 0 clamp(1.6rem, 4.44vw, 2rem);
   box-sizing: border-box;
 }
