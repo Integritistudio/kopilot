@@ -18,8 +18,8 @@
 <section id="kopilot-how-it-works" class="kopilot-section kopilot-features kopilot-features--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-features__inner{% if section.settings.image_position == 'left' %} kopilot-features__inner--image-left{% endif %}">
     <div class="kopilot-features__content">
-      {% if section.settings.heading != blank %}
-        <div class="kopilot-features__heading kopilot-heading">{{ section.settings.heading }}</div>
+      {% if section.settings.heading_rt != blank %}
+        <div class="kopilot-features__heading kopilot-heading">{{ section.settings.heading_rt }}</div>
       {% endif %}
 
       {% if section.settings.text != blank %}
@@ -90,7 +90,7 @@
     },
     {
       "type": "richtext",
-      "id": "heading",
+      "id": "heading_rt",
       "label": "Heading",
       "default": "<p>For the rides you plan and the moments you don't.</p>"
     },
