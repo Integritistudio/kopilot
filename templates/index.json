@@ -414,7 +414,8 @@
             "features": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>",
             "button_label": "GET 1 TAG",
             "button_style": "solid",
-            "button_link": ""
+            "button_link": "",
+            "list_icon_mobile": "shopify://shop_images/Vector_1730.svg"
           }
         },
         "t2": {
@@ -696,6 +697,10 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Questions",
+        "heading_font_weight": "",
+        "heading_line_height": "",
+        "heading_font_weight_mobile": "",
+        "heading_line_height_mobile": "",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
