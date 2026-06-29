@@ -48,7 +48,7 @@
     justify-items: start;
     align-items: start;
     align-content: start;
-    gap: 12px 1px;
+    gap: 12px 1px !important;
     padding: 24px 0 14px;
     margin: 0;
     list-style: none;
