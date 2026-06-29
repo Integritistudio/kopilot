@@ -34,6 +34,15 @@
   text-align: center;
 }
 
+.kopilot-features__heading p {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+}
+
 .kopilot-features__text,
 .kopilot-features__text.kopilot-body {
   font-family: var(--kopilot-font-family);

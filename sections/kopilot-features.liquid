@@ -19,7 +19,7 @@
   <div class="kopilot-features__inner{% if section.settings.image_position == 'left' %} kopilot-features__inner--image-left{% endif %}">
     <div class="kopilot-features__content">
       {% if section.settings.heading != blank %}
-        <h2 class="kopilot-features__heading kopilot-heading">{{ section.settings.heading }}</h2>
+        <div class="kopilot-features__heading kopilot-heading">{{ section.settings.heading }}</div>
       {% endif %}
 
       {% if section.settings.text != blank %}
@@ -89,10 +89,10 @@
       "default": "right"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "For the rides you plan and the moments you don't."
+      "default": "<p>For the rides you plan and the moments you don't.</p>"
     },
     {
       "type": "textarea",
