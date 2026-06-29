@@ -4,10 +4,22 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
+  .kopilot-faq--{{ section.id }} .kopilot-faq__heading {
+    {% if section.settings.heading_font_size != blank %}font-size: {{ section.settings.heading_font_size }}px !important;{% endif %}
+    {% if section.settings.heading_font_weight != blank %}font-weight: {{ section.settings.heading_font_weight }} !important;{% endif %}
+    {% if section.settings.heading_line_height != blank %}line-height: {{ section.settings.heading_line_height }} !important;{% endif %}
+  }
+
   @media screen and (max-width: 767px) {
     .kopilot-faq--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    .kopilot-faq--{{ section.id }} .kopilot-faq__heading {
+      {% if section.settings.heading_font_size_mobile != blank %}font-size: {{ section.settings.heading_font_size_mobile }}px !important;{% endif %}
+      {% if section.settings.heading_font_weight_mobile != blank %}font-weight: {{ section.settings.heading_font_weight_mobile }} !important;{% endif %}
+      {% if section.settings.heading_line_height_mobile != blank %}line-height: {{ section.settings.heading_line_height_mobile }} !important;{% endif %}
     }
   }
 {% endstyle %}
@@ -62,6 +74,68 @@
       "id": "heading",
       "label": "Heading",
       "default": "Questions"
+    },
+    {
+      "type": "header",
+      "content": "Heading typography — Desktop"
+    },
+    {
+      "type": "number",
+      "id": "heading_font_size",
+      "label": "Font size (px)",
+      "info": "Leave blank to use theme default"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "info": "e.g. 1.2 or 6rem — leave blank to use theme default"
+    },
+    {
+      "type": "header",
+      "content": "Heading typography — Mobile"
+    },
+    {
+      "type": "number",
+      "id": "heading_font_size_mobile",
+      "label": "Font size (px)",
+      "info": "Leave blank to use theme default"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight_mobile",
+      "label": "Font weight",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "heading_line_height_mobile",
+      "label": "Line height",
+      "info": "e.g. 2 or 3rem — leave blank to use theme default"
     },
     {
       "type": "range",

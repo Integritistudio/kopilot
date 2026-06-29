@@ -27,8 +27,8 @@
   font-family: var(--kopilot-font-family);
   font-weight: 300;
   font-size: clamp(2.6rem, 8.33vw, 3rem);
-  line-height: 103%;
-  letter-spacing: -1px;
+  line-height: 110%;
+  letter-spacing: 0;
   margin: 0 0 clamp(2.8rem, 10vw, 3.6rem);
   max-width: 33.2rem;
   text-align: center;
@@ -159,9 +159,9 @@
   }
 
   .kopilot-features__heading {
-    font-size: 6rem;
+    font-size: clamp(3.4rem, 4.8vw, 5.2rem);
     line-height: 1.1;
-    letter-spacing: -1px;
+    letter-spacing: 0;
     max-width: 57.1rem;
     text-align: left;
     margin: 0 0 2.5rem;
@@ -234,7 +234,7 @@
   }
 
   .kopilot-features__heading {
-    font-size: clamp(2.8rem, 4.2vw, 3.6rem);
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
     margin-bottom: clamp(1.2rem, 2vw, 2rem);
     max-width: none;
   }
@@ -273,6 +273,12 @@
   .kopilot-features__media {
     flex: 1 1 48%;
     max-width: 48%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .kopilot-features__heading {
+    font-size: 6rem;
   }
 }
 
