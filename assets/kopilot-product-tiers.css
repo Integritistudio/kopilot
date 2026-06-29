@@ -209,7 +209,7 @@
   font-family: Elza, sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 1.3rem;
+  font-size: 12px;
   line-height: 25px;
   letter-spacing: 0;
 }
@@ -247,7 +247,7 @@
 .kopilot-product-tiers__description {
   margin: 0;
   font-family: Elza, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   font-style: normal;
   line-height: 120%;
@@ -291,7 +291,7 @@
   align-items: flex-start;
   gap: 3px;
   font-family: Elza, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   font-style: normal;
   line-height: 120%;

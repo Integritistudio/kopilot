@@ -10,6 +10,21 @@
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
   }
+
+  {% for block in section.blocks %}
+    {% if block.settings.list_icon_mobile != blank %}
+      .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card[data-block-id="{{ block.id }}"] .kopilot-product-tiers__features.rte li::before {
+        content: '';
+        width: clamp(0.9rem, 2.8vw, 1rem);
+        height: clamp(0.9rem, 2.8vw, 1rem);
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+        border: none;
+        transform: none;
+        background: url('{{ block.settings.list_icon_mobile | image_url: width: 40 }}') no-repeat center / contain;
+      }
+    {% endif %}
+  {% endfor %}
 {% endstyle %}
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
@@ -42,6 +57,7 @@
 
         <article
           class="kopilot-product-tiers__card{% if block.settings.card_style == 'bordered' %} kopilot-product-tiers__card--bordered{% endif %}{% if block.settings.card_style == 'gray' %} kopilot-product-tiers__card--gray{% endif %}{% if is_best_value %} kopilot-product-tiers__card--best-value{% endif %}"
+          data-block-id="{{ block.id }}"
           {{ block.shopify_attributes }}
         >
           {% if block.settings.badge != blank %}
@@ -253,7 +269,8 @@
           ],
           "default": "outline"
         },
-        { "type": "url", "id": "button_link", "label": "Button link (if no product)" }
+        { "type": "url", "id": "button_link", "label": "Button link (if no product)" },
+        { "type": "image_picker", "id": "list_icon_mobile", "label": "List icon — Mobile (SVG/PNG)", "info": "Replaces the default chevron on mobile. Upload a square SVG or PNG." }
       ]
     }
   ],
