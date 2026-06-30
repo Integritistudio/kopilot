@@ -88,40 +88,40 @@
         "f1": {
           "type": "feature",
           "settings": {
-            "label": "Durable and waterproof"
+            "label": "<p>Durable and waterproof</p>"
           }
         },
         "f2": {
           "type": "feature",
           "settings": {
-            "label": "No battery/ <br>no charging"
+            "label": "<p>No battery/ <br>no charging</p>"
           }
         },
         "f3": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Group_38.svg",
-            "label": "No subscription required"
+            "label": "<p>No subscription required</p>"
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
-            "label": "Instantly access emergency info"
+            "label": "<p>Instantly access emergency info</p>"
           }
         },
         "f5": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Group_37.svg",
-            "label": "Translates into 24 languages"
+            "label": "<p>Translates into 24 languages</p>"
           }
         },
         "f6": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Group_34.svg",
-            "label": "Works everywhere"
+            "label": "<p>Works everywhere</p>"
           }
         }
       },
