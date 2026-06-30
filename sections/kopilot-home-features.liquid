@@ -1,0 +1,152 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-features.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-home-features kopilot-home-features--{{ section.id }}{% if section.settings.show_heading_mobile %} kopilot-home-features--show-heading-mobile{% endif %} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-features__inner">
+    <div class="kopilot-home-features__content">
+      <div class="kopilot-home-features__intro">
+        {% if section.settings.heading != blank %}
+          <div class="kopilot-home-features__heading rte">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="kopilot-home-features__text rte">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        {% assign feature_icon_fallbacks = 'kopilot-icon-durable.png,kopilot-icon-battery.png,kopilot-icon-subscription.png,kopilot-icon-medical.png,kopilot-icon-languages.png,kopilot-icon-works.png' | split: ',' %}
+        <div class="kopilot-home-features__grid">
+          {% for block in section.blocks %}
+            <div class="kopilot-home-features__item" {{ block.shopify_attributes }}>
+              <div class="kopilot-home-features__icon">
+                {% render 'kopilot-image',
+                  image: block.settings.icon,
+                  fallback: feature_icon_fallbacks[forloop.index0],
+                  alt: '',
+                  width: 116
+                %}
+              </div>
+              {% if block.settings.label != blank %}
+                <div class="kopilot-home-features__label rte">
+                  {{ block.settings.label }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="kopilot-home-features__media kopilot-home-features__media--desktop">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'kopilot-home-features.jpg',
+        alt: section.settings.image_alt,
+        width: 1488,
+        widths: '744,1100,1488',
+        sizes: '(min-width: 768px) 744px, 0px'
+      %}
+    </div>
+    <div class="kopilot-home-features__media kopilot-home-features__media--mobile">
+      {% render 'kopilot-image',
+        image: section.settings.image_mobile,
+        fallback: 'kopilot-home-features.jpg',
+        alt: section.settings.image_alt,
+        width: 728,
+        widths: '364,728',
+        sizes: '(max-width: 767px) 364px, 0px'
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Features",
+  "tag": "section",
+  "class": "kopilot-home-features-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile)",
+      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "KOPILOT.ID tag on helmet"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Designed for any conditions you're willing to brave.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading_mobile",
+      "label": "Show heading on mobile",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Built for everyday carry as well as harsh conditions, every KOPILOT.ID includes three versatile and dependable mounts. Allowing you to outfit your gear with ease and know that you are covered wherever you go.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "label",
+          "label": "Label",
+          "default": "<p>Feature label</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Features",
+      "blocks": [
+        { "type": "feature", "settings": { "label": "<p>Durable and waterproof</p>" } },
+        { "type": "feature", "settings": { "label": "<p>No battery / No charging</p>" } },
+        { "type": "feature", "settings": { "label": "<p>No subscription required</p>" } },
+        { "type": "feature", "settings": { "label": "<p>Instantly access emergency info</p>" } },
+        { "type": "feature", "settings": { "label": "<p>Translates into 24 languages</p>" } },
+        { "type": "feature", "settings": { "label": "<p>Works everywhere</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -9,65 +9,167 @@
  */
 {
   "sections": {
-    "kopilot_hero": {
-      "type": "kopilot-hero",
+    "kopilot_home_hero": {
+      "type": "kopilot-home-hero",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading_desktop": "<p>Your Critical Emergency<br>Information<br><span>Just A Tap Away</span></p>",
+        "heading_mobile": "<p>Your Critical Emergency Information <span>Just A Tap Away</span></p>",
+        "description": "KOPILOT.ID emergency medical ID uses NFC technology to store your medical + emergency contact information and make it easily accessible in the event of an emergency.",
+        "button_primary_label": "Get KOPILOT.ID",
+        "button_primary_link": "#kopilot-product-tiers",
+        "button_secondary_label": "See how it works",
+        "button_secondary_link": ""
+      }
+    },
+    "kopilot_home_partners": {
+      "type": "kopilot-home-partners",
       "blocks": {
-        "logo_pcH7Wc": {
+        "hp1": {
           "type": "logo",
           "settings": {
-            "logo_alt": ""
+            "logo": "shopify://shop_images/image_18659502_8b7bc8c5-eb77-46df-920f-1673c025bd9f.png",
+            "logo_alt": "Breck EPIC",
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
           }
         },
-        "logo_1": {
+        "hp2": {
           "type": "logo",
           "settings": {
-            "logo_alt": ""
+            "logo": "shopify://shop_images/image_18659501.png",
+            "logo_alt": "Transrockies Race Series",
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
           }
         },
-        "logo_2": {
+        "hp3": {
           "type": "logo",
           "settings": {
-            "logo_alt": ""
+            "logo": "shopify://shop_images/image_18659503_a31b3f09-1333-498c-8ce3-32d6e74556cd.png",
+            "logo_alt": "Bighorn Gravel",
+            "logo_width": 110,
+            "logo_height": 84,
+            "logo_width_mobile": 68,
+            "logo_height_mobile": 52
+          }
+        },
+        "hp4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
+            "logo_alt": "NHHA",
+            "logo_width": 70,
+            "logo_height": 68,
+            "logo_width_mobile": 44,
+            "logo_height_mobile": 44
+          }
+        },
+        "hp5": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659484_75719cfe-6034-4e6f-9950-edc3598fb3d2.png",
+            "logo_alt": "National Hare and Hound",
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
+          }
+        },
+        "hp6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659485_73b9c127-eef5-444f-94a4-d2ebbc6776e5.png",
+            "logo_alt": "West Hare Scrambles",
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
           }
         }
       },
-      "block_order": [
-        "logo_pcH7Wc",
-        "logo_1",
-        "logo_2"
-      ],
+      "block_order": ["hp1", "hp2", "hp3", "hp4", "hp5", "hp6"],
       "settings": {
         "color_scheme": "scheme-1",
-        "background_image": "shopify://shop_images/56e0395dc08933ec28c8cfb943bb109531af9fbf.png",
-        "background_image_mobile": "shopify://shop_images/image_18659469.png",
-        "show_overlay": true,
-        "eyebrow": "Off-Road Motorcycle Riders",
-        "heading_line_1": "Accidents happen fast.",
-        "heading_line_2": "Be prepared with KOPILOT.ID.",
-        "description": "Stay prepared with our durable, waterproof NFC tag that makes your medical details instantly accessible, even in remote terrain—no signal or battery needed.",
-        "button_label": "Get KOPILOT.ID",
-        "button_link": "#kopilot-product-tiers",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "text": "Trusted by riders, racers, and event partners across North America."
       }
     },
-    "kopilot_image_text": {
-      "type": "kopilot-image-text",
-      "custom_css": [],
+    "kopilot_home_image_text": {
+      "type": "kopilot-home-image-text",
       "settings": {
         "color_scheme": "scheme-1",
-        "full_width": true,
-        "image_position": "left",
-        "text_font_family": "Figtree",
+        "image_alt": "Mountain biker receiving help after a fall",
+        "text_alignment_desktop": "left",
         "text_alignment_mobile": "center",
-        "heading": "<h2>If something goes wrong, first responders need more than your name.</h2>",
-        "text": "<p>After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.</p>",
-        "padding_top": 0,
+        "text_font_family": "Figtree",
+        "heading": "<p>When you need help, every second counts.</p>",
+        "text": "<p>Your phone is locked. Your wallet is buried in your gear. The people trying to help may have no way to know your allergies, medical conditions, medications, or who to contact. A smartphone tap on your NFC tag changes that instantly.</p><p><strong>KOPILOT.ID removes the guesswork.</strong></p>",
         "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "padding_bottom_mobile": 48
+      }
+    },
+    "kopilot_home_features": {
+      "type": "kopilot-home-features",
+      "blocks": {
+        "hf1": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>Durable and waterproof</p>"
+          }
+        },
+        "hf2": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>No battery / No charging</p>"
+          }
+        },
+        "hf3": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_38.svg",
+            "label": "<p>No subscription required</p>"
+          }
+        },
+        "hf4": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>Instantly access emergency info</p>"
+          }
+        },
+        "hf5": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_37.svg",
+            "label": "<p>Translates into 24 languages</p>"
+          }
+        },
+        "hf6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_34.svg",
+            "label": "<p>Works everywhere</p>"
+          }
+        }
+      },
+      "block_order": ["hf1", "hf2", "hf3", "hf4", "hf5", "hf6"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_alt": "KOPILOT.ID tag on helmet",
+        "heading": "<p>Designed for any conditions you're willing to brave.</p>",
+        "text": "<p>Built for everyday carry as well as harsh conditions, every KOPILOT.ID includes three versatile and dependable mounts. Allowing you to outfit your gear with ease and know that you are covered wherever you go.</p>"
+      }
+    },
+    "kopilot_home_video": {
+      "type": "kopilot-home-video",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "video_url": "",
+        "play_label": "Play video",
+        "heading": "<p>Your critical emergency information in one tap.</p>"
       }
     },
     "kopilot_features": {
@@ -751,8 +853,11 @@
     }
   },
   "order": [
-    "kopilot_hero",
-    "kopilot_image_text",
+    "kopilot_home_hero",
+    "kopilot_home_partners",
+    "kopilot_home_image_text",
+    "kopilot_home_features",
+    "kopilot_home_video",
     "kopilot_features",
     "kopilot_accidents",
     "kopilot_why_kopilot",

@@ -1,0 +1,386 @@
+.kopilot-home-features {
+  background: #fff;
+}
+
+.kopilot-home-features__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kopilot-home-features__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kopilot-home-features__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.1rem;
+  width: 100%;
+  padding: 3.7rem 2.5rem 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-home-features:not(.kopilot-home-features--show-heading-mobile) .kopilot-home-features__heading {
+    display: none;
+  }
+}
+
+.kopilot-home-features__heading.rte,
+.kopilot-home-features__heading.rte * {
+  margin: 0;
+  padding: 0;
+  font-family: Elza, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 110%;
+  letter-spacing: 0;
+  color: #000;
+  text-align: center;
+  max-width: 24.7rem;
+}
+
+.kopilot-home-features__text.rte,
+.kopilot-home-features__text.rte * {
+  margin: 0;
+  padding: 0;
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 130%;
+  color: #000;
+  text-align: center;
+  max-width: 31rem;
+}
+
+.kopilot-home-features__text.rte p + p {
+  margin-top: 0;
+}
+
+.kopilot-home-features__text.rte a,
+.kopilot-home-features__text.rte a * {
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: inherit;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: auto;
+  text-decoration-skip-ink: auto;
+}
+
+.kopilot-home-features__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 16rem));
+  column-gap: 0;
+  row-gap: 4.5rem;
+  width: min(32rem, 100%);
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+  justify-items: center;
+}
+
+.kopilot-home-features__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 16rem;
+  text-align: center;
+}
+
+.kopilot-home-features__icon {
+  width: 5.8rem;
+  height: 5.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.kopilot-home-features__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.kopilot-home-features__label.rte,
+.kopilot-home-features__label.rte * {
+  margin: 0;
+  padding: 0;
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #000;
+  text-align: center;
+  width: 100%;
+}
+
+.kopilot-home-features__label.rte p {
+  display: block;
+}
+
+.kopilot-home-features__label.rte p + p {
+  margin-top: 0;
+}
+
+.kopilot-home-features__media {
+  flex: none;
+  overflow: hidden;
+}
+
+.kopilot-home-features__media--desktop {
+  display: none;
+}
+
+.kopilot-home-features__media--mobile {
+  display: block;
+  width: min(36.4rem, 100%);
+  height: 34.8rem;
+}
+
+.kopilot-home-features__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-features {
+    background: #f1f1f1;
+  }
+
+  .kopilot-home-features__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2.4rem, 4vw, 3.1rem);
+    padding: 0 clamp(2.4rem, 4vw, 5.4rem) 0 clamp(2.4rem, 6vw, 8.7rem);
+    max-width: 144rem;
+    margin: 0 auto;
+  }
+
+  .kopilot-home-features__content {
+    flex: 0 1 min(56rem, 48%);
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .kopilot-home-features__intro {
+    align-items: flex-start;
+    padding: 0;
+    gap: clamp(3rem, 4vw, 4.5rem);
+    width: 100%;
+  }
+
+  .kopilot-home-features__heading.rte,
+  .kopilot-home-features__heading.rte * {
+    text-align: left;
+    max-width: 100%;
+    font-size: clamp(3.4rem, 4.5vw, 5.2rem);
+  }
+
+  .kopilot-home-features__text.rte,
+  .kopilot-home-features__text.rte * {
+    text-align: left;
+    max-width: min(41rem, 100%);
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    line-height: 120%;
+  }
+
+  .kopilot-home-features__grid {
+    grid-template-columns: repeat(3, minmax(0, 14.7rem));
+    column-gap: clamp(1.2rem, 2vw, 2rem);
+    row-gap: clamp(2.4rem, 3.5vw, 3.6rem);
+    width: 100%;
+    max-width: 48.1rem;
+    margin: clamp(3rem, 4vw, 5.2rem) 0 0;
+    justify-content: start;
+    justify-items: center;
+  }
+
+  .kopilot-home-features__item {
+    max-width: 14.7rem;
+  }
+
+  .kopilot-home-features__label.rte,
+  .kopilot-home-features__label.rte * {
+    font-size: clamp(1.6rem, 1.6vw, 2rem);
+  }
+
+  .kopilot-home-features__media--desktop {
+    display: block;
+    width: min(48%, 74.4rem);
+    height: auto;
+    aspect-ratio: 744 / 711;
+    flex-shrink: 0;
+  }
+
+  .kopilot-home-features__media--mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .kopilot-home-features__inner {
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(3rem, 5vw, 4rem) clamp(2rem, 4vw, 3.2rem);
+    gap: 3.2rem;
+  }
+
+  .kopilot-home-features {
+    background: #fff;
+  }
+
+  .kopilot-home-features__content {
+    flex: none;
+    width: 100%;
+    align-items: center;
+  }
+
+  .kopilot-home-features__intro {
+    align-items: center;
+    padding: 3.7rem 2.5rem 0;
+  }
+
+  .kopilot-home-features__heading.rte,
+  .kopilot-home-features__heading.rte * {
+    text-align: center;
+    font-size: clamp(2.8rem, 4.5vw, 3.4rem);
+    max-width: 24.7rem;
+  }
+
+  .kopilot-home-features__text.rte,
+  .kopilot-home-features__text.rte * {
+    text-align: center;
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+    max-width: 31rem;
+  }
+
+  .kopilot-home-features__grid {
+    grid-template-columns: repeat(2, minmax(0, 16rem));
+    row-gap: 4.5rem;
+    max-width: 32rem;
+    margin-top: 0;
+  }
+
+  .kopilot-home-features__media--desktop {
+    display: none;
+  }
+
+  .kopilot-home-features__media--mobile {
+    display: block;
+    width: min(36.4rem, 100%);
+    height: auto;
+    aspect-ratio: 364 / 348;
+  }
+}
+
+/* Desktop: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-home-features {
+    background: #f1f1f1;
+  }
+
+  .kopilot-home-features__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3.1rem;
+    min-height: 71.1rem;
+    padding: 0 0 0 8.7rem;
+    max-width: 144rem;
+    margin: 0 auto;
+  }
+
+  .kopilot-home-features__content {
+    flex: 0 0 57.6rem;
+    width: 57.6rem;
+    align-items: flex-start;
+  }
+
+  .kopilot-home-features__intro {
+    align-items: flex-start;
+    gap: 4.5rem;
+    padding: 0;
+    width: 57.6rem;
+  }
+
+  .kopilot-home-features__heading.rte,
+  .kopilot-home-features__heading.rte * {
+    max-width: 57.6rem;
+    font-size: 6rem;
+    line-height: 110%;
+    text-align: left;
+  }
+
+  .kopilot-home-features__text.rte,
+  .kopilot-home-features__text.rte * {
+    max-width: 41rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    text-align: left;
+  }
+
+  .kopilot-home-features__text.rte a,
+  .kopilot-home-features__text.rte a * {
+    font-size: 2rem;
+    line-height: 100%;
+  }
+
+  .kopilot-home-features__grid {
+    grid-template-columns: repeat(3, 14.7rem);
+    column-gap: 2rem;
+    row-gap: 3.6rem;
+    width: 48.1rem;
+    max-width: 48.1rem;
+    margin: 5.2rem 0 0;
+    justify-content: start;
+    justify-items: center;
+  }
+
+  .kopilot-home-features__item {
+    max-width: 14.7rem;
+  }
+
+  .kopilot-home-features__label.rte,
+  .kopilot-home-features__label.rte * {
+    font-size: 2rem;
+    line-height: 100%;
+  }
+
+  .kopilot-home-features__media--desktop {
+    display: block;
+    width: 74.4rem;
+    height: 71.1rem;
+    flex-shrink: 0;
+  }
+
+  .kopilot-home-features__media--mobile {
+    display: none;
+  }
+}

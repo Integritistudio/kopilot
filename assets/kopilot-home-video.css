@@ -1,0 +1,237 @@
+.kopilot-home-video {
+  background: #fff;
+}
+
+.kopilot-home-video__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.8rem;
+  width: 100%;
+  padding: 5rem 0 0;
+  box-sizing: border-box;
+}
+
+.kopilot-home-video__frame {
+  position: relative;
+  width: 36.7rem;
+  max-width: calc(100% + 0.7rem);
+  height: 64.2rem;
+  margin-left: -0.35rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.kopilot-home-video__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  background: #000;
+}
+
+.kopilot-home-video__poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 3.2rem;
+  box-sizing: border-box;
+}
+
+.kopilot-home-video__poster[hidden] {
+  display: none !important;
+}
+
+.kopilot-home-video__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.kopilot-home-video__overlay--desktop {
+  display: none;
+}
+
+.kopilot-home-video__overlay--mobile {
+  display: block;
+}
+
+.kopilot-home-video__overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kopilot-home-video__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 59.11%, rgba(0, 0, 0, 0.2) 78.83%);
+  pointer-events: none;
+}
+
+.kopilot-home-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 5.5rem;
+  height: 4.8rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translate(-50%, calc(-50% - 0.3rem));
+  cursor: pointer;
+}
+
+.kopilot-home-video__play img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.kopilot-home-video__play:focus-visible {
+  outline: 0.2rem solid #fff;
+  outline-offset: 0.4rem;
+}
+
+.kopilot-home-video__heading.rte,
+.kopilot-home-video__heading.rte * {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  font-family: Elza, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 95%;
+  letter-spacing: 0;
+  color: #fff;
+  text-align: center;
+  max-width: 20.9rem;
+}
+
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-video__inner {
+    padding: clamp(4rem, 5vw, 5rem) clamp(2.4rem, 5vw, 8.1rem);
+    gap: 3.8rem;
+  }
+
+  .kopilot-home-video__frame {
+    width: min(100%, 128rem);
+    height: auto;
+    aspect-ratio: 1280 / 642;
+    max-height: 64.2rem;
+    margin-left: 0;
+  }
+
+  .kopilot-home-video__overlay--desktop {
+    display: block;
+  }
+
+  .kopilot-home-video__overlay--mobile {
+    display: none;
+  }
+
+  .kopilot-home-video__play {
+    width: clamp(7rem, 8vw, 10.5rem);
+    height: clamp(6rem, 7vw, 9.1rem);
+    transform: translate(-50%, calc(-50% - 2rem));
+  }
+
+  .kopilot-home-video__heading.rte,
+  .kopilot-home-video__heading.rte * {
+    font-size: clamp(3.2rem, 4.5vw, 5.2rem);
+    max-width: min(91rem, 90%);
+  }
+
+  .kopilot-home-video__poster {
+    padding-bottom: clamp(3rem, 5vw, 5.6rem);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .kopilot-home-video__inner {
+    padding: 5rem 0 0;
+  }
+
+  .kopilot-home-video__frame {
+    width: min(36.7rem, calc(100% + 0.7rem));
+    aspect-ratio: 367 / 642;
+    max-height: none;
+    height: auto;
+    margin-left: -0.35rem;
+  }
+
+  .kopilot-home-video__overlay--desktop {
+    display: none;
+  }
+
+  .kopilot-home-video__overlay--mobile {
+    display: block;
+  }
+
+  .kopilot-home-video__play {
+    width: 5.5rem;
+    height: 4.8rem;
+    transform: translate(-50%, calc(-50% - 0.3rem));
+  }
+
+  .kopilot-home-video__heading.rte,
+  .kopilot-home-video__heading.rte * {
+    font-size: 2rem;
+    max-width: 20.9rem;
+  }
+}
+
+/* Desktop: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-home-video__inner {
+    gap: 3.8rem;
+    min-height: 74.2rem;
+    padding: 5rem 8.1rem;
+  }
+
+  .kopilot-home-video__frame {
+    width: 128rem;
+    height: 64.2rem;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .kopilot-home-video__overlay--desktop {
+    display: block;
+  }
+
+  .kopilot-home-video__overlay--mobile {
+    display: none;
+  }
+
+  .kopilot-home-video__play {
+    width: 10.5rem;
+    height: 9.1rem;
+    transform: translate(calc(-50% + 1.45rem), calc(-50% - 5.946rem));
+  }
+
+  .kopilot-home-video__heading.rte,
+  .kopilot-home-video__heading.rte * {
+    font-size: 6rem;
+    line-height: 95%;
+    max-width: 91rem;
+  }
+
+  .kopilot-home-video__poster {
+    padding-bottom: 5.6rem;
+  }
+}

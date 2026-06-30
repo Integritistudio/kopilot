@@ -1,0 +1,186 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-partners.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-home-partners kopilot-home-partners--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-partners__inner">
+    {% if section.settings.text != blank %}
+      <p class="kopilot-home-partners__text">{{ section.settings.text }}</p>
+    {% endif %}
+
+    <div class="kopilot-home-partners__logos">
+      {% assign partner_fallbacks = 'kopilot-home-partner-1.png,kopilot-home-partner-2.png,kopilot-home-partner-3.png,kopilot-home-partner-4.png,kopilot-home-partner-5.png,kopilot-home-partner-6.png' | split: ',' %}
+      {% for block in section.blocks %}
+        {% assign row_index = forloop.index0 | divided_by: 3 %}
+        {% assign col_index = forloop.index0 | modulo: 3 %}
+        {% if col_index == 0 %}
+          <div class="kopilot-home-partners__logos-row kopilot-home-partners__logos-row--{{ row_index | plus: 1 }}">
+        {% endif %}
+        <div class="kopilot-home-partners__logo" {{ block.shopify_attributes }}>
+          <div
+            class="kopilot-home-partners__logo-media"
+            style="
+              {% if block.settings.logo_width > 0 %}--kopilot-home-partner-w-desktop: {{ block.settings.logo_width }}px;{% endif %}
+              {% if block.settings.logo_height > 0 %}--kopilot-home-partner-h-desktop: {{ block.settings.logo_height }}px;{% endif %}
+              {% if block.settings.logo_width_mobile > 0 %}--kopilot-home-partner-w-mobile: {{ block.settings.logo_width_mobile }}px;{% endif %}
+              {% if block.settings.logo_height_mobile > 0 %}--kopilot-home-partner-h-mobile: {{ block.settings.logo_height_mobile }}px;{% endif %}
+            "
+          >
+            {% render 'kopilot-image',
+              image: block.settings.logo,
+              fallback: partner_fallbacks[forloop.index0],
+              alt: block.settings.logo_alt,
+              width: 400
+            %}
+          </div>
+        </div>
+        {% if col_index == 2 or forloop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Partners",
+  "tag": "section",
+  "class": "kopilot-home-partners-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Trusted by riders, racers, and event partners across North America."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Alt text"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo box width (desktop)",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "logo_height",
+          "label": "Logo box height (desktop)",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "logo_width_mobile",
+          "label": "Logo box width (mobile)",
+          "min": 0,
+          "max": 200,
+          "step": 4,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "logo_height_mobile",
+          "label": "Logo box height (mobile)",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "default": 0,
+          "unit": "px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Partners",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 110,
+            "logo_height": 84,
+            "logo_width_mobile": 68,
+            "logo_height_mobile": 52
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 70,
+            "logo_height": 68,
+            "logo_width_mobile": 44,
+            "logo_height_mobile": 44
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

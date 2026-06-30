@@ -1,0 +1,153 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-video.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-home-video.js' | asset_url }}" defer></script>
+
+<section class="kopilot-section kopilot-home-video kopilot-home-video--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-video__inner">
+    <div class="kopilot-home-video__frame" data-kopilot-home-video>
+      {% assign has_video = false %}
+      {% if section.settings.video != blank or section.settings.video_url != blank %}
+        {% assign has_video = true %}
+      {% endif %}
+
+      {% if section.settings.video != blank %}
+        {{
+          section.settings.video
+          | video_tag:
+            class: 'kopilot-home-video__video',
+            controls: false,
+            playsinline: true,
+            preload: 'metadata',
+            image_size: '1280x'
+        }}
+      {% elsif section.settings.video_url != blank %}
+        <video class="kopilot-home-video__video" playsinline preload="metadata">
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      {% endif %}
+
+      <div class="kopilot-home-video__poster" data-kopilot-home-video-poster>
+        <div class="kopilot-home-video__overlay kopilot-home-video__overlay--desktop">
+          {% render 'kopilot-image',
+            image: section.settings.overlay_image,
+            fallback: 'video-overlay.png',
+            alt: '',
+            width: 2560,
+            widths: '1280,1920,2560',
+            sizes: '(min-width: 768px) 1280px, 0px'
+          %}
+        </div>
+        <div class="kopilot-home-video__overlay kopilot-home-video__overlay--mobile">
+          {% render 'kopilot-image',
+            image: section.settings.overlay_image_mobile,
+            fallback: 'video-overlay.png',
+            alt: '',
+            width: 734,
+            widths: '367,734',
+            sizes: '(max-width: 767px) 367px, 0px'
+          %}
+        </div>
+        <div class="kopilot-home-video__shade" aria-hidden="true"></div>
+
+        {% if has_video %}
+        <button
+          type="button"
+          class="kopilot-home-video__play"
+          data-kopilot-home-video-play
+          aria-label="{{ section.settings.play_label | default: 'Play video' | escape }}"
+        >
+          {% if section.settings.play_icon != blank %}
+            {{
+              section.settings.play_icon
+              | image_url: width: 210
+              | image_tag: loading: 'lazy', alt: '', class: 'kopilot-home-video__play-icon'
+            }}
+          {% else %}
+            <img
+              src="{{ 'Polygon.svg' | asset_url }}"
+              alt=""
+              width="105"
+              height="91"
+              loading="lazy"
+            >
+          {% endif %}
+        </button>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <div class="kopilot-home-video__heading rte">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Video",
+  "tag": "section",
+  "class": "kopilot-home-video-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (.mp4)",
+      "info": "Used when no Shopify video is selected."
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_image",
+      "label": "Overlay image (desktop)",
+      "info": "Defaults to video-overlay.png"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_image_mobile",
+      "label": "Overlay image (mobile)",
+      "info": "Defaults to video-overlay.png"
+    },
+    {
+      "type": "image_picker",
+      "id": "play_icon",
+      "label": "Play icon",
+      "info": "Defaults to Polygon.svg"
+    },
+    {
+      "type": "text",
+      "id": "play_label",
+      "label": "Play button label (accessibility)",
+      "default": "Play video"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Your critical emergency information in one tap.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Video",
+      "settings": {
+        "heading": "<p>Your critical emergency information in one tap.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

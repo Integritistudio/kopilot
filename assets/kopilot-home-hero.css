@@ -1,0 +1,322 @@
+.kopilot-home-hero {
+  position: relative;
+  width: 100%;
+  min-height: 64.7rem;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fff;
+}
+
+.kopilot-home-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.kopilot-home-hero__media {
+  position: absolute;
+  pointer-events: none;
+}
+
+.kopilot-home-hero__media--mobile {
+  display: block;
+  top: -1.7rem;
+  left: 50%;
+  width: 103.9rem;
+  height: 69.3rem;
+  transform: translateX(calc(-50% - 12.75rem)) scaleX(-1);
+}
+
+.kopilot-home-hero__media img,
+.kopilot-home-hero__media--video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kopilot-home-hero__media--desktop {
+  display: none;
+}
+
+.kopilot-home-hero__media--video {
+  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+.kopilot-home-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    234.14deg,
+    rgba(0, 0, 0, 0.3) 58.91%,
+    rgba(0, 0, 0, 0) 65.97%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.kopilot-home-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 64.7rem;
+  padding: 12.7rem 1.375rem 12.7rem 4.8rem;
+  box-sizing: border-box;
+}
+
+.kopilot-home-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7.1rem;
+  width: min(29rem, 100%);
+  margin: 0 auto;
+}
+
+.kopilot-home-hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.kopilot-home-hero__heading--desktop {
+  display: none;
+}
+
+.kopilot-home-hero__heading--mobile {
+  display: block;
+}
+
+.kopilot-home-hero__heading,
+.kopilot-home-hero__heading p {
+  margin: 0;
+  width: 100%;
+  max-width: 29rem;
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 104%;
+  letter-spacing: -0.1rem;
+  color: #fff;
+}
+
+.kopilot-home-hero__heading span {
+  font-family: Elza, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: -0.1rem;
+  vertical-align: middle;
+}
+
+.kopilot-home-hero__description {
+  margin: 0;
+  width: 100%;
+  max-width: 27.8rem;
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 120%;
+  color: #fff;
+}
+
+.kopilot-home-hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.kopilot-home-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 4.976rem;
+  padding: 1.588rem 6.176rem;
+  font-family: Elza, sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.kopilot-home-hero__btn:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
+.kopilot-home-hero__btn--primary {
+  width: min(23.951rem, 100%);
+  background: #ef0008;
+  color: #fff;
+  border: none;
+}
+
+.kopilot-home-hero__btn--secondary {
+  width: min(26.851rem, 100%);
+  background: rgba(0, 0, 0, 0.71);
+  color: #fff;
+  border: 0.2rem solid #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .kopilot-home-hero {
+    min-height: clamp(58rem, 53.7vw, 77.369rem);
+  }
+
+  .kopilot-home-hero__heading--desktop {
+    display: block;
+  }
+
+  .kopilot-home-hero__heading--mobile {
+    display: none;
+  }
+
+  .kopilot-home-hero__media--desktop {
+    display: block;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+
+  .kopilot-home-hero__media--mobile {
+    display: none;
+  }
+
+  .kopilot-home-hero__overlay {
+    background: linear-gradient(
+      271.25deg,
+      rgba(0, 0, 0, 0.3) 42.92%,
+      rgba(0, 0, 0, 0) 56.93%
+    );
+  }
+
+  .kopilot-home-hero__inner {
+    min-height: clamp(58rem, 53.7vw, 77.369rem);
+    padding: clamp(8rem, 11.875vw, 17.1rem) clamp(2.4rem, 7.7vw, 11.1rem);
+    justify-content: flex-start;
+  }
+
+  .kopilot-home-hero__content {
+    align-items: flex-start;
+    gap: clamp(4rem, 5.5vw, 7.9rem);
+    width: min(58.362rem, 100%);
+    max-width: 58.362rem;
+    margin: 0;
+  }
+
+  .kopilot-home-hero__copy {
+    align-items: flex-start;
+    text-align: left;
+    gap: 2.5rem;
+    max-width: 52.3rem;
+  }
+
+  .kopilot-home-hero__heading,
+  .kopilot-home-hero__heading p {
+    max-width: 52.3rem;
+    font-size: clamp(3.2rem, 3.33vw, 4.8rem);
+    line-height: 1.19;
+    letter-spacing: -0.1rem;
+  }
+
+  .kopilot-home-hero__heading span {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: -0.1rem;
+  }
+
+  .kopilot-home-hero__description {
+    max-width: 40.4rem;
+    font-size: clamp(1.6rem, 1.39vw, 2rem);
+    line-height: 120%;
+    text-align: left;
+  }
+
+  .kopilot-home-hero__actions {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(1.2rem, 1.5vw, 2.162rem);
+    width: auto;
+  }
+
+  .kopilot-home-hero__btn {
+    min-height: 6.069rem;
+    padding: 1.834rem 4rem;
+    font-size: clamp(1.6rem, 1.42vw, 2.038rem);
+  }
+
+  .kopilot-home-hero__btn--primary {
+    width: auto;
+    min-width: 28.5rem;
+    padding-inline: 6.4rem;
+  }
+
+  .kopilot-home-hero__btn--secondary {
+    width: auto;
+    min-width: 27.7rem;
+    border-width: 0.1rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-home-hero {
+    min-height: 77.369rem;
+  }
+
+  .kopilot-home-hero__inner {
+    min-height: 77.369rem;
+    padding: 17.1rem 11.1rem;
+  }
+
+  .kopilot-home-hero__heading,
+  .kopilot-home-hero__heading p {
+    font-size: 4.8rem;
+    line-height: 5.7rem;
+  }
+
+  .kopilot-home-hero__heading span {
+    font-size: 4.8rem;
+    line-height: 5.7rem;
+    letter-spacing: -0.1rem;
+  }
+
+  .kopilot-home-hero__description {
+    font-size: 2rem;
+  }
+
+  .kopilot-home-hero__btn {
+    min-height: 6.069rem;
+    font-size: 2.038rem;
+    line-height: 2.4rem;
+  }
+
+  .kopilot-home-hero__btn--primary {
+    padding: 1.834rem 6.4rem;
+  }
+
+  .kopilot-home-hero__btn--secondary {
+    padding: 1.834rem 4rem;
+  }
+}

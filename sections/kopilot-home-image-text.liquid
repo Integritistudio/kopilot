@@ -1,0 +1,215 @@
+{% liquid
+  assign align_desktop = section.settings.text_alignment_desktop
+  assign align_mobile = section.settings.text_alignment_mobile
+
+  if align_desktop == 'left'
+    assign items_desktop = 'flex-start'
+  elsif align_desktop == 'right'
+    assign items_desktop = 'flex-end'
+  else
+    assign items_desktop = 'center'
+  endif
+
+  if align_mobile == 'left'
+    assign items_mobile = 'flex-start'
+  elsif align_mobile == 'right'
+    assign items_mobile = 'flex-end'
+  else
+    assign items_mobile = 'center'
+  endif
+%}
+
+{% style %}
+  .kopilot-home-image-text--{{ section.id }} {
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
+    align-items: {{ items_mobile }};
+    text-align: {{ align_mobile }};
+  }
+
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading *,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text * {
+    text-align: {{ align_mobile }};
+  }
+
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte p,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte ul li,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte ol li,
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte strong {
+    font-family: {{ section.settings.text_font_family }}, sans-serif;
+  }
+
+  @media screen and (min-width: 768px) {
+    .kopilot-home-image-text--{{ section.id }} {
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
+      align-items: {{ items_desktop }};
+      text-align: {{ align_desktop }};
+    }
+
+    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading,
+    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading *,
+    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text,
+    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text * {
+      text-align: {{ align_desktop }};
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-image-text.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-home-image-text kopilot-home-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-image-text__inner">
+    <div class="kopilot-home-image-text__media kopilot-home-image-text__media--desktop">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'image18659487.png',
+        alt: section.settings.image_alt,
+        width: 1392,
+        widths: '696,1100,1392',
+        sizes: '(min-width: 768px) 696px, 0px'
+      %}
+    </div>
+    <div class="kopilot-home-image-text__media kopilot-home-image-text__media--mobile">
+      {% render 'kopilot-image',
+        image: section.settings.image_mobile,
+        fallback: 'image18659487.png',
+        alt: section.settings.image_alt,
+        width: 806,
+        widths: '360,403,750,806',
+        sizes: '(max-width: 767px) 403px, 0px'
+      %}
+    </div>
+
+    <div class="kopilot-home-image-text__content">
+      {% if section.settings.heading != blank %}
+        <div class="kopilot-home-image-text__heading rte">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="kopilot-home-image-text__text rte">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Image Text",
+  "tag": "section",
+  "class": "kopilot-home-image-text-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile)",
+      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Mountain biker receiving help after a fall"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment_desktop",
+      "label": "Text alignment (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment_mobile",
+      "label": "Text alignment (mobile)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_font_family",
+      "label": "Text font family",
+      "options": [
+        { "value": "Figtree", "label": "Figtree" },
+        { "value": "Elza", "label": "Elza" },
+        { "value": "Inter", "label": "Inter" },
+        { "value": "Roboto", "label": "Roboto" },
+        { "value": "Open Sans", "label": "Open Sans" },
+        { "value": "Lato", "label": "Lato" }
+      ],
+      "default": "Figtree"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>When you need help, every second counts.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Your phone is locked. Your wallet is buried in your gear. The people trying to help may have no way to know your allergies, medical conditions, medications, or who to contact. A smartphone tap on your NFC tag changes that instantly.</p><p><strong>KOPILOT.ID removes the guesswork.</strong></p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Image Text"
+    }
+  ]
+}
+{% endschema %}
