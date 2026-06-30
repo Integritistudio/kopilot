@@ -53,14 +53,21 @@
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
 
+    /* Force image on top, content below, with spacing between them */
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 40px; /* Spacing between the image bottom and text container */
+    }
+
     /* Constrain text wrapper content width exactly to Figma spec */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
       display: flex;
       flex-direction: column;
-      max-width: 288px; /* Match mobile width from image_8d2c63.png */
+      max-width: 288px;
       margin-left: auto;
       margin-right: auto;
-      gap: 25px; /* Match precise vertical element spacing gap from image_8d2c63.png */
+      gap: 25px; /* Vertical element spacing gap between heading and paragraph */
       align-items: {% if section.settings.text_alignment_mobile == 'left' %}flex-start{% elsif section.settings.text_alignment_mobile == 'right' %}flex-end{% else %}center{% endif %};
       text-align: {{ section.settings.text_alignment_mobile }};
     }
@@ -69,12 +76,12 @@
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       font-family: 'Elza', sans-serif;
-      font-size: 30px; /* Match mobile text size from image_8d2c9b.png */
+      font-size: 30px;
       font-weight: 300;
-      line-height: 1.1; /* 110% layout line height from image_8d2c9b.png */
-      letter-spacing: -1px; /* Match mobile track letter spacing from image_8d2c9b.png */
+      line-height: 1.1;
+      letter-spacing: -1px;
       text-align: {{ section.settings.text_alignment_mobile }};
-      margin: 0; /* Let flex gap handle layouts neatly */
+      margin: 0;
     }
 
     /* Paragraph Body Mobile Styles */
@@ -83,9 +90,9 @@
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte ul li,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte ol li {
       font-family: 'Figtree', sans-serif;
-      font-size: 15px; /* Match mobile paragraph size from image_8d2cb8.png */
+      font-size: 15px;
       font-weight: 400;
-      line-height: 1.2; /* 120% layout line height from image_8d2cb8.png */
+      line-height: 1.2;
       letter-spacing: 0;
       text-align: {{ section.settings.text_alignment_mobile }};
       margin: 0;
