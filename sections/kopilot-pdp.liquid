@@ -5,12 +5,37 @@
   }
 
   @media screen and (max-width: 767px) {
-    .kopilot-pdp--{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    /* Changes internal layout to a single vertical flex column to allow order reshuffling */
+    .kopilot-pdp__inner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Pushes the special offer banner to the absolute top of the entire section layout */
+    .kopilot-pdp__buy .mobile-top-banner {
+      order: -3 !important;
+      margin-bottom: 12px !important;
+      width: 100%;
+    }
+
+    /* Keeps the heading block second in line */
+    .kopilot-pdp__mobile-head {
+      order: -2 !important;
+    }
+
+    /* Keeps the main product split content third in line */
+    .kopilot-pdp__layout {
+      order: -1 !important;
     }
     
-    /* Remove slider pagination indicators on mobile layout per image_8259ff.png */
+    /* Explicitly hide any residual special banner instances on gallery/slides */
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__special-banner,
+    .kopilot-pdp__gallery-grid .kopilot-pdp__special-banner,
+    .mobile-only-banner {
+      display: none !important;
+    }
+
+    /* Remove slider pagination indicators on mobile layout */
     .kopilot-pdp__carousel-dots {
       display: none !important;
     }
@@ -21,10 +46,18 @@
       padding: 0 !important;
     }
 
-    /* Standardizes exact layout spacing gap above the banner header */
-    .kopilot-pdp__special-banner {
-      margin-top: 12px !important;
-      position: relative !important;
+    /* Force uniform gallery slide viewports to avoid image text cutoff */
+    .kopilot-pdp__carousel-viewport,
+    .kopilot-pdp__gallery-mobile,
+    .kopilot-pdp__carousel-slide {
+      height: 360px !important;
+    }
+
+    .kopilot-pdp__carousel-slide img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
     }
   }
 
@@ -163,10 +196,6 @@
 
   /* Special Top Ribbon Offer */
   .kopilot-pdp__special-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     background-color: #F20008;
     color: #ffffff;
     font-family: 'elza', sans-serif;
@@ -178,12 +207,8 @@
     padding: 6.39px 10px;
     letter-spacing: 0.05em;
     z-index: 3;
-  }
-  
-  /* Text container offsets if top red banner ribbon is enabled */
-  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top,
-  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top-center {
-    padding-top: 45px;
+    width: 100%;
+    box-sizing: border-box;
   }
 {% endstyle %}
 
@@ -242,10 +267,6 @@
                 class="kopilot-pdp__gallery-cell"
                 {{ block.shopify_attributes }}
               >
-                {% if block.settings.show_special_banner %}
-                  <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                {% endif %}
-
                 {% render 'kopilot-image',
                   image: block.settings.image,
                   fallback: gallery_fallbacks[forloop.index0],
@@ -275,10 +296,6 @@
               {% for block in section.blocks %}
                 {% if block.type == 'gallery_slide' %}
                   <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
-                    {% if block.settings.show_special_banner %}
-                      <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                    {% endif %}
-
                     {% render 'kopilot-image',
                       image: block.settings.image,
                       fallback: gallery_fallbacks[forloop.index0],
@@ -302,26 +319,20 @@
               {% endfor %}
             </div>
           </div>
-          <div class="kopilot-pdp__carousel-dots">
-            {% assign slide_index = 0 %}
-            {% for block in section.blocks %}
-              {% if block.type == 'gallery_slide' %}
-                <button
-                  type="button"
-                  class="kopilot-pdp__carousel-dot{% if slide_index == 0 %} is-active{% endif %}"
-                  data-kopilot-carousel-dot
-                  data-index="{{ slide_index }}"
-                  aria-label="Show slide {{ slide_index | plus: 1 }}"
-                  {% if slide_index == 0 %}aria-current="true"{% endif %}
-                ></button>
-                {% assign slide_index = slide_index | plus: 1 %}
-              {% endif %}
-            {% endfor %}
-          </div>
         </div>
       </div>
 
       <div class="kopilot-pdp__buy">
+        {%- liquid 
+          assign first_slide = section.blocks | where: "type", "gallery_slide" | first 
+        -%}
+        
+        {%- if first_slide and first_slide.settings.show_special_banner -%}
+          <div class="kopilot-pdp__special-banner mobile-top-banner" style="margin-bottom: 12px;">
+            {{ first_slide.settings.special_banner_text }}
+          </div>
+        {%- endif -%}
+
         <div class="kopilot-pdp__head kopilot-pdp__desktop-head">
           <h1 class="kopilot-pdp__title">
             {% if section.settings.title != blank %}
