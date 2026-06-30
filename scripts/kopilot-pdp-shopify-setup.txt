@@ -1,0 +1,49 @@
+KOPILOT PDP — Shopify Admin Setup
+===================================
+
+Product: https://admin.shopify.com/store/7c62c4-5d/products/7573868937325
+
+Pricing model (single variant + quantity tiers)
+-----------------------------------------------
+The PDP uses ONE product with ONE variant. Tier selection sets cart quantity:
+
+  Tier      Quantity    Display price    Compare-at
+  --------  ----------  ---------------  ----------
+  1 TAG     1           $39.99           —
+  Set of 2  2           $71.99           $79.98 (Save 10%)
+  Set of 3  3           $95.99           $119.97 (Save 20%)
+
+Configure quantity / volume pricing in Shopify Admin:
+
+1. Open the KOPILOT product in Admin.
+2. Ensure the product has a single variant (e.g. "Default Title").
+3. Set the base variant price to $39.99.
+4. Go to Pricing → Quantity pricing (or Volume pricing, depending on your plan).
+5. Add quantity breaks:
+   - Minimum quantity 2 → price per unit or total that results in $71.99 for qty 2
+   - Minimum quantity 3 → price per unit or total that results in $95.99 for qty 3
+
+If quantity breaks are unavailable on your plan, alternatives:
+  - Use Shopify Scripts / Functions for tiered discounts, or
+  - Create three variants (1 / 2 / 3 tags) and update kopilot-pdp.js to add by variant ID instead of quantity.
+
+Cart behavior
+-------------
+When a customer adds a different tier while the product is already in cart, the theme:
+  1. Removes the existing line item for this product
+  2. Adds a new line with the selected quantity
+
+Template
+--------
+The default product template (templates/product.json) is the Kopilot PDP.
+No per-product template assignment is required if this is your only product.
+
+SEO (from Figma)
+----------------
+  Meta title: NFC Tag That Works as Your Medical ID | Durable & Waterproof
+  Meta description: If something happens, your info shouldn't be locked. With just one tap, this NFC tag shares your medical details instantly—no battery or signal needed.
+
+Assets
+------
+Run scripts/download-kopilot-pdp-assets.ps1 to refresh local PDP image fallbacks.
+Upload final images via theme editor section image pickers or Shopify Files.

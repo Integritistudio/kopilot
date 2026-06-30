@@ -1,0 +1,76 @@
+.kopilot-pdp-partner-cta {
+  background: #fff;
+  color: #000;
+}
+
+.kopilot-pdp-partner-cta__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 50px 205px;
+  display: grid;
+  grid-template-columns: minmax(0, 613px) minmax(0, 342px);
+  gap: 75px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.kopilot-pdp-partner-cta__heading {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-size: 43px;
+  line-height: 1;
+  letter-spacing: -1.29px;
+  color: #000;
+}
+
+.kopilot-pdp-partner-cta__content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.kopilot-pdp-partner-cta__text {
+  margin: 0;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.kopilot-pdp-partner-cta__link {
+  font-family: var(--kopilot-font-family);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media screen and (max-width: 1100px) {
+  .kopilot-pdp-partner-cta__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-pdp-partner-cta__inner {
+    padding: 40px 31px;
+  }
+
+  .kopilot-pdp-partner-cta__heading {
+    font-size: 28px;
+    letter-spacing: -0.84px;
+  }
+
+  .kopilot-pdp-partner-cta__text {
+    font-size: 14px;
+  }
+
+  .kopilot-pdp-partner-cta__link {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,72 @@
+.kopilot-pdp-tap {
+  background: #fff;
+  color: #000;
+}
+
+.kopilot-pdp-tap__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 54px;
+  display: grid;
+  grid-template-columns: minmax(0, 672px) minmax(0, 1fr);
+  gap: 31px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.kopilot-pdp-tap__media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #eee;
+}
+
+.kopilot-pdp-tap__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kopilot-pdp-tap__heading {
+  margin: 0;
+  max-width: 629px;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-size: 55px;
+  line-height: 1.2;
+  letter-spacing: -1.65px;
+  color: #000;
+}
+
+@media screen and (max-width: 1100px) {
+  .kopilot-pdp-tap__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .kopilot-pdp-tap__heading {
+    font-size: 42px;
+    letter-spacing: -1.2px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-pdp-tap__inner {
+    padding: 0 0 0;
+    gap: 38px;
+  }
+
+  .kopilot-pdp-tap__heading {
+    padding: 0 33px;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.78px;
+    text-align: left;
+  }
+
+  .kopilot-pdp-tap__media {
+    aspect-ratio: auto;
+    min-height: 313px;
+  }
+}

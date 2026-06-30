@@ -1,0 +1,472 @@
+{% style %}
+  .kopilot-pdp--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-pdp.js' | asset_url }}" defer></script>
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
+  assign tier_icon_fallbacks = 'kopilot-product-1tag.png,kopilot-product-2tags.png,kopilot-product-3tags.png' | split: ','
+%}
+
+<kopilot-pdp
+  class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  data-product-id="{{ product.id }}"
+  data-variant-id="{{ current_variant.id }}"
+>
+  <div class="kopilot-pdp__inner">
+    {% if section.settings.promo_text != blank %}
+      <div class="kopilot-pdp__promo">{{ section.settings.promo_text }}</div>
+    {% endif %}
+
+    <div class="kopilot-pdp__mobile-head">
+      <h1 class="kopilot-pdp__title">
+        {% if section.settings.title != blank %}
+          {{ section.settings.title }}
+        {% else %}
+          {{ product.title }}
+        {% endif %}
+      </h1>
+      {% if section.settings.show_reviews %}
+        <div class="kopilot-pdp__reviews-row">
+          {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#000000' %}
+          <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="kopilot-pdp__layout">
+      <div class="kopilot-pdp__gallery">
+        <div class="kopilot-pdp__gallery-grid">
+          {% for block in section.blocks %}
+            {% if block.type == 'gallery_slide' %}
+              <article
+                class="kopilot-pdp__gallery-cell{% if forloop.first %} kopilot-pdp__gallery-cell--promo{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {% render 'kopilot-image',
+                  image: block.settings.image,
+                  fallback: gallery_fallbacks[forloop.index0],
+                  alt: block.settings.caption,
+                  width: 800,
+                  class: 'kopilot-pdp__gallery-image'
+                %}
+                {% if block.settings.caption != blank %}
+                  <p class="kopilot-pdp__gallery-caption">{{ block.settings.caption }}</p>
+                {% endif %}
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="kopilot-pdp__gallery-mobile" data-kopilot-carousel>
+          <div class="kopilot-pdp__carousel-viewport">
+            <div class="kopilot-pdp__carousel-track" data-kopilot-carousel-track>
+              {% for block in section.blocks %}
+                {% if block.type == 'gallery_slide' %}
+                  <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
+                    {% render 'kopilot-image',
+                      image: block.settings.image,
+                      fallback: gallery_fallbacks[forloop.index0],
+                      alt: block.settings.caption,
+                      width: 800,
+                      loading: forloop.first
+                    %}
+                    {% if block.settings.caption != blank %}
+                      <p class="kopilot-pdp__gallery-caption">{{ block.settings.caption }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="kopilot-pdp__carousel-dots">
+            {% assign slide_index = 0 %}
+            {% for block in section.blocks %}
+              {% if block.type == 'gallery_slide' %}
+                <button
+                  type="button"
+                  class="kopilot-pdp__carousel-dot{% if slide_index == 0 %} is-active{% endif %}"
+                  data-kopilot-carousel-dot
+                  data-index="{{ slide_index }}"
+                  aria-label="Show slide {{ slide_index | plus: 1 }}"
+                  {% if slide_index == 0 %}aria-current="true"{% endif %}
+                ></button>
+                {% assign slide_index = slide_index | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="kopilot-pdp__buy">
+        <div class="kopilot-pdp__head kopilot-pdp__desktop-head">
+          <h1 class="kopilot-pdp__title">
+            {% if section.settings.title != blank %}
+              {{ section.settings.title }}
+            {% else %}
+              {{ product.title }}
+            {% endif %}
+          </h1>
+
+          {% if section.settings.show_reviews %}
+            <div class="kopilot-pdp__reviews-row">
+              {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#000000' %}
+              <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
+            </div>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <p class="kopilot-pdp__description">{{ section.settings.description }}</p>
+          {% elsif product.description != blank %}
+            <div class="kopilot-pdp__description rte">{{ product.description | strip_html | truncate: 320 }}</div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.description != blank %}
+          <p class="kopilot-pdp__description kopilot-pdp__description--mobile">{{ section.settings.description }}</p>
+        {% endif %}
+
+        <div class="kopilot-pdp__tiers" role="group" aria-label="Choose quantity">
+          {% assign tier_index = 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'tier' %}
+              {% liquid
+                assign tier_qty = block.settings.quantity | default: 1
+                assign is_default_tier = false
+                if block.settings.badge != blank
+                  assign badge_downcase = block.settings.badge | downcase | strip
+                  if badge_downcase == 'default'
+                    assign is_default_tier = true
+                  endif
+                elsif tier_index == 0
+                  assign is_default_tier = true
+                endif
+
+                assign tier_price = block.settings.price
+                if tier_price == blank and current_variant.price
+                  assign unit_cents = current_variant.price
+                  assign tier_price_cents = unit_cents | times: tier_qty
+                  assign tier_price = tier_price_cents | money
+                endif
+              %}
+
+              <button
+                type="button"
+                class="kopilot-pdp__tier{% if is_default_tier %} is-selected{% endif %}"
+                data-kopilot-tier
+                data-quantity="{{ tier_qty }}"
+                data-selected="{{ is_default_tier }}"
+                aria-pressed="{% if is_default_tier %}true{% else %}false{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                <div class="kopilot-pdp__tier-inner">
+                  <div class="kopilot-pdp__tier-head">
+                    <div class="kopilot-pdp__tier-title-row">
+                      {% if block.settings.icon != blank %}
+                        {{
+                          block.settings.icon
+                          | image_url: width: 80
+                          | image_tag: class: 'kopilot-pdp__tier-icon', loading: 'lazy', alt: ''
+                        }}
+                      {% else %}
+                        <img
+                          class="kopilot-pdp__tier-icon"
+                          src="{{ tier_icon_fallbacks[tier_index] | asset_url }}"
+                          alt=""
+                          width="39"
+                          height="39"
+                          loading="lazy"
+                        >
+                      {% endif %}
+                      <p class="kopilot-pdp__tier-title">{{ block.settings.title }}</p>
+                    </div>
+                    {% if block.settings.badge != blank and badge_downcase != 'default' %}
+                      <span class="kopilot-pdp__tier-badge">{{ block.settings.badge }}</span>
+                    {% elsif is_default_tier %}
+                      <span class="kopilot-pdp__tier-badge">DEFAULT</span>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.subtitle != blank %}
+                    <p class="kopilot-pdp__tier-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+
+                  <div class="kopilot-pdp__tier-price-row">
+                    <p class="kopilot-pdp__tier-price">{{ tier_price }} USD</p>
+                    {% if block.settings.compare_price != blank %}
+                      <p class="kopilot-pdp__tier-compare">{{ block.settings.compare_price }}</p>
+                    {% endif %}
+                    {% if block.settings.save_label != blank %}
+                      <span class="kopilot-pdp__tier-save">{{ block.settings.save_label }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </button>
+
+              {% assign tier_index = tier_index | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="kopilot-pdp__included">
+          <p class="kopilot-pdp__included-heading">{{ section.settings.included_heading }}</p>
+          <div class="kopilot-pdp__included-pills">
+            {% for block in section.blocks %}
+              {% if block.type == 'included_item' %}
+                <span class="kopilot-pdp__included-pill" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <button type="button" class="kopilot-pdp__add" data-kopilot-add>
+          <span data-kopilot-add-label>{{ section.settings.button_label | default: 'ADD TO CART - 1 TAG' }}</span>
+        </button>
+
+        <div class="kopilot-pdp__delivery">
+          <div class="kopilot-pdp__delivery-line">
+            <span class="kopilot-pdp__delivery-label">Order by</span>
+            <span class="kopilot-pdp__delivery-value" data-kopilot-delivery-order>[time today]</span>
+          </div>
+          <div class="kopilot-pdp__delivery-line">
+            <span class="kopilot-pdp__delivery-label">arrives by</span>
+            <span class="kopilot-pdp__delivery-value" data-kopilot-delivery-arrives>[date]</span>
+          </div>
+        </div>
+
+        {% if section.settings.shipping_heading != blank %}
+          <div class="kopilot-pdp__accordion">
+            <button
+              type="button"
+              class="kopilot-pdp__accordion-trigger"
+              data-kopilot-accordion-trigger
+              aria-expanded="false"
+            >
+              <span>{{ section.settings.shipping_heading }}</span>
+              <span class="kopilot-pdp__accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="kopilot-pdp__accordion-panel rte" data-kopilot-accordion-panel hidden>
+              {{ section.settings.shipping_content }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</kopilot-pdp>
+
+{% schema %}
+{
+  "name": "Kopilot PDP",
+  "tag": "section",
+  "class": "kopilot-pdp-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo ribbon",
+      "default": "Special offer. Save up to 20% on multi-packs."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title override",
+      "default": "The piece of gear you don't think about until you need it."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show reviews",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "star_rating",
+      "label": "Star rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "8"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The KOPILOT.ID NFC tag helps the people around you access your medical information and emergency contacts instantly after an accident. Attach it to your gear of choice and stay prepared wherever you go."
+    },
+    {
+      "type": "text",
+      "id": "included_heading",
+      "label": "Included heading",
+      "default": "What's included:"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add to cart label (tier 1)",
+      "default": "ADD TO CART - 1 TAG"
+    },
+    {
+      "type": "text",
+      "id": "shipping_heading",
+      "label": "Shipping accordion heading",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_content",
+      "label": "Shipping accordion content",
+      "default": "<p>Free standard shipping on all orders. Returns accepted within 30 days if the product is unused and in original packaging.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_slide",
+      "name": "Gallery slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "The Information They Need After A Crash."
+        }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "Quantity tier",
+      "settings": [
+        { "type": "range", "id": "quantity", "label": "Cart quantity", "min": 1, "max": 10, "step": 1, "default": 1 },
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title", "default": "1 TAG" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Just for you." },
+        { "type": "text", "id": "badge", "label": "Badge (DEFAULT / BEST VALUE)" },
+        { "type": "text", "id": "price", "label": "Price display", "default": "$39.99" },
+        { "type": "text", "id": "compare_price", "label": "Compare-at price" },
+        { "type": "text", "id": "save_label", "label": "Save badge" }
+      ]
+    },
+    {
+      "type": "included_item",
+      "name": "Included item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "KOPILOT.ID NFC tag" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot PDP",
+      "blocks": [
+        { "type": "gallery_slide", "settings": { "caption": "The Information They Need After A Crash." } },
+        { "type": "gallery_slide", "settings": { "caption": "Trusted by thousands. Used at events, race series, & gear brands." } },
+        { "type": "gallery_slide", "settings": { "caption": "Three ways to mount it." } },
+        { "type": "gallery_slide", "settings": { "caption": "The details that matter." } },
+        { "type": "gallery_slide", "settings": { "caption": "Cover the crew. Save 20%." } },
+        { "type": "gallery_slide", "settings": { "caption": "Always ready." } },
+        {
+          "type": "tier",
+          "settings": {
+            "quantity": 1,
+            "title": "1 TAG",
+            "subtitle": "Just for you.",
+            "badge": "DEFAULT",
+            "price": "$39.99"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "quantity": 2,
+            "title": "Set of 2",
+            "subtitle": "One for you, one for your friend.",
+            "price": "$71.99",
+            "compare_price": "$79.98",
+            "save_label": "Save 10%"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "quantity": 3,
+            "title": "Set of 3",
+            "subtitle": "For the whole crew.",
+            "badge": "BEST VALUE",
+            "price": "$95.99",
+            "compare_price": "$119.97",
+            "save_label": "Save 20%"
+          }
+        },
+        { "type": "included_item", "settings": { "label": "KOPILOT.ID NFC tag" } },
+        { "type": "included_item", "settings": { "label": "1 Goggle mount" } },
+        { "type": "included_item", "settings": { "label": "1 Zipper mount" } },
+        { "type": "included_item", "settings": { "label": "1 Carbon helmet mount" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

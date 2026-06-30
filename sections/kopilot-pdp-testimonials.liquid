@@ -1,0 +1,197 @@
+{% style %}
+  .kopilot-pdp-testimonials--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp-testimonials--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-pdp-testimonials.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-pdp-testimonials.js' | asset_url }}" defer></script>
+
+<section class="kopilot-section kopilot-pdp-testimonials kopilot-pdp-testimonials--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-pdp-testimonials__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="kopilot-pdp-testimonials__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% assign testimonial_fallbacks = 'kopilot-pdp-testimonial-jerry.jpg,kopilot-pdp-testimonial-nicolas.jpg,kopilot-pdp-testimonial-karen.jpg' | split: ',' %}
+
+    <div class="kopilot-pdp-testimonials__slider" data-kopilot-pdp-testimonials>
+      <div class="kopilot-pdp-testimonials__track">
+        {% for block in section.blocks %}
+          <article class="kopilot-pdp-testimonials__card" {{ block.shopify_attributes }}>
+            <div class="kopilot-pdp-testimonials__media">
+              {% render 'kopilot-image',
+                image: block.settings.image,
+                fallback: testimonial_fallbacks[forloop.index0],
+                alt: block.settings.name,
+                width: 900
+              %}
+            </div>
+            <div class="kopilot-pdp-testimonials__body">
+              {% if block.settings.name != blank %}
+                <p class="kopilot-pdp-testimonials__name">{{ block.settings.name }}</p>
+              {% endif %}
+
+              <div class="kopilot-pdp-testimonials__tags">
+                {% if block.settings.role != blank %}
+                  <span class="kopilot-pdp-testimonials__tag">{{ block.settings.role }}</span>
+                {% endif %}
+                {% if block.settings.location != blank %}
+                  <span class="kopilot-pdp-testimonials__tag kopilot-pdp-testimonials__tag--location">{{ block.settings.location }}</span>
+                {% endif %}
+              </div>
+
+              {% if block.settings.quote != blank %}
+                <blockquote class="kopilot-pdp-testimonials__quote">{{ block.settings.quote }}</blockquote>
+              {% endif %}
+
+              {% if block.settings.show_verified %}
+                <p class="kopilot-pdp-testimonials__verified">
+                  <img
+                    src="{{ 'verified-checkmark.svg' | asset_url }}"
+                    alt=""
+                    width="19"
+                    height="19"
+                    loading="lazy"
+                  >
+                  <span>Verified buyer</span>
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="kopilot-pdp-testimonials__nav">
+        <button type="button" class="kopilot-pdp-testimonials__nav-btn" data-kopilot-testimonials-prev aria-label="Previous testimonial">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="kopilot-pdp-testimonials__nav-btn kopilot-pdp-testimonials__nav-btn--next" data-kopilot-testimonials-next aria-label="Next testimonial">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot PDP testimonials",
+  "tag": "section",
+  "class": "kopilot-pdp-testimonials-section",
+  "max_blocks": 6,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by thousands."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Jerry" },
+        { "type": "text", "id": "role", "label": "Role", "default": "Motorcyclist" },
+        { "type": "text", "id": "location", "label": "Location", "default": "Arizona" },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets."
+        },
+        { "type": "checkbox", "id": "show_verified", "label": "Show verified buyer", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot PDP testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jerry",
+            "role": "Motorcyclist",
+            "location": "Arizona",
+            "quote": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Nicolas",
+            "role": "Mountain biker",
+            "location": "California",
+            "quote": "Jacket, backpack, and helmet now all have the little red life-saving tag! Easy to move between my gear."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Karen",
+            "role": "Hiker",
+            "location": "Oregon",
+            "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

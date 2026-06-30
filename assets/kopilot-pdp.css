@@ -1,0 +1,574 @@
+.kopilot-pdp {
+  background: #fff;
+  color: #000;
+  font-family: var(--kopilot-font-family);
+  font-synthesis: none;
+}
+
+.kopilot-pdp__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 59px 49px 80px;
+  box-sizing: border-box;
+}
+
+.kopilot-pdp__promo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  margin-bottom: 21px;
+  background: #000;
+  color: #fff;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.kopilot-pdp__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 788px) minmax(0, 516px);
+  gap: 38px;
+  align-items: start;
+}
+
+.kopilot-pdp__gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.kopilot-pdp__gallery-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  background: #eee;
+  min-height: 408px;
+}
+
+.kopilot-pdp__gallery-cell--promo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.kopilot-pdp__gallery-cell img,
+.kopilot-pdp__gallery-cell picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kopilot-pdp__gallery-caption {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.kopilot-pdp__gallery-mobile {
+  display: none;
+}
+
+.kopilot-pdp__buy {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.kopilot-pdp__head {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kopilot-pdp__title {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-weight: 300;
+  font-size: 57px;
+  line-height: 1;
+  letter-spacing: -1.71px;
+  color: #000;
+}
+
+.kopilot-pdp__reviews-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kopilot-pdp__reviews-row .kopilot-review-stars--lg .kopilot-review-stars__icon svg,
+.kopilot-pdp__reviews-row .kopilot-review-stars--lg .kopilot-review-stars__icon img {
+  width: 21px;
+  height: 21px;
+}
+
+.kopilot-pdp__review-count {
+  margin: 0;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 11px;
+  line-height: 1;
+  color: #000;
+}
+
+.kopilot-pdp__description {
+  margin: 0;
+  max-width: 382px;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.kopilot-pdp__description--mobile {
+  display: none;
+}
+
+.kopilot-pdp__tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.kopilot-pdp__tier {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kopilot-pdp__tier.is-selected {
+  border-color: #000;
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.kopilot-pdp__tier-inner {
+  padding: 18px 20px;
+}
+
+.kopilot-pdp__tier-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.kopilot-pdp__tier-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.kopilot-pdp__tier-icon {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.kopilot-pdp__tier-title {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.kopilot-pdp__tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 22px;
+  background: #000;
+  color: #fff;
+  font-family: var(--kopilot-font-family);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.kopilot-pdp__tier-subtitle {
+  margin: 0 0 10px;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  line-height: 1;
+  color: #000;
+}
+
+.kopilot-pdp__tier-price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kopilot-pdp__tier-price {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+}
+
+.kopilot-pdp__tier-compare {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #767676;
+  text-decoration: line-through;
+}
+
+.kopilot-pdp__tier-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  background: #ef0008;
+  color: #fff;
+  font-family: var(--kopilot-font-family);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.kopilot-pdp__included {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kopilot-pdp__included-heading {
+  margin: 0;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+}
+
+.kopilot-pdp__included-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.kopilot-pdp__included-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 13px;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  line-height: 1;
+  color: #000;
+  white-space: nowrap;
+}
+
+.kopilot-pdp__add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 88px;
+  padding: 20px 24px;
+  border: none;
+  background: var(--kopilot-red);
+  color: #fff;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.kopilot-pdp__add:hover {
+  opacity: 0.92;
+}
+
+.kopilot-pdp__add:disabled,
+.kopilot-pdp__add.is-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.kopilot-pdp__delivery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  line-height: 1;
+  color: #000;
+}
+
+.kopilot-pdp__delivery-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.kopilot-pdp__delivery-label {
+  color: #767676;
+}
+
+.kopilot-pdp__delivery-value {
+  font-weight: 600;
+}
+
+.kopilot-pdp__accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+  border: none;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  background: transparent;
+  font-family: var(--kopilot-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  cursor: pointer;
+}
+
+.kopilot-pdp__accordion-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.kopilot-pdp__accordion-icon::before,
+.kopilot-pdp__accordion-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  background: #000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+.kopilot-pdp__accordion-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.kopilot-pdp__accordion-trigger.is-open .kopilot-pdp__accordion-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.kopilot-pdp__accordion-panel {
+  padding: 16px 0 0;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.kopilot-pdp__accordion-panel.rte p {
+  margin: 0 0 12px;
+}
+
+.kopilot-pdp__mobile-head {
+  display: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .kopilot-pdp__layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .kopilot-pdp__title {
+    font-size: 42px;
+    letter-spacing: -1.2px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-pdp__inner {
+    padding: 0 0 48px;
+  }
+
+  .kopilot-pdp__promo {
+    margin-bottom: 0;
+    min-height: 20px;
+    font-size: 8px;
+  }
+
+  .kopilot-pdp__layout {
+    gap: 0;
+  }
+
+  .kopilot-pdp__gallery-grid {
+    display: none;
+  }
+
+  .kopilot-pdp__gallery-mobile {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kopilot-pdp__carousel-viewport {
+    overflow: hidden;
+  }
+
+  .kopilot-pdp__carousel-track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  .kopilot-pdp__carousel-slide {
+    position: relative;
+    flex: 0 0 100%;
+    min-height: 361px;
+    background: #eee;
+  }
+
+  .kopilot-pdp__carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 361px;
+    object-fit: cover;
+  }
+
+  .kopilot-pdp__carousel-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .kopilot-pdp__carousel-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #d9d9d9;
+    cursor: pointer;
+  }
+
+  .kopilot-pdp__carousel-dot.is-active {
+    background: #000;
+  }
+
+  .kopilot-pdp__mobile-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 22px 0;
+    text-align: center;
+  }
+
+  .kopilot-pdp__mobile-head .kopilot-pdp__title {
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.84px;
+  }
+
+  .kopilot-pdp__desktop-head {
+    display: none;
+  }
+
+  .kopilot-pdp__buy {
+    gap: 24px;
+    padding: 18px 23px 0;
+  }
+
+  .kopilot-pdp__description--mobile {
+    display: block;
+    max-width: none;
+    font-size: 13px;
+  }
+
+  .kopilot-pdp__tier-inner {
+    padding: 17px 19px;
+  }
+
+  .kopilot-pdp__tier-badge {
+    padding: 7px 18px;
+    font-size: 10px;
+  }
+
+  .kopilot-pdp__included {
+    align-items: center;
+    text-align: center;
+  }
+
+  .kopilot-pdp__included-pills {
+    justify-content: center;
+    max-width: 317px;
+  }
+
+  .kopilot-pdp__included-pill {
+    font-size: 11px;
+    padding: 8px 13px;
+  }
+
+  .kopilot-pdp__add {
+    min-height: 50px;
+    font-size: 12px;
+  }
+
+  .kopilot-pdp__delivery {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .kopilot-pdp__delivery-line {
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .kopilot-pdp__accordion-trigger {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .kopilot-pdp__mobile-head {
+    display: none !important;
+  }
+}

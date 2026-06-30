@@ -1,0 +1,98 @@
+{% style %}
+  .kopilot-pdp-tap--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp-tap--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-pdp-tap.css' | asset_url | stylesheet_tag }}
+
+<section class="kopilot-section kopilot-pdp-tap kopilot-pdp-tap--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-pdp-tap__inner">
+    <div class="kopilot-pdp-tap__media">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'kopilot-pdp-tap.jpg',
+        alt: section.settings.heading,
+        width: 1400,
+        widths: '550,750,1100,1400'
+      %}
+    </div>
+    {% if section.settings.heading != blank %}
+      <h2 class="kopilot-pdp-tap__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot PDP tap",
+  "tag": "section",
+  "class": "kopilot-pdp-tap-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your critical emergency information in one tap."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 59
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 59
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    }
+  ],
+  "presets": [{ "name": "Kopilot PDP tap" }]
+}
+{% endschema %}

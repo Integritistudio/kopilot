@@ -1,300 +1,375 @@
 {
-    "sections": {
-        "main": {
-            "type": "product",
-            "blocks": {
-                "badge_LjLGBz": {
-                    "type": "badge",
-                    "settings": {
-                        "sold_out_badge_color_scheme": "scheme-2",
-                        "sale_badge_color_scheme": "scheme-2",
-                        "custom_badge_color_scheme": "scheme-2"
-                    }
-                },
-                "title_dB8AdK": {
-                    "type": "title",
-                    "settings": {}
-                },
-                "price_mE7YdG": {
-                    "type": "price",
-                    "settings": {}
-                },
-                "inventory_NYiF4n": {
-                    "type": "inventory",
-                    "settings": {
-                        "in_stock_color": "#007af9",
-                        "out_of_stock_color": "#ff0000",
-                        "threshold_color": "#d18d00",
-                        "threshold": 10
-                    }
-                },
-                "sku_VAVBLh": {
-                    "type": "sku",
-                    "settings": {}
-                },
-                "description_takcb3": {
-                    "type": "description",
-                    "settings": {
-                        "lines": 4
-                    }
-                },
-                "variant_picker_UXY9QK": {
-                    "type": "variant-picker",
-                    "settings": {
-                        "options_type": "button"
-                    }
-                },
-                "pickup_availability_xg98FN": {
-                    "type": "pickup-availability",
-                    "settings": {
-                        "pickup_bg": "#ebebeb",
-                        "pickup_text": "#180d05"
-                    }
-                },
-                "quantity_tdELB4": {
-                    "type": "quantity",
-                    "settings": {
-                        "show_quantity_breaks": true
-                    }
-                },
-                "add_to_cart_buttons_ThAnKY": {
-                    "type": "add-to-cart-buttons",
-                    "settings": {
-                        "show_dynamic_button": true,
-                        "show_gift_recipient_form": false
-                    }
-                },
-                "social_share_iikDcQ": {
-                    "type": "social-share",
-                    "disabled": true,
-                    "settings": {}
-                },
-                "complementary_products_pYxFTk": {
-                    "type": "complementary-products",
-                    "settings": {
-                        "head": "THE PERFECT MATCH",
-                        "limit": 8,
-                        "columns": "3",
-                        "text_align": "left",
-                        "product_card_style": "style2",
-                        "show_card_bg": true,
-                        "card_bg": "#f6f2f0",
-                        "card_text": "#000000",
-                        "card_text_align": "center",
-                        "aspect_ratio": "square",
-                        "show_quick_view": false
-                    }
-                }
-            },
-            "block_order": [
-                "badge_LjLGBz",
-                "title_dB8AdK",
-                "price_mE7YdG",
-                "inventory_NYiF4n",
-                "sku_VAVBLh",
-                "description_takcb3",
-                "variant_picker_UXY9QK",
-                "pickup_availability_xg98FN",
-                "quantity_tdELB4",
-                "add_to_cart_buttons_ThAnKY",
-                "social_share_iikDcQ",
-                "complementary_products_pYxFTk"
-            ],
-            "settings": {
-                "color_scheme": "scheme-1",
-                "gallery_layout": "horizontal",
-                "image_position": "left",
-                "media_style": "grid",
-                "use_narrow_container": false,
-                "columns": "single",
-                "aspect_ratio": "square",
-                "apply_bg": false,
-                "img_bg": "#14245c",
-                "show_social_share": true,
-                "show_sticky_add_to_cart": true,
-                "show_thumbnails": true,
-                "show_arrows": false,
-                "top_spacing": 100,
-                "bottom_spacing": 80
-            }
+  "sections": {
+    "kopilot_pdp": {
+      "type": "kopilot-pdp",
+      "blocks": {
+        "g1": { "type": "gallery_slide", "settings": { "caption": "The Information They Need After A Crash." } },
+        "g2": { "type": "gallery_slide", "settings": { "caption": "Trusted by thousands. Used at events, race series, & gear brands." } },
+        "g3": { "type": "gallery_slide", "settings": { "caption": "Three ways to mount it." } },
+        "g4": { "type": "gallery_slide", "settings": { "caption": "The details that matter." } },
+        "g5": { "type": "gallery_slide", "settings": { "caption": "Cover the crew. Save 20%." } },
+        "g6": { "type": "gallery_slide", "settings": { "caption": "Always ready." } },
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "quantity": 1,
+            "title": "1 TAG",
+            "subtitle": "Just for you.",
+            "badge": "DEFAULT",
+            "price": "$39.99"
+          }
         },
-        "product_tabs_VYFxHe": {
-            "type": "product-tabs",
-            "blocks": {
-                "tab_6akU7A": {
-                    "type": "tab",
-                    "settings": {
-                        "heading": "Specifications",
-                        "content": "<p>Add product specifications here.<\/p>",
-                        "show_description": false
-                    }
-                },
-                "tab_MExtik": {
-                    "type": "tab",
-                    "settings": {
-                        "heading": "Materials & Care",
-                        "content": "<p>Add materials and care instructions here.<\/p>",
-                        "show_description": false
-                    }
-                },
-                "tab_FwyBdD": {
-                    "type": "tab",
-                    "settings": {
-                        "heading": "Shipping & Returns",
-                        "content": "<p>Add shipping and returns information here.<\/p>",
-                        "show_description": false
-                    }
-                }
-            },
-            "block_order": [
-                "tab_6akU7A",
-                "tab_MExtik",
-                "tab_FwyBdD"
-            ],
-            "name": "Product tabs",
-            "settings": {
-                "color_scheme": "",
-                "show_payment_icons": true,
-                "payment_icons_heading": "Payment & Security",
-                "payment_bg": "#deefdd",
-                "payment_head": "#180d05",
-                "top_spacing": 40,
-                "bottom_spacing": 40
-            }
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "quantity": 2,
+            "title": "Set of 2",
+            "subtitle": "One for you, one for your friend.",
+            "price": "$71.99",
+            "compare_price": "$79.98",
+            "save_label": "Save 10%"
+          }
         },
-        "double_image_text_WkhkyH": {
-            "type": "double-image-text",
-            "blocks": {
-                "head_nEczWB": {
-                    "type": "head",
-                    "settings": {
-                        "head": "Image With Text",
-                        "size": "h1"
-                    }
-                },
-                "content_aQBXqp": {
-                    "type": "content",
-                    "settings": {
-                        "content": "<p>Add a section that pairs images with text to highlight products, features, or content. Each block can include an image or icon alongside a title or short description, making it easy to create visually engaging and informative layouts that draw attention to your key messages.<\/p>"
-                    }
-                },
-                "button_Gn8Tqk": {
-                    "type": "button",
-                    "settings": {
-                        "btn_label": "Button Label",
-                        "btn_link": "",
-                        "btn_label1": "Button Label",
-                        "btn_link1": ""
-                    }
-                }
-            },
-            "block_order": [
-                "head_nEczWB",
-                "content_aQBXqp",
-                "button_Gn8Tqk"
-            ],
-            "name": "Double image text",
-            "settings": {
-                "color_scheme": "",
-                "use_narrow_container": false,
-                "image_position": "left",
-                "padding_top": 80,
-                "padding_bottom": 80
-            }
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "quantity": 3,
+            "title": "Set of 3",
+            "subtitle": "For the whole crew.",
+            "badge": "BEST VALUE",
+            "price": "$95.99",
+            "compare_price": "$119.97",
+            "save_label": "Save 20%"
+          }
         },
-        "logo_slider_tjxFPG": {
-            "type": "logo-slider",
-            "blocks": {
-                "logo_MLMiqq": {
-                    "type": "logo",
-                    "settings": {}
-                },
-                "logo_AU7Grg": {
-                    "type": "logo",
-                    "settings": {}
-                },
-                "logo_cCrr3r": {
-                    "type": "logo",
-                    "settings": {}
-                },
-                "logo_9yWycP": {
-                    "type": "logo",
-                    "settings": {}
-                }
-            },
-            "block_order": [
-                "logo_MLMiqq",
-                "logo_AU7Grg",
-                "logo_cCrr3r",
-                "logo_9yWycP"
-            ],
-            "name": "Logo marquee",
-            "settings": {
-                "color_scheme": "",
-                "width": "full",
-                "direction": "left",
-                "speed": 20,
-                "gap": 30,
-                "logo_width": 120,
-                "enable_info_block": true,
-                "info_heading": "Heading",
-                "info_text": "Place info text here",
-                "padding_top": 40,
-                "padding_bottom": 40,
-                "padding_top_mobile": 20,
-                "padding_bottom_mobile": 20
-            }
-        },
-        "product_recommendations_Jt4Vbi": {
-            "type": "product-recommendations",
-            "name": "Product recommendations",
-            "settings": {
-                "color_scheme": "",
-                "head": "You may also like",
-                "head_align": "left",
-                "limit": 10,
-                "columns": 4,
-                "show_card_bg": false,
-                "card_bg": "#f6f2f0",
-                "card_text": "#000000",
-                "card_text_align": "center",
-                "title_size": "small",
-                "aspect_ratio": "portrait",
-                "show_quick_view": true,
-                "show_color_swatches": true,
-                "show_secondary_img": true,
-                "mob_cols": "1",
-                "top_spacing": 40,
-                "bottom_spacing": 40
-            }
-        },
-        "recently_viewed_TFG8ix": {
-            "type": "recently-viewed",
-            "name": "Recently viewed products",
-            "settings": {
-                "color_scheme": "",
-                "head": "Recently viewed",
-                "head_align": "left",
-                "limit": 8,
-                "columns": 4,
-                "show_card_bg": false,
-                "card_bg": "#f6f2f0",
-                "card_text": "#000000",
-                "card_text_align": "center",
-                "aspect_ratio": "portrait",
-                "show_quick_view": false,
-                "mob_cols": "1",
-                "top_spacing": 40,
-                "bottom_spacing": 40
-            }
-        }
+        "i1": { "type": "included_item", "settings": { "label": "KOPILOT.ID NFC tag" } },
+        "i2": { "type": "included_item", "settings": { "label": "1 Goggle mount" } },
+        "i3": { "type": "included_item", "settings": { "label": "1 Zipper mount" } },
+        "i4": { "type": "included_item", "settings": { "label": "1 Carbon helmet mount" } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4", "g5", "g6", "t1", "t2", "t3", "i1", "i2", "i3", "i4"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "promo_text": "Special offer. Save up to 20% on multi-packs.",
+        "title": "The piece of gear you don't think about until you need it.",
+        "show_reviews": true,
+        "star_rating": 5,
+        "review_count": "8",
+        "description": "The KOPILOT.ID NFC tag helps the people around you access your medical information and emergency contacts instantly after an accident. Attach it to your gear of choice and stay prepared wherever you go.",
+        "included_heading": "What's included:",
+        "button_label": "ADD TO CART - 1 TAG",
+        "shipping_heading": "Shipping & Returns",
+        "shipping_content": "<p>Free standard shipping on all orders. Returns accepted within 30 days if the product is unused and in original packaging.</p>",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
     },
-    "order": [
-        "main",
-        "product_tabs_VYFxHe",
-        "double_image_text_WkhkyH",
-        "logo_slider_tjxFPG",
-        "product_recommendations_Jt4Vbi",
-        "recently_viewed_TFG8ix"
-    ]
+    "kopilot_partners": {
+      "type": "kopilot-partners",
+      "blocks": {
+        "p1": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
+            "logo_width": 66,
+            "logo_width_mobile": 42
+          }
+        },
+        "p2": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659501.png",
+            "logo_width": 182,
+            "logo_width_mobile": 116
+          }
+        },
+        "p3": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659502_8b7bc8c5-eb77-46df-920f-1673c025bd9f.png",
+            "logo_width": 182,
+            "logo_width_mobile": 116
+          }
+        },
+        "p4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659503_a31b3f09-1333-498c-8ce3-32d6e74556cd.png",
+            "logo_width": 108,
+            "logo_width_mobile": 69
+          }
+        },
+        "p5": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659484_75719cfe-6034-4e6f-9950-edc3598fb3d2.png",
+            "logo_width": 91,
+            "logo_width_mobile": 58
+          }
+        },
+        "p6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_18659485_73b9c127-eef5-444f-94a4-d2ebbc6776e5.png",
+            "logo_width": 91,
+            "logo_width_mobile": 58
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "text": "Trusted by riders, racers, and event partners across North America.",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 20
+      }
+    },
+    "kopilot_image_text": {
+      "type": "kopilot-image-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "image_position": "right",
+        "text_font_family": "Figtree",
+        "text_alignment_mobile": "center",
+        "heading": "<h2>Built for emergencies. Ready every day.</h2>",
+        "text": "<p>In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.</p>",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_pdp_tap": {
+      "type": "kopilot-pdp-tap",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Your critical emergency information in one tap.",
+        "padding_top": 59,
+        "padding_bottom": 59,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_features": {
+      "type": "kopilot-features",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "label": "<p>Durable and waterproof</p>" } },
+        "f2": { "type": "feature", "settings": { "label": "<p>Instantly access emergency info</p>" } },
+        "f3": { "type": "feature", "settings": { "label": "<p>No battery / No charging</p>" } },
+        "f4": { "type": "feature", "settings": { "label": "<p>Translates into 24 languages</p>" } },
+        "f5": { "type": "feature", "settings": { "icon": "shopify://shop_images/Group_38.svg", "label": "<p>No subscription required</p>" } },
+        "f6": { "type": "feature", "settings": { "icon": "shopify://shop_images/Group_34.svg", "label": "<p>Works everywhere</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_position": "right",
+        "heading_rt": "<p>The details that matter.</p>",
+        "text": "",
+        "padding_top": 73,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_pdp_privacy": {
+      "type": "kopilot-pdp-privacy",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Built with privacy in mind.",
+        "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "padding_top_mobile": 31,
+        "padding_bottom_mobile": 31
+      }
+    },
+    "kopilot_pdp_testimonials": {
+      "type": "kopilot-pdp-testimonials",
+      "blocks": {
+        "tm1": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jerry",
+            "role": "Motorcyclist",
+            "location": "Arizona",
+            "quote": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets.",
+            "show_verified": true
+          }
+        },
+        "tm2": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Nicolas",
+            "role": "Mountain biker",
+            "location": "California",
+            "quote": "Jacket, backpack, and helmet now all have the little red life-saving tag! Easy to move between my gear.",
+            "show_verified": true
+          }
+        },
+        "tm3": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Karen",
+            "role": "Hiker",
+            "location": "Oregon",
+            "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas.",
+            "show_verified": true
+          }
+        }
+      },
+      "block_order": ["tm1", "tm2", "tm3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Trusted by thousands.",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "kopilot_reviews": {
+      "type": "kopilot-reviews",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "author": "Don M", "verified": true, "date": "04/16/2026", "text": "Easy to set up and mount on my helmet" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "author": "Richard", "verified": true, "date": "03/24/2026", "text": "My other half was diagnosed with a brain tumour a few years ago, resulting in surgery and radio/chemotherapy. She is now on various medications alongside the fear of serious seizures. KOPILOT.ID gives us piece of mind that regardless of which activity she is participating in, if anything happens someone can quickly find essential information." } },
+        "r3": { "type": "review", "settings": { "rating": 5, "author": "Jerry", "verified": false, "date": "03/03/2026", "text": "What a great idea/product. I know this isn't the primary function, but I found a motorcycle helmet on the side of the interstate yesterday. I pulled over and grabbed it, and it had one of these tags on it. It says, \"Tap Phone Here\", so I did. It instantly pulled up the owner's info so I reached out to him and he got his helmet back." } },
+        "r4": { "type": "review", "settings": { "rating": 5, "author": "James", "verified": true, "date": "02/17/2026", "text": "Love it!" } },
+        "r5": { "type": "review", "settings": { "rating": 5, "author": "Didukhksenia", "verified": false, "date": "01/07/2026", "text": "Great!" } },
+        "r6": { "type": "review", "settings": { "rating": 5, "author": "Sarah K", "verified": true, "date": "12/15/2025", "text": "Easy to set up and works exactly as described." } },
+        "r7": { "type": "review", "settings": { "rating": 5, "author": "Mike T", "verified": true, "date": "11/22/2025", "text": "Perfect for keeping emergency info accessible on every ride." } },
+        "r8": { "type": "review", "settings": { "rating": 5, "author": "Alex P", "verified": false, "date": "10/08/2025", "text": "Great quality tag and simple setup." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Customer Reviews.",
+        "average_rating": "5.00",
+        "total_reviews": 8,
+        "star_5_count": 8,
+        "star_4_count": 0,
+        "star_3_count": 0,
+        "star_2_count": 0,
+        "star_1_count": 0,
+        "reviews_per_page": 5,
+        "write_review_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "kopilot_faq": {
+      "type": "kopilot-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How does KOPILOT.ID work in an emergency?",
+            "answer": "<p>If something happens, anyone with a smartphone can tap your KOPILOT.ID NFC tag to instantly access your medical information, allergies, medications, and emergency contacts; no app required.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do people need to download an app to scan the tag?",
+            "answer": "<p>No. Most modern smartphones can read NFC tags directly from the lock screen or camera. Your emergency profile opens in the browser without requiring a download.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Does KOPILOT.ID work without cell service?",
+            "answer": "<p>Yes. The NFC tag itself works without cell service or battery. As long as the person scanning has a smartphone, they can access your information even in remote areas.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What information can I add to my profile?",
+            "answer": "<p>You can add essential details like allergies, medical conditions, medications, blood type, and emergency contacts — everything a first responder would need to help you quickly.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I manage multiple tags from one account?",
+            "answer": "<p>Yes. You can manage multiple tags, gear setups, and family members from a single KOPILOT.ID account in the app.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a subscription required?",
+            "answer": "<p>No. KOPILOT.ID does not require a subscription. Set up your profile once and use your tag without recurring fees.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "What gear can I attach the NFC tag to?",
+            "answer": "<p>Most riders attach it to their helmet, chest protector, pack, or bike using the included goggle, zipper, or carbon helmet mounts.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Why would I buy a multi-pack?",
+            "answer": "<p>Multi-packs let you equip more gear, share tags with friends or family, and save up to 20% compared to buying individually.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Questions",
+        "padding_top": 105,
+        "padding_bottom": 105,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "kopilot_pdp_partner_cta": {
+      "type": "kopilot-pdp-partner-cta",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Partner with KOPILOT.ID",
+        "text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
+        "link_label": "See partnerships",
+        "link_url": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "kopilot_hero2": {
+      "type": "kopilot-hero2",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Don't let your next adventure be your last.",
+        "body": "",
+        "button_label": "Get KOPILOT.ID",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "kopilot_pdp",
+    "kopilot_partners",
+    "kopilot_image_text",
+    "kopilot_pdp_tap",
+    "kopilot_features",
+    "kopilot_pdp_privacy",
+    "kopilot_pdp_testimonials",
+    "kopilot_reviews",
+    "kopilot_faq",
+    "kopilot_pdp_partner_cta",
+    "kopilot_hero2"
+  ]
 }
