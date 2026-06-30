@@ -35,8 +35,15 @@ When a customer adds a different tier while the product is already in cart, the 
 
 Template
 --------
-The default product template (templates/product.json) is the Kopilot PDP.
-No per-product template assignment is required if this is your only product.
+Product template: templates/product.json (default product page)
+Page template: templates/page.pdp.json — assign to a Page in Admin for /pages/pdp
+
+Page setup (Admin)
+------------------
+1. Online Store → Pages → Add page
+2. Title: PDP (handle becomes /pages/pdp)
+3. Theme template: pdp
+4. Customize theme → open the PDP page → Kopilot PDP section → select the KOPILOT product
 
 SEO (from Figma)
 ----------------

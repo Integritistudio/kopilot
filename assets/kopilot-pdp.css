@@ -1,3 +1,13 @@
+.kopilot-pdp__missing-product {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 14px;
+  text-align: center;
+  color: #000;
+}
+
 .kopilot-pdp {
   background: #fff;
   color: #000;

@@ -17,14 +17,28 @@
 <script src="{{ 'kopilot-pdp.js' | asset_url }}" defer></script>
 
 {% liquid
-  assign current_variant = product.selected_or_first_available_variant
+  if section.settings.product != blank
+    assign pdp_product = section.settings.product
+  elsif product != blank
+    assign pdp_product = product
+  endif
+
+  if pdp_product != blank
+    assign current_variant = pdp_product.selected_or_first_available_variant
+  endif
+
   assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
   assign tier_icon_fallbacks = 'kopilot-product-1tag.png,kopilot-product-2tags.png,kopilot-product-3tags.png' | split: ','
 %}
 
+{% if pdp_product == blank %}
+  <div class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }}">
+    <p class="kopilot-pdp__missing-product">Select a product in the Kopilot PDP section settings.</p>
+  </div>
+{% else %}
 <kopilot-pdp
   class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }} color-{{ section.settings.color_scheme }}"
-  data-product-id="{{ product.id }}"
+  data-product-id="{{ pdp_product.id }}"
   data-variant-id="{{ current_variant.id }}"
 >
   <div class="kopilot-pdp__inner">
@@ -37,7 +51,7 @@
         {% if section.settings.title != blank %}
           {{ section.settings.title }}
         {% else %}
-          {{ product.title }}
+          {{ pdp_product.title }}
         {% endif %}
       </h1>
       {% if section.settings.show_reviews %}
@@ -118,7 +132,7 @@
             {% if section.settings.title != blank %}
               {{ section.settings.title }}
             {% else %}
-              {{ product.title }}
+              {{ pdp_product.title }}
             {% endif %}
           </h1>
 
@@ -131,8 +145,8 @@
 
           {% if section.settings.description != blank %}
             <p class="kopilot-pdp__description">{{ section.settings.description }}</p>
-          {% elsif product.description != blank %}
-            <div class="kopilot-pdp__description rte">{{ product.description | strip_html | truncate: 320 }}</div>
+          {% elsif pdp_product.description != blank %}
+            <div class="kopilot-pdp__description rte">{{ pdp_product.description | strip_html | truncate: 320 }}</div>
           {% endif %}
         </div>
 
@@ -268,6 +282,7 @@
     </div>
   </div>
 </kopilot-pdp>
+{% endif %}
 
 {% schema %}
 {
@@ -276,6 +291,12 @@
   "class": "kopilot-pdp-section",
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Required on page templates. On product templates, leave empty to use the current product."
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
