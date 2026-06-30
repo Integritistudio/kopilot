@@ -9,6 +9,181 @@
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
+    
+    /* Remove slider pagination indicators on mobile layout per image_8259ff.png */
+    .kopilot-pdp__carousel-dots {
+      display: none !important;
+    }
+
+    /* Clean transparent layout structure for mobile gallery wrappers */
+    .kopilot-pdp__gallery-mobile {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    /* Standardizes exact layout spacing gap above the banner header */
+    .kopilot-pdp__special-banner {
+      margin-top: 12px !important;
+      position: relative !important;
+    }
+  }
+
+  /* Description Typography Setup */
+  .kopilot-pdp__description {
+    font-size: 20px !important;
+    line-height: 1.30 !important;
+  }
+  .kopilot-pdp__description strong, 
+  .kopilot-pdp__description b {
+    font-weight: 700;
+  }
+
+  /* Core Layout Custom Colors */
+  .kopilot-pdp__tier-badge {
+    background-color: #F20008;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 6px 12px;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+
+  /* Tier Save Badge Specific Custom Styles */
+  .kopilot-pdp__tier-save {
+    color: #F20008 !important;
+    background-color: #FECECE !important;
+  }
+
+  /* Add to Cart Button Optimization Specs */
+  .kopilot-pdp__add {
+    background-color: #141416 !important;
+    font-size: 20px !important;
+    line-height: 25.3px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Order & Delivery Typography Row Rules */
+  .kopilot-pdp__delivery-line {
+    font-size: 20px !important;
+    line-height: 1.30 !important;
+  }
+  .kopilot-pdp__delivery-label {
+    font-weight: 700 !important;
+    color: #141416 !important;
+    text-transform: uppercase;
+  }
+  .kopilot-pdp__delivery-value {
+    font-weight: 400 !important;
+  }
+
+  /* Included Items Pill UI Optimization */
+  .kopilot-pdp__included-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7.5px !important;
+  }
+  .kopilot-pdp__included-pill {
+    background-color: #EEEEEE !important;
+    color: #000000 !important;
+    border-radius: 0px !important;
+    border: none !important;
+    padding: 8.25px 12.75px !important;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  /* Gallery Overlay Typography Setup */
+  .kopilot-pdp__gallery-cell {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .kopilot-pdp__gallery-text-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  /* Precision positions: top, bottom, top-center, bottom-center */
+  .kopilot-pdp__gallery-text-container--top {
+    top: 0;
+    bottom: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .kopilot-pdp__gallery-text-container--bottom {
+    bottom: 0;
+    top: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .kopilot-pdp__gallery-text-container--top-center {
+    top: 0;
+    bottom: auto;
+    align-items: center;
+    text-align: center;
+  }
+  .kopilot-pdp__gallery-text-container--bottom-center {
+    bottom: 0;
+    top: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Content Text Engine */
+  .kopilot-pdp__gallery-text-line {
+    font-family: 'elza', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.26;
+    margin: 0;
+  }
+  .kopilot-pdp__gallery-text-line--uppercase {
+    text-transform: uppercase;
+  }
+  .kopilot-pdp__gallery-text-line--normal {
+    text-transform: none;
+  }
+  .kopilot-pdp__gallery-text-line--white {
+    color: #ffffff;
+  }
+  .kopilot-pdp__gallery-text-line--red {
+    color: #F20008;
+  }
+
+  /* Special Top Ribbon Offer */
+  .kopilot-pdp__special-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #F20008;
+    color: #ffffff;
+    font-family: 'elza', sans-serif;
+    font-size: 12.78px;
+    font-weight: 500;
+    line-height: 1.30;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6.39px 10px;
+    letter-spacing: 0.05em;
+    z-index: 3;
+  }
+  
+  /* Text container offsets if top red banner ribbon is enabled */
+  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top,
+  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top-center {
+    padding-top: 45px;
   }
 {% endstyle %}
 
@@ -42,10 +217,6 @@
   data-variant-id="{{ current_variant.id }}"
 >
   <div class="kopilot-pdp__inner">
-    {% if section.settings.promo_text != blank %}
-      <div class="kopilot-pdp__promo">{{ section.settings.promo_text }}</div>
-    {% endif %}
-
     <div class="kopilot-pdp__mobile-head">
       <h1 class="kopilot-pdp__title">
         {% if section.settings.title != blank %}
@@ -56,7 +227,7 @@
       </h1>
       {% if section.settings.show_reviews %}
         <div class="kopilot-pdp__reviews-row">
-          {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#000000' %}
+          {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
           <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
         </div>
       {% endif %}
@@ -68,18 +239,30 @@
           {% for block in section.blocks %}
             {% if block.type == 'gallery_slide' %}
               <article
-                class="kopilot-pdp__gallery-cell{% if forloop.first %} kopilot-pdp__gallery-cell--promo{% endif %}"
+                class="kopilot-pdp__gallery-cell"
                 {{ block.shopify_attributes }}
               >
+                {% if block.settings.show_special_banner %}
+                  <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
+                {% endif %}
+
                 {% render 'kopilot-image',
                   image: block.settings.image,
                   fallback: gallery_fallbacks[forloop.index0],
-                  alt: block.settings.caption,
+                  alt: block.settings.text_line_1,
                   width: 800,
                   class: 'kopilot-pdp__gallery-image'
                 %}
-                {% if block.settings.caption != blank %}
-                  <p class="kopilot-pdp__gallery-caption">{{ block.settings.caption }}</p>
+                
+                {% if block.settings.text_line_1 != blank or block.settings.text_line_2 != blank %}
+                  <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ block.settings.text_position | default: 'bottom' }}">
+                    {% if block.settings.text_line_1 != blank %}
+                      <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_1 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_1 }}">{{ block.settings.text_line_1 | newline_to_br }}</p>
+                    {% endif %}
+                    {% if block.settings.text_line_2 != blank %}
+                      <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_2 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_2 }}">{{ block.settings.text_line_2 | newline_to_br }}</p>
+                    {% endif %}
+                  </div>
                 {% endif %}
               </article>
             {% endif %}
@@ -92,15 +275,27 @@
               {% for block in section.blocks %}
                 {% if block.type == 'gallery_slide' %}
                   <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
+                    {% if block.settings.show_special_banner %}
+                      <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
+                    {% endif %}
+
                     {% render 'kopilot-image',
                       image: block.settings.image,
                       fallback: gallery_fallbacks[forloop.index0],
-                      alt: block.settings.caption,
+                      alt: block.settings.text_line_1,
                       width: 800,
                       loading: forloop.first
                     %}
-                    {% if block.settings.caption != blank %}
-                      <p class="kopilot-pdp__gallery-caption">{{ block.settings.caption }}</p>
+                    
+                    {% if block.settings.text_line_1 != blank or block.settings.text_line_2 != blank %}
+                      <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ block.settings.text_position | default: 'bottom' }}">
+                        {% if block.settings.text_line_1 != blank %}
+                          <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_1 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_1 }}">{{ block.settings.text_line_1 | newline_to_br }}</p>
+                        {% endif %}
+                        {% if block.settings.text_line_2 != blank %}
+                          <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_2 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_2 }}">{{ block.settings.text_line_2 | newline_to_br }}</p>
+                        {% endif %}
+                      </div>
                     {% endif %}
                   </div>
                 {% endif %}
@@ -138,7 +333,7 @@
 
           {% if section.settings.show_reviews %}
             <div class="kopilot-pdp__reviews-row">
-              {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#000000' %}
+              {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
               <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
             </div>
           {% endif %}
@@ -149,10 +344,6 @@
             <div class="kopilot-pdp__description rte">{{ pdp_product.description | strip_html | truncate: 320 }}</div>
           {% endif %}
         </div>
-
-        {% if section.settings.description != blank %}
-          <p class="kopilot-pdp__description kopilot-pdp__description--mobile">{{ section.settings.description }}</p>
-        {% endif %}
 
         <div class="kopilot-pdp__tiers" role="group" aria-label="Choose quantity">
           {% assign tier_index = 0 %}
@@ -209,9 +400,7 @@
                       <p class="kopilot-pdp__tier-title">{{ block.settings.title }}</p>
                     </div>
                     {% if block.settings.badge != blank and badge_downcase != 'default' %}
-                      <span class="kopilot-pdp__tier-badge">{{ block.settings.badge }}</span>
-                    {% elsif is_default_tier %}
-                      <span class="kopilot-pdp__tier-badge">DEFAULT</span>
+                      <span class="kopilot-pdp__tier-badge" style="background-color: #F20008;">{{ block.settings.badge }}</span>
                     {% endif %}
                   </div>
 
@@ -339,8 +528,7 @@
     {
       "type": "textarea",
       "id": "description",
-      "label": "Description",
-      "default": "The KOPILOT.ID NFC tag helps the people around you access your medical information and emergency contacts instantly after an accident. Attach it to your gear of choice and stay prepared wherever you go."
+      "label": "Description"
     },
     {
       "type": "text",
@@ -366,42 +554,10 @@
       "label": "Shipping accordion content",
       "default": "<p>Free standard shipping on all orders. Returns accepted within 30 days if the product is unused and in original packaging.</p>"
     },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Top padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Bottom padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 0
-    }
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "default": 0 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 80, "step": 4, "default": 0 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 80, "step": 4, "default": 0 }
   ],
   "blocks": [
     {
@@ -410,10 +566,81 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         {
-          "type": "text",
-          "id": "caption",
-          "label": "Caption",
-          "default": "The Information They Need After A Crash."
+          "type": "checkbox",
+          "id": "show_special_banner",
+          "label": "Show Top Red Offer Ribbon",
+          "default": false
+        },
+        {
+          "type": "textarea",
+          "id": "special_banner_text",
+          "label": "Offer Ribbon Text",
+          "default": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS."
+        },
+        { "type": "header", "content": "Overlay Text Line 1" },
+        {
+          "type": "textarea",
+          "id": "text_line_1",
+          "label": "Text Line 1 (Supports line breaks)"
+        },
+        {
+          "type": "select",
+          "id": "color_line_1",
+          "label": "Color Line 1",
+          "options": [
+            { "value": "white", "label": "White" },
+            { "value": "red", "label": "Red (#F20008)" }
+          ],
+          "default": "white"
+        },
+        {
+          "type": "select",
+          "id": "transform_line_1",
+          "label": "Case Style Line 1",
+          "options": [
+            { "value": "normal", "label": "Normal Case" },
+            { "value": "uppercase", "label": "ALL CAPS" }
+          ],
+          "default": "uppercase"
+        },
+        { "type": "header", "content": "Overlay Text Line 2" },
+        {
+          "type": "textarea",
+          "id": "text_line_2",
+          "label": "Text Line 2 (Supports line breaks)"
+        },
+        {
+          "type": "select",
+          "id": "color_line_2",
+          "label": "Color Line 2",
+          "options": [
+            { "value": "white", "label": "White" },
+            { "value": "red", "label": "Red (#F20008)" }
+          ],
+          "default": "red"
+        },
+        {
+          "type": "select",
+          "id": "transform_line_2",
+          "label": "Case Style Line 2",
+          "options": [
+            { "value": "normal", "label": "Normal Case" },
+            { "value": "uppercase", "label": "ALL CAPS" }
+          ],
+          "default": "uppercase"
+        },
+        { "type": "header", "content": "Layout Position" },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text Container Position",
+          "options": [
+            { "value": "top", "label": "Top Left" },
+            { "value": "top-center", "label": "Top Center" },
+            { "value": "bottom", "label": "Bottom Left" },
+            { "value": "bottom-center", "label": "Bottom Center" }
+          ],
+          "default": "bottom"
         }
       ]
     },
@@ -443,49 +670,24 @@
     {
       "name": "Kopilot PDP",
       "blocks": [
-        { "type": "gallery_slide", "settings": { "caption": "The Information They Need After A Crash." } },
-        { "type": "gallery_slide", "settings": { "caption": "Trusted by thousands. Used at events, race series, & gear brands." } },
-        { "type": "gallery_slide", "settings": { "caption": "Three ways to mount it." } },
-        { "type": "gallery_slide", "settings": { "caption": "The details that matter." } },
-        { "type": "gallery_slide", "settings": { "caption": "Cover the crew. Save 20%." } },
-        { "type": "gallery_slide", "settings": { "caption": "Always ready." } },
-        {
-          "type": "tier",
-          "settings": {
-            "quantity": 1,
-            "title": "1 TAG",
-            "subtitle": "Just for you.",
-            "badge": "DEFAULT",
-            "price": "$39.99"
-          }
+        { 
+          "type": "gallery_slide", 
+          "settings": { 
+            "show_special_banner": true,
+            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
+            "text_line_1": "THE INFORMATION THEY\nNEED AFTER A CRASH.", 
+            "color_line_1": "white",
+            "text_position": "bottom" 
+          } 
         },
-        {
-          "type": "tier",
-          "settings": {
-            "quantity": 2,
-            "title": "Set of 2",
-            "subtitle": "One for you, one for your friend.",
-            "price": "$71.99",
-            "compare_price": "$79.98",
-            "save_label": "Save 10%"
-          }
-        },
-        {
-          "type": "tier",
-          "settings": {
-            "quantity": 3,
-            "title": "Set of 3",
-            "subtitle": "For the whole crew.",
-            "badge": "BEST VALUE",
-            "price": "$95.99",
-            "compare_price": "$119.97",
-            "save_label": "Save 20%"
-          }
-        },
-        { "type": "included_item", "settings": { "label": "KOPILOT.ID NFC tag" } },
-        { "type": "included_item", "settings": { "label": "1 Goggle mount" } },
-        { "type": "included_item", "settings": { "label": "1 Zipper mount" } },
-        { "type": "included_item", "settings": { "label": "1 Carbon helmet mount" } }
+        { 
+          "type": "gallery_slide", 
+          "settings": { 
+            "text_line_1": "TRUSTED BY THOUSANDS. USED AT\nEVENTS, RACE SERIES, & GEAR BRANDS.", 
+            "color_line_1": "white",
+            "text_position": "bottom" 
+          } 
+        }
       ]
     }
   ]

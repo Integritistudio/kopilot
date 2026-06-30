@@ -1,14 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "kopilot_pdp": {
       "type": "kopilot-pdp",
       "blocks": {
-        "g1": { "type": "gallery_slide", "settings": { "caption": "The Information They Need After A Crash." } },
-        "g2": { "type": "gallery_slide", "settings": { "caption": "Trusted by thousands. Used at events, race series, & gear brands." } },
-        "g3": { "type": "gallery_slide", "settings": { "caption": "Three ways to mount it." } },
-        "g4": { "type": "gallery_slide", "settings": { "caption": "The details that matter." } },
-        "g5": { "type": "gallery_slide", "settings": { "caption": "Cover the crew. Save 20%." } },
-        "g6": { "type": "gallery_slide", "settings": { "caption": "Always ready." } },
+        "g1": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
+        "g2": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
+        "g3": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
+        "g4": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
+        "g5": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
+        "g6": {
+          "type": "gallery_slide",
+          "settings": {}
+        },
         "t1": {
           "type": "tier",
           "settings": {
@@ -42,12 +69,46 @@
             "save_label": "Save 20%"
           }
         },
-        "i1": { "type": "included_item", "settings": { "label": "KOPILOT.ID NFC tag" } },
-        "i2": { "type": "included_item", "settings": { "label": "1 Goggle mount" } },
-        "i3": { "type": "included_item", "settings": { "label": "1 Zipper mount" } },
-        "i4": { "type": "included_item", "settings": { "label": "1 Carbon helmet mount" } }
+        "i1": {
+          "type": "included_item",
+          "settings": {
+            "label": "KOPILOT.ID NFC tag"
+          }
+        },
+        "i2": {
+          "type": "included_item",
+          "settings": {
+            "label": "1 Goggle mount"
+          }
+        },
+        "i3": {
+          "type": "included_item",
+          "settings": {
+            "label": "1 Zipper mount"
+          }
+        },
+        "i4": {
+          "type": "included_item",
+          "settings": {
+            "label": "1 Carbon helmet mount"
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3", "g4", "g5", "g6", "t1", "t2", "t3", "i1", "i2", "i3", "i4"],
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "t1",
+        "t2",
+        "t3",
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "promo_text": "Special offer. Save up to 20% on multi-packs.",
@@ -118,7 +179,14 @@
           }
         }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "text": "Trusted by riders, racers, and event partners across North America.",
@@ -158,14 +226,53 @@
     "kopilot_features": {
       "type": "kopilot-features",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "label": "<p>Durable and waterproof</p>" } },
-        "f2": { "type": "feature", "settings": { "label": "<p>Instantly access emergency info</p>" } },
-        "f3": { "type": "feature", "settings": { "label": "<p>No battery / No charging</p>" } },
-        "f4": { "type": "feature", "settings": { "label": "<p>Translates into 24 languages</p>" } },
-        "f5": { "type": "feature", "settings": { "icon": "shopify://shop_images/Group_38.svg", "label": "<p>No subscription required</p>" } },
-        "f6": { "type": "feature", "settings": { "icon": "shopify://shop_images/Group_34.svg", "label": "<p>Works everywhere</p>" } }
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>Durable and waterproof</p>"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>Instantly access emergency info</p>"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>No battery / No charging</p>"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "label": "<p>Translates into 24 languages</p>"
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_38.svg",
+            "label": "<p>No subscription required</p>"
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_34.svg",
+            "label": "<p>Works everywhere</p>"
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "image_position": "right",
@@ -223,7 +330,11 @@
           }
         }
       },
-      "block_order": ["tm1", "tm2", "tm3"],
+      "block_order": [
+        "tm1",
+        "tm2",
+        "tm3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Trusted by thousands.",
@@ -236,16 +347,97 @@
     "kopilot_reviews": {
       "type": "kopilot-reviews",
       "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "author": "Don M", "verified": true, "date": "04/16/2026", "text": "Easy to set up and mount on my helmet" } },
-        "r2": { "type": "review", "settings": { "rating": 5, "author": "Richard", "verified": true, "date": "03/24/2026", "text": "My other half was diagnosed with a brain tumour a few years ago, resulting in surgery and radio/chemotherapy. She is now on various medications alongside the fear of serious seizures. KOPILOT.ID gives us piece of mind that regardless of which activity she is participating in, if anything happens someone can quickly find essential information." } },
-        "r3": { "type": "review", "settings": { "rating": 5, "author": "Jerry", "verified": false, "date": "03/03/2026", "text": "What a great idea/product. I know this isn't the primary function, but I found a motorcycle helmet on the side of the interstate yesterday. I pulled over and grabbed it, and it had one of these tags on it. It says, \"Tap Phone Here\", so I did. It instantly pulled up the owner's info so I reached out to him and he got his helmet back." } },
-        "r4": { "type": "review", "settings": { "rating": 5, "author": "James", "verified": true, "date": "02/17/2026", "text": "Love it!" } },
-        "r5": { "type": "review", "settings": { "rating": 5, "author": "Didukhksenia", "verified": false, "date": "01/07/2026", "text": "Great!" } },
-        "r6": { "type": "review", "settings": { "rating": 5, "author": "Sarah K", "verified": true, "date": "12/15/2025", "text": "Easy to set up and works exactly as described." } },
-        "r7": { "type": "review", "settings": { "rating": 5, "author": "Mike T", "verified": true, "date": "11/22/2025", "text": "Perfect for keeping emergency info accessible on every ride." } },
-        "r8": { "type": "review", "settings": { "rating": 5, "author": "Alex P", "verified": false, "date": "10/08/2025", "text": "Great quality tag and simple setup." } }
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Don M",
+            "verified": true,
+            "date": "04/16/2026",
+            "text": "Easy to set up and mount on my helmet"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Richard",
+            "verified": true,
+            "date": "03/24/2026",
+            "text": "My other half was diagnosed with a brain tumour a few years ago, resulting in surgery and radio/chemotherapy. She is now on various medications alongside the fear of serious seizures. KOPILOT.ID gives us piece of mind that regardless of which activity she is participating in, if anything happens someone can quickly find essential information."
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Jerry",
+            "verified": false,
+            "date": "03/03/2026",
+            "text": "What a great idea/product. I know this isn't the primary function, but I found a motorcycle helmet on the side of the interstate yesterday. I pulled over and grabbed it, and it had one of these tags on it. It says, \"Tap Phone Here\", so I did. It instantly pulled up the owner's info so I reached out to him and he got his helmet back."
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "James",
+            "verified": true,
+            "date": "02/17/2026",
+            "text": "Love it!"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Didukhksenia",
+            "verified": false,
+            "date": "01/07/2026",
+            "text": "Great!"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Sarah K",
+            "verified": true,
+            "date": "12/15/2025",
+            "text": "Easy to set up and works exactly as described."
+          }
+        },
+        "r7": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Mike T",
+            "verified": true,
+            "date": "11/22/2025",
+            "text": "Perfect for keeping emergency info accessible on every ride."
+          }
+        },
+        "r8": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "author": "Alex P",
+            "verified": false,
+            "date": "10/08/2025",
+            "text": "Great quality tag and simple setup."
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8"],
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Customer Reviews.",
@@ -324,7 +516,16 @@
           }
         }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Questions",

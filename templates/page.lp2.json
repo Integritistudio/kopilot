@@ -94,7 +94,7 @@
         "f2": {
           "type": "feature",
           "settings": {
-            "label": "<p>No battery/ <br>no charging</p>"
+            "label": "<p>No battery/ <br/>No charging</p>"
           }
         },
         "f3": {
@@ -137,7 +137,7 @@
         "color_scheme": "scheme-1",
         "image": "shopify://shop_images/fea9a2f964d1439c2cb5d4a69d34e8c706844672.jpg",
         "image_position": "right",
-        "heading": "The details that <br>matter.",
+        "heading_rt": "<p>For the rides you plan and the moments you don't.</p>",
         "text": "KOPILOT.ID gives responders a clear view of your medical conditions, medications, allergies, and emergency contacts. Set it up once and keep it with your gear, ready for every run, ride, or route.",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -226,7 +226,7 @@
         "a1": {
           "type": "card",
           "settings": {
-            "badge": "Ambassador",
+            "badge": "",
             "name": "Hillary Allen",
             "role": "Team USA // Ultra Marathon Trail Runner",
             "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
@@ -236,7 +236,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Frame_1597884697.png",
-            "badge": "Event",
+            "badge": "",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
             "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
@@ -246,7 +246,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/54be919ffa61653f81de40bafbaea78e03149ffd.png",
-            "badge": "Ambassador",
+            "badge": "",
             "name": "Kait Boyle",
             "role": "Professional Backcountry Cyclist & Bikepacker",
             "quote": "<p>As a wife, dog mom, daughter, sister, friend, and community member, I deeply understand the importance of managing risk of solo recreation in the backcountry. <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> is the simplest, easiest way to add a layer of assurance and safety.</p>"
@@ -684,7 +684,7 @@
         "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
-        "media_margin_top": -25,
+        "media_margin_top": -45,
         "media_margin_top_mobile": -15,
         "padding_top": 0,
         "padding_bottom": 0,
