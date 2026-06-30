@@ -7,12 +7,13 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "kopilot_home_hero": {
       "type": "kopilot-home-hero",
       "settings": {
         "color_scheme": "scheme-1",
+        "video": "",
         "heading_desktop": "<p>Your Critical Emergency<br>Information<br><span>Just A Tap Away</span></p>",
         "heading_mobile": "<p>Your Critical Emergency Information <span>Just A Tap Away</span></p>",
         "description": "KOPILOT.ID emergency medical ID uses NFC technology to store your medical + emergency contact information and make it easily accessible in the event of an emergency.",
@@ -131,7 +132,7 @@
         "hf2": {
           "type": "feature",
           "settings": {
-            "label": "<p>No battery / No charging</p>"
+            "label": "<p>No battery / </p><p>No charging</p>"
           }
         },
         "hf3": {
@@ -174,6 +175,7 @@
         "color_scheme": "scheme-1",
         "image_alt": "KOPILOT.ID tag on helmet",
         "heading": "<p>Designed for any conditions you're willing to brave.</p>",
+        "show_heading_mobile": false,
         "text": "<p>Built for everyday carry as well as harsh conditions, every KOPILOT.ID includes three versatile and dependable mounts. Allowing you to outfit your gear with ease and know that you are covered wherever you go.</p>"
       }
     },
@@ -192,6 +194,7 @@
         "act1": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/566132510237f8fa9b256333ddcd9473c0f0f8b8.jpg",
             "category": "Motorcycling",
             "title": "Go full throttle.",
             "text": "Built tough to handle crashes, weather, and high speeds.",
@@ -201,6 +204,7 @@
         "act2": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/cfa934cdf8509285f4bfc2b669d85f66ee0fa1e1.png",
             "category": "Trail running",
             "title": "Cover the distance.",
             "text": "GPS location helps them find you faster, even deep on a trail.",
@@ -210,6 +214,7 @@
         "act3": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/fa196ced4c739163317d576728c38c965d398f7e.png",
             "category": "Cycling",
             "title": "Ride out of range.",
             "text": "Ready for crashes, weather, and long rides.",
@@ -219,6 +224,7 @@
         "act4": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/7ae75e7e50dba8f99bfe22484d263ca67f2d4064.png",
             "category": "Mountain biking",
             "title": "Send it harder.",
             "text": "GPS helps them find you, even in dense brush and remote terrain.",
@@ -228,6 +234,7 @@
         "act5": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/2d63660181a7fdb29fb2601f0eeeb015ff5f633a.jpg",
             "category": "Winter sports",
             "title": "Drop in deeper.",
             "text": "Accessible even in remote mountains without signal.",
@@ -237,6 +244,7 @@
         "act6": {
           "type": "activity",
           "settings": {
+            "image": "shopify://shop_images/24eca08e58d941ac868506142b419dc640df4e27.png",
             "category": "Hiking",
             "title": "Push further out.",
             "text": "Built for long days off-grid without charging or batteries.",
@@ -263,6 +271,7 @@
         "t1": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59.png",
             "name": "Jerry",
             "role": "Motorcyclist",
             "location": "Arizona",
@@ -274,6 +283,7 @@
         "t2": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/1cd3e723cb6099708b9c25e259c9dc86ec5e0b44.png",
             "name": "Nicolas",
             "role": "Mountain biker",
             "location": "California",
@@ -285,10 +295,11 @@
         "t3": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59_1.png",
             "name": "Karen",
             "role": "Hiker",
             "location": "Oregon",
-            "quote": "Small, lightweight, and easy to use\u2026 all my adventure pals got one for Christmas.",
+            "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas.",
             "show_verified": true,
             "verified_label": "Verified buyer"
           }
@@ -310,6 +321,7 @@
         "g1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/image_18659494_3.png",
             "width_desktop": 298,
             "width_mobile": 130
           }
@@ -317,6 +329,7 @@
         "g2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/image_18659492.png",
             "width_desktop": 300,
             "width_mobile": 132
           }
@@ -324,6 +337,7 @@
         "g3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/IMG_3286_2.png",
             "width_desktop": 237,
             "width_mobile": 103
           }
@@ -331,6 +345,7 @@
         "g4": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/image_18659493.png",
             "width_desktop": 300,
             "width_mobile": 130
           }
@@ -338,6 +353,7 @@
         "g5": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/image_18659495.png",
             "width_desktop": 300,
             "width_mobile": 132
           }
@@ -360,9 +376,11 @@
       "type": "kopilot-home-outdoors",
       "settings": {
         "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/Rectangle_53.png",
+        "image_mobile": "shopify://shop_images/Rectangle_53_1.png",
         "image_alt": "Founders outdoors with powersports gear",
         "heading": "<p>Inspired by the outdoors.</p>",
-        "text": "<p><span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: having emergency information available the moment you need it. We come from the outdoor and powersports world. We've watched friends go down at events, on trails, and on roads far past cell service. <em class=\"kopilot-home-outdoors__quote\">\"We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.\"</em> <strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br><span class=\"kopilot-home-outdoors__role\">Co Founder</span></p>"
+        "text": "<p><span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: having emergency information available the moment you need it. We come from the outdoor and powersports world. We've watched friends go down at events, on trails, and on roads far past cell service. <br><em class=\"kopilot-home-outdoors__quote\">\"We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.\"</em> <br><strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br>\n<span class=\"kopilot-home-outdoors__role\">Co Founder</span></p>"
       }
     },
     "kopilot_home_partner_cta": {
@@ -371,6 +389,7 @@
         "pc1": {
           "type": "partner",
           "settings": {
+            "logo_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
@@ -380,6 +399,7 @@
         "pc2": {
           "type": "partner",
           "settings": {
+            "logo_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
@@ -403,7 +423,9 @@
       "type": "kopilot-home-closing",
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "<p>Emergencies don't wait.<br>Be prepared.</p>",
+        "image": "shopify://shop_images/image_18659490.png",
+        "image_mobile": "shopify://shop_images/image_18659490_2.png",
+        "heading": "<p>Emergencies don't wait.<br/>Be prepared.</p>",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
         "tagline": "The tag that brings you home."
