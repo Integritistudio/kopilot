@@ -33,6 +33,10 @@
   .kopilot-home-features:not(.kopilot-home-features--show-heading-mobile) .kopilot-home-features__heading {
     display: none;
   }
+
+  .kopilot-home-features__text.rte {
+    padding-bottom: 4rem;
+  }
 }
 
 .kopilot-home-features__heading.rte,
