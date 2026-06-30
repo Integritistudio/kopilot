@@ -373,6 +373,7 @@
       "type": "kopilot-pdp-privacy",
       "settings": {
         "color_scheme": "scheme-1",
+        "icon": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_2.png",
         "heading": "Built with privacy in mind.",
         "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
         "padding_top": 44,
