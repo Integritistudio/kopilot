@@ -4,11 +4,47 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
+  /* Structural layout adjustments for pixel perfection */
+  @media screen and (min-width: 768px) {
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 90px; /* Exact spacing from Figma */
+    }
+
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
+      flex: 0 0 561px; /* Match the exact text block width from Figma */
+      max-width: 561px;
+    }
+
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__media {
+      flex: 1; /* Allows the image area to naturally responsively balance out */
+    }
+    
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
+      flex-direction: row-reverse;
+    }
+  }
+
+  /* Exact Typography Matches from Figma Specs */
+  .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
+  .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
+    font-family: 'Elza', sans-serif;
+    font-size: 60px;
+    font-weight: 300; /* Light */
+    line-height: 1.1; /* 110% line-height */
+    letter-spacing: -1px;
+    margin-bottom: 24px; /* Adjust spacing between heading and description */
+  }
+
   .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
-  .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte p,
-  .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte ul li,
-  .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte ol li {
-    font-family: {{ section.settings.text_font_family }}, sans-serif;
+  .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte * {
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    font-weight: 400; /* Regular */
+    line-height: 1.2; /* 120% line-height */
+    letter-spacing: 0;
   }
 
   @media screen and (max-width: 767px) {
@@ -32,6 +68,7 @@
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       text-align: {{ section.settings.text_alignment_mobile }};
+      font-size: 40px; /* Fallback fluid sizing for smaller mobile viewports */
     }
   }
 {% endstyle %}
