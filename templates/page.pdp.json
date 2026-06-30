@@ -150,9 +150,9 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Your critical emergency information in one tap.",
-        "padding_top": 59,
-        "padding_bottom": 59,
-        "padding_top_mobile": 50,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 48,
         "padding_bottom_mobile": 0
       }
     },
@@ -172,7 +172,7 @@
         "image_position": "right",
         "heading_rt": "<p>The details that matter.</p>",
         "text": "",
-        "padding_top": 73,
+        "padding_top": 72,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
@@ -186,8 +186,8 @@
         "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
         "padding_top": 44,
         "padding_bottom": 44,
-        "padding_top_mobile": 31,
-        "padding_bottom_mobile": 31
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
       }
     },
     "kopilot_pdp_testimonials": {
@@ -329,8 +329,8 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Questions",
-        "padding_top": 105,
-        "padding_bottom": 105,
+        "padding_top": 104,
+        "padding_bottom": 104,
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60
       }
@@ -343,8 +343,8 @@
         "text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
         "link_label": "See partnerships",
         "link_url": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
+        "padding_top": 48,
+        "padding_bottom": 48,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
