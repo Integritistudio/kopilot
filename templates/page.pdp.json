@@ -324,6 +324,7 @@
         "f3": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/Group_38.png",
             "label": "<p>No battery / No charging</p>"
           }
         },
@@ -358,6 +359,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/IMG_3285_1.png",
         "image_position": "right",
         "heading_rt": "<p>The details that matter.</p>",
         "text": "",
