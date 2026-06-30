@@ -186,118 +186,6 @@
         "heading": "<p>Your critical emergency information in one tap.</p>"
       }
     },
-    "kopilot_accidents": {
-      "type": "kopilot-accidents",
-      "blocks": {
-        "s1": {
-          "type": "slide",
-          "settings": {}
-        },
-        "s2": {
-          "type": "slide",
-          "settings": {}
-        },
-        "s3": {
-          "type": "slide",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3"
-      ],
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-1",
-        "heading": "Accidents happen when you least expect them.",
-        "subtitle": "Designed for everyday use.",
-        "body": "KOPILOT.ID is designed to stay with your gear through everyday training, remote rides, travel, and everything in between. Whether it's for you, your partner, or someone you care about, it keeps important emergency information accessible when it matters most.",
-        "button_label": "GET KOPILOT.ID",
-        "button_url": "/"
-      }
-    },
-    "kopilot_why_kopilot": {
-      "type": "kopilot-why-kopilot",
-      "blocks": {
-        "w1": {
-          "type": "card",
-          "settings": {
-            "label": "<p>Peace of mind for the people who love you</p>"
-          }
-        },
-        "w2": {
-          "type": "card",
-          "settings": {
-            "label": "<p>Available for anyone to help</p>"
-          }
-        },
-        "w3": {
-          "type": "card",
-          "settings": {
-            "label": "<p>Go further and worry less</p>"
-          }
-        },
-        "w4": {
-          "type": "card",
-          "settings": {
-            "label": "<p>Ready the second something happens</p>"
-          }
-        }
-      },
-      "block_order": [
-        "w1",
-        "w2",
-        "w3",
-        "w4"
-      ],
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-1"
-      }
-    },
-    "kopilot_cta_banner": {
-      "type": "kopilot-cta-banner",
-      "blocks": {
-        "tr1": {
-          "type": "trust",
-          "settings": {
-            "icon": "shopify://shop_images/Group_2147226128.svg",
-            "label": "Money-back guarantee"
-          }
-        },
-        "tr2": {
-          "type": "trust",
-          "settings": {
-            "icon": "shopify://shop_images/Group_2087327569.png",
-            "label": "No subscription"
-          }
-        },
-        "trust_4kpwPg": {
-          "type": "trust",
-          "settings": {
-            "icon": "shopify://shop_images/Group.png",
-            "label": "Works anywhere"
-          }
-        }
-      },
-      "block_order": [
-        "tr1",
-        "tr2",
-        "trust_4kpwPg"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/bad64fb19fb42742653b28527e5a419202fe681f.png",
-        "heading": "Wherever you ride, KOPILOT.ID has your back.",
-        "button_label": "Get KOPILOT.ID",
-        "button_link": "",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "kopilot_home_activities": {
       "type": "kopilot-home-activities",
       "blocks": {
@@ -476,6 +364,50 @@
         "heading": "<p>Inspired by the outdoors.</p>",
         "text": "<p><span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: having emergency information available the moment you need it. We come from the outdoor and powersports world. We've watched friends go down at events, on trails, and on roads far past cell service. <em class=\"kopilot-home-outdoors__quote\">\"We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.\"</em> <strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br><span class=\"kopilot-home-outdoors__role\">Co Founder</span></p>"
       }
+    },
+    "kopilot_home_partner_cta": {
+      "type": "kopilot-home-partner-cta",
+      "blocks": {
+        "pc1": {
+          "type": "partner",
+          "settings": {
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        },
+        "pc2": {
+          "type": "partner",
+          "settings": {
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        }
+      },
+      "block_order": [
+        "pc1",
+        "pc2"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "<p>Partner with KOPILOT.ID.</p>",
+        "text": "<p>Integrate custom digital emergency ID's with your event, brand, or organization.</p>",
+        "button_label": "Become a partner",
+        "button_link": ""
+      }
+    },
+    "kopilot_home_closing": {
+      "type": "kopilot-home-closing",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "<p>Emergencies don't wait.<br>Be prepared.</p>",
+        "button_label": "Get KOPILOT.ID",
+        "button_link": "",
+        "tagline": "The tag that brings you home."
+      }
     }
   },
   "order": [
@@ -488,8 +420,7 @@
     "kopilot_home_testimonials",
     "kopilot_home_gallery",
     "kopilot_home_outdoors",
-    "kopilot_accidents",
-    "kopilot_why_kopilot",
-    "kopilot_cta_banner"
+    "kopilot_home_partner_cta",
+    "kopilot_home_closing"
   ]
 }

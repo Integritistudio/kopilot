@@ -1,0 +1,192 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-partner-cta.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-home-partner-cta.js' | asset_url }}" defer></script>
+
+{% assign partner_card_fallbacks = 'kopilot-home-partner-1.png,kopilot-home-partner-2.png,kopilot-home-partner-3.png,kopilot-home-partner-4.png' | split: ',' %}
+
+<section class="kopilot-section kopilot-home-partner-cta kopilot-home-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-partner-cta__inner">
+    <div class="kopilot-home-partner-cta__layout">
+      <div class="kopilot-home-partner-cta__intro">
+        <div class="kopilot-home-partner-cta__copy">
+          {% if section.settings.heading != blank %}
+            <div class="kopilot-home-partner-cta__heading rte">
+              {{ section.settings.heading }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.text != blank %}
+            <div class="kopilot-home-partner-cta__text rte">
+              {{ section.settings.text }}
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link | default: '#' }}"
+            class="kopilot-home-partner-cta__btn"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        <div class="kopilot-home-partner-cta__cards">
+          <div class="kopilot-home-partner-cta__grid">
+            {% for block in section.blocks %}
+              {% assign fallback_index = forloop.index0 | modulo: partner_card_fallbacks.size %}
+              {% render 'kopilot-home-partner-card',
+                block: block,
+                fallback: partner_card_fallbacks[fallback_index]
+              %}
+            {% endfor %}
+          </div>
+
+          <div class="kopilot-home-partner-cta__slider-wrap" data-kopilot-home-partner-cta>
+            <div class="kopilot-home-partner-cta__slider">
+              <div class="swiper kopilot-home-partner-cta__swiper">
+                <div class="swiper-wrapper">
+                  {% for block in section.blocks %}
+                    {% assign fallback_index = forloop.index0 | modulo: partner_card_fallbacks.size %}
+                    <div class="swiper-slide">
+                      {% render 'kopilot-home-partner-card',
+                        block: block,
+                        fallback: partner_card_fallbacks[fallback_index]
+                      %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <div class="kopilot-home-partner-cta__nav" aria-label="Partner cards slider navigation">
+              <button type="button" class="kopilot-home-partner-cta__nav-btn kopilot-home-partner-cta__nav-btn--prev" aria-label="Previous partner">
+                <img src="{{ 'vl.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+              </button>
+              <button type="button" class="kopilot-home-partner-cta__nav-btn kopilot-home-partner-cta__nav-btn--next" aria-label="Next partner">
+                <img src="{{ 'vr.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+              </button>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Partner CTA",
+  "tag": "section",
+  "class": "kopilot-home-partner-cta-section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Partner with KOPILOT.ID.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Integrate custom digital emergency ID's with your event, brand, or organization.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Become a partner"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "partner",
+      "name": "Partner card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Partner logo"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Logo alt text"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Role at partner organization"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)"
+        },
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Stat line",
+          "default": "Embedded into 5,000 race bibs across the 2025 series"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Partner CTA",
+      "settings": {
+        "heading": "<p>Partner with KOPILOT.ID.</p>",
+        "text": "<p>Integrate custom digital emergency ID's with your event, brand, or organization.</p>",
+        "button_label": "Become a partner"
+      },
+      "blocks": [
+        {
+          "type": "partner",
+          "settings": {
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        },
+        {
+          "type": "partner",
+          "settings": {
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
