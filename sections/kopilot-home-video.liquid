@@ -49,12 +49,12 @@
         </div>
         <div class="kopilot-home-video__shade" aria-hidden="true"></div>
 
-        {% if has_video %}
         <button
           type="button"
-          class="kopilot-home-video__play"
+          class="kopilot-home-video__play{% unless has_video %} kopilot-home-video__play--no-video{% endunless %}"
           data-kopilot-home-video-play
           aria-label="{{ section.settings.play_label | default: 'Play video' | escape }}"
+          {% unless has_video %}aria-disabled="true"{% endunless %}
         >
           {% if section.settings.play_icon != blank %}
             {{
@@ -63,16 +63,11 @@
               | image_tag: loading: 'lazy', alt: '', class: 'kopilot-home-video__play-icon'
             }}
           {% else %}
-            <img
-              src="{{ 'Polygon.svg' | asset_url }}"
-              alt=""
-              width="105"
-              height="91"
-              loading="lazy"
-            >
+            <svg class="kopilot-home-video__play-icon" width="91" height="105" viewBox="0 0 91 105" fill="none" aria-hidden="true" focusable="false">
+              <path d="M91 52.5L0 0V105L91 52.5Z" fill="white" fill-opacity="0.58"/>
+            </svg>
           {% endif %}
         </button>
-        {% endif %}
 
         {% if section.settings.heading != blank %}
           <div class="kopilot-home-video__heading rte">

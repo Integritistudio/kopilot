@@ -1,0 +1,166 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-testimonials.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-home-testimonials.js' | asset_url }}" defer></script>
+
+{% assign testimonial_fallbacks = 'kopilot-pdp-testimonial-jerry.jpg,kopilot-pdp-testimonial-nicolas.jpg,kopilot-pdp-testimonial-karen.jpg' | split: ',' %}
+
+<section class="kopilot-section kopilot-home-testimonials kopilot-home-testimonials--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-testimonials__inner">
+    {% if section.settings.heading != blank %}
+      <div class="kopilot-home-testimonials__heading rte">
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="kopilot-home-testimonials__grid">
+        {% for block in section.blocks %}
+          {% assign fallback_index = forloop.index0 | modulo: testimonial_fallbacks.size %}
+          {% render 'kopilot-home-testimonial-card',
+            block: block,
+            fallback: testimonial_fallbacks[fallback_index]
+          %}
+        {% endfor %}
+      </div>
+
+      <div class="kopilot-home-testimonials__slider-wrap" data-kopilot-home-testimonials>
+        <div class="kopilot-home-testimonials__slider">
+          <div class="swiper kopilot-home-testimonials__swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% assign fallback_index = forloop.index0 | modulo: testimonial_fallbacks.size %}
+                <div class="swiper-slide">
+                  {% render 'kopilot-home-testimonial-card',
+                    block: block,
+                    fallback: testimonial_fallbacks[fallback_index]
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="kopilot-home-testimonials__nav" aria-label="Testimonial slider navigation">
+          <button type="button" class="kopilot-home-testimonials__nav-btn kopilot-home-testimonials__nav-btn--prev" aria-label="Previous testimonial">
+            <img src="{{ 'vl.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+          </button>
+          <button type="button" class="kopilot-home-testimonials__nav-btn kopilot-home-testimonials__nav-btn--next" aria-label="Next testimonial">
+            <img src="{{ 'vr.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Testimonials",
+  "tag": "section",
+  "class": "kopilot-home-testimonials-section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Used on race day.<br>Every day in between.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Jerry"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Motorcyclist"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Arizona"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified",
+          "label": "Show verified buyer",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "verified_label",
+          "label": "Verified label",
+          "default": "Verified buyer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Testimonials",
+      "settings": {
+        "heading": "<p>Used on race day.<br>Every day in between.</p>"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jerry",
+            "role": "Motorcyclist",
+            "location": "Arizona",
+            "quote": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Nicolas",
+            "role": "Mountain biker",
+            "location": "California",
+            "quote": "Jacket, backpack, and helmet now all have the little red life-saving tag! Easy to move between my gear."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Karen",
+            "role": "Hiker",
+            "location": "Oregon",
+            "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

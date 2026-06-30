@@ -1,0 +1,132 @@
+.kopilot-home-gallery {
+  background: #f1f1f1;
+  overflow: hidden;
+}
+
+.kopilot-home-gallery__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  padding: 3rem 0 0;
+  box-sizing: border-box;
+}
+
+.kopilot-home-gallery__heading.rte,
+.kopilot-home-gallery__heading.rte * {
+  margin: 0;
+  padding: 0;
+  font-family: Elza, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 95%;
+  color: #000;
+  text-align: center;
+  max-width: 30.2rem;
+}
+
+.kopilot-home-gallery__marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.kopilot-home-gallery__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: kopilot-home-gallery-scroll var(--kopilot-home-gallery-speed, 45s) linear infinite;
+}
+
+.kopilot-home-gallery__group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
+  padding-right: 0;
+}
+
+.kopilot-home-gallery__item {
+  flex: none;
+  width: var(--gallery-width-mobile, 13rem);
+  height: 10.4rem;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.kopilot-home-gallery__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes kopilot-home-gallery-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kopilot-home-gallery__track {
+    animation: none;
+  }
+}
+
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-gallery__inner {
+    gap: 4rem;
+    padding: 3rem 0 clamp(6rem, 8vw, 11.1rem);
+  }
+
+  .kopilot-home-gallery__group {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .kopilot-home-gallery__heading.rte,
+  .kopilot-home-gallery__heading.rte * {
+    font-size: clamp(3.6rem, 5vw, 5.2rem);
+    max-width: min(98.5rem, 90%);
+  }
+
+  .kopilot-home-gallery__item {
+    width: var(--gallery-width-desktop, 30rem);
+    height: clamp(14rem, 18vw, 23.7rem);
+  }
+}
+
+/* Desktop: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-home-gallery__inner {
+    gap: 4rem;
+    min-height: 46.1rem;
+    padding: 3rem 0 11.1rem;
+    max-width: 144rem;
+    margin: 0 auto;
+  }
+
+  .kopilot-home-gallery__heading.rte,
+  .kopilot-home-gallery__heading.rte * {
+    font-size: 6rem;
+    line-height: 95%;
+    max-width: 98.5rem;
+  }
+
+  .kopilot-home-gallery__group {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .kopilot-home-gallery__item {
+    width: var(--gallery-width-desktop, 30rem);
+    height: 23.7rem;
+  }
+}

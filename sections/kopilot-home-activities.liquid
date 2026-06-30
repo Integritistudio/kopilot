@@ -1,0 +1,176 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-activities.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-home-activities.js' | asset_url }}" defer></script>
+
+{% assign activity_fallbacks = 'kopilot-home-tap.jpg,ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f.jpg,kopilot-features-main.jpg,kopilot-image-text.jpg,kopilot-home-closing-hero.jpg,ccde2c0b8a273159116b272ed4a979affb3da026.jpg' | split: ',' %}
+
+<section class="kopilot-section kopilot-home-activities kopilot-home-activities--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-activities__inner">
+    {% if section.settings.heading != blank %}
+      <div class="kopilot-home-activities__heading rte">
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="kopilot-home-activities__grid" aria-label="{{ section.settings.heading | strip_html | escape }}">
+        {% for block in section.blocks %}
+          {% assign fallback_index = forloop.index0 | modulo: activity_fallbacks.size %}
+          {% render 'kopilot-home-activity-card',
+            block: block,
+            fallback: activity_fallbacks[fallback_index]
+          %}
+        {% endfor %}
+      </div>
+
+      <div class="kopilot-home-activities__slider-wrap" data-kopilot-home-activities>
+        <div class="kopilot-home-activities__slider">
+          <div class="swiper kopilot-home-activities__swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% assign fallback_index = forloop.index0 | modulo: activity_fallbacks.size %}
+                <div class="swiper-slide">
+                  {% render 'kopilot-home-activity-card',
+                    block: block,
+                    fallback: activity_fallbacks[fallback_index]
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="kopilot-home-activities__nav" aria-label="Activity slider navigation">
+          <button type="button" class="kopilot-home-activities__nav-btn kopilot-home-activities__nav-btn--prev" aria-label="Previous slide">
+            <img src="{{ 'vl.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+          </button>
+          <button type="button" class="kopilot-home-activities__nav-btn kopilot-home-activities__nav-btn--next" aria-label="Next slide">
+            <img src="{{ 'vr.svg' | asset_url }}" alt="" width="11" height="17" loading="lazy">
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Activities",
+  "tag": "section",
+  "class": "kopilot-home-activities-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Push your limits. Not your luck.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "activity",
+      "name": "Activity card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "Activity"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Card description"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Image overlay darkness",
+          "min": 20,
+          "max": 30,
+          "step": 5,
+          "unit": "%",
+          "default": 30
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Activities",
+      "blocks": [
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Motorcycling",
+            "title": "Go full throttle.",
+            "text": "Built tough to handle crashes, weather, and high speeds.",
+            "overlay_opacity": 20
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Trail running",
+            "title": "Cover the distance.",
+            "text": "GPS location helps them find you faster, even deep on a trail."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Cycling",
+            "title": "Ride out of range.",
+            "text": "Ready for crashes, weather, and long rides."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Mountain biking",
+            "title": "Send it harder.",
+            "text": "GPS helps them find you, even in dense brush and remote terrain."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Winter sports",
+            "title": "Drop in deeper.",
+            "text": "Accessible even in remote mountains without signal."
+          }
+        },
+        {
+          "type": "activity",
+          "settings": {
+            "category": "Hiking",
+            "title": "Push further out.",
+            "text": "Built for long days off-grid without charging or batteries."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

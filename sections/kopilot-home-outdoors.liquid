@@ -1,0 +1,104 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-outdoors.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  if section.settings.image_mobile != blank
+    assign outdoors_mobile_image = section.settings.image_mobile
+  else
+    assign outdoors_mobile_image = section.settings.image
+  endif
+%}
+
+<section class="kopilot-section kopilot-home-outdoors kopilot-home-outdoors--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-outdoors__inner">
+    <div class="kopilot-home-outdoors__layout">
+      <div class="kopilot-home-outdoors__media kopilot-home-outdoors__media--desktop">
+        {% render 'kopilot-image',
+          image: section.settings.image,
+          fallback: 'kopilot-home-closing-hero.jpg',
+          alt: section.settings.image_alt,
+          width: 1663,
+          widths: '832,1100,1663',
+          sizes: '(min-width: 768px) 831px, 0px'
+        %}
+      </div>
+      <div class="kopilot-home-outdoors__media kopilot-home-outdoors__media--mobile">
+        {% render 'kopilot-image',
+          image: outdoors_mobile_image,
+          fallback: 'kopilot-home-closing-hero.jpg',
+          alt: section.settings.image_alt,
+          width: 740,
+          widths: '370,740',
+          sizes: '(max-width: 767px) 370px, 0px'
+        %}
+      </div>
+
+      <div class="kopilot-home-outdoors__content">
+        {% if section.settings.heading != blank %}
+          <div class="kopilot-home-outdoors__heading rte">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="kopilot-home-outdoors__text rte">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Outdoors",
+  "tag": "section",
+  "class": "kopilot-home-outdoors-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile)",
+      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Founders outdoors with powersports gear"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Inspired by the outdoors.</p>"
+    },
+    {
+      "type": "html",
+      "id": "text",
+      "label": "Text",
+      "default": "<p><span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: having emergency information available the moment you need it. We come from the outdoor and powersports world. We've watched friends go down at events, on trails, and on roads far past cell service. <em class=\"kopilot-home-outdoors__quote\">\"We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.\"</em> <strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br><span class=\"kopilot-home-outdoors__role\">Co Founder</span></p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Outdoors"
+    }
+  ]
+}
+{% endschema %}

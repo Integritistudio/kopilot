@@ -1,0 +1,133 @@
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-gallery.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg' | split: ','
+  assign gallery_widths_desktop = '298,300,237,300,300' | split: ','
+  assign gallery_widths_mobile = '130,132,103,130,132' | split: ','
+%}
+
+<section
+  class="kopilot-section kopilot-home-gallery kopilot-home-gallery--{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--kopilot-home-gallery-speed: {{ section.settings.scroll_speed }}s;"
+>
+  <div class="kopilot-home-gallery__inner">
+    {% if section.settings.heading != blank %}
+      <div class="kopilot-home-gallery__heading rte">
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="kopilot-home-gallery__marquee" aria-hidden="false">
+        <div class="kopilot-home-gallery__track">
+          <div class="kopilot-home-gallery__group">
+            {% for block in section.blocks %}
+              {% assign fallback_index = forloop.index0 | modulo: gallery_fallbacks.size %}
+              {% assign width_index = forloop.index0 | modulo: gallery_widths_desktop.size %}
+              {% assign item_width_desktop = block.settings.width_desktop | default: gallery_widths_desktop[width_index] %}
+              {% assign item_width_mobile = block.settings.width_mobile | default: gallery_widths_mobile[width_index] %}
+              {% render 'kopilot-home-gallery-item',
+                block: block,
+                fallback: gallery_fallbacks[fallback_index],
+                width_desktop: item_width_desktop,
+                width_mobile: item_width_mobile
+              %}
+            {% endfor %}
+          </div>
+          <div class="kopilot-home-gallery__group" aria-hidden="true">
+            {% for block in section.blocks %}
+              {% assign fallback_index = forloop.index0 | modulo: gallery_fallbacks.size %}
+              {% assign width_index = forloop.index0 | modulo: gallery_widths_desktop.size %}
+              {% assign item_width_desktop = block.settings.width_desktop | default: gallery_widths_desktop[width_index] %}
+              {% assign item_width_mobile = block.settings.width_mobile | default: gallery_widths_mobile[width_index] %}
+              {% render 'kopilot-home-gallery-item',
+                block: block,
+                fallback: gallery_fallbacks[fallback_index],
+                width_desktop: item_width_desktop,
+                width_mobile: item_width_mobile,
+                duplicate: true
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kopilot Home Gallery",
+  "tag": "section",
+  "class": "kopilot-home-gallery-section",
+  "max_blocks": 12,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>For you and the people you care about.</p>"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 45
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "number",
+          "id": "width_desktop",
+          "label": "Width on desktop (px)",
+          "info": "Leave empty for default sizing."
+        },
+        {
+          "type": "number",
+          "id": "width_mobile",
+          "label": "Width on mobile (px)",
+          "info": "Leave empty for default sizing."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Home Gallery",
+      "settings": {
+        "heading": "<p>For you and the people you care about.</p>"
+      },
+      "blocks": [
+        { "type": "image", "settings": { "width_desktop": 298, "width_mobile": 130 } },
+        { "type": "image", "settings": { "width_desktop": 300, "width_mobile": 132 } },
+        { "type": "image", "settings": { "width_desktop": 237, "width_mobile": 103 } },
+        { "type": "image", "settings": { "width_desktop": 300, "width_mobile": 130 } },
+        { "type": "image", "settings": { "width_desktop": 300, "width_mobile": 132 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

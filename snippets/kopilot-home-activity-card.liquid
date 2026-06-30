@@ -1,0 +1,59 @@
+{% doc %}
+Renders an activity card for kopilot-home-activities.
+@param {block} block - Section block
+@param {string} fallback - Asset filename fallback
+{% enddoc %}
+
+{% liquid
+  assign overlay = block.settings.overlay_opacity | default: 30
+%}
+
+<article
+  class="kopilot-home-activities__card"
+  style="--activity-overlay: {{ overlay }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="kopilot-home-activities__card-media" aria-hidden="true">
+    {% render 'kopilot-image',
+      image: block.settings.image,
+      fallback: fallback,
+      alt: block.settings.category,
+      width: 732,
+      widths: '366,732',
+      sizes: '(min-width: 768px) 366px, 285px'
+    %}
+    <span class="kopilot-home-activities__card-shade"></span>
+    <span class="kopilot-home-activities__card-hover"></span>
+  </div>
+
+  <div class="kopilot-home-activities__card-content">
+    {% if block.settings.category != blank %}
+      <p class="kopilot-home-activities__category">{{ block.settings.category }}</p>
+    {% endif %}
+
+    <div class="kopilot-home-activities__copy">
+      {% if block.settings.title != blank %}
+        <p class="kopilot-home-activities__title">{{ block.settings.title }}</p>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <p class="kopilot-home-activities__text">{{ block.settings.text }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="kopilot-home-activities__expand"
+    data-kopilot-activity-expand
+    aria-label="Show activity details"
+    aria-expanded="false"
+  >
+    <img
+      src="{{ 'Group 2106667234.svg' | asset_url }}"
+      alt=""
+      width="22"
+      height="22"
+      loading="lazy"
+    >
+  </button>
+</article>

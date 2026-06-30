@@ -4,7 +4,8 @@
     const playBtn = root.querySelector('[data-kopilot-home-video-play]');
     const video = root.querySelector('video');
 
-    if (!poster || !playBtn || !video) return;
+    if (!poster || !playBtn) return;
+    if (!video) return;
 
     playBtn.addEventListener('click', function () {
       poster.hidden = true;

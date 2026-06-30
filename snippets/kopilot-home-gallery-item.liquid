@@ -1,0 +1,23 @@
+{% doc %}
+Renders a gallery marquee image item.
+@param {block} [block] - Section block
+@param {string} fallback - Asset filename fallback
+@param {number} width_desktop - Desktop width in px
+@param {number} width_mobile - Mobile width in px
+@param {boolean} [duplicate] - Duplicate marquee item without block attributes
+{% enddoc %}
+
+<div
+  class="kopilot-home-gallery__item"
+  style="--gallery-width-desktop: {{ width_desktop }}px; --gallery-width-mobile: {{ width_mobile }}px;"
+  {% if block and duplicate != true %}{{ block.shopify_attributes }}{% endif %}
+>
+  {% render 'kopilot-image',
+    image: block.settings.image,
+    fallback: fallback,
+    alt: '',
+    width: 600,
+    widths: '237,300,600',
+    sizes: '(min-width: 768px) 300px, 130px'
+  %}
+</div>

@@ -1,0 +1,62 @@
+{% doc %}
+Renders a testimonial card for kopilot-home-testimonials.
+@param {block} block - Section block
+@param {string} fallback - Asset filename fallback
+{% enddoc %}
+
+<article class="kopilot-home-testimonials__card" {{ block.shopify_attributes }}>
+  <div class="kopilot-home-testimonials__media">
+    {% render 'kopilot-image',
+      image: block.settings.image,
+      fallback: fallback,
+      alt: block.settings.name,
+      width: 824,
+      widths: '412,824',
+      sizes: '(min-width: 768px) 412px, 303px'
+    %}
+  </div>
+
+  <div class="kopilot-home-testimonials__body">
+    {% if block.settings.name != blank %}
+      <p class="kopilot-home-testimonials__name">{{ block.settings.name }}</p>
+    {% endif %}
+
+    <div class="kopilot-home-testimonials__tags">
+      {% if block.settings.role != blank %}
+        <span class="kopilot-home-testimonials__tag">{{ block.settings.role }}</span>
+      {% endif %}
+      {% if block.settings.location != blank %}
+        <span class="kopilot-home-testimonials__tag kopilot-home-testimonials__tag--location">
+          <img
+            class="kopilot-home-testimonials__location-icon"
+            src="{{ 'location.svg' | asset_url }}"
+            alt=""
+            width="14"
+            height="22"
+            loading="lazy"
+          >
+          <span>{{ block.settings.location }}</span>
+        </span>
+      {% endif %}
+    </div>
+
+    {% if block.settings.quote != blank %}
+      <blockquote class="kopilot-home-testimonials__quote">
+        <span aria-hidden="true">“</span>{{ block.settings.quote }}<span aria-hidden="true">”</span>
+      </blockquote>
+    {% endif %}
+
+    {% if block.settings.show_verified %}
+      <p class="kopilot-home-testimonials__verified">
+        <img
+          src="{{ 'verify.svg' | asset_url }}"
+          alt=""
+          width="19"
+          height="19"
+          loading="lazy"
+        >
+        <span>{{ block.settings.verified_label | default: 'Verified buyer' }}</span>
+      </p>
+    {% endif %}
+  </div>
+</article>

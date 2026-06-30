@@ -35,7 +35,7 @@
   }
 
   .kopilot-home-features__text.rte {
-    padding-bottom: 4rem;
+    padding-bottom: 4rem !important;
   }
 }
 
