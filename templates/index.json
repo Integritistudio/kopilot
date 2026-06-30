@@ -132,7 +132,7 @@
         "hf2": {
           "type": "feature",
           "settings": {
-            "label": "<p>No battery / No charging</p>"
+            "label": "<p>No battery / </p><p>No charging</p>"
           }
         },
         "hf3": {
