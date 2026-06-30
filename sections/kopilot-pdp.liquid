@@ -9,6 +9,37 @@
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
+    
+    /* Remove slider pagination indicators on mobile layout */
+    .kopilot-pdp__carousel-dots {
+      display: none !important;
+    }
+
+    /* Clean transparent layout structure for mobile gallery wrappers */
+    .kopilot-pdp__gallery-mobile {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    /* Standardizes exact layout spacing gap above the banner header */
+    .kopilot-pdp__special-banner {
+      margin-top: 12px !important;
+      position: relative !important;
+    }
+
+    /* Force uniform gallery slide viewports to avoid image text cutoff */
+    .kopilot-pdp__carousel-viewport,
+    .kopilot-pdp__gallery-mobile,
+    .kopilot-pdp__carousel-slide {
+      height: 360px !important;
+    }
+
+    .kopilot-pdp__carousel-slide img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+    }
   }
 
   /* Description Typography Setup */
@@ -37,7 +68,6 @@
   .kopilot-pdp__tier-save {
     color: #F20008 !important;
     background-color: #FECECE !important;
-    font-weight:400 !important;
   }
 
   /* Add to Cart Button Optimization Specs */
@@ -60,6 +90,22 @@
   }
   .kopilot-pdp__delivery-value {
     font-weight: 400 !important;
+  }
+
+  /* Included Items Pill UI Optimization */
+  .kopilot-pdp__included-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7.5px !important;
+  }
+  .kopilot-pdp__included-pill {
+    background-color: #EEEEEE !important;
+    color: #000000 !important;
+    border-radius: 0px !important;
+    border: none !important;
+    padding: 8.25px 12.75px !important;
+    font-size: 16px;
+    display: inline-block;
   }
 
   /* Gallery Overlay Typography Setup */
@@ -108,12 +154,12 @@
     text-align: center;
   }
 
-  /* Content Text Engine (Figma: Elza Bold, 18px, 126% Line-Height) */
+  /* Content Text Engine */
   .kopilot-pdp__gallery-text-line {
     font-family: 'elza', sans-serif;
     font-size: 18px;
-    font-weight: 700; /* Bold */
-    line-height: 1.26; /* 126% */
+    font-weight: 700;
+    line-height: 1.26;
     margin: 0;
   }
   .kopilot-pdp__gallery-text-line--uppercase {
@@ -129,29 +175,21 @@
     color: #F20008;
   }
 
-  /* Special Top Ribbon Offer (Figma: Elza Medium, 12.78px, 130% Line-Height) */
+  /* Special Top Ribbon Offer */
   .kopilot-pdp__special-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     background-color: #F20008;
     color: #ffffff;
     font-family: 'elza', sans-serif;
     font-size: 12.78px;
-    font-weight: 500; /* Medium */
-    line-height: 1.30; /* 130% */
+    font-weight: 500;
+    line-height: 1.30;
     text-transform: uppercase;
     text-align: center;
     padding: 6.39px 10px;
     letter-spacing: 0.05em;
     z-index: 3;
-  }
-  
-  /* Text container offsets if top red banner ribbon is enabled */
-  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top,
-  .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top-center {
-    padding-top: 45px;
+    width: 100%;
+    box-sizing: border-box;
   }
 {% endstyle %}
 
@@ -201,6 +239,13 @@
       {% endif %}
     </div>
 
+    {%- assign first_slide = section.blocks | where: "type", "gallery_slide" | first -%}
+    {% if first_slide and first_slide.settings.show_special_banner %}
+      <div class="kopilot-pdp__special-banner mobile-only-banner" style="margin-bottom: 0; margin-top: 12px;">
+        {{ first_slide.settings.special_banner_text }}
+      </div>
+    {% endif %}
+
     <div class="kopilot-pdp__layout">
       <div class="kopilot-pdp__gallery">
         <div class="kopilot-pdp__gallery-grid">
@@ -210,10 +255,6 @@
                 class="kopilot-pdp__gallery-cell"
                 {{ block.shopify_attributes }}
               >
-                {% if block.settings.show_special_banner %}
-                  <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                {% endif %}
-
                 {% render 'kopilot-image',
                   image: block.settings.image,
                   fallback: gallery_fallbacks[forloop.index0],
@@ -243,10 +284,6 @@
               {% for block in section.blocks %}
                 {% if block.type == 'gallery_slide' %}
                   <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
-                    {% if block.settings.show_special_banner %}
-                      <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                    {% endif %}
-
                     {% render 'kopilot-image',
                       image: block.settings.image,
                       fallback: gallery_fallbacks[forloop.index0],
@@ -269,22 +306,6 @@
                 {% endif %}
               {% endfor %}
             </div>
-          </div>
-          <div class="kopilot-pdp__carousel-dots">
-            {% assign slide_index = 0 %}
-            {% for block in section.blocks %}
-              {% if block.type == 'gallery_slide' %}
-                <button
-                  type="button"
-                  class="kopilot-pdp__carousel-dot{% if slide_index == 0 %} is-active{% endif %}"
-                  data-kopilot-carousel-dot
-                  data-index="{{ slide_index }}"
-                  aria-label="Show slide {{ slide_index | plus: 1 }}"
-                  {% if slide_index == 0 %}aria-current="true"{% endif %}
-                ></button>
-                {% assign slide_index = slide_index | plus: 1 %}
-              {% endif %}
-            {% endfor %}
           </div>
         </div>
       </div>
