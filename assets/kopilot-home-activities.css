@@ -143,6 +143,9 @@
   visibility: hidden;
   overflow: hidden;
   margin: 0;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   transition:
     opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0.45s cubic-bezier(0.4, 0, 0.2, 1),
@@ -190,12 +193,15 @@
 
   .kopilot-home-activities__card:hover .kopilot-home-activities__card-content,
   .kopilot-home-activities__card:focus-within .kopilot-home-activities__card-content {
-    gap: 13rem;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .kopilot-home-activities__card:hover .kopilot-home-activities__copy,
   .kopilot-home-activities__card:focus-within .kopilot-home-activities__copy {
-    max-height: 12rem;
+    max-height: none;
+    margin-top: auto;
+    overflow: visible;
     opacity: 1;
     visibility: visible;
     align-items: center;
@@ -239,11 +245,14 @@
   }
 
   .kopilot-home-activities__card.is-expanded .kopilot-home-activities__card-content {
-    gap: 11.012rem;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .kopilot-home-activities__card.is-expanded .kopilot-home-activities__copy {
-    max-height: 10rem;
+    max-height: none;
+    margin-top: auto;
+    overflow: visible;
     opacity: 1;
     visibility: visible;
     align-items: center;
