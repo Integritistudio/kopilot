@@ -177,7 +177,7 @@
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-home-closing__inner {
-    min-height: clamp(71.1rem, 62vw, 90.6rem);
+    min-height: clamp(71.1rem, 62vw, 82.5rem);
     padding: 0;
   }
 
@@ -232,7 +232,7 @@
 /* Desktop: 1440px+ */
 @media screen and (min-width: 1440px) {
   .kopilot-home-closing__inner {
-    min-height: 90.6rem;
+    min-height: 82.5rem;
     padding: 0;
   }
 
