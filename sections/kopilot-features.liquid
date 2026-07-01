@@ -1,15 +1,15 @@
 {% style %}
   /* ==========================================================================
-     SCOPED DESKTOP DESIGN RULES (Figma Exacts)
+     SCOPED DESKTOP DESIGN RULES (Figma Adjusted & Responsive)
      ========================================================================== */
   @media screen and (min-width: 768px) {
-    /* Main Parent Component Container Framework (Frame 1984077277) */
+    /* Main Parent Container - Allowed to scale past 1440px gracefully */
     .kopilot-features--{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
       width: 100%;
-      max-width: 1440px;
-      height: 710px; /* Locked strict height */
+      height: auto; 
+      min-height: 710px;
       margin: 0 auto;
       box-sizing: border-box;
       overflow: hidden;
@@ -23,7 +23,6 @@
       justify-content: space-between !important;
       width: 100% !important;
       height: 100% !important;
-      gap: 73px !important; /* Fixed spacing gap between left text block and right image */
     }
 
     /* Left Content Column Layout (Frame 1597885210) */
@@ -31,9 +30,10 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: flex-start !important;
-      width: 634px !important; /* Strict fixed width layout */
-      height: 563.14px !important; /* Exact blueprint height */
-      padding: 72px 9px 72px 72px !important; /* Exact padding: Top 72, Right 9, Bottom 72, Left 72 */
+      flex: 1 1 auto !important;
+      width: 45% !important; /* Dynamic sizing to prevent overlaps */
+      max-width: 634px !important;
+      padding: 72px 24px 72px 5% !important; /* Fluid left padding transitions smoothly to 72px on 1440 screens */
       box-sizing: border-box !important;
     }
 
@@ -42,21 +42,22 @@
       font-size: {{ section.settings.heading_font_size }}px;
       line-height: {{ section.settings.heading_line_height | default: 110.0 }}%;
       font-weight: {{ section.settings.heading_font_weight | default: 300 }};
-      width: 571px !important; /* Precise text element bounding width */
+      max-width: 571px !important;
+      width: 100% !important;
       margin: 0 !important;
     }
 
     /* Item Grid Element Spacing Controls */
     .kopilot-features--{{ section.id }} .kopilot-features__content_pdp > .kopilot-features__grid {
-      margin-top: 60px !important; /* Exact gap between heading element and icons list */
+      margin-top: 60px !important;
     }
 
-    /* Right Media Block Container Specs */
+    /* Right Media Block Container - Flex-grown to flush with right edge */
     .kopilot-features--{{ section.id }} .kopilot-features__media {
-      width: 733px !important; /* Absolute layout fixed width */
-      height: 710px !important; /* Absolute layout fixed height */
-      min-width: 733px !important;
-      max-width: 733px !important;
+      flex: 1 1 auto !important;
+      width: 55% !important;
+      max-width: 733px !important; /* Hard constraint on 1440px screen */
+      height: 710px !important;
       margin: 0 !important;
       padding: 0 !important;
     }
@@ -65,7 +66,33 @@
     .kopilot-features--{{ section.id }} .kopilot-features__media img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: cover !important; /* Forces layout to standard "Scale Crop / Fill" layout rule */
+      object-fit: cover !important;
+    }
+  }
+
+  /* ==========================================================================
+     TABLET BREAKPOINT RESPONSIVENESS OVERRIDES (768px - 1024px)
+     ========================================================================== */
+  @media screen and (min-width: 768px) and (max-width: 1100px) {
+    .kopilot-features--{{ section.id }} {
+      height: auto !important;
+    }
+    
+    .kopilot-features--{{ section.id }} .kopilot-features__inner {
+      flex-direction: column-reverse !important; /* Stack cleanly on smaller display layers */
+      gap: 40px !important;
+    }
+
+    .kopilot-features--{{ section.id }} .kopilot-features__content_pdp {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 40px 40px !important;
+    }
+
+    .kopilot-features--{{ section.id }} .kopilot-features__media {
+      width: 100% !important;
+      max-width: 100% !important; /* Removes max-width constraint so the image fills dynamically */
+      height: 450px !important;
     }
   }
 
