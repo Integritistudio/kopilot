@@ -29,7 +29,7 @@
   }
 
   /* Description Typography Setup */
-  .kopilot-pdp__description p {
+  .kopilot-pdp__description_pdp {
   font-size: 20px !important;
   line-height: 1.30 !important;
 }
@@ -339,7 +339,7 @@
           {% endif %}
 
           {% if section.settings.description != blank %}
-            <p class="kopilot-pdp__description">{{ section.settings.description }}</p>
+            <p class="kopilot-pdp__description_pdp">{{ section.settings.description }}</p>
           {% elsif pdp_product.description != blank %}
             <div class="kopilot-pdp__description rte">{{ pdp_product.description | strip_html | truncate: 320 }}</div>
           {% endif %}
