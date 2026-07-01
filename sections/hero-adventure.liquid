@@ -12,6 +12,11 @@
     justify-content: flex-start;
     box-sizing: border-box;
     overflow: hidden;
+
+    /* Scheme Override to intercept and kill external background color interference */
+    {%- if section.settings.force_custom_bg -%}
+      background-color: {{ section.settings.custom_bg_color }} !important;
+    {%- endif -%}
   }
 
   /* Desktop Settings (Figma 1440px Specification) */
@@ -77,16 +82,12 @@
     width: 100%;
   }
 
+  /* Dynamic Customizer Schema Controls for flexible fine-tuning */
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 40px; /* Exact gap setup from Figma */
-  }
-
-  /* Dynamic Customizer Schema Controls for flexible fine-tuning */
-  .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__content {
     gap: {{ section.settings.element_gap }}px;
   }
   
@@ -165,10 +166,31 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "Color Configuration Schemes"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "force_custom_bg",
+      "label": "Override with custom background color",
+      "default": true,
+      "info": "Check this box to overwrite layout backgrounds pulling from external theme stylesheets."
+    },
+    {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Custom Canvas Background",
+      "default": "#FDFDFD"
+    },
+    {
+      "type": "header",
+      "content": "Image Assets"
     },
     {
       "type": "image_picker",
@@ -180,6 +202,10 @@
       "id": "image_mobile",
       "label": "Background image (mobile)",
       "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+    },
+    {
+      "type": "header",
+      "content": "Content Strings"
     },
     {
       "type": "richtext",
