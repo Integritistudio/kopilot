@@ -3,9 +3,6 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-kopilot-pdp-partner-cta__inner_cta > p {
-  font-size:12px !important;
-}
   @media screen and (max-width: 767px) {
     .kopilot-pdp-partner-cta--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -20,7 +17,7 @@ kopilot-pdp-partner-cta__inner_cta > p {
 <section class="kopilot-section kopilot-pdp-partner-cta kopilot-pdp-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-pdp-partner-cta__inner_cta">
     {% if section.settings.heading != blank %}
-      <h2 class="kopilot-pdp-partner-cta__heading_pdp_cta">{{ section.settings.heading }}</h2>
+      <h2 class="kopilot-pdp-partner-cta__heading">{{ section.settings.heading }}</h2>
     {% endif %}
     <div class="kopilot-pdp-partner-cta__content">
       {% if section.settings.text != blank %}
