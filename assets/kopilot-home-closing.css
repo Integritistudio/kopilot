@@ -32,7 +32,7 @@
   display: block;
   width: 240.833vw;
   max-width: 86.7rem;
-  height: 100%;
+  height: auto;
   aspect-ratio: 867 / 494;
   left: calc(50% - 120.417vw - 7.361vw);
   top: 28.2rem;
