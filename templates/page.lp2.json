@@ -235,7 +235,7 @@
         "a2": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Frame_1597884697.png",
+            "image": "shopify://shop_images/image_54b31449-3a07-4e26-bb96-c594a86ac120.png",
             "badge": "",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
@@ -684,7 +684,7 @@
         "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
-        "media_margin_top": -45,
+        "media_margin_top": -54,
         "media_margin_top_mobile": -15,
         "padding_top": 0,
         "padding_bottom": 0,
