@@ -436,8 +436,9 @@
         "testimonial_Wxfipg"
       ],
       "settings": {
+        "background_color": "#ffffff",
         "color_scheme": "scheme-1",
-        "heading": "<p>Used on race day.<br/>Every day in between.</p>"
+        "heading": "<p>Trusted by thousands.</p>"
       }
     },
     "kopilot_reviews": {
