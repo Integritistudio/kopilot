@@ -2,89 +2,86 @@
   .kopilot-image-text--{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    width: 100%;
+    overflow: hidden;
   }
 
   /* Structural layout adjustments for pixel perfection (Desktop) */
   @media screen and (min-width: 768px) {
-    .kopilot-image-text--{{ section.id }} {
-      max-width: 1440px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* Force strip any global theme paddings from the inner container */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 90px; /* Gap between text and image */
-      height: 704px;
-      padding: 0 !important; /* Strips out the unwanted padding seen in your DevTools */
-      margin: 0 auto;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      max-width: 1440px !important;
+      height: 704px !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
-      flex: 1;
-      max-width: 561px;
-      padding-left: 90px; /* Locked to your requested 90px left spacing */
-      padding-right: 0 !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-
-    /* Reverse layout logic adjustments if image position is swapped */
-    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
-      flex-direction: row-reverse;
-      justify-content: flex-start;
-    }
-
-    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right .kopilot-image-text__content {
-      padding-left: 0 !important;
-      padding-right: 90px;
+      flex: 1 !important;
+      margin-left: 90px !important; /* Spacing layout gap strictly locked */
+      margin-right: 90px !important; 
+      padding: 0 !important;
+      box-sizing: border-box !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media {
-      flex: 0 0 696px;
-      width: 696px;
-      height: 704px;
-      overflow: hidden;
+      flex: 0 0 696px !important;
+      width: 696px !important;
+      height: 704px !important;
+      min-width: 696px !important;
+      max-width: 696px !important;
       padding: 0 !important;
       margin: 0 !important;
+      overflow: hidden !important;
     }
 
-    /* Force inside elements/images to crop and fill container pixel perfectly */
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
+      flex-direction: row-reverse !important;
+    }
+
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right .kopilot-image-text__content {
+      margin-left: 90px !important;
+      margin-right: 90px !important;
+    }
+
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media img,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media svg,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media picture {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
     }
 
-    /* Target heading structure to drop down seamlessly onto exactly 2 lines */
+    /* Fluid constraints to avoid text overflowing or breaking smaller desktop screens */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
-      font-family: 'Elza', sans-serif;
-      font-size: 60px;
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-top: 0;
-      margin-bottom: 24px;
-      max-width: 540px;
+      font-family: 'Elza', sans-serif !important;
+      font-size: 60px !important;
+      font-weight: 300 !important;
+      line-height: 1.1 !important;
+      letter-spacing: -1px !important;
+      margin-top: 0 !important;
+      margin-bottom: 24px !important;
+      display: block !important;
+      max-width: 561px !important; /* Perfect heading line breaking constraint */
+      width: 100% !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte * {
-      font-family: 'Figtree', sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: 0;
-      margin: 0;
-      max-width: 480px;
+      font-family: 'Figtree', sans-serif !important;
+      font-size: 20px !important;
+      font-weight: 400 !important;
+      line-height: 1.2 !important;
+      letter-spacing: 0 !important;
+      margin: 0 !important;
+      max-width: 450px !important; /* Perfect paragraph width constraint */
+      width: 100% !important;
     }
   }
 
