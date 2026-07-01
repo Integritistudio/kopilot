@@ -95,6 +95,10 @@
     background-color: #f1f1f1;
   }
 
+  .kopilot-home-gallery__inner {
+    padding-bottom: 6.6rem;
+  }
+
   .shopify-section:has(> .kopilot-home-gallery) {
     background-color: #f1f1f1;
   }
