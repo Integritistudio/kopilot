@@ -265,3 +265,41 @@
     font-size: clamp(1.4rem, 1.6vw, 1.6rem);
   }
 }
+
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
+  .kopilot-faq__inner {
+    padding: clamp(6rem, 8vw, 10.5rem) clamp(3rem, 4vw, 5.1rem);
+    gap: clamp(2.4rem, 3.5vw, 3.9rem);
+  }
+
+  .kopilot-faq__heading,
+  .kopilot-faq__heading.kopilot-heading {
+    font-size: clamp(36px, 4.5vw, 55px);
+    line-height: 1.3;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-faq__inner {
+    gap: 3.9rem;
+    padding: 10.5rem 5.1rem;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .kopilot-faq__heading,
+  .kopilot-faq__heading.kopilot-heading {
+    font-size: 4rem;
+    line-height: 6rem;
+  }
+
+  .kopilot-faq__list .faq_question .h6,
+  .kopilot-faq__list .faq_question .h6.kopilot-body {
+    font-size: 2rem;
+  }
+
+  .kopilot-faq__list .faq_answer_inner.kopilot-body.rte p {
+    font-size: 2rem;
+    line-height: 26px;
+  }
+}

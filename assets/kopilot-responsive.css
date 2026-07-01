@@ -5,32 +5,207 @@
   overflow-x: clip;
 }
 
-/* ----- Tablet: 768px–1024px — desktop layout with tighter spacing ----- */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .kopilot-section .kopilot-btn:not(.kopilot-cta-banner__btn) {
-    padding: clamp(1.2rem, 1.5vw, 1.6rem) clamp(2rem, 4vw, 4rem);
-    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
-  }
+/* =============================================================================
+   LP1 / LP2 — fluid scaling between pinned breakpoints
+   Mobile pinned: ≤767px (360px Figma) — do not override here
+   Desktop pinned: ≥1440px — do not override here
+   This file only styles 768px–1439px (tablet / laptop)
+   ============================================================================= */
 
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-heading {
     word-break: break-word;
   }
 
+  /* ----- Hero (LP1) ----- */
   .kopilot-hero__inner {
     align-items: center;
   }
 
+  /* ----- Partners ----- */
   .kopilot-partners__inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-inline: clamp(2rem, 4vw, 8.8rem);
+    gap: clamp(1.2rem, 2vw, 2rem);
+  }
+
+  .kopilot-partners__logos {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: clamp(1.6rem, 2.5vw, 3.3rem);
+  }
+
+  .kopilot-partners__text {
+    flex: 0 1 clamp(20rem, 32vw, 37.4rem);
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+  }
+
+  .kopilot-partners__logo-media img {
+    max-height: clamp(4.8rem, 6vw, 7.4rem);
+  }
+
+  /* ----- Why Kopilot (LP2) ----- */
+  .kopilot-why-kopilot__inner {
+    padding: clamp(40px, 6vw, 80px) clamp(24px, 4vw, 52px);
+  }
+
+  .kopilot-why-kopilot__cards {
+    gap: clamp(12px, 1.5vw, 18px);
+  }
+
+  .kopilot-why-kopilot__card {
+    flex: 1 1 calc(50% - 12px);
+    min-width: min(200px, 100%);
+  }
+
+  .kopilot-why-kopilot__label,
+  .kopilot-why-kopilot__label *,
+  .kopilot-why-kopilot__label.rte,
+  .kopilot-why-kopilot__label.rte * {
+    font-size: clamp(15px, 1.6vw, 18px);
+  }
+
+  /* ----- Accidents (LP2) ----- */
+  .kopilot-accidents__inner {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 100px);
+    gap: clamp(20px, 3vw, 31px);
+    min-height: 0;
+  }
+
+  .kopilot-accidents__content {
+    flex: 1 1 42%;
+    width: auto;
+    min-width: 0;
+    gap: clamp(28px, 4vw, 52px);
+  }
+
+  .kopilot-accidents__text-group {
+    gap: clamp(24px, 3.5vw, 45px);
+  }
+
+  .kopilot-accidents__heading {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+
+  .kopilot-accidents__subtitle,
+  .kopilot-accidents__body {
+    font-size: clamp(16px, 1.8vw, 20px);
+  }
+
+  .kopilot-accidents__slider-wrap {
+    flex: 1 1 50%;
+    width: auto;
+    max-width: 52%;
+    height: auto;
+    aspect-ratio: 632 / 622;
+  }
+
+  .kopilot-accidents__btn {
+    padding: clamp(16px, 2vw, 21px) clamp(40px, 6vw, 82px);
+    font-size: clamp(16px, 1.8vw, 20px);
+  }
+
+  /* ----- Info cards ----- */
+  .kopilot-info-cards__inner {
+    margin-top: clamp(2rem, 4vw, 4.3rem);
+    padding-bottom: clamp(3rem, 5vw, 5rem);
+  }
+
+  .kopilot-info-cards__heading {
+    font-size: clamp(40px, 5.5vw, 56px);
+    margin-bottom: clamp(3rem, 5vw, 6rem);
+    padding-inline: clamp(1.6rem, 3vw, 2rem);
+    max-width: min(85.4rem, 100%);
+  }
+
+  .kopilot-info-cards__grid {
+    padding-inline: clamp(1.6rem, 6vw, 10rem);
+    gap: clamp(1.2rem, 2vw, 2.9rem);
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .kopilot-faq__inner {
-    align-items: flex-start;
+  .kopilot-info-cards__card {
+    flex: 1 1 calc(33.333% - 2rem);
+    max-width: calc(33.333% - 2rem);
+    min-width: min(26rem, 100%);
+  }
+
+  .kopilot-info-cards__card-title,
+  .kopilot-info-cards__card-title.kopilot-body,
+  .kopilot-info-cards__card-text,
+  .kopilot-info-cards__card-text.kopilot-body {
+    font-size: clamp(16px, 1.6vw, 20px);
+  }
+
+  /* ----- Ambassadors ----- */
+  .kopilot-ambassadors__inner {
+    gap: clamp(32px, 5vw, 60px);
+    padding-block: clamp(32px, 5vw, 48px);
+  }
+
+  .kopilot-ambassadors__header {
+    max-width: min(626px, 90%);
+    gap: clamp(16px, 2.5vw, 29px);
+    padding-inline: clamp(20px, 4vw, 40px);
+  }
+
+  .kopilot-ambassadors__heading {
+    font-size: clamp(36px, 5vw, 56px);
+    max-width: 100%;
+  }
+
+  .kopilot-ambassadors__text {
+    font-size: clamp(16px, 1.8vw, 20px);
+    max-width: 100%;
+  }
+
+  .kopilot-ambassadors__slider-group {
+    max-width: 100%;
+  }
+
+  .kopilot-ambassadors__quote {
+    font-size: clamp(16px, 1.8vw, 20px);
+  }
+
+  /* ----- Product tiers ----- */
+  .kopilot-product-tiers__inner {
+    padding-inline: clamp(16px, 4vw, 71px);
+  }
+
+  .kopilot-product-tiers__heading,
+  .kopilot-product-tiers__heading * {
+    font-size: clamp(36px, 5vw, 56px) !important;
+  }
+
+  /* ----- Guarantees ----- */
+  .kopilot-guarantees__grid {
+    padding: clamp(2.4rem, 4vw, 4rem) clamp(1.6rem, 3vw, 2rem);
+    column-gap: clamp(1.6rem, 3vw, 4rem);
+    row-gap: clamp(2rem, 3vw, 4rem);
+    max-width: min(92rem, 100%);
+  }
+
+  .kopilot-guarantees__label,
+  .kopilot-guarantees__label.kopilot-body {
+    font-size: clamp(15px, 1.6vw, 18px);
+  }
+
+  /* ----- Reviews ----- */
+  .kopilot-reviews__inner {
+    padding: clamp(2.4rem, 4vw, 4rem) clamp(1.6rem, 4vw, 3.2rem) 0;
+  }
+
+  .kopilot-reviews__heading {
+    font-size: clamp(36px, 5vw, 56px);
+    margin-bottom: clamp(2.4rem, 4vw, 4rem);
   }
 
   .kopilot-reviews__summary {
     width: 100%;
+    grid-template-columns: minmax(120px, 1fr) minmax(180px, 1.5fr) minmax(120px, 1fr);
+    column-gap: clamp(12px, 2vw, 24px);
   }
 
   .kopilot-reviews__toolbar,
@@ -39,9 +214,145 @@
     width: 100%;
     max-width: 100%;
   }
+
+  /* ----- FAQ ----- */
+  .kopilot-faq__inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(2rem, 4vw, 3.9rem);
+    padding: clamp(4rem, 8vw, 10.5rem) clamp(2rem, 4vw, 5.1rem);
+    max-width: 100%;
+  }
+
+  .kopilot-faq__heading,
+  .kopilot-faq__heading.kopilot-heading {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.3;
+    flex: 0 0 auto;
+  }
+
+  .kopilot-faq__list {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .kopilot-faq__list .faq_question .h6,
+  .kopilot-faq__list .faq_question .h6.kopilot-body {
+    font-size: clamp(16px, 1.6vw, 20px);
+  }
+
+  .kopilot-faq__list .faq_answer_inner.kopilot-body.rte p {
+    font-size: clamp(16px, 1.6vw, 20px);
+  }
+
+  /* ----- CTA banner ----- */
+  .kopilot-cta-banner {
+    gap: clamp(2rem, 3vw, 3.6rem);
+    padding-top: clamp(4rem, 7vw, 7.7rem);
+  }
+
+  .kopilot-cta-banner__heading,
+  .kopilot-cta-banner__heading.kopilot-heading {
+    font-size: clamp(36px, 5vw, 56px);
+    max-width: min(85.5rem, 100%);
+  }
+
+  .kopilot-cta-banner .kopilot-cta-banner__btn.kopilot-btn {
+    padding: clamp(1.4rem, 2vw, 2.1rem) clamp(3rem, 6vw, 8.3rem);
+    font-size: clamp(1.6rem, 1.8vw, 2.4rem);
+  }
+
+  .kopilot-cta-banner__trust {
+    max-width: min(72.8rem, 100%);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ----- Features ----- */
+  .kopilot-features__inner {
+    gap: clamp(2rem, 4vw, 7.3rem);
+    padding: 0 clamp(1.6rem, 4vw, 6.1rem) clamp(2.4rem, 4vw, 3.5rem);
+  }
+
+  .kopilot-features__inner--image-left {
+    padding: 0 clamp(1.6rem, 4vw, 6.1rem) clamp(2.4rem, 4vw, 3.5rem);
+  }
+
+  .kopilot-features__content {
+    flex: 1 1 42%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .kopilot-features__heading {
+    font-size: clamp(36px, 5vw, 56px);
+    max-width: 100%;
+  }
+
+  .kopilot-features__text,
+  .kopilot-features__text.kopilot-body {
+    font-size: clamp(16px, 1.8vw, 20px);
+    max-width: 100%;
+  }
+
+  .kopilot-features__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 2rem);
+    row-gap: clamp(1.6rem, 2.5vw, 3.6rem);
+    width: 100%;
+  }
+
+  .kopilot-features__label,
+  .kopilot-features__label.kopilot-body,
+  .kopilot-features__label.kopilot-body * {
+    font-size: clamp(15px, 1.6vw, 20px);
+  }
+
+  .kopilot-features__media {
+    flex: 1 1 48%;
+    max-width: 52%;
+    min-width: 0;
+  }
+
+  /* ----- Buttons ----- */
+  .kopilot-section .kopilot-btn:not(.kopilot-cta-banner__btn) {
+    padding: clamp(1.2rem, 1.5vw, 1.6rem) clamp(2rem, 4vw, 4rem);
+    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
+  }
 }
 
-/* ----- Hero (tablet tweaks handled in kopilot-hero.css) ----- */
+/* Narrow tablet: stack product tiers cards */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .kopilot-product-tiers__grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .kopilot-product-tiers__card {
+    width: 100%;
+    max-width: min(42.7rem, 100%);
+    flex: none;
+    min-height: auto;
+  }
+
+  .kopilot-info-cards__card {
+    flex: 1 1 calc(50% - 1.2rem);
+    max-width: calc(50% - 1.2rem);
+  }
+
+  .kopilot-why-kopilot__card {
+    flex: 1 1 calc(50% - 12px);
+  }
+
+  .kopilot-features__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kopilot-guarantees__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 /* ----- Mobile homepage (≤767px) — section-specific CSS handles layout ----- */
 @media screen and (max-width: 767px) {

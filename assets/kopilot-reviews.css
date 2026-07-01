@@ -636,6 +636,20 @@
   }
 }
 
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
+  .kopilot-reviews__inner {
+    padding: clamp(3rem, 4vw, 4rem) clamp(2rem, 4vw, 3.2rem) 0;
+  }
+
+  .kopilot-reviews__heading {
+    font-size: clamp(44px, 4.5vw, 56px);
+  }
+
+  .kopilot-reviews__score-text {
+    font-size: clamp(1.8rem, 2vw, 2.4rem);
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .kopilot-reviews__rating-col {
     width: 238px;

@@ -378,9 +378,51 @@
   }
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1279px) {
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
   .kopilot-ambassadors {
-    --kopilot-ambassadors-slider-inset: 40px;
+    --kopilot-ambassadors-card-width: clamp(340px, 28vw, 400px);
+    --kopilot-ambassadors-slider-inset: clamp(40px, 8vw, 120px);
     --kopilot-ambassadors-progress-width: min(859.45px, calc(100vw - 160px));
+  }
+
+  .kopilot-ambassadors__heading {
+    font-size: clamp(44px, 4.5vw, 60px);
+  }
+
+  .kopilot-ambassadors__text,
+  .kopilot-ambassadors__quote {
+    font-size: clamp(17px, 1.6vw, 20px);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-ambassadors {
+    --kopilot-ambassadors-pad-y: 48px;
+    --kopilot-ambassadors-card-width: 400px;
+    --kopilot-ambassadors-card-gap: 30px;
+  }
+
+  .kopilot-ambassadors__inner {
+    gap: 60px;
+    padding: var(--kopilot-ambassadors-pad-y) 0;
+  }
+
+  .kopilot-ambassadors__header {
+    gap: 29px;
+    max-width: 626px;
+  }
+
+  .kopilot-ambassadors__heading {
+    max-width: 555px;
+    font-size: 60px;
+  }
+
+  .kopilot-ambassadors__text {
+    max-width: 626px;
+    font-size: 20px;
+  }
+
+  .kopilot-ambassadors__quote {
+    font-size: 20px;
   }
 }

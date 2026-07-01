@@ -260,13 +260,51 @@
   }
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1279px) {
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
   .kopilot-info-cards__grid {
-    padding-inline: clamp(2rem, 6vw, 8rem);
+    padding-inline: clamp(4rem, 8vw, 13.75rem);
   }
 
   .kopilot-info-cards__card {
     flex: 1 1 calc(33.333% - 2rem);
     max-width: calc(33.333% - 2rem);
+  }
+
+  .kopilot-info-cards__heading {
+    font-size: clamp(48px, 5vw, 60px);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-info-cards__inner {
+    gap: 0;
+    padding: 0 0 5rem;
+    margin-top: 4.3rem;
+  }
+
+  .kopilot-info-cards__heading {
+    font-size: 6rem;
+    margin: 0 auto 6rem;
+    max-width: 85.4rem;
+    padding: 0 2rem;
+  }
+
+  .kopilot-info-cards__grid {
+    padding: 0 13.75rem 5rem;
+    gap: 2.9rem;
+  }
+
+  .kopilot-info-cards__card {
+    flex: 0 0 36.9rem;
+    max-width: calc(33.333% - 2rem);
+  }
+
+  .kopilot-info-cards__card-title,
+  .kopilot-info-cards__card-title.kopilot-body,
+  .kopilot-info-cards__card-text,
+  .kopilot-info-cards__card-text.kopilot-body,
+  .kopilot-info-cards__card-text.kopilot-body.rte p {
+    font-size: 2rem;
+    line-height: 120%;
   }
 }

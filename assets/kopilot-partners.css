@@ -187,3 +187,25 @@
     object-fit: contain;
   }
 }
+
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
+  .kopilot-partners__inner {
+    padding: 1.3rem clamp(3rem, 5vw, 8.8rem);
+  }
+
+  .kopilot-partners__text {
+    flex: 0 1 clamp(24rem, 30vw, 37.4rem);
+    font-size: clamp(1.6rem, 1.6vw, 2rem);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .kopilot-partners__inner {
+    padding: 1.3rem 8.8rem;
+  }
+
+  .kopilot-partners__text {
+    font-size: 2rem;
+    flex: 0 0 37.4rem;
+  }
+}

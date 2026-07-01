@@ -545,14 +545,19 @@
     padding-inline: clamp(20px, 4vw, 71px);
   }
 
+  .kopilot-product-tiers__heading,
+  .kopilot-product-tiers__heading * {
+    font-size: clamp(44px, 4.5vw, 60px) !important;
+  }
+
   .kopilot-product-tiers__grid {
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .kopilot-product-tiers__card {
-    flex: 0 1 380px;
-    max-width: 380px;
+    flex: 0 1 clamp(320px, 28vw, 400px);
+    max-width: clamp(320px, 28vw, 400px);
     min-height: auto;
   }
 }

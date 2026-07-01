@@ -150,7 +150,68 @@
   display: none;
 }
 
-/* Responsive */
+/* Responsive: tablet / laptop */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-accidents__inner {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 100px);
+    gap: clamp(20px, 3vw, 31px);
+    min-height: 0;
+  }
+
+  .kopilot-accidents__content {
+    flex: 1 1 42%;
+    width: auto;
+    min-width: 0;
+  }
+
+  .kopilot-accidents__slider-wrap {
+    flex: 1 1 50%;
+    width: auto;
+    max-width: 52%;
+    height: auto;
+    aspect-ratio: 632 / 622;
+  }
+
+  .kopilot-accidents__heading {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+
+  .kopilot-accidents__subtitle,
+  .kopilot-accidents__body {
+    font-size: clamp(16px, 1.8vw, 20px);
+  }
+}
+
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-accidents__inner {
+    padding: 80px 100px;
+    gap: 31px;
+    min-height: 782px;
+  }
+
+  .kopilot-accidents__content {
+    width: 576px;
+  }
+
+  .kopilot-accidents__heading {
+    font-size: 60px;
+  }
+
+  .kopilot-accidents__subtitle,
+  .kopilot-accidents__body {
+    font-size: 20px;
+  }
+
+  .kopilot-accidents__slider-wrap {
+    width: 632px;
+    height: 622px;
+    max-width: none;
+    aspect-ratio: auto;
+  }
+}
+
+/* Legacy breakpoints — kept for gradual fallback */
 @media screen and (max-width: 1279px) {
   .kopilot-accidents__inner {
     padding: 60px 80px;

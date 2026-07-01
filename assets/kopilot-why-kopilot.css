@@ -83,14 +83,20 @@
   .kopilot-why-kopilot__label *,
   .kopilot-why-kopilot__label.rte,
   .kopilot-why-kopilot__label.rte * {
-    font-size: 20px;
+    font-size: clamp(15px, 1.6vw, 18px);
   }
 }
 
-/* Responsive */
-@media screen and (max-width: 1024px) and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .kopilot-why-kopilot__inner {
-    padding: 60px 40px;
+    padding: 27px 52px 80px;
+  }
+
+  .kopilot-why-kopilot__label,
+  .kopilot-why-kopilot__label *,
+  .kopilot-why-kopilot__label.rte,
+  .kopilot-why-kopilot__label.rte * {
+    font-size: 20px;
   }
 }
 

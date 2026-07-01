@@ -46,11 +46,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 126px 187px;
-  gap: 0;
-  min-height: 659px;
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -59,9 +54,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 70px;
-  width: 469px;
-  max-width: 100%;
   flex-shrink: 0;
 }
 
@@ -78,11 +70,9 @@
   font-family: var(--kopilot-font-family);
   font-weight: 300;
   font-style: normal;
-  font-size: 60px;
   line-height: 110%;
   letter-spacing: 0;
   color: #fff;
-  max-width: 572px;
 }
 
 .kopilot-hero2__body {
@@ -90,11 +80,9 @@
   font-family: var(--kopilot-font-family);
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
   line-height: 130%;
   letter-spacing: 0;
   color: #fff;
-  max-width: 469px;
 }
 
 .kopilot-hero2__btn {
@@ -102,16 +90,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 21px 82.5px;
   gap: 12px;
-  width: 319px;
-  height: 66.43px;
   background: #ef0008;
   color: #fff;
   font-family: var(--kopilot-font-family);
   font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
@@ -130,9 +113,6 @@
 /* Right product image */
 .kopilot-hero2__product {
   position: absolute;
-  width: 214.39px;
-  height: 236.57px;
-  right: 187px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
@@ -146,54 +126,116 @@
   object-fit: contain;
 }
 
-@media screen and (min-width: 1440px) {
-  .kopilot-hero2__product {
-    right: 241px;
+/* Tablet / laptop: fluid 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-hero2__bg-desktop {
+    display: block;
   }
-}
 
-/* Responsive */
-@media screen and (max-width: 1279px) {
+  .kopilot-hero2__bg-mobile {
+    display: none;
+  }
+
+  .kopilot-hero2 {
+    min-height: clamp(500px, 60vh, 640px);
+  }
+
   .kopilot-hero2__inner {
-    padding: 80px 80px;
+    max-width: 100%;
+    min-height: clamp(500px, 60vh, 640px);
+    padding: clamp(48px, 8vw, 100px) clamp(24px, 5vw, 80px);
+    gap: clamp(24px, 4vw, 48px);
+  }
+
+  .kopilot-hero2__content {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: min(469px, 52%);
+    gap: clamp(32px, 5vw, 60px);
   }
 
   .kopilot-hero2__heading {
-    font-size: clamp(3.6rem, 5vw, 5.2rem);
+    font-size: clamp(36px, 5vw, 56px);
+    max-width: 100%;
+  }
+
+  .kopilot-hero2__body {
+    font-size: clamp(16px, 1.8vw, 20px);
+    max-width: 100%;
+  }
+
+  .kopilot-hero2__btn {
+    width: auto;
+    min-width: min(100%, 240px);
+    max-width: 319px;
+    height: auto;
+    min-height: clamp(48px, 6vw, 60px);
+    padding: clamp(14px, 2vw, 21px) clamp(32px, 6vw, 72px);
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 24px;
   }
 
   .kopilot-hero2__product {
-    right: 60px;
-    width: 160px;
+    right: clamp(20px, 4vw, 80px);
+    width: clamp(110px, 14vw, 180px);
     height: auto;
   }
 }
 
-@media screen and (max-width: 1024px) {
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-hero2__bg-desktop {
+    display: block;
+  }
+
+  .kopilot-hero2__bg-mobile {
+    display: none;
+  }
+
+  .kopilot-hero2 {
+    min-height: 659px;
+  }
+
   .kopilot-hero2__inner {
-    padding: 60px 40px;
-    min-height: 520px;
+    padding: 126px 187px;
+    gap: 0;
+    min-height: 659px;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   .kopilot-hero2__content {
-    width: 420px;
-    gap: 48px;
+    gap: 70px;
+    width: 469px;
+    max-width: 100%;
   }
 
   .kopilot-hero2__heading {
-    font-size: clamp(3.2rem, 4.5vw, 4.8rem);
+    font-size: 60px;
+    max-width: 572px;
   }
 
   .kopilot-hero2__body {
-    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    font-size: 20px;
+    max-width: 469px;
+  }
+
+  .kopilot-hero2__btn {
+    padding: 21px 82.5px;
+    width: 319px;
+    height: 66.43px;
+    font-size: 20px;
+    line-height: 24px;
   }
 
   .kopilot-hero2__product {
-    right: 30px;
-    width: 140px;
+    width: 214.39px;
+    height: 236.57px;
+    right: 241px;
   }
 }
 
+/* Mobile pinned: ≤767px */
 @media screen and (max-width: 767px) {
   .kopilot-hero2__bg-desktop {
     display: none;
@@ -218,6 +260,7 @@
     padding: 48px 39px 60px;
     min-height: 635px;
     gap: 72px;
+    max-width: none;
   }
 
   .kopilot-hero2__product {
@@ -243,12 +286,14 @@
     font-size: 30px;
     line-height: 110%;
     width: 110%;
+    max-width: none;
   }
 
   .kopilot-hero2__body {
     font-size: 15px;
     line-height: 130%;
     width: 100%;
+    max-width: none;
   }
 
   .kopilot-hero2__btn {
@@ -257,5 +302,6 @@
     font-size: 15px;
     padding: 15px 82.5px;
     height: 48px;
+    min-height: 48px;
   }
 }
