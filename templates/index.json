@@ -311,7 +311,7 @@
         "t3"
       ],
       "settings": {
-        "background_color": "#F1F1F1",
+        "background_color": "#f1f1f1",
         "color_scheme": "scheme-1",
         "heading": "<p>Used on race day.<br/>Every day in between.</p>"
       }
@@ -429,7 +429,7 @@
       "type": "kopilot-home-closing",
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/image_18659490.png",
+        "image": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
         "image_mobile": "shopify://shop_images/image_18659490_2.png",
         "heading": "<p>Emergencies don't wait.<br/>Be prepared.</p>",
         "button_label": "Get KOPILOT.ID",
