@@ -12,12 +12,9 @@
     padding-top: {{ section.settings.text_padding_top }}px;
     padding-bottom: {{ section.settings.text_padding_bottom }}px;
   }
-  kopilot-features_content_pdp{
-    flex: 0 0 56.2rem;
-    max-width: 56.2rem;
-    min-width: 0;
-    gap:60px !important;
-  }
+.kopilot-features__content_pdp > .kopilot-features__grid {
+    margin-top: 60px !important;
+}
 
   @media screen and (max-width: 767px) {
     .kopilot-features--{{ section.id }} {
