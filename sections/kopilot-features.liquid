@@ -3,13 +3,27 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-  .kopilot-features__heading kopilot-heading_pdp p{
-    padding-bottom:60px !important;
+  .kopilot-features--{{ section.id }} .kopilot-features__heading {
+    font-size: {{ section.settings.heading_font_size }}px;
+    line-height: {{ section.settings.heading_line_height | default: 110.0 }}%;
+    font-weight: {{ section.settings.heading_font_weight | default: 300 }};
   }
+  .kopilot-features--{{ section.id }} .kopilot-features__text {
+    padding-top: {{ section.settings.text_padding_top }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom }}px;
+  }
+.kopilot-features__content_pdp > .kopilot-features__grid {
+    margin-top: 60px !important;
+}
+
   @media screen and (max-width: 767px) {
     .kopilot-features--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    .kopilot-features--{{ section.id }} .kopilot-features__heading {
+      /* Scales down heading smoothly for mobile screens */
+      font-size: max(24px, {{ section.settings.heading_font_size | multiplied_by: 0.6 }}px);
     }
   }
 {% endstyle %}
@@ -19,9 +33,9 @@
 
 <section id="kopilot-how-it-works" class="kopilot-section kopilot-features kopilot-features--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-features__inner{% if section.settings.image_position == 'left' %} kopilot-features__inner--image-left{% endif %}">
-    <div class="kopilot-features__content">
+    <div class="kopilot-features__content_pdp">
       {% if section.settings.heading_rt != blank %}
-        <div class="kopilot-features__heading kopilot-heading_pdp">{{ section.settings.heading_rt }}</div>
+        <div class="kopilot-features__heading kopilot-heading">{{ section.settings.heading_rt }}</div>
       {% endif %}
 
       {% if section.settings.text != blank %}
@@ -91,10 +105,46 @@
       "default": "right"
     },
     {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
       "type": "richtext",
       "id": "heading_rt",
       "label": "Heading",
-      "default": "<p>For the rides you plan and the moments you don't.</p>"
+      "default": "<p>The details that matter.</p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading Line Height",
+      "min": 90,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "default": 110
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "300"
     },
     {
       "type": "textarea",
@@ -103,12 +153,41 @@
       "default": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out."
     },
     {
+      "type": "header",
+      "content": "Text Padding"
+    },
+    {
+      "type": "range",
+      "id": "text_padding_top",
+      "label": "Text top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_padding_bottom",
+      "label": "Text bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "label": "Top padding",
       "min": 0,
       "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 0
     },
     {
@@ -118,6 +197,7 @@
       "min": 0,
       "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 0
     },
     {
@@ -127,6 +207,7 @@
       "min": 0,
       "max": 80,
       "step": 4,
+      "unit": "px",
       "default": 0
     },
     {
@@ -136,6 +217,7 @@
       "min": 0,
       "max": 80,
       "step": 4,
+      "unit": "px",
       "default": 0
     }
   ],
@@ -154,9 +236,9 @@
       "name": "Kopilot Features",
       "blocks": [
         { "type": "feature", "settings": { "label": "<p>Durable and waterproof</p>" } },
-        { "type": "feature", "settings": { "label": "<p>No battery/ charging needed</p>" } },
+        { "type": "feature", "settings": { "label": "<p>No battery / No charging</p>" } },
         { "type": "feature", "settings": { "label": "<p>No subscription required</p>" } },
-        { "type": "feature", "settings": { "label": "<p>Instant medical &amp; contact info</p>" } },
+        { "type": "feature", "settings": { "label": "<p>Instantly access emergency info</p>" } },
         { "type": "feature", "settings": { "label": "<p>Translates into 24 languages</p>" } },
         { "type": "feature", "settings": { "label": "<p>Works everywhere</p>" } }
       ]
