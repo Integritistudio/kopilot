@@ -75,3 +75,14 @@
     gap: 10px;
   }
 }
+
+.footer-bottom-menu-item.created-by span,
+.footer-bottom-menu-item.developed-by span {
+  font-family: Elza, sans-serif;
+  font-weight: inherit;
+  font-style: normal;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
