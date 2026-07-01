@@ -12,17 +12,35 @@
       width: 100%;
     }
 
+    /* Force strip any global theme paddings from the inner container */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
       display: flex;
       align-items: center;
-      justify-content: flex-end; /* Aligns content clean to the edges */
-      gap: 90px; /* Locked exactly to Figma spec */
+      justify-content: flex-end;
+      gap: 90px; /* Gap between text and image */
       height: 704px;
+      padding: 0 !important; /* Strips out the unwanted padding seen in your DevTools */
+      margin: 0 auto;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
       flex: 1;
-      max-width: 561px; /* Figma specification box width */
+      max-width: 561px;
+      padding-left: 90px; /* Locked to your requested 90px left spacing */
+      padding-right: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Reverse layout logic adjustments if image position is swapped */
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+
+    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right .kopilot-image-text__content {
+      padding-left: 0 !important;
+      padding-right: 90px;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media {
@@ -30,6 +48,8 @@
       width: 696px;
       height: 704px;
       overflow: hidden;
+      padding: 0 !important;
+      margin: 0 !important;
     }
 
     /* Force inside elements/images to crop and fill container pixel perfectly */
@@ -42,11 +62,6 @@
       object-position: center;
       display: block;
     }
-    
-    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
-      flex-direction: row-reverse;
-      justify-content: flex-start;
-    }
 
     /* Target heading structure to drop down seamlessly onto exactly 2 lines */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
@@ -56,8 +71,9 @@
       font-weight: 300;
       line-height: 1.1;
       letter-spacing: -1px;
+      margin-top: 0;
       margin-bottom: 24px;
-      max-width: 540px; /* Constraints width to break perfectly onto 2 lines */
+      max-width: 540px;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
@@ -67,7 +83,8 @@
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: 0;
-      max-width: 480px; /* Clean line breaking for paragraph text */
+      margin: 0;
+      max-width: 480px;
     }
   }
 
@@ -78,14 +95,12 @@
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
 
-    /* Force image on top, content below, with spacing between them */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
       display: flex;
       flex-direction: column-reverse;
       gap: 40px; 
     }
 
-    /* Constrain text wrapper content width exactly to Figma spec */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
       display: flex;
       flex-direction: column;
@@ -97,7 +112,6 @@
       text-align: {{ section.settings.text_alignment_mobile }};
     }
 
-    /* Heading Mobile Styles */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       font-family: 'Elza', sans-serif;
@@ -109,7 +123,6 @@
       margin: 0;
     }
 
-    /* Paragraph Body Mobile Styles */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte p,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte ul li,
@@ -129,31 +142,29 @@
 {{ 'kopilot-image-text.css' | asset_url | stylesheet_tag }}
 
 <section id="kopilot-why-kopilot" class="kopilot-section kopilot-image-text kopilot-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="{% unless section.settings.full_width %}container{% endunless %}">
-    <div class="kopilot-image-text__inner{% if section.settings.image_position == 'right' %} kopilot-image-text__inner--image-right{% endif %}">
-      <div class="kopilot-image-text__content">
-        {% if section.settings.heading != blank %}
-          <div class="kopilot-image-text__heading kopilot-heading rte">
-            {{ section.settings.heading }}
-          </div>
-        {% endif %}
+  <div class="kopilot-image-text__inner{% if section.settings.image_position == 'right' %} kopilot-image-text__inner--image-right{% endif %}">
+    <div class="kopilot-image-text__content">
+      {% if section.settings.heading != blank %}
+        <div class="kopilot-image-text__heading kopilot-heading rte">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
 
-        {% if section.settings.text != blank %}
-          <div class="kopilot-image-text__text kopilot-body rte">
-            {{ section.settings.text }}
-          </div>
-        {% endif %}
-      </div>
+      {% if section.settings.text != blank %}
+        <div class="kopilot-image-text__text kopilot-body rte">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
 
-      <div class="kopilot-image-text__media">
-        {% render 'kopilot-image',
-          image: section.settings.image,
-          fallback: 'kopilot-image-text.jpg',
-          alt: section.settings.heading,
-          width: 1400,
-          widths: '375,550,750,1100,1400'
-        %}
-      </div>
+    <div class="kopilot-image-text__media">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'kopilot-image-text.jpg',
+        alt: section.settings.heading,
+        width: 1400,
+        widths: '375,550,750,1100,1400'
+      %}
     </div>
   </div>
 </section>
