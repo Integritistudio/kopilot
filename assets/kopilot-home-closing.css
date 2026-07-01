@@ -187,7 +187,7 @@
     transform: translateX(-50%);
     top: clamp(24rem, 24vw, 33.6rem);
     width: min(144rem, 100vw);
-    height: clamp(50rem, 57vw, 82rem);
+    height: auto;
   }
 
   .kopilot-home-closing__bg-image--desktop img {
@@ -241,7 +241,7 @@
     left: 0;
     top: 33.6rem;
     width: 144rem;
-    height: 82rem;
+    height: auto;
     transform: none;
   }
 
