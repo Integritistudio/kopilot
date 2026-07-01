@@ -16,6 +16,7 @@
     margin-top: 60px !important;
 }
 
+
   @media screen and (max-width: 767px) {
     .kopilot-features--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -23,7 +24,7 @@
     }
     .kopilot-features--{{ section.id }} .kopilot-features__heading {
       /* Scales down heading smoothly for mobile screens */
-      font-size: max(24px, {{ section.settings.heading_font_size | multiplied_by: 0.6 }}px);
+      font-size:30px;
     }
   }
 {% endstyle %}
