@@ -364,7 +364,7 @@
         "color_scheme": "scheme-1",
         "image": "shopify://shop_images/IMG_3285_1.png",
         "image_position": "right",
-        "heading_rt": "<p>The details that matter.</p>",
+        "heading_rt": "<p>The details that<br/>matter.</p>",
         "heading_font_size": 60,
         "heading_line_height": 110,
         "heading_font_weight": "300",
