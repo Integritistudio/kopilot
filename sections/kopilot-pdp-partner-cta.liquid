@@ -23,7 +23,9 @@
 </div>
 
 <style>
-  /* Section Layout & Background Wrapper */
+  /* ==========================================================================
+     DESKTOP STYLES (Untouched per your exact code)
+     ========================================================================= */
   .kopilot-partner-section-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     width: 100%;
@@ -31,7 +33,6 @@
     box-sizing: border-box;
   }
 
-  /* Main Inner Flex Container (Frame 2106667295) */
   .kopilot-partner-container-{{ section.id }} {
     display: flex;
     flex-direction: row;
@@ -45,21 +46,19 @@
     box-sizing: border-box;
   }
 
-  /* Heading Typography (Elza Light 60px) */
   .kopilot-partner-heading-{{ section.id }} {
     font-family: "Elza", sans-serif;
     font-size: 60px;
     font-weight: 300;
-    line-height: 1.1; /* 110% Line Height */
+    line-height: 1.1; 
     color: #000000;
     margin: 0;
-    width: max-content; /* Pulls exact width dynamically based on content */
+    width: max-content; 
     max-width: 100%;
-    white-space: nowrap; /* Forces text onto a single line on desktop layout */
+    white-space: nowrap; 
     letter-spacing: 0%;
   }
 
-  /* Right Column Layout Frame */
   .kopilot-partner-content-{{ section.id }} {
     display: flex;
     flex-direction: column;
@@ -69,18 +68,16 @@
     max-width: 100%;
   }
 
-  /* Body Text Typography (Figtree Regular 20px) */
   .kopilot-partner-text-{{ section.id }} {
     font-family: "Figtree", sans-serif;
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.2; /* 120% Line Height */
+    line-height: 1.2; 
     color: #000000;
     margin: 0;
     width: 100%;
   }
 
-  /* Link Typography (Elza Text Trial Semibold Uppercase 20px Underline) */
   .kopilot-partner-link-{{ section.id }} {
     font-family: "Elza Text Trial", "Elza", sans-serif;
     font-size: 20px;
@@ -100,33 +97,69 @@
     opacity: 0.7;
   }
 
-  /* Responsive Breakpoints */
+  /* ==========================================================================
+     MOBILE BREAKPOINT STYLES (Figma Mobile Specs)
+     ========================================================================= */
   @media (max-width: 1100px) {
+    .kopilot-partner-section-{{ section.id }} {
+      padding: 0;
+    }
+
+    /* Outer Mobile Layout Stack (Frame 2106667390) */
     .kopilot-partner-container-{{ section.id }} {
       flex-direction: column;
-      align-items: flex-start;
-      padding: 0 40px;
-      gap: 32px;
-    }
-    
-    .kopilot-partner-heading-{{ section.id }} {
-      font-size: 44px;
+      align-items: center;
       width: 100%;
-      white-space: normal; /* Safely breaks down onto multiple lines on mobile */
+      max-width: 360.45px;
+      padding: 31px 20px;
+      gap: 35px;
+      margin: 0 auto;
     }
 
+    /* Typography Inner Content Column (Frame 2106667391) */
     .kopilot-partner-content-{{ section.id }} {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 289px;
+      max-width: 100%;
+      gap: 15px; /* Strict Figma stack spacing gap */
     }
-  }
 
-  @media (max-width: 480px) {
-    .kopilot-partner-container-{{ section.id }} {
-      padding: 0 20px;
-    }
-    
+    /* Mobile Heading Specs (30px / 110% / 249px Width / Center) */
     .kopilot-partner-heading-{{ section.id }} {
-      font-size: 36px;
+      font-family: "Elza", sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 1.1;
+      width: 249px;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+
+    /* Mobile Description Paragraph Specs (15px / 120% / 289px Width / Center) */
+    .kopilot-partner-text-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.2;
+      width: 289px;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    /* Mobile Text Link Specs (Figtree Bold / 20px / 120% / Center) */
+    .kopilot-partner-link-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-align: center;
+      width: 289px;
+      max-width: 100%;
     }
   }
 </style>
