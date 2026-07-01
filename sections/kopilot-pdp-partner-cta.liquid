@@ -1,110 +1,147 @@
-{% style %}
-  .kopilot-pdp-partner-cta--{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+<div class="kopilot-partner-section-{{ section.id }}">
+  <div class="kopilot-partner-container-{{ section.id }}">
+    
+    <!-- Left Heading Element -->
+    <h2 class="kopilot-partner-heading-{{ section.id }}">
+      Partner with KOPILOT.ID
+    </h2>
+    
+    <!-- Right Content Column Wrapper -->
+    <div class="kopilot-partner-content-{{ section.id }}">
+      <p class="kopilot-partner-text-{{ section.id }}">
+        Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.
+      </p>
+      
+      <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-partner-link-{{ section.id }}">
+        See partnerships
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* Section Layout & Background Wrapper */
+  .kopilot-partner-section-{{ section.id }} {
+    background-color: #F1F1F1;
+    width: 100%;
+    padding: 50px 0; /* 50px Top and Bottom padding */
+    box-sizing: border-box;
   }
-  @media screen and (max-width: 767px) {
-    .kopilot-pdp-partner-cta--{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+
+  /* Main Inner Flex Container (Frame 2106667295) */
+  .kopilot-partner-container-{{ section.id }} {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 224px; /* 224px Left and Right padding */
+    gap: 75px; /* Perfect Figma frame gap spacing */
+    box-sizing: border-box;
+  }
+
+  /* Heading Typography (Elza Light 60px) */
+  .kopilot-partner-heading-{{ section.id }} {
+    font-family: "Elza", sans-serif;
+    font-size: 60px;
+    font-weight: 300;
+    line-height: 1.1; /* 110% Line Height */
+    color: #000000;
+    margin: 0;
+    width: 613px;
+    max-width: 100%;
+    letter-spacing: 0%;
+  }
+
+  /* Right Column Layout Frame */
+  .kopilot-partner-content-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px; /* Visual distribution gap between description and link */
+    width: 342px;
+    max-width: 100%;
+  }
+
+  /* Body Text Typography (Figtree Regular 20px) */
+  .kopilot-partner-text-{{ section.id }} {
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2; /* 120% Line Height */
+    color: #000000;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Link Typography (Elza Text Trial Semibold Uppercase 20px Underline) */
+  .kopilot-partner-link-{{ section.id }} {
+    font-family: "Elza Text Trial", "Elza", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.0; /* 100% Line Height */
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: underline;
+    display: inline-block;
+    width: 197px;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+  }
+
+  .kopilot-partner-link-{{ section.id }}:hover {
+    opacity: 0.7;
+  }
+
+  /* Responsive Breakpoint for Tablet/Mobile Screens */
+  @media (max-width: 1100px) {
+    .kopilot-partner-container-{{ section.id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 40px;
+      gap: 32px;
+    }
+    
+    .kopilot-partner-heading-{{ section.id }} {
+      font-size: 44px;
+      width: 100%;
+    }
+
+    .kopilot-partner-content-{{ section.id }} {
+      width: 100%;
     }
   }
-{% endstyle %}
 
-{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
-{{ 'kopilot-pdp-partner-cta.css' | asset_url | stylesheet_tag }}
-
-<section class="kopilot-section kopilot-pdp-partner-cta kopilot-pdp-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-pdp-partner-cta__inner">
-    {% if section.settings.heading != blank %}
-      <h2 class="kopilot-pdp-partner-cta__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    <div class="kopilot-pdp-partner-cta__content">
-      {% if section.settings.text != blank %}
-        <p class="kopilot-pdp-partner-cta__text">{{ section.settings.text }}</p>
-      {% endif %}
-      {% if section.settings.link_label != blank %}
-        <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-pdp-partner-cta__link">
-          {{ section.settings.link_label }}
-        </a>
-      {% endif %}
-    </div>
-  </div>
-</section>
+  @media (max-width: 480px) {
+    .kopilot-partner-container-{{ section.id }} {
+      padding: 0 20px;
+    }
+    
+    .kopilot-partner-heading-{{ section.id }} {
+      font-size: 36px;
+    }
+  }
+</style>
 
 {% schema %}
 {
-  "name": "Kopilot PDP partner CTA",
-  "tag": "section",
-  "class": "kopilot-pdp-partner-cta-section",
-  "disabled_on": { "groups": ["header", "footer"] },
+  "name": "Kopilot Partner Banner",
   "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Partner with KOPILOT.ID"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Text",
-      "default": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team."
-    },
-    {
-      "type": "text",
-      "id": "link_label",
-      "label": "Link label",
-      "default": "See partnerships"
-    },
     {
       "type": "url",
       "id": "link_url",
-      "label": "Link URL"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Top padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Bottom padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 40
+      "label": "Partnerships Link URL",
+      "default": "/"
     }
   ],
-  "presets": [{ "name": "Kopilot PDP partner CTA" }]
+  "presets": [
+    {
+      "name": "Kopilot Partner Banner"
+    }
+  ]
 }
 {% endschema %}
