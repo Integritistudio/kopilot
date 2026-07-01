@@ -3,7 +3,7 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-  .kopilot-features__heading kopilot-heading p{
+  .kopilot-features__heading kopilot-heading_pdp p{
     padding-bottom:60px !important;
   }
   @media screen and (max-width: 767px) {
@@ -21,7 +21,7 @@
   <div class="kopilot-features__inner{% if section.settings.image_position == 'left' %} kopilot-features__inner--image-left{% endif %}">
     <div class="kopilot-features__content">
       {% if section.settings.heading_rt != blank %}
-        <div class="kopilot-features__heading kopilot-heading">{{ section.settings.heading_rt }}</div>
+        <div class="kopilot-features__heading kopilot-heading_pdp">{{ section.settings.heading_rt }}</div>
       {% endif %}
 
       {% if section.settings.text != blank %}
