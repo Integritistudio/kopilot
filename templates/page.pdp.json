@@ -656,9 +656,6 @@
       "type": "hero-adventure",
       "name": "Hero Adventure",
       "settings": {
-        "heading": "Don't let your next adventure be your last.",
-        "button_label": "GET KOPILOT.ID",
-        "button_link": "/",
         "image_desktop": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
         "image_mobile": "shopify://shop_images/image_18659496_1.png",
         "color_text": "#222222",
