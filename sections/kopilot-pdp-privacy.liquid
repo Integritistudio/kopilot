@@ -2,12 +2,117 @@
   .kopilot-pdp-privacy--{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: inherit;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 80px; /* Adjust this to match your global page container side padding */
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__icon {
+    width: 115px;
+    height: 115px;
+    flex-shrink: 0;
+    margin-right: 99px; /* Exact pixel gap from Figma blueprint */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__icon img,
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 20px;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__heading {
+    font-family: "Elza", sans-serif;
+    font-size: 60px;
+    font-weight: 300;
+    line-height: 1.1; /* 110% line height */
+    margin: 0;
+    width: 100%;
+    max-width: 465px; /* Exact box boundary from Figma */
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__text {
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2; /* 120% line height */
+    width: 100%;
+    max-width: 404px; /* Exact box boundary from Figma */
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__text p {
+    margin: 0;
+  }
+
+  /* Responsive styling to gracefully degrade on smaller screens */
+  @media screen and (max-width: 1024px) {
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__inner {
+      padding: 0 40px;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__icon {
+      margin-right: 40px;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__heading {
+      font-size: 44px;
+    }
   }
 
   @media screen and (max-width: 767px) {
     .kopilot-pdp-privacy--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 0 20px;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__icon {
+      margin-right: 0;
+      width: 80px;
+      height: 80px;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      width: 100%;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__heading {
+      font-size: 32px;
+      max-width: 100%;
+    }
+    .kopilot-pdp-privacy--{{ section.id }} .kopilot-pdp-privacy__text {
+      font-size: 16px;
+      max-width: 100%;
     }
   }
 {% endstyle %}
@@ -22,7 +127,7 @@
         image: section.settings.icon,
         fallback: 'kopilot-pdp-privacy-icon.png',
         alt: '',
-        width: 230
+        width: 115
       %}
     </div>
     <div class="kopilot-pdp-privacy__content">
@@ -71,8 +176,9 @@
       "id": "padding_top",
       "label": "Top padding",
       "min": 0,
-      "max": 80,
+      "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 44
     },
     {
@@ -80,8 +186,9 @@
       "id": "padding_bottom",
       "label": "Bottom padding",
       "min": 0,
-      "max": 80,
+      "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 44
     },
     {
@@ -89,8 +196,9 @@
       "id": "padding_top_mobile",
       "label": "Top padding (mobile)",
       "min": 0,
-      "max": 80,
+      "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 32
     },
     {
@@ -98,8 +206,9 @@
       "id": "padding_bottom_mobile",
       "label": "Bottom padding (mobile)",
       "min": 0,
-      "max": 80,
+      "max": 120,
       "step": 4,
+      "unit": "px",
       "default": 32
     }
   ],
