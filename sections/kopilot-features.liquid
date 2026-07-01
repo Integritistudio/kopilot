@@ -1,21 +1,81 @@
 {% style %}
-  .kopilot-features--{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+  /* ==========================================================================
+     SCOPED DESKTOP DESIGN RULES (Figma Exacts)
+     ========================================================================== */
+  @media screen and (min-width: 768px) {
+    /* Main Parent Component Container Framework (Frame 1984077277) */
+    .kopilot-features--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      width: 100%;
+      max-width: 1440px;
+      height: 710px; /* Locked strict height */
+      margin: 0 auto;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Inner Flex Alignment Layout Flow (Row Layout) */
+    .kopilot-features--{{ section.id }} .kopilot-features__inner {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      width: 100% !important;
+      height: 100% !important;
+      gap: 73px !important; /* Fixed spacing gap between left text block and right image */
+    }
+
+    /* Left Content Column Layout (Frame 1597885210) */
+    .kopilot-features--{{ section.id }} .kopilot-features__content_pdp {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      width: 634px !important; /* Strict fixed width layout */
+      height: 563.14px !important; /* Exact blueprint height */
+      padding: 72px 9px 72px 72px !important; /* Exact padding: Top 72, Right 9, Bottom 72, Left 72 */
+      box-sizing: border-box !important;
+    }
+
+    /* Headline Element Dimensioning Specs */
+    .kopilot-features--{{ section.id }} .kopilot-features__heading {
+      font-size: {{ section.settings.heading_font_size }}px;
+      line-height: {{ section.settings.heading_line_height | default: 110.0 }}%;
+      font-weight: {{ section.settings.heading_font_weight | default: 300 }};
+      width: 571px !important; /* Precise text element bounding width */
+      margin: 0 !important;
+    }
+
+    /* Item Grid Element Spacing Controls */
+    .kopilot-features--{{ section.id }} .kopilot-features__content_pdp > .kopilot-features__grid {
+      margin-top: 60px !important; /* Exact gap between heading element and icons list */
+    }
+
+    /* Right Media Block Container Specs */
+    .kopilot-features--{{ section.id }} .kopilot-features__media {
+      width: 733px !important; /* Absolute layout fixed width */
+      height: 710px !important; /* Absolute layout fixed height */
+      min-width: 733px !important;
+      max-width: 733px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Nested Production Image Aspect Ratio Crop Fitting */
+    .kopilot-features--{{ section.id }} .kopilot-features__media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important; /* Forces layout to standard "Scale Crop / Fill" layout rule */
+    }
   }
-  .kopilot-features--{{ section.id }} .kopilot-features__heading {
-    font-size: {{ section.settings.heading_font_size }}px;
-    line-height: {{ section.settings.heading_line_height | default: 110.0 }}%;
-    font-weight: {{ section.settings.heading_font_weight | default: 300 }};
-  }
+
+  /* ==========================================================================
+     PRE-EXISTING GLOBAL / MOBILE DEFINITIONS (Untouched)
+     ========================================================================== */
   .kopilot-features--{{ section.id }} .kopilot-features__text {
     padding-top: {{ section.settings.text_padding_top }}px;
     padding-bottom: {{ section.settings.text_padding_bottom }}px;
   }
-.kopilot-features__content_pdp > .kopilot-features__grid {
-    margin-top: 60px !important;
-}
-
 
   @media screen and (max-width: 767px) {
     .kopilot-features--{{ section.id }} {
@@ -23,9 +83,8 @@
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
     .kopilot-features--{{ section.id }} .kopilot-features__heading {
-      /* Scales down heading smoothly for mobile screens */
-      padding-top:37px;
-      font-size:30px;
+      padding-top: 37px;
+      font-size: 30px;
     }
   }
 {% endstyle %}
