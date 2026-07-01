@@ -13,6 +13,8 @@
       "type": "kopilot-home-hero",
       "settings": {
         "color_scheme": "scheme-1",
+        "background_image": "shopify://shop_images/image_18659494_4.png",
+        "background_image_mobile": "shopify://shop_images/image_18659494_6.png",
         "video": "",
         "heading_desktop": "<p>Your Critical Emergency<br>Information<br><span>Just A Tap Away</span></p>",
         "heading_mobile": "<p>Your Critical Emergency Information <span>Just A Tap Away</span></p>",
@@ -110,6 +112,8 @@
       "type": "kopilot-home-image-text",
       "settings": {
         "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/image_18659487_1.png",
+        "image_mobile": "shopify://shop_images/image_18659487_2.png",
         "image_alt": "Mountain biker receiving help after a fall",
         "text_alignment_desktop": "left",
         "text_alignment_mobile": "center",
@@ -126,12 +130,14 @@
         "hf1": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
             "label": "<p>Durable and waterproof</p>"
           }
         },
         "hf2": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/Group_36.svg",
             "label": "<p>No battery / </p><p>No charging</p>"
           }
         },
@@ -145,6 +151,7 @@
         "hf4": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/Group_35.svg",
             "label": "<p>Instantly access emergency info</p>"
           }
         },
@@ -173,6 +180,8 @@
       ],
       "settings": {
         "color_scheme": "scheme-4",
+        "image": "shopify://shop_images/e93c4dc51c024f4cd0e81f6d48f78e58f1f63925.jpg",
+        "image_mobile": "shopify://shop_images/image_18659468_1.png",
         "image_alt": "KOPILOT.ID tag on helmet",
         "heading": "<p>Designed for any conditions you're willing to brave.</p>",
         "show_heading_mobile": false,
@@ -184,6 +193,9 @@
       "settings": {
         "color_scheme": "scheme-1",
         "video_url": "",
+        "overlay_image": "shopify://shop_images/Screenshot_2026-04-23-12-11-20-277_com.kopilotid.kopilot_3_2.png",
+        "overlay_image_mobile": "shopify://shop_images/Group_2106667203_2.png",
+        "play_icon": "shopify://shop_images/Polygon_1.svg",
         "play_label": "Play video",
         "heading": "<p>Your critical emergency information in one tap.</p>"
       }
