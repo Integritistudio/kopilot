@@ -1,6 +1,6 @@
 {% style %}
   @media screen and (min-width: 768px) {
-    /* Main Parent Container - Allows fluid layout stretching past 1440px */
+    /* Main Parent Container - Handles fluid layout stretching past 1440px */
     .kopilot-features--{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -8,7 +8,7 @@
       height: auto; 
       min-height: 710px;
       display: flex;
-      justify-content: flex-end; /* Strictly anchors alignment to the right viewport edge */
+      justify-content: flex-end; /* Keeps layout strictly flush to the right edge */
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -21,7 +21,7 @@
       justify-content: space-between !important;
       width: 100% !important;
       height: 100% !important;
-      margin-right: 0 !important; /* Forces container to sit completely flush right */
+      margin-right: 0 !important; /* Pulls container directly right */
     }
 
     /* Left Content Column Layout (Frame 1597885210) */
@@ -32,7 +32,7 @@
       flex: 0 1 auto !important;
       width: 45% !important;
       max-width: 634px !important;
-      padding: 72px 24px 72px 5% !important; /* Fluid left padding scales smoothly across workspaces */
+      padding: 72px 24px 72px 5% !important; /* Dynamic fluid padding based on screen width */
       box-sizing: border-box !important;
     }
 
@@ -76,34 +76,45 @@
   }
 
   /* ==========================================================================
-     REMOVING MAX-WIDTH CONSTRAINTS & ENHANCING TABLET RESPONSIVENESS (768px - 1100px)
+     STRICT TABLET SPECIFIC OVERRIDES (768px - 1024px ONLY)
      ========================================================================== */
-  @media screen and (min-width: 768px) and (max-width: 1100px) {
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
     .kopilot-features--{{ section.id }} {
       height: auto !important;
-      justify-content: center !important;
+      min-height: unset !important;
     }
     
+    /* Change layout order to center stacked content safely */
     .kopilot-features--{{ section.id }} .kopilot-features__inner {
-      flex-direction: column-reverse !important; /* Changes layout to stack cleanly on smaller screens */
-      gap: 40px !important;
+      flex-direction: column !important; 
+      gap: 32px !important;
     }
 
+    /* Centers textual column layout alignment completely */
     .kopilot-features--{{ section.id }} .kopilot-features__content_pdp {
       width: 100% !important;
-      max-width: 100% !important;
-      padding: 60px 40px !important;
+      max-width: 680px !important; /* Comfortable tablet column bounds */
+      padding: 48px 24px !important;
+      align-items: center !important;
+      text-align: center !important;
+      margin: 0 auto !important;
     }
 
+    .kopilot-features--{{ section.id }} .kopilot-features__heading {
+      text-align: center !important;
+      margin: 0 auto !important;
+    }
+
+    .kopilot-features--{{ section.id }} .kopilot-features__content_pdp > .kopilot-features__grid {
+      justify-content: center !important;
+    }
+
+    /* Reduces image canvas box visibility scale cleanly */
     .kopilot-features--{{ section.id }} .kopilot-features__media {
       width: 100% !important;
-      max-width: none !important; /* COMPLETELY REMOVED MAX-WIDTH LIMIT - Let image fill layout fully */
-      height: auto !important;
-      min-height: 450px !important;
-    }
-    
-    .kopilot-features--{{ section.id }} .kopilot-features__media img {
-      max-width: none !important; /* Image scales dynamically across all custom tablet frames */
+      max-width: 550px !important; /* Controlled compact profile constraint */
+      height: 380px !important;   /* Scaled down height */
+      margin: 0 auto !important;
     }
   }
 
