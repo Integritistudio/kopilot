@@ -76,6 +76,8 @@
       gap: 30px;
       {% if section.settings.image_mobile != blank %}
         background-image: url('{{ section.settings.image_mobile | image_url: width: 750 }}');
+      {% elsif section.settings.image_desktop != blank %}
+        background-image: url('{{ section.settings.image_desktop | image_url: width: 1000 }}');
       {% endif %}
     }
 
@@ -87,24 +89,18 @@
   }
 {%- endstyle -%}
 
-<div class="adventure-hero-{{ section.id }} section-{{ section.id }}-padding">
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'heading' -%}
-        {%- if block.settings.heading != blank -%}
-          <h2 class="hero-heading" {{ block.shopify_attributes }}>
-            {{ block.settings.heading | escape }}
-          </h2>
-        {%- endif -%}
+<div class="adventure-hero-{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="hero-heading">
+      {{ section.settings.heading | escape }}
+    </h2>
+  {%- endif -%}
 
-      {%- when 'button' -%}
-        {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
-          <a href="{{ block.settings.button_link }}" class="hero-button" {{ block.shopify_attributes }}>
-            {{ block.settings.button_label | escape }}
-          </a>
-        {%- endif -%}
-    {%- endcase -%}
-  {%- endfor -%}
+  {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+    <a href="{{ section.settings.button_link }}" class="hero-button">
+      {{ section.settings.button_label | escape }}
+    </a>
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -114,6 +110,32 @@
   "class": "section",
   "settings": [
     {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "Don't let your next adventure be your last."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "GET KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "header",
+      "content": "Background Assets"
+    },
+    {
       "type": "image_picker",
       "id": "image_desktop",
       "label": "Desktop Background Image"
@@ -121,7 +143,12 @@
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Mobile Background Image"
+      "label": "Mobile Background Image",
+      "info": "Leave blank to use the desktop background image on mobile devices."
+    },
+    {
+      "type": "header",
+      "content": "Color Profiles"
     },
     {
       "type": "color",
@@ -142,51 +169,9 @@
       "default": "#FFFFFF"
     }
   ],
-  "blocks": [
-    {
-      "type": "heading",
-      "name": "Heading",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading Text",
-          "default": "Don't let your next adventure be your last."
-        }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button Label",
-          "default": "GET KOPILOT.ID"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link",
-          "default": "/"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Adventure Hero",
-      "blocks": [
-        {
-          "type": "heading"
-        },
-        {
-          "type": "button"
-        }
-      ]
+      "name": "Adventure Hero"
     }
   ]
 }

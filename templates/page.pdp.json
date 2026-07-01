@@ -656,13 +656,11 @@
       "type": "hero-adventure",
       "name": "Hero Adventure",
       "settings": {
-        "color_scheme": "",
-        "image": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
+        "image_desktop": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
         "image_mobile": "shopify://shop_images/image_18659496_1.png",
-        "heading": "<p>Don't let your next <br/>adventure be your last.</p>",
-        "button_label": "Get KOPILOT.ID",
-        "button_link": "",
-        "tagline": ""
+        "color_text": "#222222",
+        "color_button_bg": "#ef0008",
+        "color_button_text": "#ffffff"
       }
     }
   },
