@@ -169,7 +169,7 @@
   font-family: Elza, sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 1.3rem;
+  font-size: 13px;
   line-height: 100%;
   letter-spacing: 0;
   color: #595959;
@@ -179,7 +179,7 @@
   font-family: Elza, sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 1.3rem;
+  font-size: 13px;
   line-height: 100%;
   letter-spacing: 0;
   color: inherit;
@@ -235,6 +235,11 @@
 
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-testimonials__verified,
+  .kopilot-home-testimonials__verified span {
+    font-size: 16px;
+  }
+
   .kopilot-home-testimonials__inner {
     gap: 6.7rem;
     padding: 7.2rem clamp(2.4rem, 5vw, 8.1rem);
@@ -302,6 +307,11 @@
 
 /* Desktop: 1440px+ */
 @media screen and (min-width: 1440px) {
+  .kopilot-home-testimonials__verified,
+  .kopilot-home-testimonials__verified span {
+    font-size: 16px;
+  }
+
   .kopilot-home-testimonials__inner {
     gap: 6.7rem;
     min-height: 78.7rem;
