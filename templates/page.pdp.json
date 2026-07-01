@@ -547,87 +547,89 @@
         "padding_bottom_mobile": 0
       }
     },
-    "kopilot_faq": {
+    "kopilot_faq_XP4bMX": {
       "type": "kopilot-faq",
       "blocks": {
-        "q1": {
+        "question_dMTJzf": {
           "type": "question",
           "settings": {
             "question": "How does KOPILOT.ID work in an emergency?",
             "answer": "<p>If something happens, anyone with a smartphone can tap your KOPILOT.ID NFC tag to instantly access your medical information, allergies, medications, and emergency contacts; no app required.</p>"
           }
         },
-        "q2": {
+        "question_FbJYhw": {
           "type": "question",
           "settings": {
             "question": "Do people need to download an app to scan the tag?",
-            "answer": "<p>No. Most modern smartphones can read NFC tags directly from the lock screen or camera. Your emergency profile opens in the browser without requiring a download.</p>"
+            "answer": "<p>No app needed. Your profile opens directly in a smartphone browser when someone taps their phone on the NFC tag.</p>"
           }
         },
-        "q3": {
+        "question_RGdy9N": {
           "type": "question",
           "settings": {
             "question": "Does KOPILOT.ID work without cell service?",
-            "answer": "<p>Yes. The NFC tag itself works without cell service or battery. As long as the person scanning has a smartphone, they can access your information even in remote areas.</p>"
+            "answer": "<p>Yes. KOPILOT.ID is waterproof, battery-free, and designed to work in real-world conditions without charging or cell signal</p>"
           }
         },
-        "q4": {
+        "question_efXCyi": {
           "type": "question",
           "settings": {
             "question": "What information can I add to my profile?",
-            "answer": "<p>You can add essential details like allergies, medical conditions, medications, blood type, and emergency contacts — everything a first responder would need to help you quickly.</p>"
+            "answer": "<p>You can add medical conditions, allergies, medications, emergency contacts, personalized notes, and other important information responders may need in an emergency.</p>"
           }
         },
-        "q5": {
+        "question_emkPCz": {
           "type": "question",
           "settings": {
             "question": "Can I manage multiple tags from one account?",
-            "answer": "<p>Yes. You can manage multiple tags, gear setups, and family members from a single KOPILOT.ID account in the app.</p>"
+            "answer": "<p>Yes. You can manage multiple profiles and tags for family members, friends, or your crew directly from the KOPILOT.ID app.</p>"
           }
         },
-        "q6": {
+        "question_ez7x6t": {
           "type": "question",
           "settings": {
             "question": "Is there a subscription required?",
-            "answer": "<p>No. KOPILOT.ID does not require a subscription. Set up your profile once and use your tag without recurring fees.</p>"
+            "answer": "<p>No monthly subscription is required to use your KOPILOT.ID NFC tag or manage your profile.</p>"
           }
         },
-        "q7": {
+        "question_hn7y3z": {
           "type": "question",
           "settings": {
             "question": "What gear can I attach the NFC tag to?",
-            "answer": "<p>Most riders attach it to their helmet, chest protector, pack, or bike using the included goggle, zipper, or carbon helmet mounts.</p>"
+            "answer": "<p>KOPILOT.ID is designed for helmets, goggles, packs, bikes, jackets, zipper pulls, keychains, and other everyday or outdoor gear using the included mounting options.</p>"
           }
         },
-        "q8": {
+        "question_8Trpcy": {
           "type": "question",
           "settings": {
-            "question": "Why would I buy a multi-pack?",
-            "answer": "<p>Multi-packs let you equip more gear, share tags with friends or family, and save up to 20% compared to buying individually.</p>"
+            "question": "Why should I buy a multi-pack?",
+            "answer": "<p>Multi-packs are perfect for families, friends, riding groups, or multiple gear setups, while saving you more on each additional tag.</p>"
           }
         }
       },
       "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5",
-        "q6",
-        "q7",
-        "q8"
+        "question_dMTJzf",
+        "question_FbJYhw",
+        "question_RGdy9N",
+        "question_efXCyi",
+        "question_emkPCz",
+        "question_ez7x6t",
+        "question_hn7y3z",
+        "question_8Trpcy"
       ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Questions",
-        "heading_font_weight": "",
+        "heading_font_size": 55,
+        "heading_font_weight": "700",
         "heading_line_height": "",
-        "heading_font_weight_mobile": "",
+        "heading_font_size_mobile": 30,
+        "heading_font_weight_mobile": "700",
         "heading_line_height_mobile": "",
-        "padding_top": 104,
-        "padding_bottom": 104,
-        "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "kopilot_pdp_partner_cta": {
@@ -666,7 +668,7 @@
     "kopilot_pdp_privacy",
     "kopilot_home_testimonials_NJaUJU",
     "kopilot_reviews",
-    "kopilot_faq",
+    "kopilot_faq_XP4bMX",
     "kopilot_pdp_partner_cta",
     "kopilot_home_closing_mPNefM"
   ]
