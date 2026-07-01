@@ -132,6 +132,14 @@
   white-space: nowrap;
 }
 
+.kopilot-home-testimonials__tag--location span {
+  font-family: Elza, sans-serif;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
 .kopilot-home-testimonials__location-icon {
   display: block;
   width: 1.333rem;
@@ -168,12 +176,12 @@
 }
 
 .kopilot-home-testimonials__verified span {
-  font-family: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3rem;
+  line-height: 100%;
+  letter-spacing: 0;
   color: inherit;
 }
 
@@ -290,11 +298,6 @@
     font-size: 2rem;
     line-height: 2.4rem;
   }
-
-  .kopilot-home-testimonials__verified {
-    font-size: 1.6rem;
-    line-height: 100%;
-  }
 }
 
 /* Desktop: 1440px+ */
@@ -365,10 +368,5 @@
   .kopilot-home-testimonials__quote {
     font-size: 2rem;
     line-height: 2.4rem;
-  }
-
-  .kopilot-home-testimonials__verified {
-    font-size: 1.6rem;
-    line-height: 100%;
   }
 }
