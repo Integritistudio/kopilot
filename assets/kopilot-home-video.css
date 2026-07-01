@@ -80,7 +80,7 @@
 
 .kopilot-home-video__play {
   position: absolute;
-  top: 50%;
+  top: 26.9rem;
   left: 50%;
   z-index: 3;
   width: 5.5rem;
@@ -89,7 +89,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  transform: translate(-50%, calc(-50% - 0.3rem));
+  transform: translateX(-50%);
   cursor: pointer;
   pointer-events: auto;
 }
@@ -153,9 +153,10 @@
   }
 
   .kopilot-home-video__play {
+    top: 21.6rem;
     width: clamp(7rem, 8vw, 10.5rem);
     height: clamp(6rem, 7vw, 9.1rem);
-    transform: translate(-50%, calc(-50% - 2rem));
+    transform: translateX(-50%);
   }
 
   .kopilot-home-video__heading.rte,
@@ -191,9 +192,10 @@
   }
 
   .kopilot-home-video__play {
+    top: 26.9rem;
     width: 5.5rem;
     height: 4.8rem;
-    transform: translate(-50%, calc(-50% - 0.3rem));
+    transform: translateX(-50%);
   }
 
   .kopilot-home-video__heading.rte,
@@ -227,9 +229,10 @@
   }
 
   .kopilot-home-video__play {
+    top: 21.6rem;
     width: 10.5rem;
     height: 9.1rem;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
   }
 
   .kopilot-home-video__heading.rte,
