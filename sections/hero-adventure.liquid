@@ -19,12 +19,21 @@
     {%- endif -%}
   }
 
+  /* RESET: Neutralize the external theme CSS min-height rules breaking the gap */
+  .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__inner {
+    min-height: auto !important;
+    height: auto !important;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
   /* Desktop Settings (Figma 1440px Specification) */
   @media screen and (min-width: 768px) {
     .kopilot-home-closing--{{ section.id }} {
-      min-height: 856px;
-      padding-top: 77px;
-      padding-bottom: 538px;
+      height: 856px; /* Match Figma fixed frame height exactly */
+      padding-top: {{ section.settings.padding_top }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom }}px !important;
     }
     .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image--desktop {
       display: block !important;
@@ -37,9 +46,9 @@
   /* Mobile Settings (Figma 360px Specification) */
   @media screen and (max-width: 767px) {
     .kopilot-home-closing--{{ section.id }} {
-      min-height: 638px;
-      padding-top: 77px;
-      padding-bottom: 538px;
+      height: 638px; /* Match Figma mobile frame height exactly */
+      padding-top: {{ section.settings.mobile_padding_top }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
     }
     .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image--desktop {
       display: none !important;
@@ -66,7 +75,7 @@
     height: 100%;
   }
 
-  /* Deep target the image element inside the render snippet */
+  /* Deep target the image asset inside the custom render snippet */
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image img,
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image picture {
     width: 100% !important;
@@ -75,19 +84,13 @@
     object-position: bottom center !important;
   }
 
-  /* Lift content structures over the background container safely */
-  .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__inner {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-  }
-
-  /* Dynamic Customizer Schema Controls for flexible fine-tuning */
+  /* Dynamic Customizer Content Element Layout Flow */
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin: 0 auto;
     gap: {{ section.settings.element_gap }}px;
   }
   
@@ -179,8 +182,7 @@
       "type": "checkbox",
       "id": "force_custom_bg",
       "label": "Override with custom background color",
-      "default": true,
-      "info": "Check this box to overwrite layout backgrounds pulling from external theme stylesheets."
+      "default": true
     },
     {
       "type": "color",
@@ -200,8 +202,7 @@
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Background image (mobile)",
-      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+      "label": "Background image (mobile)"
     },
     {
       "type": "header",
@@ -211,7 +212,7 @@
       "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "<p>Emergencies don't wait.<br>Be prepared.</p>"
+      "default": "<p>Don't let your next<br>adventure be your last.</p>"
     },
     {
       "type": "text",
@@ -232,7 +233,27 @@
     },
     {
       "type": "header",
-      "content": "Figma Spacing Control"
+      "content": "Desktop Spacing Controls (Figma 1440px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 800,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 536
     },
     {
       "type": "range",
@@ -241,8 +262,32 @@
       "max": 100,
       "step": 2,
       "unit": "px",
-      "label": "Desktop Element Gap",
+      "label": "Element Gap (Text to Button)",
       "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing Controls (Figma 360px)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 800,
+      "step": 8,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 536
     },
     {
       "type": "range",
@@ -259,7 +304,7 @@
     {
       "name": "Kopilot Home Closing",
       "settings": {
-        "heading": "<p>Emergencies don't wait.<br>Be prepared.</p>",
+        "heading": "<p>Don't let your next<br>adventure be your last.</p>",
         "button_label": "Get KOPILOT.ID",
         "tagline": "The tag that brings you home."
       }
