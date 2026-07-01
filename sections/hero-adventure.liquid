@@ -1,295 +1,122 @@
-{%- style -%}
-  .hero-{{ section.id }} {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    background-color: {{ section.settings.bg_color }};
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-  }
+{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
+{{ 'kopilot-home-closing.css' | asset_url | stylesheet_tag }}
 
-  /* Desktop Settings (from 1440px Figma) */
-  @media screen and (min-width: 750px) {
-    .hero-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-      gap: {{ section.settings.gap }}px;
-      min-height: 856px;
-    }
-  }
+{% liquid
+  if section.settings.image_mobile != blank
+    assign closing_mobile_image = section.settings.image_mobile
+  else
+    assign closing_mobile_image = section.settings.image
+  endif
+%}
 
-  /* Mobile Settings (from 360px Figma) */
-  @media screen and (max-width: 749px) {
-    .hero-{{ section.id }} {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-      gap: {{ section.settings.mobile_gap }}px;
-      min-height: 638px;
-    }
-  }
-
-  /* Background Image Layout */
-  .hero-{{ section.id }} .hero-bg-image {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom center;
-    z-index: 1;
-  }
-
-  /* Content Wrapper to lift text/buttons over the background image */
-  .hero-{{ section.id }} .hero-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    /* Uses the gap property from parent */
-    gap: inherit; 
-  }
-
-  .hero-{{ section.id }} .hero-heading {
-    margin: 0;
-    color: {{ section.settings.heading_color }};
-    font-family: inherit;
-    font-weight: 400;
-    line-height: 1.2;
-  }
-
-  @media screen and (min-width: 750px) {
-    .hero-{{ section.id }} .hero-heading {
-      font-size: 48px;
-      max-width: 600px;
-    }
-  }
-
-  @media screen and (max-width: 749px) {
-    .hero-{{ section.id }} .hero-heading {
-      font-size: 28px;
-      max-width: 290px;
-    }
-  }
-
-  .hero-{{ section.id }} .hero-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: {{ section.settings.btn_bg_color }};
-    color: {{ section.settings.btn_text_color }};
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    padding: 14px 28px;
-    border: none;
-    transition: opacity 0.2s ease;
-    text-transform: uppercase;
-  }
-
-  .hero-{{ section.id }} .hero-btn:hover {
-    opacity: 0.9;
-  }
-
-  /* Hide responsive images accordingly */
-  .hero-{{ section.id }} .desktop-only {
-    display: block;
-  }
-  .hero-{{ section.id }} .mobile-only {
-    display: none;
-  }
-
-  @media screen and (max-width: 749px) {
-    .hero-{{ section.id }} .desktop-only {
-      display: none;
-    }
-    .hero-{{ section.id }} .mobile-only {
-      display: block;
-    }
-  }
-{%- endstyle -%}
-
-<div class="hero-{{ section.id }}">
-  {%- if section.settings.image_desktop != blank -%}
-    {{ section.settings.image_desktop | image_url: width: 2880 | image_tag: 
-      class: 'hero-bg-image desktop-only', 
-      widths: '1440, 2880',
-      alt: section.settings.image_desktop.alt | escape 
-    }}
-  {%- endif -%}
-
-  {%- if section.settings.image_mobile != blank -%}
-    {{ section.settings.image_mobile | image_url: width: 720 | image_tag: 
-      class: 'hero-bg-image mobile-only', 
-      widths: '360, 720',
-      alt: section.settings.image_mobile.alt | escape 
-    }}
-  {%- endif -%}
-
-  <div class="hero-content">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="hero-heading">{{ section.settings.heading | escape }}</h2>
-    {%- endif -%}
-
-    {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
-      <a href="{{ section.settings.btn_link }}" class="hero-btn">
-        {{ section.settings.btn_label | escape }}
-      </a>
-    {%- endif -%}
+<section class="kopilot-section kopilot-home-closing kopilot-home-closing--{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="kopilot-home-closing__bg" aria-hidden="true">
+    <div class="kopilot-home-closing__bg-image kopilot-home-closing__bg-image--desktop">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
+        alt: '',
+        width: 2880,
+        widths: '1100,1440,1889,2880',
+        sizes: '100vw',
+        loading: 'lazy'
+      %}
+    </div>
+    <div class="kopilot-home-closing__bg-image kopilot-home-closing__bg-image--mobile">
+      {% render 'kopilot-image',
+        image: closing_mobile_image,
+        fallback: 'kopilot-home-closing-hero.jpg',
+        alt: '',
+        width: 1734,
+        widths: '360,750,867,1734',
+        sizes: '(max-width: 767px) 867px, 0px',
+        loading: 'lazy'
+      %}
+    </div>
   </div>
-</div>
+
+  <div class="kopilot-home-closing__inner">
+    <div class="kopilot-home-closing__content">
+      {% if section.settings.heading != blank %}
+        <div class="kopilot-home-closing__heading rte">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link | default: '#' }}"
+          class="kopilot-home-closing__btn"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.tagline != blank %}
+        <p class="kopilot-home-closing__tagline">{{ section.settings.tagline }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "Hero Adventure",
+  "name": "Kopilot Home Closing",
+  "tag": "section",
+  "class": "kopilot-home-closing-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
-      "type": "header",
-      "content": "Images"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
     },
     {
       "type": "image_picker",
-      "id": "image_desktop",
-      "label": "Desktop Background Image (1440px width)"
+      "id": "image",
+      "label": "Background image (desktop)"
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Mobile Background Image (360px width)"
+      "label": "Background image (mobile)",
+      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
     },
     {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "textarea",
+      "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Don't let your next\nadventure be your last."
+      "default": "<p>Emergencies don't wait.<br>Be prepared.</p>"
     },
     {
       "type": "text",
-      "id": "btn_label",
-      "label": "Button Label",
-      "default": "GET KOPILOT.ID"
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get KOPILOT.ID"
     },
     {
       "type": "url",
-      "id": "btn_link",
-      "label": "Button Link",
-      "default": "/"
+      "id": "button_link",
+      "label": "Button link"
     },
     {
-      "type": "header",
-      "content": "Desktop Layout (Figma Defaults)"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Padding Top",
-      "default": 77
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Desktop Padding Bottom",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Elements Gap",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Mobile Layout (Figma Defaults)"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Padding Top",
-      "default": 77
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile Padding Bottom",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Elements Gap",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Base Color",
-      "default": "#FDFDFD"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "btn_bg_color",
-      "label": "Button Background Color",
-      "default": "#E50000"
-    },
-    {
-      "type": "color",
-      "id": "btn_text_color",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "The tag that brings you home."
     }
   ],
   "presets": [
     {
-      "name": "Hero Adventure"
+      "name": "Kopilot Home Closing",
+      "settings": {
+        "heading": "<p>Emergencies don't wait.<br>Be prepared.</p>",
+        "button_label": "Get KOPILOT.ID",
+        "tagline": "The tag that brings you home."
+      }
     }
   ]
 }
