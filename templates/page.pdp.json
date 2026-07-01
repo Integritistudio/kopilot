@@ -189,7 +189,7 @@
         "show_reviews": true,
         "star_rating": 5,
         "review_count": "8",
-        "description": "<p>The <b>KOPILOT.ID NFC</b> tag helps the people around you access your medical information and emergency contacts instantly after an accident. Attach it to your gear of choice and stay prepared wherever you go.</p>",
+        "description": "<p>The <b>KOPILOT.ID NFC</b> tag helps the people <br>\naround you access your medical information <br> and emergency contacts instantly after an <br> accident. Attach it to your gear of choice <br> and stay prepared wherever you go.</p>",
         "included_heading": "What's included:",
         "button_label": "ADD TO CART - 1 TAG",
         "shipping_heading": "Shipping & Returns",
