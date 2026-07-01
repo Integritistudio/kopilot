@@ -15,21 +15,14 @@
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 90px;
+      justify-content: flex-end; /* Aligns content clean to the edges */
+      gap: 90px; /* Locked exactly to Figma spec */
       height: 704px;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
-      flex: 0 0 561px;
-      max-width: 561px;
-      padding-left: 94px;
-    }
-
-    /* Reverse layout logic adjustments if image position is swapped */
-    .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right .kopilot-image-text__content {
-      padding-left: 0;
-      padding-right: 94px;
+      flex: 1;
+      max-width: 561px; /* Figma specification box width */
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media {
@@ -52,8 +45,10 @@
     
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
       flex-direction: row-reverse;
+      justify-content: flex-start;
     }
 
+    /* Target heading structure to drop down seamlessly onto exactly 2 lines */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       font-family: 'Elza', sans-serif;
@@ -62,6 +57,7 @@
       line-height: 1.1;
       letter-spacing: -1px;
       margin-bottom: 24px;
+      max-width: 540px; /* Constraints width to break perfectly onto 2 lines */
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
@@ -71,6 +67,7 @@
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: 0;
+      max-width: 480px; /* Clean line breaking for paragraph text */
     }
   }
 
