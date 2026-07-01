@@ -4,7 +4,9 @@
 
 {% assign testimonial_fallbacks = 'kopilot-pdp-testimonial-jerry.jpg,kopilot-pdp-testimonial-nicolas.jpg,kopilot-pdp-testimonial-karen.jpg' | split: ',' %}
 
-<section class="kopilot-section kopilot-home-testimonials kopilot-home-testimonials--{{ section.id }} color-{{ section.settings.color_scheme }}">
+{%- assign section_bg = section.settings.background_color | default: '#ffffff' -%}
+
+<section class="kopilot-section kopilot-home-testimonials kopilot-home-testimonials--{{ section.id }} color-{{ section.settings.color_scheme }}" style="background-color: {{ section_bg }};">
   <div class="kopilot-home-testimonials__inner">
     {% if section.settings.heading != blank %}
       <div class="kopilot-home-testimonials__heading rte">
@@ -63,6 +65,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
