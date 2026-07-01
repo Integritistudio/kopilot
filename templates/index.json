@@ -392,21 +392,23 @@
         "pc1": {
           "type": "partner",
           "settings": {
+            "logo": "shopify://shop_images/Polygon_1.svg",
             "logo_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
-            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+            "stat": "e.g. \"Embedded into 5,000 race bibs across the 2025 series\""
           }
         },
         "pc2": {
           "type": "partner",
           "settings": {
+            "logo": "shopify://shop_images/Polygon_1.svg",
             "logo_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
-            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+            "stat": "e.g. \"Embedded into 5,000 race bibs across the 2025 series\""
           }
         }
       },
