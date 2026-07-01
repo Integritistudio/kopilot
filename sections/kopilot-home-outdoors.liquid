@@ -40,9 +40,24 @@
           </div>
         {% endif %}
 
-        {% if section.settings.text != blank %}
-          <div class="kopilot-home-outdoors__text rte">
-            {{ section.settings.text }}
+        {% assign has_text = false %}
+        {% if section.settings.text_para1 != blank or section.settings.text_para2 != blank or section.settings.text_quote != blank or section.settings.text_attribution != blank %}
+          {% assign has_text = true %}
+        {% endif %}
+        {% if has_text %}
+          <div class="kopilot-home-outdoors__text">
+            {% if section.settings.text_para1 != blank %}
+              <p class="kopilot-home-outdoors__para">{{ section.settings.text_para1 }}</p>
+            {% endif %}
+            {% if section.settings.text_para2 != blank %}
+              <p class="kopilot-home-outdoors__para">{{ section.settings.text_para2 }}</p>
+            {% endif %}
+            {% if section.settings.text_quote != blank %}
+              <p class="kopilot-home-outdoors__para"><em class="kopilot-home-outdoors__quote">{{ section.settings.text_quote }}</em></p>
+            {% endif %}
+            {% if section.settings.text_attribution != blank %}
+              <p class="kopilot-home-outdoors__para kopilot-home-outdoors__attribution">{{ section.settings.text_attribution }}</p>
+            {% endif %}
           </div>
         {% endif %}
       </div>
@@ -90,9 +105,28 @@
     },
     {
       "type": "html",
-      "id": "text",
-      "label": "Text",
-      "default": "<p><span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: having emergency information available the moment you need it. We come from the outdoor and powersports world. We've watched friends go down at events, on trails, and on roads far past cell service. <em class=\"kopilot-home-outdoors__quote\">\"We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.\"</em> <strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br><span class=\"kopilot-home-outdoors__role\">Co Founder</span></p>"
+      "id": "text_para1",
+      "label": "Paragraph 1",
+      "info": "Use <span class=\"kopilot-home-outdoors__brand\">word</span> for regular weight and <strong>word</strong> for bold.",
+      "default": "<span class=\"kopilot-home-outdoors__brand\">KOPILOT.ID</span> started with a simple conviction: <span class=\"kopilot-home-outdoors__brand\">having</span> <strong>emergency information available the moment you need it.</strong>"
+    },
+    {
+      "type": "html",
+      "id": "text_para2",
+      "label": "Paragraph 2",
+      "default": "We come from the outdoor and powersports world. We’ve watched friends go down at events, on trails, and on roads far past cell service."
+    },
+    {
+      "type": "text",
+      "id": "text_quote",
+      "label": "Quote",
+      "default": "“We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.”"
+    },
+    {
+      "type": "html",
+      "id": "text_attribution",
+      "label": "Attribution (name & role)",
+      "default": "<strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><br><span class=\"kopilot-home-outdoors__role\">Co Founder</span>"
     }
   ],
   "presets": [
