@@ -652,16 +652,25 @@
         "padding_bottom_mobile": 40
       }
     },
-    "kopilot_home_closing_mPNefM": {
-      "type": "kopilot-home-closing",
+    "hero_adventure_FXPKHH": {
+      "type": "hero-adventure",
+      "name": "Hero Adventure",
       "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/image_18659496.png",
+        "image_desktop": "shopify://shop_images/image_18659496.png",
         "image_mobile": "shopify://shop_images/image_18659496_1.png",
-        "heading": "<p>Don't let your next <br/>adventure be your last.</p>",
-        "button_label": "Get KOPILOT.ID",
-        "button_link": "",
-        "tagline": ""
+        "heading": "Don't let your next\nadventure be your last.",
+        "btn_label": "GET KOPILOT.ID",
+        "btn_link": "/",
+        "padding_top": 77,
+        "padding_bottom": 20,
+        "gap": 40,
+        "mobile_padding_top": 77,
+        "mobile_padding_bottom": 20,
+        "mobile_gap": 40,
+        "bg_color": "#FDFDFD",
+        "heading_color": "#333333",
+        "btn_bg_color": "#E50000",
+        "btn_text_color": "#FFFFFF"
       }
     }
   },
@@ -676,6 +685,6 @@
     "kopilot_reviews",
     "kopilot_faq_XP4bMX",
     "kopilot_pdp_partner_cta",
-    "kopilot_home_closing_mPNefM"
+    "hero_adventure_FXPKHH"
   ]
 }
