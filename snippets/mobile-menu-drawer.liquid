@@ -20,15 +20,27 @@
     <div class="mobile_menu_drawer_content_wrapper">
       <ul class="mobile_parent_ul">
         {% if kopilot_nav %}
-          <li class="mobile_parent_li">
-            <a href="/#kopilot-why-kopilot" aria-label="Why Kopilot" class="mobile_parent_link">Why Kopilot</a>
-          </li>
-          <li class="mobile_parent_li">
-            <a href="/#kopilot-how-it-works" aria-label="How It Works" class="mobile_parent_link">How It Works</a>
-          </li>
-          <li class="mobile_parent_li">
-            <a href="/#kopilot-brand-ambassador" aria-label="Brand Ambassador" class="mobile_parent_link">Brand Ambassador</a>
-          </li>
+          {% if request.page_type == 'index' %}
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-what-is-kopilot" aria-label="What Is Kopilot" class="mobile_parent_link">What Is Kopilot</a>
+            </li>
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-brand-partners" aria-label="Brand Partners" class="mobile_parent_link">Brand Partners</a>
+            </li>
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-about-us" aria-label="About Us" class="mobile_parent_link">About Us</a>
+            </li>
+          {% else %}
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-why-kopilot" aria-label="Why Kopilot" class="mobile_parent_link">Why Kopilot</a>
+            </li>
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-how-it-works" aria-label="How It Works" class="mobile_parent_link">How It Works</a>
+            </li>
+            <li class="mobile_parent_li">
+              <a href="/#kopilot-brand-ambassador" aria-label="Brand Ambassador" class="mobile_parent_link">Brand Ambassador</a>
+            </li>
+          {% endif %}
         {% else %}
           {% for link in menu.links %}
           <li class="mobile_parent_li{% if link.links != blank %} has_dropdown{% endif %}">
