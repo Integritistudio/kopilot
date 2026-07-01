@@ -22,7 +22,6 @@
     text-align: center;
     background-repeat: no-repeat;
     background-position: center bottom;
-    background-size: cover;
     box-sizing: border-box;
     {% if section.settings.image_desktop != blank %}
       background-image: url('{{ section.settings.image_desktop | image_url: width: 1440 }}');
