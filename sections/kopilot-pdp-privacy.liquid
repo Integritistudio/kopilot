@@ -13,19 +13,22 @@
 }
 div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
   font-size: 20px;
+  line-height:120%;
+  letter-spacing:0%;
+  font-weight:400;
 }
-  .kopilot-pdp-privacy__text kopilot-body rte p{
-    font-weight:400;
-    font-size:12px;
-    line-height:120%;
-    letter-spacing:0%;
-  }
 
   @media screen and (max-width: 767px) {
     .kopilot-pdp-privacy--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
+  .kopilot-pdp-privacy__heading_pdp {
+  font-size: 30px;
+}
+div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
+  font-size: 15px;
+}
   }
 {% endstyle %}
 
