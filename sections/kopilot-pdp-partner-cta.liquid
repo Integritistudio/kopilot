@@ -3,18 +3,20 @@
     
     <!-- Left Heading Element -->
     <h2 class="kopilot-partner-heading-{{ section.id }}">
-      Partner with KOPILOT.ID
+      {{ section.settings.heading }}
     </h2>
     
     <!-- Right Content Column Wrapper -->
     <div class="kopilot-partner-content-{{ section.id }}">
       <p class="kopilot-partner-text-{{ section.id }}">
-        Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.
+        {{ section.settings.body_text }}
       </p>
       
-      <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-partner-link-{{ section.id }}">
-        See partnerships
-      </a>
+      {%- if section.settings.link_text != blank -%}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-partner-link-{{ section.id }}">
+          {{ section.settings.link_text }}
+        </a>
+      {%- endif -%}
     </div>
 
   </div>
@@ -23,9 +25,9 @@
 <style>
   /* Section Layout & Background Wrapper */
   .kopilot-partner-section-{{ section.id }} {
-    background-color: #F1F1F1;
+    background-color: {{ section.settings.background_color }};
     width: 100%;
-    padding: 50px 0; /* 50px Top and Bottom padding */
+    padding: 50px 0;
     box-sizing: border-box;
   }
 
@@ -38,8 +40,8 @@
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 224px; /* 224px Left and Right padding */
-    gap: 75px; /* Perfect Figma frame gap spacing */
+    padding: 0 224px;
+    gap: 75px;
     box-sizing: border-box;
   }
 
@@ -48,7 +50,7 @@
     font-family: "Elza", sans-serif;
     font-size: 60px;
     font-weight: 300;
-    line-height: 1.1; /* 110% Line Height */
+    line-height: 1.1;
     color: #000000;
     margin: 0;
     width: 613px;
@@ -61,7 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px; /* Visual distribution gap between description and link */
+    gap: 12px;
     width: 342px;
     max-width: 100%;
   }
@@ -71,7 +73,7 @@
     font-family: "Figtree", sans-serif;
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.2; /* 120% Line Height */
+    line-height: 1.2;
     color: #000000;
     margin: 0;
     width: 100%;
@@ -82,7 +84,7 @@
     font-family: "Elza Text Trial", "Elza", sans-serif;
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.0; /* 100% Line Height */
+    line-height: 1.0;
     text-transform: uppercase;
     color: #000000;
     text-decoration: underline;
@@ -97,7 +99,7 @@
     opacity: 0.7;
   }
 
-  /* Responsive Breakpoint for Tablet/Mobile Screens */
+  /* Responsive Breakpoints */
   @media (max-width: 1100px) {
     .kopilot-partner-container-{{ section.id }} {
       flex-direction: column;
@@ -132,9 +134,33 @@
   "name": "Kopilot Partner Banner",
   "settings": [
     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F1F1F1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Partner with KOPILOT.ID"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "See partnerships"
+    },
+    {
       "type": "url",
       "id": "link_url",
-      "label": "Partnerships Link URL",
+      "label": "Link URL",
       "default": "/"
     }
   ],
