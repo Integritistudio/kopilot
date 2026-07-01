@@ -98,7 +98,13 @@
 }
 
 .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__brand {
-  font-weight: 400;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 120%;
+}
+
+.kopilot-home-outdoors__text.rte .kopilot-home-outdoors__highlight {
+  font-weight: 700;
   font-style: normal;
   line-height: 120%;
 }
@@ -174,9 +180,14 @@
   .kopilot-home-outdoors__text.rte strong,
   .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__role,
   .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__brand,
+  .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__highlight,
   .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__quote,
   .kopilot-home-outdoors__text.rte em {
     font-size: inherit;
+  }
+
+  .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__brand {
+    font-weight: 400;
   }
 }
 
@@ -271,5 +282,15 @@
 
   .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__role {
     line-height: 131%;
+  }
+
+  .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__brand {
+    font-weight: 400;
+  }
+
+  .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__highlight,
+  .kopilot-home-outdoors__text.rte .kopilot-home-outdoors__quote,
+  .kopilot-home-outdoors__text.rte em {
+    font-size: inherit;
   }
 }
