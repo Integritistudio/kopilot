@@ -3,6 +3,15 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+  .kopilot-pdp-privacy__heading_pdp{
+    
+  }
+  .kopilot-pdp-privacy__text kopilot-body rte{
+    font-weight:400;
+    font-size:12px;
+    line-height:120%;
+    letter-spacing:0%;
+  }
 
   @media screen and (max-width: 767px) {
     .kopilot-pdp-privacy--{{ section.id }} {
@@ -27,7 +36,7 @@
     </div>
     <div class="kopilot-pdp-privacy__content">
       {% if section.settings.heading != blank %}
-        <h2 class="kopilot-pdp-privacy__heading">{{ section.settings.heading }}</h2>
+        <h2 class="kopilot-pdp-privacy__heading_pdp">{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.text != blank %}
         <div class="kopilot-pdp-privacy__text kopilot-body rte">{{ section.settings.text }}</div>
