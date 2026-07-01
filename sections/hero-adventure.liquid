@@ -9,7 +9,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     box-sizing: border-box;
     overflow: hidden;
 
@@ -19,7 +18,7 @@
     {%- endif -%}
   }
 
-  /* RESET: Neutralize the external theme CSS min-height rules breaking the gap */
+  /* RESET: Neutralize external theme rules breaking container flow */
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__inner {
     min-height: auto !important;
     height: auto !important;
@@ -31,7 +30,8 @@
   /* Desktop Settings (Figma 1440px Specification) */
   @media screen and (min-width: 768px) {
     .kopilot-home-closing--{{ section.id }} {
-      height: 856px; /* Match Figma fixed frame height exactly */
+      height: 856px !important; /* Fixed frame constraint only for desktop layout */
+      justify-content: flex-start;
       padding-top: {{ section.settings.padding_top }}px !important;
       padding-bottom: {{ section.settings.padding_bottom }}px !important;
     }
@@ -43,12 +43,14 @@
     }
   }
 
-  /* Mobile Settings (Figma 360px Specification) */
+  /* Mobile Settings (Figma 360px Specification) - Natural flow to prevent asset cutting */
   @media screen and (max-width: 767px) {
     .kopilot-home-closing--{{ section.id }} {
-      height: 638px; /* Match Figma mobile frame height exactly */
-      padding-top: {{ section.settings.mobile_padding_top }}px !important;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
+      height: auto !important; /* Kill the fixed height constraint pushing image away */
+      min-height: 480px !important; 
+      justify-content: flex-start;
+      padding-top: 40px !important;
+      padding-bottom: 20px !important; /* Closes gap nicely to reveal bicyclist asset */
     }
     .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image--desktop {
       display: none !important;
@@ -75,7 +77,7 @@
     height: 100%;
   }
 
-  /* Deep target the image asset inside the custom render snippet */
+  /* Target the image asset inside the custom render snippet rendering block */
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image img,
   .kopilot-home-closing--{{ section.id }} .kopilot-home-closing__bg-image picture {
     width: 100% !important;
@@ -267,27 +269,7 @@
     },
     {
       "type": "header",
-      "content": "Mobile Spacing Controls (Figma 360px)"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Mobile Padding Top",
-      "default": 76
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "min": 0,
-      "max": 800,
-      "step": 8,
-      "unit": "px",
-      "label": "Mobile Padding Bottom",
-      "default": 536
+      "content": "Mobile Spacing Controls"
     },
     {
       "type": "range",
