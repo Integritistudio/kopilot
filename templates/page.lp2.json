@@ -34,8 +34,8 @@
         "text_alignment_mobile": "left",
         "heading": "<h2>The gear you never<br/>think about… <br/>until you need it.</h2>",
         "text": "<p>You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 72,
+        "padding_bottom": 68,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
