@@ -21,11 +21,8 @@
 
 .kopilot-home-hero__media--mobile {
   display: block;
-  top: -1.7rem;
-  left: 50%;
-  width: 103.9rem;
-  height: 69.3rem;
-  transform: translateX(calc(-50% - 12.75rem)) scaleX(-1);
+  width: 100%;
+  height: auto;
 }
 
 .kopilot-home-hero__media img,
