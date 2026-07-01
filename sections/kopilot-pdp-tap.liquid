@@ -3,6 +3,9 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+  kopilot-pdp-tap__heading_pdp {
+    font-size:60px !important;
+  }
 
   @media screen and (max-width: 767px) {
     .kopilot-pdp-tap--{{ section.id }} {
@@ -27,7 +30,7 @@
       %}
     </div>
     {% if section.settings.heading != blank %}
-      <h2 class="kopilot-pdp-tap__heading">{{ section.settings.heading }}</h2>
+      <h2 class="kopilot-pdp-tap__heading_pdp">{{ section.settings.heading }}</h2>
     {% endif %}
   </div>
 </section>
