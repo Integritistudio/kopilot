@@ -59,13 +59,13 @@
       "settings": {
         "color_scheme": "scheme-1",
         "full_width": true,
-        "image_position": "left",
+        "image_position": "right",
         "text_font_family": "Figtree",
         "text_alignment_mobile": "center",
         "heading": "<h2>If something goes wrong, first responders need more than your name.</h2>",
         "text": "<p>After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 44,
+        "padding_bottom": 40,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
@@ -124,7 +124,13 @@
       "settings": {
         "color_scheme": "scheme-1",
         "image_position": "right",
+        "heading_rt": "<p>The details that matter.</p>",
+        "heading_font_size": 60,
+        "heading_line_height": 110,
+        "heading_font_weight": "300",
         "text": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
+        "text_padding_top": 16,
+        "text_padding_bottom": 16,
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
