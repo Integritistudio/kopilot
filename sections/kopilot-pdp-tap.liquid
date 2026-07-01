@@ -3,7 +3,8 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-   .kopilot-pdp-tap__heading_pdp {
+
+  .kopilot-pdp-tap__heading_pdp {
     margin: 0;
     max-width: 629px;
     font-family: var(--kopilot-font-family);
@@ -12,12 +13,58 @@
     line-height: 1.2;
     letter-spacing: -1px;
     color: #000;
-}
+  }
 
+  /* Pixel Perfect Mobile Implementations */
   @media screen and (max-width: 767px) {
     .kopilot-pdp-tap--{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      padding-top: 0 !important;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
+      background: transparent !important; /* Removes unwanted grey backgrounds */
+    }
+
+    .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__inner {
+      display: flex !important;
+      flex-direction: column !important; /* Forces vertical stacked order flow */
+      background: transparent !important;
+    }
+
+    /* Target heading wrapper directly to isolate container grid constraints */
+    .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__heading-wrapper {
+      order: 1 !important; /* Pulls heading to the top of the stack layout */
+      padding-top: 50px !important; /* Exact Figma Top Spacing */
+      padding-left: 33px !important; /* Exact Figma Side Margins */
+      padding-right: 33px !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 26px !important; /* Precise text to image layout gap spacing */
+      text-align: center !important;
+      background: transparent !important;
+    }
+
+    .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__heading_pdp {
+      font-family: 'Elza', sans-serif !important;
+      font-size: 30px !important; /* Exact Typography Spec */
+      font-weight: 300 !important;
+      line-height: 1.04 !important; /* 104% Custom Figma Line-Height */
+      letter-spacing: -1px !important;
+      text-align: center !important;
+      margin: 0 auto !important;
+      max-width: 294px !important; /* Matches exactly 294px layout bounding box */
+      display: inline-block !important;
+    }
+
+    .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__media {
+      order: 2 !important; /* Pushes image element seamlessly to the bottom */
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__media img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
     }
   }
 {% endstyle %}
@@ -27,6 +74,12 @@
 
 <section class="kopilot-section kopilot-pdp-tap kopilot-pdp-tap--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-pdp-tap__inner">
+    {% if section.settings.heading != blank %}
+      <div class="kopilot-pdp-tap__heading-wrapper">
+        <h2 class="kopilot-pdp-tap__heading_pdp">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
     <div class="kopilot-pdp-tap__media">
       {% render 'kopilot-image',
         image: section.settings.image,
@@ -36,9 +89,6 @@
         widths: '550,750,1100,1400'
       %}
     </div>
-    {% if section.settings.heading != blank %}
-      <h2 class="kopilot-pdp-tap__heading_pdp">{{ section.settings.heading }}</h2>
-    {% endif %}
   </div>
 </section>
 
