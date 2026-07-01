@@ -29,13 +29,13 @@
         "color_scheme": "scheme-1",
         "full_width": true,
         "image": "shopify://shop_images/IMG_6956.jpg",
-        "image_position": "left",
+        "image_position": "right",
         "text_font_family": "Elza",
         "text_alignment_mobile": "left",
         "heading": "<h2>The gear you never<br/>think about… <br/>until you need it.</h2>",
         "text": "<p>You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 72,
+        "padding_bottom": 68,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
@@ -235,7 +235,7 @@
         "a2": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Frame_1597884697.png",
+            "image": "shopify://shop_images/image_54b31449-3a07-4e26-bb96-c594a86ac120.png",
             "badge": "",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
@@ -684,7 +684,7 @@
         "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
-        "media_margin_top": -45,
+        "media_margin_top": -54,
         "media_margin_top_mobile": -15,
         "padding_top": 0,
         "padding_bottom": 0,

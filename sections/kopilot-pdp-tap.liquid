@@ -15,24 +15,24 @@
     color: #000;
   }
 
-  /* Pixel Perfect Mobile Implementations */
+  /* Pixel Perfect Mobile Implementations (Desktop is completely untouched) */
   @media screen and (max-width: 767px) {
     .kopilot-pdp-tap--{{ section.id }} {
       padding-top: 0 !important;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
-      background: transparent !important; /* Removes unwanted grey backgrounds */
+      background: transparent !important; /* Removes unwanted grey background */
     }
 
     .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__inner {
       display: flex !important;
-      flex-direction: column !important; /* Forces vertical stacked order flow */
+      flex-direction: column !important; /* Vertically stack elements strictly on mobile */
       background: transparent !important;
-      gap:26px !important;
+      gap: 26px !important; /* Spacing between heading wrapper and image */
     }
 
-    /* Target heading wrapper directly to isolate container grid constraints */
+    /* Target heading wrapper to force it to the top position layout-wise */
     .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__heading-wrapper {
-      order: 1 !important; /* Pulls heading to the top of the stack layout */
+      order: 1 !important; /* Pulls heading text block to the very top */
       padding-top: 50px !important; /* Exact Figma Top Spacing */
       padding-left: 33px !important; /* Exact Figma Side Margins */
       padding-right: 33px !important;
@@ -54,7 +54,7 @@
     }
 
     .kopilot-pdp-tap--{{ section.id }} .kopilot-pdp-tap__media {
-      order: 2 !important; /* Pushes image element seamlessly to the bottom */
+      order: 2 !important; /* Pushes image container seamlessly below the text layout */
       width: 100% !important;
       margin: 0 !important;
       padding: 0 !important;
@@ -65,6 +65,7 @@
       width: 100% !important;
       height: 312px !important;
       display: block !important;
+      object-fit: cover !important;
     }
   }
 {% endstyle %}
@@ -74,12 +75,6 @@
 
 <section class="kopilot-section kopilot-pdp-tap kopilot-pdp-tap--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-pdp-tap__inner">
-    {% if section.settings.heading != blank %}
-      <div class="kopilot-pdp-tap__heading-wrapper">
-        <h2 class="kopilot-pdp-tap__heading_pdp">{{ section.settings.heading }}</h2>
-      </div>
-    {% endif %}
-
     <div class="kopilot-pdp-tap__media">
       {% render 'kopilot-image',
         image: section.settings.image,
@@ -89,6 +84,12 @@
         widths: '550,750,1100,1400'
       %}
     </div>
+
+    {% if section.settings.heading != blank %}
+      <div class="kopilot-pdp-tap__heading-wrapper">
+        <h2 class="kopilot-pdp-tap__heading_pdp">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
   </div>
 </section>
 
