@@ -61,7 +61,7 @@
   align-items: flex-start;
   gap: 2.2rem;
   width: min(29.4rem, calc(100% - 3.2rem));
-  padding: 0 1.6rem;
+  padding: 0;
   box-sizing: border-box;
 }
 
