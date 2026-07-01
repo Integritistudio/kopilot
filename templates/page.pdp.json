@@ -385,52 +385,54 @@
         "padding_bottom_mobile": 32
       }
     },
-    "kopilot_pdp_testimonials": {
-      "type": "kopilot-pdp-testimonials",
+    "kopilot_home_testimonials_NJaUJU": {
+      "type": "kopilot-home-testimonials",
       "blocks": {
-        "tm1": {
+        "testimonial_EjbYmT": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59.png",
             "name": "Jerry",
             "role": "Motorcyclist",
             "location": "Arizona",
             "quote": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets.",
-            "show_verified": true
+            "show_verified": true,
+            "verified_label": "Verified buyer"
           }
         },
-        "tm2": {
+        "testimonial_yzt9fz": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/1cd3e723cb6099708b9c25e259c9dc86ec5e0b44.png",
             "name": "Nicolas",
             "role": "Mountain biker",
             "location": "California",
             "quote": "Jacket, backpack, and helmet now all have the little red life-saving tag! Easy to move between my gear.",
-            "show_verified": true
+            "show_verified": true,
+            "verified_label": "Verified buyer"
           }
         },
-        "tm3": {
+        "testimonial_Wxfipg": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59_1.png",
             "name": "Karen",
             "role": "Hiker",
             "location": "Oregon",
             "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas.",
-            "show_verified": true
+            "show_verified": true,
+            "verified_label": "Verified buyer"
           }
         }
       },
       "block_order": [
-        "tm1",
-        "tm2",
-        "tm3"
+        "testimonial_EjbYmT",
+        "testimonial_yzt9fz",
+        "testimonial_Wxfipg"
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Trusted by thousands.",
-        "padding_top": 72,
-        "padding_bottom": 72,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 48
+        "heading": "<p>Used on race day.<br/>Every day in between.</p>"
       }
     },
     "kopilot_reviews": {
@@ -642,15 +644,16 @@
         "padding_bottom_mobile": 40
       }
     },
-    "kopilot_hero2": {
-      "type": "kopilot-hero2",
+    "kopilot_home_closing_mPNefM": {
+      "type": "kopilot-home-closing",
       "settings": {
         "color_scheme": "scheme-1",
-        "video": "",
-        "heading": "Don't let your next adventure be your last.",
-        "body": "",
+        "image": "shopify://shop_images/image_18659496.png",
+        "image_mobile": "shopify://shop_images/image_18659496_1.png",
+        "heading": "<p>Don't let your next <br/>adventure be your last.</p>",
         "button_label": "Get KOPILOT.ID",
-        "button_url": ""
+        "button_link": "",
+        "tagline": ""
       }
     }
   },
@@ -661,10 +664,10 @@
     "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
-    "kopilot_pdp_testimonials",
+    "kopilot_home_testimonials_NJaUJU",
     "kopilot_reviews",
     "kopilot_faq",
     "kopilot_pdp_partner_cta",
-    "kopilot_hero2"
+    "kopilot_home_closing_mPNefM"
   ]
 }
