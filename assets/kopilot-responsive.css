@@ -103,6 +103,7 @@
     margin-left: 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    font-family: Elza, sans-serif !important;
   }
 
   .footer-bottom-menu-item.developed-by {
@@ -111,6 +112,7 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: 10px;
+    font-family: Elza, sans-serif !important;
   }
 }
 

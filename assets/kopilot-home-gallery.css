@@ -1,6 +1,11 @@
-.kopilot-home-gallery {
-  background: #f1f1f1;
+.kopilot-home-gallery,
+.kopilot-home-gallery.kopilot-section {
+  background-color: #f1f1f1;
   overflow: hidden;
+}
+
+.shopify-section:has(> .kopilot-home-gallery) {
+  background-color: #f1f1f1;
 }
 
 .kopilot-home-gallery__inner {
@@ -11,6 +16,7 @@
   width: 100%;
   padding: 3rem 0 0;
   box-sizing: border-box;
+  background-color: #f1f1f1;
 }
 
 .kopilot-home-gallery__heading.rte,
@@ -30,6 +36,7 @@
 .kopilot-home-gallery__marquee {
   width: 100%;
   overflow: hidden;
+  background-color: #f1f1f1;
 }
 
 .kopilot-home-gallery__track {
@@ -79,6 +86,20 @@
   }
 }
 
+/* Mobile: ≤767px */
+@media screen and (max-width: 767px) {
+  .kopilot-home-gallery,
+  .kopilot-home-gallery.kopilot-section,
+  .kopilot-home-gallery__inner,
+  .kopilot-home-gallery__marquee {
+    background-color: #f1f1f1;
+  }
+
+  .shopify-section:has(> .kopilot-home-gallery) {
+    background-color: #f1f1f1;
+  }
+}
+
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-home-gallery__inner {
@@ -105,6 +126,13 @@
 
 /* Desktop: 1440px+ */
 @media screen and (min-width: 1440px) {
+  .kopilot-home-gallery,
+  .kopilot-home-gallery.kopilot-section,
+  .kopilot-home-gallery__inner,
+  .kopilot-home-gallery__marquee {
+    background-color: #f1f1f1;
+  }
+
   .kopilot-home-gallery__inner {
     gap: 4rem;
     min-height: 46.1rem;
