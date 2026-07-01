@@ -21,8 +21,8 @@
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
       flex: 1 !important;
-      margin-left: 90px !important; /* Forces layout left gap precisely */
-      margin-right: 90px !important; /* Safety spacer to image boundary */
+      margin-left: 90px !important; /* Spacing layout gap strictly locked */
+      margin-right: 90px !important; 
       padding: 0 !important;
       box-sizing: border-box !important;
     }
@@ -38,7 +38,6 @@
       overflow: hidden !important;
     }
 
-    /* Reverse logic handles swapped layout variations neatly */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
       flex-direction: row-reverse !important;
     }
@@ -48,7 +47,6 @@
       margin-right: 90px !important;
     }
 
-    /* Targets inside images to fill up completely */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media img,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media svg,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media picture {
@@ -59,7 +57,7 @@
       display: block !important;
     }
 
-    /* Main headings alignment tweaks to secure the precise two-line text look */
+    /* Fluid constraints to avoid text overflowing or breaking smaller desktop screens */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       font-family: 'Elza', sans-serif !important;
@@ -70,7 +68,8 @@
       margin-top: 0 !important;
       margin-bottom: 24px !important;
       display: block !important;
-      max-width: 561px;
+      max-width: 561px !important; /* Perfect heading line breaking constraint */
+      width: 100% !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
@@ -81,6 +80,8 @@
       line-height: 1.2 !important;
       letter-spacing: 0 !important;
       margin: 0 !important;
+      max-width: 450px !important; /* Perfect paragraph width constraint */
+      width: 100% !important;
     }
   }
 
