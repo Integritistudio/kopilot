@@ -20,10 +20,14 @@
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__content {
-      flex: 1 !important;
-      margin-left: 90px !important; /* Spacing layout gap strictly locked */
-      margin-right: 90px !important; 
-      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important; /* Aligns content cleanly to the left like Figma */
+      justify-content: center !important;
+      padding-left: 94px !important; /* Exact Figma Spec left padding */
+      padding-right: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
       box-sizing: border-box !important;
     }
 
@@ -38,13 +42,14 @@
       overflow: hidden !important;
     }
 
+    /* Handle reverse layout variation accurately if swapped */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right {
       flex-direction: row-reverse !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__inner--image-right .kopilot-image-text__content {
-      margin-left: 90px !important;
-      margin-right: 90px !important;
+      padding-left: 0 !important;
+      padding-right: 94px !important;
     }
 
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__media img,
@@ -57,7 +62,7 @@
       display: block !important;
     }
 
-    /* Fluid constraints to avoid text overflowing or breaking smaller desktop screens */
+    /* Fixed Heading Breaking Logic (Holds perfect text sizing, drops smoothly on small screens) */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__heading * {
       font-family: 'Elza', sans-serif !important;
@@ -68,10 +73,11 @@
       margin-top: 0 !important;
       margin-bottom: 24px !important;
       display: block !important;
-      max-width: 561px !important; /* Perfect heading line breaking constraint */
-      width: 100% !important;
+      max-width: 561px !important; /* Forces the exact 2 line split without stretching */
+      width: auto !important;
     }
 
+    /* Fixed Body/Paragraph Breaking Logic */
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte,
     .kopilot-image-text--{{ section.id }} .kopilot-image-text__text.kopilot-body.rte * {
       font-family: 'Figtree', sans-serif !important;
@@ -80,8 +86,8 @@
       line-height: 1.2 !important;
       letter-spacing: 0 !important;
       margin: 0 !important;
-      max-width: 450px !important; /* Perfect paragraph width constraint */
-      width: 100% !important;
+      max-width: 450px !important; /* Perfect copy width layout tracking */
+      width: auto !important;
     }
   }
 
