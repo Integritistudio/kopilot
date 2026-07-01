@@ -50,11 +50,12 @@
     font-family: "Elza", sans-serif;
     font-size: 60px;
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.1; /* 110% Line Height */
     color: #000000;
     margin: 0;
-    width: 613px;
+    width: max-content; /* Pulls exact width dynamically based on content */
     max-width: 100%;
+    white-space: nowrap; /* Forces text onto a single line on desktop layout */
     letter-spacing: 0%;
   }
 
@@ -73,7 +74,7 @@
     font-family: "Figtree", sans-serif;
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.2; /* 120% Line Height */
     color: #000000;
     margin: 0;
     width: 100%;
@@ -111,6 +112,7 @@
     .kopilot-partner-heading-{{ section.id }} {
       font-size: 44px;
       width: 100%;
+      white-space: normal; /* Safely breaks down onto multiple lines on mobile */
     }
 
     .kopilot-partner-content-{{ section.id }} {
