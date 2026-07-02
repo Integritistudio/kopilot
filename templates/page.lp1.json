@@ -71,6 +71,67 @@
         "padding_bottom_mobile": 0
       }
     },
+    "kopilot_features_lp1_G7MKJn": {
+      "type": "kopilot-features-lp1",
+      "blocks": {
+        "feature_NPAgik": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "Durable and waterproof"
+          }
+        },
+        "feature_F3aNBF": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "No battery/charging needed"
+          }
+        },
+        "feature_yxwYbK": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "No subscription required"
+          }
+        },
+        "feature_6yxz4p": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "Instant medical & contact info"
+          }
+        },
+        "feature_tgtjW9": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "Translates into 24 languages"
+          }
+        },
+        "feature_NYJWQM": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "text": "Works everywhere"
+          }
+        }
+      },
+      "block_order": [
+        "feature_NPAgik",
+        "feature_F3aNBF",
+        "feature_yxwYbK",
+        "feature_6yxz4p",
+        "feature_tgtjW9",
+        "feature_NYJWQM"
+      ],
+      "name": "Kopilot Split Grid Block",
+      "settings": {
+        "heading": "For the rides you plan and the moments you don't.",
+        "paragraph": "Not every emergency happens deep in remote terrain. Sometimes it’s a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
+        "bg_color": "#ffffff"
+      }
+    },
     "kopilot_features": {
       "type": "kopilot-features",
       "blocks": {
@@ -762,6 +823,7 @@
   "order": [
     "kopilot_hero",
     "kopilot_image_text",
+    "kopilot_features_lp1_G7MKJn",
     "kopilot_features",
     "kopilot_accidents",
     "kopilot_why_kopilot",
