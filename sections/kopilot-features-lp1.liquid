@@ -10,7 +10,7 @@
         <p class="kopilot-paragraph">{{ section.settings.paragraph }}</p>
       </div>
 
-      <!-- FEATURE GRID (3x2 Desktop/Tablet, 2x3 Mobile Below 425px) -->
+      <!-- FEATURE GRID -->
       <div class="kopilot-feature-grid">
         {% for block in section.blocks %}
           <div class="kopilot-grid-item" {{ block.shopify_attributes }}>
@@ -20,7 +20,6 @@
               {% elsif block.settings.icon_image != blank %}
                 <img src="{{ block.settings.icon_image | img_url: '40x40' }}" alt="{{ block.settings.text | escape }}" loading="lazy">
               {% else %}
-                <!-- Fallback/Placeholder Dot if no asset provided -->
                 <span class="kopilot-icon-placeholder"></span>
               {% endif %}
             </div>
@@ -68,33 +67,33 @@
     justify-content: space-between;
     width: 100%;
     max-width: 1440px;
-    height: 711px; /* Fixed Desktop Height per Spec */
+    height: 711px;
     margin: 0 auto;
   }
 
   /* Left Side Setup */
   .kopilot-content-col {
-    width: calc(1440px - 744px - 64px); /* Dynamically maintains exactly 64px gap to image layout */
+    width: calc(1440px - 744px - 64px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 61px; /* Exact Spec Adjustment */
+    padding-left: 61px;
     box-sizing: border-box;
   }
 
   .kopilot-text-stack {
-    width: 562px; /* Strict Desktop Text Width Bound */
+    width: 562px;
     display: flex;
     flex-direction: column;
-    gap: 50px; /* Exact Spec: 50px between heading and paragraph */
-    margin-bottom: 73px; /* Exact Spec: 73px between paragraph and icon grid */
+    gap: 50px;
+    margin-bottom: 73px;
   }
 
   .kopilot-heading {
     font-family: var(--font-family);
     font-size: 60px;
-    font-weight: 300; /* Light */
-    line-height: 1.1; /* 110% Line Height */
+    font-weight: 300;
+    line-height: 1.1;
     letter-spacing: 0%;
     color: #000000;
     margin: 0;
@@ -104,19 +103,19 @@
   .kopilot-paragraph {
     font-family: var(--font-family);
     font-size: 20px;
-    font-weight: 400; /* Regular */
-    line-height: 1.3; /* 130% Line Height */
+    font-weight: 400;
+    line-height: 1.3;
     letter-spacing: 0%;
     color: #000000;
     margin: 0;
-    max-width: 536px; /* Bound box constraints */
+    max-width: 536px;
     text-align: left;
   }
 
   /* Grid Layout (3x2 Desktop) */
   .kopilot-feature-grid {
     display: grid;
-    grid-template-columns: repeat(3, 147px); /* 147px Exact Box Fixed Width */
+    grid-template-columns: repeat(3, 147px);
     column-gap: 20px; 
     row-gap: 35px;
     max-width: 481px;
@@ -129,12 +128,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 15px; /* Exact inner space between icon and text */
+    gap: 15px;
     text-align: center;
   }
 
   .kopilot-icon-wrapper {
-    height: 40px; /* Proportional visual grid icon footprint */
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,7 +149,7 @@
     font-family: var(--font-family);
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.0; /* 100% Line Height Tight Wrap */
+    line-height: 1.0;
     letter-spacing: 0%;
     color: #000000;
     margin: 0;
@@ -168,7 +167,7 @@
 
   /* Right Side Image Setup */
   .kopilot-image-col {
-    width: 744px; /* Pure split half width allocation */
+    width: 744px;
     height: 711px;
     overflow: hidden;
   }
@@ -176,16 +175,16 @@
   .kopilot-split-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crop match image layout */
+    object-fit: cover;
     object-position: center;
     display: block;
   }
 
-  /* --- STRETCH RESPONSIVENESS OVERRIDE (426px to 1199px Viewports - Keeps 3 per row) --- */
+  /* --- STRETCH TABLET RESPONSIVENESS (426px to 1199px Viewports) --- */
   @media screen and (min-width: 426px) and (max-width: 1199px) {
     .kopilot-container {
       height: auto;
-      flex-direction: column-reverse; /* Smooth stacking transition on small viewports */
+      flex-direction: column; /* Fixed: Image drops nicely to the bottom of the content layout */
       padding: 40px 24px;
       gap: 48px;
       align-items: center;
@@ -214,7 +213,7 @@
     }
 
     .kopilot-feature-grid {
-      grid-template-columns: repeat(3, 147px); /* Kept strict 3 items in a row down to 426px */
+      grid-template-columns: repeat(3, 147px); /* Forces exactly 3 per row as requested */
       justify-content: center;
     }
 
@@ -229,42 +228,42 @@
   @media screen and (max-width: 425px) {
     .kopilot-container {
       flex-direction: column;
-      height: auto; /* Expand vertically */
+      height: auto;
       max-width: 360px;
-      padding: 5.7rem 0 0 0; /* Maintained 5.7rem value */
-      gap: 41px; /* Explicit Layout Flow Stack Gap */
+      padding: 5.7rem 0 0 0;
+      gap: 41px;
     }
 
     .kopilot-content-col {
       width: 100%;
-      padding: 0 14px; /* Centers the 332px bounding containers */
+      padding: 0 14px;
       align-items: center;
     }
 
     .kopilot-text-stack {
-      width: 332px; /* Perfect Mobile Heading Box Layout Bound */
-      margin-bottom: 41px; /* Uniform section gap stack flow */
+      width: 332px;
+      margin-bottom: 41px;
       gap: 16px;
       align-items: center;
     }
 
     .kopilot-heading {
-      font-size: 30px; /* Spec exact scale down */
-      line-height: 1.03; /* 103% Line Height */
+      font-size: 30px;
+      line-height: 1.03;
       text-align: center;
       max-width: 332px;
     }
 
     .kopilot-paragraph {
-      font-size: 15px; /* Spec exact body match */
+      font-size: 15px;
       line-height: 1.3; 
       text-align: center;
-      max-width: 310px; /* Target Paragraph Envelope Box */
+      max-width: 310px;
     }
 
-    /* Converts to exactly 2-Column Inline Layout at or beneath 425px */
+    /* Converts to exactly 2-Column inline layout at or beneath 425px */
     .kopilot-feature-grid {
-      grid-template-columns: repeat(2, 104px); /* 104px Individual Mobile Cell Boundaries */
+      grid-template-columns: repeat(2, 104px);
       column-gap: 40px;
       row-gap: 24px;
       justify-content: center;
@@ -274,20 +273,19 @@
     .kopilot-grid-item {
       width: 104px;
       min-height: 107px;
-      gap: 15px; /* Maintained layout gap spec */
+      gap: 15px;
     }
 
     .kopilot-grid-label {
-      font-size: 15px; /* Scaling legibility shift */
+      font-size: 15px;
       width: 104px;
       line-height: 1.1;
     }
 
-    /* Drops Image Element perfectly to the absolute layout bottom */
     .kopilot-image-col {
       width: 100%;
-      height: 344px; /* Matches Mobile Screenshot dimension output */
-      order: 2;
+      height: 344px;
+      order: 2; /* Keeps image firmly at the bottom */
     }
   }
 {% endstyle %}
