@@ -434,6 +434,14 @@
 }
 
 @media screen and (max-width: 767px) {
+  .kopilot-pdp__review-count {
+  margin: 0;
+  font-family: var(--kopilot-body-font-family);
+  font-size: 13px;
+  line-height: 25px;
+  color: #545454;
+  font-weight:400;
+}
   .kopilot-pdp__inner {
     padding: 0 0 48px;
   }
