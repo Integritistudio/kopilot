@@ -158,7 +158,10 @@ class KopilotPdp extends HTMLElement {
 
     try {
       const cart = await fetch(`${Shopify.routes.root}cart.js`).then((response) => response.json());
-      const existingLine = cart.items.find((item) => item.product_id === this.productId);
+      const selectedQty = Number.isNaN(parseInt(this.selectedQty, 10)) || parseInt(this.selectedQty, 10) < 1
+        ? 1
+        : parseInt(this.selectedQty, 10);
+      const existingLine = cart.items.find((item) => item.variant_id === this.variantId);
 
       if (existingLine) {
         await fetch(`${Shopify.routes.root}cart/change.js`, {
@@ -169,22 +172,22 @@ class KopilotPdp extends HTMLElement {
           },
           body: JSON.stringify({
             id: existingLine.key,
-            quantity: 0,
+            quantity: selectedQty,
+          }),
+        });
+      } else {
+        await fetch(`${Shopify.routes.root}cart/add.js`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: JSON.stringify({
+            id: this.variantId,
+            quantity: selectedQty,
           }),
         });
       }
-
-      const addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-        body: JSON.stringify({
-          id: this.variantId,
-          quantity: this.selectedQty,
-        }),
-      });
 
       const addData = await addResponse.json();
       if (!addResponse.ok) {
