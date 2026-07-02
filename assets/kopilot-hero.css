@@ -184,6 +184,9 @@
     color: #fff;
     letter-spacing: 0;
   }
+  .kopilot-hero__title h1{
+    color: #fff !important;
+  }
 
   .kopilot-hero__title.kopilot-heading--medium {
     font-family: var(--kopilot-font-family);
@@ -197,6 +200,7 @@
     font-weight: 300;
     font-synthesis: none;
     max-width: 21.8rem;
+    color: #fff !important;
   }
 
   .kopilot-hero__description,
