@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "kopilot_banner_RjUQCB": {
+      "type": "kopilot-banner",
+      "name": "Kopilot special banner",
+      "settings": {
+        "banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
+        "background_color": "#f20008",
+        "text_color": "#ffffff",
+        "text_align": "center",
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "font_size": 11,
+        "full_width": true
+      }
+    },
     "kopilot_pdp": {
       "type": "kopilot-pdp",
       "blocks": {
@@ -632,20 +646,6 @@
         "color_text": "#403a3a",
         "color_button_bg": "#ef0008",
         "color_button_text": "#ffffff"
-      }
-    },
-    "kopilot_banner_RjUQCB": {
-      "type": "kopilot-banner",
-      "name": "Kopilot special banner",
-      "settings": {
-        "banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-        "background_color": "#F20008",
-        "text_color": "#FFFFFF",
-        "text_align": "center",
-        "padding_top": 6,
-        "padding_bottom": 6,
-        "font_size": 13,
-        "full_width": true
       }
     }
   },
