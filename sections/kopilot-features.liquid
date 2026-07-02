@@ -1,4 +1,8 @@
 {% style %}
+  .kopilot-features--{{ section.id }} .kopilot-features__grid {
+    padding-top: {{ section.settings.grid_padding_top_mobile }}px;
+  }
+
   @media screen and (min-width: 768px) {
     /* Main Parent Container - Handles fluid layout stretching past 1440px */
     .kopilot-features--{{ section.id }} {
@@ -46,9 +50,10 @@
       margin: 0 !important;
     }
 
-    /* Item Grid Element Spacing Controls */
-    .kopilot-features--{{ section.id }} .kopilot-features__content_pdp > .kopilot-features__grid {
-      margin-top: 60px !important;
+    /* Item grid spacing — controlled via theme editor */
+    .kopilot-features--{{ section.id }} .kopilot-features__grid {
+      padding-top: {{ section.settings.grid_padding_top }}px !important;
+      margin-top: 0 !important;
     }
 
     /* Right Media Block Container */
@@ -285,6 +290,30 @@
       "step": 4,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Feature grid spacing"
+    },
+    {
+      "type": "range",
+      "id": "grid_padding_top",
+      "label": "Grid top padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "grid_padding_top_mobile",
+      "label": "Grid top padding (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",

@@ -139,7 +139,7 @@
   align-items: flex-start;
   gap: clamp(1.2rem, 4.17vw, 1.5rem);
   padding: clamp(1.6rem, 5.56vw, 2rem) clamp(1.5rem, 4.72vw, 1.7rem);
-  background: #eee;
+  background: #EEEEEE !important;
   flex: 1;
   box-sizing: border-box;
 }

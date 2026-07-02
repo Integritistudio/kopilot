@@ -61,7 +61,10 @@
   row-gap: clamp(3.6rem, 12.5vw, 4.5rem);
   width: min(32rem, 100%);
   margin: 0 auto;
-  padding: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
   justify-content: center;
   justify-items: center;
 }
@@ -191,6 +194,7 @@
     row-gap: 3.6rem;
     width: auto;
     margin: 0;
+    padding-top: 0;
     justify-content: start;
     justify-items: start;
   }
