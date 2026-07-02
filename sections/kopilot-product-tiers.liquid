@@ -11,14 +11,16 @@
     }
   }
 
-  /* Hover state styling for all card variants */
+  /* Default state: Gray background, transparent border to prevent layout shift */
   .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card {
+    background-color: #EEEEEE !important;
+    border: 1px solid transparent !important;
     transition: background-color 0.2s ease, border-color 0.2s ease;
-    border: 1px solid transparent; /* Prevents visual layout shifting on hover */
   }
 
+  /* Hover state: White background with a solid black border */
   .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card:hover {
-    background-color: #EEEEEE !important;
+    background-color: #FFFFFF !important;
     border: 1px solid #000000 !important;
   }
 
