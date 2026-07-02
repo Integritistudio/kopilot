@@ -75,12 +75,15 @@ class KopilotPdp extends HTMLElement {
   updateButtonLabel() {
     if (!this.addLabel) return;
 
-    const quantity = Number.isNaN(this.selectedQty) ? 1 : this.selectedQty;
-    const defaultLabel = this.dataset.defaultButtonLabel || 'ADD TO CART - 1 TAG';
-
-    this.addLabel.textContent = quantity === 1
-      ? defaultLabel
-      : `ADD TO CART - SET OF ${quantity}`;
+    // Dynamically formats the uppercase label to match the customized tier block title setup
+    if (this.selectedTitle !== '') {
+      this.addLabel.textContent = `ADD TO CART - ${this.selectedTitle.toUpperCase()}`;
+    } else {
+      const quantity = Number.isNaN(this.selectedQty) ? 1 : this.selectedQty;
+      this.addLabel.textContent = quantity === 1
+        ? this.defaultButtonLabel
+        : `ADD TO CART - SET OF ${quantity}`;
+    }
   }
 
   bindAccordion() {
@@ -182,17 +185,13 @@ class KopilotPdp extends HTMLElement {
         ? 1
         : parseInt(this.selectedQty, 10);
 
-      // Check if all tiers use the same variant ID (single variant setup)
       const variantIds = Array.from(this.tierButtons).map(btn => btn.dataset.variantId).filter(Boolean);
       const isSingleVariantSetup = new Set(variantIds).size <= 1;
       const quantityToAdd = isSingleVariantSetup ? selectedQty : 1;
 
-      // Find any existing line item for this product in the cart
       const existingLine = cart.items.find((item) => item.product_id === this.productId);
 
-      let addResponse;
       if (existingLine) {
-        // Remove the existing line item first
         await fetch(`${Shopify.routes.root}cart/change.js`, {
           method: 'POST',
           headers: {
@@ -206,8 +205,7 @@ class KopilotPdp extends HTMLElement {
         });
       }
 
-      // Add the selected variant to the cart
-      addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
+      const addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
