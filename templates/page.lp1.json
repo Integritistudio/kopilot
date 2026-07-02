@@ -71,64 +71,71 @@
         "padding_bottom_mobile": 0
       }
     },
-    "kopilot_features_lp1_G7MKJn": {
+    "kopilot_features_lp1_YbFcMY": {
       "type": "kopilot-features-lp1",
       "blocks": {
-        "feature_NPAgik": {
+        "feature_hBTypf": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_39_3a28805a-1bb4-4cdb-9705-e302bc20413a.svg",
             "text": "Durable and waterproof"
           }
         },
-        "feature_F3aNBF": {
+        "feature_AnzimH": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_36_f2cb675e-6b07-4e4b-974a-4ab6b9c2c663.svg",
             "text": "No battery/charging needed"
           }
         },
-        "feature_yxwYbK": {
+        "feature_XVfFHw": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_38_45a9a554-ac81-44c5-b738-1ee751795e11.svg",
             "text": "No subscription required"
           }
         },
-        "feature_6yxz4p": {
+        "feature_GTeWWL": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_35.svg",
             "text": "Instant medical & contact info"
           }
         },
-        "feature_tgtjW9": {
+        "feature_Dqh8x7": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_37.svg",
             "text": "Translates into 24 languages"
           }
         },
-        "feature_NYJWQM": {
+        "feature_nbF7GC": {
           "type": "feature",
           "settings": {
             "icon_svg": "",
+            "icon_image": "shopify://shop_images/Group_34_24c480da-2b6b-4734-b3bf-474fc8a766ef.svg",
             "text": "Works everywhere"
           }
         }
       },
       "block_order": [
-        "feature_NPAgik",
-        "feature_F3aNBF",
-        "feature_yxwYbK",
-        "feature_6yxz4p",
-        "feature_tgtjW9",
-        "feature_NYJWQM"
+        "feature_hBTypf",
+        "feature_AnzimH",
+        "feature_XVfFHw",
+        "feature_GTeWWL",
+        "feature_Dqh8x7",
+        "feature_nbF7GC"
       ],
       "name": "Kopilot Split Grid Block",
       "settings": {
         "heading": "For the rides you plan and the moments you don't.",
         "paragraph": "Not every emergency happens deep in remote terrain. Sometimes it’s a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
+        "image": "shopify://shop_images/image_18659467.png",
         "bg_color": "#ffffff"
       }
     },
@@ -150,14 +157,14 @@
         "f3": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_38.svg",
+            "icon": "shopify://shop_images/Group_38_eb4cf20b-01a6-45b3-860e-2032b23a46c1.svg",
             "label": "<p>No subscription required</p>"
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
-            "label": "<p>Instant medical &amp; contact info</p>"
+            "label": "<p>Instant medical & contact info</p>"
           }
         },
         "f5": {
@@ -823,7 +830,7 @@
   "order": [
     "kopilot_hero",
     "kopilot_image_text",
-    "kopilot_features_lp1_G7MKJn",
+    "kopilot_features_lp1_YbFcMY",
     "kopilot_features",
     "kopilot_accidents",
     "kopilot_why_kopilot",
