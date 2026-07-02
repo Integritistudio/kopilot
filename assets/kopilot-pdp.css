@@ -128,9 +128,10 @@
 .kopilot-pdp__review-count {
   margin: 0;
   font-family: var(--kopilot-body-font-family);
-  font-size: 11px;
-  line-height: 1;
-  color: #000;
+  font-size: 15px;
+  line-height: 25px;
+  color: #545454;
+  font-weight:400;
 }
 
 .kopilot-pdp__description {
