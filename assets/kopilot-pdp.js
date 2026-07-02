@@ -163,8 +163,9 @@ class KopilotPdp extends HTMLElement {
         : parseInt(this.selectedQty, 10);
       const existingLine = cart.items.find((item) => item.variant_id === this.variantId);
 
+      let addResponse;
       if (existingLine) {
-        await fetch(`${Shopify.routes.root}cart/change.js`, {
+        addResponse = await fetch(`${Shopify.routes.root}cart/change.js`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -176,7 +177,7 @@ class KopilotPdp extends HTMLElement {
           }),
         });
       } else {
-        await fetch(`${Shopify.routes.root}cart/add.js`, {
+        addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
