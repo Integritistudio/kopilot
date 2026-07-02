@@ -327,15 +327,6 @@
           <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
         </div>
       {% endif %}
-      {% if section.settings.description != blank %}
-        <div class="kopilot-pdp__description_pdp">
-          {{ section.settings.description }}
-        </div>
-      {% elsif pdp_product.description != blank %}
-        <div class="kopilot-pdp__description rte">
-          {{ pdp_product.description | strip_html | truncate: 320 }}
-        </div>
-      {% endif %}
     </div>
 
     <div class="kopilot-pdp__layout">
