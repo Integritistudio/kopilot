@@ -130,7 +130,6 @@
   order: 1;
   align-self: stretch;
   width: 100%;
-  max-width: 36rem;
   aspect-ratio: 360 / 344;
   overflow: hidden;
 }
@@ -156,7 +155,7 @@
   }
 
   .kopilot-features__inner--image-left {
-    padding: 0 6.1rem 3.5rem 0;
+    padding: 0 0 3.5rem 0;
   }
 
   .kopilot-features__content {
@@ -298,7 +297,7 @@
   }
 
   .kopilot-features__inner--image-left {
-    padding: 0 clamp(2rem, 4vw, 6.1rem) 3.5rem 0;
+    padding: 0 0 3.5rem 0;
   }
 
   .kopilot-features__content {
@@ -341,7 +340,7 @@
   }
 
   .kopilot-features__inner--image-left {
-    padding: 0 6.1rem 3.5rem 0;
+    padding: 0 6.0rem 3.5rem 0;
   }
 
   .kopilot-features__content {

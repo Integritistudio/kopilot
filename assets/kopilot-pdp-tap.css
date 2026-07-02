@@ -39,19 +39,37 @@
   color: #000;
 }
 
-@media screen and (max-width: 1100px) {
+/* Tablet: 560px–1024px — side-by-side, fluid image width */
+@media screen and (min-width: 560px) and (max-width: 1024px) {
   .kopilot-pdp-tap__inner {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: clamp(180px, 36vw, 420px) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 31px);
+    padding: 0 clamp(20px, 4vw, 40px);
+    align-items: center;
   }
 
-  .kopilot-pdp-tap__heading {
-    font-size: 42px;
-    letter-spacing: -1.2px;
+  .kopilot-pdp-tap__media {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .kopilot-pdp-tap__heading-wrapper {
+    min-width: 0;
+  }
+
+  .kopilot-pdp-tap__heading,
+  .kopilot-pdp-tap__heading_pdp {
+    max-width: 100%;
+    font-size: clamp(26px, 4.2vw, 44px);
+    line-height: 1.2;
+    letter-spacing: clamp(-0.78px, -0.12vw, -1.2px);
   }
 }
 
-@media screen and (max-width: 767px) {
+/* Mobile: ≤559px — 360px layout handled in section liquid */
+@media screen and (max-width: 559px) {
   .kopilot-pdp-tap__inner {
     padding: 0 0 0;
     gap: 38px;
@@ -68,5 +86,21 @@
   .kopilot-pdp-tap__media {
     aspect-ratio: auto;
     min-height: 313px;
+  }
+}
+
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-pdp-tap__inner {
+    padding: 0 54px;
+    grid-template-columns: minmax(0, 672px) minmax(0, 1fr);
+    gap: 31px;
+  }
+
+  .kopilot-pdp-tap__heading,
+  .kopilot-pdp-tap__heading_pdp {
+    font-size: 60px;
+    letter-spacing: -1px;
+    max-width: 629px;
   }
 }

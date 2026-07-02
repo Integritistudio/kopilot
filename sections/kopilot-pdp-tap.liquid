@@ -15,8 +15,8 @@
     color: #000;
   }
 
-  /* Pixel Perfect Mobile Implementations (Desktop is completely untouched) */
-  @media screen and (max-width: 767px) {
+  /* Pixel Perfect Mobile Implementations (≤559px — 360px pinned) */
+  @media screen and (max-width: 559px) {
     .kopilot-pdp-tap--{{ section.id }} {
       padding-top: 0 !important;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
