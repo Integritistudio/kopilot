@@ -302,8 +302,9 @@
       </h2>
     {%- endif -%}
 
-    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-      <a href="{{ section.settings.button_link }}" class="hero-button">
+    {%- if section.settings.button_label != blank -%}
+      {%- assign adventure_button_link = section.settings.button_link | default: routes.root_url -%}
+      <a href="{{ adventure_button_link }}" class="hero-button">
         {{ section.settings.button_label | escape }}
       </a>
     {%- endif -%}
@@ -318,7 +319,40 @@
   "settings": [
     {
       "type": "header",
-      "content": "Content Settings"
+      "content": "Background"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video (upload)"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Background video URL (.mp4)",
+      "info": "External MP4 link. Used only when no uploaded video is set."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (upload)",
+      "info": "Shown on mobile and desktop when no video is set. Also used as video poster."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop background image",
+      "info": "Optional. Used when Background image is empty."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile background image (optional)",
+      "info": "Optional. Different image on mobile only."
+    },
+    {
+      "type": "header",
+      "content": "Content"
     },
     {
       "type": "text",
@@ -335,46 +369,11 @@
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link",
-      "default": "/"
+      "label": "Button Link"
     },
     {
       "type": "header",
-      "content": "Background"
-    },
-    {
-      "type": "video",
-      "id": "background_video",
-      "label": "Upload background video",
-      "info": "Plays the same on mobile and desktop. If empty, the background image is used instead."
-    },
-    {
-      "type": "text",
-      "id": "video_url",
-      "label": "Background video URL (MP4)",
-      "info": "Optional external MP4 URL. Used only when no uploaded video is set."
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Upload background image",
-      "info": "Shown on mobile and desktop when no video is set. Also used as the video poster while loading."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Mobile background image (optional)",
-      "info": "Optional. Use only if mobile needs a different image than desktop."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_desktop",
-      "label": "Desktop background image",
-      "info": "Optional. Used when Background image is empty. Shown on desktop when no video is set."
-    },
-    {
-      "type": "header",
-      "content": "Color Profiles"
+      "content": "Colors"
     },
     {
       "type": "color",
