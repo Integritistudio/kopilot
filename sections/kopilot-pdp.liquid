@@ -3,7 +3,16 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-
+kopilot-pdp__tier-title-pdp{
+    margin: 0;
+    font-family: var(--kopilot-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    color: #000;
+}
   @media screen and (max-width: 767px) {
     .kopilot-pdp--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -420,7 +429,7 @@
                   <div class="kopilot-pdp__tier-head">
                     <div class="kopilot-pdp__tier-title-row">
                       <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
-                      <p class="kopilot-pdp__tier-title">{{ block.settings.title }}</p>
+                      <p class="kopilot-pdp__tier-title-pdp">{{ block.settings.title }}</p>
                     </div>
                     {% if block.settings.badge != blank and badge_downcase != 'default' %}
                       <span class="kopilot-pdp__tier-badge" style="background-color: #F20008;">{{ block.settings.badge }}</span>
