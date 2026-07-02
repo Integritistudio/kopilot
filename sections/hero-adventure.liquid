@@ -52,9 +52,6 @@
   .adventure-hero-{{ section.id }} {
     position: relative;
     width: 100%;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
     box-sizing: border-box;
     overflow: hidden;
     /* Proportional fluid scaling between 360px and 1440px */
@@ -101,6 +98,10 @@
     justify-content: flex-start;
     gap: clamp(30px, 26.67px + 0.93vw, 40px);
     text-align: center;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
   }
 
   .adventure-hero-{{ section.id }} .hero-heading {
@@ -144,11 +145,11 @@
   {% unless has_video %}
     {% if shared_bg_image != blank and use_shared_image_only %}
       .adventure-hero-{{ section.id }}__media--shared {
-        background-image: url('{{ shared_bg_image | image_url: width: 1440 }}');
+        background-image: url('{{ shared_bg_image | image_url: width: 2000 }}');
       }
     {% elsif shared_bg_image != blank %}
       .adventure-hero-{{ section.id }}__media--desktop {
-        background-image: url('{{ shared_bg_image | image_url: width: 1440 }}');
+        background-image: url('{{ shared_bg_image | image_url: width: 2000 }}');
       }
     {% endif %}
   {% endunless %}
@@ -171,7 +172,7 @@
   }
 
   /* ==========================================================================
-     EXACT DESIGN ANCHORS (Completely untouched at 360px and 1440px)
+     EXACT DESIGN ANCHORS (Completely untouched at exactly 360px and exactly 1440px)
      ========================================================================= */
 
   /* Exact 360px Anchor State */
@@ -180,6 +181,7 @@
       min-height: 700px;
       padding-top: 77px;
       padding-bottom: 350px;
+      max-width: 100%;
     }
     .adventure-hero-{{ section.id }}__bg {
       height: 62%;
@@ -204,22 +206,9 @@
       padding-right: 32px;
       max-width: 800px;
     }
-    {% unless has_video %}
-      {% if use_shared_image_only == false %}
-        .adventure-hero-{{ section.id }}__media--desktop {
-          display: none;
-        }
-        .adventure-hero-{{ section.id }}__media--mobile {
-          display: block;
-          {% if mobile_bg_image != blank %}
-            background-image: url('{{ mobile_bg_image | image_url: width: 1000 }}');
-          {% endif %}
-        }
-      {% endif %}
-    {% endunless %}
   }
 
-  /* Exact 1440px+ Anchor State */
+  /* Exact 1440px Anchor State */
   @media screen and (min-width: 1440px) {
     .adventure-hero-{{ section.id }} {
       min-height: 856px;
@@ -250,14 +239,6 @@
       font-weight: 700;
       letter-spacing: 1px;
     }
-    {% unless has_video %}
-      .adventure-hero-{{ section.id }}__media--desktop {
-        display: block;
-      }
-      .adventure-hero-{{ section.id }}__media--mobile {
-        display: none;
-      }
-    {% endunless %}
   }
 {%- endstyle -%}
 
@@ -274,7 +255,7 @@
           muted: true,
           controls: false,
           playsinline: true,
-          image_size: '1440x',
+          image_size: '2000x',
           preload: 'metadata'
       }}
     {% elsif has_video_url %}
@@ -286,7 +267,7 @@
         playsinline
         preload="metadata"
         {% if poster_image != blank %}
-          poster="{{ poster_image | image_url: width: 1440 }}"
+          poster="{{ poster_image | image_url: width: 2000 }}"
         {% endif %}
       >
         <source src="{{ section.settings.video_url }}" type="video/mp4">
