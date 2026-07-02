@@ -13,6 +13,15 @@
     text-transform: uppercase;
     color: #000;
 }
+.kopilot-pdp__tier-price-pdp {
+    margin: 0;
+    font-family: var(--kopilot-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 130%;
+    color: #000;
+    letter-spacing: 0%;
+}
   @media screen and (max-width: 767px) {
     .kopilot-pdp--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -449,7 +458,7 @@
                   {% endif %}
 
                   <div class="kopilot-pdp__tier-price-row">
-                    <p class="kopilot-pdp__tier-price">{{ tier_price }} USD</p>
+                    <p class="kopilot-pdp__tier-price-pdp">{{ tier_price }} USD</p>
                     {% if block.settings.compare_price != blank %}
                       <p class="kopilot-pdp__tier-compare">{{ block.settings.compare_price }}</p>
                     {% endif %}
