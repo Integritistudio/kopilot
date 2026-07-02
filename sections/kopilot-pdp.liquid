@@ -57,11 +57,39 @@
 
   /* Description Typography Setup */
   .kopilot-pdp__description_pdp p {
-  font-size: 20px !important;
-  line-height: 1.30 !important;
-  font-family :"Elza" !important;
-  max-width:382px;
-}
+    font-size: 20px !important;
+    line-height: 1.30 !important;
+    font-family: "Elza" !important;
+    max-width: 382px;
+  }
+
+  .kopilot-pdp__description_pdp--mobile {
+    display: none;
+    margin: 0 auto;
+    padding: 18px 0px;
+    max-width: 298px;
+    font-size:15px !important;
+
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp__description_pdp--mobile {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .kopilot-pdp__description_pdp p {
+      max-width: 298px !important;
+      width: 100% !important;
+      box-sizing: border-box;
+      font-size:15px !important;
+    }
+    .kopilot-pdp__included-heading{
+      font-size:15px !important;
+    }
+  }
+
   .kopilot-pdp__description strong, 
   .kopilot-pdp__description b {
     font-weight: 700;
@@ -393,6 +421,14 @@
             {% endfor %}
           </div>
         </div>
+      </div>
+
+      <div class="kopilot-pdp__description_pdp kopilot-pdp__description_pdp--mobile">
+        {% if section.settings.description != blank %}
+          {{ section.settings.description }}
+        {% elsif pdp_product.description != blank %}
+          {{ pdp_product.description | strip_html | truncate: 320 }}
+        {% endif %}
       </div>
 
       <div class="kopilot-pdp__buy">
