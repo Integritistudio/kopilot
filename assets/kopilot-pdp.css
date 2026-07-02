@@ -290,7 +290,7 @@
     font-size:15px;
   }
   .kopilot-pdp__included-pill {
-    font-size:14px;
+    font-size:14px !important;
  }
 
 .kopilot-pdp__included-pills {
