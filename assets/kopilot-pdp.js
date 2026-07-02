@@ -50,6 +50,10 @@ class KopilotPdp extends HTMLElement {
       this.selectedQty = 1;
     }
 
+    if (button.dataset.variantId) {
+      this.variantId = Number(button.dataset.variantId);
+    }
+
     if (this.addLabel) {
       const tierTitleEl = button.querySelector('.kopilot-pdp__tier-title');
       const tierTitle = tierTitleEl ? tierTitleEl.textContent.trim() : '';
@@ -161,11 +165,19 @@ class KopilotPdp extends HTMLElement {
       const selectedQty = Number.isNaN(parseInt(this.selectedQty, 10)) || parseInt(this.selectedQty, 10) < 1
         ? 1
         : parseInt(this.selectedQty, 10);
-      const existingLine = cart.items.find((item) => item.variant_id === this.variantId);
+
+      // Check if all tiers use the same variant ID (single variant setup)
+      const variantIds = Array.from(this.tierButtons).map(btn => btn.dataset.variantId).filter(Boolean);
+      const isSingleVariantSetup = new Set(variantIds).size <= 1;
+      const quantityToAdd = isSingleVariantSetup ? selectedQty : 1;
+
+      // Find any existing line item for this product in the cart
+      const existingLine = cart.items.find((item) => item.product_id === this.productId);
 
       let addResponse;
       if (existingLine) {
-        addResponse = await fetch(`${Shopify.routes.root}cart/change.js`, {
+        // Remove the existing line item first
+        await fetch(`${Shopify.routes.root}cart/change.js`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -173,22 +185,23 @@ class KopilotPdp extends HTMLElement {
           },
           body: JSON.stringify({
             id: existingLine.key,
-            quantity: selectedQty,
-          }),
-        });
-      } else {
-        addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-          },
-          body: JSON.stringify({
-            id: this.variantId,
-            quantity: selectedQty,
+            quantity: 0,
           }),
         });
       }
+
+      // Add the selected variant to the cart
+      addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: JSON.stringify({
+          id: this.variantId,
+          quantity: quantityToAdd,
+        }),
+      });
 
       const addData = await addResponse.json();
       if (!addResponse.ok) {
