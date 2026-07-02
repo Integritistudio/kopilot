@@ -12,67 +12,43 @@
     "kopilot_pdp": {
       "type": "kopilot-pdp",
       "blocks": {
-        "included_item_MR3rrJ": {
-          "type": "included_item",
-          "settings": {
-            "label": "KOPILOT.ID NFC tag"
-          }
-        },
-        "included_item_fRRxTE": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Goggle mount"
-          }
-        },
-        "included_item_nYMipW": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Zipper mount"
-          }
-        },
-        "included_item_UDYNTT": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Zipper mount"
-          }
-        },
         "tier_ztnEQy": {
           "type": "tier",
           "settings": {
             "quantity": 1,
-            "icon": "shopify://shop_images/Group_2106667215.png",
             "title": "1 TAG",
             "subtitle": "Just for you.",
             "badge": "",
             "price": "$39.99",
             "compare_price": "",
-            "save_label": ""
+            "save_label": "",
+            "included_items": ""
           }
         },
         "tier_BeADXP": {
           "type": "tier",
           "settings": {
             "quantity": 1,
-            "icon": "shopify://shop_images/Ellipse_8.png",
             "title": "Set of 2",
             "subtitle": "One for you, one for your friend.",
             "badge": "",
             "price": "$71.99",
             "compare_price": "$79.98",
-            "save_label": "Save 10%"
+            "save_label": "Save 10%",
+            "included_items": ""
           }
         },
         "tier_rJYaY8": {
           "type": "tier",
           "settings": {
             "quantity": 1,
-            "icon": "shopify://shop_images/Ellipse_8.png",
             "title": "Set of 3",
             "subtitle": "For the whole crew.",
             "badge": "Best Value",
             "price": "$95.99",
             "compare_price": "$119.97",
-            "save_label": "Save 20%"
+            "save_label": "Save 20%",
+            "included_items": "hi , hi , hi , hi"
           }
         },
         "gallery_slide_wD8dLa": {
@@ -167,10 +143,6 @@
         }
       },
       "block_order": [
-        "included_item_MR3rrJ",
-        "included_item_fRRxTE",
-        "included_item_nYMipW",
-        "included_item_UDYNTT",
         "tier_ztnEQy",
         "tier_BeADXP",
         "tier_rJYaY8",
@@ -641,15 +613,11 @@
     "kopilot_pdp_partner_cta": {
       "type": "kopilot-pdp-partner-cta",
       "settings": {
-        "color_scheme": "scheme-1",
+        "background_color": "#f1f1f1",
         "heading": "Partner with KOPILOT.ID",
-        "text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
-        "link_label": "See partnerships",
-        "link_url": "",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
+        "body_text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
+        "link_text": "See partnerships",
+        "link_url": ""
       }
     },
     "hero_adventure_FXPKHH": {
@@ -661,7 +629,7 @@
         "button_link": "/",
         "image_desktop": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
         "image_mobile": "shopify://shop_images/image_18659496_1.png",
-        "color_text": "#403A3A",
+        "color_text": "#403a3a",
         "color_button_bg": "#ef0008",
         "color_button_text": "#ffffff"
       }
