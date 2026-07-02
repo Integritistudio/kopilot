@@ -176,7 +176,13 @@
 
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-closing {
+    display: flex;
+    flex-direction: column;
+  }
+
   .kopilot-home-closing__inner {
+    order: 1;
     min-height: 0;
     padding: clamp(4rem, 6vw, 6.4rem) 0 0;
   }
