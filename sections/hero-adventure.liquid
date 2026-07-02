@@ -14,9 +14,27 @@
     assign has_video = true
   endif
 
-  assign poster_image = section.settings.image_desktop
+  assign poster_image = section.settings.background_image
+  if poster_image == blank
+    assign poster_image = section.settings.image_desktop
+  endif
   if poster_image == blank
     assign poster_image = section.settings.image_mobile
+  endif
+
+  assign shared_bg_image = section.settings.background_image
+  if shared_bg_image == blank
+    assign shared_bg_image = section.settings.image_desktop
+  endif
+
+  assign mobile_bg_image = section.settings.image_mobile
+  if mobile_bg_image == blank
+    assign mobile_bg_image = shared_bg_image
+  endif
+
+  assign use_shared_image_only = false
+  if shared_bg_image != blank and section.settings.image_mobile == blank
+    assign use_shared_image_only = true
   endif
 -%}
 
@@ -121,9 +139,13 @@
   }
 
   {% unless has_video %}
-    {% if section.settings.image_desktop != blank %}
+    {% if shared_bg_image != blank and use_shared_image_only %}
+      .adventure-hero-{{ section.id }}__media--shared {
+        background-image: url('{{ shared_bg_image | image_url: width: 1440 }}');
+      }
+    {% elsif shared_bg_image != blank %}
       .adventure-hero-{{ section.id }}__media--desktop {
-        background-image: url('{{ section.settings.image_desktop | image_url: width: 1440 }}');
+        background-image: url('{{ shared_bg_image | image_url: width: 1440 }}');
       }
     {% endif %}
   {% endunless %}
@@ -217,18 +239,18 @@
     }
 
     {% unless has_video %}
-      .adventure-hero-{{ section.id }}__media--desktop {
-        display: none;
-      }
+      {% if use_shared_image_only == false %}
+        .adventure-hero-{{ section.id }}__media--desktop {
+          display: none;
+        }
 
-      .adventure-hero-{{ section.id }}__media--mobile {
-        display: block;
-        {% if section.settings.image_mobile != blank %}
-          background-image: url('{{ section.settings.image_mobile | image_url: width: 750 }}');
-        {% elsif section.settings.image_desktop != blank %}
-          background-image: url('{{ section.settings.image_desktop | image_url: width: 1000 }}');
-        {% endif %}
-      }
+        .adventure-hero-{{ section.id }}__media--mobile {
+          display: block;
+          {% if mobile_bg_image != blank %}
+            background-image: url('{{ mobile_bg_image | image_url: width: 1000 }}');
+          {% endif %}
+        }
+      {% endif %}
     {% endunless %}
   }
 {%- endstyle -%}
@@ -264,8 +286,12 @@
         <source src="{{ section.settings.video_url }}" type="video/mp4">
       </video>
     {% else %}
-      <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--desktop"></div>
-      <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--mobile"></div>
+      {% if shared_bg_image != blank and use_shared_image_only %}
+        <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--shared"></div>
+      {% else %}
+        <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--desktop"></div>
+        <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--mobile"></div>
+      {% endif %}
     {% endif %}
   </div>
 
@@ -314,13 +340,13 @@
     },
     {
       "type": "header",
-      "content": "Background video"
+      "content": "Background"
     },
     {
       "type": "video",
       "id": "background_video",
-      "label": "Background video",
-      "info": "Plays the same on mobile and desktop. If empty, background images are used instead."
+      "label": "Upload background video",
+      "info": "Plays the same on mobile and desktop. If empty, the background image is used instead."
     },
     {
       "type": "text",
@@ -329,20 +355,22 @@
       "info": "Optional external MP4 URL. Used only when no uploaded video is set."
     },
     {
-      "type": "header",
-      "content": "Background images (fallback)"
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Upload background image",
+      "info": "Shown on mobile and desktop when no video is set. Also used as the video poster while loading."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile background image (optional)",
+      "info": "Optional. Use only if mobile needs a different image than desktop."
     },
     {
       "type": "image_picker",
       "id": "image_desktop",
       "label": "Desktop background image",
-      "info": "Used when no video is set. Also used as the video poster while loading."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Mobile background image",
-      "info": "Used when no video is set. Leave blank to use the desktop image on mobile."
+      "info": "Optional. Used when Background image is empty. Shown on desktop when no video is set."
     },
     {
       "type": "header",
