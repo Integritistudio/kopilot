@@ -57,6 +57,20 @@
     background-color: #FECECE !important;
   }
 
+  .kopilot-pdp__tier-dot {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #141416;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .kopilot-pdp__tier.is-selected .kopilot-pdp__tier-dot {
+    background-color: #141416;
+  }
+
   /* Add to Cart Button Optimization Specs */
   .kopilot-pdp__add {
     background-color: #141416 !important;
@@ -391,6 +405,7 @@
                 <div class="kopilot-pdp__tier-inner">
                   <div class="kopilot-pdp__tier-head">
                     <div class="kopilot-pdp__tier-title-row">
+                      <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
                       {% if block.settings.icon != blank %}
                         {{
                           block.settings.icon
