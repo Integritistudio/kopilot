@@ -1,50 +1,178 @@
-{% style %}
-  .kopilot-pdp-partner-cta--{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+<div class="kopilot-partner-section-{{ section.id }}">
+  <div class="kopilot-partner-container-{{ section.id }}">
+    
+    <!-- Left Heading Element -->
+    <h2 class="kopilot-partner-heading-{{ section.id }}">
+      {{ section.settings.heading }}
+    </h2>
+    
+    <!-- Right Content Column Wrapper -->
+    <div class="kopilot-partner-content-{{ section.id }}">
+      <p class="kopilot-partner-text-{{ section.id }}">
+        {{ section.settings.body_text }}
+      </p>
+      
+      {%- if section.settings.link_text != blank -%}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-partner-link-{{ section.id }}">
+          {{ section.settings.link_text }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* ==========================================================================
+     DESKTOP STYLES (Untouched per your exact code)
+     ========================================================================= */
+  .kopilot-partner-section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    width: 100%;
+    padding: 50px 0;
+    box-sizing: border-box;
   }
 
-  @media screen and (max-width: 767px) {
-    .kopilot-pdp-partner-cta--{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  .kopilot-partner-container-{{ section.id }} {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 205px;
+    gap: 75px;
+    box-sizing: border-box;
+  }
+
+  .kopilot-partner-heading-{{ section.id }} {
+    font-family: "Elza", sans-serif;
+    font-size: 60px;
+    font-weight: 300;
+    line-height: 1.1; 
+    color: #000000;
+    margin: 0;
+    width: max-content; 
+    max-width: 100%;
+    white-space: nowrap; 
+    letter-spacing: 0%;
+  }
+
+  .kopilot-partner-content-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 342px;
+    max-width: 100%;
+  }
+
+  .kopilot-partner-text-{{ section.id }} {
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2; 
+    color: #000000;
+    margin: 0;
+    width: 100%;
+  }
+
+  .kopilot-partner-link-{{ section.id }} {
+    font-family: "Elza Text Trial", "Elza", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.0;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: underline;
+    display: inline-block;
+    width: 197px;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+  }
+
+  .kopilot-partner-link-{{ section.id }}:hover {
+    opacity: 0.7;
+  }
+
+  /* ==========================================================================
+     MOBILE BREAKPOINT STYLES (Figma Mobile Specs)
+     ========================================================================= */
+  @media (max-width: 1100px) {
+    .kopilot-partner-section-{{ section.id }} {
+      padding: 0;
+    }
+
+    /* Outer Mobile Layout Stack (Frame 2106667390) */
+    .kopilot-partner-container-{{ section.id }} {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 360.45px;
+      padding: 31px 20px;
+      gap: 24px;
+      margin: 0 auto;
+    }
+
+    /* Typography Inner Content Column (Frame 2106667391) */
+    .kopilot-partner-content-{{ section.id }} {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 289px;
+      max-width: 100%;
+      gap: 15px; /* Strict Figma stack spacing gap */
+    }
+
+    /* Mobile Heading Specs (30px / 110% / 249px Width / Center) */
+    .kopilot-partner-heading-{{ section.id }} {
+      font-family: "Elza", sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 1.1;
+      width: 249px;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+
+    /* Mobile Description Paragraph Specs (15px / 120% / 289px Width / Center) */
+    .kopilot-partner-text-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.2;
+      width: 289px;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    /* Mobile Text Link Specs (Figtree Bold / 20px / 120% / Center) */
+    .kopilot-partner-link-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-align: center;
+      width: 289px;
+      max-width: 100%;
     }
   }
-{% endstyle %}
-
-{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
-{{ 'kopilot-pdp-partner-cta.css' | asset_url | stylesheet_tag }}
-
-<section class="kopilot-section kopilot-pdp-partner-cta kopilot-pdp-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-pdp-partner-cta__inner">
-    {% if section.settings.heading != blank %}
-      <h2 class="kopilot-pdp-partner-cta__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    <div class="kopilot-pdp-partner-cta__content">
-      {% if section.settings.text != blank %}
-        <p class="kopilot-pdp-partner-cta__text">{{ section.settings.text }}</p>
-      {% endif %}
-      {% if section.settings.link_label != blank %}
-        <a href="{{ section.settings.link_url | default: '#' }}" class="kopilot-pdp-partner-cta__link">
-          {{ section.settings.link_label }}
-        </a>
-      {% endif %}
-    </div>
-  </div>
-</section>
+</style>
 
 {% schema %}
 {
-  "name": "Kopilot PDP partner CTA",
-  "tag": "section",
-  "class": "kopilot-pdp-partner-cta-section",
-  "disabled_on": { "groups": ["header", "footer"] },
+  "name": "Kopilot Partner Banner",
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F1F1F1"
     },
     {
       "type": "text",
@@ -54,58 +182,27 @@
     },
     {
       "type": "textarea",
-      "id": "text",
-      "label": "Text",
+      "id": "body_text",
+      "label": "Body Text",
       "default": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team."
     },
     {
       "type": "text",
-      "id": "link_label",
-      "label": "Link label",
+      "id": "link_text",
+      "label": "Link Text",
       "default": "See partnerships"
     },
     {
       "type": "url",
       "id": "link_url",
-      "label": "Link URL"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Top padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Bottom padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 40
+      "label": "Link URL",
+      "default": "/"
     }
   ],
-  "presets": [{ "name": "Kopilot PDP partner CTA" }]
+  "presets": [
+    {
+      "name": "Kopilot Partner Banner"
+    }
+  ]
 }
 {% endschema %}

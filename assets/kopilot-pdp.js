@@ -45,11 +45,31 @@ class KopilotPdp extends HTMLElement {
 
     button.classList.add('is-selected');
     button.setAttribute('aria-pressed', 'true');
-    this.selectedQty = Number(button.dataset.quantity || 1);
+    this.selectedQty = parseInt(button.dataset.quantity || '1', 10);
+    if (Number.isNaN(this.selectedQty) || this.selectedQty < 1) {
+      this.selectedQty = 1;
+    }
 
-    if (this.addLabel) {
-      const tagLabel = this.selectedQty === 1 ? 'TAG' : 'TAGS';
-      this.addLabel.textContent = `ADD TO CART - ${this.selectedQty} ${tagLabel}`;
+    if (button.dataset.variantId) {
+      this.variantId = Number(button.dataset.variantId);
+    }
+
+    this.updateButtonLabel();
+  }
+
+  updateButtonLabel() {
+    if (!this.addLabel) return;
+    const selectedTier = this.querySelector('[data-kopilot-tier].is-selected');
+    if (selectedTier) {
+      const tierTitleEl = selectedTier.querySelector('.kopilot-pdp__tier-title');
+      const tierTitle = tierTitleEl ? tierTitleEl.textContent.trim() : '';
+      if (tierTitle) {
+        this.addLabel.textContent = `ADD TO CART - ${tierTitle}`;
+      } else {
+        this.addLabel.textContent = this.selectedQty === 1
+          ? 'ADD TO CART - 1 TAG'
+          : `ADD TO CART - SET OF ${this.selectedQty}`;
+      }
     }
   }
 
@@ -148,9 +168,21 @@ class KopilotPdp extends HTMLElement {
 
     try {
       const cart = await fetch(`${Shopify.routes.root}cart.js`).then((response) => response.json());
+      const selectedQty = Number.isNaN(parseInt(this.selectedQty, 10)) || parseInt(this.selectedQty, 10) < 1
+        ? 1
+        : parseInt(this.selectedQty, 10);
+
+      // Check if all tiers use the same variant ID (single variant setup)
+      const variantIds = Array.from(this.tierButtons).map(btn => btn.dataset.variantId).filter(Boolean);
+      const isSingleVariantSetup = new Set(variantIds).size <= 1;
+      const quantityToAdd = isSingleVariantSetup ? selectedQty : 1;
+
+      // Find any existing line item for this product in the cart
       const existingLine = cart.items.find((item) => item.product_id === this.productId);
 
+      let addResponse;
       if (existingLine) {
+        // Remove the existing line item first
         await fetch(`${Shopify.routes.root}cart/change.js`, {
           method: 'POST',
           headers: {
@@ -164,7 +196,8 @@ class KopilotPdp extends HTMLElement {
         });
       }
 
-      const addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
+      // Add the selected variant to the cart
+      addResponse = await fetch(`${Shopify.routes.root}cart/add.js`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,13 +205,22 @@ class KopilotPdp extends HTMLElement {
         },
         body: JSON.stringify({
           id: this.variantId,
-          quantity: this.selectedQty,
+          quantity: quantityToAdd,
         }),
       });
 
       const addData = await addResponse.json();
       if (!addResponse.ok) {
         throw addData;
+      }
+
+      if (this.addLabel) {
+        this.addLabel.textContent = 'ADDED';
+        setTimeout(() => {
+          if (this.addLabel.textContent === 'ADDED') {
+            this.updateButtonLabel();
+          }
+        }, 2000);
       }
 
       const sections = await fetch(

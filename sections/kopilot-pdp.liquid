@@ -3,7 +3,35 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-
+.kopilot-pdp__tier-title-pdp{
+    margin: 0;
+    font-family: var(--kopilot-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    color: #000;
+}
+.kopilot-pdp__tier-price-pdp {
+    margin: 0;
+    font-family: var(--kopilot-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 130%;
+    color: #000;
+    letter-spacing: 0%;
+}
+.kopilot-pdp__tier-compare-pdp{
+    margin: 0;
+    font-family: var(--kopilot-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #767676;
+    text-decoration: line-through;
+} 
+}
   @media screen and (max-width: 767px) {
     .kopilot-pdp--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -55,6 +83,38 @@
   .kopilot-pdp__tier-save {
     color: #F20008 !important;
     background-color: #FECECE !important;
+  }
+
+  .kopilot-pdp__tier-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #141416;
+    border-radius: 50%;
+    background-color: #ffffff;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .kopilot-pdp__tier-dot::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  .kopilot-pdp__tier.is-selected .kopilot-pdp__tier-dot::before {
+    background-color: #141416;
+  }
+
+  .kopilot-pdp__tier-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   /* Add to Cart Button Optimization Specs */
@@ -186,6 +246,14 @@
   .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top-center {
     padding-top: 45px;
   }
+  .kopilot-pdp__tier-subtitle-pdp {
+    font-weight: 400;
+    margin: 0 0 10px;
+    font-family: var(--kopilot-body-font-family);
+    font-size: 20px;
+    line-height: 130%;
+    color: #000;
+}
 {% endstyle %}
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
@@ -204,7 +272,6 @@
   endif
 
   assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
-  assign tier_icon_fallbacks = 'kopilot-product-1tag.png,kopilot-product-2tags.png,kopilot-product-3tags.png' | split: ','
 %}
 
 {% if pdp_product == blank %}
@@ -338,12 +405,6 @@
               <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
             </div>
           {% endif %}
-
-          {% comment %} {% if section.settings.description != blank %}
-            <p class="kopilot-pdp__description_pdp">{{ section.settings.description }}</p>
-          {% elsif pdp_product.description != blank %}
-            <div class="kopilot-pdp__description rte">{{ pdp_product.description | strip_html | truncate: 320 }}</div>
-          {% endif %} {% endcomment %}
           {% if section.settings.description != blank %}
   <div class="kopilot-pdp__description_pdp">
     {{ section.settings.description }}
@@ -377,6 +438,8 @@
                   assign tier_price_cents = unit_cents | times: tier_qty
                   assign tier_price = tier_price_cents | money
                 endif
+
+                assign tier_variant_id = pdp_product.variants[tier_index].id | default: current_variant.id
               %}
 
               <button
@@ -384,6 +447,7 @@
                 class="kopilot-pdp__tier{% if is_default_tier %} is-selected{% endif %}"
                 data-kopilot-tier
                 data-quantity="{{ tier_qty }}"
+                data-variant-id="{{ tier_variant_id }}"
                 data-selected="{{ is_default_tier }}"
                 aria-pressed="{% if is_default_tier %}true{% else %}false{% endif %}"
                 {{ block.shopify_attributes }}
@@ -391,23 +455,8 @@
                 <div class="kopilot-pdp__tier-inner">
                   <div class="kopilot-pdp__tier-head">
                     <div class="kopilot-pdp__tier-title-row">
-                      {% if block.settings.icon != blank %}
-                        {{
-                          block.settings.icon
-                          | image_url: width: 80
-                          | image_tag: class: 'kopilot-pdp__tier-icon', loading: 'lazy', alt: ''
-                        }}
-                      {% else %}
-                        <img
-                          class="kopilot-pdp__tier-icon"
-                          src="{{ tier_icon_fallbacks[tier_index] | asset_url }}"
-                          alt=""
-                          width="39"
-                          height="39"
-                          loading="lazy"
-                        >
-                      {% endif %}
-                      <p class="kopilot-pdp__tier-title">{{ block.settings.title }}</p>
+                      <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
+                      <p class="kopilot-pdp__tier-title-pdp">{{ block.settings.title }}</p>
                     </div>
                     {% if block.settings.badge != blank and badge_downcase != 'default' %}
                       <span class="kopilot-pdp__tier-badge" style="background-color: #F20008;">{{ block.settings.badge }}</span>
@@ -415,13 +464,13 @@
                   </div>
 
                   {% if block.settings.subtitle != blank %}
-                    <p class="kopilot-pdp__tier-subtitle">{{ block.settings.subtitle }}</p>
+                    <p class="kopilot-pdp__tier-subtitle-pdp">{{ block.settings.subtitle }}</p>
                   {% endif %}
 
                   <div class="kopilot-pdp__tier-price-row">
-                    <p class="kopilot-pdp__tier-price">{{ tier_price }} USD</p>
+                    <p class="kopilot-pdp__tier-price-pdp">{{ tier_price }} USD</p>
                     {% if block.settings.compare_price != blank %}
-                      <p class="kopilot-pdp__tier-compare">{{ block.settings.compare_price }}</p>
+                      <p class="kopilot-pdp__tier-compare-pdp">{{ block.settings.compare_price }}</p>
                     {% endif %}
                     {% if block.settings.save_label != blank %}
                       <span class="kopilot-pdp__tier-save">{{ block.settings.save_label }}</span>
@@ -437,13 +486,63 @@
 
         <div class="kopilot-pdp__included">
           <p class="kopilot-pdp__included-heading">{{ section.settings.included_heading }}</p>
-          <div class="kopilot-pdp__included-pills">
-            {% for block in section.blocks %}
-              {% if block.type == 'included_item' %}
-                <span class="kopilot-pdp__included-pill" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+          
+          {% capture newline %}
+{% endcapture %}
+          {% assign tier_index = 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'tier' %}
+              {% liquid
+                assign is_default_tier = false
+                if block.settings.badge != blank
+                  assign badge_downcase = block.settings.badge | downcase | strip
+                  if badge_downcase == 'default'
+                    assign is_default_tier = true
+                  endif
+                elsif tier_index == 0
+                  assign is_default_tier = true
+                endif
+
+                assign raw_items = block.settings.included_items
+                if raw_items contains newline
+                  assign items_array = raw_items | split: newline
+                else
+                  assign items_array = raw_items | split: ','
+                endif
+              %}
+              
+              {% if raw_items != blank %}
+                <div
+                  class="kopilot-pdp__included-pills"
+                  data-kopilot-included-pills
+                  data-tier-index="{{ tier_index }}"
+                  {% unless is_default_tier %}style="display: none;"{% endunless %}
+                >
+                  {% for item in items_array %}
+                    {% assign clean_item = item | strip %}
+                    {% if clean_item != blank %}
+                      <span class="kopilot-pdp__included-pill">{{ clean_item }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div
+                  class="kopilot-pdp__included-pills"
+                  data-kopilot-included-pills
+                  data-tier-index="{{ tier_index }}"
+                  {% unless is_default_tier %}style="display: none;"{% endunless %}
+                >
+                  {% for g_block in section.blocks %}
+                    {% if g_block.type == 'included_item' %}
+                      <span class="kopilot-pdp__included-pill" {{ g_block.shopify_attributes }}>{{ g_block.settings.label }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
               {% endif %}
-            {% endfor %}
-          </div>
+              
+              {% assign tier_index = tier_index | plus: 1 %}
+            {% endif %}
+          {% endfor %}
         </div>
 
         <button type="button" class="kopilot-pdp__add" data-kopilot-add>
@@ -659,13 +758,13 @@
       "name": "Quantity tier",
       "settings": [
         { "type": "range", "id": "quantity", "label": "Cart quantity", "min": 1, "max": 10, "step": 1, "default": 1 },
-        { "type": "image_picker", "id": "icon", "label": "Icon" },
         { "type": "text", "id": "title", "label": "Title", "default": "1 TAG" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Just for you." },
         { "type": "text", "id": "badge", "label": "Badge (DEFAULT / BEST VALUE)" },
         { "type": "text", "id": "price", "label": "Price display", "default": "$39.99" },
         { "type": "text", "id": "compare_price", "label": "Compare-at price" },
-        { "type": "text", "id": "save_label", "label": "Save badge" }
+        { "type": "text", "id": "save_label", "label": "Save badge" },
+        { "type": "textarea", "id": "included_items", "label": "Included items (comma or line-separated)" }
       ]
     },
     {
