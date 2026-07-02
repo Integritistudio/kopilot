@@ -8,6 +8,9 @@ class KopilotPdp extends HTMLElement {
   connectedCallback() {
     this.productId = Number(this.dataset.productId);
     this.variantId = Number(this.dataset.variantId);
+    this.defaultButtonLabel = this.dataset.defaultButtonLabel || 'ADD TO CART - 1 TAG';
+    this.selectedQty = 1;
+    this.selectedTitle = '';
     this.tierButtons = this.querySelectorAll('[data-kopilot-tier]');
     this.addButton = this.querySelector('[data-kopilot-add]');
     this.addLabel = this.querySelector('[data-kopilot-add-label]');
@@ -46,6 +49,7 @@ class KopilotPdp extends HTMLElement {
     button.classList.add('is-selected');
     button.setAttribute('aria-pressed', 'true');
     this.selectedQty = parseInt(button.dataset.quantity || '1', 10);
+    this.selectedTitle = button.dataset.tierTitle ? button.dataset.tierTitle.trim() : '';
     if (Number.isNaN(this.selectedQty) || this.selectedQty < 1) {
       this.selectedQty = 1;
     }
