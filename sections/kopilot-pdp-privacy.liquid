@@ -3,32 +3,54 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-.kopilot-pdp-privacy__heading_pdp {
-  font-family: 'Elza', sans-serif;
-  font-weight: 300;
-  font-style: normal; 
-  font-size: 60px;
-  line-height: 1.1; 
-  letter-spacing: 0%;
-}
-div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
-  font-size: 20px;
-  line-height:120%;
-  letter-spacing:0%;
-  font-weight:400;
-}
+
+  .kopilot-pdp-privacy__heading_pdp {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: 0%;
+  }
+
+  div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
+    line-height: 120%;
+    letter-spacing: 0%;
+    font-weight: 400;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .kopilot-pdp-privacy__heading_pdp {
+      font-size: clamp(32px, 4.5vw, 58px);
+    }
+
+    div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
+      font-size: clamp(15px, 1.6vw, 20px);
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .kopilot-pdp-privacy__heading_pdp {
+      font-size: 60px;
+    }
+
+    div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
+      font-size: 20px;
+    }
+  }
 
   @media screen and (max-width: 767px) {
     .kopilot-pdp-privacy--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
-  .kopilot-pdp-privacy__heading_pdp {
-  font-size: 30px;
-}
-div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
-  font-size: 15px;
-}
+
+    .kopilot-pdp-privacy__heading_pdp {
+      font-size: 30px;
+    }
+
+    div.kopilot-pdp-privacy__text.kopilot-body.rte > p {
+      font-size: 15px;
+    }
   }
 {% endstyle %}
 

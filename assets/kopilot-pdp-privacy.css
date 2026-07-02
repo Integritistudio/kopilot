@@ -53,22 +53,89 @@
   color: #000;
 }
 
-@media screen and (max-width: 1100px) {
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-pdp-privacy__inner {
-    padding: 0 40px;
-    gap: 40px;
+    padding: 0 clamp(24px, 5vw, 80px);
+    gap: clamp(32px, 5vw, 80px);
+    grid-template-columns: clamp(80px, 10vw, 115px) minmax(0, 1fr);
+  }
+
+  .kopilot-pdp-privacy__icon {
+    width: clamp(80px, 10vw, 115px);
+    height: clamp(80px, 10vw, 115px);
+  }
+
+  .kopilot-pdp-privacy__content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 65px);
+  }
+
+  .kopilot-pdp-privacy__heading,
+  .kopilot-pdp-privacy__heading_pdp {
+    font-size: clamp(32px, 4.5vw, 56px);
+    letter-spacing: clamp(-0.9px, -0.12vw, -1.65px);
+    line-height: 1.1;
+  }
+
+  .kopilot-pdp-privacy__text,
+  .kopilot-pdp-privacy__text p,
+  .kopilot-pdp-privacy__text.kopilot-body.rte > p {
+    font-size: clamp(15px, 1.6vw, 20px);
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .kopilot-pdp-privacy__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 
   .kopilot-pdp-privacy__content {
     grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .kopilot-pdp-privacy__heading {
-    font-size: 42px;
+    gap: clamp(20px, 3vw, 32px);
+    text-align: center;
+    width: 100%;
+    max-width: min(560px, 100%);
   }
 }
 
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-pdp-privacy__inner {
+    padding: 0 146px;
+    gap: 99px;
+    grid-template-columns: 115px minmax(0, 1fr);
+  }
+
+  .kopilot-pdp-privacy__icon {
+    width: 115px;
+    height: 115px;
+  }
+
+  .kopilot-pdp-privacy__content {
+    grid-template-columns: minmax(0, 465px) minmax(0, 404px);
+    gap: 65px;
+  }
+
+  .kopilot-pdp-privacy__heading,
+  .kopilot-pdp-privacy__heading_pdp {
+    font-size: 60px;
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+
+  .kopilot-pdp-privacy__text,
+  .kopilot-pdp-privacy__text p,
+  .kopilot-pdp-privacy__text.kopilot-body.rte > p {
+    font-size: 20px;
+    line-height: 120%;
+  }
+}
+
+/* Mobile pinned: ≤767px */
 @media screen and (max-width: 767px) {
   .kopilot-pdp-privacy__inner {
     padding: 0 36px;
@@ -80,18 +147,21 @@
 
   .kopilot-pdp-privacy__content {
     gap: 24px;
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .kopilot-pdp-privacy__heading {
-    font-size: 27px;
-    line-height: 1;
-    letter-spacing: -0.81px;
+  .kopilot-pdp-privacy__heading,
+  .kopilot-pdp-privacy__heading_pdp {
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: 0;
   }
 
   .kopilot-pdp-privacy__text,
-  .kopilot-pdp-privacy__text p {
-    font-size: 12px;
-    line-height: 1.5;
+  .kopilot-pdp-privacy__text p,
+  .kopilot-pdp-privacy__text.kopilot-body.rte > p {
+    font-size: 15px;
+    line-height: 1.2;
   }
 }

@@ -486,6 +486,18 @@
   }
 }
 
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .kopilot-pdp__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(420px, 44vw));
+    gap: clamp(20px, 3vw, 32px);
+    align-items: start;
+  }
+
+  .kopilot-pdp__gallery-cell {
+    min-height: clamp(220px, 28vw, 340px);
+  }
+}
+
 @media screen and (min-width: 1025px) and (max-width: 1439px) {
   .kopilot-pdp__layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, min(516px, 42vw));

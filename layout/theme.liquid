@@ -74,7 +74,7 @@
   {% render 'wsg-custom' %}
 </head>
 
-  <body>
+  <body class="{% if template.suffix == 'pdp' or template.name == 'product' %}kopilot-pdp-page {% endif %}">
     <a class="skip-to-content-link btn visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -106,6 +106,10 @@
     {% section 'quick-add-drawer' %}
 
     {% render 'scroll-to-top' %}
+
+    {% if template.suffix == 'pdp' or template.name == 'product' %}
+      {{ 'kopilot-pdp-responsive.css' | asset_url | stylesheet_tag }}
+    {% endif %}
 
     <!-- FANCYBOX INITIALIZATION SCRIPT -->
     <script defer="defer">

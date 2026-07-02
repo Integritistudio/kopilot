@@ -121,12 +121,62 @@
   display: none;
 }
 
-@media screen and (max-width: 1100px) {
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-pdp-testimonials__inner {
+    padding: 0 clamp(24px, 5vw, 81px);
+  }
+
+  .kopilot-pdp-testimonials__heading {
+    margin-bottom: clamp(32px, 5vw, 67px);
+    font-size: clamp(32px, 4.5vw, 43px);
+    letter-spacing: clamp(-0.9px, -0.1vw, -1.29px);
+  }
+
   .kopilot-pdp-testimonials__track {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 21px);
+  }
+
+  .kopilot-pdp-testimonials__name {
+    font-size: clamp(18px, 2vw, 24px);
+  }
+
+  .kopilot-pdp-testimonials__quote {
+    font-size: clamp(14px, 1.5vw, 16px);
+  }
+
+  .kopilot-pdp-testimonials__tag {
+    font-size: clamp(13px, 1.4vw, 16px);
+    min-height: clamp(36px, 4vw, 44px);
   }
 }
 
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .kopilot-pdp-testimonials__track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-pdp-testimonials__inner {
+    padding: 0 81px;
+  }
+
+  .kopilot-pdp-testimonials__heading {
+    margin: 0 0 67px;
+    font-size: 43px;
+    letter-spacing: -1.29px;
+  }
+
+  .kopilot-pdp-testimonials__track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
+  }
+}
+
+/* Mobile pinned: ≤767px */
 @media screen and (max-width: 767px) {
   .kopilot-pdp-testimonials__inner {
     padding: 0 0 0;
