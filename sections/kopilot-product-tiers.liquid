@@ -11,6 +11,17 @@
     }
   }
 
+  /* Hover state styling for all card variants */
+  .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent; /* Prevents visual layout shifting on hover */
+  }
+
+  .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card:hover {
+    background-color: #EEEEEE !important;
+    border: 1px solid #000000 !important;
+  }
+
   {% for block in section.blocks %}
     {% if block.settings.list_icon_mobile != blank %}
       .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card[data-block-id="{{ block.id }}"] .kopilot-product-tiers__features.rte li::before {
@@ -95,15 +106,17 @@
                     loading: 'lazy',
                     alt: ''
                 }}
-              {% elsif hover_images[card_index] != blank %}
-                <img
-                  class="kopilot-product-tiers__card-image kopilot-product-tiers__card-image--hover"
-                  src="{{ hover_images[card_index] | asset_url }}"
-                  alt=""
-                  loading="lazy"
-                  width="379"
-                  height="220"
-                >
+              {% else %}
+                {% if hover_images[card_index] != blank %}
+                  <img
+                    class="kopilot-product-tiers__card-image kopilot-product-tiers__card-image--hover"
+                    src="{{ hover_images[card_index] | asset_url }}"
+                    alt=""
+                    loading="lazy"
+                    width="379"
+                    height="220"
+                  >
+                {% endif %}
               {% endif %}
             </div>
 
