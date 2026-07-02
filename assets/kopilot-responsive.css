@@ -246,29 +246,6 @@
     font-size: clamp(16px, 1.6vw, 20px);
   }
 
-  /* ----- CTA banner ----- */
-  .kopilot-cta-banner {
-    gap: clamp(2rem, 3vw, 3.6rem);
-    padding-top: clamp(4rem, 7vw, 7.7rem);
-  }
-
-  .kopilot-cta-banner__heading,
-  .kopilot-cta-banner__heading.kopilot-heading {
-    font-size: clamp(36px, 5vw, 56px);
-    max-width: min(85.5rem, 100%);
-  }
-
-  .kopilot-cta-banner .kopilot-cta-banner__btn.kopilot-btn {
-    padding: clamp(1.4rem, 2vw, 2.1rem) clamp(3rem, 6vw, 8.3rem);
-    font-size: clamp(1.6rem, 1.8vw, 2.4rem);
-  }
-
-  .kopilot-cta-banner__trust {
-    max-width: min(72.8rem, 100%);
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   /* ----- Features ----- */
   .kopilot-features__inner {
     gap: clamp(2rem, 4vw, 7.3rem);
