@@ -190,6 +190,7 @@
         "f5",
         "f6"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "image_position": "right",
