@@ -1,4 +1,11 @@
 {% style %}
+  .kopilot-features--{{ section.id }} .kopilot-features__heading,
+  .kopilot-features--{{ section.id }} .kopilot-features__heading.kopilot-heading,
+  .kopilot-features--{{ section.id }} .kopilot-features__heading *,
+  .kopilot-features--{{ section.id }} .kopilot-features__heading.kopilot-heading * {
+    font-family: {{ section.settings.heading_font_family }}, sans-serif !important;
+  }
+
   .kopilot-features--{{ section.id }} .kopilot-features__grid {
     padding-top: {{ section.settings.grid_padding_top_mobile }}px;
   }
@@ -228,6 +235,20 @@
       "id": "heading_rt",
       "label": "Heading",
       "default": "<p>The details that matter.</p>"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_family",
+      "label": "Heading font family",
+      "options": [
+        { "value": "Elza", "label": "Elza" },
+        { "value": "Figtree", "label": "Figtree" },
+        { "value": "Inter", "label": "Inter" },
+        { "value": "Roboto", "label": "Roboto" },
+        { "value": "Open Sans", "label": "Open Sans" },
+        { "value": "Lato", "label": "Lato" }
+      ],
+      "default": "Elza"
     },
     {
       "type": "range",
