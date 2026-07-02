@@ -534,6 +534,7 @@
   }
 
   .kopilot-pdp__layout {
+    display: block;
     gap: 0;
   }
 
