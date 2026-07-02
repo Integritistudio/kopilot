@@ -1,3 +1,25 @@
+{%- liquid
+  assign has_uploaded_video = false
+  if section.settings.background_video != blank
+    assign has_uploaded_video = true
+  endif
+
+  assign has_video_url = false
+  if section.settings.video_url != blank
+    assign has_video_url = true
+  endif
+
+  assign has_video = false
+  if has_uploaded_video or has_video_url
+    assign has_video = true
+  endif
+
+  assign poster_image = section.settings.image_desktop
+  if poster_image == blank
+    assign poster_image = section.settings.image_mobile
+  endif
+-%}
+
 {%- style -%}
   @font-face {
     font-family: 'Elza';
@@ -7,6 +29,7 @@
   }
 
   .adventure-hero-{{ section.id }} {
+    position: relative;
     width: 100%;
     max-width: 1440px;
     margin-left: auto;
@@ -14,18 +37,48 @@
     min-height: 856px;
     padding-top: 77px;
     padding-bottom: 538px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .adventure-hero-{{ section.id }}__bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 62%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .adventure-hero-{{ section.id }}__media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+  }
+
+  .adventure-hero-{{ section.id }}__media--video {
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .adventure-hero-{{ section.id }}__media--mobile {
+    display: none;
+  }
+
+  .adventure-hero-{{ section.id }}__content {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 40px;
     text-align: center;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    box-sizing: border-box;
-    {% if section.settings.image_desktop != blank %}
-      background-image: url('{{ section.settings.image_desktop | image_url: width: 1440 }}');
-    {% endif %}
   }
 
   .adventure-hero-{{ section.id }} .hero-heading {
@@ -50,7 +103,7 @@
     height: 61px;
     min-width: 239px;
     border-radius: 2px;
-    padding-top:20.5px ;
+    padding-top: 20.5px;
     padding-right: 54px;
     padding-bottom: 16px;
     padding-left: 54px;
@@ -63,9 +116,17 @@
     transition: opacity 0.2s ease-in-out;
   }
 
-    .adventure-hero-{{ section.id }} .hero-button:hover {
+  .adventure-hero-{{ section.id }} .hero-button:hover {
     opacity: 0.9;
   }
+
+  {% unless has_video %}
+    {% if section.settings.image_desktop != blank %}
+      .adventure-hero-{{ section.id }}__media--desktop {
+        background-image: url('{{ section.settings.image_desktop | image_url: width: 1440 }}');
+      }
+    {% endif %}
+  {% endunless %}
 
   /* Tablet: 768px–1439px */
   @media screen and (min-width: 768px) and (max-width: 1439px) {
@@ -73,6 +134,9 @@
       min-height: clamp(600px, 70vh, 820px);
       padding-top: clamp(48px, 6vw, 77px);
       padding-bottom: clamp(360px, 38vw, 520px);
+    }
+
+    .adventure-hero-{{ section.id }}__content {
       gap: clamp(24px, 3vw, 40px);
     }
 
@@ -98,6 +162,9 @@
       min-height: 856px;
       padding-top: 77px;
       padding-bottom: 538px;
+    }
+
+    .adventure-hero-{{ section.id }}__content {
       gap: 40px;
     }
 
@@ -126,44 +193,95 @@
       min-height: 700px;
       padding-top: 60px;
       padding-bottom: 350px;
-      gap: 30px;
-      {% if section.settings.image_mobile != blank %}
-        background-image: url('{{ section.settings.image_mobile | image_url: width: 750 }}');
-      {% elsif section.settings.image_desktop != blank %}
-        background-image: url('{{ section.settings.image_desktop | image_url: width: 1000 }}');
-      {% endif %}
     }
+
+    .adventure-hero-{{ section.id }}__content {
+      gap: 30px;
+    }
+
     .adventure-hero-{{ section.id }} .hero-button {
-    padding-top:15.88px ;
-    padding-right: 61.76px;
-    padding-bottom: 15.88px;
-    padding-left: 61.76px;
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0px;
-  }
+      padding-top: 15.88px;
+      padding-right: 61.76px;
+      padding-bottom: 15.88px;
+      padding-left: 61.76px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0px;
+    }
 
     .adventure-hero-{{ section.id }} .hero-heading {
       font-size: 30px;
       padding-left: 20px;
       padding-right: 20px;
     }
+
+    {% unless has_video %}
+      .adventure-hero-{{ section.id }}__media--desktop {
+        display: none;
+      }
+
+      .adventure-hero-{{ section.id }}__media--mobile {
+        display: block;
+        {% if section.settings.image_mobile != blank %}
+          background-image: url('{{ section.settings.image_mobile | image_url: width: 750 }}');
+        {% elsif section.settings.image_desktop != blank %}
+          background-image: url('{{ section.settings.image_desktop | image_url: width: 1000 }}');
+        {% endif %}
+      }
+    {% endunless %}
   }
 {%- endstyle -%}
 
 <div class="adventure-hero-{{ section.id }}">
-  {%- if section.settings.heading != blank -%}
-    <h2 class="hero-heading">
-      {{ section.settings.heading | escape }}
-    </h2>
-  {%- endif -%}
+  <div class="adventure-hero-{{ section.id }}__bg" aria-hidden="true">
+    {% if has_uploaded_video %}
+      {% capture adventure_video_class %}adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--video{% endcapture %}
+      {{
+        section.settings.background_video
+        | video_tag:
+          class: adventure_video_class,
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true,
+          image_size: '1440x',
+          preload: 'metadata'
+      }}
+    {% elsif has_video_url %}
+      <video
+        class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if poster_image != blank %}
+          poster="{{ poster_image | image_url: width: 1440 }}"
+        {% endif %}
+      >
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {% else %}
+      <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--desktop"></div>
+      <div class="adventure-hero-{{ section.id }}__media adventure-hero-{{ section.id }}__media--mobile"></div>
+    {% endif %}
+  </div>
 
-  {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-    <a href="{{ section.settings.button_link }}" class="hero-button">
-      {{ section.settings.button_label | escape }}
-    </a>
-  {%- endif -%}
+  <div class="adventure-hero-{{ section.id }}__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hero-heading">
+        {{ section.settings.heading | escape }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hero-button">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {%- endif -%}
+  </div>
 </div>
 
 {% schema %}
@@ -196,18 +314,35 @@
     },
     {
       "type": "header",
-      "content": "Background Assets"
+      "content": "Background video"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video",
+      "info": "Plays the same on mobile and desktop. If empty, background images are used instead."
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Background video URL (MP4)",
+      "info": "Optional external MP4 URL. Used only when no uploaded video is set."
+    },
+    {
+      "type": "header",
+      "content": "Background images (fallback)"
     },
     {
       "type": "image_picker",
       "id": "image_desktop",
-      "label": "Desktop Background Image"
+      "label": "Desktop background image",
+      "info": "Used when no video is set. Also used as the video poster while loading."
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Mobile Background Image",
-      "info": "Leave blank to use the desktop background image on mobile devices."
+      "label": "Mobile background image",
+      "info": "Used when no video is set. Leave blank to use the desktop image on mobile."
     },
     {
       "type": "header",
