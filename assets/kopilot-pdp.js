@@ -54,23 +54,29 @@ class KopilotPdp extends HTMLElement {
       this.variantId = Number(button.dataset.variantId);
     }
 
+    const clickedIndex = Array.from(this.tierButtons).indexOf(button);
+    const includedLists = this.querySelectorAll('[data-kopilot-included-pills]');
+    includedLists.forEach((list) => {
+      const listIndex = Number(list.dataset.tierIndex);
+      if (listIndex === clickedIndex) {
+        list.style.display = 'flex';
+      } else {
+        list.style.display = 'none';
+      }
+    });
+
     this.updateButtonLabel();
   }
 
   updateButtonLabel() {
     if (!this.addLabel) return;
-    const selectedTier = this.querySelector('[data-kopilot-tier].is-selected');
-    if (selectedTier) {
-      const tierTitleEl = selectedTier.querySelector('.kopilot-pdp__tier-title');
-      const tierTitle = tierTitleEl ? tierTitleEl.textContent.trim() : '';
-      if (tierTitle) {
-        this.addLabel.textContent = `ADD TO CART - ${tierTitle}`;
-      } else {
-        this.addLabel.textContent = this.selectedQty === 1
-          ? 'ADD TO CART - 1 TAG'
-          : `ADD TO CART - SET OF ${this.selectedQty}`;
-      }
-    }
+
+    const quantity = Number.isNaN(this.selectedQty) ? 1 : this.selectedQty;
+    const defaultLabel = this.dataset.defaultButtonLabel || 'ADD TO CART - 1 TAG';
+
+    this.addLabel.textContent = quantity === 1
+      ? defaultLabel
+      : `ADD TO CART - SET OF ${quantity}`;
   }
 
   bindAccordion() {
