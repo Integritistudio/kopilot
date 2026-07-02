@@ -239,6 +239,16 @@
     "kopilot_ambassadors": {
       "type": "kopilot-ambassadors",
       "blocks": {
+        "card_BJGUPm": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/kopilot-ambassador-karen.jpg",
+            "badge": "",
+            "name": "Hillary Allen",
+            "role": "- Team USA // Ultra Marathon Trail Runner",
+            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
+          }
+        },
         "a1": {
           "type": "card",
           "settings": {
@@ -270,6 +280,7 @@
         }
       },
       "block_order": [
+        "card_BJGUPm",
         "a1",
         "a2",
         "a3"
