@@ -58,17 +58,35 @@
   }
 
   .kopilot-pdp__tier-dot {
-    width: 18px;
-    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
     border: 2px solid #141416;
     border-radius: 50%;
-    background-color: transparent;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    background-color: #ffffff;
+    position: relative;
     flex-shrink: 0;
   }
 
-  .kopilot-pdp__tier.is-selected .kopilot-pdp__tier-dot {
+  .kopilot-pdp__tier-dot::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  .kopilot-pdp__tier.is-selected .kopilot-pdp__tier-dot::before {
     background-color: #141416;
+  }
+
+  .kopilot-pdp__tier-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   /* Add to Cart Button Optimization Specs */
