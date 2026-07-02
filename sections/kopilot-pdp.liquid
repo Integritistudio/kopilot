@@ -61,8 +61,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width:34px;
-    height: 34px;
+    width: 22px;
+    height: 22px;
     border: 2px solid #141416;
     border-radius: 50%;
     background-color: #ffffff;
@@ -72,8 +72,8 @@
 
   .kopilot-pdp__tier-dot::before {
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: transparent;
     transition: background-color 0.2s ease;
@@ -236,7 +236,6 @@
   endif
 
   assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
-  assign tier_icon_fallbacks = 'kopilot-product-1tag.png,kopilot-product-2tags.png,kopilot-product-3tags.png' | split: ','
 %}
 
 {% if pdp_product == blank %}
@@ -424,22 +423,6 @@
                   <div class="kopilot-pdp__tier-head">
                     <div class="kopilot-pdp__tier-title-row">
                       <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
-                      {% if block.settings.icon != blank %}
-                        {{
-                          block.settings.icon
-                          | image_url: width: 80
-                          | image_tag: class: 'kopilot-pdp__tier-icon', loading: 'lazy', alt: ''
-                        }}
-                      {% else %}
-                        <img
-                          class="kopilot-pdp__tier-icon"
-                          src="{{ tier_icon_fallbacks[tier_index] | asset_url }}"
-                          alt=""
-                          width="39"
-                          height="39"
-                          loading="lazy"
-                        >
-                      {% endif %}
                       <p class="kopilot-pdp__tier-title">{{ block.settings.title }}</p>
                     </div>
                     {% if block.settings.badge != blank and badge_downcase != 'default' %}
@@ -692,7 +675,6 @@
       "name": "Quantity tier",
       "settings": [
         { "type": "range", "id": "quantity", "label": "Cart quantity", "min": 1, "max": 10, "step": 1, "default": 1 },
-        { "type": "image_picker", "id": "icon", "label": "Icon" },
         { "type": "text", "id": "title", "label": "Title", "default": "1 TAG" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Just for you." },
         { "type": "text", "id": "badge", "label": "Badge (DEFAULT / BEST VALUE)" },
