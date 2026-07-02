@@ -24,169 +24,174 @@
 
 <style>
   /* ==========================================================================
-     DESKTOP STYLES (Untouched per your exact code)
+     BASE FLUID STYLES (Applies responsively across intermediate screens)
      ========================================================================= */
   .kopilot-partner-section-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     width: 100%;
-    padding: 50px 0;
+    padding: clamp(31px, 2.5vw, 50px) 0;
     box-sizing: border-box;
   }
 
   .kopilot-partner-container-{{ section.id }} {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 205px;
-    gap: 75px;
+    padding: 0 clamp(37px, 14.2vw, 205px);
+    gap: clamp(24px, 5.2vw, 75px);
     box-sizing: border-box;
   }
 
   .kopilot-partner-heading-{{ section.id }} {
     font-family: "Elza", sans-serif;
-    font-size: 60px;
+    font-size: clamp(30px, 20px + 2.78vw, 60px);
     font-weight: 300;
     line-height: 1.1; 
     color: #000000;
     margin: 0;
-    width: max-content; 
-    max-width: 100%;
-    white-space: nowrap; 
+    width: 100%;
+    max-width: 613px;
+    white-space: normal; 
     letter-spacing: 0%;
+    text-align: center;
   }
 
   .kopilot-partner-content-{{ section.id }} {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    width: 342px;
-    max-width: 100%;
+    align-items: center;
+    gap: clamp(12px, 1.2vw, 15px);
+    width: 100%;
+    max-width: 342px;
   }
 
   .kopilot-partner-text-{{ section.id }} {
     font-family: "Figtree", sans-serif;
-    font-size: 20px;
+    font-size: clamp(15px, 13.33px + 0.46vw, 20px);
     font-weight: 400;
     line-height: 1.2; 
     color: #000000;
     margin: 0;
     width: 100%;
+    text-align: center;
   }
 
   .kopilot-partner-link-{{ section.id }} {
-    font-family: "Elza Text Trial", "Elza", sans-serif;
+    font-family: "Figtree", sans-serif;
     font-size: 20px;
-    font-weight: 600;
-    line-height: 1.0;
+    font-weight: 700;
+    line-height: 1.2;
     text-transform: uppercase;
     color: #000000;
     text-decoration: underline;
     display: inline-block;
-    width: 197px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 289px;
     box-sizing: border-box;
     transition: opacity 0.2s ease;
+    text-align: center;
   }
 
   .kopilot-partner-link-{{ section.id }}:hover {
     opacity: 0.7;
   }
 
-  /* ==========================================================================
-     TABLET / LAPTOP: 768px–1439px — fluid responsive (360 & 1440 untouched)
-     ========================================================================= */
+  /* Tablet and Desktop Split Layout Pivot */
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    .kopilot-partner-section-{{ section.id }} {
-      padding: clamp(32px, 4vw, 50px) 0;
-    }
-
     .kopilot-partner-container-{{ section.id }} {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      max-width: 1440px;
-      width: 100%;
-      padding: 0 clamp(24px, 5vw, 120px);
-      gap: clamp(24px, 4vw, 60px);
     }
-
     .kopilot-partner-heading-{{ section.id }} {
-      font-size: clamp(32px, 4.5vw, 56px);
-      line-height: 1.1;
-      white-space: normal;
-      width: auto;
-      flex: 1 1 50%;
-      min-width: 0;
-      max-width: min(613px, 55%);
       text-align: left;
     }
-
     .kopilot-partner-content-{{ section.id }} {
-      flex: 0 1 clamp(260px, 32vw, 342px);
-      width: auto;
-      max-width: 42%;
       align-items: flex-start;
-      gap: clamp(10px, 1.5vw, 15px);
     }
-
-    .kopilot-partner-text-{{ section.id }} {
-      font-size: clamp(15px, 1.6vw, 20px);
-      line-height: 1.2;
-      text-align: left;
-      width: 100%;
-    }
-
-    .kopilot-partner-link-{{ section.id }} {
-      font-size: clamp(16px, 1.8vw, 20px);
-      line-height: 1.2;
-      width: auto;
-      max-width: 100%;
-      text-align: left;
-    }
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .kopilot-partner-container-{{ section.id }} {
-      flex-direction: column;
-      align-items: center;
-      padding: 0 clamp(20px, 4vw, 40px);
-      gap: clamp(20px, 3vw, 32px);
-    }
-
-    .kopilot-partner-heading-{{ section.id }} {
-      flex: none;
-      max-width: min(400px, 100%);
-      text-align: center;
-    }
-
-    .kopilot-partner-content-{{ section.id }} {
-      flex: none;
-      max-width: min(400px, 100%);
-      align-items: center;
-    }
-
     .kopilot-partner-text-{{ section.id }},
     .kopilot-partner-link-{{ section.id }} {
-      text-align: center;
+      text-align: left;
+    }
+    .kopilot-partner-link-{{ section.id }} {
+      font-family: "Elza Text Trial", "Elza", sans-serif;
+      font-weight: 600;
+      line-height: 1.0;
+      font-size: clamp(16px, 1.25vw, 20px);
+      max-width: 197px;
     }
   }
 
   /* ==========================================================================
-     DESKTOP PINNED: 1440px+
+     EXACT DESIGN ARCHORS (Preserves your code exactly at 360px and 1440px)
      ========================================================================= */
+
+  /* Exact 360px Anchor State */
+  @media screen and (max-width: 360px) {
+    .kopilot-partner-section-{{ section.id }} {
+      padding: 0;
+    }
+    .kopilot-partner-container-{{ section.id }} {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 360.45px;
+      padding: 31px 37px;
+      gap: 24px;
+      margin: 0 auto;
+    }
+    .kopilot-partner-content-{{ section.id }} {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 289px;
+      max-width: 100%;
+      gap: 15px; 
+    }
+    .kopilot-partner-heading-{{ section.id }} {
+      font-family: "Elza", sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 1.1;
+      width: 249px;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+    .kopilot-partner-text-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.2;
+      width: 289px;
+      max-width: 100%;
+      text-align: center;
+    }
+    .kopilot-partner-link-{{ section.id }} {
+      font-family: "Figtree", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-align: center;
+      width: 289px;
+      max-width: 100%;
+    }
+  }
+
+  /* Exact 1440px+ Anchor State */
   @media screen and (min-width: 1440px) {
     .kopilot-partner-section-{{ section.id }} {
       background-color: {{ section.settings.background_color }};
       width: 100%;
-      padding: 50px 0;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
       box-sizing: border-box;
     }
-
     .kopilot-partner-container-{{ section.id }} {
       display: flex;
       flex-direction: row;
@@ -195,11 +200,10 @@
       max-width: 1440px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 205px;
+      padding: 50px 205px;
       gap: 75px;
       box-sizing: border-box;
     }
-
     .kopilot-partner-heading-{{ section.id }} {
       font-family: "Elza", sans-serif;
       font-size: 60px;
@@ -211,8 +215,8 @@
       max-width: 100%;
       white-space: nowrap;
       letter-spacing: 0%;
+      text-align: left;
     }
-
     .kopilot-partner-content-{{ section.id }} {
       display: flex;
       flex-direction: column;
@@ -221,7 +225,6 @@
       width: 342px;
       max-width: 100%;
     }
-
     .kopilot-partner-text-{{ section.id }} {
       font-family: "Figtree", sans-serif;
       font-size: 20px;
@@ -230,8 +233,8 @@
       color: #000000;
       margin: 0;
       width: 100%;
+      text-align: left;
     }
-
     .kopilot-partner-link-{{ section.id }} {
       font-family: "Elza Text Trial", "Elza", sans-serif;
       font-size: 20px;
@@ -242,73 +245,6 @@
       text-decoration: underline;
       display: inline-block;
       width: 197px;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-  }
-
-  /* ==========================================================================
-     MOBILE PINNED: ≤767px (360px Figma specs — unchanged)
-     ========================================================================= */
-  @media screen and (max-width: 767px) {
-    .kopilot-partner-section-{{ section.id }} {
-      padding: 0;
-    }
-
-    /* Outer Mobile Layout Stack (Frame 2106667390) */
-    .kopilot-partner-container-{{ section.id }} {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 360.45px;
-      padding: 31px 20px;
-      gap: 24px;
-      margin: 0 auto;
-    }
-
-    /* Typography Inner Content Column (Frame 2106667391) */
-    .kopilot-partner-content-{{ section.id }} {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 289px;
-      max-width: 100%;
-      gap: 15px; /* Strict Figma stack spacing gap */
-    }
-
-    /* Mobile Heading Specs (30px / 110% / 249px Width / Center) */
-    .kopilot-partner-heading-{{ section.id }} {
-      font-family: "Elza", sans-serif;
-      font-size: 30px;
-      font-weight: 300;
-      line-height: 1.1;
-      width: 249px;
-      max-width: 100%;
-      white-space: normal;
-      text-align: center;
-    }
-
-    /* Mobile Description Paragraph Specs (15px / 120% / 289px Width / Center) */
-    .kopilot-partner-text-{{ section.id }} {
-      font-family: "Figtree", sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.2;
-      width: 289px;
-      max-width: 100%;
-      text-align: center;
-    }
-
-    /* Mobile Text Link Specs (Figtree Bold / 20px / 120% / Center) */
-    .kopilot-partner-link-{{ section.id }} {
-      font-family: "Figtree", sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1.2;
-      text-transform: uppercase;
-      text-decoration: underline;
-      text-align: center;
-      width: 289px;
       max-width: 100%;
     }
   }

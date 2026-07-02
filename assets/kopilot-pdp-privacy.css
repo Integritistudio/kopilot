@@ -1,5 +1,5 @@
 .kopilot-pdp-privacy {
-  background: #fff;
+  background: #f1f1f1;
   color: #000;
 }
 
@@ -138,7 +138,7 @@
 /* Mobile pinned: ≤767px */
 @media screen and (max-width: 767px) {
   .kopilot-pdp-privacy__inner {
-    padding: 0 36px;
+    padding: 0 35.73px;
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
