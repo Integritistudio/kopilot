@@ -12,33 +12,85 @@
   }
 {% endstyle %}
 
+{%- liquid
+  assign has_uploaded_video = false
+  if section.settings.background_video != blank
+    assign has_uploaded_video = true
+  endif
+
+  assign has_video_url = false
+  if section.settings.video_url != blank
+    assign has_video_url = true
+  endif
+
+  assign has_video = false
+  if has_uploaded_video or has_video_url
+    assign has_video = true
+  endif
+
+  assign hero_video_poster = section.settings.background_image
+  if hero_video_poster == blank
+    assign hero_video_poster = section.settings.background_image_mobile
+  endif
+-%}
+
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-hero.css' | asset_url | stylesheet_tag }}
 
 <section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-hero__bg">
-    <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
-      {% render 'kopilot-image',
-        image: section.settings.background_image,
-        fallback: 'kopilot-hero-bg.jpg',
-        alt: section.settings.heading_line_1,
-        width: 2400,
-        loading: 'eager',
-        widths: '750,1100,1500,2000,2400',
-        sizes: '100vw'
-      %}
-    </div>
-    <div class="kopilot-hero__bg-image kopilot-hero__bg-image--mobile">
-      {% render 'kopilot-image',
-        image: section.settings.background_image_mobile,
-        fallback: '534e09e74dba5f2840077260761a394727c97e76.png',
-        alt: section.settings.heading_line_1,
-        width: 800,
-        loading: 'eager',
-        widths: '360,540,750',
-        sizes: '100vw'
-      %}
-    </div>
+    {% if has_uploaded_video %}
+      {% capture kopilot_hero_video_class %}kopilot-hero__bg-video{% endcapture %}
+      {{
+        section.settings.background_video
+        | video_tag:
+          class: kopilot_hero_video_class,
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true,
+          image_size: '1920x',
+          preload: 'metadata'
+      }}
+    {% elsif has_video_url %}
+      <video
+        class="kopilot-hero__bg-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if hero_video_poster != blank %}
+          poster="{{ hero_video_poster | image_url: width: 1920 }}"
+        {% endif %}
+      >
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {% else %}
+      <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
+        {% render 'kopilot-image',
+          image: section.settings.background_image,
+          fallback: 'kopilot-hero-bg.jpg',
+          alt: section.settings.heading_line_1,
+          width: 2400,
+          loading: 'eager',
+          widths: '750,1100,1500,2000,2400',
+          sizes: '100vw'
+        %}
+      </div>
+      <div class="kopilot-hero__bg-image kopilot-hero__bg-image--mobile">
+        {% render 'kopilot-image',
+          image: section.settings.background_image_mobile,
+          fallback: '534e09e74dba5f2840077260761a394727c97e76.png',
+          alt: section.settings.heading_line_1,
+          width: 800,
+          loading: 'eager',
+          widths: '360,540,750',
+          sizes: '100vw'
+        %}
+      </div>
+    {% endif %}
     {% if section.settings.show_overlay %}
       <div class="kopilot-hero__overlay"></div>
     {% endif %}
@@ -149,14 +201,35 @@
       "default": "scheme-1"
     },
     {
+      "type": "header",
+      "content": "Background video"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video (upload)"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Background video URL (.mp4)",
+      "info": "External MP4 link. Used when no uploaded video is set. Same video plays on mobile and desktop."
+    },
+    {
+      "type": "header",
+      "content": "Background images (fallback)"
+    },
+    {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Background image (desktop)"
+      "label": "Background image (desktop)",
+      "info": "Used when no video is set. Also used as video poster while loading."
     },
     {
       "type": "image_picker",
       "id": "background_image_mobile",
-      "label": "Background image (mobile)"
+      "label": "Background image (mobile)",
+      "info": "Used when no video is set. Leave blank to use desktop image on mobile."
     },
     {
       "type": "checkbox",
