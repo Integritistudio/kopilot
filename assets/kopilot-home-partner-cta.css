@@ -408,6 +408,14 @@
   .kopilot-home-partner-cta__slider-wrap {
     display: flex;
   }
+
+  .kopilot-home-partner-cta__swiper .swiper-wrapper {
+    justify-content: center;
+  }
+
+  .kopilot-home-partner-cta__swiper {
+    padding-right: 0;
+  }
 }
 
 /* Desktop: 1440px+ */
