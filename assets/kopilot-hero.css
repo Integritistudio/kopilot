@@ -180,6 +180,7 @@
     margin: 0;
     width: 100%;
     max-width: 21.8rem;
+    color: #fff !important;
   }
 
   .kopilot-hero__title {
@@ -354,6 +355,7 @@
     gap: clamp(1rem, 1.5vw, 1.5rem);
     margin: 0 0 clamp(2rem, 3vw, 3rem);
     max-width: none;
+    color: #fff !important;
   }
 
   .kopilot-hero__title {
@@ -463,7 +465,8 @@
 
   .kopilot-hero__title-group {
     margin-bottom: clamp(1.2rem, 2vw, 2rem);
-    gap: clamp(0.8rem, 1.2vw, 1rem);
+    gap: clamp(0.8rem, 1.2vw, 1rem);  
+    color: #fff !important;
   }
 
   .kopilot-hero__title {
@@ -553,6 +556,7 @@
   .kopilot-hero__title-group {
     margin-bottom: 4rem;
     gap: 1.5rem;
+    color: #fff !important;
   }
 
   .kopilot-hero__cta {
