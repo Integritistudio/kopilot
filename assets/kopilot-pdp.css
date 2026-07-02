@@ -512,9 +512,9 @@
   }
 
   .kopilot-pdp__mobile-head .kopilot-pdp__title {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 1.05;
-    letter-spacing: -0.84px;
+    letter-spacing: 0px;
   }
 
   .kopilot-pdp__desktop-head {
