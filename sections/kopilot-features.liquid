@@ -10,6 +10,14 @@
     padding-top: {{ section.settings.grid_padding_top_mobile }}px;
   }
 
+  .kopilot-features--{{ section.id }} .kopilot-features__content_pdp {
+    padding-top: {{ section.settings.content_padding_top_mobile }}px;
+    padding-right: {{ section.settings.content_padding_right_mobile }}px;
+    padding-bottom: {{ section.settings.content_padding_bottom_mobile }}px;
+    padding-left: {{ section.settings.content_padding_left_mobile }}px;
+    box-sizing: border-box;
+  }
+
   @media screen and (min-width: 768px) {
     /* Main Parent Container - Handles fluid layout stretching past 1440px */
     .kopilot-features--{{ section.id }} {
@@ -43,7 +51,10 @@
       flex: 0 1 auto !important;
       width: 45% !important;
       max-width: 634px !important;
-      padding: 72px 24px 72px 5% !important; /* Dynamic fluid padding based on screen width */
+      padding-top: {{ section.settings.content_padding_top }}px !important;
+      padding-right: {{ section.settings.content_padding_right }}px !important;
+      padding-bottom: {{ section.settings.content_padding_bottom }}px !important;
+      padding-left: {{ section.settings.content_padding_left }}px !important;
       box-sizing: border-box !important;
     }
 
@@ -105,8 +116,11 @@
     /* Centers textual column layout alignment completely */
     .kopilot-features--{{ section.id }} .kopilot-features__content_pdp {
       width: 100% !important;
-      max-width: 680px !important; /* Comfortable tablet column bounds */
-      padding: 48px 24px !important;
+      max-width: 680px !important;
+      padding-top: {{ section.settings.content_padding_top }}px !important;
+      padding-right: {{ section.settings.content_padding_right }}px !important;
+      padding-bottom: {{ section.settings.content_padding_bottom }}px !important;
+      padding-left: {{ section.settings.content_padding_left }}px !important;
       align-items: center !important;
       text-align: center !important;
       margin: 0 auto !important;
@@ -311,6 +325,90 @@
       "step": 4,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Content column padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "label": "Content top padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "label": "Content right padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "label": "Content bottom padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "label": "Content left padding (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top_mobile",
+      "label": "Content top padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right_mobile",
+      "label": "Content right padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom_mobile",
+      "label": "Content bottom padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left_mobile",
+      "label": "Content left padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",
