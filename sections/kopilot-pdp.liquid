@@ -456,13 +456,63 @@
 
         <div class="kopilot-pdp__included">
           <p class="kopilot-pdp__included-heading">{{ section.settings.included_heading }}</p>
-          <div class="kopilot-pdp__included-pills">
-            {% for block in section.blocks %}
-              {% if block.type == 'included_item' %}
-                <span class="kopilot-pdp__included-pill" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+          
+          {% capture newline %}
+{% endcapture %}
+          {% assign tier_index = 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'tier' %}
+              {% liquid
+                assign is_default_tier = false
+                if block.settings.badge != blank
+                  assign badge_downcase = block.settings.badge | downcase | strip
+                  if badge_downcase == 'default'
+                    assign is_default_tier = true
+                  endif
+                elsif tier_index == 0
+                  assign is_default_tier = true
+                endif
+
+                assign raw_items = block.settings.included_items
+                if raw_items contains newline
+                  assign items_array = raw_items | split: newline
+                else
+                  assign items_array = raw_items | split: ','
+                endif
+              %}
+              
+              {% if raw_items != blank %}
+                <div
+                  class="kopilot-pdp__included-pills"
+                  data-kopilot-included-pills
+                  data-tier-index="{{ tier_index }}"
+                  {% unless is_default_tier %}style="display: none;"{% endunless %}
+                >
+                  {% for item in items_array %}
+                    {% assign clean_item = item | strip %}
+                    {% if clean_item != blank %}
+                      <span class="kopilot-pdp__included-pill">{{ clean_item }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div
+                  class="kopilot-pdp__included-pills"
+                  data-kopilot-included-pills
+                  data-tier-index="{{ tier_index }}"
+                  {% unless is_default_tier %}style="display: none;"{% endunless %}
+                >
+                  {% for g_block in section.blocks %}
+                    {% if g_block.type == 'included_item' %}
+                      <span class="kopilot-pdp__included-pill" {{ g_block.shopify_attributes }}>{{ g_block.settings.label }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
               {% endif %}
-            {% endfor %}
-          </div>
+              
+              {% assign tier_index = tier_index | plus: 1 %}
+            {% endif %}
+          {% endfor %}
         </div>
 
         <button type="button" class="kopilot-pdp__add" data-kopilot-add>
@@ -683,7 +733,8 @@
         { "type": "text", "id": "badge", "label": "Badge (DEFAULT / BEST VALUE)" },
         { "type": "text", "id": "price", "label": "Price display", "default": "$39.99" },
         { "type": "text", "id": "compare_price", "label": "Compare-at price" },
-        { "type": "text", "id": "save_label", "label": "Save badge" }
+        { "type": "text", "id": "save_label", "label": "Save badge" },
+        { "type": "textarea", "id": "included_items", "label": "Included items (comma or line-separated)" }
       ]
     },
     {
