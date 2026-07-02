@@ -67,6 +67,11 @@
   font-family: Elza, sans-serif;
 }
 
+.kopilot-hero__title.kopilot-heading.kopilot-heading--medium,
+.kopilot-hero__title.kopilot-hero__title--light.kopilot-heading {
+  color: #FFFFFF;
+}
+
 /* Mobile ≤767px — scales from 360px Figma frame */
 @media screen and (max-width: 767px) {
   .kopilot-hero {
