@@ -175,7 +175,7 @@
   .kopilot-info-cards__card {
     flex: 0 0 36.9rem;
     max-width: calc(33.333% - 2rem);
-    background: #fff;
+    background: #D6D6D6;
   }
 
   .kopilot-info-cards__card-media {
