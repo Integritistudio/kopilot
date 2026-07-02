@@ -285,6 +285,11 @@
   line-height: 1;
   color: #000;
 }
+ @media screen and (max-width: 360px) {
+  .kopilot-pdp__included-heading{
+    font-size:15px;
+  }
+ }
 
 .kopilot-pdp__included-pills {
   display: flex;
