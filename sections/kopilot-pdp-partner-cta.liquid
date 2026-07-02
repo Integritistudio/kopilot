@@ -96,10 +96,6 @@
   .kopilot-partner-link-{{ section.id }}:hover {
     opacity: 0.7;
   }
-
-  /* ==========================================================================
-     TABLET / LAPTOP: 768px–1439px — fluid responsive (360 & 1440 untouched)
-     ========================================================================= */
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     .kopilot-partner-section-{{ section.id }} {
       padding: clamp(32px, 4vw, 50px) 0;
@@ -176,14 +172,10 @@
     }
   }
 
-  /* ==========================================================================
-     DESKTOP PINNED: 1440px+
-     ========================================================================= */
   @media screen and (min-width: 1440px) {
     .kopilot-partner-section-{{ section.id }} {
       background-color: {{ section.settings.background_color }};
       width: 100%;
-      padding: 50px 0;
       box-sizing: border-box;
     }
 
@@ -195,7 +187,7 @@
       max-width: 1440px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 205px;
+      padding: 50px 205px;
       gap: 75px;
       box-sizing: border-box;
     }
