@@ -15,13 +15,29 @@
 .kopilot-reviews__heading {
   margin: 0 auto clamp(2.4rem, 8.6vw, 3.1rem);
   max-width: 19.6rem;
-  font-family: var(--kopilot-font-family);
+  font-family: Elza, sans-serif;
   font-weight: 300;
-  font-size: clamp(2.6rem, 8.33vw, 3rem);
+  font-style: normal;
+  font-synthesis: none;
   line-height: 110%;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   text-align: center;
+  vertical-align: middle;
   color: #000;
+}
+
+@media screen and (max-width: 767px) {
+  .kopilot-reviews__heading {
+    font-family: Elza, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-synthesis: none;
+    font-size: 30px;
+    line-height: 110%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+  }
 }
 
 .kopilot-reviews__summary {
@@ -414,8 +430,15 @@
 
   .kopilot-reviews__heading {
     max-width: 597px;
+    font-family: Elza, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-synthesis: none;
     font-size: 60px;
+    line-height: 110%;
     letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
     margin: 0 auto 47px;
   }
 
@@ -595,7 +618,15 @@
   }
 
   .kopilot-reviews__heading {
+    font-family: Elza, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-synthesis: none;
     font-size: clamp(3.2rem, 5vw, 4.4rem);
+    line-height: 110%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
     margin-bottom: clamp(2.4rem, 4vw, 3.2rem);
   }
 
@@ -642,7 +673,15 @@
   }
 
   .kopilot-reviews__heading {
-    font-size: clamp(44px, 4.5vw, 56px);
+    font-family: Elza, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-synthesis: none;
+    font-size: clamp(44px, 4.5vw, 60px);
+    line-height: 110%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
   }
 
   .kopilot-reviews__score-text {
@@ -651,6 +690,18 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .kopilot-reviews__heading {
+    font-family: Elza, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-synthesis: none;
+    font-size: 60px;
+    line-height: 110%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+
   .kopilot-reviews__rating-col {
     width: 238px;
   }
