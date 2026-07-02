@@ -285,13 +285,6 @@
   line-height: 1;
   color: #000;
 }
- @media screen and (max-width: 360px) {
-  .kopilot-pdp__included-heading{
-    font-size:15px;
-  }
-  .kopilot-pdp__included-pill {
-    font-size:14px !important;
- }
 
 .kopilot-pdp__included-pills {
   display: flex;
@@ -310,6 +303,17 @@
   line-height: 1;
   color: #000;
   white-space: nowrap;
+}
+
+/* Mobile pinned: 360px — keep exact Figma values */
+@media screen and (max-width: 360px) {
+  .kopilot-pdp__included-heading {
+    font-size: 15px;
+  }
+
+  .kopilot-pdp__included-pill {
+    font-size: 14px !important;
+  }
 }
 
 .kopilot-pdp__add {
@@ -428,15 +432,85 @@
   display: none;
 }
 
-@media screen and (max-width: 1100px) {
+/* Tablet / laptop: fluid 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-pdp__inner {
+    padding: clamp(32px, 5vw, 59px) clamp(20px, 4vw, 49px) clamp(48px, 6vw, 80px);
+  }
+
   .kopilot-pdp__layout {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: clamp(24px, 3vw, 38px);
   }
 
   .kopilot-pdp__title {
-    font-size: 42px;
-    letter-spacing: -1.2px;
+    font-size: clamp(36px, 4.5vw, 52px);
+    letter-spacing: clamp(-1.2px, -0.12vw, -1.71px);
+  }
+
+  .kopilot-pdp__gallery-grid {
+    gap: clamp(10px, 1.5vw, 15px);
+  }
+
+  .kopilot-pdp__gallery-cell {
+    min-height: clamp(260px, 32vw, 408px);
+  }
+
+  .kopilot-pdp__buy {
+    gap: clamp(24px, 3vw, 40px);
+  }
+
+  .kopilot-pdp__description_pdp p {
+    max-width: min(382px, 100%);
+    font-size: clamp(16px, 1.6vw, 20px) !important;
+  }
+
+  .kopilot-pdp__tier-title-pdp,
+  .kopilot-pdp__tier-price-pdp,
+  .kopilot-pdp__tier-compare-pdp,
+  .kopilot-pdp__tier-subtitle-pdp {
+    font-size: clamp(16px, 1.6vw, 20px);
+  }
+
+  .kopilot-pdp__add {
+    min-height: clamp(60px, 7vw, 88px);
+    font-size: clamp(14px, 1.4vw, 20px) !important;
+  }
+
+  .kopilot-pdp__delivery-line {
+    font-size: clamp(14px, 1.4vw, 20px) !important;
+  }
+
+  .kopilot-pdp__included-pill {
+    font-size: clamp(13px, 1.3vw, 16px);
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
+  .kopilot-pdp__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(516px, 42vw));
+    align-items: start;
+  }
+}
+
+/* Desktop pinned: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-pdp__inner {
+    padding: 59px 49px 80px;
+  }
+
+  .kopilot-pdp__layout {
+    grid-template-columns: minmax(0, 788px) minmax(0, 516px);
+    gap: 38px;
+  }
+
+  .kopilot-pdp__title {
+    font-size: 57px;
+    letter-spacing: -1.71px;
+  }
+
+  .kopilot-pdp__gallery-cell {
+    min-height: 408px;
   }
 }
 
@@ -530,11 +604,11 @@
   .kopilot-pdp__mobile-head .kopilot-pdp__title {
     font-size: 30px;
     line-height: 1.05;
-    letter-spacing: 0px;
+    letter-spacing: 0;
   }
 
   .kopilot-pdp__desktop-head {
-    display: none;
+    display: none !important;
   }
 
   .kopilot-pdp__buy {
@@ -562,13 +636,17 @@
     text-align: center;
   }
 
+  .kopilot-pdp__included-heading {
+    font-size: 15px;
+  }
+
   .kopilot-pdp__included-pills {
     justify-content: center;
     max-width: 317px;
   }
 
   .kopilot-pdp__included-pill {
-    font-size: 11px;
+    font-size: 14px !important;
     padding: 8px 13px;
   }
 
@@ -596,5 +674,9 @@
 @media screen and (min-width: 768px) {
   .kopilot-pdp__mobile-head {
     display: none !important;
+  }
+
+  .kopilot-pdp__desktop-head {
+    display: flex;
   }
 }

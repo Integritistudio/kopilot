@@ -45,7 +45,7 @@
 }
 
 .kopilot-home-partners__logos-row--2 {
-  max-width: 20.437rem;
+  max-width: 100%;
 }
 
 .kopilot-home-partners__logo {
@@ -85,7 +85,7 @@
   }
 
   .kopilot-home-partners__logos {
-    max-width: min(93rem, 100%);
+    max-width: 100%;
     gap: clamp(1.8rem, 2.5vw, 2.294rem);
   }
 
@@ -99,7 +99,7 @@
   .kopilot-home-partners__logos {
     flex-direction: column;
     align-items: center;
-    max-width: min(42rem, 100%);
+    max-width: 100%;
   }
 
   .kopilot-home-partners__logos-row {
@@ -111,7 +111,7 @@
   }
 
   .kopilot-home-partners__logos-row--2 {
-    max-width: min(28rem, 100%);
+    max-width: 100%;
   }
 }
 
@@ -153,7 +153,7 @@
     align-items: center;
     justify-content: center;
     gap: 3.72rem;
-    max-width: 93rem;
+    max-width: 100%;
   }
 
   .kopilot-home-partners__logos-row {
