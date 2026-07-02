@@ -184,7 +184,7 @@
   }
 }
 
-@media screen and (min-width: 425px) and (max-width: 768px) {
+@media screen and (min-width: 700px) and (max-width: 768px) {
   .kopilot-home-image-text__inner {
     flex-direction: row;
     padding-left: 0;
