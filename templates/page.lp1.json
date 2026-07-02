@@ -661,13 +661,6 @@
             "answer": "<p>You download the app and set up your profile once, then attach the tag to your helmet, gear, or bike. If something happens, anyone can tap it with their phone to access your information instantly.</p>"
           }
         },
-        "question_cRrMjJ": {
-          "type": "question",
-          "settings": {
-            "question": "What is an NFC tag and how does it work?",
-            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
-          }
-        },
         "q5": {
           "type": "question",
           "settings": {
@@ -695,7 +688,6 @@
         "q2",
         "q3",
         "q4",
-        "question_cRrMjJ",
         "q5",
         "q6",
         "q7"
