@@ -48,8 +48,9 @@ class KopilotPdp extends HTMLElement {
     this.selectedQty = Number(button.dataset.quantity || 1);
 
     if (this.addLabel) {
-      const tagLabel = this.selectedQty === 1 ? 'TAG' : 'TAGS';
-      this.addLabel.textContent = `ADD TO CART - ${this.selectedQty} ${tagLabel}`;
+      this.addLabel.textContent = this.selectedQty === 1
+        ? 'ADD TO CART - 1 TAG'
+        : `ADD TO CART - SET OF ${this.selectedQty}`;
     }
   }
 
