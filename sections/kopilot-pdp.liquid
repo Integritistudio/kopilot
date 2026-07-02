@@ -319,7 +319,7 @@
   data-default-button-label="{{ section.settings.button_label | default: 'ADD TO CART - 1 TAG' }}"
 >
   <div class="kopilot-pdp__inner">
-    {% comment %} <div class="kopilot-pdp__mobile-head">
+    <div class="kopilot-pdp__mobile-head">
       <h1 class="kopilot-pdp__title">
         {% if section.settings.title != blank %}
           {{ section.settings.title }}
@@ -333,7 +333,7 @@
           <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
         </div>
       {% endif %}
-    </div> {% endcomment %}
+    </div>
 
     <div class="kopilot-pdp__layout">
       <div class="kopilot-pdp__gallery">
