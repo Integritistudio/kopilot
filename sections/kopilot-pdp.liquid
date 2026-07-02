@@ -282,6 +282,7 @@
   class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }} color-{{ section.settings.color_scheme }}"
   data-product-id="{{ pdp_product.id }}"
   data-variant-id="{{ current_variant.id }}"
+  data-default-button-label="{{ section.settings.button_label | default: 'ADD TO CART - 1 TAG' }}"
 >
   <div class="kopilot-pdp__inner">
     <div class="kopilot-pdp__mobile-head">
