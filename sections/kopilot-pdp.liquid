@@ -447,6 +447,7 @@
                 class="kopilot-pdp__tier{% if is_default_tier %} is-selected{% endif %}"
                 data-kopilot-tier
                 data-quantity="{{ tier_qty }}"
+                data-tier-title="{{ block.settings.title }}"
                 data-variant-id="{{ tier_variant_id }}"
                 data-selected="{{ is_default_tier }}"
                 aria-pressed="{% if is_default_tier %}true{% else %}false{% endif %}"
