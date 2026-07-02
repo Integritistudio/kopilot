@@ -46,17 +46,21 @@
     font-display: swap;
   }
 
+  /* ==========================================================================
+     BASE RESPONSIVE INTERMEDIATE FLUID STYLES
+     ========================================================================= */
   .adventure-hero-{{ section.id }} {
     position: relative;
     width: 100%;
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    min-height: 856px;
-    padding-top: 77px;
-    padding-bottom: 538px;
     box-sizing: border-box;
     overflow: hidden;
+    /* Proportional fluid scaling between 360px and 1440px */
+    min-height: clamp(700px, 648px + 14.44vw, 856px);
+    padding-top: 77px;
+    padding-bottom: clamp(350px, 287.33px + 17.41vw, 538px);
   }
 
   .adventure-hero-{{ section.id }}__bg {
@@ -65,7 +69,7 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 62%;
+    height: 100%;
     z-index: 0;
     pointer-events: none;
   }
@@ -95,7 +99,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px;
+    gap: clamp(30px, 26.67px + 0.93vw, 40px);
     text-align: center;
   }
 
@@ -103,12 +107,14 @@
     font-family: 'Elza', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 60px;
+    font-size: clamp(30px, 20px + 2.78vw, 60px);
     line-height: 1.2;
     letter-spacing: 0px;
     color: {{ section.settings.color_text }};
     margin: 0;
-    max-width: 800px;
+    max-width: min(800px, 90%);
+    padding-left: clamp(0px, -10.67px + 2.96vw, 32px);
+    padding-right: clamp(0px, -10.67px + 2.96vw, 32px);
   }
 
   .adventure-hero-{{ section.id }} .hero-button {
@@ -118,16 +124,13 @@
     background-color: {{ section.settings.color_button_bg }};
     color: {{ section.settings.color_button_text }};
     text-decoration: none;
-    height: 61px;
-    min-width: 239px;
+    height: clamp(55px, 53px + 0.56vw, 61px);
+    min-width: clamp(200px, 187px + 3.61vw, 239px);
     border-radius: 2px;
-    padding-top: 20.5px;
-    padding-right: 54px;
-    padding-bottom: 16px;
-    padding-left: 54px;
+    padding: 16px 54px;
     font-family: inherit;
     font-weight: 700;
-    font-size: 14px;
+    font-size: clamp(14px, 13.67px + 0.09vw, 15px);
     letter-spacing: 1px;
     text-transform: uppercase;
     box-sizing: border-box;
@@ -150,46 +153,85 @@
     {% endif %}
   {% endunless %}
 
-  /* Tablet: 768px–1439px */
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    .adventure-hero-{{ section.id }} {
-      min-height: clamp(600px, 70vh, 820px);
-      padding-top: clamp(48px, 6vw, 77px);
-      padding-bottom: clamp(360px, 38vw, 520px);
-    }
-
-    .adventure-hero-{{ section.id }}__content {
-      gap: clamp(24px, 3vw, 40px);
-    }
-
-    .adventure-hero-{{ section.id }} .hero-heading {
-      font-size: clamp(32px, 4.5vw, 52px);
-      max-width: min(800px, 90%);
-      padding-left: clamp(16px, 3vw, 20px);
-      padding-right: clamp(16px, 3vw, 20px);
-    }
-
-    .adventure-hero-{{ section.id }} .hero-button {
-      min-width: clamp(200px, 28vw, 239px);
-      height: auto;
-      min-height: clamp(48px, 5vw, 61px);
-      padding: clamp(14px, 2vw, 20.5px) clamp(32px, 5vw, 54px);
-      font-size: clamp(13px, 1.4vw, 14px);
-    }
+  /* Dynamic viewport breakdown toggle for tablet spectrum */
+  @media screen and (max-width: 767px) {
+    {% unless has_video %}
+      {% if use_shared_image_only == false %}
+        .adventure-hero-{{ section.id }}__media--desktop {
+          display: none;
+        }
+        .adventure-hero-{{ section.id }}__media--mobile {
+          display: block;
+          {% if mobile_bg_image != blank %}
+            background-image: url('{{ mobile_bg_image | image_url: width: 1000 }}');
+          {% endif %}
+        }
+      {% endif %}
+    {% endunless %}
   }
 
-  /* Desktop pinned: 1440px+ */
+  /* ==========================================================================
+     EXACT DESIGN ANCHORS (Completely untouched at 360px and 1440px)
+     ========================================================================= */
+
+  /* Exact 360px Anchor State */
+  @media screen and (max-width: 360px) {
+    .adventure-hero-{{ section.id }} {
+      min-height: 700px;
+      padding-top: 77px;
+      padding-bottom: 350px;
+    }
+    .adventure-hero-{{ section.id }}__bg {
+      height: 62%;
+    }
+    .adventure-hero-{{ section.id }}__content {
+      gap: 30px;
+    }
+    .adventure-hero-{{ section.id }} .hero-button {
+      padding-top: 15.88px;
+      padding-right: 61.76px;
+      padding-bottom: 15.88px;
+      padding-left: 61.76px;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0px;
+      height: auto;
+      min-width: 0;
+    }
+    .adventure-hero-{{ section.id }} .hero-heading {
+      font-size: 30px;
+      padding-left: 32px;
+      padding-right: 32px;
+      max-width: 800px;
+    }
+    {% unless has_video %}
+      {% if use_shared_image_only == false %}
+        .adventure-hero-{{ section.id }}__media--desktop {
+          display: none;
+        }
+        .adventure-hero-{{ section.id }}__media--mobile {
+          display: block;
+          {% if mobile_bg_image != blank %}
+            background-image: url('{{ mobile_bg_image | image_url: width: 1000 }}');
+          {% endif %}
+        }
+      {% endif %}
+    {% endunless %}
+  }
+
+  /* Exact 1440px+ Anchor State */
   @media screen and (min-width: 1440px) {
     .adventure-hero-{{ section.id }} {
       min-height: 856px;
       padding-top: 77px;
       padding-bottom: 538px;
     }
-
+    .adventure-hero-{{ section.id }}__bg {
+      height: 62%;
+    }
     .adventure-hero-{{ section.id }}__content {
       gap: 36px;
     }
-
     .adventure-hero-{{ section.id }} .hero-heading {
       font-size: 60px;
       line-height: 1.2;
@@ -197,7 +239,6 @@
       padding-left: 0;
       padding-right: 0;
     }
-
     .adventure-hero-{{ section.id }} .hero-button {
       height: 61px;
       min-width: 239px;
@@ -206,51 +247,16 @@
       padding-bottom: 16px;
       padding-left: 54px;
       font-size: 14px;
+      font-weight: 700;
       letter-spacing: 1px;
     }
-  }
-
-  @media screen and (max-width: 767px) {
-    .adventure-hero-{{ section.id }} {
-      min-height: 700px;
-      padding-top: 77px;
-      padding-bottom: 350px;
-    }
-
-    .adventure-hero-{{ section.id }}__content {
-      gap: 30px;
-    }
-
-    .adventure-hero-{{ section.id }} .hero-button {
-      padding-top: 15.88px;
-      padding-right: 61.76px;
-      padding-bottom: 15.88px;
-      padding-left: 61.76px;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0px;
-    }
-
-    .adventure-hero-{{ section.id }} .hero-heading {
-      font-size: 30px;
-      padding-left: 32px;
-      padding-right: 32px;
-    }
-
     {% unless has_video %}
-      {% if use_shared_image_only == false %}
-        .adventure-hero-{{ section.id }}__media--desktop {
-          display: none;
-        }
-
-        .adventure-hero-{{ section.id }}__media--mobile {
-          display: block;
-          {% if mobile_bg_image != blank %}
-            background-image: url('{{ mobile_bg_image | image_url: width: 1000 }}');
-          {% endif %}
-        }
-      {% endif %}
+      .adventure-hero-{{ section.id }}__media--desktop {
+        display: block;
+      }
+      .adventure-hero-{{ section.id }}__media--mobile {
+        display: none;
+      }
     {% endunless %}
   }
 {%- endstyle -%}
