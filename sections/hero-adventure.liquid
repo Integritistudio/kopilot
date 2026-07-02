@@ -54,7 +54,6 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    /* Proportional fluid scaling between 360px and 1440px */
     min-height: clamp(700px, 648px + 14.44vw, 856px);
     padding-top: 77px;
     padding-bottom: clamp(350px, 287.33px + 17.41vw, 538px);
@@ -145,16 +144,15 @@
   {% unless has_video %}
     {% if shared_bg_image != blank and use_shared_image_only %}
       .adventure-hero-{{ section.id }}__media--shared {
-        background-image: url('{{ shared_bg_image | image_url: width: 2000 }}');
+        background-image: url('{{ shared_bg_image | image_url: width: 2560 }}');
       }
     {% elsif shared_bg_image != blank %}
       .adventure-hero-{{ section.id }}__media--desktop {
-        background-image: url('{{ shared_bg_image | image_url: width: 2000 }}');
+        background-image: url('{{ shared_bg_image | image_url: width: 2560 }}');
       }
     {% endif %}
   {% endunless %}
 
-  /* Dynamic viewport breakdown toggle for tablet spectrum */
   @media screen and (max-width: 767px) {
     {% unless has_video %}
       {% if use_shared_image_only == false %}
@@ -184,7 +182,7 @@
       max-width: 100%;
     }
     .adventure-hero-{{ section.id }}__bg {
-      height: 62%;
+      height: 62% !important;
     }
     .adventure-hero-{{ section.id }}__content {
       gap: 30px;
@@ -240,6 +238,16 @@
       letter-spacing: 1px;
     }
   }
+
+  /* Target screens beyond your 1440px anchor safely */
+  @media screen and (min-width: 1441px) {
+    .adventure-hero-{{ section.id }}__bg {
+      height: 100%;
+    }
+    .adventure-hero-{{ section.id }}__media {
+      background-position: center center;
+    }
+  }
 {%- endstyle -%}
 
 <div class="adventure-hero-{{ section.id }}">
@@ -255,7 +263,7 @@
           muted: true,
           controls: false,
           playsinline: true,
-          image_size: '2000x',
+          image_size: '2560x',
           preload: 'metadata'
       }}
     {% elsif has_video_url %}
@@ -267,7 +275,7 @@
         playsinline
         preload="metadata"
         {% if poster_image != blank %}
-          poster="{{ poster_image | image_url: width: 2000 }}"
+          poster="{{ poster_image | image_url: width: 2560 }}"
         {% endif %}
       >
         <source src="{{ section.settings.video_url }}" type="video/mp4">
