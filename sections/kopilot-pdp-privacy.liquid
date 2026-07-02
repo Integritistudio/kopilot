@@ -1,6 +1,5 @@
 {% style %}
   .kopilot-pdp-privacy--{{ section.id }} {
-    /* Seamless fluid padding scaling from mobile to desktop */
     padding-top: clamp({{ section.settings.padding_top_mobile }}px, {{ section.settings.padding_top_mobile }}px + ({{ section.settings.padding_top }} - {{ section.settings.padding_top_mobile }}) * ((100vw - 360px) / 1080), {{ section.settings.padding_top }}px);
     padding-bottom: clamp({{ section.settings.padding_bottom_mobile }}px, {{ section.settings.padding_bottom_mobile }}px + ({{ section.settings.padding_bottom }} - {{ section.settings.padding_bottom_mobile }}) * ((100vw - 360px) / 1080), {{ section.settings.padding_bottom }}px);
   }
@@ -11,7 +10,6 @@
     font-style: normal;
     line-height: 1.1;
     letter-spacing: 0%;
-    /* Exactly 30px at 360px and 60px at 1440px */
     font-size: clamp(30px, 20px + 2.78vw, 60px);
   }
 
@@ -19,7 +17,6 @@
     line-height: 120%;
     letter-spacing: 0%;
     font-weight: 400;
-    /* Exactly 15px at 360px and 20px at 1440px */
     font-size: clamp(15px, 13.33px + 0.46vw, 20px);
   }
 
