@@ -1,0 +1,108 @@
+{% style %}
+  .kopilot-special-banner--{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top }}px 10px {{ section.settings.padding_bottom }}px;
+    text-align: {{ section.settings.text_align }};
+  }
+
+  .kopilot-special-banner--{{ section.id }} .kopilot-pdp__special-banner {
+    position: relative;
+    display: block;
+    background-color: transparent;
+    color: inherit;
+    font-family: 'elza', sans-serif;
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: 500;
+    line-height: 1.30;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0;
+    margin: 0;
+  }
+{% endstyle %}
+
+<div class="kopilot-special-banner kopilot-special-banner--{{ section.id }}{% if section.settings.full_width %} kopilot-special-banner--full-width{% endif %}">
+  <div class="kopilot-pdp__special-banner">{{ section.settings.banner_text }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Kopilot special banner",
+  "tag": "section",
+  "class": "kopilot-special-banner-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner text",
+      "default": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F20008"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot special banner",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}
