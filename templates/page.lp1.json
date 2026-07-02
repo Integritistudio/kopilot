@@ -83,7 +83,7 @@
         "f2": {
           "type": "feature",
           "settings": {
-            "label": "<p>No battery/ charging needed</p>"
+            "label": "<p>No battery/ <br/>No charging</p>"
           }
         },
         "f3": {
