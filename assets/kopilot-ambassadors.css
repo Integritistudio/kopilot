@@ -18,7 +18,6 @@
   justify-content: center;
   gap: clamp(4rem, 13.89vw, 5rem);
   width: 100%;
-  max-width: 1440px;
   margin: 0 auto;
   padding: clamp(4rem, 13.89vw, 5rem) 0;
   box-sizing: border-box;
@@ -291,7 +290,6 @@
   .kopilot-ambassadors__slider-group {
     align-items: flex-start;
     gap: 27px;
-    max-width: 1444px;
   }
 
   .kopilot-ambassadors__swiper {
