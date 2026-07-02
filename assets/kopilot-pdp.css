@@ -480,13 +480,13 @@
     object-fit: cover;
   }
 
-  /* .kopilot-pdp__carousel-dots {
-    display: flex;
+  .kopilot-pdp__carousel-dots {
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 6px;
     margin-top: 12px;
-  } */
+  }
 
   .kopilot-pdp__carousel-dot {
     width: 9px;
