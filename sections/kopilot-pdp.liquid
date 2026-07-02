@@ -50,7 +50,6 @@
 
     /* Standardizes exact layout spacing gap above the banner header */
     .kopilot-pdp__special-banner {
-      display:none !important;
       margin-top: 12px !important;
       position: relative !important;
     }
@@ -240,6 +239,11 @@
     letter-spacing: 0.05em;
     z-index: 3;
   }
+   @media screen and (max-width: 767px) {
+    .kopilot-pdp__special-banner{
+      display:none;
+    }
+   }
   
   /* Text container offsets if top red banner ribbon is enabled */
   .kopilot-pdp__special-banner + .kopilot-pdp__gallery-text-container--top,
