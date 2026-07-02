@@ -36,7 +36,18 @@
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
-    
+
+    .kopilot-pdp__inner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kopilot-pdp__layout {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     /* Remove slider pagination indicators on mobile layout per image_8259ff.png */
     .kopilot-pdp__carousel-dots {
       display: none !important;
@@ -44,8 +55,18 @@
 
     /* Clean transparent layout structure for mobile gallery wrappers */
     .kopilot-pdp__gallery-mobile {
+      position: relative;
       background: transparent !important;
       padding: 0 !important;
+    }
+
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__special-banner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      margin-top: 0 !important;
     }
 
     /* Standardizes exact layout spacing gap above the banner header */
@@ -56,12 +77,22 @@
   }
 
   /* Description Typography Setup */
-  .kopilot-pdp__description_pdp p {
-  font-size: 20px !important;
-  line-height: 1.30 !important;
-  font-family :"Elza" !important;
-}
-  .kopilot-pdp__description strong, 
+  .kopilot-pdp__description_pdp,
+  .kopilot-pdp__description {
+    display: block;
+  }
+
+  .kopilot-pdp__description_pdp p,
+  .kopilot-pdp__description p {
+    margin: 0;
+    font-size: 20px !important;
+    line-height: 1.30 !important;
+    font-family: "Elza", sans-serif !important;
+  }
+
+  .kopilot-pdp__description_pdp strong,
+  .kopilot-pdp__description_pdp b,
+  .kopilot-pdp__description strong,
   .kopilot-pdp__description b {
     font-weight: 700;
   }
@@ -271,6 +302,13 @@
   endif
 
   assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
+
+  assign mobile_special_banner_text = blank
+  for block in section.blocks
+    if block.type == 'gallery_slide' and block.settings.show_special_banner and block.settings.special_banner_text != blank and mobile_special_banner_text == blank
+      assign mobile_special_banner_text = block.settings.special_banner_text
+    endif
+  endfor
 %}
 
 {% if pdp_product == blank %}
@@ -338,15 +376,14 @@
         </div>
 
         <div class="kopilot-pdp__gallery-mobile" data-kopilot-carousel>
+          {% if mobile_special_banner_text != blank %}
+            <div class="kopilot-pdp__special-banner">{{ mobile_special_banner_text }}</div>
+          {% endif %}
           <div class="kopilot-pdp__carousel-viewport">
             <div class="kopilot-pdp__carousel-track" data-kopilot-carousel-track>
               {% for block in section.blocks %}
                 {% if block.type == 'gallery_slide' %}
                   <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
-                    {% if block.settings.show_special_banner %}
-                      <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                    {% endif %}
-
                     {% render 'kopilot-image',
                       image: block.settings.image,
                       fallback: gallery_fallbacks[forloop.index0],
@@ -405,16 +442,17 @@
               <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
             </div>
           {% endif %}
-          {% if section.settings.description != blank %}
-  <div class="kopilot-pdp__description_pdp">
-    {{ section.settings.description }}
-  </div>
-{% elsif pdp_product.description != blank %}
-  <div class="kopilot-pdp__description rte">
-    {{ pdp_product.description | strip_html | truncate: 320 }}
-  </div>
-{% endif %}
         </div>
+
+        {% if section.settings.description != blank %}
+          <div class="kopilot-pdp__description_pdp">
+            {{ section.settings.description }}
+          </div>
+        {% elsif pdp_product.description != blank %}
+          <div class="kopilot-pdp__description rte">
+            {{ pdp_product.description | strip_html | truncate: 320 }}
+          </div>
+        {% endif %}
 
         <div class="kopilot-pdp__tiers" role="group" aria-label="Choose quantity">
           {% assign tier_index = 0 %}
