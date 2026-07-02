@@ -138,12 +138,23 @@
         "image": "shopify://shop_images/fea9a2f964d1439c2cb5d4a69d34e8c706844672.jpg",
         "image_position": "right",
         "heading_rt": "<p>For the rides you plan and the moments you don't.</p>",
+        "heading_font_family": "Elza",
         "heading_font_size": 60,
         "heading_line_height": 110,
         "heading_font_weight": "300",
         "text": "KOPILOT.ID gives responders a clear view of your medical conditions, medications, allergies, and emergency contacts. Set it up once and keep it with your gear, ready for every run, ride, or route.",
         "text_padding_top": 16,
         "text_padding_bottom": 16,
+        "content_padding_top": 72,
+        "content_padding_right": 24,
+        "content_padding_bottom": 72,
+        "content_padding_left": 0,
+        "content_padding_top_mobile": 0,
+        "content_padding_right_mobile": 0,
+        "content_padding_bottom_mobile": 0,
+        "content_padding_left_mobile": 0,
+        "grid_padding_top": 60,
+        "grid_padding_top_mobile": 0,
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
@@ -195,7 +206,7 @@
         "s1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ba364058e14ab9f73dd4f65ee4e8e3b8ae77a58f_1.jpg"
+            "image": "shopify://shop_images/IMG_3288_1.png"
           }
         },
         "s2": {
