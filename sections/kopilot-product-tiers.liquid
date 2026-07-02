@@ -24,24 +24,6 @@
     border: 1px solid #000000 !important;
   }
 
-  /* FIX: Ensure media wrapper and its images start exactly at the top without gaps */
-  .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card-media {
-    display: block !important;
-    position: relative !important;
-    overflow: hidden !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-  }
-
-  .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card-image {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    vertical-align: top !important;
-  }
-
   {% for block in section.blocks %}
     {% if block.settings.list_icon_mobile != blank %}
       .kopilot-product-tiers--{{ section.id }} .kopilot-product-tiers__card[data-block-id="{{ block.id }}"] .kopilot-product-tiers__features.rte li::before {
