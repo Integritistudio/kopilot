@@ -133,6 +133,14 @@
         "text": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
         "text_padding_top": 48,
         "text_padding_bottom": 16,
+        "content_padding_top": 72,
+        "content_padding_right": 24,
+        "content_padding_bottom": 72,
+        "content_padding_left": 0,
+        "content_padding_top_mobile": 0,
+        "content_padding_right_mobile": 0,
+        "content_padding_bottom_mobile": 0,
+        "content_padding_left_mobile": 0,
         "grid_padding_top": 0,
         "grid_padding_top_mobile": 0,
         "padding_top": 0,
@@ -231,7 +239,7 @@
         "c3": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/9bc6c998f40378ffc7b8bcf5282ca36d90a8ea23.png",
+            "image": "shopify://shop_images/Rectangle_61_1.png",
             "title": "Everything Managed in One App",
             "text": "<p>Manage tags, gear setups, family members, and receive scan notifications with location — all in one free, easy-to-use app.</p>"
           }
