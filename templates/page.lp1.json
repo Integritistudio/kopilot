@@ -131,7 +131,7 @@
         "heading_line_height": 110,
         "heading_font_weight": "300",
         "text": "Not every emergency happens deep in remote terrain. Sometimes it's a quick ride, a normal trail, or a familiar road. Waterproof and battery-free, KOPILOT.ID is designed to stay with your gear every time you head out.",
-        "text_padding_top": 0,
+        "text_padding_top": 48,
         "text_padding_bottom": 16,
         "grid_padding_top": 0,
         "grid_padding_top_mobile": 0,
