@@ -36,6 +36,7 @@
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-hero.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kopilot-hero.js' | asset_url }}" defer></script>
 
 <section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-hero__bg">
