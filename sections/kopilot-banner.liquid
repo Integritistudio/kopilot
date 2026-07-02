@@ -1,5 +1,6 @@
 {% style %}
   .kopilot-special-banner--{{ section.id }} {
+    display: none;
     background-color: {{ section.settings.background_color }};
     color: {{ section.settings.text_color }};
     padding: {{ section.settings.padding_top }}px 10px {{ section.settings.padding_bottom }}px;
@@ -19,6 +20,12 @@
     letter-spacing: 0.05em;
     padding: 0;
     margin: 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-special-banner--{{ section.id }} {
+      display: block;
+    }
   }
 {% endstyle %}
 
