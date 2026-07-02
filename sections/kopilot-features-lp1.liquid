@@ -10,7 +10,7 @@
         <p class="kopilot-paragraph">{{ section.settings.paragraph }}</p>
       </div>
 
-      <!-- FEATURE GRID (3x2 Desktop, 2x3 Mobile) -->
+      <!-- FEATURE GRID (3x2 Desktop/Tablet, 2x3 Mobile Below 425px) -->
       <div class="kopilot-feature-grid">
         {% for block in section.blocks %}
           <div class="kopilot-grid-item" {{ block.shopify_attributes }}>
@@ -78,7 +78,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 61px; /* Fixed from 100px to exactly 61px */
+    padding-left: 61px; /* Exact Spec Adjustment */
     box-sizing: border-box;
   }
 
@@ -86,8 +86,8 @@
     width: 562px; /* Strict Desktop Text Width Bound */
     display: flex;
     flex-direction: column;
-    gap: 50px; /* Improved Gap: Exactly 50px between heading and paragraph */
-    margin-bottom: 73px; /* Improved Gap: Exactly 73px between paragraph and icon grid */
+    gap: 50px; /* Exact Spec: 50px between heading and paragraph */
+    margin-bottom: 73px; /* Exact Spec: 73px between paragraph and icon grid */
   }
 
   .kopilot-heading {
@@ -181,49 +181,57 @@
     display: block;
   }
 
-  /* --- FLUID TABLET RESPONSIVENESS OVERRIDE (768px to 1199px Viewports) --- */
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  /* --- STRETCH RESPONSIVENESS OVERRIDE (426px to 1199px Viewports - Keeps 3 per row) --- */
+  @media screen and (min-width: 426px) and (max-width: 1199px) {
     .kopilot-container {
       height: auto;
-      flex-direction: row;
+      flex-direction: column-reverse; /* Smooth stacking transition on small viewports */
       padding: 40px 24px;
-      gap: 32px;
+      gap: 48px;
+      align-items: center;
     }
     
     .kopilot-content-col {
-      width: 55%;
+      width: 100%;
       padding-left: 0;
+      align-items: center;
     }
 
     .kopilot-text-stack {
       width: 100%;
-      gap: 30px;
-      margin-bottom: 40px;
+      max-width: 562px;
+      align-items: center;
+      text-align: center;
     }
 
     .kopilot-heading {
       font-size: 44px;
+      text-align: center;
+    }
+
+    .kopilot-paragraph {
+      text-align: center;
     }
 
     .kopilot-feature-grid {
-      grid-template-columns: repeat(2, 147px); /* Dropping nicely to 2 columns on tablets */
-      column-gap: 24px;
+      grid-template-columns: repeat(3, 147px); /* Kept strict 3 items in a row down to 426px */
+      justify-content: center;
     }
 
     .kopilot-image-col {
-      width: 45%;
-      height: auto;
-      min-height: 500px;
+      width: 100%;
+      max-width: 744px;
+      height: 450px;
     }
   }
 
-  /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (360px Mobile Spec Boundary) --- */
-  @media screen and (max-width: 767px) {
+  /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (At or Beneath 425px Boundary) --- */
+  @media screen and (max-width: 425px) {
     .kopilot-container {
       flex-direction: column;
       height: auto; /* Expand vertically */
       max-width: 360px;
-      padding: 5.7rem 0 0 0; /* 20px Top Padding Spec */
+      padding: 5.7rem 0 0 0; /* Maintained 5.7rem value */
       gap: 41px; /* Explicit Layout Flow Stack Gap */
     }
 
@@ -254,7 +262,7 @@
       max-width: 310px; /* Target Paragraph Envelope Box */
     }
 
-    /* Converts to 2-Column Vertical Layout on Mobile */
+    /* Converts to exactly 2-Column Inline Layout at or beneath 425px */
     .kopilot-feature-grid {
       grid-template-columns: repeat(2, 104px); /* 104px Individual Mobile Cell Boundaries */
       column-gap: 40px;
