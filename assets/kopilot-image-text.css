@@ -77,6 +77,17 @@
   object-fit: cover;
 }
 
+/* Mobile: ≤767px — no left margin/padding on inner */
+@media screen and (max-width: 767px) {
+  .kopilot-image-text__inner {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 45px;
+    padding-bottom: 41px;
+  }
+}
+
 /* Desktop: 768px+ */
 @media screen and (min-width: 768px) {
   .kopilot-image-text__inner {
