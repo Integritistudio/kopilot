@@ -57,11 +57,20 @@
 
   /* Description Typography Setup */
   .kopilot-pdp__description_pdp p {
-  font-size: 20px !important;
-  line-height: 1.30 !important;
-  font-family :"Elza" !important;
-  max-width:382px;
-}
+    font-size: 20px !important;
+    line-height: 1.30 !important;
+    font-family: "Elza" !important;
+    max-width: 382px;
+  }
+
+  @media screen and (max-width: 360px) {
+    .kopilot-pdp__description_pdp p {
+      max-width: 298px !important;
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+  }
+
   .kopilot-pdp__description strong, 
   .kopilot-pdp__description b {
     font-weight: 700;
@@ -303,6 +312,15 @@
         <div class="kopilot-pdp__reviews-row">
           {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
           <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
+        </div>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="kopilot-pdp__description_pdp">
+          {{ section.settings.description }}
+        </div>
+      {% elsif pdp_product.description != blank %}
+        <div class="kopilot-pdp__description rte">
+          {{ pdp_product.description | strip_html | truncate: 320 }}
         </div>
       {% endif %}
     </div>
