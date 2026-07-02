@@ -45,12 +45,21 @@ class KopilotPdp extends HTMLElement {
 
     button.classList.add('is-selected');
     button.setAttribute('aria-pressed', 'true');
-    this.selectedQty = Number(button.dataset.quantity || 1);
+    this.selectedQty = parseInt(button.dataset.quantity || '1', 10);
+    if (Number.isNaN(this.selectedQty) || this.selectedQty < 1) {
+      this.selectedQty = 1;
+    }
 
     if (this.addLabel) {
-      this.addLabel.textContent = this.selectedQty === 1
-        ? 'ADD TO CART - 1 TAG'
-        : `ADD TO CART - SET OF ${this.selectedQty}`;
+      const tierTitleEl = button.querySelector('.kopilot-pdp__tier-title');
+      const tierTitle = tierTitleEl ? tierTitleEl.textContent.trim() : '';
+      if (tierTitle) {
+        this.addLabel.textContent = `ADD TO CART - ${tierTitle}`;
+      } else {
+        this.addLabel.textContent = this.selectedQty === 1
+          ? 'ADD TO CART - 1 TAG'
+          : `ADD TO CART - SET OF ${this.selectedQty}`;
+      }
     }
   }
 
