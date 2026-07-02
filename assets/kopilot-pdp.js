@@ -54,8 +54,14 @@ class KopilotPdp extends HTMLElement {
       this.variantId = Number(button.dataset.variantId);
     }
 
-    if (this.addLabel) {
-      const tierTitleEl = button.querySelector('.kopilot-pdp__tier-title');
+    this.updateButtonLabel();
+  }
+
+  updateButtonLabel() {
+    if (!this.addLabel) return;
+    const selectedTier = this.querySelector('[data-kopilot-tier].is-selected');
+    if (selectedTier) {
+      const tierTitleEl = selectedTier.querySelector('.kopilot-pdp__tier-title');
       const tierTitle = tierTitleEl ? tierTitleEl.textContent.trim() : '';
       if (tierTitle) {
         this.addLabel.textContent = `ADD TO CART - ${tierTitle}`;
@@ -206,6 +212,15 @@ class KopilotPdp extends HTMLElement {
       const addData = await addResponse.json();
       if (!addResponse.ok) {
         throw addData;
+      }
+
+      if (this.addLabel) {
+        this.addLabel.textContent = 'ADDED';
+        setTimeout(() => {
+          if (this.addLabel.textContent === 'ADDED') {
+            this.updateButtonLabel();
+          }
+        }, 2000);
       }
 
       const sections = await fetch(
