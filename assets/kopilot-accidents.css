@@ -65,7 +65,7 @@
   font-family: var(--kopilot-font-family);
   font-weight: 300;
   font-size: 20px;
-  line-height: 100%;
+  line-height: 120%;
   color: #000;
   max-width: 519px;
 }
