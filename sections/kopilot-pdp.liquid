@@ -63,6 +63,19 @@
     max-width: 382px;
   }
 
+  .kopilot-pdp__description_pdp--mobile {
+    display: none;
+    margin: 0 auto;
+    padding: 0 22px 18px;
+    max-width: 298px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp__description_pdp--mobile {
+      display: block;
+    }
+  }
+
   @media screen and (max-width: 360px) {
     .kopilot-pdp__description_pdp p {
       max-width: 298px !important;
@@ -411,6 +424,14 @@
             {% endfor %}
           </div>
         </div>
+      </div>
+
+      <div class="kopilot-pdp__description_pdp kopilot-pdp__description_pdp--mobile">
+        {% if section.settings.description != blank %}
+          {{ section.settings.description }}
+        {% elsif pdp_product.description != blank %}
+          {{ pdp_product.description | strip_html | truncate: 320 }}
+        {% endif %}
       </div>
 
       <div class="kopilot-pdp__buy">
