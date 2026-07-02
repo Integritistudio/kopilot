@@ -177,8 +177,8 @@
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-home-closing__inner {
-    min-height: calc(clamp(24rem, 24vw, 25.6rem) + min(144rem, 100vw) * 833 / 1889);
-    padding: 0;
+    min-height: 0;
+    padding: clamp(24rem, 24vw, 25.6rem) 0 clamp(6rem, 8vw, 9rem);
   }
 
   .kopilot-home-closing__bg-image--desktop {
@@ -188,7 +188,6 @@
     top: clamp(24rem, 24vw, 25.6rem);
     width: min(144rem, 100vw);
     height: auto;
-    aspect-ratio: 1889 / 833;
   }
 
   .kopilot-home-closing__bg-image--desktop img {
