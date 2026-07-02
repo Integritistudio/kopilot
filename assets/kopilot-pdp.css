@@ -436,7 +436,7 @@
 @media screen and (max-width: 767px) {
   .kopilot-pdp__review-count {
   margin: 0;
-  font-family: var(--kopilot-body-font-family);
+  font-family: 'Rubik';
   font-size: 13px;
   line-height: 25px;
   color: #545454;
