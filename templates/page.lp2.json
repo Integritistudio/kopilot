@@ -59,7 +59,7 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Group_2106667240.svg",
-            "label": "<p>Peace of mind for the people<br/>who love you</p>"
+            "label": "<p>Peace of mind for the <br/>people who love you</p>"
           }
         },
         "w2": {
