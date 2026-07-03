@@ -36,26 +36,26 @@
     background-color: {{ section.settings.bg_color }};
     box-sizing: border-box;
     width: 100%;
-    margin: 0 auto;
     overflow: hidden;
-    
-    /* Strict Desktop Container Padding Parameters */
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 93.5px;
-    padding-right: 0px; /* Allows the 696px right-side image to hit the edge of a 1440px canvas naturally */
   }
 
+  /* Centered Wrapper specifically built to stabilize screens > 1440px */
   .kopilot-emergencies-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1346.5px; /* 1440px total minus the 93.5px left padding */
-    margin: 0;
-    margin-left: auto;
+    max-width: 1440.5px; /* Creates the perfect canvas boundary */
+    margin: 0 auto; /* Centers the whole block perfectly on ultra-wide monitors */
+    
+    /* Strict Desktop Container Padding Applied INSIDE the boundary */
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 93.5px;
+    padding-right: 0px; 
     gap: 90px; /* Exact Desktop Column Spacing Gap */
+    box-sizing: border-box;
   }
 
   /* Column 1: Text Content Block */
@@ -120,14 +120,11 @@
     display: block;
   }
 
-  /* --- FLUID RESPONSIVENESS (Intermediate viewports up to 1350px) --- */
-  @media screen and (max-width: 1350px) {
-    #kopilot-emergencies-section-{{ section.id }} {
+  /* --- FLUID RESPONSIVENESS (Intermediate viewports up to 1440px) --- */
+  @media screen and (max-width: 1440px) {
+    .kopilot-emergencies-container {
       padding-left: 40px;
       padding-right: 40px;
-    }
-    .kopilot-emergencies-container {
-      margin: 0 auto;
       gap: 50px;
     }
     .kopilot-emergencies-text-col {
@@ -145,9 +142,12 @@
   /* --- STRETCH TABLET RESPONSIVENESS (426px to 991px Viewports) --- */
   @media screen and (max-width: 991px) {
     #kopilot-emergencies-section-{{ section.id }} {
-      padding: 50px 24px;
+      padding-top: 50px;
+      padding-bottom: 50px;
     }
     .kopilot-emergencies-container {
+      padding-left: 24px;
+      padding-right: 24px;
       flex-direction: column-reverse; 
       gap: 40px;
       align-items: center;
@@ -180,14 +180,13 @@
   /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (At or Beneath 425px Layout Boundary) --- */
   @media screen and (max-width: 425px) {
     #kopilot-emergencies-section-{{ section.id }} {
-      /* Fluid padding logic for mobile layout */
       padding-top: 50px;
-      padding-bottom: 0px; /* Usually 0 if stacked image hits bottom edge */
-      padding-left: 0;
-      padding-right: 0;
+      padding-bottom: 0px; 
     }
 
     .kopilot-emergencies-container {
+      padding-left: 0;
+      padding-right: 0;
       flex-direction: column-reverse;
       gap: 30px; 
       align-items: stretch;
