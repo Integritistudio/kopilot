@@ -38,7 +38,7 @@
         "cta_button_url": "",
         "cta_bg_color": "#ef0008",
         "cta_text_color": "#ffffff",
-        "cart_icon": "shopify://shop_images/Group.svg",
+        "cart_icon": "shopify://shop_images/iconoir_cart.svg",
         "search_icon": "shopify://shop_images/SVG_1.svg",
         "customer_account_menu": "customer-account-main-menu",
         "top_spacing": 15,
