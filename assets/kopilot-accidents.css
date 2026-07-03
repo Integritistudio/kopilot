@@ -90,6 +90,7 @@
   cursor: pointer;
   transition: opacity 0.2s ease;
   box-sizing: border-box;
+  width:319px;
 }
 
 .kopilot-accidents__btn:hover {
