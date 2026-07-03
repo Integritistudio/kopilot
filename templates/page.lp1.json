@@ -54,6 +54,16 @@
         "padding_bottom_mobile": 0
       }
     },
+    "kopilot_asymmetric_split_WbpXQi": {
+      "type": "kopilot-asymmetric-split",
+      "name": "Kopilot Asymmetric Split",
+      "settings": {
+        "image": "shopify://shop_images/kopilot-image-text.jpg",
+        "heading": "If something goes wrong, first responders need more than your name.",
+        "paragraph": "After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.",
+        "bg_color_gradient": "#ffffff"
+      }
+    },
     "kopilot_image_text": {
       "type": "kopilot-image-text",
       "custom_css": [],
@@ -830,6 +840,7 @@
   },
   "order": [
     "kopilot_hero",
+    "kopilot_asymmetric_split_WbpXQi",
     "kopilot_image_text",
     "kopilot_features_lp1_YbFcMY",
     "kopilot_features",
