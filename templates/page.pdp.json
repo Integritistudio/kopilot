@@ -268,7 +268,7 @@
       "type": "kopilot-emergencies-split",
       "name": "Kopilot Emergencies Split",
       "settings": {
-        "heading": "Built for emergencies. Ready every day.",
+        "heading": "Built for emergencies.<br> Ready every day.",
         "paragraph": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.",
         "image": "shopify://shop_images/image_18659487.png",
         "bg_color": "#ffffff"
