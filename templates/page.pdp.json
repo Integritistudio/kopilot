@@ -283,6 +283,35 @@
         "bg_color": "#ffffff"
       }
     },
+    "features_grid_8Yk8XH": {
+      "type": "features-grid",
+      "blocks": {
+        "feature_XYMnTV": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_34.png",
+            "title": ""
+          }
+        },
+        "feature_WF6kfd": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39_3a28805a-1bb4-4cdb-9705-e302bc20413a.svg",
+            "title": "Durable and waterproof"
+          }
+        }
+      },
+      "block_order": [
+        "feature_XYMnTV",
+        "feature_WF6kfd"
+      ],
+      "name": "Kopilot Features Grid",
+      "settings": {
+        "heading": "The details that matter.",
+        "image": "shopify://shop_images/IMG_3285_1_45595bb2-5a79-447a-9a26-0b589ba709ac.png",
+        "bg_color": "#F1F1F1"
+      }
+    },
     "kopilot_features": {
       "type": "kopilot-features",
       "blocks": {
@@ -658,6 +687,7 @@
     "kopilot_home_partners_E76kbb",
     "kopilot_emergencies_split_rim7dr",
     "kopilot_tap_split_nAXGkd",
+    "features_grid_8Yk8XH",
     "kopilot_features",
     "kopilot_pdp_privacy",
     "kopilot_home_testimonials_NJaUJU",
