@@ -54,7 +54,7 @@
     width: 100%;
     max-width: 1315px; /* 1440px Canvas Max Width minus 71px Left and 54px Right paddings */
     margin: 0 auto;
-    gap: 52px; /* Fixed Desktop Column Spacing Gap */
+    gap: {{ section.settings.column_gap }}px; /* Fully Dynamic Column Spacing Gap Control */
   }
 
   /* Column 1: Asymmetric Left Image Structure */
@@ -180,7 +180,7 @@
 
     .kopilot-split-container {
       flex-direction: column-reverse;
-      gap: 26px; /* Exact mobile column gap between image and text layout */
+      gap: 26px; /* Exact mobile column gap configuration remains safe */
       align-items: stretch;
       max-width: 360px;
     }
@@ -247,8 +247,18 @@
     {
       "type": "color",
       "id": "bg_color_gradient",
-      "label": "Section Background Color/Gradient",
+      "label": "Section Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Column Gap",
+      "default": 52
     }
   ],
   "presets": [
