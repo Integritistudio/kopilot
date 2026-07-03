@@ -84,55 +84,49 @@
     text-align: left;
   }
 
-  /* --- FLUID RESPONSIVE TYPOGRAPHY & LAYOUTS --- */
-  @media screen and (max-width: 1439px) {
+  /* --- FLUID & MOBILE RESPONSIVE LAYOUTS --- */
+  
+  /* Tablets and below: Apply mobile layout rules */
+  @media screen and (max-width: 1024px) {
     #kopilot-tap-section-{{ section.id }} {
-      padding-left: 33px;
-      padding-right: 33px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      padding-left: 0;
+      padding-right: 0;
     }
-    .kopilot-tap-container {
-      gap: 26px;
-    }
-    .kopilot-tap-heading {
-      font-size: clamp(30px, 4vw, 60px); /* Fluid scale down */
-    }
-  }
-
-  @media screen and (max-width: 991px) {
+    
     .kopilot-tap-container {
       flex-direction: column-reverse;
       align-items: center;
+      gap: 26px; /* Mobile gap constraint */
     }
+
     .kopilot-tap-media-col {
       width: 100%;
       height: 400px;
     }
+
     .kopilot-tap-text-col {
       max-width: 100%;
+      padding-left: 33px;
+      padding-right: 33px;
       align-items: center;
     }
+
     .kopilot-tap-heading {
       text-align: center;
-      font-size: clamp(30px, 6vw, 40px);
+      font-size: clamp(30px, 5vw, 40px); /* Scales smoothly */
     }
   }
 
+  /* Pixel Perfect Mobile Override (Under 426px) */
   @media screen and (max-width: 425px) {
-    #kopilot-tap-section-{{ section.id }} {
-      padding-top: 50px;
-      padding-left: 0;
-      padding-right: 0;
-    }
-    .kopilot-tap-text-col {
-      padding-left: 33px;
-      padding-right: 33px;
-    }
-    .kopilot-tap-heading {
-      font-size: 30px; /* Perfect 360px size */
-      line-height: 1.04;
-    }
     .kopilot-tap-media-col {
       height: 350px;
+    }
+    .kopilot-tap-heading {
+      font-size: 30px;
+      line-height: 1.04;
     }
   }
 {% endstyle %}
