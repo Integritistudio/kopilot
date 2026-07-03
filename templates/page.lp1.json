@@ -66,6 +66,7 @@
     },
     "kopilot_image_text": {
       "type": "kopilot-image-text",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-1",
