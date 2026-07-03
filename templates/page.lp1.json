@@ -61,7 +61,8 @@
         "image": "shopify://shop_images/kopilot-image-text.jpg",
         "heading": "If something goes wrong, first responders need more than your name.",
         "paragraph": "After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.",
-        "bg_color_gradient": "#ffffff"
+        "bg_color_gradient": "#ffffff",
+        "column_gap": 52
       }
     },
     "kopilot_image_text": {
@@ -347,7 +348,7 @@
           "settings": {
             "badge": "Ambassador",
             "name": "Hillary Allen",
-            "role": "- Team USA // Ultra Marathon Trail Runner",
+            "role": "Team USA // Ultra Marathon Trail Runner",
             "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
           }
         },
