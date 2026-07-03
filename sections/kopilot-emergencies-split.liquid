@@ -149,7 +149,7 @@
     .kopilot-emergencies-container {
       padding-left: 24px;
       padding-right: 24px;
-      flex-direction: column-reverse; 
+      flex-direction: column; 
       gap: 40px;
       align-items: center;
     }
@@ -178,8 +178,6 @@
       aspect-ratio: 696 / 704; /* Maintains scale */
     }
   }
-
-  /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (At or Beneath 425px Layout Boundary) --- */
   @media screen and (max-width: 425px) {
     #kopilot-emergencies-section-{{ section.id }} {
       padding-top: 50px;
@@ -189,7 +187,7 @@
     .kopilot-emergencies-container {
       padding-left: 0;
       padding-right: 0;
-      flex-direction: column-reverse;
+      flex-direction: column;
       gap: 30px; 
       align-items: stretch;
     }
