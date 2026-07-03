@@ -22,8 +22,19 @@
         "button_url": ""
       }
     },
+    "kopilot_asymmetric_split_dhXzag": {
+      "type": "kopilot-asymmetric-split",
+      "name": "Kopilot Asymmetric Split",
+      "settings": {
+        "image": "shopify://shop_images/image_18659467.png",
+        "heading": "The gear you never think about… until you need it.",
+        "paragraph": "You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?",
+        "bg_color_gradient": "#ffffff"
+      }
+    },
     "kopilot_image_text": {
       "type": "kopilot-image-text",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-1",
@@ -791,6 +802,7 @@
   },
   "order": [
     "kopilot_hero2",
+    "kopilot_asymmetric_split_dhXzag",
     "kopilot_image_text",
     "kopilot_why_kopilot",
     "kopilot_features_lp1_DC6YRH",
