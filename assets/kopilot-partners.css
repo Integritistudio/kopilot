@@ -108,6 +108,7 @@
     gap: 2rem;
     padding: 1.3rem 8.8rem;
     text-align: left;
+    max-width:1440px;
   }
 
   .kopilot-partners__logos {
