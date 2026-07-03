@@ -27,7 +27,7 @@
       "name": "Kopilot Asymmetric Split",
       "settings": {
         "image": "shopify://shop_images/image_18659467.png",
-        "heading": "The gear you never think about… until you need it.",
+        "heading": "The gear you never <br>think about…<br> until you need it.",
         "paragraph": "You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?",
         "bg_color_gradient": "#ffffff",
         "column_gap": 90
