@@ -294,7 +294,7 @@
   }
 
   .kopilot-ambassadors__swiper {
-    padding-left: var(--kopilot-ambassadors-slider-inset);
+    padding-left:90px;
     padding-right: 0;
   }
 
