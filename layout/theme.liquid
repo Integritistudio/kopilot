@@ -127,52 +127,51 @@
       });
     </script>
 
-    <!-- LENIS INITIALIZATION SCRIPT -->
-    <script>
-      (() => {
-        if (window.__lenisInitialized) return;
-        window.__lenisInitialized = true;
+<!-- LENIS INITIALIZATION SCRIPT -->
+<script>
+  (() => {
+    if (window.__lenisInitialized) return;
+    window.__lenisInitialized = true;
 
-        function waitForLenis() {
-          return new Promise((resolve) => {
-            const check = () => {
-              if (window.Lenis) return resolve();
-              requestAnimationFrame(check);
-            };
-            check();
-          });
-        }
+    function waitForLenis() {
+      return new Promise((resolve) => {
+        const check = () => {
+          if (window.Lenis) return resolve();
+          requestAnimationFrame(check);
+        };
+        check();
+      });
+    }
 
-        async function initLenis() {
-          await waitForLenis();
+    async function initLenis() {
+      await waitForLenis();
 
-          const lenis = new Lenis({
-            duration: 1.2,
-            smooth: true,
-            smoothTouch: false,
-            lerp: 0.1,
-            anchor:true
-          });
+      const lenis = new Lenis({
+        duration: 1.2,
+        smoothWheel: true,
+        lerp: 0.1,
+        anchors: true
+      });
 
-          function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-          }
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
 
-          requestAnimationFrame(raf);
+      requestAnimationFrame(raf);
 
-          window.lenis = lenis;
+      window.lenis = lenis;
 
-          Fancybox.bind("[data-fancybox]", {
-            on: {
-              reveal: () => lenis.stop(),
-              destroy: () => lenis.start(),
-            },
-          });
-        }
+      Fancybox.bind("[data-fancybox]", {
+        on: {
+          reveal: () => lenis.stop(),
+          destroy: () => lenis.start(),
+        },
+      });
+    }
 
-        document.addEventListener('DOMContentLoaded', initLenis);
-      })();
-    </script>
+    document.addEventListener('DOMContentLoaded', initLenis);
+  })();
+</script>
   </body>
 </html>
