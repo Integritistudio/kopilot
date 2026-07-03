@@ -51,8 +51,8 @@
 }
 
 .kopilot-partners__logos-row--1 .kopilot-partners__logo-media img {
-  max-height: clamp(3.6rem, 11.68vw, 4.206rem);
-  width: auto;
+  /* max-height: clamp(3.6rem, 11.68vw, 4.206rem);
+  width: auto; */
   object-fit: contain;
 }
 
