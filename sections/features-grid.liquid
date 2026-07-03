@@ -62,9 +62,16 @@
     display: grid;
     grid-template-columns: repeat(3, 147px);
     gap: 20px;
+    justify-content: start; /* Ensures grid starts at the left */
   }
 
-  .kopilot-feature-item { width: 147px; text-align: center; }
+  .kopilot-feature-item { 
+    width: 147px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers icon and text */
+    text-align: center; 
+  }
 
   .kopilot-feature-text {
     font-family: "Elza", sans-serif;
@@ -96,7 +103,7 @@
     }
     .kopilot-features-heading {
       text-align: center;
-      font-size: 40px; /* Fluid scaling base */
+      font-size: 40px;
       margin-bottom: 30px;
     }
     .kopilot-features-grid { 
