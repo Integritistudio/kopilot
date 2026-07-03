@@ -108,9 +108,10 @@
     gap: 2rem;
     padding: 1.3rem 8.8rem;
     text-align: left;
-    max-width:1440px;
   }
-
+kopilot-section kopilot-partners kopilot-partners--template--20430872182893__kopilot_partners color-scheme-1{
+    max-width:1440px;
+}
   .kopilot-partners__logos {
     flex-direction: row;
     flex-wrap: wrap;
