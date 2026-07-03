@@ -147,7 +147,7 @@
         "heading": "The details that <br>matter.",
         "paragraph": "KOPILOT.ID gives responders a clear view of your medical conditions, medications, allergies, and emergency contacts. Set it up once and keep it with your gear, ready for every run, ride, or route.",
         "image": "shopify://shop_images/image_18659467_251dfa25-0ed3-4dbb-a305-3628f562c105.png",
-        "bg_color": "#F1F1F1"
+        "bg_color": "#f1f1f1"
       }
     },
     "kopilot_info_cards": {
@@ -273,6 +273,86 @@
         "a2",
         "a3",
         "card_BJGUPm"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Used on race day and every day in between.",
+        "text": "From race days to training days to fun-focused days, KOPILOT.ID gives riders the confidence to push their limits, knowing help will have the information they need if something goes wrong.",
+        "show_progress": true,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "kopilot_ambassadors_bpnChN": {
+      "type": "kopilot-ambassadors",
+      "blocks": {
+        "card_FfhB7w": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Hillary Allen",
+            "role": "- Team USA // Ultra Marathon Trail Runner",
+            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
+          }
+        },
+        "card_8JYizR": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1597884697.png",
+            "badge": "Event",
+            "name": "The Breck Epic",
+            "role": "Renowned Multi-Stage Mountain Bike Race",
+            "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
+          }
+        },
+        "card_zg6AVU": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/54be919ffa61653f81de40bafbaea78e03149ffd.png",
+            "badge": "Ambassador",
+            "name": "Kait Boyle",
+            "role": "- Cyclist",
+            "quote": "<p>Love my <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a>! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻</p>"
+          }
+        },
+        "card_8HXMTd": {
+          "type": "card",
+          "settings": {
+            "badge": "Event",
+            "name": "Karen",
+            "role": "- Cyclist",
+            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>"
+          }
+        },
+        "card_iVTK7q": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Marcus Reid",
+            "role": "- Enduro Mountain Biker",
+            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
+          }
+        },
+        "card_GQxCnp": {
+          "type": "card",
+          "settings": {
+            "badge": "Ambassador",
+            "name": "Sofia Martinez",
+            "role": "- Gravel Racer",
+            "quote": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. KOPILOT.ID keeps my emergency profile ready on every ride.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_FfhB7w",
+        "card_8JYizR",
+        "card_zg6AVU",
+        "card_8HXMTd",
+        "card_iVTK7q",
+        "card_GQxCnp"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -717,6 +797,7 @@
     "kopilot_info_cards",
     "kopilot_accidents",
     "kopilot_ambassadors",
+    "kopilot_ambassadors_bpnChN",
     "kopilot_partners",
     "kopilot_product_tiers",
     "kopilot_guarantees",
