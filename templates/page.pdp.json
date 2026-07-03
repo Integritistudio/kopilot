@@ -283,17 +283,6 @@
         "bg_color": "#ffffff"
       }
     },
-    "kopilot_pdp_tap": {
-      "type": "kopilot-pdp-tap",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "heading": "Your critical emergency information in one tap.",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 0
-      }
-    },
     "kopilot_features": {
       "type": "kopilot-features",
       "blocks": {
@@ -669,7 +658,6 @@
     "kopilot_home_partners_E76kbb",
     "kopilot_emergencies_split_rim7dr",
     "kopilot_tap_split_nAXGkd",
-    "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
     "kopilot_home_testimonials_NJaUJU",
