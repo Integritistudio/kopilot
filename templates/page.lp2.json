@@ -156,7 +156,7 @@
       ],
       "name": "Kopilot Split Grid Block",
       "settings": {
-        "heading": "For the rides <br>you plan and <br> the moments <br> you don't.",
+        "heading": "For the rides you plan and  the moments  you don't.",
         "paragraph": "KOPILOT.ID gives responders a clear view of your medical conditions, medications, allergies, and emergency contacts. Set it up once and keep it with your gear, ready for every run, ride, or route.",
         "image": "shopify://shop_images/image_18659467_251dfa25-0ed3-4dbb-a305-3628f562c105.png",
         "bg_color": "#f1f1f1"
@@ -237,134 +237,65 @@
         "button_url": "/"
       }
     },
-    "kopilot_ambassadors": {
+    "kopilot_ambassadors_btMaNa": {
       "type": "kopilot-ambassadors",
       "blocks": {
-        "a1": {
+        "card_b6hUDX": {
           "type": "card",
           "settings": {
-            "badge": "",
+            "image": "shopify://shop_images/image_b1dbe7b7-f818-40ba-afe5-b779970b57d6.png",
+            "badge": "Ambassador",
             "name": "Hillary Allen",
             "role": "Team USA // Ultra Marathon Trail Runner",
             "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
           }
         },
-        "a2": {
+        "card_y9cTW7": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/image_54b31449-3a07-4e26-bb96-c594a86ac120.png",
-            "badge": "",
-            "name": "The Breck Epic",
-            "role": "Renowned Multi-Stage Mountain Bike Race",
-            "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
-          }
-        },
-        "a3": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/54be919ffa61653f81de40bafbaea78e03149ffd.png",
-            "badge": "",
-            "name": "Kait Boyle",
-            "role": "Professional Backcountry Cyclist & Bikepacker",
-            "quote": "<p>As a wife, dog mom, daughter, sister, friend, and community member, I deeply understand the importance of managing risk of solo recreation in the backcountry. <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> is the simplest, easiest way to add a layer of assurance and safety.</p>"
-          }
-        },
-        "card_BJGUPm": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/kopilot-ambassador-karen.jpg",
-            "badge": "",
-            "name": "Hillary Allen",
-            "role": "- Team USA // Ultra Marathon Trail Runner",
-            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "a1",
-        "a2",
-        "a3",
-        "card_BJGUPm"
-      ],
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-1",
-        "heading": "Used on race day and every day in between.",
-        "text": "From race days to training days to fun-focused days, KOPILOT.ID gives riders the confidence to push their limits, knowing help will have the information they need if something goes wrong.",
-        "show_progress": true,
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 48
-      }
-    },
-    "kopilot_ambassadors_bpnChN": {
-      "type": "kopilot-ambassadors",
-      "blocks": {
-        "card_FfhB7w": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Hillary Allen",
-            "role": "- Team USA // Ultra Marathon Trail Runner",
-            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
-          }
-        },
-        "card_8JYizR": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1597884697.png",
+            "image": "shopify://shop_images/image_1.png",
             "badge": "Event",
             "name": "The Breck Epic",
             "role": "Renowned Multi-Stage Mountain Bike Race",
             "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
           }
         },
-        "card_zg6AVU": {
+        "card_6jLCXT": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/54be919ffa61653f81de40bafbaea78e03149ffd.png",
             "badge": "Ambassador",
             "name": "Kait Boyle",
-            "role": "- Cyclist",
+            "role": "Professional Backcountry Cyclist & Bikepacker",
             "quote": "<p>Love my <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a>! Small, lightweight and easy to use… all my adventure pals got one for Christmas… so we can continue to get up to no good with more peace of mind. 🤘🏻</p>"
           }
         },
-        "card_8HXMTd": {
+        "card_ALNVd7": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/26HH2-234_2.png",
             "badge": "Event",
-            "name": "Karen",
-            "role": "- Cyclist",
-            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>"
+            "name": "Bighorn Gravel",
+            "role": "Rocky",
+            "quote": "<p>A world-class gravel event traversing some of the most rugged terrain a gravel bike is capable of rolling across, starting and ending in the western town of Gypsum, Colorado.</p>"
           }
         },
-        "card_iVTK7q": {
+        "card_NqX3iE": {
           "type": "card",
           "settings": {
             "badge": "Ambassador",
             "name": "Marcus Reid",
-            "role": "- Enduro Mountain Biker",
+            "role": "Enduro Mountain Biker",
             "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
-          }
-        },
-        "card_GQxCnp": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Sofia Martinez",
-            "role": "- Gravel Racer",
-            "quote": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. KOPILOT.ID keeps my emergency profile ready on every ride.</p>"
           }
         }
       },
       "block_order": [
-        "card_FfhB7w",
-        "card_8JYizR",
-        "card_zg6AVU",
-        "card_8HXMTd",
-        "card_iVTK7q",
-        "card_GQxCnp"
+        "card_b6hUDX",
+        "card_y9cTW7",
+        "card_6jLCXT",
+        "card_ALNVd7",
+        "card_NqX3iE"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -809,8 +740,7 @@
     "kopilot_features_lp1_DC6YRH",
     "kopilot_info_cards",
     "kopilot_accidents",
-    "kopilot_ambassadors",
-    "kopilot_ambassadors_bpnChN",
+    "kopilot_ambassadors_btMaNa",
     "kopilot_partners",
     "kopilot_product_tiers",
     "kopilot_guarantees",
