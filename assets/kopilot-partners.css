@@ -109,7 +109,9 @@
     padding: 1.3rem 8.8rem;
     text-align: left;
   }
-.kopilot-partners--template--20430872182893__kopilot_partners {
+.kopilot-partners--template--20430872182893__kopilot_partners,
+.kopilot-partners--template--20430872215661__kopilot_partners
+{
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
