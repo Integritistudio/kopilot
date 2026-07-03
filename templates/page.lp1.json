@@ -346,6 +346,7 @@
         "a1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/image_b1dbe7b7-f818-40ba-afe5-b779970b57d6.png",
             "badge": "Ambassador",
             "name": "Hillary Allen",
             "role": "Team USA // Ultra Marathon Trail Runner",
@@ -387,17 +388,8 @@
           "settings": {
             "badge": "Ambassador",
             "name": "Marcus Reid",
-            "role": "- Enduro Mountain Biker",
+            "role": "Enduro Mountain Biker",
             "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
-          }
-        },
-        "a6": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Sofia Martinez",
-            "role": "- Gravel Racer",
-            "quote": "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. KOPILOT.ID keeps my emergency profile ready on every ride.</p>"
           }
         }
       },
@@ -406,8 +398,7 @@
         "a2",
         "a3",
         "a4",
-        "a5",
-        "a6"
+        "a5"
       ],
       "settings": {
         "color_scheme": "scheme-1",
