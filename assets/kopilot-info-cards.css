@@ -42,7 +42,7 @@
   letter-spacing: -1px;
   margin: 0;
   max-width: 32.2rem;
-  padding: 0 clamp(0.7rem, 3.3vw, 2rem);
+  padding: 0 clamp(0.7rem, 1.2rem, 2rem);
   box-sizing: border-box;
 }
 
