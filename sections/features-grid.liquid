@@ -85,7 +85,6 @@
   .kopilot-features-media-col { width: 733px; height: 710px; flex-shrink: 0; }
   .kopilot-features-hero-img { width: 100%; height: 100%; object-fit: cover; }
 
-  /* --- RESPONSIVE / MOBILE 360px PIXEL PERFECT --- */
   @media screen and (max-width: 1024px) {
     #kopilot-features-section-{{ section.id }} {
       padding-top: 37px;
@@ -109,7 +108,8 @@
     .kopilot-features-grid { 
       grid-template-columns: repeat(2, 1fr);
       justify-items: center;
-      gap: 28px; /* Mobile Specific Gap */
+      row-gap: 45px;
+      column-gap: 28px;
     }
     .kopilot-feature-item { width: 100%; }
     .kopilot-features-media-col { 
