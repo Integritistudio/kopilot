@@ -280,7 +280,7 @@
 .kopilot-pdp__included-heading {
   margin: 0;
   font-family: var(--kopilot-font-family);
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   color: #000;
@@ -360,6 +360,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  font-family:var(--kopilot-font-family);
 }
 
 .kopilot-pdp__delivery-label {
