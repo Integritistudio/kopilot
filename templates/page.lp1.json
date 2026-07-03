@@ -375,6 +375,7 @@
         "a4": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/26HH2-234_2.png",
             "badge": "Event",
             "name": "Bighorn Gravel",
             "role": "Rocky",
