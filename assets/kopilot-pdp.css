@@ -350,7 +350,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  font-family: var(--kopilot-body-font-family);
+  font-family:'Elza';
   font-size: 14px;
   line-height: 1;
   color: #000;
