@@ -350,10 +350,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  font-family: 'Elza' !important;
   font-size: 14px;
   line-height: 1;
   color: #000;
+}
+.kopilot-pdp__delivery-line>span {
+font-family:'Elza'; 
 }
 
 .kopilot-pdp__delivery-line {
