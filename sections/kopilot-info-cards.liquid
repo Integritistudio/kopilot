@@ -15,7 +15,7 @@
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-info-cards.css' | asset_url | stylesheet_tag }}
 
-<section id="#how-it-works" class="kopilot-section kopilot-info-cards kopilot-info-cards--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section id="how-it-works" class="kopilot-section kopilot-info-cards kopilot-info-cards--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-info-cards__bg">
     {% render 'kopilot-image',
       image: section.settings.background_image,
