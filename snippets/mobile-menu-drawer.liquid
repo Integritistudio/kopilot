@@ -4,128 +4,128 @@
   inert
   aria-hidden="true"
 >
-  <div class="drawer_wrapper_inner mobile_menu_drawer_inner" tabindex="-1" data-lenis-prevent>
-    <div class="drawer_header mobile_menu_drawer_header">
-      <h2 class="h4">
+<div class="drawer_wrapper_inner mobile_menu_drawer_inner" tabindex="-1" data-lenis-prevent>
+<div class="drawer_header mobile_menu_drawer_header">
+<h2 class="h4">
         {{ 'drawers.mobile_menu_drawer.heading' | t }}
-      </h2>
-
+</h2>
+ 
       <div class="drawer_close_btn_wrapper">
-        <button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
-          <div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
-        </button>
-      </div>
-    </div>
-
+<button class="drawer_close_btn" aria-label="{{ 'accessibility.close' | t }}">
+<div class="svg_wrapper">{{ 'icon-close.svg' | inline_asset_content }}</div>
+</button>
+</div>
+</div>
+ 
     <div class="mobile_menu_drawer_content_wrapper">
-      <ul class="mobile_parent_ul">
+<ul class="mobile_parent_ul">
         {% if kopilot_nav %}
           {% if request.page_type == 'index' %}
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-what-is-kopilot" aria-label="What Is Kopilot" class="mobile_parent_link">What Is Kopilot</a>
-            </li>
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-brand-partners" aria-label="Brand Partners" class="mobile_parent_link">Brand Partners</a>
-            </li>
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-about-us" aria-label="About Us" class="mobile_parent_link">About Us</a>
-            </li>
+<li class="mobile_parent_li">
+<a href="/#kopilot-what-is-kopilot" aria-label="What Is Kopilot" class="mobile_parent_link">What Is Kopilot</a>
+</li>
+<li class="mobile_parent_li">
+<a href="/#kopilot-brand-partners" aria-label="Brand Partners" class="mobile_parent_link">Brand Partners</a>
+</li>
+<li class="mobile_parent_li">
+<a href="/#kopilot-about-us" aria-label="About Us" class="mobile_parent_link">About Us</a>
+</li>
           {% else %}
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-why-kopilot" aria-label="Why Kopilot" class="mobile_parent_link">Why Kopilot</a>
-            </li>
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-how-it-works" aria-label="How It Works" class="mobile_parent_link">How It Works</a>
-            </li>
-            <li class="mobile_parent_li">
-              <a href="/#kopilot-brand-ambassador" aria-label="Brand Ambassador" class="mobile_parent_link">Brand Ambassador</a>
-            </li>
+<li class="mobile_parent_li">
+<a href="{{ request.path }}#kopilot-why-kopilot" aria-label="Why Kopilot" class="mobile_parent_link">Why Kopilot</a>
+</li>
+<li class="mobile_parent_li">
+<a href="{{ request.path }}#kopilot-how-it-works" aria-label="How It Works" class="mobile_parent_link">How It Works</a>
+</li>
+<li class="mobile_parent_li">
+<a href="{{ request.path }}#kopilot-brand-ambassador" aria-label="Brand Ambassador" class="mobile_parent_link">Brand Ambassador</a>
+</li>
           {% endif %}
         {% else %}
           {% for link in menu.links %}
-          <li class="mobile_parent_li{% if link.links != blank %} has_dropdown{% endif %}">
-            <a href="{{ link.url }}" aria-label="{{ link.title }}" class="mobile_parent_link">{{ link.title }}</a>
+<li class="mobile_parent_li{% if link.links != blank %} has_dropdown{% endif %}">
+<a href="{{ link.url }}" aria-label="{{ link.title }}" class="mobile_parent_link">{{ link.title }}</a>
             {% if link.links != blank %}
-              <button aria-label="{{ 'drawers.mobile_menu_drawer.trigger_btn' | t }}" data-title="{{ link.title }}">
-                <span class="mm_hori"></span>
-                <span class="mm_vert"></span>
-              </button>
+<button aria-label="{{ 'drawers.mobile_menu_drawer.trigger_btn' | t }}" data-title="{{ link.title }}">
+<span class="mm_hori"></span>
+<span class="mm_vert"></span>
+</button>
             {% endif %}
-          </li>
+</li>
         {% endfor %}
         {% endif %}
-      </ul>
-
+</ul>
+ 
       {% unless kopilot_nav %}
       {% for link in menu.links %}
         {% if link.links != blank %}
-          <div class="mobile_menu_next_page" data-title="{{ link.title }}">
-            <div class="mobile_menu_back_btn">
-              <button aria-label="{{ 'drawers.mobile_menu_drawer.back_btn' | t }}">
+<div class="mobile_menu_next_page" data-title="{{ link.title }}">
+<div class="mobile_menu_back_btn">
+<button aria-label="{{ 'drawers.mobile_menu_drawer.back_btn' | t }}">
                 {{ 'left-caret.svg' | inline_asset_content }}
-                <span>{{ 'drawers.mobile_menu_drawer.back_btn' | t }}</span>
-              </button>
-            </div>
-            <ul class="mobile_child_ul">
+<span>{{ 'drawers.mobile_menu_drawer.back_btn' | t }}</span>
+</button>
+</div>
+<ul class="mobile_child_ul">
               {% for childlink in link.links %}
-                <li class="mobile_child_li{% if childlink.links != blank %} has_dropdown{% endif %}">
-                  <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}" class="mobile_child_link">
+<li class="mobile_child_li{% if childlink.links != blank %} has_dropdown{% endif %}">
+<a href="{{ childlink.url }}" aria-label="{{ childlink.title }}" class="mobile_child_link">
                     {{- childlink.title -}}
-                  </a>
+</a>
                   {% if childlink.links != blank %}
-                    <button
+<button
                       aria-label="{{ 'drawers.mobile_menu_drawer.trigger_btn' | t }}"
                       aria-expanded="false"
                       aria-controls="submenu-{{ link.title | handle }}-{{ forloop.index }}"
-                    >
-                      <span class="mm_hori"></span>
-                      <span class="mm_vert"></span>
-                    </button>
+>
+<span class="mm_hori"></span>
+<span class="mm_vert"></span>
+</button>
                   {% endif %}
-
+ 
                   {% if childlink.links != blank %}
-                    <ul class="mobile_grandchild_ul" id="submenu-{{ link.title | handle }}-{{ forloop.index }}">
+<ul class="mobile_grandchild_ul" id="submenu-{{ link.title | handle }}-{{ forloop.index }}">
                       {% for grandchildlink in childlink.links %}
-                        <li class="mobile_grandchild_li">
-                          <a
+<li class="mobile_grandchild_li">
+<a
                             href="{{ grandchildlink.url }}"
                             aria-label="{{ grandchildlink.title }}"
                             class="mobile_grandchild_link"
-                          >
+>
                             {{- grandchildlink.title -}}
-                          </a>
-                        </li>
+</a>
+</li>
                       {% endfor %}
-                    </ul>
+</ul>
                   {% endif %}
-                </li>
+</li>
               {% endfor %}
-            </ul>
-          </div>
+</ul>
+</div>
         {% endif %}
       {% endfor %}
       {% endunless %}
-    </div>
-
+</div>
+ 
     <div class="mobile_menu_drawer_utitlities_wrapper">
       {%- if shop.customer_accounts_enabled -%}
-        <div class="mobile_menu_header_account">
-          <shopify-account menu="{{ section.settings.customer_account_menu }}">
+<div class="mobile_menu_header_account">
+<shopify-account menu="{{ section.settings.customer_account_menu }}">
             {% if customer %}
-              <div class="account-button__fallback"></div>
+<div class="account-button__fallback"></div>
             {% else %}
-              <span
+<span
                 slot="signed-out-avatar"
                 aria-hidden="true"
-              >
+>
                 {{ 'icon-account.svg' | inline_asset_content }}
-              </span>
-              <div class="header_account_text"></div>
+</span>
+<div class="header_account_text"></div>
             {% endif %}
-          </shopify-account>
-        </div>
+</shopify-account>
+</div>
       {%- endif -%}
-
+ 
       {%- if settings.social_facebook_link != blank
         or settings.social_instagram_link != blank
         or settings.social_youtube_link != blank
@@ -136,10 +136,10 @@
         or settings.social_tumblr_link != blank
         or settings.social_vimeo_link != blank
       -%}
-        <div class="mobile_menu_social_media_icons_wrapper">
+<div class="mobile_menu_social_media_icons_wrapper">
           {% render 'social-icons', new_tab: settings.new_tab %}
-        </div>
+</div>
       {% endif %}
-    </div>
-  </div>
+</div>
+</div>
 </div>
