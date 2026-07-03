@@ -10,6 +10,14 @@
     }
   {% endif %}
 
+  /* Handle Desktop vs Mobile Image Visibility */
+  .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image {
+    display: block;
+  }
+  .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image {
+    display: none;
+  }
+
   @media screen and (max-width: 767px) {
     .kopilot-cta-banner--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -21,6 +29,14 @@
         margin-top: {{ section.settings.media_margin_top_mobile }}px;
       }
     {% endif %}
+
+    /* Switch visibility on mobile devices */
+    .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image {
+      display: none;
+    }
+    .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image {
+      display: block;
+    }
   }
 {% endstyle %}
 
@@ -68,7 +84,17 @@
       alt: section.settings.heading,
       width: 1889,
       height: 833,
-      class: 'kopilot-cta-banner__image',
+      class: 'kopilot-cta-banner__image kopilot-desktop-image',
+      sizes: '100vw'
+    %}
+
+    {%- assign mobile_image = section.settings.image_mobile | default: section.settings.image -%}
+    {% render 'kopilot-image',
+      image: mobile_image,
+      fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
+      alt: section.settings.heading,
+      width: 767,
+      class: 'kopilot-cta-banner__image kopilot-mobile-image',
       sizes: '100vw'
     %}
   </div>
