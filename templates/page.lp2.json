@@ -720,6 +720,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "image": "shopify://shop_images/Mask_group_1.png",
+        "image_mobile": "shopify://shop_images/Group_2106667189.png",
         "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "",
