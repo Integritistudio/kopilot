@@ -61,6 +61,11 @@
 
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
+{% liquid
+  assign custom_cart_icon = section.settings.cart_icon
+  assign custom_search_icon = section.settings.search_icon
+%}
+
 {% assign is_overlay = false %}
 {% if request.page_type == 'index' and section.settings.header_overlay %}
   {% assign is_overlay = true %}
@@ -119,7 +124,17 @@
             aria-label="{{ 'accessibility.header_search_icon' | t }}"
             data-drawer="search_drawer"
           >
-            <div class="svg_wrapper">{{ 'icon-kopilot-search.svg' | inline_asset_content }}</div>
+            <div class="svg_wrapper">
+              {% if custom_search_icon != blank %}
+                {{
+                  custom_search_icon
+                  | image_url: width: 60
+                  | image_tag: class: 'header_search_icon', width: 30, height: 30, alt: '', aria_hidden: 'true'
+                }}
+              {% else %}
+                {{ 'icon-kopilot-search.svg' | inline_asset_content }}
+              {% endif %}
+            </div>
           </button>
         </div>
 
@@ -132,7 +147,15 @@
             data-drawer="search_drawer"
           >
             <div class="svg_wrapper">
-              {{ 'icon-search.svg' | inline_asset_content }}
+              {% if custom_search_icon != blank %}
+                {{
+                  custom_search_icon
+                  | image_url: width: 60
+                  | image_tag: class: 'header_search_icon', width: 30, height: 30, alt: '', aria_hidden: 'true'
+                }}
+              {% else %}
+                {{ 'icon-search.svg' | inline_asset_content }}
+              {% endif %}
             </div>
             <div class="header_search_left_text">
               <span>{{ 'accessibility.header_search' | t }}</span>
@@ -214,15 +237,23 @@
                 {% endif %}
               {% endunless %}
             >
-              <img
-                src="{{ 'cart.png' | asset_url }}"
-                class="header_cart_icon"
-                width="23"
-                height="23"
-                alt=""
-                aria-hidden="true"
-                loading="eager"
-              >
+              {% if custom_cart_icon != blank %}
+                {{
+                  custom_cart_icon
+                  | image_url: width: 46
+                  | image_tag: class: 'header_cart_icon', width: 23, height: 23, alt: '', loading: 'eager', aria_hidden: 'true'
+                }}
+              {% else %}
+                <img
+                  src="{{ 'cart.png' | asset_url }}"
+                  class="header_cart_icon"
+                  width="23"
+                  height="23"
+                  alt=""
+                  aria-hidden="true"
+                  loading="eager"
+                >
+              {% endif %}
               <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
             </a>
 
@@ -234,7 +265,15 @@
               data-drawer="search_drawer"
             >
               <div class="icon_wrapper">
-                {{ 'icon-kopilot-search.svg' | inline_asset_content }}
+                {% if custom_search_icon != blank %}
+                  {{
+                    custom_search_icon
+                    | image_url: width: 60
+                    | image_tag: class: 'header_search_icon', width: 30, height: 30, alt: '', aria_hidden: 'true'
+                  }}
+                {% else %}
+                  {{ 'icon-kopilot-search.svg' | inline_asset_content }}
+                {% endif %}
               </div>
             </button>
           </div>
@@ -664,6 +703,22 @@
       "id": "cta_text_color",
       "label": "CTA button text color",
       "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_icon",
+      "label": "Cart icon",
+      "info": "Leave blank to use the default cart icon."
+    },
+    {
+      "type": "image_picker",
+      "id": "search_icon",
+      "label": "Search icon",
+      "info": "Leave blank to use the default search icon."
     },
     {
       "type": "header",

@@ -1301,6 +1301,15 @@ a.mega_menu_child_link.menu_body {
   transition: opacity 0.2s ease;
 }
 
+.header_kopilot_search .icon_wrapper .header_search_icon,
+.header_mobile_search_btn .svg_wrapper .header_search_icon,
+button#header_search.header_search_left .svg_wrapper .header_search_icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 .header_kopilot_cart .header_cart_icon {
   display: block;
   width: 23.15px;
