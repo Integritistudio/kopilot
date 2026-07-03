@@ -1,0 +1,267 @@
+{{ 'section-kopilot-emergencies-split.css' | asset_url | stylesheet_tag }}
+
+<div class="kopilot-emergencies-section" id="kopilot-emergencies-section-{{ section.id }}">
+  <div class="kopilot-emergencies-container">
+    
+    <!-- COLUMN 1: LEFT TEXT CONTENT -->
+    <div class="kopilot-emergencies-text-col">
+      <div class="kopilot-emergencies-content-wrapper">
+        <h2 class="kopilot-emergencies-heading">{{ section.settings.heading }}</h2>
+        <p class="kopilot-emergencies-paragraph">{{ section.settings.paragraph }}</p>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: RIGHT MEDIA BLOCK -->
+    <div class="kopilot-emergencies-media-col">
+      {% if section.settings.image != blank %}
+        <img 
+          src="{{ section.settings.image | img_url: '1500x' }}" 
+          alt="{{ section.settings.heading | escape }}" 
+          loading="lazy"
+          class="kopilot-emergencies-hero-img"
+        >
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'kopilot-emergencies-hero-img placeholder-svg' }}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% style %}
+  /* --- MASTER TYPOGRAPHY & DESIGN TOKENS --- */
+  #kopilot-emergencies-section-{{ section.id }} {
+    --heading-font: "Elza", -apple-system, BlinkMacSystemFont, sans-serif;
+    --body-font: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+    /* Strict Desktop Container Padding Parameters */
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 93.5px;
+    padding-right: 0px; /* Allows the 696px right-side image to hit the edge of a 1440px canvas naturally */
+  }
+
+  .kopilot-emergencies-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1346.5px; /* 1440px total minus the 93.5px left padding */
+    margin: 0;
+    margin-left: auto;
+    gap: 90px; /* Exact Desktop Column Spacing Gap */
+  }
+
+  /* Column 1: Text Content Block */
+  .kopilot-emergencies-text-col {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 561px; /* Max bounds for heading width */
+  }
+
+  .kopilot-emergencies-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .kopilot-emergencies-heading {
+    font-family: var(--heading-font);
+    font-size: 60px;
+    font-weight: 300; /* Light */
+    line-height: 1.1; /* 110% Line Height */
+    letter-spacing: -1px;
+    color: #000000;
+    margin: 0;
+    max-width: 561px;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Dynamically enforce the precise desktop gap layout */
+  .kopilot-emergencies-heading + .kopilot-emergencies-paragraph {
+    margin-top: 25px; 
+  }
+
+  .kopilot-emergencies-paragraph {
+    font-family: var(--body-font);
+    font-size: 20px;
+    font-weight: 400; /* Regular */
+    line-height: 1.2; /* 120% Line Height */
+    letter-spacing: 0%;
+    color: #000000;
+    margin: 0;
+    max-width: 450px;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Column 2: Right Image Structure */
+  .kopilot-emergencies-media-col {
+    width: 696px; /* Exact Spec Boundary Box */
+    height: 704px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .kopilot-emergencies-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* --- FLUID RESPONSIVENESS (Intermediate viewports up to 1350px) --- */
+  @media screen and (max-width: 1350px) {
+    #kopilot-emergencies-section-{{ section.id }} {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    .kopilot-emergencies-container {
+      margin: 0 auto;
+      gap: 50px;
+    }
+    .kopilot-emergencies-text-col {
+      width: 50%;
+    }
+    .kopilot-emergencies-media-col {
+      width: 50%;
+      height: 550px;
+    }
+    .kopilot-emergencies-heading {
+      font-size: 48px;
+    }
+  }
+
+  /* --- STRETCH TABLET RESPONSIVENESS (426px to 991px Viewports) --- */
+  @media screen and (max-width: 991px) {
+    #kopilot-emergencies-section-{{ section.id }} {
+      padding: 50px 24px;
+    }
+    .kopilot-emergencies-container {
+      flex-direction: column; /* Stacks text on top natively */
+      gap: 40px;
+      align-items: center;
+    }
+    .kopilot-emergencies-text-col {
+      width: 100%;
+      max-width: 600px;
+      align-items: center;
+    }
+    .kopilot-emergencies-content-wrapper {
+      align-items: center;
+      width: 100%;
+    }
+    .kopilot-emergencies-heading {
+      text-align: center;
+      font-size: 40px;
+      max-width: 100%;
+    }
+    .kopilot-emergencies-paragraph {
+      text-align: center;
+      max-width: 100%;
+    }
+    .kopilot-emergencies-media-col {
+      width: 100%;
+      max-width: 696px;
+      height: 450px;
+    }
+  }
+
+  /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (At or Beneath 425px Layout Boundary) --- */
+  @media screen and (max-width: 425px) {
+    #kopilot-emergencies-section-{{ section.id }} {
+      /* Fluid padding logic for mobile layout */
+      padding-top: 50px;
+      padding-bottom: 0px; /* Usually 0 if stacked image hits bottom edge */
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .kopilot-emergencies-container {
+      flex-direction: column;
+      gap: 30px; 
+      align-items: stretch;
+    }
+
+    /* Isolated Padding for Text Content Frame only */
+    .kopilot-emergencies-text-col {
+      padding-left: 16px;
+      padding-right: 16px;
+      box-sizing: border-box;
+    }
+
+    .kopilot-emergencies-content-wrapper {
+      align-items: center;
+    }
+
+    .kopilot-emergencies-heading {
+      font-size: 30px; /* Precise Mobile Scale */
+      line-height: 1.04; 
+      max-width: 302px;
+      text-align: center;
+    }
+
+    .kopilot-emergencies-heading + .kopilot-emergencies-paragraph {
+      margin-top: 25px; /* Text Stack Gap Maintained */
+    }
+
+    .kopilot-emergencies-paragraph {
+      font-size: 15px; /* Precise Mobile Scale */
+      line-height: 120%; 
+      max-width: 328px;
+      text-align: center;
+    }
+
+    /* Right Image goes full-bleed edge to edge */
+    .kopilot-emergencies-media-col {
+      width: 100%;
+      height: 350px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Kopilot Emergencies Split",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built for emergencies. Ready every day."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph Copy",
+      "default": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Emergencies Split"
+    }
+  ]
+}
+{% endschema %}
