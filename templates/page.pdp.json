@@ -268,9 +268,18 @@
       "type": "kopilot-emergencies-split",
       "name": "Kopilot Emergencies Split",
       "settings": {
-        "heading": "Built for emergencies.<br> Ready every day.",
+        "heading": "Built for emergencies. Ready every day.",
         "paragraph": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.",
         "image": "shopify://shop_images/image_18659487.png",
+        "bg_color": "#ffffff"
+      }
+    },
+    "kopilot_tap_split_nAXGkd": {
+      "type": "kopilot-tap-split",
+      "name": "Kopilot Tap Split",
+      "settings": {
+        "image": "shopify://shop_images/kopilot-pdp-tap.jpg",
+        "heading": "Your critical emergency information in one tap.",
         "bg_color": "#ffffff"
       }
     },
@@ -659,6 +668,7 @@
     "kopilot_pdp",
     "kopilot_home_partners_E76kbb",
     "kopilot_emergencies_split_rim7dr",
+    "kopilot_tap_split_nAXGkd",
     "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
