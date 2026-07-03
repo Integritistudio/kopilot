@@ -9,6 +9,9 @@
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
+    .left1-text{
+      text-align:left;
+    }
   }
 {% endstyle %}
 
@@ -117,12 +120,12 @@
         <div class="kopilot-hero__copy">
           <div class="kopilot-hero__title-group">
             {% if section.settings.heading_line_1 != blank %}
-              <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium">
+              <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium left1-text ">
                 {{ section.settings.heading_line_1 }}
               </h1>
             {% endif %}
             {% if section.settings.heading_line_2 != blank %}
-              <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading">
+              <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading left1-text">
                 {{ section.settings.heading_line_2 }}
               </p>
             {% endif %}
