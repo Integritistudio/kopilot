@@ -181,8 +181,10 @@
     width: 100%;
     max-width: 21.8rem;
     color: #fff !important;
+  } 
+  .lp1-left{
+    text-align:left;
   }
-
   .kopilot-hero__title {
     font-size: clamp(2.6rem, 8.33vw, 3rem);
     line-height: 110%;
