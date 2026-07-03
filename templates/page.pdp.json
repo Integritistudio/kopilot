@@ -268,27 +268,10 @@
       "type": "kopilot-emergencies-split",
       "name": "Kopilot Emergencies Split",
       "settings": {
-        "heading": "Built for emergencies.<br> Ready every day.",
+        "heading": "Built for emergencies. Ready every day.",
         "paragraph": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.",
         "image": "shopify://shop_images/image_18659487.png",
         "bg_color": "#ffffff"
-      }
-    },
-    "kopilot_image_text": {
-      "type": "kopilot-image-text",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "image": "shopify://shop_images/image_18659487.png",
-        "image_position": "left",
-        "text_font_family": "Elza",
-        "text_alignment_mobile": "center",
-        "heading": "<h2>Built for emergencies. Ready every day.</h2>",
-        "text": "<p>In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
       }
     },
     "kopilot_pdp_tap": {
@@ -676,7 +659,6 @@
     "kopilot_pdp",
     "kopilot_home_partners_E76kbb",
     "kopilot_emergencies_split_rim7dr",
-    "kopilot_image_text",
     "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
