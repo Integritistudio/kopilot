@@ -531,7 +531,8 @@
             "features": "<ul><li>Multiple mounting solutions <br/>for various gear</li><li>Second tag makes <br/>a great gift</li></ul>",
             "button_label": "GET 2 TAGS",
             "button_style": "outline",
-            "button_link": ""
+            "button_link": "",
+            "list_icon_mobile": "shopify://shop_images/Vector_1730_865cf2ce-0a50-451c-9979-e18009948507.svg"
           }
         },
         "t3": {
@@ -550,7 +551,8 @@
             "features": "<ul><li>Equip multiple helmets, gear setups, or friends and family members</li><li>Greatest savings, <br/>most coverage</li></ul>",
             "button_label": "GET 3 TAGS",
             "button_style": "outline",
-            "button_link": ""
+            "button_link": "",
+            "list_icon_mobile": "shopify://shop_images/Vector_1730_865cf2ce-0a50-451c-9979-e18009948507.svg"
           }
         }
       },
