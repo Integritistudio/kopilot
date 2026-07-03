@@ -414,7 +414,7 @@
 
 @media screen and (max-width: 479px) {
   .kopilot-btn:not(.kopilot-cta-banner__btn) {
-    width: 100%;
+    /* width: 100%; */
     max-width: 100%;
     box-sizing: border-box;
   }
