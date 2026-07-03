@@ -10,12 +10,12 @@
     }
   {% endif %}
 
-  /* Handle Desktop vs Mobile Image Visibility */
-  .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image {
-    display: block;
+  /* Desktop View Rules */
+  .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image-wrapper {
+    display: block !important;
   }
-  .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image {
-    display: none;
+  .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image-wrapper {
+    display: none !important;
   }
 
   @media screen and (max-width: 767px) {
@@ -30,12 +30,12 @@
       }
     {% endif %}
 
-    /* Switch visibility on mobile devices */
-    .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image {
-      display: none;
+    /* Mobile View Rules: Hide Desktop, Show Mobile */
+    .kopilot-cta-banner--{{ section.id }} .kopilot-desktop-image-wrapper {
+      display: none !important;
     }
-    .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image {
-      display: block;
+    .kopilot-cta-banner--{{ section.id }} .kopilot-mobile-image-wrapper {
+      display: block !important;
     }
   }
 {% endstyle %}
@@ -78,25 +78,29 @@
   {% endif %}
 
   <div class="kopilot-cta-banner__media">
-    {% render 'kopilot-image',
-      image: section.settings.image,
-      fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
-      alt: section.settings.heading,
-      width: 1889,
-      height: 833,
-      class: 'kopilot-cta-banner__image kopilot-desktop-image',
-      sizes: '100vw'
-    %}
+    <div class="kopilot-desktop-image-wrapper">
+      {% render 'kopilot-image',
+        image: section.settings.image,
+        fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
+        alt: section.settings.heading,
+        width: 1889,
+        height: 833,
+        class: 'kopilot-cta-banner__image',
+        sizes: '100vw'
+      %}
+    </div>
 
-    {%- assign mobile_image = section.settings.image_mobile | default: section.settings.image -%}
-    {% render 'kopilot-image',
-      image: mobile_image,
-      fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
-      alt: section.settings.heading,
-      width: 767,
-      class: 'kopilot-cta-banner__image kopilot-mobile-image',
-      sizes: '100vw'
-    %}
+    <div class="kopilot-mobile-image-wrapper">
+      {%- assign mobile_image = section.settings.image_mobile | default: section.settings.image -%}
+      {% render 'kopilot-image',
+        image: mobile_image,
+        fallback: 'bad64fb19fb42742653b28527e5a419202fe681f.png',
+        alt: section.settings.heading,
+        width: 767,
+        class: 'kopilot-cta-banner__image',
+        sizes: '100vw'
+      %}
+    </div>
   </div>
 </section>
 
