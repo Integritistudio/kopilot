@@ -47,12 +47,11 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    max-width: 1332px; /* 1440px minus 54px*2 padding */
+    max-width: 1332px;
     margin: 0 auto;
-    gap: 31px; /* Desktop Column Spacing Gap */
+    gap: 31px;
   }
 
-  /* Column 1: Image Structure */
   .kopilot-tap-media-col {
     width: 672px; 
     height: 672px;
@@ -66,7 +65,6 @@
     display: block;
   }
 
-  /* Column 2: Text Content Block */
   .kopilot-tap-text-col {
     flex-grow: 1;
     display: flex;
@@ -77,7 +75,7 @@
 
   .kopilot-tap-heading {
     font-family: var(--heading-font);
-    font-size: 60px;
+    font-size: 60px; /* Base 1440px size */
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -1px;
@@ -86,7 +84,7 @@
     text-align: left;
   }
 
-  /* --- RESPONSIVE LAYOUTS --- */
+  /* --- FLUID RESPONSIVE TYPOGRAPHY & LAYOUTS --- */
   @media screen and (max-width: 1439px) {
     #kopilot-tap-section-{{ section.id }} {
       padding-left: 33px;
@@ -94,6 +92,9 @@
     }
     .kopilot-tap-container {
       gap: 26px;
+    }
+    .kopilot-tap-heading {
+      font-size: clamp(30px, 4vw, 60px); /* Fluid scale down */
     }
   }
 
@@ -112,6 +113,7 @@
     }
     .kopilot-tap-heading {
       text-align: center;
+      font-size: clamp(30px, 6vw, 40px);
     }
   }
 
@@ -126,7 +128,7 @@
       padding-right: 33px;
     }
     .kopilot-tap-heading {
-      font-size: 30px;
+      font-size: 30px; /* Perfect 360px size */
       line-height: 1.04;
     }
     .kopilot-tap-media-col {
