@@ -286,112 +286,62 @@
     "features_grid_8Yk8XH": {
       "type": "features-grid",
       "blocks": {
-        "feature_XYMnTV": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_34.png",
-            "title": ""
-          }
-        },
         "feature_WF6kfd": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Group_39_3a28805a-1bb4-4cdb-9705-e302bc20413a.svg",
             "title": "Durable and waterproof"
           }
+        },
+        "feature_XYMnTV": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_36.svg",
+            "title": "No battery/<br>No charging"
+          }
+        },
+        "feature_RmaTFT": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_38_45a9a554-ac81-44c5-b738-1ee751795e11.svg",
+            "title": "No subscription required"
+          }
+        },
+        "feature_UrPxXp": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_35.svg",
+            "title": "Instantly access emergency info"
+          }
+        },
+        "feature_Lrwjjm": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_37_740c2d2a-a1e2-45b2-b836-60197454371f.svg",
+            "title": "Translates into 24 languages"
+          }
+        },
+        "feature_7pCwmQ": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_34_24c480da-2b6b-4734-b3bf-474fc8a766ef.svg",
+            "title": "Works everywhere"
+          }
         }
       },
       "block_order": [
+        "feature_WF6kfd",
         "feature_XYMnTV",
-        "feature_WF6kfd"
+        "feature_RmaTFT",
+        "feature_UrPxXp",
+        "feature_Lrwjjm",
+        "feature_7pCwmQ"
       ],
       "name": "Kopilot Features Grid",
       "settings": {
         "heading": "The details that matter.",
         "image": "shopify://shop_images/IMG_3285_1_45595bb2-5a79-447a-9a26-0b589ba709ac.png",
-        "bg_color": "#F1F1F1"
-      }
-    },
-    "kopilot_features": {
-      "type": "kopilot-features",
-      "blocks": {
-        "f1": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_39.png",
-            "label": "<p>Durable and waterproof</p>"
-          }
-        },
-        "f2": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_36.png",
-            "label": "<p>No battery / <br/>No charging</p>"
-          }
-        },
-        "f3": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_36_4b65d1d4-716a-4a5f-bc2e-d25ca1b3e7b8.png",
-            "label": "<p>No subscription required<br/><br/></p>"
-          }
-        },
-        "f4": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_35.png",
-            "label": "<p>Instantly access emergency info</p>"
-          }
-        },
-        "f5": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_38.svg",
-            "label": "<p>No subscription required</p>"
-          }
-        },
-        "f6": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_34.svg",
-            "label": "<p>Works everywhere</p>"
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4",
-        "f5",
-        "f6"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/IMG_3285_1.png",
-        "image_position": "right",
-        "heading_rt": "<p>The details that<br/>matter.</p>",
-        "heading_font_family": "Elza",
-        "heading_font_size": 60,
-        "heading_line_height": 110,
-        "heading_font_weight": "300",
-        "text": "",
-        "text_padding_top": 16,
-        "text_padding_bottom": 60,
-        "content_padding_top": 72,
-        "content_padding_right": 24,
-        "content_padding_bottom": 72,
-        "content_padding_left": 0,
-        "content_padding_top_mobile": 0,
-        "content_padding_right_mobile": 0,
-        "content_padding_bottom_mobile": 0,
-        "content_padding_left_mobile": 0,
-        "grid_padding_top": 60,
-        "grid_padding_top_mobile": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "bg_color": "#f1f1f1"
       }
     },
     "kopilot_pdp_privacy": {
@@ -688,7 +638,6 @@
     "kopilot_emergencies_split_rim7dr",
     "kopilot_tap_split_nAXGkd",
     "features_grid_8Yk8XH",
-    "kopilot_features",
     "kopilot_pdp_privacy",
     "kopilot_home_testimonials_NJaUJU",
     "kopilot_reviews",
