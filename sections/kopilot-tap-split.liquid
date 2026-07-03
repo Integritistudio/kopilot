@@ -28,13 +28,17 @@
 </div>
 
 {% style %}
+  /* --- MASTER TYPOGRAPHY & DESIGN TOKENS --- */
   #kopilot-tap-section-{{ section.id }} {
     --heading-font: "Elza", -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: {{ section.settings.bg_color }};
     box-sizing: border-box;
     width: 100%;
     overflow: hidden;
-    padding: 59px 54px;
+    padding-top: 59px;
+    padding-bottom: 59px;
+    padding-left: 54px;
+    padding-right: 54px;
   }
 
   .kopilot-tap-container {
@@ -71,7 +75,7 @@
 
   .kopilot-tap-heading {
     font-family: var(--heading-font);
-    font-size: 60px;
+    font-size: 60px; /* Base 1440px size */
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -1px;
@@ -80,44 +84,49 @@
     text-align: left;
   }
 
-  /* --- RESPONSIVE LAYOUTS --- */
+  /* --- FLUID & MOBILE RESPONSIVE LAYOUTS --- */
   
-  /* Tablet: Center image and stack */
+  /* Tablets and below: Apply mobile layout rules */
   @media screen and (max-width: 1024px) {
     #kopilot-tap-section-{{ section.id }} {
-      padding: 50px 33px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      padding-left: 0;
+      padding-right: 0;
     }
+    
     .kopilot-tap-container {
       flex-direction: column-reverse;
       align-items: center;
-      gap: 26px;
+      gap: 26px; /* Mobile gap constraint */
     }
+
     .kopilot-tap-media-col {
       width: 100%;
-      max-width: 672px; /* Centers the image */
       height: 400px;
-      margin: 0 auto;
     }
+
     .kopilot-tap-text-col {
       max-width: 100%;
+      padding-left: 33px;
+      padding-right: 33px;
       align-items: center;
     }
+
     .kopilot-tap-heading {
       text-align: center;
-      font-size: clamp(30px, 5vw, 40px);
+      font-size: clamp(30px, 5vw, 40px); /* Scales smoothly */
     }
   }
 
-  /* Mobile: 360px specific */
+  /* Pixel Perfect Mobile Override (Under 426px) */
   @media screen and (max-width: 425px) {
-    #kopilot-tap-section-{{ section.id }} {
-      padding: 50px 33px;
-    }
     .kopilot-tap-media-col {
       height: 350px;
     }
     .kopilot-tap-heading {
       font-size: 30px;
+      line-height: 1.04;
     }
   }
 {% endstyle %}
