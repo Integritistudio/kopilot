@@ -1,0 +1,260 @@
+{{ 'section-kopilot-asymmetric-split.css' | asset_url | stylesheet_tag }}
+
+<div class="kopilot-split-section" id="kopilot-split-section-{{ section.id }}">
+  <div class="kopilot-split-container">
+    
+    <!-- COLUMN 1: LEFT MEDIA BLOCK -->
+    <div class="kopilot-split-media-col">
+      {% if section.settings.image != blank %}
+        <img 
+          src="{{ section.settings.image | img_url: '1500x' }}" 
+          alt="{{ section.settings.heading | escape }}" 
+          loading="lazy"
+          class="kopilot-split-hero-img"
+        >
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'kopilot-split-hero-img placeholder-svg' }}
+      {% endif %}
+    </div>
+
+    <!-- COLUMN 2: RIGHT CONTENT BLOCK -->
+    <div class="kopilot-split-text-col">
+      <div class="kopilot-split-content-wrapper">
+        <h2 class="kopilot-split-heading">{{ section.settings.heading }}</h2>
+        <p class="kopilot-split-paragraph">{{ section.settings.paragraph }}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% style %}
+  /* --- MASTER TYPOGRAPHY & DESIGN TOKENS --- */
+  #kopilot-split-section-{{ section.id }} {
+    --heading-font: "Elza", -apple-system, BlinkMacSystemFont, sans-serif;
+    --body-font: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: {{ section.settings.bg_color_gradient }};
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+    /* Strict Desktop Container Padding Parameters */
+    padding-top: 44.57px;
+    padding-bottom: 40.43px;
+    padding-left: 71px;
+    padding-right: 54px;
+  }
+
+  .kopilot-split-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1315px; /* 1440px Canvas Max Width minus 71px Left and 54px Right paddings */
+    margin: 0 auto;
+    gap: 52px; /* Fixed Desktop Column Spacing Gap */
+  }
+
+  /* Column 1: Asymmetric Left Image Structure */
+  .kopilot-split-media-col {
+    width: 636px; /* Exact Spec Boundary Box */
+    height: 550px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .kopilot-split-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Column 2: Content Layout Stack */
+  .kopilot-split-text-col {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .kopilot-split-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .kopilot-split-heading {
+    font-family: var(--heading-font);
+    font-size: 60px;
+    font-weight: 300; /* Light */
+    line-height: 1.1; /* 110% Line Height */
+    letter-spacing: -1px;
+    color: #000000;
+    margin: 0;
+    max-width: 627px;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Dynamically enforce the precise desktop gap layout */
+  .kopilot-split-heading + .kopilot-split-paragraph {
+    margin-top: 24px; 
+  }
+
+  .kopilot-split-paragraph {
+    font-family: var(--body-font);
+    font-size: 20px;
+    font-weight: 400; /* Regular */
+    line-height: 1.2; /* 120% Line Height */
+    letter-spacing: 0%;
+    color: #000000;
+    margin: 0;
+    max-width: 404px;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* --- FLUID RESPONSIVENESS (All intermediate screens up to 1200px) --- */
+  @media screen and (max-width: 1200px) {
+    #kopilot-split-section-{{ section.id }} {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    .kopilot-split-media-col {
+      width: 50%;
+      height: 450px;
+    }
+    .kopilot-split-heading {
+      font-size: 46px;
+    }
+  }
+
+  /* --- STRETCH TABLET RESPONSIVENESS (426px to 991px Viewports) --- */
+  @media screen and (max-width: 991px) {
+    #kopilot-split-section-{{ section.id }} {
+      padding: 40px 24px;
+    }
+
+    .kopilot-split-container {
+      flex-direction: column; /* Stacked naturally */
+      gap: 36px;
+      align-items: center;
+    }
+
+    .kopilot-split-media-col {
+      width: 100%;
+      max-width: 636px;
+      height: 420px;
+    }
+
+    .kopilot-split-content-wrapper {
+      align-items: center;
+      width: 100%;
+    }
+
+    .kopilot-split-heading {
+      text-align: center;
+      font-size: 40px;
+      max-width: 100%;
+    }
+
+    .kopilot-split-paragraph {
+      text-align: center;
+      max-width: 550px;
+    }
+  }
+
+  /* --- PIXEL PERFECT RESPONSIVE BREAKPOINT (At or Beneath 425px Layout Boundary) --- */
+  @media screen and (max-width: 425px) {
+    #kopilot-split-section-{{ section.id }} {
+      /* Implements exact Mobile padding rules */
+      padding-top: 50px;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .kopilot-split-container {
+      flex-direction: column;
+      gap: 26px; /* Exact mobile column gap between image and text layout */
+      align-items: stretch;
+      max-width: 360px;
+    }
+
+    /* Left Image goes completely full-bleed edge to edge */
+    .kopilot-split-media-col {
+      width: 100%;
+      height: 300px;
+    }
+
+    /* Isolated Padding for Text Content Frame only */
+    .kopilot-split-text-col {
+      padding-left: 16px;
+      padding-right: 16px;
+      box-sizing: border-box;
+    }
+
+    .kopilot-split-content-wrapper {
+      align-items: center;
+    }
+
+    .kopilot-split-heading {
+      font-size: 30px; /* Precise Mobile Scale */
+      line-height: 1.04; /* Exact 104% Line Height Spec */
+      letter-spacing: -1px;
+      max-width: 302px;
+      text-align: center;
+    }
+
+    .kopilot-split-heading + .kopilot-split-paragraph {
+      margin-top: 25px; /* Exact mobile typography layout flow stack gap */
+    }
+
+    .kopilot-split-paragraph {
+      font-size: 15px; /* Precise Mobile Scale */
+      line-height: 120%; /* 120% line height */
+      max-width: 328px;
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Kopilot Asymmetric Split",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "If something goes wrong, first responders need more than your name."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph Copy",
+      "default": "After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment."
+    },
+    {
+      "type": "color",
+      "id": "bg_color_gradient",
+      "label": "Section Background Color/Gradient",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kopilot Asymmetric Split"
+    }
+  ]
+}
+{% endschema %}
