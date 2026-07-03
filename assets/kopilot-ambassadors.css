@@ -424,3 +424,8 @@
     font-size: 20px;
   }
 }
+@media screen (max-width:768px){
+  .kopilot-ambassadors__name {
+    font-size: 20px;
+  }
+}
