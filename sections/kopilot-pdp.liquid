@@ -125,7 +125,20 @@
     color: #F20008 !important;
     background-color: #FECECE !important;
   }
+@media screen and (max-width: 767px) {
+  .kopilot-pdp__tier-price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 4px;
+    column-gap: 8px;
+  }
 
+  .kopilot-pdp__tier-price-pdp {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
   .kopilot-pdp__tier-dot {
     display: inline-flex;
     align-items: center;
