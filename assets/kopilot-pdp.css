@@ -261,8 +261,8 @@
   align-items: center;
   justify-content: center;
   padding: 4.53px 6.04px;
-  background: #ef0008;
-  color: #fff;
+  /* background: #ef0008;
+  color: #fff; */
   font-family: var(--kopilot-font-family);
   font-size: 15px;
   font-weight: 400;
