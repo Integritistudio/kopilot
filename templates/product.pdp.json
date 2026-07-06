@@ -507,6 +507,84 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "kopilot_faq_mGbFjB": {
+      "type": "kopilot-faq",
+      "blocks": {
+        "question_zHRRNE": {
+          "type": "question",
+          "settings": {
+            "question": "How does KOPILOT.ID work in an emergency?",
+            "answer": "<p>If something happens, anyone with a smartphone can tap your KOPILOT.ID NFC tag to instantly access your medical information, allergies, medications, and emergency contacts; no app required.</p>"
+          }
+        },
+        "question_KDqFhR": {
+          "type": "question",
+          "settings": {
+            "question": "Do people need to download an app to scan the tag?",
+            "answer": "<p>No app needed. Your profile opens directly in a smartphone browser when someone taps their phone on the NFC tag.</p>"
+          }
+        },
+        "question_bzFJRJ": {
+          "type": "question",
+          "settings": {
+            "question": "Does KOPILOT.ID work without cell service?",
+            "answer": "<p>Yes. KOPILOT.ID is waterproof, battery-free, and designed to work in real-world conditions without charging or cell signal</p>"
+          }
+        },
+        "question_Caw83F": {
+          "type": "question",
+          "settings": {
+            "question": "What information can I add to my profile?",
+            "answer": "<p>You can add medical conditions, allergies, medications, emergency contacts, personalized notes, and other important information responders may need in an emergency.</p>"
+          }
+        },
+        "question_8rBjR6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I manage multiple tags from one account?",
+            "answer": "<p>Yes. You can manage multiple profiles and tags for family members, friends, or your crew directly from the KOPILOT.ID app.</p>"
+          }
+        },
+        "question_8XBcAV": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a subscription required?",
+            "answer": "<p>No monthly subscription is required to use your KOPILOT.ID NFC tag or manage your profile.</p>"
+          }
+        },
+        "question_Cb8Bh4": {
+          "type": "question",
+          "settings": {
+            "question": "What gear can I attach the NFC tag to?",
+            "answer": "<p>KOPILOT.ID is designed for helmets, goggles, packs, bikes, jackets, zipper pulls, keychains, and other everyday or outdoor gear using the included mounting options.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_zHRRNE",
+        "question_KDqFhR",
+        "question_bzFJRJ",
+        "question_Caw83F",
+        "question_8rBjR6",
+        "question_8XBcAV",
+        "question_Cb8Bh4"
+      ],
+      "name": "Kopilot FAQ",
+      "settings": {
+        "color_scheme": "",
+        "heading": "Questions",
+        "heading_font_size": 55,
+        "heading_font_weight": "700",
+        "heading_line_height": "",
+        "heading_font_size_mobile": 30,
+        "heading_font_weight_mobile": "700",
+        "heading_line_height_mobile": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
     }
   },
   "order": [
@@ -517,6 +595,7 @@
     "features_grid_3UECwt",
     "kopilot_pdp_privacy_64q4yR",
     "kopilot_home_testimonials_tnMUzC",
-    "kopilot_reviews"
+    "kopilot_reviews",
+    "kopilot_faq_mGbFjB"
   ]
 }
