@@ -388,6 +388,16 @@ padding:7.25px 18.29px;
   endif
 
   assign gallery_fallbacks = 'kopilot-pdp-gallery-1.jpg,kopilot-pdp-gallery-2.jpg,kopilot-pdp-gallery-3.jpg,kopilot-pdp-gallery-4.jpg,kopilot-pdp-gallery-5.jpg,kopilot-pdp-gallery-6.jpg' | split: ','
+
+  assign gallery_blocks = section.blocks | where: "type", "gallery_slide"
+  if gallery_blocks.size > 0
+    assign use_product_images = false
+    assign gallery_items = gallery_blocks
+  else
+    assign use_product_images = true
+    assign gallery_items = pdp_product.images
+  endif
+  assign image_limit = section.settings.gallery_image_limit | default: 6
 %}
 
 {% if pdp_product == blank %}
@@ -425,86 +435,128 @@ padding:7.25px 18.29px;
     <div class="kopilot-pdp__layout">
       <div class="kopilot-pdp__gallery">
         <div class="kopilot-pdp__gallery-grid">
-          {% for block in section.blocks %}
-            {% if block.type == 'gallery_slide' %}
-              <article
-                class="kopilot-pdp__gallery-cell"
-                {{ block.shopify_attributes }}
-              >
-                {% if block.settings.show_special_banner %}
-                  <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                {% endif %}
+          {% for item in gallery_items limit: image_limit %}
+            {% liquid
+              if use_product_images
+                assign slide_image = item
+                assign show_special_banner = false
+                assign special_banner_text = ''
+                assign slide_alt = item.alt | default: pdp_product.title
+                assign text_line_1 = ''
+                assign text_line_2 = ''
+                assign text_position = 'bottom'
+                assign shopify_attributes = ''
+              else
+                assign slide_image = item.settings.image
+                assign show_special_banner = item.settings.show_special_banner
+                assign special_banner_text = item.settings.special_banner_text
+                assign slide_alt = item.settings.text_line_1 | default: pdp_product.title
+                assign text_line_1 = item.settings.text_line_1
+                assign color_line_1 = item.settings.color_line_1
+                assign transform_line_1 = item.settings.transform_line_1
+                assign text_line_2 = item.settings.text_line_2
+                assign color_line_2 = item.settings.color_line_2
+                assign transform_line_2 = item.settings.transform_line_2
+                assign text_position = item.settings.text_position | default: 'bottom'
+                assign shopify_attributes = item.shopify_attributes
+              endif
+            %}
+            <article
+              class="kopilot-pdp__gallery-cell"
+              {{ shopify_attributes }}
+            >
+              {% if show_special_banner %}
+                <div class="kopilot-pdp__special-banner">{{ special_banner_text }}</div>
+              {% endif %}
 
-                {% render 'kopilot-image',
-                  image: block.settings.image,
-                  fallback: gallery_fallbacks[forloop.index0],
-                  alt: block.settings.text_line_1,
-                  width: 800,
-                  class: 'kopilot-pdp__gallery-image'
-                %}
-                
-                {% if block.settings.text_line_1 != blank or block.settings.text_line_2 != blank %}
-                  <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ block.settings.text_position | default: 'bottom' }}">
-                    {% if block.settings.text_line_1 != blank %}
-                      <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_1 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_1 }}">{{ block.settings.text_line_1 | newline_to_br }}</p>
-                    {% endif %}
-                    {% if block.settings.text_line_2 != blank %}
-                      <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_2 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_2 }}">{{ block.settings.text_line_2 | newline_to_br }}</p>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </article>
-            {% endif %}
+              {% render 'kopilot-image',
+                image: slide_image,
+                fallback: gallery_fallbacks[forloop.index0],
+                alt: slide_alt,
+                width: 800,
+                class: 'kopilot-pdp__gallery-image'
+              %}
+              
+              {% if text_line_1 != blank or text_line_2 != blank %}
+                <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ text_position }}">
+                  {% if text_line_1 != blank %}
+                    <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ color_line_1 }} kopilot-pdp__gallery-text-line--{{ transform_line_1 }}">{{ text_line_1 | newline_to_br }}</p>
+                  {% endif %}
+                  {% if text_line_2 != blank %}
+                    <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ color_line_2 }} kopilot-pdp__gallery-text-line--{{ transform_line_2 }}">{{ text_line_2 | newline_to_br }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </article>
           {% endfor %}
         </div>
 
         <div class="kopilot-pdp__gallery-mobile" data-kopilot-carousel>
           <div class="kopilot-pdp__carousel-viewport">
             <div class="kopilot-pdp__carousel-track" data-kopilot-carousel-track>
-              {% for block in section.blocks %}
-                {% if block.type == 'gallery_slide' %}
-                  <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ block.shopify_attributes }}>
-                    {% if block.settings.show_special_banner %}
-                      <div class="kopilot-pdp__special-banner">{{ block.settings.special_banner_text }}</div>
-                    {% endif %}
+              {% for item in gallery_items limit: image_limit %}
+                {% liquid
+                  if use_product_images
+                    assign slide_image = item
+                    assign show_special_banner = false
+                    assign special_banner_text = ''
+                    assign slide_alt = item.alt | default: pdp_product.title
+                    assign text_line_1 = ''
+                    assign text_line_2 = ''
+                    assign text_position = 'bottom'
+                    assign shopify_attributes = ''
+                  else
+                    assign slide_image = item.settings.image
+                    assign show_special_banner = item.settings.show_special_banner
+                    assign special_banner_text = item.settings.special_banner_text
+                    assign slide_alt = item.settings.text_line_1 | default: pdp_product.title
+                    assign text_line_1 = item.settings.text_line_1
+                    assign color_line_1 = item.settings.color_line_1
+                    assign transform_line_1 = item.settings.transform_line_1
+                    assign text_line_2 = item.settings.text_line_2
+                    assign color_line_2 = item.settings.color_line_2
+                    assign transform_line_2 = item.settings.transform_line_2
+                    assign text_position = item.settings.text_position | default: 'bottom'
+                    assign shopify_attributes = item.shopify_attributes
+                  endif
+                %}
+                <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ shopify_attributes }}>
+                  {% if show_special_banner %}
+                    <div class="kopilot-pdp__special-banner">{{ special_banner_text }}</div>
+                  {% endif %}
 
-                    {% render 'kopilot-image',
-                      image: block.settings.image,
-                      fallback: gallery_fallbacks[forloop.index0],
-                      alt: block.settings.text_line_1,
-                      width: 800,
-                      loading: forloop.first
-                    %}
-                    
-                    {% if block.settings.text_line_1 != blank or block.settings.text_line_2 != blank %}
-                      <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ block.settings.text_position | default: 'bottom' }}">
-                        {% if block.settings.text_line_1 != blank %}
-                          <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_1 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_1 }}">{{ block.settings.text_line_1 | newline_to_br }}</p>
-                        {% endif %}
-                        {% if block.settings.text_line_2 != blank %}
-                          <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ block.settings.color_line_2 }} kopilot-pdp__gallery-text-line--{{ block.settings.transform_line_2 }}">{{ block.settings.text_line_2 | newline_to_br }}</p>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
+                  {% render 'kopilot-image',
+                    image: slide_image,
+                    fallback: gallery_fallbacks[forloop.index0],
+                    alt: slide_alt,
+                    width: 800,
+                    loading: forloop.first
+                  %}
+                  
+                  {% if text_line_1 != blank or text_line_2 != blank %}
+                    <div class="kopilot-pdp__gallery-text-container kopilot-pdp__gallery-text-container--{{ text_position }}">
+                      {% if text_line_1 != blank %}
+                        <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ color_line_1 }} kopilot-pdp__gallery-text-line--{{ transform_line_1 }}">{{ text_line_1 | newline_to_br }}</p>
+                      {% endif %}
+                      {% if text_line_2 != blank %}
+                        <p class="kopilot-pdp__gallery-text-line kopilot-pdp__gallery-text-line--{{ color_line_2 }} kopilot-pdp__gallery-text-line--{{ transform_line_2 }}">{{ text_line_2 | newline_to_br }}</p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
               {% endfor %}
             </div>
           </div>
           <div class="kopilot-pdp__carousel-dots">
-            {% assign slide_index = 0 %}
-            {% for block in section.blocks %}
-              {% if block.type == 'gallery_slide' %}
-                <button
-                  type="button"
-                  class="kopilot-pdp__carousel-dot{% if slide_index == 0 %} is-active{% endif %}"
-                  data-kopilot-carousel-dot
-                  data-index="{{ slide_index }}"
-                  aria-label="Show slide {{ slide_index | plus: 1 }}"
-                  {% if slide_index == 0 %}aria-current="true"{% endif %}
-                ></button>
-                {% assign slide_index = slide_index | plus: 1 %}
-              {% endif %}
+            {% for item in gallery_items limit: image_limit %}
+              <button
+                type="button"
+                class="kopilot-pdp__carousel-dot{% if forloop.first %} is-active{% endif %}"
+                data-kopilot-carousel-dot
+                data-index="{{ forloop.index0 }}"
+                aria-label="Show slide {{ forloop.index }}"
+                {% if forloop.first %}aria-current="true"{% endif %}
+              ></button>
             {% endfor %}
           </div>
         </div>
@@ -728,6 +780,16 @@ padding:7.25px 18.29px;
       "id": "product",
       "label": "Product",
       "info": "Required on page templates. On product templates, leave empty to use the current product."
+    },
+    {
+      "type": "range",
+      "id": "gallery_image_limit",
+      "label": "Gallery images limit",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "info": "Maximum number of gallery images or cards to display."
     },
     {
       "type": "color_scheme",
