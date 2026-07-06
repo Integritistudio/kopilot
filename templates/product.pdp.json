@@ -271,6 +271,60 @@
     },
     "features_grid_3UECwt": {
       "type": "features-grid",
+      "blocks": {
+        "feature_8jbF3m": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        },
+        "feature_x9kMMN": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        },
+        "feature_kCbKgz": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        },
+        "feature_tNNtFH": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        },
+        "feature_hpaifh": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        },
+        "feature_M739XP": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        },
+        "feature_9QpJgA": {
+          "type": "feature",
+          "settings": {
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_8jbF3m",
+        "feature_x9kMMN",
+        "feature_kCbKgz",
+        "feature_tNNtFH",
+        "feature_hpaifh",
+        "feature_M739XP",
+        "feature_9QpJgA"
+      ],
       "name": "Kopilot Features Grid",
       "settings": {
         "heading": "The details that matter.",
