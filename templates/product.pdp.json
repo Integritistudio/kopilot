@@ -559,6 +559,13 @@
             "question": "What gear can I attach the NFC tag to?",
             "answer": "<p>KOPILOT.ID is designed for helmets, goggles, packs, bikes, jackets, zipper pulls, keychains, and other everyday or outdoor gear using the included mounting options.</p>"
           }
+        },
+        "question_x9BKr3": {
+          "type": "question",
+          "settings": {
+            "question": "Why should I buy a multi-pack?",
+            "answer": "<p>Multi-packs are perfect for families, friends, riding groups, or multiple gear setups, while saving you more on each additional tag.</p>"
+          }
         }
       },
       "block_order": [
@@ -568,7 +575,8 @@
         "question_Caw83F",
         "question_8rBjR6",
         "question_8XBcAV",
-        "question_Cb8Bh4"
+        "question_Cb8Bh4",
+        "question_x9BKr3"
       ],
       "name": "Kopilot FAQ",
       "settings": {
