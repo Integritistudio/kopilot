@@ -600,3 +600,22 @@
   .kopilot-hero__title-group {
     gap: 0.3125rem; 
   }
+  @media screen and (min-width: 425px) and (max-width: 767px) {
+  .kopilot-hero {
+    --kopilot-hero-content-w: min(40rem, calc(100vw - (var(--kopilot-hero-pad-x) * 2)));
+    --kopilot-hero-btn-w: min(28rem, var(--kopilot-hero-content-w));
+  }
+  .kopilot-hero__title-group {
+    max-width: 100%;
+  }
+  .kopilot-hero__title.kopilot-heading--medium {
+    max-width: 100%;
+  }
+  .kopilot-hero__title--light {
+    max-width: 100%;
+  }
+  .kopilot-hero__description,
+  .kopilot-hero__description.kopilot-body {
+    max-width: 100%;
+  }
+}
