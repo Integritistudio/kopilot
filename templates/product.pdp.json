@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "kopilot_banner_Qcykpq": {
+      "type": "kopilot-banner",
+      "name": "Kopilot special banner",
+      "settings": {
+        "banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
+        "background_color": "#F20008",
+        "text_color": "#FFFFFF",
+        "text_align": "center",
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "font_size": 11,
+        "full_width": true
+      }
+    },
     "kopilot_pdp_UX7Agc": {
       "type": "kopilot-pdp",
       "blocks": {
@@ -622,6 +636,7 @@
     }
   },
   "order": [
+    "kopilot_banner_Qcykpq",
     "kopilot_pdp_UX7Agc",
     "kopilot_home_partners_chryza",
     "kopilot_emergencies_split_tJELqh",
