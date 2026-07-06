@@ -434,7 +434,9 @@ font-family:'Elza';
 .kopilot-pdp__mobile-head {
   display: none;
 }
-
+.kopilot-pdp__add > span {
+    font-family: "Elza", sans-serif;
+}
 /* Tablet / laptop: fluid 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-pdp__inner {
