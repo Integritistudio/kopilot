@@ -315,6 +315,33 @@
 .kopilot-pdp__tier-head>span{
 font-size:16px;
 }
+/* Reviews Row & Count Styles */
+.kopilot-pdp__reviews-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kopilot-pdp__reviews-row svg {
+  transform: scaleX(0.85);
+  transform-origin: center;
+}
+
+.kopilot-pdp__stars-image {
+  height: auto;
+  display: block;
+}
+
+.kopilot-pdp__review-count {
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0%;
+  margin: 0;
+  color: #000;
+}
+
 @media screen and (max-width: 1024px) {
   .kopilot-pdp__tier-title-pdp {
     font-size: 19px;
@@ -382,7 +409,11 @@ padding:7.25px 18.29px;
       </h1>
       {% if section.settings.show_reviews %}
         <div class="kopilot-pdp__reviews-row">
-          {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
+          {% if section.settings.stars_image %}
+            {% render 'kopilot-image', image: section.settings.stars_image, alt: 'Star rating', width: 100, class: 'kopilot-pdp__stars-image' %}
+          {% else %}
+            {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
+          {% endif %}
           <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
         </div>
       {% endif %}
@@ -496,7 +527,11 @@ padding:7.25px 18.29px;
 
           {% if section.settings.show_reviews %}
             <div class="kopilot-pdp__reviews-row">
-              {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
+              {% if section.settings.stars_image %}
+                {% render 'kopilot-image', image: section.settings.stars_image, alt: 'Star rating', width: 100, class: 'kopilot-pdp__stars-image' %}
+              {% else %}
+                {% render 'kopilot-review-stars', rating: section.settings.star_rating, size: 'lg', filled_color: '#FF0000' %}
+              {% endif %}
               <p class="kopilot-pdp__review-count">{{ section.settings.review_count }} Reviews</p>
             </div>
           {% endif %}
@@ -723,6 +758,11 @@ padding:7.25px 18.29px;
       "max": 5,
       "step": 1,
       "default": 5
+    },
+    {
+      "type": "image_picker",
+      "id": "stars_image",
+      "label": "Stars image"
     },
     {
       "type": "text",
