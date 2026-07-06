@@ -269,6 +269,16 @@
         "bg_color": "#ffffff"
       }
     },
+    "features_grid_3UECwt": {
+      "type": "features-grid",
+      "name": "Kopilot Features Grid",
+      "settings": {
+        "heading": "The details that matter.",
+        "image": "shopify://shop_images/IMG_3285_1_45595bb2-5a79-447a-9a26-0b589ba709ac.png",
+        "bg_color": "#F1F1F1",
+        "bg_color_mobile": "#ffffff"
+      }
+    },
     "kopilot_reviews": {
       "type": "kopilot-reviews",
       "blocks": {
@@ -387,6 +397,7 @@
     "kopilot_home_partners_chryza",
     "kopilot_emergencies_split_tJELqh",
     "kopilot_tap_split_A6Lbhy",
+    "features_grid_3UECwt",
     "kopilot_reviews"
   ]
 }
