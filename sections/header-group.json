@@ -29,7 +29,7 @@
         "logo_position": "logo-left",
         "enable-search-bar": false,
         "menu": "home-page-menu",
-        "inner_menu": "main-menu",
+        "inner_menu": "inner-page-menu",
         "font_family": "heading",
         "enable_sticky_header": true,
         "header_bg_color": "#eeeeee",
