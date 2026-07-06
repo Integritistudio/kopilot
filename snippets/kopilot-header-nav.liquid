@@ -10,6 +10,9 @@
         {% endfor %}
     {% else %}
         {% for link in inner_menu.links %}
+            {% comment %} If the URL is a root-relative hash like /#section-id,
+                           rewrite it to the current page path + the hash fragment
+                           so it scrolls within the current page instead of navigating home. {% endcomment %}
             {% if link.url contains '/#' %}
                 {% assign nav_url = link.url | split: '/#' | last | prepend: '#' | prepend: request.path %}
             {% else %}
@@ -24,3 +27,68 @@
     {% endif %}
 </ul>
 </div>
+
+<script>
+(function () {
+  function getScrollOffset() {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssHeaderHeight = parseFloat(rootStyles.getPropertyValue('--header-height')) || 0;
+    const header = document.querySelector('.shopify-section-group-header-group');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    return Math.max(cssHeaderHeight, headerHeight, 0);
+  }
+
+  function scrollToTarget(target) {
+    const offset = -getScrollOffset();
+    if (typeof window.lenis !== 'undefined' && window.lenis?.scrollTo) {
+      window.lenis.scrollTo(target, { offset, duration: 1.2 });
+      return;
+    }
+    const top = target.getBoundingClientRect().top + window.scrollY + offset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+  }
+
+  function resolveHashTarget(href) {
+    if (!href || href === '#') return null;
+    try {
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin || !url.hash) return null;
+      const id = decodeURIComponent(url.hash.slice(1));
+      return id ? document.getElementById(id) : null;
+    } catch (e) {
+      if (!href.startsWith('#')) return null;
+      const id = decodeURIComponent(href.slice(1));
+      return id ? document.getElementById(id) : null;
+    }
+  }
+
+  function initNavLinks() {
+    document.querySelectorAll('.header_navigation_inner .parent_link').forEach(function (link) {
+      if (link.dataset.kopilotNavInit === 'true') return;
+      link.dataset.kopilotNavInit = 'true';
+
+      link.addEventListener('click', function (event) {
+        const href = link.getAttribute('href');
+        const target = resolveHashTarget(href);
+        if (!target) return; // not a hash link — let browser navigate normally
+
+        event.preventDefault();
+        scrollToTarget(target);
+
+        const hash = href.includes('#') ? href.slice(href.indexOf('#')) : '#' + target.id;
+        if (window.history?.pushState) {
+          window.history.pushState(null, '', hash);
+        } else {
+          window.location.hash = hash;
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavLinks);
+  } else {
+    initNavLinks();
+  }
+})();
+</script>
