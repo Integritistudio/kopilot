@@ -287,13 +287,13 @@
 }
 
 .kopilot-pdp__included-pills {
+  width:527px;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
 }
 
 .kopilot-pdp__included-pill {
-  width:527px;
   display: inline-flex;
   align-items: center;
   padding: 8px 13px;
