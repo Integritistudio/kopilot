@@ -3,52 +3,68 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
- 
+
 @media screen and (max-width: 1024px) {
   .kopilot-hero--{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   }
- 
+
   .kopilot-hero--{{ section.id }} .kopilot-hero__title-group .left1-text {
     text-align: left;
   }
 }
-@media screen and (min-width: 1024px) {
-  .kopilot-hero--{{ section.id }} .kopilot-hero__title-group .left1-text {
-    text-align: left;
+
+/* Fix text wrapping and layout breaking on viewport widths from 425px up to 767px */
+@media screen and (min-width: 425px) and (max-width: 767px) {
+  .kopilot-hero--{{ section.id }} {
+    --kopilot-hero-content-w: min(40rem, calc(100vw - (var(--kopilot-hero-pad-x) * 2))) !important;
+    --kopilot-hero-btn-w: min(28rem, var(--kopilot-hero-content-w)) !important;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__title-group {
+    max-width: none !important;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__title.kopilot-heading--medium {
+    max-width: none !important;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__title--light {
+    max-width: none !important;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__description,
+  .kopilot-hero--{{ section.id }} .kopilot-hero__description.kopilot-body {
+    max-width: none !important;
   }
 }
 {% endstyle %}
- 
+
 {%- liquid
   assign has_uploaded_video = false
   if section.settings.background_video != blank
     assign has_uploaded_video = true
   endif
- 
+
   assign has_video_url = false
   if section.settings.video_url != blank
     assign has_video_url = true
   endif
- 
+
   assign has_video = false
   if has_uploaded_video or has_video_url
     assign has_video = true
   endif
- 
+
   assign hero_video_poster = section.settings.background_image
   if hero_video_poster == blank
     assign hero_video_poster = section.settings.background_image_mobile
   endif
 -%}
- 
+
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-hero.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-hero.js' | asset_url }}" defer></script>
- 
+
 <section class="kopilot-section kopilot-hero kopilot-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
-<div class="kopilot-hero__bg">
+  <div class="kopilot-hero__bg">
     {% if has_uploaded_video %}
       {% capture kopilot_hero_video_class %}kopilot-hero__bg-video{% endcapture %}
       {{
@@ -64,7 +80,7 @@
           preload: 'metadata'
       }}
     {% elsif has_video_url %}
-<video
+      <video
         class="kopilot-hero__bg-video"
         autoplay
         muted
@@ -74,11 +90,11 @@
         {% if hero_video_poster != blank %}
           poster="{{ hero_video_poster | image_url: width: 1920 }}"
         {% endif %}
->
-<source src="{{ section.settings.video_url }}" type="video/mp4">
-</video>
+      >
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
     {% else %}
-<div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
+      <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
         {% render 'kopilot-image',
           image: section.settings.background_image,
           fallback: 'kopilot-hero-bg.jpg',
@@ -88,8 +104,8 @@
           widths: '750,1100,1500,2000,2400',
           sizes: '100vw'
         %}
-</div>
-<div class="kopilot-hero__bg-image kopilot-hero__bg-image--mobile">
+      </div>
+      <div class="kopilot-hero__bg-image kopilot-hero__bg-image--mobile">
         {% render 'kopilot-image',
           image: section.settings.background_image_mobile,
           fallback: '534e09e74dba5f2840077260761a394727c97e76.png',
@@ -99,15 +115,15 @@
           widths: '360,540,750',
           sizes: '100vw'
         %}
-</div>
+      </div>
     {% endif %}
     {% if section.settings.show_overlay %}
-<div class="kopilot-hero__overlay"></div>
+      <div class="kopilot-hero__overlay"></div>
     {% endif %}
-</div>
- 
+  </div>
+
   <div class="kopilot-hero__inner">
-<div class="kopilot-hero__product-mobile" aria-hidden="true">
+    <div class="kopilot-hero__product-mobile" aria-hidden="true">
       {% render 'kopilot-image',
         image: section.settings.product_image,
         fallback: 'Mask group.png',
@@ -115,59 +131,59 @@
         width: 500,
         loading: 'eager'
       %}
-</div>
- 
+    </div>
+
     <div class="kopilot-hero__content-column">
-<div class="kopilot-hero__content">
+      <div class="kopilot-hero__content">
         {% if section.settings.eyebrow != blank %}
-<p class="kopilot-hero__eyebrow kopilot-body">{{ section.settings.eyebrow }}</p>
+          <p class="kopilot-hero__eyebrow kopilot-body">{{ section.settings.eyebrow }}</p>
         {% endif %}
- 
+
         <div class="kopilot-hero__copy">
-<div class="kopilot-hero__title-group">
+          <div class="kopilot-hero__title-group">
             {% if section.settings.heading_line_1 != blank %}
-<h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium left1-text ">
+              <h1 class="kopilot-hero__title kopilot-heading kopilot-heading--medium left1-text ">
                 {{ section.settings.heading_line_1 }}
-</h1>
+              </h1>
             {% endif %}
             {% if section.settings.heading_line_2 != blank %}
-<p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading left1-text">
+              <p class="kopilot-hero__title kopilot-hero__title--light kopilot-heading left1-text">
                 {{ section.settings.heading_line_2 }}
-</p>
+              </p>
             {% endif %}
-</div>
- 
+          </div>
+
           {% if section.settings.description != blank %}
-<p class="kopilot-hero__description kopilot-body">{{ section.settings.description }}</p>
+            <p class="kopilot-hero__description kopilot-body">{{ section.settings.description }}</p>
           {% endif %}
-</div>
-</div>
- 
+        </div>
+      </div>
+
       {% if section.settings.button_label != blank %}
-<a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn kopilot-hero__cta">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="kopilot-btn kopilot-hero__cta">
           {{ section.settings.button_label }}
-</a>
+        </a>
       {% endif %}
- 
+
       {% if section.blocks.size > 0 %}
-<div class="kopilot-hero__logos kopilot-hero__logos--mobile">
+        <div class="kopilot-hero__logos kopilot-hero__logos--mobile">
           {% assign hero_logo_fallbacks = 'kopilot-hero-logo-1.png,kopilot-hero-logo-2.png' | split: ',' %}
           {% for block in section.blocks %}
-<div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+            <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
               {% render 'kopilot-image',
                 image: block.settings.logo,
                 fallback: hero_logo_fallbacks[forloop.index0],
                 alt: block.settings.logo_alt,
                 width: 200
               %}
-</div>
+            </div>
           {% endfor %}
-</div>
+        </div>
       {% endif %}
-</div>
- 
+    </div>
+
     <div class="kopilot-hero__product">
-<div class="kopilot-hero__product-img">
+      <div class="kopilot-hero__product-img">
         {% render 'kopilot-image',
           image: section.settings.product_image,
           fallback: 'Mask group.png',
@@ -175,26 +191,26 @@
           width: 500,
           loading: 'eager'
         %}
-</div>
+      </div>
       {% if section.blocks.size > 0 %}
-<div class="kopilot-hero__logos kopilot-hero__logos--desktop">
+        <div class="kopilot-hero__logos kopilot-hero__logos--desktop">
           {% assign hero_logo_fallbacks = 'kopilot-hero-logo-1.png,kopilot-hero-logo-2.png' | split: ',' %}
           {% for block in section.blocks %}
-<div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
+            <div class="kopilot-hero__logo" {{ block.shopify_attributes }}>
               {% render 'kopilot-image',
                 image: block.settings.logo,
                 fallback: hero_logo_fallbacks[forloop.index0],
                 alt: block.settings.logo_alt,
                 width: 200
               %}
-</div>
+            </div>
           {% endfor %}
-</div>
+        </div>
       {% endif %}
-</div>
-</div>
+    </div>
+  </div>
 </section>
- 
+
 {% schema %}
 {
   "name": "Kopilot Hero",
