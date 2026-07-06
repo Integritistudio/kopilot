@@ -107,7 +107,7 @@
   margin: 0;
   font-family: var(--kopilot-font-family);
   font-weight: 300;
-  font-size: 57px;
+  font-size: 58px;
   line-height: 1;
   letter-spacing: -1.71px;
   color: #000;
@@ -520,7 +520,7 @@ font-family:'Elza';
   }
 
   .kopilot-pdp__title {
-    font-size: 57px;
+    font-size: 58px;
     letter-spacing: -1.71px;
   }
 
