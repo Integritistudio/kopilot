@@ -405,7 +405,7 @@
       ],
       "name": "Kopilot Home Testimonials",
       "settings": {
-        "background_color": "#ffffff",
+        "background_color": "#F1F1F1",
         "color_scheme": "",
         "heading": "<p>Trusted by thousands.</p>"
       }
