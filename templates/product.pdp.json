@@ -250,6 +250,16 @@
         "text": "Trusted by riders, racers, and event partners across North America."
       }
     },
+    "kopilot_emergencies_split_tJELqh": {
+      "type": "kopilot-emergencies-split",
+      "name": "Kopilot Emergencies Split",
+      "settings": {
+        "heading": "Built for emergencies. Ready every day.",
+        "paragraph": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.",
+        "image": "shopify://shop_images/image_18659487.png",
+        "bg_color": "#ffffff"
+      }
+    },
     "kopilot_pdp_tap": {
       "type": "kopilot-pdp-tap",
       "settings": {
@@ -259,16 +269,6 @@
         "padding_bottom": 60,
         "padding_top_mobile": 48,
         "padding_bottom_mobile": 0
-      }
-    },
-    "kopilot_emergencies_split_tJELqh": {
-      "type": "kopilot-emergencies-split",
-      "name": "Kopilot Emergencies Split",
-      "settings": {
-        "heading": "Built for emergencies. Ready every day.",
-        "paragraph": "In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.",
-        "image": "shopify://shop_images/image_18659487.png",
-        "bg_color": "#ffffff"
       }
     },
     "kopilot_features": {
@@ -628,8 +628,8 @@
   "order": [
     "kopilot_pdp_UX7Agc",
     "kopilot_home_partners_chryza",
-    "kopilot_pdp_tap",
     "kopilot_emergencies_split_tJELqh",
+    "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
     "kopilot_pdp_testimonials",
