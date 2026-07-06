@@ -275,7 +275,10 @@
     display: none;
   }
 }
-
+@media (max-width: 360px) {
+  .kopilot-hero__title-group {
+    gap: 0.3125rem; /* 5px */
+  }
 /* Desktop: 768px+ (1024 layout) */
 @media screen and (min-width: 768px) {
   .kopilot-hero {
