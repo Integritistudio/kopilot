@@ -298,14 +298,14 @@
   padding: 8px 13px;
   border: 1px solid #d9d9d9;
   border-radius: 999px;
-  font-family: var(--kopilot-body-font-family);
+  font-family: 'Elza';
   font-size: 14px;
   line-height: 1;
   color: #000;
   white-space: nowrap;
+  font-size:18px;
 }
 
-/* Mobile pinned: 360px — keep exact Figma values */
 @media screen and (max-width: 360px) {
   .kopilot-pdp__included-heading {
     font-size: 15px;
@@ -508,10 +508,10 @@ font-family:'Elza';
   .kopilot-pdp__delivery-line {
     font-size: clamp(14px, 1.4vw, 20px) !important;
   }
-
+/* 
   .kopilot-pdp__included-pill {
     font-size: clamp(13px, 1.3vw, 16px);
-  }
+  } */
 }
 
 @media screen and (min-width: 900px) and (max-width: 1024px) {
