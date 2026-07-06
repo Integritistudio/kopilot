@@ -1,37 +1,21 @@
 <div class="header_navigation_inner {{ logo_position }}">
 <ul class="parent_wrapper">
     {% if request.page_type == 'index' %}
+        {% for link in home_menu.links %}
 <li class="parent_li">
-<a class="parent_link text_decoration" aria-label="What Is Kopilot" href="/#what-kopilot">
-<span class="menu_{{ font_family }}">What Is Kopilot</span>
+<a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ link.url }}">
+<span class="menu_{{ font_family }}">{{ link.title }}</span>
 </a>
 </li>
-<li class="parent_li">
-<a class="parent_link text_decoration" aria-label="Brand Partners" href="/#kopilot-brand-partners">
-<span class="menu_{{ font_family }}">Brand Partners</span>
-</a>
-</li>
-<li class="parent_li">
-<a class="parent_link text_decoration" aria-label="About Us" href="/#kopilot-about-us">
-<span class="menu_{{ font_family }}">About Us</span>
-</a>
-</li>
+        {% endfor %}
     {% else %}
+        {% for link in inner_menu.links %}
 <li class="parent_li">
-<a class="parent_link text_decoration" aria-label="Why Kopilot" href="{{ request.path }}#what-kopilot">
-<span class="menu_{{ font_family }}">Why Kopilot</span>
+<a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ link.url }}">
+<span class="menu_{{ font_family }}">{{ link.title }}</span>
 </a>
 </li>
-<li class="parent_li">
-<a class="parent_link text_decoration" aria-label="How It Works" href="{{ request.path }}#how-it-works">
-<span class="menu_{{ font_family }}">How It Works</span>
-</a>
-</li>
-<li class="parent_li">
-<a class="parent_link text_decoration" aria-label="Brand Ambassador" href="{{ request.path }}#kopilot-brand-ambassador">
-<span class="menu_{{ font_family }}">Brand Ambassador</span>
-</a>
-</li>
+        {% endfor %}
     {% endif %}
 </ul>
 </div>
