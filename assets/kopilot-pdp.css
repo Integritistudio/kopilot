@@ -436,6 +436,11 @@ font-family:'Elza';
 }
 .kopilot-pdp__add > span {
     font-family: "Elza", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25.31px;
+    letter-spacing: 0;
+    text-align: center;
 }
 /* Tablet / laptop: fluid 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
