@@ -13,9 +13,9 @@
       "type": "kopilot-banner",
       "name": "Kopilot special banner",
       "settings": {
-        "banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-        "background_color": "#F20008",
-        "text_color": "#FFFFFF",
+        "banner_text": "SPECIAL OFFER.SAVE UP TO 20% ON MULTI-PACKS.",
+        "background_color": "#f20008",
+        "text_color": "#ffffff",
         "text_align": "center",
         "padding_top": 6,
         "padding_bottom": 6,
@@ -612,7 +612,7 @@
       "type": "kopilot-pdp-partner-cta",
       "name": "Kopilot Partner Banner",
       "settings": {
-        "background_color": "#F1F1F1",
+        "background_color": "#f1f1f1",
         "heading": "Partner with KOPILOT.ID",
         "body_text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
         "link_text": "See partnerships",
@@ -629,9 +629,9 @@
         "heading": "Don't let your next adventure be your last.",
         "button_label": "GET KOPILOT.ID",
         "button_link": "",
-        "color_text": "#403A3A",
-        "color_button_bg": "#EF0008",
-        "color_button_text": "#FFFFFF"
+        "color_text": "#403a3a",
+        "color_button_bg": "#ef0008",
+        "color_button_text": "#ffffff"
       }
     }
   },
