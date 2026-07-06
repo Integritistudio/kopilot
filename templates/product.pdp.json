@@ -13,7 +13,7 @@
       "type": "kopilot-banner",
       "name": "Kopilot special banner",
       "settings": {
-        "banner_text": "SPECIAL OFFER. &nbsp;       SAVE UP TO 20% ON MULTI-PACKS.",
+        "banner_text": "SPECIAL OFFER.         SAVE UP TO 20% ON MULTI-PACKS.",
         "background_color": "#f20008",
         "text_color": "#ffffff",
         "text_align": "center",
@@ -70,7 +70,7 @@
           "settings": {
             "image": "shopify://shop_images/Rectangle_66.png",
             "show_special_banner": true,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
+            "special_banner_text": "SPECIAL OFFER.         SAVE UP TO 20% ON MULTI-PACKS.",
             "text_line_1": "The Information They \nNeed After A Crash.",
             "color_line_1": "white",
             "transform_line_1": "uppercase",
