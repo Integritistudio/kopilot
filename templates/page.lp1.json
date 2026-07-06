@@ -23,18 +23,11 @@
           "settings": {
             "logo_alt": ""
           }
-        },
-        "logo_2": {
-          "type": "logo",
-          "settings": {
-            "logo_alt": ""
-          }
         }
       },
       "block_order": [
         "logo_pcH7Wc",
-        "logo_1",
-        "logo_2"
+        "logo_1"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -48,7 +41,7 @@
         "description": "Stay prepared with our durable, waterproof NFC tag that makes your medical details instantly accessible, even in remote terrain—no signal or battery needed.",
         "button_label": "Get KOPILOT.ID",
         "button_link": "#kopilot-product-tiers",
-        "padding_top": 0,
+        "padding_top": 52,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
