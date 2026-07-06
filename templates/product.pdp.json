@@ -593,6 +593,17 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "kopilot_pdp_partner_cta_7XUggC": {
+      "type": "kopilot-pdp-partner-cta",
+      "name": "Kopilot Partner Banner",
+      "settings": {
+        "background_color": "#F1F1F1",
+        "heading": "Partner with KOPILOT.ID",
+        "body_text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
+        "link_text": "See partnerships",
+        "link_url": "/"
+      }
     }
   },
   "order": [
@@ -604,6 +615,7 @@
     "kopilot_pdp_privacy_64q4yR",
     "kopilot_home_testimonials_tnMUzC",
     "kopilot_reviews",
-    "kopilot_faq_mGbFjB"
+    "kopilot_faq_mGbFjB",
+    "kopilot_pdp_partner_cta_7XUggC"
   ]
 }
