@@ -18,21 +18,42 @@
 /* Fix text wrapping and layout breaking on viewport widths from 425px up to 767px */
 @media screen and (min-width: 425px) and (max-width: 767px) {
   .kopilot-hero--{{ section.id }} {
-    --kopilot-hero-content-w: min(40rem, calc(100vw - (var(--kopilot-hero-pad-x) * 2))) !important;
-    --kopilot-hero-btn-w: min(28rem, var(--kopilot-hero-content-w)) !important;
+    min-height: auto;
+    --kopilot-hero-content-w: min(40rem, calc(100vw - (var(--kopilot-hero-pad-x) * 2)));
+    --kopilot-hero-btn-w: min(28rem, var(--kopilot-hero-content-w));
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__inner {
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2.4rem;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__content {
+    width: 100%;
+    max-width: none;
+    gap: 1.6rem;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__copy {
+    gap: 1.6rem;
   }
   .kopilot-hero--{{ section.id }} .kopilot-hero__title-group {
-    max-width: none !important;
+    max-width: none;
+    gap: 1.2rem;
   }
   .kopilot-hero--{{ section.id }} .kopilot-hero__title.kopilot-heading--medium {
-    max-width: none !important;
+    max-width: none;
   }
   .kopilot-hero--{{ section.id }} .kopilot-hero__title--light {
-    max-width: none !important;
+    max-width: none;
   }
   .kopilot-hero--{{ section.id }} .kopilot-hero__description,
   .kopilot-hero--{{ section.id }} .kopilot-hero__description.kopilot-body {
-    max-width: none !important;
+    max-width: none;
+  }
+  .kopilot-hero--{{ section.id }} .kopilot-hero__cta {
+    align-self: flex-start;
   }
 }
 {% endstyle %}
