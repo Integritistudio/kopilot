@@ -282,13 +282,15 @@
         "feature_x9kMMN": {
           "type": "feature",
           "settings": {
-            "title": ""
+            "icon": "shopify://shop_images/Group_36_f2cb675e-6b07-4e4b-974a-4ab6b9c2c663.svg",
+            "title": "No battery/No charging"
           }
         },
         "feature_kCbKgz": {
           "type": "feature",
           "settings": {
-            "title": ""
+            "icon": "shopify://shop_images/Group_38_45a9a554-ac81-44c5-b738-1ee751795e11.svg",
+            "title": "No subscription required"
           }
         },
         "feature_tNNtFH": {
