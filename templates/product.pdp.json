@@ -9,192 +9,6 @@
  */
 {
   "sections": {
-    "kopilot_pdp": {
-      "type": "kopilot-pdp",
-      "blocks": {
-        "g1": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "g2": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "g3": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "g4": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "g5": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "g6": {
-          "type": "gallery_slide",
-          "settings": {
-            "show_special_banner": false,
-            "special_banner_text": "SPECIAL OFFER. SAVE UP TO 20% ON MULTI-PACKS.",
-            "text_line_1": "",
-            "color_line_1": "white",
-            "transform_line_1": "uppercase",
-            "text_line_2": "",
-            "color_line_2": "red",
-            "transform_line_2": "uppercase",
-            "text_position": "bottom"
-          }
-        },
-        "t1": {
-          "type": "tier",
-          "settings": {
-            "quantity": 1,
-            "title": "1 TAG",
-            "subtitle": "Just for you.",
-            "badge": "DEFAULT",
-            "price": "$39.99",
-            "compare_price": "",
-            "save_label": "",
-            "included_items": ""
-          }
-        },
-        "t2": {
-          "type": "tier",
-          "settings": {
-            "quantity": 2,
-            "title": "Set of 2",
-            "subtitle": "One for you, one for your friend.",
-            "badge": "",
-            "price": "$71.99",
-            "compare_price": "$79.98",
-            "save_label": "Save 10%",
-            "included_items": ""
-          }
-        },
-        "t3": {
-          "type": "tier",
-          "settings": {
-            "quantity": 3,
-            "title": "Set of 3",
-            "subtitle": "For the whole crew.",
-            "badge": "BEST VALUE",
-            "price": "$95.99",
-            "compare_price": "$119.97",
-            "save_label": "Save 20%",
-            "included_items": ""
-          }
-        },
-        "i1": {
-          "type": "included_item",
-          "settings": {
-            "label": "KOPILOT.ID NFC tag"
-          }
-        },
-        "i2": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Goggle mount"
-          }
-        },
-        "i3": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Zipper mount"
-          }
-        },
-        "i4": {
-          "type": "included_item",
-          "settings": {
-            "label": "1 Carbon helmet mount"
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4",
-        "g5",
-        "g6",
-        "t1",
-        "t2",
-        "t3",
-        "i1",
-        "i2",
-        "i3",
-        "i4"
-      ],
-      "disabled": true,
-      "settings": {
-        "product": "",
-        "color_scheme": "scheme-1",
-        "promo_text": "Special offer. Save up to 20% on multi-packs.",
-        "title": "The piece of gear you don't think about until you need it.",
-        "show_reviews": true,
-        "star_rating": 5,
-        "review_count": "8",
-        "description": "The KOPILOT.ID NFC tag helps the people around you access your medical information and emergency contacts instantly after an accident. Attach it to your gear of choice and stay prepared wherever you go.",
-        "included_heading": "What's included:",
-        "button_label": "ADD TO CART - 1 TAG",
-        "shipping_heading": "Shipping & Returns",
-        "shipping_content": "<p>Free standard shipping on all orders. Returns accepted within 30 days if the product is unused and in original packaging.</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "kopilot_pdp_UX7Agc": {
       "type": "kopilot-pdp",
       "blocks": {
@@ -358,95 +172,82 @@
         "padding_bottom_mobile": 0
       }
     },
-    "kopilot_partners": {
-      "type": "kopilot-partners",
+    "kopilot_home_partners_chryza": {
+      "type": "kopilot-home-partners",
       "blocks": {
-        "p1": {
+        "logo_FWyBRH": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
             "logo_alt": "",
-            "logo_width": 65,
-            "logo_width_mobile": 44
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
           }
         },
-        "p2": {
+        "logo_pcJkpQ": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659501.png",
             "logo_alt": "",
-            "logo_width": 180,
-            "logo_width_mobile": 116
+            "logo_width": 185,
+            "logo_height": 68,
+            "logo_width_mobile": 116,
+            "logo_height_mobile": 44
           }
         },
-        "p3": {
+        "logo_TtHRNX": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659502_8b7bc8c5-eb77-46df-920f-1673c025bd9f.png",
-            "logo_alt": "",
-            "logo_width": 180,
-            "logo_width_mobile": 116
-          }
-        },
-        "p4": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/image_18659503_a31b3f09-1333-498c-8ce3-32d6e74556cd.png",
             "logo_alt": "",
             "logo_width": 110,
-            "logo_width_mobile": 68
+            "logo_height": 84,
+            "logo_width_mobile": 68,
+            "logo_height_mobile": 52
           }
         },
-        "p5": {
+        "logo_pCgkaL": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659484_75719cfe-6034-4e6f-9950-edc3598fb3d2.png",
             "logo_alt": "",
-            "logo_width": 90,
-            "logo_width_mobile": 56
+            "logo_width": 70,
+            "logo_height": 68,
+            "logo_width_mobile": 44,
+            "logo_height_mobile": 44
           }
         },
-        "p6": {
+        "logo_zhWC7U": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659485_73b9c127-eef5-444f-94a4-d2ebbc6776e5.png",
             "logo_alt": "",
-            "logo_width": 90,
-            "logo_width_mobile": 56
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
+          }
+        },
+        "logo_YinCM6": {
+          "type": "logo",
+          "settings": {
+            "logo_alt": "",
+            "logo_width": 95,
+            "logo_height": 84,
+            "logo_width_mobile": 56,
+            "logo_height_mobile": 52
           }
         }
       },
       "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4",
-        "p5",
-        "p6"
+        "logo_FWyBRH",
+        "logo_pcJkpQ",
+        "logo_TtHRNX",
+        "logo_pCgkaL",
+        "logo_zhWC7U",
+        "logo_YinCM6"
       ],
+      "name": "Kopilot Home Partners",
       "settings": {
-        "color_scheme": "scheme-1",
-        "text": "Trusted by riders, racers, and event partners across North America.",
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 20
-      }
-    },
-    "kopilot_image_text": {
-      "type": "kopilot-image-text",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "image_position": "right",
-        "text_font_family": "Figtree",
-        "text_alignment_mobile": "center",
-        "heading": "<h2>Built for emergencies. Ready every day.</h2>",
-        "text": "<p>In an emergency, there is no time to explain allergies, medical conditions, or who to contact. Built for harsh conditions and everyday use, the KOPILOT.ID NFC tag communicates critical information for you.</p>",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "color_scheme": "",
+        "text": "Trusted by riders, racers, and event partners across North America."
       }
     },
     "kopilot_pdp_tap": {
@@ -815,10 +616,8 @@
     }
   },
   "order": [
-    "kopilot_pdp",
     "kopilot_pdp_UX7Agc",
-    "kopilot_partners",
-    "kopilot_image_text",
+    "kopilot_home_partners_chryza",
     "kopilot_pdp_tap",
     "kopilot_features",
     "kopilot_pdp_privacy",
