@@ -604,6 +604,21 @@
         "link_text": "See partnerships",
         "link_url": "/"
       }
+    },
+    "hero_adventure_G6GAcy": {
+      "type": "hero-adventure",
+      "name": "Adventure Hero",
+      "settings": {
+        "video_url": "",
+        "image_desktop": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
+        "image_mobile": "shopify://shop_images/image_18659496_1.png",
+        "heading": "Don't let your next adventure be your last.",
+        "button_label": "GET KOPILOT.ID",
+        "button_link": "",
+        "color_text": "#222222",
+        "color_button_bg": "#EF0008",
+        "color_button_text": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -616,6 +631,7 @@
     "kopilot_home_testimonials_tnMUzC",
     "kopilot_reviews",
     "kopilot_faq_mGbFjB",
-    "kopilot_pdp_partner_cta_7XUggC"
+    "kopilot_pdp_partner_cta_7XUggC",
+    "hero_adventure_G6GAcy"
   ]
 }
