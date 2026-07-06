@@ -296,25 +296,22 @@
         "feature_tNNtFH": {
           "type": "feature",
           "settings": {
-            "title": ""
+            "icon": "shopify://shop_images/Group_35.svg",
+            "title": "Instantly access emergency info"
           }
         },
         "feature_hpaifh": {
           "type": "feature",
           "settings": {
-            "title": ""
+            "icon": "shopify://shop_images/Group_37_740c2d2a-a1e2-45b2-b836-60197454371f.svg",
+            "title": "Translates into 24 languages"
           }
         },
         "feature_M739XP": {
           "type": "feature",
           "settings": {
-            "title": ""
-          }
-        },
-        "feature_9QpJgA": {
-          "type": "feature",
-          "settings": {
-            "title": ""
+            "icon": "shopify://shop_images/Group_34_24c480da-2b6b-4734-b3bf-474fc8a766ef.svg",
+            "title": "Works everywhere"
           }
         }
       },
@@ -324,8 +321,7 @@
         "feature_kCbKgz",
         "feature_tNNtFH",
         "feature_hpaifh",
-        "feature_M739XP",
-        "feature_9QpJgA"
+        "feature_M739XP"
       ],
       "name": "Kopilot Features Grid",
       "settings": {
