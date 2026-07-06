@@ -17,7 +17,7 @@
         "background_color": "#f20008",
         "text_color": "#ffffff",
         "text_align": "center",
-        "padding_top": 6,
+        "padding_top": 2,
         "padding_bottom": 6,
         "font_size": 11,
         "full_width": true
