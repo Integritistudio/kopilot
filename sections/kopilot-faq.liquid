@@ -14,6 +14,15 @@
     {% if section.settings.question_font_weight != blank %}font-weight: {{ section.settings.question_font_weight }} !important;{% endif %}
   }
 
+  {% comment %} Dynamic Active Font Weight Feature {% endcomment %}
+  {% if section.settings.enable_first_active_bold %}
+    .kopilot-faq--{{ section.id }} .faq_question.active h3 {
+      {% if section.settings.active_question_font_weight != blank %}
+        font-weight: {{ section.settings.active_question_font_weight }} !important;
+      {% endif %}
+    }
+  {% endif %}
+
   @media screen and (max-width: 767px) {
     .kopilot-faq--{{ section.id }} {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -29,6 +38,15 @@
     .kopilot-faq--{{ section.id }} .faq_question h3 {
       {% if section.settings.question_font_weight_mobile != blank %}font-weight: {{ section.settings.question_font_weight_mobile }} !important;{% endif %}
     }
+    
+    {% comment %} Mobile Active Font Weight Feature {% endcomment %}
+    {% if section.settings.enable_first_active_bold %}
+      .kopilot-faq--{{ section.id }} .faq_question.active h3 {
+        {% if section.settings.active_question_font_weight != blank %}
+          font-weight: {{ section.settings.active_question_font_weight }} !important;
+        {% endif %}
+      }
+    {% endif %}
   }
 {% endstyle %}
 
@@ -178,6 +196,31 @@
         { "value": "800", "label": "Extra-bold (800)" }
       ],
       "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Active Question Styling"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_first_active_bold",
+      "label": "Enable unique font weight for open/active question",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "active_question_font_weight",
+      "label": "Active question font weight",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" }
+      ],
+      "default": "700"
     },
     {
       "type": "range",
