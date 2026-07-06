@@ -185,7 +185,9 @@
           <div class="header_navigation_wrapper">
             {% render 'kopilot-header-nav',
               logo_position: section.settings.logo_position,
-              font_family: section.settings.font_family
+              font_family: section.settings.font_family,
+              home_menu: linklists[section.settings.menu],
+              inner_menu: linklists[section.settings.inner_menu]
             %}
           </div>
         {% endunless %}
@@ -308,7 +310,9 @@
           <div class="header_navigation_wrapper">
             {% render 'kopilot-header-nav',
               logo_position: section.settings.logo_position,
-              font_family: section.settings.font_family
+              font_family: section.settings.font_family,
+              home_menu: linklists[section.settings.menu],
+              inner_menu: linklists[section.settings.inner_menu]
             %}
           </div>
         {% endif %}
@@ -628,7 +632,13 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Select menu",
+      "label": "Home page menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "inner_menu",
+      "label": "Inner pages menu",
       "default": "main-menu"
     },
     {
