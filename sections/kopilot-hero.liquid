@@ -4,14 +4,15 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
+  /* Left-align heading text on all screen sizes */
+  .kopilot-hero--{{ section.id }} .kopilot-hero__title-group .left1-text {
+    text-align: left;
+  }
+
 @media screen and (max-width: 1024px) {
   .kopilot-hero--{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
-  }
-
-  .kopilot-hero--{{ section.id }} .kopilot-hero__title-group .left1-text {
-    text-align: left;
   }
 }
 {% endstyle %}
