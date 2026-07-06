@@ -10,8 +10,13 @@
         {% endfor %}
     {% else %}
         {% for link in inner_menu.links %}
+            {% if link.url contains '/#' %}
+                {% assign nav_url = link.url | split: '/#' | last | prepend: '#' | prepend: request.path %}
+            {% else %}
+                {% assign nav_url = link.url %}
+            {% endif %}
 <li class="parent_li">
-<a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ link.url }}">
+<a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ nav_url }}">
 <span class="menu_{{ font_family }}">{{ link.title }}</span>
 </a>
 </li>
