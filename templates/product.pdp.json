@@ -260,6 +260,15 @@
         "bg_color": "#ffffff"
       }
     },
+    "kopilot_tap_split_A6Lbhy": {
+      "type": "kopilot-tap-split",
+      "name": "Kopilot Tap Split",
+      "settings": {
+        "image": "shopify://shop_images/kopilot-pdp-tap.jpg",
+        "heading": "Your critical emergency information in one tap.",
+        "bg_color": "#ffffff"
+      }
+    },
     "kopilot_reviews": {
       "type": "kopilot-reviews",
       "blocks": {
@@ -377,6 +386,7 @@
     "kopilot_pdp_UX7Agc",
     "kopilot_home_partners_chryza",
     "kopilot_emergencies_split_tJELqh",
+    "kopilot_tap_split_A6Lbhy",
     "kopilot_reviews"
   ]
 }
