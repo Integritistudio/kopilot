@@ -350,6 +350,7 @@
         "testimonial_haaQkb": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59.avif",
             "name": "Jerry",
             "role": "Motorcyclist",
             "location": "Arizona",
@@ -361,6 +362,7 @@
         "testimonial_TkGfbH": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/1cd3e723cb6099708b9c25e259c9dc86ec5e0b44.webp",
             "name": "Nicolas",
             "role": "Mountain biker",
             "location": "California",
@@ -372,6 +374,7 @@
         "testimonial_kff8Cx": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59_1_34803d27-f9b6-4293-906a-9c3edb73bf77.png",
             "name": "Karen",
             "role": "Hiker",
             "location": "Oregon",
