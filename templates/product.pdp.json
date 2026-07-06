@@ -327,8 +327,70 @@
       "settings": {
         "heading": "The details that matter.",
         "image": "shopify://shop_images/IMG_3285_1_45595bb2-5a79-447a-9a26-0b589ba709ac.png",
-        "bg_color": "#F1F1F1",
+        "bg_color": "#f1f1f1",
         "bg_color_mobile": "#ffffff"
+      }
+    },
+    "kopilot_pdp_privacy_64q4yR": {
+      "type": "kopilot-pdp-privacy",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "icon": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_2.png",
+        "heading": "Built with privacy in mind.",
+        "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
+        "padding_top": 47,
+        "padding_bottom": 47,
+        "padding_top_mobile": 31,
+        "padding_bottom_mobile": 31
+      }
+    },
+    "kopilot_home_testimonials_tnMUzC": {
+      "type": "kopilot-home-testimonials",
+      "blocks": {
+        "testimonial_haaQkb": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jerry",
+            "role": "Motorcyclist",
+            "location": "Arizona",
+            "quote": "What a great idea and product. I now have one on my motorcycle helmets and my skydiving helmets.",
+            "show_verified": true,
+            "verified_label": "Verified buyer"
+          }
+        },
+        "testimonial_TkGfbH": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Nicolas",
+            "role": "Mountain biker",
+            "location": "California",
+            "quote": "Jacket, backpack, and helmet now all have the little red life-saving tag! Easy to move between my gear.",
+            "show_verified": true,
+            "verified_label": "Verified buyer"
+          }
+        },
+        "testimonial_kff8Cx": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Karen",
+            "role": "Hiker",
+            "location": "Oregon",
+            "quote": "Small, lightweight, and easy to use… all my adventure pals got one for Christmas.",
+            "show_verified": true,
+            "verified_label": "Verified buyer"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_haaQkb",
+        "testimonial_TkGfbH",
+        "testimonial_kff8Cx"
+      ],
+      "name": "Kopilot Home Testimonials",
+      "settings": {
+        "background_color": "#ffffff",
+        "color_scheme": "",
+        "heading": "<p>Trusted by thousands.</p>"
       }
     },
     "kopilot_reviews": {
@@ -442,19 +504,6 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
-    },
-    "kopilot_pdp_privacy_64q4yR": {
-      "type": "kopilot-pdp-privacy",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "icon": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_2.png",
-        "heading": "Built with privacy in mind.",
-        "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
-        "padding_top": 47,
-        "padding_bottom": 47,
-        "padding_top_mobile": 31,
-        "padding_bottom_mobile": 31
-      }
     }
   },
   "order": [
@@ -464,6 +513,7 @@
     "kopilot_tap_split_A6Lbhy",
     "features_grid_3UECwt",
     "kopilot_pdp_privacy_64q4yR",
+    "kopilot_home_testimonials_tnMUzC",
     "kopilot_reviews"
   ]
 }
