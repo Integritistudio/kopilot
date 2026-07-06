@@ -176,7 +176,7 @@
   .kopilot-hero__title-group {
     display: flex;
     flex-direction: column;
-    gap: clamp(1.2rem, 4.17vw, 0.3125rem);
+    gap: clamp(1.2rem, 4.17vw, 1.5rem);
     margin: 0;
     width: 100%;
     max-width: 21.8rem;
