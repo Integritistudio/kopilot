@@ -1,0 +1,229 @@
+{% comment %}
+  KOPILOT.ID Partnership Section
+  - Responsive: 360px to 1440px
+  - Desktop: 2-column with interaction
+  - Mobile: Stacked with carousel pagination
+{% endcomment %}
+
+<section class="kopilot-partnership">
+  <div class="partnership-container">
+    <h2 class="section-heading">What a KOPILOT.ID partnership delivers.</h2>
+    
+    <div class="content-wrapper">
+      <div class="left-col" id="image-viewer">
+        {% for block in section.blocks %}
+          <div class="feature-image-wrapper {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            <img src="{{ block.settings.image | img_url: '632x550', crop: 'center' }}" alt="{{ block.settings.title | escape }}">
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="right-col">
+        {% for block in section.blocks %}
+          <div class="feature-card {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="mobile-pagination">
+      <button class="nav-btn prev-btn" aria-label="Previous">&lt;</button>
+      <button class="nav-btn next-btn" aria-label="Next">&gt;</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Section Container --- */
+  .kopilot-partnership {
+    background-color: #F1F1F1;
+    padding: 80px 0;
+  }
+
+  .partnership-container {
+    max-width: 1148px;
+    margin: 0 auto;
+    padding: 0 166px;
+  }
+
+  /* --- Typography --- */
+  .section-heading {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 106%;
+    letter-spacing: -1px;
+    margin-bottom: 60px;
+    color: #000;
+  }
+
+  /* --- Desktop Layout --- */
+  .content-wrapper {
+    display: flex;
+    gap: 31px;
+    align-items: flex-start;
+  }
+
+  .left-col {
+    width: 632px;
+  }
+
+  .right-col {
+    width: 485px;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+
+  /* --- Feature Image --- */
+  .feature-image-wrapper {
+    display: none;
+  }
+
+  .feature-image-wrapper.active {
+    display: block;
+  }
+
+  .feature-image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* --- Feature Cards --- */
+  .feature-card {
+    padding: 35px 40px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .feature-card.active {
+    background: #D6D6D6;
+  }
+
+  .feature-card h3 {
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 11px;
+  }
+
+  .feature-card p {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 120%;
+  }
+
+  /* --- Mobile Responsive --- */
+  .mobile-pagination {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .partnership-container {
+      padding: 50px 20px;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .content-wrapper {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .left-col {
+      width: 100%;
+    }
+
+    .feature-image-wrapper img {
+      width: 326px;
+      height: 214px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .right-col {
+      width: 100%;
+      gap: 0;
+    }
+
+    .feature-card {
+      display: none;
+      padding: 35px 20px;
+    }
+
+    .feature-card.active {
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+    }
+
+    .mobile-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10.57px;
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll('.feature-card');
+  const images = document.querySelectorAll('.feature-image-wrapper');
+  let currentIndex = 0;
+
+  function updateView(index) {
+    cards.forEach((c, i) => {
+      c.classList.toggle('active', i === index);
+      images[i].classList.toggle('active', i === index);
+    });
+    currentIndex = index;
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => updateView(parseInt(card.dataset.index)));
+  });
+
+  document.querySelector('.prev-btn')?.addEventListener('click', () => {
+    updateView(currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
+  });
+
+  document.querySelector('.next-btn')?.addEventListener('click', () => {
+    updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Partnership Section",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Heading" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Partnership Section" }]
+}
+{% endschema %}
