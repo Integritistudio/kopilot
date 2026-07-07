@@ -78,9 +78,10 @@
 
   .showcase-{{ section.id }} .logo-item {
     height: auto;
-    max-height: 65px;
+    max-height: 40px;
     object-fit: contain;
-    width: auto; 
+    width: auto; /* No max-width cap so logos keep native aspect ratio (hug behavior) */
+  }
 
   /* --- Right Column: Interactive Frame --- */
   .showcase-{{ section.id }} .interactive-column {
