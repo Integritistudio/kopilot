@@ -25,52 +25,6 @@
     },
     "kopilot_pdp_MXgD34": {
       "type": "kopilot-pdp",
-      "blocks": {
-        "tier_pbRyqJ": {
-          "type": "tier",
-          "settings": {
-            "quantity": 1,
-            "title": "1 TAG",
-            "subtitle": "Just for you.",
-            "badge": "",
-            "price": "$39.99",
-            "compare_price": "",
-            "save_label": "",
-            "included_items": "KOPILOT.ID NFC tag\n1 Goggle mount\n1 Zipper mount\n1 Carbon helmet mount"
-          }
-        },
-        "tier_4LGhH6": {
-          "type": "tier",
-          "settings": {
-            "quantity": 1,
-            "title": "Set of 2",
-            "subtitle": "One for you, one for your friend.",
-            "badge": "",
-            "price": "$71.99",
-            "compare_price": "$79.98",
-            "save_label": "Save 10%",
-            "included_items": "KOPILOT.ID NFC tag\n1 Goggle mount\n1 Zipper mount\n1 Carbon helmet mount\nSet of 2"
-          }
-        },
-        "tier_gx6mFQ": {
-          "type": "tier",
-          "settings": {
-            "quantity": 1,
-            "title": "Set of 3",
-            "subtitle": "For the whole crew.",
-            "badge": "Best Value",
-            "price": "$95.99",
-            "compare_price": "$119.97",
-            "save_label": "Save 20%",
-            "included_items": "KOPILOT.ID NFC tag\n1 Goggle mount\n1 Zipper mount\n1 Carbon helmet mount\nSet of 3"
-          }
-        }
-      },
-      "block_order": [
-        "tier_pbRyqJ",
-        "tier_4LGhH6",
-        "tier_gx6mFQ"
-      ],
       "settings": {
         "product": "emergency-nfc-tag-testing-product",
         "gallery_image_limit": 6,
