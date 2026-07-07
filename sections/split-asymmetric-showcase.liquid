@@ -55,14 +55,14 @@
     color: #000000;
     margin: 0 0 38px 0; 
     padding: 0;
-    max-width:377px;
+    max-width: 377px;
   }
 
   /* --- Logo Element Stack Rules --- */
   .showcase-{{ section.id }} .logo-grid-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 30px; 
+    gap: 20px; 
     width: 100%;
     max-width: 322px;
     box-sizing: border-box;
@@ -70,15 +70,28 @@
 
   .showcase-{{ section.id }} .logo-row {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    width: 100%;
+  }
+
+  .showcase-{{ section.id }} .logo-row-1 {
+    justify-content: space-between;
+  }
+
+  .showcase-{{ section.id }} .logo-row-2 {
+    justify-content: flex-start;
+    gap: 22px;
   }
 
   .showcase-{{ section.id }} .logo-item {
     height: auto;
-    max-height: 74px;
+    max-height: 44px;
     object-fit: contain;
+    max-width: 22%;
+  }
+
+  .showcase-{{ section.id }} .logo-row-2 .logo-item {
+    max-width: 26%;
   }
 
   /* --- Right Column: Interactive Frame --- */
@@ -222,6 +235,12 @@
 
     .showcase-{{ section.id }} .logo-row {
       justify-content: center;
+      gap: 16px;
+    }
+
+    .showcase-{{ section.id }} .logo-item,
+    .showcase-{{ section.id }} .logo-row-2 .logo-item {
+      max-width: 22%;
     }
   }
 {%- endstyle -%}
@@ -239,10 +258,12 @@
       {%- endif -%}
 
       <div class="logo-grid-wrapper">
-        <div class="logo-row">
+        {%- assign total_logo_count = 0 -%}
+        <div class="logo-row logo-row-1">
           {%- for block in section.blocks -%}
-            {%- if block.type == 'logo' -%}
-              {%- if block.settings.logo_image != blank -%}
+            {%- if block.type == 'logo' and block.settings.logo_image != blank -%}
+              {%- assign total_logo_count = total_logo_count | plus: 1 -%}
+              {%- if total_logo_count <= 4 -%}
                 <img class="logo-item" 
                      src="{{ block.settings.logo_image | image_url }}" 
                      alt="{{ block.settings.logo_image.alt | escape }}"
@@ -251,6 +272,23 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
+
+        {%- if total_logo_count > 4 -%}
+          {%- assign control_counter = 0 -%}
+          <div class="logo-row logo-row-2">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'logo' and block.settings.logo_image != blank -%}
+                {%- assign control_counter = control_counter | plus: 1 -%}
+                {%- if control_counter > 4 -%}
+                  <img class="logo-item" 
+                       src="{{ block.settings.logo_image | image_url }}" 
+                       alt="{{ block.settings.logo_image.alt | escape }}"
+                       loading="lazy">
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
     </div>
 
