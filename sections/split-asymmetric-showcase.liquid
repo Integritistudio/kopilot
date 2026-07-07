@@ -244,7 +244,7 @@
             {%- if block.type == 'logo' -%}
               {%- if block.settings.logo_image != blank -%}
                 <img class="logo-item" 
-                     src="{{ block.settings.logo_image | image_url: width: 300 }}" 
+                     src="{{ block.settings.logo_image | image_url }}" 
                      alt="{{ block.settings.logo_image.alt | escape }}"
                      loading="lazy">
               {%- endif -%}
