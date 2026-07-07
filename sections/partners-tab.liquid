@@ -153,6 +153,66 @@
     padding: 0;
   }
 
+  /* ── DESKTOP DOT PAGINATION ──────────────────────────────────
+     Row of dots below the right cards column.
+     Figma: 13.07 × 13.07px ellipses · inactive #A5A5A5 · active #000
+  ──────────────────────────────────────────────────────────── */
+  .ps-{{ section.id }} .ps-dots {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    /* Align dots under the right cards column:
+       left offset = flex:1 left col + 60px gap
+       We achieve this by making the dots row sit inside a wrapper
+       that mirrors the two-column layout */
+  }
+
+  /* Dot wrapper mirrors the desktop two-column layout so dots
+     align directly under the 485px cards column               */
+  .ps-{{ section.id }} .ps-dots-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Spacer on the left — same flex:1 as the image column */
+  .ps-{{ section.id }} .ps-dots-spacer {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Gap between spacer and dots — same 60px as main wrapper */
+  .ps-{{ section.id }} .ps-dots-gap {
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  /* The dots container itself — same 485px as cards column */
+  .ps-{{ section.id }} .ps-dots {
+    width: 485px;
+    flex-shrink: 0;
+  }
+
+  /* Individual dot */
+  .ps-{{ section.id }} .ps-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #A5A5A5;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .ps-{{ section.id }} .ps-dot.ps-dot-active {
+    background: #000000;
+  }
+
   /* ── TABLET (768–1199px) ─────────────────────────────────── */
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     .ps-{{ section.id }} { padding: 60px 40px; }
@@ -163,6 +223,9 @@
     .ps-{{ section.id }} .ps-card { width: 340px; min-height: auto; padding: 28px; }
     .ps-{{ section.id }} .ps-card-title,
     .ps-{{ section.id }} .ps-card-body { font-size: 17px; }
+    /* Tablet: adjust dots-gap to match wrapper gap */
+    .ps-{{ section.id }} .ps-dots-gap { width: 31px; }
+    .ps-{{ section.id }} .ps-dots { width: 340px; }
   }
 
   /* ── MOBILE (≤ 767px) — 360px target ────────────────────────
@@ -296,6 +359,24 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* Custom icon image inside nav button */
+    .ps-{{ section.id }} .ps-nav-btn img.ps-nav-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* Fallback SVG (shown when no image uploaded) */
+    .ps-{{ section.id }} .ps-nav-btn svg.ps-nav-svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Hide dots row on mobile */
+    .ps-{{ section.id }} .ps-dots-row { display: none; }
+
     /* Divider line between the two arrow buttons */
     .ps-{{ section.id }} .ps-nav-divider {
       width: 1px;
@@ -318,6 +399,11 @@
   /* Hide mobile slider on desktop */
   @media screen and (min-width: 768px) {
     .ps-{{ section.id }} .ps-mobile { display: none; }
+  }
+
+  /* Hide dot row on mobile (mobile uses the nav pill) */
+  @media screen and (max-width: 767px) {
+    .ps-{{ section.id }} .ps-dots-row { display: none; }
   }
 
 {%- endstyle -%}
@@ -379,6 +465,24 @@
 
   </div><!-- /ps-wrapper -->
 
+  <!-- ══ DESKTOP DOT PAGINATION ════════════════════════════════ -->
+  <div class="ps-dots-row">
+    <div class="ps-dots-spacer"></div>
+    <div class="ps-dots-gap"></div>
+    <div class="ps-dots" id="ps-dots-{{ section.id }}">
+      {%- assign dot_idx = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'info_card' -%}
+          <button
+            class="ps-dot {% if dot_idx == 0 %}ps-dot-active{% endif %}"
+            data-ps-dot="{{ dot_idx }}"
+            aria-label="Go to slide {{ dot_idx | plus: 1 }}"
+          ></button>
+          {%- assign dot_idx = dot_idx | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
 
   <!-- ══ MOBILE: full-screen slider carousel ════════════════════ -->
   <div class="ps-mobile" id="ps-mobile-{{ section.id }}">
@@ -413,14 +517,31 @@
     <!-- Prev / Next arrows -->
     <div class="ps-mobile-nav">
       <button class="ps-nav-btn" id="ps-prev-{{ section.id }}" aria-label="Previous" disabled>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
+        {%- if section.settings.prev_icon != blank -%}
+          <img
+            class="ps-nav-icon"
+            src="{{ section.settings.prev_icon | image_url: width: 60 }}"
+            alt="Previous"
+          >
+        {%- else -%}
+          <svg class="ps-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        {%- endif -%}
       </button>
+      <span class="ps-nav-divider" aria-hidden="true"></span>
       <button class="ps-nav-btn" id="ps-next-{{ section.id }}" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 6 15 12 9 18"/>
-        </svg>
+        {%- if section.settings.next_icon != blank -%}
+          <img
+            class="ps-nav-icon"
+            src="{{ section.settings.next_icon | image_url: width: 60 }}"
+            alt="Next"
+          >
+        {%- else -%}
+          <svg class="ps-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        {%- endif -%}
       </button>
     </div>
 
@@ -459,6 +580,7 @@
   /* Desktop */
   var deskCards  = root.querySelectorAll('.ps-card');
   var deskImages = root.querySelectorAll('.ps-img-frame img');
+  var deskDots   = root.querySelectorAll('.ps-dot');
 
   /* Mobile */
   var mobImages  = root.querySelectorAll('.ps-mobile-img img');
@@ -478,6 +600,10 @@
     /* Desktop: crossfade images */
     deskImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
     if (deskImages[idx]) deskImages[idx].classList.add('ps-img-active');
+
+    /* Desktop: update dots */
+    deskDots.forEach(function (d) { d.classList.remove('ps-dot-active'); });
+    if (deskDots[idx]) deskDots[idx].classList.add('ps-dot-active');
 
     /* Mobile: crossfade images */
     mobImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
@@ -512,6 +638,13 @@
       activate(0);
     });
   }
+
+  /* ─── Desktop: dot clicks ───────────────────────────────── */
+  deskDots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      activate(parseInt(dot.dataset.psDot, 10));
+    });
+  });
 
   /* ─── Mobile: arrow navigation ──────────────────────────── */
   if (prevBtn) {
@@ -559,6 +692,24 @@
       "id": "heading",
       "label": "Heading",
       "default": "What a KOPILOT.ID partnership delivers."
+    },
+    {
+      "type": "header",
+      "content": "Mobile Nav Arrow Icons"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upload custom arrow images. If left empty, default SVG chevrons are used."
+    },
+    {
+      "type": "image_picker",
+      "id": "prev_icon",
+      "label": "Previous Arrow Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "next_icon",
+      "label": "Next Arrow Icon"
     }
   ],
   "blocks": [
