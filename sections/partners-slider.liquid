@@ -124,3 +124,68 @@
     }
   }
 {%- endstyle -%}
+{% schema %}
+{
+  "name": "Infinite Marquee Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We get outside."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph Text",
+      "default": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "label": "Animation Duration (Speed)",
+      "default": 26
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause marquee on hover",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Slider Image Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Infinite Marquee Slider",
+      "blocks": [
+        { "type": "image_card" },
+        { "type": "image_card" },
+        { "type": "image_card" },
+        { "type": "image_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
