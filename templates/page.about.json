@@ -81,7 +81,9 @@
       "blocks": {
         "logo_QQPBJB": {
           "type": "logo",
-          "settings": {}
+          "settings": {
+            "logo_image": "shopify://shop_images/image_18659484.svg"
+          }
         },
         "logo_VtBDMb": {
           "type": "logo",
@@ -118,7 +120,9 @@
         "bg_color": "#ffffff",
         "heading": "Trusted by thousands.",
         "paragraph": "We work with races, events, organizers, and outdoor communities who understand that preparation matters. From local events to nationally recognized race series.",
+        "badge_text": "Location",
         "card_heading": "Name Here",
+        "card_subheading": "- (Maybe a titleholder here?)",
         "card_text": "\"[Real community or ambassador story — the tag working in the wild.]\""
       }
     }
