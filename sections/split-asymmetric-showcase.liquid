@@ -62,9 +62,9 @@
   .showcase-{{ section.id }} .logo-grid-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 16px; 
     width: 100%;
-    max-width: 322px;
+    max-width: 400px; /* Expanded limit to open up naturally on desktop without overflowing into Col-2 */
     box-sizing: border-box;
   }
 
@@ -80,18 +80,19 @@
 
   .showcase-{{ section.id }} .logo-row-2 {
     justify-content: flex-start;
-    gap: 22px;
+    gap: 20px;
   }
 
   .showcase-{{ section.id }} .logo-item {
     height: auto;
-    max-height: 44px;
+    max-height: 40px;
     object-fit: contain;
-    max-width: 22%;
+    width: auto;
+    max-width: 75px; /* Restricts absolute layout footprint rather than scaling dynamically via % */
   }
 
   .showcase-{{ section.id }} .logo-row-2 .logo-item {
-    max-width: 26%;
+    max-width: 75px;
   }
 
   /* --- Right Column: Interactive Frame --- */
@@ -240,7 +241,7 @@
 
     .showcase-{{ section.id }} .logo-item,
     .showcase-{{ section.id }} .logo-row-2 .logo-item {
-      max-width: 22%;
+      max-width: 60px; /* Scaled down slightly for tight mobile view constraints */
     }
   }
 {%- endstyle -%}
