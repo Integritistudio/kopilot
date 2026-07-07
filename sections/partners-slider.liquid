@@ -1,0 +1,219 @@
+<!-- sections/partners-slider.liquid -->
+<section class="kopilot-partners-section" id="PartnersSection-{{ section.id }}">
+  <div class="text-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.paragraph != blank -%}
+      <p class="paragraph">{{ section.settings.paragraph | escape }}</p>
+    {%- endif -%}
+  </div>
+  
+  <div class="slider-wrapper">
+    <div class="slider-track">
+      <!-- Original Loop -->
+      {%- for block in section.blocks -%}
+        {%- if block.settings.image != blank -%}
+          <div class="slider-card" {{ block.shopify_attributes }}>
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: "Partner Logo" }}
+          </div>
+        {%- else -%}
+          <div class="slider-card" {{ block.shopify_attributes }}>
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <!-- Cloned Duplicate Loop for Seamless Infinite Transition -->
+      {%- for block in section.blocks -%}
+        {%- if block.settings.image != blank -%}
+          <div class="slider-card" aria-hidden="true">
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: "Partner Logo" }}
+          </div>
+        {%- else -%}
+          <div class="slider-card" aria-hidden="true">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base Section Setup */
+  .kopilot-partners-section {
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* Text Container & Typography (Desktop Default - 1440px Context) */
+  .kopilot-partners-section .text-container {
+    width: 100%;
+    max-width: 1114px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px; /* Exact gap between text container and slider */
+    box-sizing: border-box;
+  }
+
+  .kopilot-partners-section .heading {
+    font-family: 'Elza', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2; /* 120% / 24px */
+    letter-spacing: 0%;
+    color: #000000;
+    margin: 0 0 20px 0; /* Exact gap between heading and paragraph */
+  }
+
+  .kopilot-partners-section .paragraph {
+    font-family: 'Elza', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0%;
+    color: #000000;
+    margin: 0;
+  }
+
+  /* Slider Wrapper & Moving Track */
+  .kopilot-partners-section .slider-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .kopilot-partners-section .slider-track {
+    display: flex;
+    gap: 17.92px; /* Exact gap between slider cards */
+    width: max-content;
+    animation: infiniteScroll 25s linear infinite;
+  }
+
+  /* Slider Cards styling based on Figma viewports */
+  .kopilot-partners-section .slider-card {
+    flex-shrink: 0;
+    width: 265px; 
+    height: 268.1px; /* Exact height from frame */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .kopilot-partners-section .slider-card img,
+  .kopilot-partners-section .slider-card svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* CSS Keyframe Animation for Seamless Infinite Loop */
+  @keyframes infiniteScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Translates cleanly by exactly half the track length minus half the gap spacing offset */
+      transform: translateX(calc(-50% - 8.96px)); 
+    }
+  }
+
+  /* Optional: Pause animation on mouse hover */
+  .kopilot-partners-section .slider-wrapper:hover .slider-track {
+    animation-play-state: paused;
+  }
+
+  /* --- Responsive Mobile Viewport Breakpoint (360px Context) --- */
+  @media (max-width: 767px) {
+    .kopilot-partners-section {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    .kopilot-partners-section .text-container {
+      padding-left: 38px; /* Strict mobile rule: padding left & right 38px for text only */
+      padding-right: 38px;
+      margin-bottom: 40px; /* Explicit mobile text container to slider gap */
+    }
+
+    .kopilot-partners-section .heading {
+      font-size: 15px; /* Updated mobile selection sizing */
+      line-height: 1.2; /* 18px */
+      margin-bottom: 20px; /* Explicit mobile heading to paragraph gap */
+    }
+
+    .kopilot-partners-section .paragraph {
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .kopilot-partners-section .slider-track {
+      gap: 17.92px; /* Preserved gap uniformly across viewports */
+    }
+
+    .kopilot-partners-section .slider-card {
+      width: 180px; /* Scaled down proportionally for 360px mobile viewport visual parity */
+      height: 182px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Partners Slider Loop",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We get outside."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "partner_card",
+      "name": "Partner Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Partner Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Slider Loop",
+      "blocks": [
+        { "type": "partner_card" },
+        { "type": "partner_card" },
+        { "type": "partner_card" },
+        { "type": "partner_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
