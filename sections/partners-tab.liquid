@@ -10,7 +10,6 @@
     <h2 class="section-heading">What a KOPILOT.ID partnership delivers.</h2>
     
     <div class="content-wrapper">
-      <!-- Left Column: Image -->
       <div class="left-col" id="image-viewer">
         {% for block in section.blocks %}
           <div class="feature-image-wrapper {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
@@ -19,7 +18,6 @@
         {% endfor %}
       </div>
 
-      <!-- Right Column: Interactive Cards -->
       <div class="right-col">
         {% for block in section.blocks %}
           <div class="feature-card {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
@@ -30,7 +28,6 @@
       </div>
     </div>
     
-    <!-- Mobile Pagination -->
     <div class="mobile-pagination">
       <button class="nav-btn prev-btn" aria-label="Previous">&lt;</button>
       <button class="nav-btn next-btn" aria-label="Next">&gt;</button>
@@ -39,7 +36,7 @@
 </section>
 
 <style>
-  /* --- Section Container --- */
+  /* --- Section Defaults --- */
   .kopilot-partnership {
     background-color: #F1F1F1;
     padding: 80px 0;
@@ -49,14 +46,6 @@
     max-width: 1148px;
     margin: 0 auto;
     padding: 0 166px;
-  }
-
-  /* --- Desktop Grid Logic --- */
-  .content-wrapper {
-    display: grid;
-    grid-template-columns: 632px 485px;
-    gap: 31px;
-    align-items: stretch;
   }
 
   .section-heading {
@@ -69,19 +58,22 @@
     color: #000;
   }
 
-  /* --- Left Column: Equal Height Image --- */
+  /* --- Desktop Equal Height Grid --- */
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 632px 1fr;
+    gap: 31px;
+    align-items: stretch;
+  }
+
   .left-col {
     position: relative;
     width: 100%;
   }
 
   .feature-image-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: none;
+    height: 100%;
   }
 
   .feature-image-wrapper.active {
@@ -95,7 +87,6 @@
     border-radius: 8px;
   }
 
-  /* --- Right Column: Equal Height Cards --- */
   .right-col {
     display: flex;
     flex-direction: column;
@@ -107,9 +98,7 @@
     cursor: pointer;
     transition: background 0.3s ease;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background: #fff;
   }
 
   .feature-card.active {
@@ -130,102 +119,56 @@
     line-height: 120%;
   }
 
-  /* --- Mobile Responsive (360px) --- */
-  .mobile-pagination {
-    display: none;
+  /* --- Responsive Styles --- */
+  @media (max-width: 1024px) {
+    .partnership-container { padding: 0 40px; }
+    .content-wrapper { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 767px) {
-    .partnership-container {
-      padding: 50px 20px;
-    }
-
-    .section-heading {
-      font-size: 30px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .left-col {
-      position: relative;
-      height: 214px;
-    }
-
-    .feature-image-wrapper {
-      position: relative;
-    }
-
-    .feature-image-wrapper img {
-      width: 326px;
-      height: 214px;
-      margin: 0 auto;
-    }
-
-    .right-col {
-      width: 100%;
-      gap: 0;
-    }
-
-    .feature-card {
-      display: none;
-      padding: 35px 20px;
-    }
-
-    .feature-card.active {
-      display: flex;
-    }
-
-    .feature-card h3 {
-      font-size: 15px;
-    }
-
-    .mobile-pagination {
-      display: flex;
-      justify-content: center;
-      gap: 10.57px;
-      margin-top: 20px;
-    }
-
-    .nav-btn {
-      width: 44px;
-      height: 44px;
-      background: #fff;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
+    .partnership-container { padding: 50px 20px; }
+    .section-heading { font-size: 30px; text-align: center; margin-bottom: 30px; }
+    .content-wrapper { display: flex; flex-direction: column; gap: 30px; }
+    
+    .left-col { height: 214px; }
+    .feature-image-wrapper img { width: 326px; height: 214px; margin: 0 auto; display: block; }
+    
+    .right-col { width: 100%; gap: 0; }
+    .feature-card { display: none; padding: 35px 20px; }
+    .feature-card.active { display: block; }
+    .feature-card h3 { font-size: 15px; }
+    
+    .mobile-pagination { display: flex; justify-content: center; gap: 10.57px; margin-top: 20px; }
+    .nav-btn { width: 44px; height: 44px; background: #fff; border: 1px solid #ccc; cursor: pointer; }
   }
 </style>
 
 <script>
-  const cards = document.querySelectorAll('.feature-card');
-  const images = document.querySelectorAll('.feature-image-wrapper');
-  let currentIndex = 0;
+  (function() {
+    const cards = document.querySelectorAll('.feature-card');
+    const images = document.querySelectorAll('.feature-image-wrapper');
+    let currentIndex = 0;
 
-  function updateView(index) {
-    cards.forEach((c, i) => {
-      c.classList.toggle('active', i === index);
-      images[i].classList.toggle('active', i === index);
+    function updateView(index) {
+      cards.forEach((c, i) => {
+        c.classList.toggle('active', i === index);
+        images[i].classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => updateView(parseInt(card.dataset.index)));
     });
-    currentIndex = index;
-  }
 
-  cards.forEach(card => {
-    card.addEventListener('click', () => updateView(parseInt(card.dataset.index)));
-  });
+    document.querySelector('.prev-btn')?.addEventListener('click', () => {
+      updateView(currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
+    });
 
-  document.querySelector('.prev-btn')?.addEventListener('click', () => {
-    updateView(currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
-  });
-
-  document.querySelector('.next-btn')?.addEventListener('click', () => {
-    updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
-  });
+    document.querySelector('.next-btn')?.addEventListener('click', () => {
+      updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
+    });
+  })();
 </script>
 
 {% schema %}
