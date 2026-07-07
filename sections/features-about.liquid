@@ -1,284 +1,434 @@
-<div id="Features-{{ section.id }}" class="features-section">
-  <div class="features__container">
-    <div class="features__row">
-      
-      {%- comment -%} Left Column: Media (Video) {%- endcomment -%}
-      <div class="features__media">
-        {%- if section.settings.video != blank -%}
-          {{ section.settings.video | video_tag: 
-            autoplay: true, 
-            loop: true, 
-            muted: true, 
-            playsinline: true, 
-            controls: false, 
-            class: 'features__video' 
-          }}
-        {%- else -%}
-          <div class="features__video-placeholder"></div>
-        {%- endif -%}
-      </div>
+{%- style -%}
+  /* --- Typography Registration --- */
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    font-weight: 400;
+    font-style: normal;
+  }
 
-      {%- comment -%} Right Column: Text and CTA {%- endcomment -%}
-      <div class="features__content">
-        <div class="features__text-group">
-          {%- if section.settings.heading != blank -%}
-            <h2 class="features__heading">{{ section.settings.heading | escape }}</h2>
-          {%- endif -%}
-          {%- if section.settings.paragraph != blank -%}
-            <div class="features__paragraph">
-              {{ section.settings.paragraph }}
-            </div>
-          {%- endif -%}
+  .showcase-{{ section.id }} {
+    width: 100%;
+    padding: 70px 222.08px; /* Strict desktop layout parameters */
+    background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
+  }
+
+  .showcase-{{ section.id }} .showcase-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 60px; /* Precise column-to-column distance */
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* --- Left Column: Text Content Handling --- */
+  .showcase-{{ section.id }} .content-column {
+    width: 433.84px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .showcase-{{ section.id }} .showcase-heading {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 45px 0;
+    padding: 0;
+  }
+
+  .showcase-{{ section.id }} .showcase-paragraph {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 140%;
+    color: #000000;
+    margin: 0 0 38px 0; 
+    padding: 0;
+    max-width: 377px;
+  }
+
+  /* --- Logo Element Stack Rules --- */
+  .showcase-{{ section.id }} .logo-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    width: 100%;
+    max-width: 400px; /* Expanded limit to open up naturally on desktop without overflowing into Col-2 */
+    box-sizing: border-box;
+  }
+
+  .showcase-{{ section.id }} .logo-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .showcase-{{ section.id }} .logo-row-1 {
+    justify-content: space-between;
+  }
+
+  .showcase-{{ section.id }} .logo-row-2 {
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .showcase-{{ section.id }} .logo-item {
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+    width: auto;
+    max-width: 75px; /* Restricts absolute layout footprint rather than scaling dynamically via % */
+  }
+
+  .showcase-{{ section.id }} .logo-row-2 .logo-item {
+    max-width: 75px;
+  }
+
+  /* --- Right Column: Interactive Frame --- */
+  .showcase-{{ section.id }} .interactive-column {
+    width: 502px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .showcase-{{ section.id }} .interactive-card {
+    width: 100%;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 0 0 30px 0; /* Clear bottom padding for layout card */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* --- Interactive Image Framework Sizing --- */
+  .showcase-{{ section.id }} .card-image-wrapper {
+    width: 501px;      /* Exact width tracking from image_85ab42.png */
+    height: 254px;     /* Exact height tracking from image_85ab42.png */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background-color: #e0e0e0;
+  }
+
+  .showcase-{{ section.id }} .card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .showcase-{{ section.id }} .card-image-wrapper .location-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #ffffff;
+    color: #000000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .showcase-{{ section.id }} .card-text-content {
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  /* --- Micro-Figma Component Tags implementation --- */
+  .showcase-{{ section.id }} .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .showcase-{{ section.id }} .ui-tag {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%; 
+    color: #000000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 148px;
+    padding: 10px 24px; /* Matches Figma specifications exactly */
+    border: 1px solid #000000;
+    background: transparent;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  /* --- Responsive Framework Adjustments --- */
+  @media screen and (max-width: 1199px) {
+    .showcase-{{ section.id }} {
+      padding: 70px 40px;
+    }
+    .showcase-{{ section.id }} .showcase-wrapper {
+      gap: 40px;
+    }
+    .showcase-{{ section.id }} .content-column,
+    .showcase-{{ section.id }} .interactive-column {
+      width: 50%;
+      flex-shrink: 1;
+    }
+    .showcase-{{ section.id }} .card-image-wrapper {
+      width: 100%;
+    }
+  }
+
+  /* --- Mobile Framework Specification (360px targeted execution) --- */
+  @media screen and (max-width: 767px) {
+    .showcase-{{ section.id }} {
+      padding: 70px 22px; /* Set precisely to your required 22px left and right bounds */
+    }
+
+    .showcase-{{ section.id }} .showcase-wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px; 
+    }
+
+    .showcase-{{ section.id }} .content-column,
+    .showcase-{{ section.id }} .interactive-column {
+      width: 100%;
+      max-width: 322px; /* Strictly enforces alignment tracking inside mobile views */
+    }
+
+    /* --- Precise Mobile Image Adaptation --- */
+    .showcase-{{ section.id }} .card-image-wrapper {
+      width: 316px;    /* Exact pixel adjustment match from image_85ab7e.png */
+      height: 254px;   /* Exact height tracking from image_85ab7e.png */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .showcase-{{ section.id }} .card-text-content {
+      padding: 0 16px;
+    }
+
+    .showcase-{{ section.id }} .showcase-heading {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .showcase-{{ section.id }} .showcase-paragraph {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .showcase-{{ section.id }} .logo-grid-wrapper {
+      margin: 0 auto;
+    }
+
+    .showcase-{{ section.id }} .logo-row {
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .showcase-{{ section.id }} .logo-item,
+    .showcase-{{ section.id }} .logo-row-2 .logo-item {
+      max-width: 60px; /* Scaled down slightly for tight mobile view constraints */
+    }
+  }
+{%- endstyle -%}
+
+<div class="showcase-{{ section.id }}">
+  <div class="showcase-wrapper">
+    
+    <div class="content-column">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="showcase-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.paragraph != blank -%}
+        <p class="showcase-paragraph">{{ section.settings.paragraph }}</p>
+      {%- endif -%}
+
+      <div class="logo-grid-wrapper">
+        {%- assign total_logo_count = 0 -%}
+        <div class="logo-row logo-row-1">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'logo' and block.settings.logo_image != blank -%}
+              {%- assign total_logo_count = total_logo_count | plus: 1 -%}
+              {%- if total_logo_count <= 4 -%}
+                <img class="logo-item" 
+                     src="{{ block.settings.logo_image | image_url }}" 
+                     alt="{{ block.settings.logo_image.alt | escape }}"
+                     loading="lazy">
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
         </div>
 
-        {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link }}" class="features__button">
-            {{ section.settings.button_label | escape }}
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.partner_text != blank -%}
-          <div class="features__partner-prompt">
-            {{ section.settings.partner_text }}
+        {%- if total_logo_count > 4 -%}
+          {%- assign control_counter = 0 -%}
+          <div class="logo-row logo-row-2">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'logo' and block.settings.logo_image != blank -%}
+                {%- assign control_counter = control_counter | plus: 1 -%}
+                {%- if control_counter > 4 -%}
+                  <img class="logo-item" 
+                       src="{{ block.settings.logo_image | image_url }}" 
+                       alt="{{ block.settings.logo_image.alt | escape }}"
+                       loading="lazy">
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
           </div>
         {%- endif -%}
       </div>
-
     </div>
+
+    <div class="interactive-column">
+      <div class="interactive-card">
+        
+        <div class="card-image-wrapper">
+          {%- if section.settings.card_image != blank -%}
+            <img src="{{ section.settings.card_image | image_url: width: 600 }}" 
+                 alt="{{ section.settings.card_image.alt | escape }}" 
+                 loading="lazy">
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+          {%- if section.settings.badge_text != blank -%}
+            <div class="location-badge">{{ section.settings.badge_text | escape }}</div>
+          {%- endif -%}
+        </div>
+
+        <div class="card-text-content">
+          {%- if section.settings.card_heading != blank -%}
+            <h3 style="font-family: 'Elza', sans-serif; font-weight:300; margin: 0 0 10px 0; font-size: 24px; color: #000000;">{{ section.settings.card_heading | escape }}</h3>
+          {%- endif -%}
+          
+          {%- if section.settings.card_subheading != blank -%}
+            <p style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #666666; margin: 0 0 15px 0;">{{ section.settings.card_subheading | escape }}</p>
+          {%- endif -%}
+          
+          {%- if section.settings.card_text != blank -%}
+            <p style="font-family: 'Outfit', sans-serif; font-size:15px; line-height: 140%; margin:0 0 20px 0; color: #333333;">{{ section.settings.card_text }}</p>
+          {%- endif -%}
+
+          <div class="tag-container">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'pill_tag' -%}
+                <span class="ui-tag">{{ block.settings.tag_title | escape }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 
-{% style %}
-  /* Section Reset */
-  #Features-{{ section.id }}.features-section {
-    background-color: #FFFFFF;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  #Features-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* Desktop Viewport (1440px) */
-  @media screen and (min-width: 768px) {
-    #Features-{{ section.id }} .features__container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 60px 140px 60px 95px;
-    }
-    #Features-{{ section.id }} .features__row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 60px;
-    }
-    #Features-{{ section.id }} .features__media {
-      width: 707px;
-      height: 447px;
-      flex-shrink: 0;
-    }
-    #Features-{{ section.id }} .features__video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    #Features-{{ section.id }} .features__content {
-      display: flex;
-      flex-direction: column;
-      width: 438px;
-    }
-    #Features-{{ section.id }} .features__text-group {
-      display: flex;
-      flex-direction: column;
-      gap: 19px;
-      margin-bottom: 38px;
-    }
-    #Features-{{ section.id }} h2.features__heading {
-      font-family: 'Elza', sans-serif;
-      font-size: 60px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      letter-spacing:-1px;
-    }
-    #Features-{{ section.id }} .features__paragraph p {
-      font-family: 'Elza', sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 100%;
-      color: #000000;
-    }
-    #Features-{{ section.id }} .features__button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 335px;
-      padding: 18.34px 64px;
-      background-color: #EF0008;
-      color: #FFFFFF;
-      font-family: 'Elza', sans-serif;
-      font-size: 20.38px;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-decoration: none;
-      margin-bottom: 34px;
-    }
-
-    /* High Specificity Desktop Target for Partner Prompt Paragraph & Strong */
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
-      font-family: 'Elza', sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      text-align: left;
-    }
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
-      display: block; /* Pushes to a new line */
-      margin-top: 7px; /* Adds the exact 7px gap requested */
-      font-family: 'Elza', sans-serif;
-      font-size: 20.38px;
-      font-weight: 600;
-      line-height: 100%;
-      color: #000000;
-      text-decoration: underline;
-    }
-  }
-
-  /* Mobile Viewport (360px) */
-  @media screen and (max-width: 767px) {
-    #Features-{{ section.id }} .features__container {
-      width: 100%;
-      padding: 70px 20px;
-    }
-    #Features-{{ section.id }} .features__row {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 46px;
-    }
-    #Features-{{ section.id }} .features__media {
-      width: 100%;
-      height: auto;
-    }
-    #Features-{{ section.id }} .features__video {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-    }
-    #Features-{{ section.id }} .features__video-placeholder {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background-color: #f3f3f3;
-    }
-    #Features-{{ section.id }} .features__content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    #Features-{{ section.id }} .features__text-group {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      gap: 12px;
-      margin-bottom: 38px;
-    }
-    #Features-{{ section.id }} h2.features__heading {
-      font-family: 'Elza', sans-serif;
-      font-size: 30px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-    }
-    #Features-{{ section.id }} .features__paragraph p {
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 100%;
-      color: #000000;
-    }
-    #Features-{{ section.id }} .features__button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      max-width: 276.51px;
-      padding: 15.88px 0; 
-      background-color: #EF0008;
-      color: #FFFFFF;
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 100%;
-      text-transform: uppercase;
-      text-decoration: none;
-      margin-bottom: 34px; 
-    }
-
-    /* High Specificity Mobile Target for Partner Prompt Paragraph & Strong */
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      text-align: center;
-    }
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
-      display: block; /* Pushes to a new line */
-      margin-top: 7px; /* Adds the exact 7px gap requested */
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 100%;
-      color: #000000;
-      text-decoration: underline;
-    }
-  }
-{% endstyle %}
-
 {% schema %}
 {
-  "name": "Feature Split Section",
+  "name": "Asymmetric Showcase",
   "settings": [
     {
-      "type": "video",
-      "id": "video",
-      "label": "Feature Video"
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "The tag that brings you home."
+      "label": "Heading Block Text",
+      "default": "Trusted by thousands."
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "paragraph",
-      "label": "Paragraph",
-      "default": "<p>Wherever you're headed next, go knowing you've got a way back.</p>"
+      "label": "Paragraph Description Text",
+      "default": "We work with races, events, organizers, and outdoor communities who understand that preparation matters."
+    },
+    {
+      "type": "header",
+      "content": "Right Side Card Config"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image",
+      "label": "Card Feature Image (Auto-Resized)"
     },
     {
       "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "GET YOUR KOPILOT.ID"
+      "id": "badge_text",
+      "label": "Image Badge Text",
+      "default": "Location"
     },
     {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "type": "text",
+      "id": "card_heading",
+      "label": "Card Heading/Name",
+      "default": "Name Here"
     },
     {
-      "type": "richtext",
-      "id": "partner_text",
-      "label": "Partner Prompt",
-      "default": "<p>Run an event, or build gear of your own? <b>PARTNER WITH US</b></p>"
+      "type": "text",
+      "id": "card_subheading",
+      "label": "Card Subheading Title",
+      "default": "- (Maybe a titleholder here?)"
+    },
+    {
+      "type": "textarea",
+      "id": "card_text",
+      "label": "Card Quote Content text",
+      "default": "\"[Real community or ambassador story — the tag working in the wild.]\""
     }
   ],
-  "presets": [{ "name": "Feature Split Section" }]
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Trusted Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Asset Source"
+        }
+      ]
+    },
+    {
+      "type": "pill_tag",
+      "name": "Pill Tag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag_title",
+          "label": "Tag Label Text Content",
+          "default": "Trans-Rockies"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Asymmetric Showcase",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "pill_tag" },
+        { "type": "pill_tag" },
+        { "type": "pill_tag" }
+      ]
+    }
+  ]
 }
 {% endschema %}
