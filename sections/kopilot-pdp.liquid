@@ -369,7 +369,31 @@ padding:7.25px 18.29px;
     .kopilot-pdp__reviews-row > p{
       font-size:13px;
     }
-}
+  }
+
+  /* Gallery images height adjustments */
+  @media screen and (min-width: 768px) {
+    .kopilot-pdp__gallery-image,
+    .kopilot-pdp__gallery-image img,
+    .kopilot-pdp__gallery-grid img {
+      height: 410px !important;
+      min-height: 410px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .kopilot-pdp__gallery-image,
+    .kopilot-pdp__gallery-image img,
+    .kopilot-pdp__gallery-mobile img,
+    .kopilot-pdp__carousel-slide img {
+      height: 360px !important;
+      min-height: 360px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+  }
 {% endstyle %}
 
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
@@ -465,7 +489,7 @@ padding:7.25px 18.29px;
               class="kopilot-pdp__gallery-cell"
               {{ shopify_attributes }}
             >
-              {% if show_special_banner %}
+              {% if show_special_banner and forloop.first %}
                 <div class="kopilot-pdp__special-banner">{{ special_banner_text }}</div>
               {% endif %}
 
@@ -521,16 +545,15 @@ padding:7.25px 18.29px;
                   endif
                 %}
                 <div class="kopilot-pdp__carousel-slide" data-kopilot-slide {{ shopify_attributes }}>
-                  {% if show_special_banner %}
-                    <div class="kopilot-pdp__special-banner">{{ special_banner_text }}</div>
-                  {% endif %}
+                  {% comment %} Special banner omitted on mobile per user request {% endcomment %}
 
                   {% render 'kopilot-image',
                     image: slide_image,
                     fallback: gallery_fallbacks[forloop.index0],
                     alt: slide_alt,
                     width: 800,
-                    loading: forloop.first
+                    loading: forloop.first,
+                    class: 'kopilot-pdp__gallery-image'
                   %}
                   
                   {% if text_line_1 != blank or text_line_2 != blank %}
