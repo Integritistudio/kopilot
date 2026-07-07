@@ -99,7 +99,9 @@
         },
         "logo_w3BF8e": {
           "type": "logo",
-          "settings": {}
+          "settings": {
+            "logo_image": "shopify://shop_images/image_18659502_1.png"
+          }
         },
         "logo_LPpWa3": {
           "type": "logo",
