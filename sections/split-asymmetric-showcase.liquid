@@ -186,7 +186,6 @@
     display: flex;
     flex-wrap: wrap; 
     gap: 10px;
-    /* Parent gap of 21.52px handles spacing above, no extra margin needed */
   }
 
   .showcase-{{ section.id }} .ui-tag {
@@ -199,7 +198,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: auto; /* Shrink to fit text */
+    width: auto; 
     height: 31px;
     padding: 10px 22px; 
     border: 1px solid #000000;
@@ -257,15 +256,47 @@
       padding: 20px 16px;
     }
 
+    /* SPECIFIC MOBILE TYPOGRAPHY INJECTIONS */
     .showcase-{{ section.id }} .showcase-heading {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 30px;
+      line-height: 110%;
+      max-width: 276px;
+      margin: 0 auto 30px auto;
       text-align: center;
     }
 
     .showcase-{{ section.id }} .showcase-paragraph {
+      font-size: 15px;
+      line-height: 100%;
+      max-width: 238px;
+      margin: 0 auto 35px auto;
       text-align: center;
-      margin-bottom: 35px;
+    }
+
+    /* Explicit mobile enforcement for card elements to match your 360px spec */
+    .showcase-{{ section.id }} .location-badge {
+      font-size: 16px;
+      line-height: 120%;
+    }
+
+    .showcase-{{ section.id }} .card-name {
+      font-size: 20px;
+      line-height: 120%;
+    }
+
+    .showcase-{{ section.id }} .card-subname {
+      font-size: 16px;
+      line-height: 120%;
+    }
+
+    .showcase-{{ section.id }} .card-quote {
+      font-size: 20px;
+      line-height: 142%;
+    }
+
+    .showcase-{{ section.id }} .ui-tag {
+      font-size: 16px;
+      line-height: 120%;
     }
 
     .showcase-{{ section.id }} .logo-grid-wrapper {
