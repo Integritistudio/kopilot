@@ -198,6 +198,17 @@
         "heading": "The people behind it.",
         "paragraph": "<p>We're a small team with backgrounds in the outdoor and powersports industries. Building products for the outdoor community taught us a lot about adventure. KOPILOT.ID was born from what we learned along the way.</p>"
       }
+    },
+    "features_about_wcY6FD": {
+      "type": "features-about",
+      "name": "Feature Split Section",
+      "settings": {
+        "heading": "The tag that brings you home.",
+        "paragraph": "<p>Wherever you're headed next, go knowing you've got a way back.</p>",
+        "button_label": "GET YOUR KOPILOT.ID",
+        "button_link": "",
+        "partner_text": "<p>Run an event, or build gear of your own? <strong>PARTNER WITH US</strong></p>"
+      }
     }
   },
   "order": [
@@ -205,6 +216,7 @@
     "about_hero_banner_46nfDW",
     "partners_slider_WXzAQj",
     "split_asymmetric_showcase_K3cmFH",
-    "team_profiles_M8xnat"
+    "team_profiles_M8xnat",
+    "features_about_wcY6FD"
   ]
 }
