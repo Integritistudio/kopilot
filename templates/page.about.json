@@ -207,7 +207,7 @@
         "paragraph": "<p>Wherever you're headed next, go knowing you've got a way back.</p>",
         "button_label": "GET YOUR KOPILOT.ID",
         "button_link": "",
-        "partner_text": "<p>Run an event, or build gear of your own? <strong>PARTNER WITH US</strong></p>"
+        "partner_text": "<p>Run an event, or build gear of your own?<br/><strong>PARTNER WITH US</strong></p>"
       }
     }
   },
