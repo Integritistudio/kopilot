@@ -11,10 +11,55 @@
   "sections": {
     "main": {
       "type": "default-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_breadcrumbs": true,
+        "show_title": true,
+        "head_align": "left",
+        "top_spacing": 40,
+        "bottom_spacing": 40
+      }
+    },
+    "partners_tab_3ArRxU": {
+      "type": "partners-tab",
+      "blocks": {
+        "feature_rwUhWV": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
+            "title": "Support your community.",
+            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+          }
+        },
+        "feature_x4jRBK": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
+            "title": "Support your community.",
+            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+          }
+        },
+        "feature_hY8L6d": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
+            "title": "Support your community.",
+            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+          }
+        }
+      },
+      "block_order": [
+        "feature_rwUhWV",
+        "feature_x4jRBK",
+        "feature_hY8L6d"
+      ],
+      "name": "Partnership Section",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "partners_tab_3ArRxU"
   ]
 }
