@@ -1,5 +1,6 @@
-<div id="TeamProfiles-{{ section.id }}" class="team-profiles-section">
-  <div class="team-profiles__container" id="our-team">
+<div id="our-team">
+  <div id="TeamProfiles-{{ section.id }}" class="team-profiles-section">
+  <div class="team-profiles__container" >
     
     {%- if section.settings.heading != blank or section.settings.paragraph != blank -%}
       <div class="team-profiles__header-group">
@@ -45,6 +46,7 @@
     </div>
 
   </div>
+</div>
 </div>
 
 {% style %}
