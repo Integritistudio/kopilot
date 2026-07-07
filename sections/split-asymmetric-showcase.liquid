@@ -58,13 +58,13 @@
     max-width: 377px;
   }
 
-  /* --- Logo Element Stack Rules (pixel-perfect: 30px gap both rows, natural hug width) --- */
+  /* --- Logo Element Stack Rules --- */
   .showcase-{{ section.id }} .logo-grid-wrapper {
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 100%;
-    max-width: 433.84px; /* Matches Figma "Hug" row width */
+    max-width: 433.84px; 
     box-sizing: border-box;
   }
 
@@ -72,7 +72,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 30px; /* Consistent 30px gap on both rows per Figma */
+    gap: 30px; 
     width: 100%;
   }
 
@@ -98,8 +98,8 @@
 
   /* --- Interactive Image Framework Sizing --- */
   .showcase-{{ section.id }} .card-image-wrapper {
-    width: 502px;      /* Exact width from Figma frame */
-    height: 254px;     /* 466.36 total - 212.36 text block = 254px */
+    width: 502px;      
+    height: 254px;     
     position: relative;
     overflow: hidden;
     background-color: #e0e0e0;
@@ -134,7 +134,7 @@
     white-space: nowrap;
   }
 
-  /* --- Text block: Flow Vertical, Fixed 502px, padding 30.67/40, gap 21.52 --- */
+  /* --- Text block Parent: Gap 21.52px --- */
   .showcase-{{ section.id }} .card-text-content {
     display: flex;
     flex-direction: column;
@@ -142,6 +142,13 @@
     width: 502px;
     padding: 30.67px 40px;
     box-sizing: border-box;
+  }
+
+  /* --- NEW Inner Wrapper: Gap 10px --- */
+  .showcase-{{ section.id }} .card-header-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .showcase-{{ section.id }} .card-name {
@@ -174,12 +181,12 @@
     margin: 0;
   }
 
-  /* --- Micro-Figma Component Tags implementation --- */
+  /* --- Tag container --- */
   .showcase-{{ section.id }} .tag-container {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping only if screen gets too small */
+    flex-wrap: wrap; 
     gap: 10px;
-    margin-top: 15px; /* Adds the requested extra gap between the text and the pills */
+    /* Parent gap of 21.52px handles spacing above, no extra margin needed */
   }
 
   .showcase-{{ section.id }} .ui-tag {
@@ -192,9 +199,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: fit-content; /* Replaces fixed width so it naturally fits on one line */
+    width: auto; /* Shrink to fit text */
     height: 31px;
-    padding: 0 16px; /* Adjusted padding to ensure all 3 fit within the container */
+    padding: 0 16px; 
     border: 1px solid #000000;
     background: transparent;
     box-sizing: border-box;
@@ -223,7 +230,7 @@
   /* --- Mobile Framework Specification (360px targeted execution) --- */
   @media screen and (max-width: 767px) {
     .showcase-{{ section.id }} {
-      padding: 70px 22px; /* Set precisely to your required 22px left and right bounds */
+      padding: 70px 22px;
     }
 
     .showcase-{{ section.id }} .showcase-wrapper {
@@ -235,13 +242,12 @@
     .showcase-{{ section.id }} .content-column,
     .showcase-{{ section.id }} .interactive-column {
       width: 100%;
-      max-width: 322px; /* Strictly enforces alignment tracking inside mobile views */
+      max-width: 322px; 
     }
 
-    /* --- Precise Mobile Image Adaptation --- */
     .showcase-{{ section.id }} .card-image-wrapper {
-      width: 316px;    /* Exact pixel adjustment match from image_85ab7e.png */
-      height: 254px;   /* Exact height tracking from image_85ab7e.png */
+      width: 316px;    
+      height: 254px;   
       margin-left: auto;
       margin-right: auto;
     }
@@ -273,7 +279,7 @@
     }
 
     .showcase-{{ section.id }} .logo-item {
-      max-height: 32px; /* Scaled down slightly for tight mobile view constraints */
+      max-height: 32px;
     }
   }
 {%- endstyle -%}
@@ -342,13 +348,16 @@
         </div>
 
         <div class="card-text-content">
-          {%- if section.settings.card_heading != blank -%}
-            <h3 class="card-name">{{ section.settings.card_heading | escape }}</h3>
-          {%- endif -%}
           
-          {%- if section.settings.card_subheading != blank -%}
-            <p class="card-subname">{{ section.settings.card_subheading | escape }}</p>
-          {%- endif -%}
+          <div class="card-header-group">
+            {%- if section.settings.card_heading != blank -%}
+              <h3 class="card-name">{{ section.settings.card_heading | escape }}</h3>
+            {%- endif -%}
+            
+            {%- if section.settings.card_subheading != blank -%}
+              <p class="card-subname">{{ section.settings.card_subheading | escape }}</p>
+            {%- endif -%}
+          </div>
           
           {%- if section.settings.card_text != blank -%}
             <p class="card-quote">{{ section.settings.card_text }}</p>
