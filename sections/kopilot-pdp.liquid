@@ -686,7 +686,18 @@ padding:7.25px 18.29px;
                 assign variant_subtitle = variant.metafields.custom.subtitle
               endif
 
-              assign tier_title = variant.title | replace: 'product', 'TAG' | replace: 'Product', 'TAG' | upcase
+              assign tier_title = ''
+              if variant.metafields.custom.variant_name.value != blank
+                assign tier_title = variant.metafields.custom.variant_name.value
+              elsif variant.metafields.custom.variant_name != blank
+                assign tier_title = variant.metafields.custom.variant_name
+              elsif variant.metafields.custom.title.value != blank
+                assign tier_title = variant.metafields.custom.title.value
+              elsif variant.metafields.custom.title != blank
+                assign tier_title = variant.metafields.custom.title
+              else
+                assign tier_title = variant.title | replace: 'product', 'TAG' | replace: 'Product', 'TAG' | upcase
+              endif
             %}
 
             <button
