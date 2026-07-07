@@ -1,4 +1,5 @@
 {%- style -%}
+  /* --- Custom Font Setup --- */
   @font-face {
     font-family: 'Elza';
     font-weight: 400;
@@ -69,8 +70,8 @@
   /* --- Desktop Precision Sizing (1440px Framework) --- */
   .marquee-slider-{{ section.id }} .slider-card {
     flex-shrink: 0;
-    height: 346px;  /* Exact min-height requested for 1440px */
-    width: 346.5px; /* Perfect mathematical split to show exactly 4 cards clean on 1440px viewport */
+    height: 346px;  /* Exact height requested for 1440px */
+    width: 346.5px; /* Perfect split to show exactly 4 cards clean on 1440px viewport */
     overflow: hidden;
   }
 
@@ -119,11 +120,44 @@
     }
 
     .marquee-slider-{{ section.id }} .slider-card {
-      height: 268px;        /* Exact min-height requested for mobile 360px */
+      height: 268px;        /* Exact height requested for mobile 360px */
       width: 165px;         /* Portrait scaling to beautifully frame exactly 2 cards side-by-side */
     }
   }
 {%- endstyle -%}
+
+<div class="marquee-slider-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="text-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="marquee-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.paragraph != blank -%}
+      <p class="marquee-paragraph">{{ section.settings.paragraph | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="slider-container">
+    <div class="marquee-track">
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image_card' -%}
+            <div class="slider-card" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag:
+                  loading: 'lazy',
+                  alt: block.settings.image.alt | escape
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Infinite Marquee Slider",
