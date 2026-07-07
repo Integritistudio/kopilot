@@ -1,182 +1,179 @@
-<!-- sections/partners-slider.liquid -->
-<section class="kopilot-partners-section" id="PartnersSection-{{ section.id }}">
-  <div class="text-container">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="heading">{{ section.settings.heading | escape }}</h2>
-    {%- endif -%}
-    
-    {%- if section.settings.paragraph != blank -%}
-      <p class="paragraph">{{ section.settings.paragraph | escape }}</p>
-    {%- endif -%}
-  </div>
-  
-  <div class="slider-wrapper">
-    <div class="slider-track">
-      <!-- Original Loop -->
-      {%- for block in section.blocks -%}
-        {%- if block.settings.image != blank -%}
-          <div class="slider-card" {{ block.shopify_attributes }}>
-            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: "Partner Logo" }}
-          </div>
-        {%- else -%}
-          <div class="slider-card" {{ block.shopify_attributes }}>
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
+{%- style -%}
+  /* --- Google Fonts Fallback / Custom Font Setup --- */
+  /* If Elza is hosted locally or via Shopify Fonts, make sure to adjust font-family naming if necessary */
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 400;
+    font-style: normal;
+  }
 
-      <!-- Cloned Duplicate Loop for Seamless Infinite Transition -->
-      {%- for block in section.blocks -%}
-        {%- if block.settings.image != blank -%}
-          <div class="slider-card" aria-hidden="true">
-            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: "Partner Logo" }}
-          </div>
-        {%- else -%}
-          <div class="slider-card" aria-hidden="true">
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
-
-<style>
-  /* Base Section Setup */
-  .kopilot-partners-section {
-    width: 100%;
+  .marquee-slider-{{ section.id }} {
     padding-top: 70px;
     padding-bottom: 70px;
+    background-color: {{ section.settings.bg_color }};
     overflow: hidden;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-  }
-
-  /* Text Container & Typography (Desktop Default - 1440px Context) */
-  .kopilot-partners-section .text-container {
     width: 100%;
-    max-width: 1114px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 40px; /* Exact gap between text container and slider */
     box-sizing: border-box;
   }
 
-  .kopilot-partners-section .heading {
-    font-family: 'Elza', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.2; /* 120% / 24px */
-    letter-spacing: 0%;
-    color: #000000;
-    margin: 0 0 20px 0; /* Exact gap between heading and paragraph */
+  /* --- Text Container Styles --- */
+  .marquee-slider-{{ section.id }} .text-container {
+    text-align: center;
+    margin: 0 auto;
+    /* Desktop default layout container handling */
+    max-width: 1440px;
+    box-sizing: border-box;
   }
 
-  .kopilot-partners-section .paragraph {
-    font-family: 'Elza', -apple-system, BlinkMacSystemFont, sans-serif;
+  .marquee-slider-{{ section.id }} .marquee-heading {
+    font-family: 'Elza', sans-serif;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 1.2;
-    letter-spacing: 0%;
     color: #000000;
-    margin: 0;
+    margin: 0 0 20px 0; /* Gap between heading and para: 20px */
+    padding: 0;
+    /* Desktop font sizing placeholder if needed, otherwise matches standard scale */
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0%;
   }
 
-  /* Slider Wrapper & Moving Track */
-  .kopilot-partners-section .slider-wrapper {
+  .marquee-slider-{{ section.id }} .marquee-paragraph {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%; /* 24px */
+    letter-spacing: 0%;
+    color: #000000;
+    margin: 0 0 40px 0; /* Gap between text container and slider: 40px */
+    padding: 0;
+  }
+
+  /* --- Slider Container & Infinite Track Styles --- */
+  .marquee-slider-{{ section.id }} .slider-container {
     width: 100%;
     overflow: hidden;
     position: relative;
-  }
-
-  .kopilot-partners-section .slider-track {
     display: flex;
-    gap: 17.92px; /* Exact gap between slider cards */
-    width: max-content;
-    animation: infiniteScroll 25s linear infinite;
   }
 
-  /* Slider Cards styling based on Figma viewports */
-  .kopilot-partners-section .slider-card {
+  .marquee-slider-{{ section.id }} .marquee-track {
+    display: flex;
+    user-select: none;
+    gap: 17.92px; /* Gap between slider cards: 17.92px */
+    animation: smoothMarquee {{ section.settings.speed }}s linear infinite;
+    /* Minimize paint layout flashes */
+    will-change: transform; 
+  }
+
+  /* Pause on hover if setting enabled */
+  {% if section.settings.pause_on_hover %}
+  .marquee-slider-{{ section.id }} .slider-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  {% endif %}
+
+  .marquee-slider-{{ section.id }} .slider-card {
     flex-shrink: 0;
-    width: 265px; 
-    height: 268.1px; /* Exact height from frame */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f5f5f5;
-    border-radius: 4px;
+    width: 320px; /* Base card width for layout standard */
+    aspect-ratio: 4 / 3;
     overflow: hidden;
   }
 
-  .kopilot-partners-section .slider-card img,
-  .kopilot-partners-section .slider-card svg {
+  .marquee-slider-{{ section.id }} .slider-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  /* CSS Keyframe Animation for Seamless Infinite Loop */
-  @keyframes infiniteScroll {
+  /* CSS Animation for Seamless Loop */
+  @keyframes smoothMarquee {
     0% {
-      transform: translateX(0);
+      transform: translateX(0%);
     }
     100% {
-      /* Translates cleanly by exactly half the track length minus half the gap spacing offset */
-      transform: translateX(calc(-50% - 8.96px)); 
+      transform: translateX(calc(-50% - 8.96px)); /* Offsets exactly half the gap compensation */
     }
   }
 
-  /* Optional: Pause animation on mouse hover */
-  .kopilot-partners-section .slider-wrapper:hover .slider-track {
-    animation-play-state: paused;
+  /* --- Responsive Breakpoints --- */
+  
+  /* Tablet / Fluid adjustments */
+  @media screen and (max-width: 1024px) {
+    .marquee-slider-{{ section.id }} .slider-card {
+      width: 260px;
+    }
   }
 
-  /* --- Responsive Mobile Viewport Breakpoint (360px Context) --- */
-  @media (max-width: 767px) {
-    .kopilot-partners-section {
+  /* Mobile Spec: 360px optimization */
+  @media screen and (max-width: 767px) {
+    .marquee-slider-{{ section.id }} {
       padding-top: 70px;
       padding-bottom: 70px;
     }
-
-    .kopilot-partners-section .text-container {
-      padding-left: 38px; /* Strict mobile rule: padding left & right 38px for text only */
-      padding-right: 38px;
-      margin-bottom: 40px; /* Explicit mobile text container to slider gap */
+    
+    .marquee-slider-{{ section.id }} .text-container {
+      padding-left: 38px;  /* Mobile text padding left */
+      padding-right: 38px; /* Mobile text padding right */
     }
 
-    .kopilot-partners-section .heading {
-      font-size: 15px; /* Updated mobile selection sizing */
-      line-height: 1.2; /* 18px */
-      margin-bottom: 20px; /* Explicit mobile heading to paragraph gap */
+    .marquee-slider-{{ section.id }} .marquee-heading {
+      margin-bottom: 20px; /* Mobile heading to para gap: 20px */
+      font-size: 32px;
     }
 
-    .kopilot-partners-section .paragraph {
-      font-size: 15px;
-      line-height: 1.2;
+    .marquee-slider-{{ section.id }} .marquee-paragraph {
+      font-size: 15px;      /* Mobile paragraph size: 15px */
+      line-height: 120%;    /* 18px */
+      margin-bottom: 40px;  /* Mobile text container to slider gap: 40px */
     }
 
-    .kopilot-partners-section .slider-track {
-      gap: 17.92px; /* Preserved gap uniformly across viewports */
+    .marquee-slider-{{ section.id }} .marquee-track {
+      gap: 17.92px;        /* Preserved gap between slider cards */
     }
 
-    .kopilot-partners-section .slider-card {
-      width: 180px; /* Scaled down proportionally for 360px mobile viewport visual parity */
-      height: 182px;
+    .marquee-slider-{{ section.id }} .slider-card {
+      width: 220px;         /* Scaled appropriately for standard edge overflow on smaller frame viewports */
     }
   }
-</style>
+{%- endstyle -%}
+
+<div class="marquee-slider-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="text-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="marquee-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.paragraph != blank -%}
+      <p class="marquee-paragraph">{{ section.settings.paragraph | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="slider-container">
+    <!-- Track Duplicated dynamically via Liquid loop to create structural infinite scrolling pipeline -->
+    <div class="marquee-track">
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image_card' -%}
+            <div class="slider-card" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag:
+                  loading: 'lazy',
+                  alt: block.settings.image.alt | escape
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
-  "name": "Partners Slider Loop",
+  "name": "Infinite Marquee Slider",
   "settings": [
     {
       "type": "text",
@@ -187,31 +184,53 @@
     {
       "type": "textarea",
       "id": "paragraph",
-      "label": "Paragraph",
+      "label": "Paragraph Text",
       "default": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "label": "Animation Duration (Speed)",
+      "default": 26
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause marquee on hover",
+      "default": false
     }
   ],
   "blocks": [
     {
-      "type": "partner_card",
-      "name": "Partner Logo",
+      "type": "image_card",
+      "name": "Slider Image Card",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Partner Image"
+          "label": "Card Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Partners Slider Loop",
+      "name": "Infinite Marquee Slider",
       "blocks": [
-        { "type": "partner_card" },
-        { "type": "partner_card" },
-        { "type": "partner_card" },
-        { "type": "partner_card" }
+        { "type": "image_card" },
+        { "type": "image_card" },
+        { "type": "image_card" },
+        { "type": "image_card" }
       ]
     }
   ]
