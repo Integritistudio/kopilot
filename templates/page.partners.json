@@ -24,38 +24,38 @@
     "partners_tab_3ArRxU": {
       "type": "partners-tab",
       "blocks": {
-        "feature_rwUhWV": {
-          "type": "feature",
+        "info_card_8R4jnr": {
+          "type": "info_card",
           "settings": {
-            "image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
-            "title": "Support your community.",
-            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+            "card_title": "Support your community.",
+            "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
         },
-        "feature_x4jRBK": {
-          "type": "feature",
+        "info_card_nWm4af": {
+          "type": "info_card",
           "settings": {
-            "image": "shopify://shop_images/image_1.png",
-            "title": "Support your community.",
-            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+            "card_title": "Support your community.",
+            "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
         },
-        "feature_hY8L6d": {
-          "type": "feature",
+        "info_card_6KQpCx": {
+          "type": "info_card",
           "settings": {
-            "image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
-            "title": "Support your community.",
-            "description": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+            "card_title": "Support your community.",
+            "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
         }
       },
       "block_order": [
-        "feature_rwUhWV",
-        "feature_x4jRBK",
-        "feature_hY8L6d"
+        "info_card_8R4jnr",
+        "info_card_nWm4af",
+        "info_card_6KQpCx"
       ],
       "name": "Partnership Section",
-      "settings": {}
+      "settings": {
+        "bg_color": "#f1f1f1",
+        "heading": "What a KOPILOT.ID partnership delivers."
+      }
     }
   },
   "order": [
