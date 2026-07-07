@@ -162,12 +162,49 @@
         "card_subheading": "- (Maybe a titleholder here?)",
         "card_text": "\"[Real community or ambassador story — the tag working in the wild.]\""
       }
+    },
+    "team_profiles_M8xnat": {
+      "type": "team-profiles",
+      "blocks": {
+        "team_member_mBFACn": {
+          "type": "team_member",
+          "settings": {
+            "name": "JUSTIN",
+            "role": "Co-founder"
+          }
+        },
+        "team_member_MTQcVw": {
+          "type": "team_member",
+          "settings": {
+            "name": "MARK",
+            "role": "Co-founder"
+          }
+        },
+        "team_member_DAHxg8": {
+          "type": "team_member",
+          "settings": {
+            "name": "BLAKE",
+            "role": "Community & Content"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_mBFACn",
+        "team_member_MTQcVw",
+        "team_member_DAHxg8"
+      ],
+      "name": "Team Profiles",
+      "settings": {
+        "heading": "The people behind it.",
+        "paragraph": "<p>We're a small team with backgrounds in the outdoor and powersports industries. Building products for the outdoor community taught us a lot about adventure. KOPILOT.ID was born from what we learned along the way.</p>"
+      }
     }
   },
   "order": [
     "main",
     "about_hero_banner_46nfDW",
     "partners_slider_WXzAQj",
-    "split_asymmetric_showcase_K3cmFH"
+    "split_asymmetric_showcase_K3cmFH",
+    "team_profiles_M8xnat"
   ]
 }
