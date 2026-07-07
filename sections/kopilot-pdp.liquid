@@ -643,70 +643,92 @@ padding:7.25px 18.29px;
 
         <div class="kopilot-pdp__tiers" role="group" aria-label="Choose quantity">
           {% assign tier_index = 0 %}
-          {% for block in section.blocks %}
-            {% if block.type == 'tier' %}
-              {% liquid
-                assign tier_qty = block.settings.quantity | default: 1
-                assign is_default_tier = false
-                if block.settings.badge != blank
-                  assign badge_downcase = block.settings.badge | downcase | strip
-                  if badge_downcase == 'default'
-                    assign is_default_tier = true
-                  endif
-                elsif tier_index == 0
-                  assign is_default_tier = true
+          {% for variant in pdp_product.variants %}
+            {% liquid
+              assign is_default_tier = false
+              if variant.id == current_variant.id
+                assign is_default_tier = true
+              endif
+
+              assign badge_val = ''
+              if variant.metafields.custom.badge.value != blank
+                assign badge_val = variant.metafields.custom.badge.value
+              elsif variant.metafields.custom.badge != blank
+                assign badge_val = variant.metafields.custom.badge
+              endif
+              assign badge_downcase = badge_val | downcase | strip
+
+              assign tier_price = variant.price | money
+              assign tier_compare_price = variant.compare_at_price | money
+              
+              assign discount_percent_round = 0
+              if variant.compare_at_price > variant.price
+                assign diff = variant.compare_at_price | minus: variant.price
+                assign discount_percent_round = diff | times: 100.0 | divided_by: variant.compare_at_price | round
+              endif
+
+              assign variant_qty = 1
+              if variant.metafields.custom.quantity != blank
+                assign variant_qty = variant.metafields.custom.quantity
+              else
+                assign title_downcase = variant.title | downcase
+                if title_downcase contains '3'
+                  assign variant_qty = 3
+                elsif title_downcase contains '2'
+                  assign variant_qty = 2
+                elsif title_downcase contains '4'
+                  assign variant_qty = 4
+                elsif title_downcase contains '5'
+                  assign variant_qty = 5
                 endif
+              endif
 
-                assign tier_price = block.settings.price
-                if tier_price == blank and current_variant.price
-                  assign unit_cents = current_variant.price
-                  assign tier_price_cents = unit_cents | times: tier_qty
-                  assign tier_price = tier_price_cents | money
-                endif
+              assign variant_subtitle = ''
+              if variant.metafields.custom.subtitle.value != blank
+                assign variant_subtitle = variant.metafields.custom.subtitle.value
+              elsif variant.metafields.custom.subtitle != blank
+                assign variant_subtitle = variant.metafields.custom.subtitle
+              endif
 
-                assign tier_variant_id = pdp_product.variants[tier_index].id | default: current_variant.id
-              %}
+              assign tier_title = variant.title | replace: 'product', 'TAG' | replace: 'Product', 'TAG' | upcase
+            %}
 
-              <button
-                type="button"
-                class="kopilot-pdp__tier{% if is_default_tier %} is-selected{% endif %}"
-                data-kopilot-tier
-                data-quantity="{{ tier_qty }}"
-                data-tier-title="{{ block.settings.title }}"
-                data-variant-id="{{ tier_variant_id }}"
-                data-selected="{{ is_default_tier }}"
-                aria-pressed="{% if is_default_tier %}true{% else %}false{% endif %}"
-                {{ block.shopify_attributes }}
-              >
-                <div class="kopilot-pdp__tier-inner">
-                  <div class="kopilot-pdp__tier-head">
-                    <div class="kopilot-pdp__tier-title-row">
-                      <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
-                      <p class="kopilot-pdp__tier-title-pdp">{{ block.settings.title }}</p>
-                    </div>
-                    {% if block.settings.badge != blank and badge_downcase != 'default' %}
-                      <span class="kopilot-pdp__tier-badge" style="background-color: #F20008;">{{ block.settings.badge }}</span>
-                    {% endif %}
+            <button
+              type="button"
+              class="kopilot-pdp__tier{% if is_default_tier %} is-selected{% endif %}"
+              data-kopilot-tier
+              data-quantity="{{ variant_qty }}"
+              data-tier-title="{{ tier_title }}"
+              data-variant-id="{{ variant.id }}"
+              data-selected="{{ is_default_tier }}"
+              aria-pressed="{% if is_default_tier %}true{% else %}false{% endif %}"
+            >
+              <div class="kopilot-pdp__tier-inner">
+                <div class="kopilot-pdp__tier-head">
+                  <div class="kopilot-pdp__tier-title-row">
+                    <span class="kopilot-pdp__tier-dot" aria-hidden="true"></span>
+                    <p class="kopilot-pdp__tier-title-pdp">{{ tier_title }}</p>
                   </div>
-
-                  {% if block.settings.subtitle != blank %}
-                    <p class="kopilot-pdp__tier-subtitle-pdp">{{ block.settings.subtitle }}</p>
+                  {% if badge_val != blank and badge_downcase != 'default' %}
+                    <span class="kopilot-pdp__tier-badge" style="background-color: #F20008;">{{ badge_val }}</span>
                   {% endif %}
-
-                  <div class="kopilot-pdp__tier-price-row">
-                    <p class="kopilot-pdp__tier-price-pdp">{{ tier_price }} USD</p>
-                    {% if block.settings.compare_price != blank %}
-                      <p class="kopilot-pdp__tier-compare-pdp">{{ block.settings.compare_price }}</p>
-                    {% endif %}
-                    {% if block.settings.save_label != blank %}
-                      <span class="kopilot-pdp__tier-save">{{ block.settings.save_label }}</span>
-                    {% endif %}
-                  </div>
                 </div>
-              </button>
 
-              {% assign tier_index = tier_index | plus: 1 %}
-            {% endif %}
+                {% if variant_subtitle != blank %}
+                  <p class="kopilot-pdp__tier-subtitle-pdp">{{ variant_subtitle }}</p>
+                {% endif %}
+
+                <div class="kopilot-pdp__tier-price-row">
+                  <p class="kopilot-pdp__tier-price-pdp">{{ tier_price }} USD</p>
+                  {% if variant.compare_at_price > variant.price %}
+                    <p class="kopilot-pdp__tier-compare-pdp">{{ tier_compare_price }}</p>
+                    <span class="kopilot-pdp__tier-save">SAVE {{ discount_percent_round }}%</span>
+                  {% endif %}
+                </div>
+              </div>
+            </button>
+
+            {% assign tier_index = tier_index | plus: 1 %}
           {% endfor %}
         </div>
 
@@ -716,58 +738,56 @@ padding:7.25px 18.29px;
           {% capture newline %}
 {% endcapture %}
           {% assign tier_index = 0 %}
-          {% for block in section.blocks %}
-            {% if block.type == 'tier' %}
-              {% liquid
-                assign is_default_tier = false
-                if block.settings.badge != blank
-                  assign badge_downcase = block.settings.badge | downcase | strip
-                  if badge_downcase == 'default'
-                    assign is_default_tier = true
-                  endif
-                elsif tier_index == 0
-                  assign is_default_tier = true
-                endif
+          {% for variant in pdp_product.variants %}
+            {% liquid
+              assign is_default_tier = false
+              if variant.id == current_variant.id
+                assign is_default_tier = true
+              endif
 
-                assign raw_items = block.settings.included_items
+              assign raw_items = variant.metafields.custom.included_items
+              assign items_array = blank
+              if variant.metafields.custom.included_items.value != blank
+                assign items_array = variant.metafields.custom.included_items.value
+              elsif raw_items != blank
                 if raw_items contains newline
                   assign items_array = raw_items | split: newline
                 else
                   assign items_array = raw_items | split: ','
                 endif
-              %}
-              
-              {% if raw_items != blank %}
-                <div
-                  class="kopilot-pdp__included-pills"
-                  data-kopilot-included-pills
-                  data-tier-index="{{ tier_index }}"
-                  {% unless is_default_tier %}style="display: none;"{% endunless %}
-                >
-                  {% for item in items_array %}
-                    {% assign clean_item = item | strip %}
-                    {% if clean_item != blank %}
-                      <span class="kopilot-pdp__included-pill">{{ clean_item }}</span>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              {% else %}
-                <div
-                  class="kopilot-pdp__included-pills"
-                  data-kopilot-included-pills
-                  data-tier-index="{{ tier_index }}"
-                  {% unless is_default_tier %}style="display: none;"{% endunless %}
-                >
-                  {% for g_block in section.blocks %}
-                    {% if g_block.type == 'included_item' %}
-                      <span class="kopilot-pdp__included-pill" {{ g_block.shopify_attributes }}>{{ g_block.settings.label }}</span>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              {% endif %}
-              
-              {% assign tier_index = tier_index | plus: 1 %}
+              endif
+            %}
+            
+            {% if items_array != blank %}
+              <div
+                class="kopilot-pdp__included-pills"
+                data-kopilot-included-pills
+                data-tier-index="{{ tier_index }}"
+                {% unless is_default_tier %}style="display: none;"{% endunless %}
+              >
+                {% for item in items_array %}
+                  {% assign clean_item = item | strip %}
+                  {% if clean_item != blank %}
+                    <span class="kopilot-pdp__included-pill">{{ clean_item }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% else %}
+              <div
+                class="kopilot-pdp__included-pills"
+                data-kopilot-included-pills
+                data-tier-index="{{ tier_index }}"
+                {% unless is_default_tier %}style="display: none;"{% endunless %}
+              >
+                {% for g_block in section.blocks %}
+                  {% if g_block.type == 'included_item' %}
+                    <span class="kopilot-pdp__included-pill" {{ g_block.shopify_attributes }}>{{ g_block.settings.label }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
             {% endif %}
+            
+            {% assign tier_index = tier_index | plus: 1 %}
           {% endfor %}
         </div>
 
