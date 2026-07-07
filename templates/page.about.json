@@ -109,6 +109,12 @@
             "logo_image": "shopify://shop_images/image_18659501_1.png"
           }
         },
+        "logo_dgqGM4": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/image_18659503_1.png"
+          }
+        },
         "pill_tag_Dh4TC3": {
           "type": "pill_tag",
           "settings": {
@@ -134,6 +140,7 @@
         "logo_fzATJ8",
         "logo_w3BF8e",
         "logo_LPpWa3",
+        "logo_dgqGM4",
         "pill_tag_Dh4TC3",
         "pill_tag_JJmjRw",
         "pill_tag_YEb9qJ"
