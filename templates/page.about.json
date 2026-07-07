@@ -75,11 +75,58 @@
         "speed": 26,
         "pause_on_hover": false
       }
+    },
+    "split_asymmetric_showcase_K3cmFH": {
+      "type": "split-asymmetric-showcase",
+      "blocks": {
+        "logo_QQPBJB": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_VtBDMb": {
+          "type": "logo",
+          "settings": {}
+        },
+        "pill_tag_Dh4TC3": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        },
+        "pill_tag_JJmjRw": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        },
+        "pill_tag_YEb9qJ": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        }
+      },
+      "block_order": [
+        "logo_QQPBJB",
+        "logo_VtBDMb",
+        "pill_tag_Dh4TC3",
+        "pill_tag_JJmjRw",
+        "pill_tag_YEb9qJ"
+      ],
+      "name": "Asymmetric Showcase",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "Trusted by thousands.",
+        "paragraph": "We work with races, events, organizers, and outdoor communities who understand that preparation matters.",
+        "card_heading": "Name Here",
+        "card_text": "\"[Real community or ambassador story — the tag working in the wild.]\""
+      }
     }
   },
   "order": [
     "main",
     "about_hero_banner_46nfDW",
-    "partners_slider_WXzAQj"
+    "partners_slider_WXzAQj",
+    "split_asymmetric_showcase_K3cmFH"
   ]
 }
