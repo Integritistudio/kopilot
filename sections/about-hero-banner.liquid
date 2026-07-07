@@ -38,7 +38,7 @@
     {% endif %}
   }
 
-  .about-hero-banner__container {
+  .about-hero-banner .about-hero-banner__container {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
@@ -51,88 +51,88 @@
     box-sizing: border-box;
   }
 
-  .about-hero-banner__content {
+  .about-hero-banner .about-hero-banner__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
   }
 
-  .about-hero-banner__heading {
-    font-family: 'Elza', sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 48px !important;
-    line-height: 1.1 !important; /* 110% */
-    letter-spacing: -1px !important;
-    color: #FFFFFF !important;
-    margin: 0 0 25px 0 !important; /* Exact 25px layout gap */
-    max-width: 490px !important;
+  .about-hero-banner .about-hero-banner__heading {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1; /* 110% */
+    letter-spacing: -1px;
+    color: #FFFFFF;
+    margin: 0 0 25px 0; /* Exact 25px layout gap */
+    max-width: 490px;
     width: 100%;
   }
 
-  /* Specificity Shield: Overrides all generic theme styles on paragraph blocks */
-  .about-hero-banner__description {
-    margin: 0 0 70px 0 !important; /* Exact 70px layout gap */
-    max-width: 433px !important;
+  /* Specificity Architecture to isolate from global theme templates */
+  .about-hero-banner .about-hero-banner__description {
+    margin: 0 0 70px 0; /* Exact 70px layout gap */
+    max-width: 433px;
     width: 100%;
   }
 
-  .about-hero-banner__description p {
-    font-family: 'Elza', sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    line-height: 1.2 !important; /* 120% */
-    letter-spacing: 0% !important;
-    color: #FFFFFF !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  .about-hero-banner .about-hero-banner__description p {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2; /* 120% */
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
   }
 
-  .about-hero-banner__button {
+  .about-hero-banner .about-hero-banner__button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #EF0008 !important;
-    color: #FFFFFF !important;
-    font-family: 'Elza', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 20.38px !important;
-    line-height: 1.0 !important; /* 100% */
-    text-transform: uppercase !important;
-    text-decoration: none !important;
-    padding: 18.34px 64px !important;
-    width: max-content !important;
-    box-sizing: border-box !important;
+    background-color: #EF0008;
+    color: #FFFFFF;
+    font-family: 'Elza', sans-serif;
+    font-weight: 600;
+    font-size: 20.38px;
+    line-height: 1.0; /* 100% */
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18.34px 64px;
+    width: max-content;
+    box-sizing: border-box;
     transition: background-color 0.2s ease;
   }
 
-  .about-hero-banner__button:hover {
-    background-color: #cc0007 !important;
+  .about-hero-banner .about-hero-banner__button:hover {
+    background-color: #cc0007;
   }
 
   /* --- Fluid Responsiveness for Intermediate Breakpoints --- */
   @media (max-width: 1439px) and (min-width: 768px) {
-    .about-hero-banner__container {
+    .about-hero-banner .about-hero-banner__container {
       padding-left: calc(35px + (111 - 35) * ((100vw - 360px) / (1440 - 360)));
       padding-right: calc(35px + (111 - 35) * ((100vw - 360px) / (1440 - 360)));
       padding-top: calc(79px + (171 - 79) * ((100vw - 360px) / (1440 - 360)));
       padding-bottom: calc(146px + (171 - 146) * ((100vw - 360px) / (1440 - 360)));
     }
-    .about-hero-banner__heading {
-      font-size: calc(30px + (48 - 30) * ((100vw - 360px) / (1440 - 360))) !important;
+    .about-hero-banner .about-hero-banner__heading {
+      font-size: calc(30px + (48 - 30) * ((100vw - 360px) / (1440 - 360)));
     }
-    .about-hero-banner__description {
-      margin-bottom: calc(71px + (70 - 71) * ((100vw - 360px) / (1440 - 360))) !important;
+    .about-hero-banner .about-hero-banner__description {
+      margin-bottom: calc(71px + (70 - 71) * ((100vw - 360px) / (1440 - 360)));
     }
-    .about-hero-banner__description p {
-      font-size: calc(15px + (20 - 15) * ((100vw - 360px) / (1440 - 360))) !important;
+    .about-hero-banner .about-hero-banner__description p {
+      font-size: calc(15px + (20 - 15) * ((100vw - 360px) / (1440 - 360)));
     }
-    .about-hero-banner__button {
-      font-size: calc(15px + (20.38 - 15) * ((100vw - 360px) / (1440 - 360))) !important;
-      padding-top: calc(15.88px + (18.34 - 15.88) * ((100vw - 360px) / (1440 - 360))) !important;
-      padding-bottom: calc(15.88px + (18.34 - 15.88) * ((100vw - 360px) / (1440 - 360))) !important;
-      padding-left: calc(61.76px + (64 - 61.76) * ((100vw - 360px) / (1440 - 360))) !important;
-      padding-right: calc(61.76px + (64 - 61.76) * ((100vw - 360px) / (1440 - 360))) !important;
+    .about-hero-banner .about-hero-banner__button {
+      font-size: calc(15px + (20.38 - 15) * ((100vw - 360px) / (1440 - 360)));
+      padding-top: calc(15.88px + (18.34 - 15.88) * ((100vw - 360px) / (1440 - 360)));
+      padding-bottom: calc(15.88px + (18.34 - 15.88) * ((100vw - 360px) / (1440 - 360)));
+      padding-left: calc(61.76px + (64 - 61.76) * ((100vw - 360px) / (1440 - 360)));
+      padding-right: calc(61.76px + (64 - 61.76) * ((100vw - 360px) / (1440 - 360)));
     }
   }
 
@@ -146,41 +146,41 @@
       {% endif %}
     }
 
-    .about-hero-banner__container {
-      padding-top: 79px !important;
-      padding-bottom: 146px !important;
-      padding-left: 35px !important;
-      padding-right: 35px !important;
+    .about-hero-banner .about-hero-banner__container {
+      padding-top: 79px;
+      padding-bottom: 146px;
+      padding-left: 35px;
+      padding-right: 35px;
     }
 
-    .about-hero-banner__content {
-      align-items: center !important;
-      text-align: center !important;
-      margin: 0 auto !important;
+    .about-hero-banner .about-hero-banner__content {
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
     }
 
-    .about-hero-banner__heading {
-      font-size: 30px !important;
-      line-height: 1.04 !important; /* 104% */
-      letter-spacing: -1px !important;
-      margin: 0 0 25px 0 !important; /* Exact 25px layout gap */
-      max-width: 290px !important;
+    .about-hero-banner .about-hero-banner__heading {
+      font-size: 30px;
+      line-height: 1.04; /* 104% */
+      letter-spacing: -1px;
+      margin: 0 0 25px 0; /* Exact 25px layout gap */
+      max-width: 290px;
     }
 
-    .about-hero-banner__description {
-      margin: 0 0 71px 0 !important; /* Exact 71px layout gap */
-      max-width: 290px !important;
+    .about-hero-banner .about-hero-banner__description {
+      margin: 0 0 71px 0; /* Exact 71px layout gap */
+      max-width: 290px;
     }
 
-    .about-hero-banner__description p {
-      font-size: 15px !important;
-      line-height: 1.2 !important; /* 120% */
+    .about-hero-banner .about-hero-banner__description p {
+      font-size: 15px;
+      line-height: 1.2; /* 120% */
     }
 
-    .about-hero-banner__button {
-      font-size: 15px !important;
-      line-height: 1.0 !important;
-      padding: 15.88px 61.76px !important;
+    .about-hero-banner .about-hero-banner__button {
+      font-size: 15px;
+      line-height: 1.0;
+      padding: 15.88px 61.76px;
     }
   }
 </style>
