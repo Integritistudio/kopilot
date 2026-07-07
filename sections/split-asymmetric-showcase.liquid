@@ -177,8 +177,9 @@
   /* --- Micro-Figma Component Tags implementation --- */
   .showcase-{{ section.id }} .tag-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows wrapping only if screen gets too small */
     gap: 10px;
+    margin-top: 15px; /* Adds the requested extra gap between the text and the pills */
   }
 
   .showcase-{{ section.id }} .ui-tag {
@@ -191,10 +192,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 148px;
+    width: fit-content; /* Replaces fixed width so it naturally fits on one line */
     height: 31px;
-    padding: 10px 24px;
-    gap: 10px;
+    padding: 0 16px; /* Adjusted padding to ensure all 3 fit within the container */
     border: 1px solid #000000;
     background: transparent;
     box-sizing: border-box;
