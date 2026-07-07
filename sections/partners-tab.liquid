@@ -1,3 +1,10 @@
+{% comment %}
+  KOPILOT.ID Partnership Section
+  - Responsive: 360px to 1440px
+  - Desktop: 2-column with equal height synchronization
+  - Mobile: Stacked with arrow-based pagination
+{% endcomment %}
+
 <section class="kopilot-partnership">
   <div class="partnership-container">
     <h2 class="section-heading">What a KOPILOT.ID partnership delivers.</h2>
@@ -23,6 +30,7 @@
       </div>
     </div>
     
+    <!-- Mobile Pagination -->
     <div class="mobile-pagination">
       <button class="nav-btn prev-btn" aria-label="Previous">&lt;</button>
       <button class="nav-btn next-btn" aria-label="Next">&gt;</button>
@@ -43,15 +51,25 @@
     padding: 0 166px;
   }
 
-  /* --- Desktop Layout: Equal Height Logic --- */
+  /* --- Desktop Grid Logic --- */
   .content-wrapper {
     display: grid;
     grid-template-columns: 632px 485px;
     gap: 31px;
-    align-items: stretch; /* Forces equal height */
+    align-items: stretch;
   }
 
-  /* Left Column fills container height */
+  .section-heading {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 106%;
+    letter-spacing: -1px;
+    margin-bottom: 60px;
+    color: #000;
+  }
+
+  /* --- Left Column: Equal Height Image --- */
   .left-col {
     position: relative;
     width: 100%;
@@ -77,11 +95,10 @@
     border-radius: 8px;
   }
 
-  /* Right Column */
+  /* --- Right Column: Equal Height Cards --- */
   .right-col {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures cards fill vertical space */
     gap: 21px;
   }
 
@@ -89,39 +106,103 @@
     padding: 35px 40px;
     cursor: pointer;
     transition: background 0.3s ease;
-    flex: 1; /* Equalize card heights */
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  /* --- Mobile Responsive --- */
+  .feature-card.active {
+    background: #D6D6D6;
+  }
+
+  .feature-card h3 {
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 11px;
+  }
+
+  .feature-card p {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 120%;
+  }
+
+  /* --- Mobile Responsive (360px) --- */
+  .mobile-pagination {
+    display: none;
+  }
+
   @media (max-width: 767px) {
+    .partnership-container {
+      padding: 50px 20px;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
     .content-wrapper {
       display: flex;
       flex-direction: column;
+      gap: 30px;
     }
-    
+
     .left-col {
       position: relative;
-      height: 214px; /* Fixed height for mobile image */
+      height: 214px;
     }
-    
+
     .feature-image-wrapper {
       position: relative;
     }
-    
+
+    .feature-image-wrapper img {
+      width: 326px;
+      height: 214px;
+      margin: 0 auto;
+    }
+
+    .right-col {
+      width: 100%;
+      gap: 0;
+    }
+
     .feature-card {
       display: none;
+      padding: 35px 20px;
     }
-    
+
     .feature-card.active {
       display: flex;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+    }
+
+    .mobile-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10.57px;
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
     }
   }
 </style>
 
- <script>
+<script>
   const cards = document.querySelectorAll('.feature-card');
   const images = document.querySelectorAll('.feature-image-wrapper');
   let currentIndex = 0;
@@ -146,3 +227,21 @@
     updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
   });
 </script>
+
+{% schema %}
+{
+  "name": "Partnership Section",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Heading" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Partnership Section" }]
+}
+{% endschema %}
