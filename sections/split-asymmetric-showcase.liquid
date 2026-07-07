@@ -227,6 +227,39 @@
     }
   }
 
+  /* --- Tablet Framework Adjustments (Targeting 768px specifically) --- */
+  @media screen and (max-width: 991px) {
+    .showcase-{{ section.id }} .showcase-wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+    .showcase-{{ section.id }} .content-column,
+    .showcase-{{ section.id }} .interactive-column {
+      width: 100%;
+      max-width: 502px; /* Restrains to card's optimal max width */
+    }
+    .showcase-{{ section.id }} .showcase-heading {
+      font-size: 45px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .showcase-{{ section.id }} .showcase-paragraph {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .showcase-{{ section.id }} .logo-grid-wrapper {
+      margin: 0 auto;
+      align-items: center;
+    }
+    .showcase-{{ section.id }} .logo-row {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+
   /* --- Mobile Framework Specification (360px targeted execution) --- */
   @media screen and (max-width: 767px) {
     .showcase-{{ section.id }} {
@@ -313,11 +346,12 @@
     .showcase-{{ section.id }} .logo-item {
       max-height: 45px;
     }
+    
     .showcase-{{ section.id }} .tag-container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 5px;
-  }
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 5px;
+    }
   }
 {%- endstyle -%}
 
