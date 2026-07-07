@@ -91,6 +91,20 @@
             "logo_image": "shopify://shop_images/image_18659485.svg"
           }
         },
+        "logo_fzATJ8": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/image_18659500_1_0985da7f-36eb-4642-90c4-dd80f22dd75b.svg"
+          }
+        },
+        "logo_w3BF8e": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_LPpWa3": {
+          "type": "logo",
+          "settings": {}
+        },
         "pill_tag_Dh4TC3": {
           "type": "pill_tag",
           "settings": {
@@ -113,6 +127,9 @@
       "block_order": [
         "logo_QQPBJB",
         "logo_VtBDMb",
+        "logo_fzATJ8",
+        "logo_w3BF8e",
+        "logo_LPpWa3",
         "pill_tag_Dh4TC3",
         "pill_tag_JJmjRw",
         "pill_tag_YEb9qJ"
