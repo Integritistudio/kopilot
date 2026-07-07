@@ -11,10 +11,30 @@
   "sections": {
     "main": {
       "type": "default-page",
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_breadcrumbs": true,
+        "show_title": true,
+        "head_align": "left",
+        "top_spacing": 40,
+        "bottom_spacing": 40
+      }
+    },
+    "about_hero_banner_46nfDW": {
+      "type": "about-hero-banner",
+      "name": "About Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/A743797_3_1_2.png",
+        "heading": "Designed for real-world adventures.",
+        "description": "<p>Created by outdoor and powersports veterans, KOPILOT.ID was built to make medical information and emergency contacts accessible when they matter most.</p>",
+        "button_text": "WHO WE ARE",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "about_hero_banner_46nfDW"
   ]
 }
