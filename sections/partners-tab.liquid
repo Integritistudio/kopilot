@@ -1,8 +1,8 @@
 {% comment %}
   KOPILOT.ID Partnership Section
   - Responsive: 360px to 1440px
-  - Desktop: 2-column with equal height synchronization
-  - Mobile: Stacked with arrow-based pagination
+  - Desktop: 2-column with interaction
+  - Mobile: Stacked with carousel pagination
 {% endcomment %}
 
 <section class="kopilot-partnership">
@@ -13,7 +13,7 @@
       <div class="left-col" id="image-viewer">
         {% for block in section.blocks %}
           <div class="feature-image-wrapper {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title | escape }}">
+            <img src="{{ block.settings.image | img_url: '632x550', crop: 'center' }}" alt="{{ block.settings.title | escape }}">
           </div>
         {% endfor %}
       </div>
@@ -36,7 +36,7 @@
 </section>
 
 <style>
-  /* --- Section Defaults --- */
+  /* --- Section Container --- */
   .kopilot-partnership {
     background-color: #F1F1F1;
     padding: 80px 0;
@@ -48,6 +48,7 @@
     padding: 0 166px;
   }
 
+  /* --- Typography --- */
   .section-heading {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -58,22 +59,27 @@
     color: #000;
   }
 
-  /* --- Desktop Equal Height Grid --- */
+  /* --- Desktop Layout --- */
   .content-wrapper {
-    display: grid;
-    grid-template-columns: 632px 1fr;
+    display: flex;
     gap: 31px;
-    align-items: stretch;
+    align-items: flex-start;
   }
 
   .left-col {
-    position: relative;
-    width: 100%;
+    width: 632px;
   }
 
+  .right-col {
+    width: 485px;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+
+  /* --- Feature Image --- */
   .feature-image-wrapper {
     display: none;
-    height: 100%;
   }
 
   .feature-image-wrapper.active {
@@ -82,23 +88,15 @@
 
   .feature-image-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     border-radius: 8px;
   }
 
-  .right-col {
-    display: flex;
-    flex-direction: column;
-    gap: 21px;
-  }
-
+  /* --- Feature Cards --- */
   .feature-card {
     padding: 35px 40px;
     cursor: pointer;
     transition: background 0.3s ease;
-    flex: 1;
-    background: #fff;
   }
 
   .feature-card.active {
@@ -119,56 +117,97 @@
     line-height: 120%;
   }
 
-  /* --- Responsive Styles --- */
-  @media (max-width: 1024px) {
-    .partnership-container { padding: 0 40px; }
-    .content-wrapper { grid-template-columns: 1fr 1fr; }
+  /* --- Mobile Responsive --- */
+  .mobile-pagination {
+    display: none;
   }
 
   @media (max-width: 767px) {
-    .partnership-container { padding: 50px 20px; }
-    .section-heading { font-size: 30px; text-align: center; margin-bottom: 30px; }
-    .content-wrapper { display: flex; flex-direction: column; gap: 30px; }
-    
-    .left-col { height: 214px; }
-    .feature-image-wrapper img { width: 326px; height: 214px; margin: 0 auto; display: block; }
-    
-    .right-col { width: 100%; gap: 0; }
-    .feature-card { display: none; padding: 35px 20px; }
-    .feature-card.active { display: block; }
-    .feature-card h3 { font-size: 15px; }
-    
-    .mobile-pagination { display: flex; justify-content: center; gap: 10.57px; margin-top: 20px; }
-    .nav-btn { width: 44px; height: 44px; background: #fff; border: 1px solid #ccc; cursor: pointer; }
+    .partnership-container {
+      padding: 50px 20px;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .content-wrapper {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .left-col {
+      width: 100%;
+    }
+
+    .feature-image-wrapper img {
+      width: 326px;
+      height: 214px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .right-col {
+      width: 100%;
+      gap: 0;
+    }
+
+    .feature-card {
+      display: none;
+      padding: 35px 20px;
+    }
+
+    .feature-card.active {
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+    }
+
+    .mobile-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10.57px;
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
   }
 </style>
 
 <script>
-  (function() {
-    const cards = document.querySelectorAll('.feature-card');
-    const images = document.querySelectorAll('.feature-image-wrapper');
-    let currentIndex = 0;
+  const cards = document.querySelectorAll('.feature-card');
+  const images = document.querySelectorAll('.feature-image-wrapper');
+  let currentIndex = 0;
 
-    function updateView(index) {
-      cards.forEach((c, i) => {
-        c.classList.toggle('active', i === index);
-        images[i].classList.toggle('active', i === index);
-      });
-      currentIndex = index;
-    }
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => updateView(parseInt(card.dataset.index)));
+  function updateView(index) {
+    cards.forEach((c, i) => {
+      c.classList.toggle('active', i === index);
+      images[i].classList.toggle('active', i === index);
     });
+    currentIndex = index;
+  }
 
-    document.querySelector('.prev-btn')?.addEventListener('click', () => {
-      updateView(currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
-    });
+  cards.forEach(card => {
+    card.addEventListener('click', () => updateView(parseInt(card.dataset.index)));
+  });
 
-    document.querySelector('.next-btn')?.addEventListener('click', () => {
-      updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
-    });
-  })();
+  document.querySelector('.prev-btn')?.addEventListener('click', () => {
+    updateView(currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
+  });
+
+  document.querySelector('.next-btn')?.addEventListener('click', () => {
+    updateView(currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
+  });
 </script>
 
 {% schema %}
@@ -188,3 +227,5 @@
   "presets": [{ "name": "Partnership Section" }]
 }
 {% endschema %}
+
+
