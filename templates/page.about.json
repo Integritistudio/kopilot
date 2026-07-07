@@ -36,41 +36,44 @@
     "partners_slider_WXzAQj": {
       "type": "partners-slider",
       "blocks": {
-        "partner_card_nbeHTi": {
-          "type": "partner_card",
+        "image_card_rm9DxH": {
+          "type": "image_card",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1.png"
           }
         },
-        "partner_card_wjGCrM": {
-          "type": "partner_card",
+        "image_card_MrEUQ9": {
+          "type": "image_card",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1.png"
           }
         },
-        "partner_card_qLacpW": {
-          "type": "partner_card",
+        "image_card_aGi9GW": {
+          "type": "image_card",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.02_1.png"
           }
         },
-        "partner_card_Va3DNC": {
-          "type": "partner_card",
+        "image_card_fdY3BU": {
+          "type": "image_card",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.37.01_1.png"
           }
         }
       },
       "block_order": [
-        "partner_card_nbeHTi",
-        "partner_card_wjGCrM",
-        "partner_card_qLacpW",
-        "partner_card_Va3DNC"
+        "image_card_rm9DxH",
+        "image_card_MrEUQ9",
+        "image_card_aGi9GW",
+        "image_card_fdY3BU"
       ],
       "name": "Partners Slider Loop",
       "settings": {
         "heading": "We get outside.",
-        "paragraph": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+        "paragraph": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there.",
+        "bg_color": "#ffffff",
+        "speed": 26,
+        "pause_on_hover": false
       }
     }
   },
