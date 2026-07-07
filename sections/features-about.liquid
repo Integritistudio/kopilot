@@ -57,7 +57,7 @@
   }
   #Features-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Desktop Viewport (1440px) - UNCHANGED */
+  /* Desktop Viewport (1440px+) - UNCHANGED */
   @media screen and (min-width: 768px) {
     #Features-{{ section.id }} .features__container {
       max-width: 1440px;
@@ -143,17 +143,45 @@
     }
   }
 
-  /* Mobile Viewport (Figma 360px Pixel Perfect & Responsive Transition) */
+  /* Tablet & Small Desktop Viewport (768px to 1439px) - NEW FLUID FIX */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    #Features-{{ section.id }} .features__container {
+      padding: 60px 4vw; /* Replaces static wide padding */
+    }
+    #Features-{{ section.id }} .features__row {
+      gap: 4vw; /* Scales gap down smoothly */
+    }
+    #Features-{{ section.id }} .features__media {
+      width: 55%; /* Converts strict 707px to ratio */
+      height: auto;
+    }
+    #Features-{{ section.id }} .features__video {
+      aspect-ratio: 707 / 447; /* Retains exactly the same video proportions */
+    }
+    #Features-{{ section.id }} .features__content {
+      width: 45%; /* Converts strict 438px to ratio */
+    }
+    #Features-{{ section.id }} h2.features__heading {
+      font-size: clamp(32px, 4vw, 60px); /* Seamlessly scales font down so it doesn't break into 4 lines */
+    }
+    #Features-{{ section.id }} .features__button {
+      width: 100%; /* Prevents strict 335px from clipping on smaller screens */
+      max-width: 335px;
+      padding: 16px 0;
+    }
+  }
+
+  /* Mobile Viewport (Figma 360px Pixel Perfect) - UNCHANGED */
   @media screen and (max-width: 767px) {
     #Features-{{ section.id }} .features__container {
       width: 100%;
-      padding: 0; /* Clears container padding so video stays edge-to-edge */
+      padding: 0; 
     }
     #Features-{{ section.id }} .features__row {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 60px; /* Exact 60px Figma stack layout gap from image_935208.png */
+      gap: 60px; 
     }
     #Features-{{ section.id }} .features__media {
       width: 100%;
@@ -162,7 +190,7 @@
     #Features-{{ section.id }} .features__video {
       width: 100%;
       height: auto;
-      aspect-ratio: 360 / 228.34; /* Resolves exact video scaling footprint */
+      aspect-ratio: 360 / 228.34;
       object-fit: cover;
       display: block;
     }
@@ -176,12 +204,11 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 276.51px; /* Exact layout width container from Figma */
-      margin-bottom: 70px; /* Matches 70px bottom section padding safely */
-      gap: 34px; /* Exact 34px vertical auto-layout space between components */
+      max-width: 276.51px;
+      margin-bottom: 70px; 
+      gap: 34px; 
     }
     
-    /* Elements inside content no longer need loose margins because of flex gap */
     #Features-{{ section.id }} .features__text-group {
       display: flex;
       flex-direction: column;
@@ -206,7 +233,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 100%; /* Spans full inner 276.51px width frame seamlessly */
+      width: 100%; 
       padding: 15.88px 0; 
       background-color: #EF0008;
       color: #FFFFFF;
@@ -229,7 +256,7 @@
     div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
     div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
       display: block;
-      margin-top: 7px; /* Preserves requested 7px breakdown gap */
+      margin-top: 7px; 
       font-family: 'Elza', sans-serif;
       font-size: 15px;
       font-weight: 600;
