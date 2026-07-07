@@ -169,9 +169,8 @@
 
      Layout: SLIDER / CAROUSEL
        [  Heading centered                ]
-       [  Full-width image (current card) ]
-       [  Card title + body (current)     ]
-       [  ← prev  ·  ·  ·  next →        ]
+       [  Card: image / text on #D6D6D6   ]
+       [  ←─────────────── →  nav pill    ]
 
      Desktop columns & stacked cards are HIDDEN on mobile.
      The slider is shown instead.
@@ -181,8 +180,9 @@
     /* Hide the desktop 2-column wrapper */
     .ps-{{ section.id }} .ps-wrapper { display: none; }
 
+    /* Section: 19px side padding → 322px content at 360px viewport */
     .ps-{{ section.id }} {
-      padding: 40px 0 50px;    /* no side padding — slider handles it */
+      padding: 40px 19px 50px;
     }
 
     /* ── Mobile slider root ── */
@@ -193,7 +193,7 @@
       width: 100%;
     }
 
-    /* Heading */
+    /* Heading: centered, Elza Light 300, 32px */
     .ps-{{ section.id }} .ps-mobile-heading {
       font-family: 'Elza', sans-serif;
       font-weight: 300;
@@ -202,16 +202,21 @@
       letter-spacing: -0.5px;
       color: #000000;
       text-align: center;
-      margin: 0 0 28px;
-      padding: 0 19px;
+      margin: 0 0 24px;
+      padding: 0;
       width: 100%;
       box-sizing: border-box;
     }
 
-    /* Full-width image area */
+    /* ── CARD CONTAINER ─────────────────────────────────────────
+       Single block that wraps image + text, contained within
+       the 19px section padding → no extra margins needed here.
+    ──────────────────────────────────────────────────────────── */
+
+    /* Image area — 100% of the padded container width */
     .ps-{{ section.id }} .ps-mobile-img {
       width: 100%;
-      height: 320px;
+      height: 280px;
       position: relative;
       overflow: hidden;
       background: #D6D6D6;
@@ -232,15 +237,17 @@
       opacity: 1;
     }
 
-    /* Card text content below image */
+    /* Text content — same #D6D6D6 as the card background,
+       sits directly below the image as a continuous block     */
     .ps-{{ section.id }} .ps-mobile-content {
       width: 100%;
-      padding: 28px 19px 0;
+      padding: 24px 20px 28px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      min-height: 120px;
+      gap: 11px;
+      background: #D6D6D6;         /* ← matches card bg */
+      min-height: 110px;
     }
 
     .ps-{{ section.id }} .ps-mobile-title {
@@ -263,18 +270,20 @@
       margin: 0;
     }
 
-    /* Navigation row: prev arrow · next arrow */
+    /* ── NAV ARROWS — bordered pill box ─────────────────────── */
     .ps-{{ section.id }} .ps-mobile-nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 48px;
-      margin-top: 32px;
-      padding: 0 19px;
+      gap: 0;
+      margin-top: 28px;
+      border: 1px solid #000000;
+      width: auto;
+      padding: 0;
     }
 
     .ps-{{ section.id }} .ps-nav-btn {
-      width: 44px;
+      width: 56px;
       height: 44px;
       display: flex;
       align-items: center;
@@ -287,9 +296,17 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .ps-{{ section.id }} .ps-nav-btn svg {
-      width: 24px;
+    /* Divider line between the two arrow buttons */
+    .ps-{{ section.id }} .ps-nav-divider {
+      width: 1px;
       height: 24px;
+      background: #000000;
+      flex-shrink: 0;
+    }
+
+    .ps-{{ section.id }} .ps-nav-btn svg {
+      width: 20px;
+      height: 20px;
     }
 
     .ps-{{ section.id }} .ps-nav-btn:disabled {
