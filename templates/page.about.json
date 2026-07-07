@@ -87,7 +87,9 @@
         },
         "logo_VtBDMb": {
           "type": "logo",
-          "settings": {}
+          "settings": {
+            "logo_image": "shopify://shop_images/image_18659485.svg"
+          }
         },
         "pill_tag_Dh4TC3": {
           "type": "pill_tag",
