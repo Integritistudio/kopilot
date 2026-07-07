@@ -401,11 +401,7 @@ padding:7.25px 18.29px;
 <script src="{{ 'kopilot-pdp.js' | asset_url }}" defer></script>
 
 {% liquid
-  if section.settings.product != blank
-    assign pdp_product = section.settings.product
-  elsif product != blank
-    assign pdp_product = product
-  endif
+  assign pdp_product = product
 
   if pdp_product != blank
     assign current_variant = pdp_product.selected_or_first_available_variant
@@ -835,12 +831,6 @@ padding:7.25px 18.29px;
   "class": "kopilot-pdp-section",
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product",
-      "info": "Required on page templates. On product templates, leave empty to use the current product."
-    },
     {
       "type": "range",
       "id": "gallery_image_limit",
