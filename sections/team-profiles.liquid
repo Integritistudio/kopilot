@@ -48,7 +48,7 @@
 </div>
 
 {% style %}
-  /* Base Isolation Settings */
+  /* Base structural reset isolated strictly to this section instance */
   #TeamProfiles-{{ section.id }}.team-profiles-section {
     background-color: #FFFFFF;
     width: 100%;
@@ -85,31 +85,30 @@
       margin-bottom: 67px;
       text-align: center;
     }
-    /* Strictly target h2 tag to isolate from global theme typography overrides */
+    /* Specific element + class combinator overrides theme stylesheets safely */
     #TeamProfiles-{{ section.id }} h2.team-profiles__heading {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 60px !important;
-      font-weight: 300 !important;
-      line-height: 110% !important;
-      letter-spacing: 0% !important;
-      color: #000000 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      text-transform: none !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 60px;
+      font-weight: 300;
+      line-height: 110%;
+      letter-spacing: 0%;
+      color: #000000;
+      margin: 0;
+      padding: 0;
+      text-transform: none;
     }
-    /* Target rich-text output container and inner p tags safely */
-    #TeamProfiles-{{ section.id }} .team-profiles__paragraph,
+    /* Strictly layout elements inside the paragraph wrapper block */
     #TeamProfiles-{{ section.id }} .team-profiles__paragraph p {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 20px !important;
-      font-weight: 400 !important;
-      line-height: 120% !important;
-      letter-spacing: 0% !important;
-      color: #000000 !important;
-      width: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      text-align: center !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 120%;
+      letter-spacing: 0%;
+      color: #000000;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
     #TeamProfiles-{{ section.id }} .team-profiles__grid {
       display: flex;
@@ -149,23 +148,23 @@
       text-align: center;
     }
     #TeamProfiles-{{ section.id }} h3.team-profiles__name {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 30px !important;
-      font-weight: 700 !important;
-      line-height: 100% !important;
-      letter-spacing: 0% !important;
-      text-transform: uppercase !important;
-      color: #000000 !important;
-      margin: 0 !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 100%;
+      letter-spacing: 0%;
+      text-transform: uppercase;
+      color: #000000;
+      margin: 0;
     }
     #TeamProfiles-{{ section.id }} p.team-profiles__role {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 16px !important;
-      font-weight: 400 !important;
-      line-height: 100% !important;
-      letter-spacing: 0% !important;
-      color: #595959 !important;
-      margin: 0 !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #595959;
+      margin: 0;
     }
   }
 
@@ -195,27 +194,26 @@
       text-align: center;
     }
     #TeamProfiles-{{ section.id }} h2.team-profiles__heading {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 30px !important;
-      font-weight: 300 !important;
-      line-height: 110% !important;
-      letter-spacing: 0% !important;
-      color: #000000 !important;
-      margin: 0 !important;
-      padding: 0 !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 110%;
+      letter-spacing: 0%;
+      color: #000000;
+      margin: 0;
+      padding: 0;
     }
-    #TeamProfiles-{{ section.id }} .team-profiles__paragraph,
     #TeamProfiles-{{ section.id }} .team-profiles__paragraph p {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 15px !important;
-      font-weight: 400 !important;
-      line-height: 120% !important;
-      letter-spacing: 0% !important;
-      color: #000000 !important;
-      width: 274px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      text-align: center !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 120%;
+      letter-spacing: 0%;
+      color: #000000;
+      width: 274px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
     #TeamProfiles-{{ section.id }} .team-profiles__grid {
       display: flex;
@@ -253,23 +251,23 @@
       text-align: center;
     }
     #TeamProfiles-{{ section.id }} h3.team-profiles__name {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 20px !important;
-      font-weight: 700 !important;
-      line-height: 100% !important;
-      letter-spacing: 0% !important;
-      text-transform: uppercase !important;
-      color: #000000 !important;
-      margin: 0 !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 100%;
+      letter-spacing: 0%;
+      text-transform: uppercase;
+      color: #000000;
+      margin: 0;
     }
     #TeamProfiles-{{ section.id }} p.team-profiles__role {
-      font-family: 'Elza', sans-serif !important;
-      font-size: 15px !important;
-      font-weight: 400 !important;
-      line-height: 100% !important;
-      letter-spacing: 0% !important;
-      color: #595959 !important;
-      margin: 0 !important;
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #595959;
+      margin: 0;
     }
   }
 {% endstyle %}
