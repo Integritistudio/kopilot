@@ -1,0 +1,256 @@
+<div id="Features-{{ section.id }}" class="features-section">
+  <div class="features__container">
+    <div class="features__row">
+      
+      {%- comment -%} Left Column: Media (Video) {%- endcomment -%}
+      <div class="features__media">
+        {%- if section.settings.video != blank -%}
+          {{ section.settings.video | video_tag: 
+            autoplay: true, 
+            loop: true, 
+            muted: true, 
+            playsinline: true, 
+            controls: false, 
+            class: 'features__video' 
+          }}
+        {%- else -%}
+          <div class="features__video-placeholder"></div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right Column: Text and CTA {%- endcomment -%}
+      <div class="features__content">
+        <div class="features__text-group">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="features__heading">{{ section.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.paragraph != blank -%}
+            <div class="features__paragraph">
+              {{ section.settings.paragraph }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="features__button">
+            {{ section.settings.button_label | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.partner_text != blank -%}
+          <div class="features__partner-prompt">
+            {{ section.settings.partner_text }}
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% style %}
+  /* Section Reset */
+  #Features-{{ section.id }}.features-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #Features-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Desktop Viewport (1440px) */
+  @media screen and (min-width: 768px) {
+    #Features-{{ section.id }} .features__container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 60px 140px 60px 95px;
+    }
+    #Features-{{ section.id }} .features__row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 60px;
+    }
+    #Features-{{ section.id }} .features__media {
+      width: 707px;
+      height: 447px;
+      flex-shrink: 0;
+    }
+    #Features-{{ section.id }} .features__video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #Features-{{ section.id }} .features__content {
+      display: flex;
+      flex-direction: column;
+      width: 438px;
+    }
+    #Features-{{ section.id }} .features__text-group {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      margin-bottom: 38px;
+    }
+    #Features-{{ section.id }} h2.features__heading {
+      font-family: 'Elza', sans-serif;
+      font-size: 60px;
+      font-weight: 300;
+      line-height: 110%;
+      color: #000000;
+    }
+    #Features-{{ section.id }} .features__paragraph p {
+      font-family: 'Elza', sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 100%;
+      color: #000000;
+    }
+    #Features-{{ section.id }} .features__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 335px;
+      padding: 18.34px 64px;
+      background-color: #EF0008;
+      color: #FFFFFF;
+      font-family: 'Elza', sans-serif;
+      font-size: 20.38px;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-bottom: 34px;
+    }
+    #Features-{{ section.id }} .features__partner-prompt {
+      font-family: 'Elza', sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 110%;
+      color: #000000;
+    }
+  }
+
+  /* Mobile Viewport (360px) */
+  @media screen and (max-width: 767px) {
+    #Features-{{ section.id }} .features__container {
+      width: 100%;
+      padding: 70px 20px;
+    }
+    #Features-{{ section.id }} .features__row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 46px;
+    }
+    #Features-{{ section.id }} .features__media {
+      width: 100%;
+      height: auto;
+    }
+    #Features-{{ section.id }} .features__video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+    #Features-{{ section.id }} .features__video-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-color: #f3f3f3;
+    }
+    #Features-{{ section.id }} .features__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    #Features-{{ section.id }} .features__text-group {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+      margin-bottom: 38px; /* Match Figma Auto-Layout Gap between text frame and button */
+    }
+    #Features-{{ section.id }} h2.features__heading {
+      font-family: 'Elza', sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 110%;
+      color: #000000;
+    }
+    #Features-{{ section.id }} .features__paragraph p {
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 100%;
+      color: #000000;
+    }
+    #Features-{{ section.id }} .features__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 276.51px;
+      padding: 15.88px 0; /* Padding vertical based on Figma metrics */
+      background-color: #EF0008;
+      color: #FFFFFF;
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 100%;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-bottom: 34px; /* Exact 34px paragraph/button bottom gap to partner block */
+    }
+    #Features-{{ section.id }} .features__partner-prompt p {
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 110%;
+      color: #000000;
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Feature Split Section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Feature Video"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The tag that brings you home."
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "<p>Wherever you're headed next, go knowing you've got a way back.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "GET YOUR KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "richtext",
+      "id": "partner_text",
+      "label": "Partner Prompt",
+      "default": "<p>Run an event, or build gear of your own? <b>PARTNER WITH US</b></p>"
+    }
+  ],
+  "presets": [{ "name": "Feature Split Section" }]
+}
+{% endschema %}
