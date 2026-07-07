@@ -27,6 +27,7 @@
         "info_card_8R4jnr": {
           "type": "info_card",
           "settings": {
+            "card_image": "shopify://shop_images/IMG_3288_1_4ca5aa08-0a72-4002-9399-27c43c7270be.png",
             "card_title": "Support your community.",
             "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
@@ -34,6 +35,7 @@
         "info_card_nWm4af": {
           "type": "info_card",
           "settings": {
+            "card_image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1.png",
             "card_title": "Support your community.",
             "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
@@ -41,6 +43,7 @@
         "info_card_6KQpCx": {
           "type": "info_card",
           "settings": {
+            "card_image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1.png",
             "card_title": "Support your community.",
             "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
           }
