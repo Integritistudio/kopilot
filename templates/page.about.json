@@ -32,10 +32,51 @@
         "button_text": "WHO WE ARE",
         "button_link": ""
       }
+    },
+    "partners_slider_WXzAQj": {
+      "type": "partners-slider",
+      "blocks": {
+        "partner_card_nbeHTi": {
+          "type": "partner_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1.png"
+          }
+        },
+        "partner_card_wjGCrM": {
+          "type": "partner_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1.png"
+          }
+        },
+        "partner_card_qLacpW": {
+          "type": "partner_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.02_1.png"
+          }
+        },
+        "partner_card_Va3DNC": {
+          "type": "partner_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.37.01_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "partner_card_nbeHTi",
+        "partner_card_wjGCrM",
+        "partner_card_qLacpW",
+        "partner_card_Va3DNC"
+      ],
+      "name": "Partners Slider Loop",
+      "settings": {
+        "heading": "We get outside.",
+        "paragraph": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+      }
     }
   },
   "order": [
     "main",
-    "about_hero_banner_46nfDW"
+    "about_hero_banner_46nfDW",
+    "partners_slider_WXzAQj"
   ]
 }
