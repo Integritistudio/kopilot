@@ -152,6 +152,7 @@
         "pill_tag_JJmjRw",
         "pill_tag_YEb9qJ"
       ],
+      "disabled": true,
       "name": "Asymmetric Showcase",
       "settings": {
         "bg_color": "#ffffff",
@@ -210,6 +211,54 @@
         "button_link": "",
         "partner_text": "<p>Run an event, or build gear of your own?<br/><strong>PARTNER WITH US</strong></p>"
       }
+    },
+    "split_asymmetric_showcase_ABh3r3": {
+      "type": "split-asymmetric-showcase",
+      "blocks": {
+        "logo_X7nLGQ": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_X9tF8z": {
+          "type": "logo",
+          "settings": {}
+        },
+        "pill_tag_HG6dwK": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        },
+        "pill_tag_LY8Tjx": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        },
+        "pill_tag_hmhWL7": {
+          "type": "pill_tag",
+          "settings": {
+            "tag_title": "Trans-Rockies"
+          }
+        }
+      },
+      "block_order": [
+        "logo_X7nLGQ",
+        "logo_X9tF8z",
+        "pill_tag_HG6dwK",
+        "pill_tag_LY8Tjx",
+        "pill_tag_hmhWL7"
+      ],
+      "name": "Asymmetric Showcase",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "Trusted by thousands.",
+        "paragraph": "We work with races, events, organizers, and outdoor communities who understand that preparation matters.",
+        "badge_text": "Location",
+        "card_heading": "Name Here",
+        "card_subheading": "- (Maybe a titleholder here?)",
+        "card_text": "\"[Real community or ambassador story — the tag working in the wild.]\""
+      }
     }
   },
   "order": [
@@ -218,6 +267,7 @@
     "partners_slider_WXzAQj",
     "split_asymmetric_showcase_K3cmFH",
     "team_profiles_M8xnat",
-    "features_about_wcY6FD"
+    "features_about_wcY6FD",
+    "split_asymmetric_showcase_ABh3r3"
   ]
 }
