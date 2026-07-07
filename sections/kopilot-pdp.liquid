@@ -422,6 +422,23 @@ padding:7.25px 18.29px;
     assign gallery_items = pdp_product.images
   endif
   assign image_limit = section.settings.gallery_image_limit | default: 6
+
+  assign global_has_special_banner = false
+  assign global_special_banner_text = ''
+  if use_product_images
+    if section.settings.promo_text != blank
+      assign global_has_special_banner = true
+      assign global_special_banner_text = section.settings.promo_text
+    endif
+  else
+    for item in gallery_items limit: image_limit
+      if item.settings.show_special_banner
+        assign global_has_special_banner = true
+        assign global_special_banner_text = item.settings.special_banner_text
+        break
+      endif
+    endfor
+  endif
 %}
 
 {% if pdp_product == blank %}
@@ -489,8 +506,8 @@ padding:7.25px 18.29px;
               class="kopilot-pdp__gallery-cell"
               {{ shopify_attributes }}
             >
-              {% if show_special_banner and forloop.first %}
-                <div class="kopilot-pdp__special-banner">{{ special_banner_text }}</div>
+              {% if forloop.first and global_has_special_banner %}
+                <div class="kopilot-pdp__special-banner">{{ global_special_banner_text }}</div>
               {% endif %}
 
               {% render 'kopilot-image',
