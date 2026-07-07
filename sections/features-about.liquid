@@ -57,7 +57,7 @@
   }
   #Features-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Desktop Viewport (1440px+) - PIXEL PERFECT */
+  /* Desktop Viewport (1440px+) */
   @media screen and (min-width: 1440px) {
     #Features-{{ section.id }} .features__container {
       max-width: 1440px;
@@ -121,6 +121,7 @@
       text-decoration: none;
       margin-bottom: 34px;
     }
+
     div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
       font-family: 'Elza', sans-serif;
       font-size: 20px;
@@ -142,10 +143,10 @@
     }
   }
 
-  /* Intermediate Viewport (768px to 1439px) - REDUCED PADDING ONLY */
+  /* Tablet & Small Desktop Viewport (768px to 1439px) - FLUID UI FIX */
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     #Features-{{ section.id }} .features__container {
-      padding: 40px 40px; /* Reduced top/bottom padding for balance */
+      padding: 40px 30px; 
     }
     #Features-{{ section.id }} .features__row {
       display: flex;
@@ -154,40 +155,28 @@
       gap: 30px; 
     }
     #Features-{{ section.id }} .features__media {
-      width: 50%;
+      width: 55%; 
     }
     #Features-{{ section.id }} .features__video {
+      aspect-ratio: 16 / 10;
       width: 100%;
       height: auto;
-      aspect-ratio: 707 / 447;
-      object-fit: cover;
     }
     #Features-{{ section.id }} .features__content {
-      width: 50%;
-      max-width: 438px;
+      width: 45%; 
+      padding-left: 20px;
     }
     #Features-{{ section.id }} h2.features__heading {
-      font-size: 45px;
+      font-size: clamp(32px, 4vw, 50px);
     }
     #Features-{{ section.id }} .features__button {
-      /* Button styles kept original/unchanged */
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 335px;
-      padding: 18.34px 64px;
-      background-color: #EF0008;
-      color: #FFFFFF;
-      font-family: 'Elza', sans-serif;
-      font-size: 20.38px;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-decoration: none;
-      margin-bottom: 34px;
+      width: 100%; 
+      max-width: 280px;
+      padding: 16px 0;
     }
   }
 
-  /* Mobile Viewport (max-width: 767px) - PIXEL PERFECT */
+  /* Mobile Viewport (max-width: 767px) */
   @media screen and (max-width: 767px) {
     #Features-{{ section.id }} .features__container {
       width: 100%;
@@ -224,6 +213,7 @@
       margin-bottom: 70px; 
       gap: 34px; 
     }
+    
     #Features-{{ section.id }} .features__text-group {
       display: flex;
       flex-direction: column;
@@ -236,7 +226,7 @@
       font-weight: 300;
       line-height: 110%;
       color: #000000;
-      max-width: 220px; 
+      max-width: 220px;
       margin: 0 auto;
     }
     #Features-{{ section.id }} .features__paragraph p {
@@ -263,6 +253,7 @@
       text-transform: uppercase;
       text-decoration: none;
     }
+
     div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
       font-family: 'Elza', sans-serif;
       font-size: 15px;
