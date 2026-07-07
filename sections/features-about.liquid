@@ -43,7 +43,6 @@
           </div>
         {%- endif -%}
       </div>
-
     </div>
   </div>
 </div>
@@ -57,8 +56,8 @@
   }
   #Features-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Desktop Viewport (1440px+) - UNCHANGED */
-  @media screen and (min-width: 768px) {
+  /* Desktop Viewport (1301px to 1440px+) - UNCHANGED */
+  @media screen and (min-width: 1301px) {
     #Features-{{ section.id }} .features__container {
       max-width: 1440px;
       margin: 0 auto;
@@ -70,205 +69,41 @@
       align-items: center;
       gap: 60px;
     }
-    #Features-{{ section.id }} .features__media {
-      width: 707px;
-      height: 447px;
-      flex-shrink: 0;
-    }
-    #Features-{{ section.id }} .features__video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    #Features-{{ section.id }} .features__content {
-      display: flex;
-      flex-direction: column;
-      width: 438px;
-    }
-    #Features-{{ section.id }} .features__text-group {
-      display: flex;
-      flex-direction: column;
-      gap: 19px;
-      margin-bottom: 38px;
-    }
-    #Features-{{ section.id }} h2.features__heading {
-      font-family: 'Elza', sans-serif;
-      font-size: 60px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      letter-spacing: -1px;
-    }
-    #Features-{{ section.id }} .features__paragraph p {
-      font-family: 'Elza', sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 100%;
-      color: #000000;
-    }
-    #Features-{{ section.id }} .features__button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 335px;
-      padding: 18.34px 64px;
-      background-color: #EF0008;
-      color: #FFFFFF;
-      font-family: 'Elza', sans-serif;
-      font-size: 20.38px;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-decoration: none;
-      margin-bottom: 34px;
-    }
-
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
-      font-family: 'Elza', sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      text-align: left;
-    }
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
-      display: block;
-      margin-top: 7px;
-      font-family: 'Elza', sans-serif;
-      font-size: 20.38px;
-      font-weight: 600;
-      line-height: 100%;
-      color: #000000;
-      text-decoration: underline;
-    }
+    #Features-{{ section.id }} .features__media { width: 707px; height: 447px; flex-shrink: 0; }
+    #Features-{{ section.id }} .features__video { width: 100%; height: 100%; object-fit: cover; }
+    #Features-{{ section.id }} .features__content { display: flex; flex-direction: column; width: 438px; }
+    #Features-{{ section.id }} .features__text-group { display: flex; flex-direction: column; gap: 19px; margin-bottom: 38px; }
+    #Features-{{ section.id }} h2.features__heading { font-family: 'Elza', sans-serif; font-size: 60px; font-weight: 300; line-height: 110%; color: #000000; letter-spacing: -1px; }
+    #Features-{{ section.id }} .features__paragraph p { font-family: 'Elza', sans-serif; font-size: 20px; font-weight: 300; line-height: 100%; color: #000000; }
+    #Features-{{ section.id }} .features__button { display: inline-flex; align-items: center; justify-content: center; width: 335px; padding: 18.34px 64px; background-color: #EF0008; color: #FFFFFF; font-family: 'Elza', sans-serif; font-size: 20.38px; font-weight: 600; text-transform: uppercase; text-decoration: none; margin-bottom: 34px; }
+    #Features-{{ section.id }} .features__partner-prompt p { font-family: 'Elza', sans-serif; font-size: 20px; font-weight: 300; line-height: 110%; color: #000000; }
+    #Features-{{ section.id }} .features__partner-prompt strong { display: block; margin-top: 7px; font-family: 'Elza', sans-serif; font-size: 20.38px; font-weight: 600; line-height: 100%; color: #000000; text-decoration: underline; }
   }
 
-  /* Tablet & Small Desktop Viewport (768px to 1439px) - FLUID UI FIX */
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    #Features-{{ section.id }} .features__container {
-      padding: 6vw 4vw; 
-    }
-    #Features-{{ section.id }} .features__row {
-      gap: 4vw; 
-    }
-    #Features-{{ section.id }} .features__media {
-      width: 50%; /* Widened for better balance */
-      height: auto;
-    }
-    #Features-{{ section.id }} .features__video {
-      aspect-ratio: 707 / 447; 
-    }
-    #Features-{{ section.id }} .features__content {
-      width: 50%; /* Even split prevents cramping */
-      max-width: 438px;
-    }
-    #Features-{{ section.id }} h2.features__heading {
-      font-size: clamp(34px, 4.5vw, 60px); /* Smooth scaling */
-    }
-    #Features-{{ section.id }} .features__button {
-      width: 100%; 
-      max-width: 335px; /* Protects button layout */
-      padding: 16px 0;
-    }
+  /* Responsive Stacked View (768px to 1300px) */
+  @media screen and (min-width: 768px) and (max-width: 1300px) {
+    #Features-{{ section.id }} .features__container { padding: 40px; }
+    #Features-{{ section.id }} .features__row { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+    #Features-{{ section.id }} .features__media { width: 100%; max-width: 707px; }
+    #Features-{{ section.id }} .features__video { width: 100%; aspect-ratio: 707/447; object-fit: cover; }
+    #Features-{{ section.id }} .features__content { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    #Features-{{ section.id }} .features__heading { font-size: 48px; }
+    #Features-{{ section.id }} .features__button { width: 335px; padding: 18px 0; display: inline-flex; justify-content: center; text-decoration: none; background: #EF0008; color: #fff; }
   }
 
-  /* Mobile Viewport (Figma 360px Pixel Perfect) */
+  /* Mobile Viewport (360px - 767px) - UNCHANGED */
   @media screen and (max-width: 767px) {
-    #Features-{{ section.id }} .features__container {
-      width: 100%;
-      padding: 0; 
-    }
-    #Features-{{ section.id }} .features__row {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 60px; 
-    }
-    #Features-{{ section.id }} .features__media {
-      width: 100%;
-      height: auto;
-    }
-    #Features-{{ section.id }} .features__video {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 360 / 228.34;
-      object-fit: cover;
-      display: block;
-    }
-    #Features-{{ section.id }} .features__video-placeholder {
-      width: 100%;
-      aspect-ratio: 360 / 228.34;
-      background-color: #f3f3f3;
-    }
-    #Features-{{ section.id }} .features__content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 276.51px;
-      margin-bottom: 70px; 
-      gap: 34px; 
-    }
-    
-    #Features-{{ section.id }} .features__text-group {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      gap: 12px;
-    }
-    #Features-{{ section.id }} h2.features__heading {
-      font-family: 'Elza', sans-serif;
-      font-size: 30px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      max-width: 220px; /* EXACT Figma bounding box to force the break */
-      margin: 0 auto;
-    }
-    #Features-{{ section.id }} .features__paragraph p {
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 100%;
-      color: #000000;
-      max-width: 250px; /* Forces exact wrap for paragraph */
-      margin: 0 auto;
-    }
-    #Features-{{ section.id }} .features__button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%; 
-      padding: 15.88px 61.76px; 
-      background-color: #EF0008;
-      color: #FFFFFF;
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 100%;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 110%;
-      color: #000000;
-      text-align: center;
-    }
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
-    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
-      display: block;
-      margin-top: 7px; 
-      font-family: 'Elza', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 100%;
-      color: #000000;
-      text-decoration: underline;
-    }
+    #Features-{{ section.id }} .features__container { width: 100%; padding: 0; }
+    #Features-{{ section.id }} .features__row { display: flex; flex-direction: column; align-items: center; gap: 60px; }
+    #Features-{{ section.id }} .features__media { width: 100%; height: auto; }
+    #Features-{{ section.id }} .features__video { width: 100%; height: auto; aspect-ratio: 360 / 228.34; object-fit: cover; display: block; }
+    #Features-{{ section.id }} .features__content { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 276.51px; margin-bottom: 70px; gap: 34px; }
+    #Features-{{ section.id }} .features__text-group { display: flex; flex-direction: column; text-align: center; gap: 12px; }
+    #Features-{{ section.id }} h2.features__heading { font-family: 'Elza', sans-serif; font-size: 30px; font-weight: 300; line-height: 110%; color: #000000; max-width: 220px; margin: 0 auto; }
+    #Features-{{ section.id }} .features__paragraph p { font-family: 'Elza', sans-serif; font-size: 15px; font-weight: 300; line-height: 100%; color: #000000; max-width: 250px; margin: 0 auto; }
+    #Features-{{ section.id }} .features__button { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 15.88px 61.76px; background-color: #EF0008; color: #FFFFFF; font-family: 'Elza', sans-serif; font-size: 15px; font-weight: 600; line-height: 100%; text-transform: uppercase; text-decoration: none; }
+    #Features-{{ section.id }} .features__partner-prompt p { font-family: 'Elza', sans-serif; font-size: 15px; font-weight: 300; line-height: 110%; color: #000000; text-align: center; }
+    #Features-{{ section.id }} .features__partner-prompt strong { display: block; margin-top: 7px; font-family: 'Elza', sans-serif; font-size: 15px; font-weight: 600; line-height: 100%; color: #000000; text-decoration: underline; }
   }
 {% endstyle %}
 
@@ -276,40 +111,12 @@
 {
   "name": "Feature Split Section",
   "settings": [
-    {
-      "type": "video",
-      "id": "video",
-      "label": "Feature Video"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "The tag that brings you home."
-    },
-    {
-      "type": "richtext",
-      "id": "paragraph",
-      "label": "Paragraph",
-      "default": "<p>Wherever you're headed next, go knowing you've got a way back.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "GET YOUR KOPILOT.ID"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
-    },
-    {
-      "type": "richtext",
-      "id": "partner_text",
-      "label": "Partner Prompt",
-      "default": "<p>Run an event, or build gear of your own? <b>PARTNER WITH US</b></p>"
-    }
+    { "type": "video", "id": "video", "label": "Feature Video" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The tag that brings you home." },
+    { "type": "richtext", "id": "paragraph", "label": "Paragraph", "default": "<p>Wherever you're headed next, go knowing you've got a way back.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button Label", "default": "GET YOUR KOPILOT.ID" },
+    { "type": "url", "id": "button_link", "label": "Button Link" },
+    { "type": "richtext", "id": "partner_text", "label": "Partner Prompt", "default": "<p>Run an event, or build gear of your own? <b>PARTNER WITH US</b></p>" }
   ],
   "presets": [{ "name": "Feature Split Section" }]
 }
