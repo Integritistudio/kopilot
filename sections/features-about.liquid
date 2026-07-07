@@ -121,12 +121,24 @@
       text-decoration: none;
       margin-bottom: 34px;
     }
-    #Features-{{ section.id }} .features__partner-prompt {
+
+    /* High Specificity Desktop Target for Partner Prompt Paragraph & Strong */
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
       font-family: 'Elza', sans-serif;
       font-size: 20px;
       font-weight: 300;
       line-height: 110%;
       color: #000000;
+      text-align: left;
+    }
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
+      font-family: 'Elza', sans-serif;
+      font-size: 20.38px;
+      font-weight: 600;
+      line-height: 100%;
+      color: #000000;
+      text-decoration: underline;
     }
   }
 
@@ -169,7 +181,7 @@
       flex-direction: column;
       text-align: center;
       gap: 12px;
-      margin-bottom: 38px; /* Match Figma Auto-Layout Gap between text frame and button */
+      margin-bottom: 38px;
     }
     #Features-{{ section.id }} h2.features__heading {
       font-family: 'Elza', sans-serif;
@@ -191,7 +203,7 @@
       justify-content: center;
       width: 100%;
       max-width: 276.51px;
-      padding: 15.88px 0; /* Padding vertical based on Figma metrics */
+      padding: 15.88px 0; 
       background-color: #EF0008;
       color: #FFFFFF;
       font-family: 'Elza', sans-serif;
@@ -200,15 +212,26 @@
       line-height: 100%;
       text-transform: uppercase;
       text-decoration: none;
-      margin-bottom: 34px; /* Exact 34px paragraph/button bottom gap to partner block */
+      margin-bottom: 34px; 
     }
-    #Features-{{ section.id }} .features__partner-prompt p {
+
+    /* High Specificity Mobile Target for Partner Prompt Paragraph & Strong */
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt p {
       font-family: 'Elza', sans-serif;
       font-size: 15px;
       font-weight: 300;
       line-height: 110%;
       color: #000000;
       text-align: center;
+    }
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt strong,
+    div#Features-{{ section.id }}.features-section .features__content .features__partner-prompt b {
+      font-family: 'Elza', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 100%;
+      color: #000000;
+      text-decoration: underline;
     }
   }
 {% endstyle %}
