@@ -2,26 +2,13 @@
 
   /* ============================================================
      PARTNERSHIP SHOWCASE — pixel-perfect at 1440px & 360px
-     Section: partnership-showcase-{{ section.id }}
   ============================================================ */
 
-  @font-face {
-    font-family: 'Elza';
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Elza';
-    font-weight: 500;
-    font-style: normal;
-  }
+  @font-face { font-family: 'Elza'; font-weight: 300; font-style: normal; }
+  @font-face { font-family: 'Elza'; font-weight: 500; font-style: normal; }
 
-  /* ── Section wrapper ────────────────────────────────────────
-     Desktop 1440px:
-       padding-top:    80px
-       padding-bottom: 80px
-       padding-left:   166px
-       padding-right:  166px
+  /* ── SECTION WRAPPER ─────────────────────────────────────────
+     1440px: padding 80px top/bottom · 166px left/right
   ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} {
     width: 100%;
@@ -30,24 +17,21 @@
     box-sizing: border-box;
   }
 
-  /* ── Inner row ──────────────────────────────────────────────
-     Horizontal flex
-     Inner content width at 1440px: 1440 - 166x2 = 1108px
-     Left column:  flex:1  (fills remaining ~563px)
-     Right column: fixed 485px
-     Gap between columns: 60px
+  /* ── DESKTOP LAYOUT WRAPPER ──────────────────────────────────
+     Horizontal flex: left (flex:1) | 60px gap | right (485px)
   ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: flex-start;
     gap: 60px;
     width: 100%;
     box-sizing: border-box;
   }
 
-  /* ── LEFT COLUMN ──────────────────────────────────────────── */
+  /* ── LEFT COLUMN ─────────────────────────────────────────────
+     Hug: fills remaining space after right col + gap
+  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-left {
     flex: 1 1 0;
     min-width: 0;
@@ -56,7 +40,7 @@
     box-sizing: border-box;
   }
 
-  /* Heading: Elza Light 300, 60px, 106% line-height, -1px tracking */
+  /* Heading: Elza Light 300 · 60px · 106% lh · -1px tracking */
   .ps-{{ section.id }} .ps-heading {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -68,7 +52,9 @@
     padding: 0;
   }
 
-  /* Image frame — crossfade images live here absolutely */
+  /* ── IMAGE CROSSFADE FRAME ───────────────────────────────────
+     Fills left column width; stretches to match right col height
+  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-img-frame {
     width: 100%;
     flex: 1 1 auto;
@@ -86,7 +72,7 @@
     object-fit: cover;
     display: block;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.45s ease;
     pointer-events: none;
   }
 
@@ -94,8 +80,8 @@
     opacity: 1;
   }
 
-  /* ── RIGHT COLUMN ─────────────────────────────────────────────
-     Figma: Fixed 485px, Vertical flow, gap 21px
+  /* ── RIGHT COLUMN — CARDS STACK ─────────────────────────────
+     Fixed 485px · Vertical flow · 21px gap between cards
   ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-cards {
     width: 485px;
@@ -106,16 +92,15 @@
     box-sizing: border-box;
   }
 
-  /* ── INFO CARD ────────────────────────────────────────────────
+  /* ── INFO CARD ───────────────────────────────────────────────
      Figma spec:
-       width:          485px
-       min-height:     177px
-       padding-top:    35px
-       padding-right:  40px
-       padding-bottom: 35px
-       padding-left:   40px
-       internal gap:   11px
-       background:     #D6D6D6 (rest & hover — image swaps instead)
+       width 485 · min-height 177
+       padding: 35px 40px
+       internal gap: 11px
+       background: #D6D6D6 (same rest & hover — only image changes)
+
+     INACTIVE (default): text at 35% opacity  ← faded look
+     ACTIVE (.ps-card-active): text at 100%   ← full read
   ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-card {
     width: 485px;
@@ -128,9 +113,23 @@
     background: #D6D6D6;
     box-sizing: border-box;
     cursor: pointer;
+    /* no background change — image on left swaps instead */
   }
 
-  /* Card title: Elza Medium 500, 20px, 120% line-height, 0% tracking */
+  /* Inactive text: dimmed to ~35% */
+  .ps-{{ section.id }} .ps-card .ps-card-title,
+  .ps-{{ section.id }} .ps-card .ps-card-body {
+    transition: opacity 0.3s ease, color 0.3s ease;
+    opacity: 0.35;
+  }
+
+  /* Active card: full-opacity text */
+  .ps-{{ section.id }} .ps-card.ps-card-active .ps-card-title,
+  .ps-{{ section.id }} .ps-card.ps-card-active .ps-card-body {
+    opacity: 1;
+  }
+
+  /* Card title: Elza Medium 500 · 20px · 120% lh · 0 tracking */
   .ps-{{ section.id }} .ps-card-title {
     font-family: 'Elza', sans-serif;
     font-weight: 500;
@@ -142,7 +141,7 @@
     padding: 0;
   }
 
-  /* Card body: Elza Light 300, 20px, 120% line-height, 0% tracking */
+  /* Card body: Elza Light 300 · 20px · 120% lh · 0 tracking */
   .ps-{{ section.id }} .ps-card-body {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -154,106 +153,172 @@
     padding: 0;
   }
 
-  /* ── TABLET (768px to 1199px) ─────────────────────────────── */
+  /* ── TABLET (768–1199px) ─────────────────────────────────── */
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    .ps-{{ section.id }} {
-      padding: 60px 40px;
-    }
-
-    .ps-{{ section.id }} .ps-wrapper {
-      gap: 31px;
-    }
-
-    .ps-{{ section.id }} .ps-heading {
-      font-size: 44px;
-    }
-
-    .ps-{{ section.id }} .ps-img-frame {
-      min-height: 300px;
-    }
-
-    .ps-{{ section.id }} .ps-cards {
-      width: 340px;
-    }
-
-    .ps-{{ section.id }} .ps-card {
-      width: 340px;
-      min-height: auto;
-      padding: 28px 28px;
-    }
-
+    .ps-{{ section.id }} { padding: 60px 40px; }
+    .ps-{{ section.id }} .ps-wrapper { gap: 31px; }
+    .ps-{{ section.id }} .ps-heading { font-size: 44px; }
+    .ps-{{ section.id }} .ps-img-frame { min-height: 300px; }
+    .ps-{{ section.id }} .ps-cards { width: 340px; }
+    .ps-{{ section.id }} .ps-card { width: 340px; min-height: auto; padding: 28px; }
     .ps-{{ section.id }} .ps-card-title,
-    .ps-{{ section.id }} .ps-card-body {
-      font-size: 17px;
-    }
+    .ps-{{ section.id }} .ps-card-body { font-size: 17px; }
   }
 
-  /* ── MOBILE (max 767px) — 360px target ───────────────────────
-     Stack order: heading, image frame, cards
-     Side padding: 19px  =>  content 322px  (360 - 19x2 = 322)
+  /* ── MOBILE (≤ 767px) — 360px target ────────────────────────
+
+     Layout: SLIDER / CAROUSEL
+       [  Heading centered                ]
+       [  Full-width image (current card) ]
+       [  Card title + body (current)     ]
+       [  ← prev  ·  ·  ·  next →        ]
+
+     Desktop columns & stacked cards are HIDDEN on mobile.
+     The slider is shown instead.
   ──────────────────────────────────────────────────────────── */
   @media screen and (max-width: 767px) {
+
+    /* Hide the desktop 2-column wrapper */
+    .ps-{{ section.id }} .ps-wrapper { display: none; }
+
     .ps-{{ section.id }} {
-      padding: 50px 19px;
+      padding: 40px 0 50px;    /* no side padding — slider handles it */
     }
 
-    .ps-{{ section.id }} .ps-wrapper {
+    /* ── Mobile slider root ── */
+    .ps-{{ section.id }} .ps-mobile {
+      display: flex;
       flex-direction: column;
-      gap: 16px;
-    }
-
-    .ps-{{ section.id }} .ps-left {
+      align-items: center;
       width: 100%;
     }
 
-    .ps-{{ section.id }} .ps-heading {
+    /* Heading */
+    .ps-{{ section.id }} .ps-mobile-heading {
+      font-family: 'Elza', sans-serif;
+      font-weight: 300;
       font-size: 32px;
       line-height: 106%;
       letter-spacing: -0.5px;
-      margin-bottom: 16px;
+      color: #000000;
+      text-align: center;
+      margin: 0 0 28px;
+      padding: 0 19px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .ps-{{ section.id }} .ps-img-frame {
+    /* Full-width image area */
+    .ps-{{ section.id }} .ps-mobile-img {
       width: 100%;
-      min-height: 220px;
-      height: 220px;
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+      background: #D6D6D6;
     }
 
-    .ps-{{ section.id }} .ps-cards {
+    .ps-{{ section.id }} .ps-mobile-img img {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      gap: 12px;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
-    .ps-{{ section.id }} .ps-card {
+    .ps-{{ section.id }} .ps-mobile-img img.ps-img-active {
+      opacity: 1;
+    }
+
+    /* Card text content below image */
+    .ps-{{ section.id }} .ps-mobile-content {
       width: 100%;
-      min-height: auto;
-      padding: 24px 20px;
+      padding: 28px 19px 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
+      min-height: 120px;
     }
 
-    .ps-{{ section.id }} .ps-card-title {
+    .ps-{{ section.id }} .ps-mobile-title {
+      font-family: 'Elza', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 120%;
+      letter-spacing: 0;
+      color: #000000;
+      margin: 0;
+    }
+
+    .ps-{{ section.id }} .ps-mobile-body {
+      font-family: 'Elza', sans-serif;
+      font-weight: 300;
       font-size: 18px;
+      line-height: 120%;
+      letter-spacing: 0;
+      color: #000000;
+      margin: 0;
     }
 
-    .ps-{{ section.id }} .ps-card-body {
-      font-size: 16px;
+    /* Navigation row: prev arrow · next arrow */
+    .ps-{{ section.id }} .ps-mobile-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+      padding: 0 19px;
     }
+
+    .ps-{{ section.id }} .ps-nav-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: #000000;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .ps-{{ section.id }} .ps-nav-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .ps-{{ section.id }} .ps-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+  }
+
+  /* Hide mobile slider on desktop */
+  @media screen and (min-width: 768px) {
+    .ps-{{ section.id }} .ps-mobile { display: none; }
   }
 
 {%- endstyle -%}
 
 
+{%- comment -%} Collect info_card blocks into accessible data {%- endcomment -%}
+
 <div class="ps-{{ section.id }}">
+
+  <!-- ══ DESKTOP: 2-column layout ══════════════════════════════ -->
   <div class="ps-wrapper">
 
-    <!-- LEFT: heading + crossfade image frame -->
+    <!-- Left: heading + crossfade image frame -->
     <div class="ps-left">
-
       {%- if section.settings.heading != blank -%}
         <h2 class="ps-heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
 
-      <!-- One img per info_card block, crossfaded by JS on card hover -->
       <div class="ps-img-frame" id="ps-frame-{{ section.id }}">
         {%- assign img_idx = 0 -%}
         {%- for block in section.blocks -%}
@@ -271,17 +336,15 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
-
     </div>
 
-    <!-- RIGHT: stacked info cards -->
+    <!-- Right: stacked info cards -->
     <div class="ps-cards" id="ps-cards-{{ section.id }}">
-
       {%- assign card_idx = 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'info_card' -%}
           <div
-            class="ps-card"
+            class="ps-card {% if card_idx == 0 %}ps-card-active{% endif %}"
             data-ps-card="{{ card_idx }}"
             {{ block.shopify_attributes }}
           >
@@ -295,42 +358,172 @@
           {%- assign card_idx = card_idx | plus: 1 -%}
         {%- endif -%}
       {%- endfor -%}
-
     </div>
 
-  </div>
-</div>
+  </div><!-- /ps-wrapper -->
+
+
+  <!-- ══ MOBILE: full-screen slider carousel ════════════════════ -->
+  <div class="ps-mobile" id="ps-mobile-{{ section.id }}">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ps-mobile-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <!-- Crossfade image -->
+    <div class="ps-mobile-img" id="ps-mobile-img-{{ section.id }}">
+      {%- assign img_idx = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'info_card' and block.settings.card_image != blank -%}
+          <img
+            src="{{ block.settings.card_image | image_url: width: 800 }}"
+            alt="{{ block.settings.card_image.alt | default: block.settings.card_title | escape }}"
+            loading="lazy"
+            class="{% if img_idx == 0 %}ps-img-active{% endif %}"
+            data-ps-mob-img="{{ img_idx }}"
+          >
+          {%- assign img_idx = img_idx | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Text content for active slide -->
+    <div class="ps-mobile-content" id="ps-mobile-content-{{ section.id }}">
+      <p class="ps-mobile-title" id="ps-mob-title-{{ section.id }}"></p>
+      <p class="ps-mobile-body"  id="ps-mob-body-{{ section.id }}"></p>
+    </div>
+
+    <!-- Prev / Next arrows -->
+    <div class="ps-mobile-nav">
+      <button class="ps-nav-btn" id="ps-prev-{{ section.id }}" aria-label="Previous" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button class="ps-nav-btn" id="ps-next-{{ section.id }}" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 6 15 12 9 18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div><!-- /ps-mobile -->
+
+</div><!-- /section -->
 
 
 <script>
-  (function () {
-    'use strict';
+(function () {
+  'use strict';
 
-    var root = document.querySelector('.ps-{{ section.id }}');
-    if (!root) return;
+  /* ─── Card data from Liquid ─────────────────────────────── */
+  var CARDS = [
+    {%- assign first = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'info_card' -%}
+        {%- unless first -%},{%- endunless -%}
+        {
+          "title": {{ block.settings.card_title | json }},
+          "body":  {{ block.settings.card_body  | json }},
+          "hasImg": {%- if block.settings.card_image != blank -%}true{%- else -%}false{%- endif -%}
+        }
+        {%- assign first = false -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ];
 
-    var cards  = root.querySelectorAll('.ps-card');
-    var images = root.querySelectorAll('.ps-img-frame img');
+  var TOTAL = CARDS.length;
+  var current = 0;
 
-    function activate(idx) {
-      images.forEach(function (img) { img.classList.remove('ps-img-active'); });
-      if (images[idx]) images[idx].classList.add('ps-img-active');
-    }
+  /* ─── Element refs ──────────────────────────────────────── */
+  var root       = document.querySelector('.ps-{{ section.id }}');
+  if (!root) return;
 
-    cards.forEach(function (card) {
-      card.addEventListener('mouseenter', function () {
-        activate(parseInt(card.dataset.psCard, 10));
-      });
+  /* Desktop */
+  var deskCards  = root.querySelectorAll('.ps-card');
+  var deskImages = root.querySelectorAll('.ps-img-frame img');
+
+  /* Mobile */
+  var mobImages  = root.querySelectorAll('.ps-mobile-img img');
+  var mobTitle   = root.querySelector('#ps-mob-title-{{ section.id }}');
+  var mobBody    = root.querySelector('#ps-mob-body-{{ section.id }}');
+  var prevBtn    = root.querySelector('#ps-prev-{{ section.id }}');
+  var nextBtn    = root.querySelector('#ps-next-{{ section.id }}');
+
+  /* ─── Activate by index ─────────────────────────────────── */
+  function activate(idx) {
+    current = idx;
+
+    /* Desktop: toggle active class on cards */
+    deskCards.forEach(function (c) { c.classList.remove('ps-card-active'); });
+    if (deskCards[idx]) deskCards[idx].classList.add('ps-card-active');
+
+    /* Desktop: crossfade images */
+    deskImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
+    if (deskImages[idx]) deskImages[idx].classList.add('ps-img-active');
+
+    /* Mobile: crossfade images */
+    mobImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
+    if (mobImages[idx]) mobImages[idx].classList.add('ps-img-active');
+
+    /* Mobile: update text */
+    if (mobTitle && CARDS[idx]) mobTitle.textContent = CARDS[idx].title;
+    if (mobBody  && CARDS[idx]) mobBody.textContent  = CARDS[idx].body;
+
+    /* Mobile: button states */
+    if (prevBtn) prevBtn.disabled = (idx === 0);
+    if (nextBtn) nextBtn.disabled = (idx === TOTAL - 1);
+  }
+
+  /* ─── Initial state ─────────────────────────────────────── */
+  activate(0);
+
+  /* ─── Desktop: hover + click on cards ──────────────────── */
+  deskCards.forEach(function (card) {
+    card.addEventListener('mouseenter', function () {
+      activate(parseInt(card.dataset.psCard, 10));
     });
+    card.addEventListener('click', function () {
+      activate(parseInt(card.dataset.psCard, 10));
+    });
+  });
 
-    /* Restore first image when mouse leaves the cards column */
-    var col = root.querySelector('.ps-cards');
-    if (col) {
-      col.addEventListener('mouseleave', function () {
-        activate(0);
-      });
-    }
-  }());
+  /* Restore first card when mouse leaves the cards column */
+  var col = root.querySelector('.ps-cards');
+  if (col) {
+    col.addEventListener('mouseleave', function () {
+      activate(0);
+    });
+  }
+
+  /* ─── Mobile: arrow navigation ──────────────────────────── */
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      if (current > 0) activate(current - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      if (current < TOTAL - 1) activate(current + 1);
+    });
+  }
+
+  /* ─── Mobile: swipe support ─────────────────────────────── */
+  var mobImgFrame = root.querySelector('.ps-mobile-img');
+  if (mobImgFrame) {
+    var touchStartX = 0;
+    mobImgFrame.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    mobImgFrame.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) < 40) return;           /* ignore micro-swipes */
+      if (dx < 0 && current < TOTAL - 1) activate(current + 1);
+      if (dx > 0 && current > 0)         activate(current - 1);
+    }, { passive: true });
+  }
+
+}());
 </script>
 
 
@@ -347,7 +540,7 @@
     {
       "type": "text",
       "id": "heading",
-      "label": "Left Column Heading",
+      "label": "Heading",
       "default": "What a KOPILOT.ID partnership delivers."
     }
   ],
@@ -359,7 +552,7 @@
         {
           "type": "image_picker",
           "id": "card_image",
-          "label": "Card Image (shown on left when hovered)"
+          "label": "Card Image (shown on left on desktop / full-width on mobile)"
         },
         {
           "type": "text",
