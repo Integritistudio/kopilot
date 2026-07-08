@@ -245,33 +245,42 @@
 
   /* ─── Mobile (≤767px) ─── */
   @media screen and (max-width: 767px) {
+
+    /* Remove section padding so image bleeds edge-to-edge */
     .pc-{{ section.id }} {
-      padding: 40px 20px 50px;
+      padding: 0;
     }
 
     .pc-{{ section.id }} .pc-wrapper {
       flex-direction: column;
-      gap: 24px;
+      gap: 0;
     }
 
+    /* Image: full width, fixed height, edge-to-edge */
     .pc-{{ section.id }} .pc-image {
       width: 100%;
-      height: 280px;
+      height: 260px;
       min-height: unset;
+      flex: none;
     }
 
+    /* Form panel: restore inner padding */
     .pc-{{ section.id }} .pc-form-panel {
       width: 100%;
       gap: 20px;
+      padding: 32px 20px 40px;
     }
 
+    /* Centered heading & description */
     .pc-{{ section.id }} .pc-heading {
-      font-size: 36px;
+      font-size: 32px;
       letter-spacing: -0.5px;
+      text-align: center;
     }
 
     .pc-{{ section.id }} .pc-desc {
       font-size: 16px;
+      text-align: center;
     }
 
     .pc-{{ section.id }} .pc-field,
@@ -279,14 +288,24 @@
       font-size: 16px;
     }
 
+    /* Button full width */
     .pc-{{ section.id }} .pc-btn {
       width: 100%;
     }
 
+    /* Call bar: single horizontal row, no wrapping */
     .pc-{{ section.id }} .pc-call-bar {
       max-width: 100%;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       height: auto;
+      overflow-x: auto;
+      gap: 0;
+      justify-content: space-between;
+    }
+
+    .pc-{{ section.id }} .pc-call-label,
+    .pc-{{ section.id }} .pc-call-value {
+      font-size: 13px;
     }
   }
 
