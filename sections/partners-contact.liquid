@@ -1,0 +1,530 @@
+{%- style -%}
+
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap');
+
+  @font-face { font-family: 'Elza'; font-weight: 300; font-style: normal; }
+  @font-face { font-family: 'Elza'; font-weight: 600; font-style: normal; }
+
+  /* ─── Section Shell ─── */
+  .pc-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
+    padding: 44px 106px;
+  }
+
+  /* ─── Inner wrapper (image + form, horizontal) ─── */
+  .pc-{{ section.id }} .pc-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 41px;
+    width: 100%;
+    max-width: 1228px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* ─── Left: Image ─── */
+  .pc-{{ section.id }} .pc-image {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
+    background-color: #D6D6D6;
+    min-height: 500px;
+  }
+
+  .pc-{{ section.id }} .pc-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* ─── Right: Form Panel ─── */
+  .pc-{{ section.id }} .pc-form-panel {
+    width: 561px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    box-sizing: border-box;
+  }
+
+  /* ─── Heading block (heading + desc) ─── */
+  .pc-{{ section.id }} .pc-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pc-{{ section.id }} .pc-heading {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 110%;
+    letter-spacing: -1px;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pc-{{ section.id }} .pc-desc {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ─── Fields ─── */
+  .pc-{{ section.id }} .pc-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pc-{{ section.id }} .pc-field {
+    width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border: 1px solid #959595;
+    background: transparent;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #000000;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .pc-{{ section.id }} .pc-field::placeholder {
+    color: #959595;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .pc-{{ section.id }} .pc-field:focus {
+    border-color: #000000;
+  }
+
+  .pc-{{ section.id }} .pc-field-textarea {
+    height: 110px;
+    padding: 15px 20px;
+    resize: none;
+    line-height: 120%;
+  }
+
+  /* ─── Button ─── */
+  .pc-{{ section.id }} .pc-btn-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pc-{{ section.id }} .pc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21.62px;
+    width: 306px;
+    height: 60.69px;
+    background-color: {{ section.settings.button_color }};
+    border: none;
+    cursor: pointer;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: background-color 0.25s ease, opacity 0.25s ease;
+  }
+
+  .pc-{{ section.id }} .pc-btn:hover {
+    opacity: 0.88;
+  }
+
+  .pc-{{ section.id }} .pc-btn-text {
+    font-family: 'Elza', sans-serif;
+    font-weight: 600;
+    font-size: 20.38px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: {{ section.settings.button_text_color }};
+    white-space: nowrap;
+  }
+
+  /* ─── Prefer-to-call bar ─── */
+  .pc-{{ section.id }} .pc-call-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 436px;
+    height: 39px;
+    border: 1px solid #959595;
+    padding: 11px 20px;
+    box-sizing: border-box;
+    gap: 30px;
+  }
+
+  .pc-{{ section.id }} .pc-call-label {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .pc-{{ section.id }} .pc-call-divider {
+    width: 1px;
+    height: 16px;
+    background-color: #959595;
+    flex-shrink: 0;
+  }
+
+  .pc-{{ section.id }} .pc-call-value {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .pc-{{ section.id }} .pc-call-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ─── Tablet (768px – 1199px) ─── */
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    .pc-{{ section.id }} {
+      padding: 44px 40px;
+    }
+
+    .pc-{{ section.id }} .pc-wrapper {
+      gap: 28px;
+    }
+
+    .pc-{{ section.id }} .pc-form-panel {
+      width: 480px;
+    }
+
+    .pc-{{ section.id }} .pc-heading {
+      font-size: 44px;
+    }
+
+    .pc-{{ section.id }} .pc-image {
+      min-height: 400px;
+    }
+
+    .pc-{{ section.id }} .pc-btn {
+      width: 100%;
+    }
+  }
+
+  /* ─── Mobile (≤767px) ─── */
+  @media screen and (max-width: 767px) {
+    .pc-{{ section.id }} {
+      padding: 40px 20px 50px;
+    }
+
+    .pc-{{ section.id }} .pc-wrapper {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pc-{{ section.id }} .pc-image {
+      width: 100%;
+      height: 280px;
+      min-height: unset;
+    }
+
+    .pc-{{ section.id }} .pc-form-panel {
+      width: 100%;
+      gap: 20px;
+    }
+
+    .pc-{{ section.id }} .pc-heading {
+      font-size: 36px;
+      letter-spacing: -0.5px;
+    }
+
+    .pc-{{ section.id }} .pc-desc {
+      font-size: 16px;
+    }
+
+    .pc-{{ section.id }} .pc-field,
+    .pc-{{ section.id }} .pc-field::placeholder {
+      font-size: 16px;
+    }
+
+    .pc-{{ section.id }} .pc-btn {
+      width: 100%;
+    }
+
+    .pc-{{ section.id }} .pc-call-bar {
+      max-width: 100%;
+      flex-wrap: wrap;
+      height: auto;
+    }
+  }
+
+  /* ─── Large screens (≥1440px): cap width ─── */
+  @media screen and (min-width: 1440px) {
+    .pc-{{ section.id }} .pc-wrapper {
+      max-width: 1228px;
+    }
+  }
+
+{%- endstyle -%}
+
+
+<section class="pc-{{ section.id }}">
+  <div class="pc-wrapper">
+
+    <!-- Left: Image -->
+    <div class="pc-image">
+      {%- if section.settings.section_image != blank -%}
+        <img
+          src="{{ section.settings.section_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.section_image.alt | default: 'Partnership image' | escape }}"
+          loading="lazy"
+          width="630"
+          height="690"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'pc-placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    <!-- Right: Form Panel -->
+    <div class="pc-form-panel">
+
+      <!-- Heading & description -->
+      <div class="pc-text-block">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="pc-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <p class="pc-desc">{{ section.settings.description }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Form -->
+      <form class="pc-fields" action="#" method="post" id="pc-form-{{ section.id }}" novalidate>
+
+        <input
+          class="pc-field"
+          type="text"
+          name="name"
+          id="pc-name-{{ section.id }}"
+          placeholder="{{ section.settings.label_name | default: 'Name' }}"
+          autocomplete="name"
+        >
+
+        <input
+          class="pc-field"
+          type="text"
+          name="organization"
+          id="pc-org-{{ section.id }}"
+          placeholder="{{ section.settings.label_org | default: 'Organization' }}"
+          autocomplete="organization"
+        >
+
+        <input
+          class="pc-field"
+          type="email"
+          name="email"
+          id="pc-email-{{ section.id }}"
+          placeholder="{{ section.settings.label_email | default: 'Email' }}"
+          autocomplete="email"
+        >
+
+        <input
+          class="pc-field"
+          type="tel"
+          name="phone"
+          id="pc-phone-{{ section.id }}"
+          placeholder="{{ section.settings.label_phone | default: 'Phone' }}"
+          autocomplete="tel"
+        >
+
+        <textarea
+          class="pc-field pc-field-textarea"
+          name="message"
+          id="pc-message-{{ section.id }}"
+          placeholder="{{ section.settings.label_message | default: 'Message' }}"
+        ></textarea>
+
+        <!-- Button + call bar -->
+        <div class="pc-btn-row">
+          <button type="submit" class="pc-btn" id="pc-submit-{{ section.id }}">
+            <span class="pc-btn-text">{{ section.settings.button_label | default: 'Partner with us' }}</span>
+          </button>
+
+          {%- if section.settings.show_call_bar -%}
+            <div class="pc-call-bar">
+              <span class="pc-call-label">{{ section.settings.call_label | default: 'Prefer to call?' }}</span>
+              <div class="pc-call-divider"></div>
+              <span class="pc-call-value">{{ section.settings.call_number | default: 'xx xx xx' }}</span>
+              <div class="pc-call-divider"></div>
+              <span class="pc-call-label">{{ section.settings.call_availability_label | default: 'Available' }}</span>
+              <div class="pc-call-divider"></div>
+              <span class="pc-call-value">{{ section.settings.call_hours | default: '12:00/CET' }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Partnership Contact",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Let's talk about your event or brand."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Tell us a little about your organization and what you're looking for. We'll follow up within 24 hours."
+    },
+    {
+      "type": "header",
+      "content": "Form Field Labels"
+    },
+    {
+      "type": "text",
+      "id": "label_name",
+      "label": "Name Placeholder",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "label_org",
+      "label": "Organization Placeholder",
+      "default": "Organization"
+    },
+    {
+      "type": "text",
+      "id": "label_email",
+      "label": "Email Placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "label_phone",
+      "label": "Phone Placeholder",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "label": "Message Placeholder",
+      "default": "Message"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Partner with us"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Background Color",
+      "default": "#E8272A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Call Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_call_bar",
+      "label": "Show Prefer to call? bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "call_label",
+      "label": "Call Label",
+      "default": "Prefer to call?"
+    },
+    {
+      "type": "text",
+      "id": "call_number",
+      "label": "Phone Number",
+      "default": "xx xx xx"
+    },
+    {
+      "type": "text",
+      "id": "call_availability_label",
+      "label": "Availability Label",
+      "default": "Available"
+    },
+    {
+      "type": "text",
+      "id": "call_hours",
+      "label": "Available Hours",
+      "default": "12:00/CET"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partnership Contact"
+    }
+  ]
+}
+{% endschema %}
