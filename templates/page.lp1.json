@@ -497,7 +497,7 @@
             "features": "<ul><li>Attach it to your helmet or gear with any of the three included mounts</li><li>A simple, reliable solution for riders who stick to one setup</li></ul>",
             "button_label": "GET 1 TAG",
             "button_style": "solid",
-            "button_link": "shopify://pages/pdp",
+            "button_link": "shopify://products/emergency-nfc-tag-testing-product",
             "list_icon_mobile": "shopify://shop_images/Vector_1730.svg"
           }
         },
@@ -516,7 +516,7 @@
             "features": "<ul><li>Multiple mounting solutions <br/>for various gear</li><li>Second tag makes <br/>a great gift</li></ul>",
             "button_label": "GET 2 TAGS",
             "button_style": "outline",
-            "button_link": "shopify://pages/pdp",
+            "button_link": "shopify://products/emergency-nfc-tag-testing-product",
             "list_icon_mobile": "shopify://shop_images/Vector_1730_865cf2ce-0a50-451c-9979-e18009948507.svg"
           }
         },
@@ -536,7 +536,7 @@
             "features": "<ul><li>Equip multiple helmets, gear setups, or friends and family members</li><li>Greatest savings, <br/>most coverage</li></ul>",
             "button_label": "GET 3 TAGS",
             "button_style": "outline",
-            "button_link": "shopify://pages/pdp",
+            "button_link": "shopify://products/emergency-nfc-tag-testing-product",
             "list_icon_mobile": "shopify://shop_images/Vector_1730_865cf2ce-0a50-451c-9979-e18009948507.svg"
           }
         }
