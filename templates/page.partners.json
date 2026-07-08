@@ -59,54 +59,10 @@
         "bg_color": "#f1f1f1",
         "heading": "What a KOPILOT.ID partnership delivers."
       }
-    },
-    "partners_showcase_mU6aKp": {
-      "type": "partners-showcase",
-      "blocks": {
-        "card_9jH88j": {
-          "type": "card",
-          "settings": {
-            "logo_text": "Logo",
-            "title": "Name of the Event",
-            "subtitle": "One-line story context",
-            "people_count": "240"
-          }
-        },
-        "card_pkGFEi": {
-          "type": "card",
-          "settings": {
-            "logo_text": "Logo",
-            "title": "Name of the Event",
-            "subtitle": "One-line story context",
-            "people_count": "240"
-          }
-        },
-        "card_XWMpKR": {
-          "type": "card",
-          "settings": {
-            "logo_text": "Logo",
-            "title": "Name of the Event",
-            "subtitle": "One-line story context",
-            "people_count": "240"
-          }
-        }
-      },
-      "block_order": [
-        "card_9jH88j",
-        "card_pkGFEi",
-        "card_XWMpKR"
-      ],
-      "name": "Partners showcase",
-      "settings": {
-        "heading": "See how our partners use KOPILOT.ID.",
-        "background_color": "#ffffff",
-        "text_color": "#111111"
-      }
     }
   },
   "order": [
     "main",
-    "partners_tab_3ArRxU",
-    "partners_showcase_mU6aKp"
+    "partners_tab_3ArRxU"
   ]
 }
