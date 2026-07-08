@@ -257,7 +257,7 @@
     /* Image: full width, fixed height, edge-to-edge */
     .pc-{{ section.id }} .pc-image {
       width: 100%;
-      height: auto;
+      height: 260px;
       min-height: unset;
       flex: none;
     }
@@ -293,12 +293,12 @@
 
     /* Call bar: single horizontal row, no wrapping */
     .pc-{{ section.id }} .pc-call-bar {
-      max-width: 100%;
+      width: 100%;
       flex-wrap: nowrap;
+      align-self: auto;
       height: auto;
-      overflow-x: auto;
-      gap: 0;
       justify-content: space-between;
+      gap: 10px;
     }
 
     .pc-{{ section.id }} .pc-call-label,
@@ -312,6 +312,31 @@
     .pc-{{ section.id }} .pc-wrapper {
       max-width: 1228px;
     }
+  }
+
+  /* ─── Success / Error states ─── */
+  .pc-{{ section.id }} .pc-form-msg {
+    display: none;
+    padding: 14px 18px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 15px;
+    line-height: 140%;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+
+  .pc-{{ section.id }} .pc-form-msg.pc-msg-success {
+    display: block;
+    background: #f0faf0;
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+  }
+
+  .pc-{{ section.id }} .pc-form-msg.pc-msg-error {
+    display: block;
+    background: #fff3f3;
+    border: 1px solid #e53935;
+    color: #c62828;
   }
 
 {%- endstyle -%}
@@ -348,51 +373,62 @@
         {%- endif -%}
       </div>
 
-      <!-- Form -->
-      <form class="pc-fields" action="#" method="post" id="pc-form-{{ section.id }}" novalidate>
+      <!-- Shopify Native Contact Form -->
+      {%- form 'contact', id: 'pc-form-{{ section.id }}', class: 'pc-fields' -%}
+
+        {%- if form.posted_successfully? -%}
+          <p class="pc-form-msg pc-msg-success">Thank you! We received your message and will follow up within 24 hours.</p>
+        {%- elsif form.errors -%}
+          <p class="pc-form-msg pc-msg-error">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
 
         <input
           class="pc-field"
           type="text"
-          name="name"
+          name="contact[name]"
           id="pc-name-{{ section.id }}"
           placeholder="{{ section.settings.label_name | default: 'Name' }}"
           autocomplete="name"
+          value="{% if form.name %}{{ form.name }}{% endif %}"
         >
 
         <input
           class="pc-field"
           type="text"
-          name="organization"
+          name="contact[Organization]"
           id="pc-org-{{ section.id }}"
           placeholder="{{ section.settings.label_org | default: 'Organization' }}"
           autocomplete="organization"
+          value="{% if form['Organization'] %}{{ form['Organization'] }}{% endif %}"
         >
 
         <input
           class="pc-field"
           type="email"
-          name="email"
+          name="contact[email]"
           id="pc-email-{{ section.id }}"
           placeholder="{{ section.settings.label_email | default: 'Email' }}"
           autocomplete="email"
+          required
+          value="{% if form.email %}{{ form.email }}{% endif %}"
         >
 
         <input
           class="pc-field"
           type="tel"
-          name="phone"
+          name="contact[Phone]"
           id="pc-phone-{{ section.id }}"
           placeholder="{{ section.settings.label_phone | default: 'Phone' }}"
           autocomplete="tel"
+          value="{% if form['Phone'] %}{{ form['Phone'] }}{% endif %}"
         >
 
         <textarea
           class="pc-field pc-field-textarea"
-          name="message"
+          name="contact[body]"
           id="pc-message-{{ section.id }}"
           placeholder="{{ section.settings.label_message | default: 'Message' }}"
-        ></textarea>
+        >{% if form.body %}{{ form.body }}{% endif %}</textarea>
 
         <!-- Button + call bar -->
         <div class="pc-btn-row">
@@ -413,7 +449,7 @@
           {%- endif -%}
         </div>
 
-      </form>
+      {%- endform -%}
 
     </div>
   </div>
