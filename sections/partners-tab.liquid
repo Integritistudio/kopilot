@@ -222,28 +222,7 @@
       padding: 0;
     }
 
-    .ps-{{ section.id }} .ps-mobile-dots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      margin-bottom: 8px;
-      width: 100%;
-    }
 
-    .ps-{{ section.id }} .ps-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #D6D6D6;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .ps-{{ section.id }} .ps-dot.ps-dot-active {
-      background-color: #707070;
-    }
 
     .ps-{{ section.id }} .ps-nav-btn {
       width: 56px;
@@ -272,6 +251,28 @@
 
   @media screen and (min-width: 768px) {
     .ps-{{ section.id }} .ps-mobile { display: none; }
+  }
+
+  .ps-{{ section.id }} .ps-desktop-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .ps-{{ section.id }} .ps-desk-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #D6D6D6;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ps-{{ section.id }} .ps-desk-dot.ps-desk-dot-active {
+    background-color: #707070;
   }
 
   @media screen and (min-width: 1440px) {
@@ -307,6 +308,15 @@
               >
             {%- endif -%}
             {%- assign img_idx = img_idx | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="ps-desktop-dots">
+        {%- assign dot_idx = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'info_card' -%}
+            <span class="ps-desk-dot {% if dot_idx == 0 %}ps-desk-dot-active{% endif %}" data-ps-desk-dot="{{ dot_idx }}"></span>
+            {%- assign dot_idx = dot_idx | plus: 1 -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
@@ -358,15 +368,7 @@
       {%- endfor -%}
     </div>
 
-    <div class="ps-mobile-dots">
-      {%- assign dot_idx = 0 -%}
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'info_card' -%}
-          <span class="ps-dot {% if dot_idx == 0 %}ps-dot-active{% endif %}" data-ps-dot="{{ dot_idx }}"></span>
-          {%- assign dot_idx = dot_idx | plus: 1 -%}
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
+
 
     <div class="ps-mobile-content" id="ps-mobile-content-{{ section.id }}">
       <p class="ps-mobile-title" id="ps-mob-title-{{ section.id }}"></p>
@@ -420,7 +422,7 @@
   var deskImages = root.querySelectorAll('.ps-img-frame img');
 
   var mobImages  = root.querySelectorAll('.ps-mobile-img img');
-  var mobDots    = root.querySelectorAll('.ps-mobile-dots .ps-dot');
+  var deskDots   = root.querySelectorAll('.ps-desktop-dots .ps-desk-dot');
   var mobTitle   = root.querySelector('#ps-mob-title-{{ section.id }}');
   var mobBody    = root.querySelector('#ps-mob-body-{{ section.id }}');
   var prevBtn    = root.querySelector('#ps-prev-{{ section.id }}');
@@ -438,8 +440,8 @@
     mobImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
     if (mobImages[idx]) mobImages[idx].classList.add('ps-img-active');
 
-    mobDots.forEach(function (dot) { dot.classList.remove('ps-dot-active'); });
-    if (mobDots[idx]) mobDots[idx].classList.add('ps-dot-active');
+    deskDots.forEach(function (dot) { dot.classList.remove('ps-desk-dot-active'); });
+    if (deskDots[idx]) deskDots[idx].classList.add('ps-desk-dot-active');
 
     if (mobTitle && CARDS[idx]) mobTitle.textContent = CARDS[idx].title;
     if (mobBody  && CARDS[idx]) mobBody.textContent  = CARDS[idx].body;
@@ -477,9 +479,9 @@
     });
   }
 
-  mobDots.forEach(function (dot) {
+  deskDots.forEach(function (dot) {
     dot.addEventListener('click', function () {
-      activate(parseInt(dot.dataset.psDot, 10));
+      activate(parseInt(dot.dataset.psDeskDot, 10));
     });
   });
 
