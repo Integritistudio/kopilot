@@ -54,7 +54,6 @@
         "info_card_nWm4af",
         "info_card_6KQpCx"
       ],
-      "disabled": true,
       "name": "Partnership Section",
       "settings": {
         "bg_color": "#f1f1f1",
@@ -63,7 +62,6 @@
     },
     "partners_contact_JzbgUW": {
       "type": "partners-contact",
-      "disabled": true,
       "name": "Partnership Contact",
       "settings": {
         "bg_color": "#ffffff",
