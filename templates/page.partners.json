@@ -59,10 +59,33 @@
         "bg_color": "#f1f1f1",
         "heading": "What a KOPILOT.ID partnership delivers."
       }
+    },
+    "partners_contact_JzbgUW": {
+      "type": "partners-contact",
+      "name": "Partnership Contact",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "heading": "Let's talk about your event or brand.",
+        "description": "Tell us a little about your organization and what you're looking for. We'll follow up within 24 hours.",
+        "label_name": "Name",
+        "label_org": "Organization",
+        "label_email": "Email",
+        "label_phone": "Phone",
+        "label_message": "Message",
+        "button_label": "Partner with us",
+        "button_color": "#E8272A",
+        "button_text_color": "#FFFFFF",
+        "show_call_bar": true,
+        "call_label": "Prefer to call?",
+        "call_number": "xx xx xx",
+        "call_availability_label": "Available",
+        "call_hours": "12:00/CET"
+      }
     }
   },
   "order": [
     "main",
-    "partners_tab_3ArRxU"
+    "partners_tab_3ArRxU",
+    "partners_contact_JzbgUW"
   ]
 }
