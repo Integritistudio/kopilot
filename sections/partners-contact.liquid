@@ -254,12 +254,21 @@
       gap: 0;
     }
 
-    /* Image: full width, fixed height, edge-to-edge */
+    /* Image: auto height — override absolute so it flows naturally */
     .pc-{{ section.id }} .pc-image {
       width: 100%;
-      height: 260px;
+      height: auto;
       min-height: unset;
       flex: none;
+      position: static;
+    }
+
+    .pc-{{ section.id }} .pc-image img {
+      position: static;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* Form panel: restore inner padding */
@@ -291,19 +300,25 @@
       width: 100%;
     }
 
-    /* Call bar: single horizontal row, no wrapping */
+    /* Call bar: single row, reduced padding so it fits at 360px */
     .pc-{{ section.id }} .pc-call-bar {
       width: 100%;
       flex-wrap: nowrap;
       align-self: auto;
       height: auto;
       justify-content: space-between;
-      gap: 10px;
+      gap: 6px;
+      padding: 8px 12px;
     }
 
     .pc-{{ section.id }} .pc-call-label,
     .pc-{{ section.id }} .pc-call-value {
-      font-size: 13px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .pc-{{ section.id }} .pc-call-divider {
+      height: 12px;
     }
   }
 
