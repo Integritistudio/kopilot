@@ -216,11 +216,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0;
+      gap: 16px;
       margin-top: 28px;
-      border: 1px solid #000000;
       width: auto;
       padding: 0;
+    }
+
+    .ps-{{ section.id }} .ps-mobile-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .ps-{{ section.id }} .ps-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #D6D6D6;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .ps-{{ section.id }} .ps-dot.ps-dot-active {
+      background-color: #707070;
     }
 
     .ps-{{ section.id }} .ps-nav-btn {
@@ -237,13 +259,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .ps-{{ section.id }} .ps-nav-divider {
-      width: 1px;
-      height: 24px;
-      background: #000000;
-      flex-shrink: 0;
-    }
-
     .ps-{{ section.id }} .ps-nav-btn svg {
       width: 20px;
       height: 20px;
@@ -257,6 +272,13 @@
 
   @media screen and (min-width: 768px) {
     .ps-{{ section.id }} .ps-mobile { display: none; }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .ps-{{ section.id }} .ps-wrapper {
+      max-width: 1108px;
+      margin: 0 auto;
+    }
   }
 
 {%- endstyle -%}
@@ -336,6 +358,16 @@
       {%- endfor -%}
     </div>
 
+    <div class="ps-mobile-dots">
+      {%- assign dot_idx = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'info_card' -%}
+          <span class="ps-dot {% if dot_idx == 0 %}ps-dot-active{% endif %}" data-ps-dot="{{ dot_idx }}"></span>
+          {%- assign dot_idx = dot_idx | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
     <div class="ps-mobile-content" id="ps-mobile-content-{{ section.id }}">
       <p class="ps-mobile-title" id="ps-mob-title-{{ section.id }}"></p>
       <p class="ps-mobile-body"  id="ps-mob-body-{{ section.id }}"></p>
@@ -347,7 +379,6 @@
           <polyline points="15 18 9 12 15 6"/>
         </svg>
       </button>
-      <span class="ps-nav-divider" aria-hidden="true"></span>
       <button class="ps-nav-btn" id="ps-next-{{ section.id }}" aria-label="Next">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 6 15 12 9 18"/>
@@ -389,6 +420,7 @@
   var deskImages = root.querySelectorAll('.ps-img-frame img');
 
   var mobImages  = root.querySelectorAll('.ps-mobile-img img');
+  var mobDots    = root.querySelectorAll('.ps-mobile-dots .ps-dot');
   var mobTitle   = root.querySelector('#ps-mob-title-{{ section.id }}');
   var mobBody    = root.querySelector('#ps-mob-body-{{ section.id }}');
   var prevBtn    = root.querySelector('#ps-prev-{{ section.id }}');
@@ -405,6 +437,9 @@
 
     mobImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
     if (mobImages[idx]) mobImages[idx].classList.add('ps-img-active');
+
+    mobDots.forEach(function (dot) { dot.classList.remove('ps-dot-active'); });
+    if (mobDots[idx]) mobDots[idx].classList.add('ps-dot-active');
 
     if (mobTitle && CARDS[idx]) mobTitle.textContent = CARDS[idx].title;
     if (mobBody  && CARDS[idx]) mobBody.textContent  = CARDS[idx].body;
@@ -441,6 +476,12 @@
       if (current < TOTAL - 1) activate(current + 1);
     });
   }
+
+  mobDots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      activate(parseInt(dot.dataset.psDot, 10));
+    });
+  });
 
   var mobImgFrame = root.querySelector('.ps-mobile-img');
   if (mobImgFrame) {
