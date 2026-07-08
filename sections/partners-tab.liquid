@@ -1,15 +1,8 @@
 {%- style -%}
 
-  /* ============================================================
-     PARTNERSHIP SHOWCASE — pixel-perfect at 1440px & 360px
-  ============================================================ */
-
   @font-face { font-family: 'Elza'; font-weight: 300; font-style: normal; }
   @font-face { font-family: 'Elza'; font-weight: 500; font-style: normal; }
 
-  /* ── SECTION WRAPPER ─────────────────────────────────────────
-     1440px: padding 80px top/bottom · 166px left/right
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} {
     width: 100%;
     padding: 80px 166px;
@@ -17,9 +10,6 @@
     box-sizing: border-box;
   }
 
-  /* ── DESKTOP LAYOUT WRAPPER ──────────────────────────────────
-     Horizontal flex: left (flex:1) | 60px gap | right (485px)
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-wrapper {
     display: flex;
     flex-direction: row;
@@ -29,9 +19,6 @@
     box-sizing: border-box;
   }
 
-  /* ── LEFT COLUMN ─────────────────────────────────────────────
-     Hug: fills remaining space after right col + gap
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-left {
     flex: 1 1 0;
     min-width: 0;
@@ -40,7 +27,6 @@
     box-sizing: border-box;
   }
 
-  /* Heading: Elza Light 300 · 60px · 106% lh · -1px tracking */
   .ps-{{ section.id }} .ps-heading {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -52,9 +38,6 @@
     padding: 0;
   }
 
-  /* ── IMAGE CROSSFADE FRAME ───────────────────────────────────
-     Fills left column width; stretches to match right col height
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-img-frame {
     width: 100%;
     flex: 1 1 auto;
@@ -80,9 +63,6 @@
     opacity: 1;
   }
 
-  /* ── RIGHT COLUMN — CARDS STACK ─────────────────────────────
-     Fixed 485px · Vertical flow · 21px gap between cards
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-cards {
     width: 485px;
     flex-shrink: 0;
@@ -92,16 +72,6 @@
     box-sizing: border-box;
   }
 
-  /* ── INFO CARD ───────────────────────────────────────────────
-     Figma spec:
-       width 485 · min-height 177
-       padding: 35px 40px
-       internal gap: 11px
-       background: #D6D6D6 (same rest & hover — only image changes)
-
-     INACTIVE (default): text at 35% opacity  ← faded look
-     ACTIVE (.ps-card-active): text at 100%   ← full read
-  ──────────────────────────────────────────────────────────── */
   .ps-{{ section.id }} .ps-card {
     width: 485px;
     min-height: 177px;
@@ -113,23 +83,19 @@
     background: #D6D6D6;
     box-sizing: border-box;
     cursor: pointer;
-    /* no background change — image on left swaps instead */
   }
 
-  /* Inactive text: dimmed to ~35% */
   .ps-{{ section.id }} .ps-card .ps-card-title,
   .ps-{{ section.id }} .ps-card .ps-card-body {
     transition: opacity 0.3s ease, color 0.3s ease;
     opacity: 0.35;
   }
 
-  /* Active card: full-opacity text */
   .ps-{{ section.id }} .ps-card.ps-card-active .ps-card-title,
   .ps-{{ section.id }} .ps-card.ps-card-active .ps-card-body {
     opacity: 1;
   }
 
-  /* Card title: Elza Medium 500 · 20px · 120% lh · 0 tracking */
   .ps-{{ section.id }} .ps-card-title {
     font-family: 'Elza', sans-serif;
     font-weight: 500;
@@ -141,7 +107,6 @@
     padding: 0;
   }
 
-  /* Card body: Elza Light 300 · 20px · 120% lh · 0 tracking */
   .ps-{{ section.id }} .ps-card-body {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -153,7 +118,6 @@
     padding: 0;
   }
 
-  /* ── TABLET (768–1199px) ─────────────────────────────────── */
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     .ps-{{ section.id }} { padding: 60px 40px; }
     .ps-{{ section.id }} .ps-wrapper { gap: 31px; }
@@ -165,27 +129,14 @@
     .ps-{{ section.id }} .ps-card-body { font-size: 17px; }
   }
 
-  /* ── MOBILE (≤ 767px) — 360px target ────────────────────────
-
-     Layout: SLIDER / CAROUSEL
-       [  Heading centered                ]
-       [  Card: image / text on #D6D6D6   ]
-       [  ←─────────────── →  nav pill    ]
-
-     Desktop columns & stacked cards are HIDDEN on mobile.
-     The slider is shown instead.
-  ──────────────────────────────────────────────────────────── */
   @media screen and (max-width: 767px) {
 
-    /* Hide the desktop 2-column wrapper */
     .ps-{{ section.id }} .ps-wrapper { display: none; }
 
-    /* Section: 19px side padding → 322px content at 360px viewport */
     .ps-{{ section.id }} {
       padding: 40px 19px 50px;
     }
 
-    /* ── Mobile slider root ── */
     .ps-{{ section.id }} .ps-mobile {
       display: flex;
       flex-direction: column;
@@ -193,7 +144,6 @@
       width: 100%;
     }
 
-    /* Heading: centered, Elza Light 300, 32px */
     .ps-{{ section.id }} .ps-mobile-heading {
       font-family: 'Elza', sans-serif;
       font-weight: 300;
@@ -208,12 +158,6 @@
       box-sizing: border-box;
     }
 
-    /* ── CARD CONTAINER ─────────────────────────────────────────
-       Single block that wraps image + text, contained within
-       the 19px section padding → no extra margins needed here.
-    ──────────────────────────────────────────────────────────── */
-
-    /* Image area — 100% of the padded container width */
     .ps-{{ section.id }} .ps-mobile-img {
       width: 100%;
       height: 280px;
@@ -237,8 +181,6 @@
       opacity: 1;
     }
 
-    /* Text content — same #D6D6D6 as the card background,
-       sits directly below the image as a continuous block     */
     .ps-{{ section.id }} .ps-mobile-content {
       width: 100%;
       padding: 24px 20px 28px;
@@ -246,7 +188,7 @@
       display: flex;
       flex-direction: column;
       gap: 11px;
-      background: #D6D6D6;         /* ← matches card bg */
+      background: #D6D6D6;
       min-height: 110px;
     }
 
@@ -270,7 +212,6 @@
       margin: 0;
     }
 
-    /* ── NAV ARROWS — bordered pill box ─────────────────────── */
     .ps-{{ section.id }} .ps-mobile-nav {
       display: flex;
       align-items: center;
@@ -296,7 +237,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Divider line between the two arrow buttons */
     .ps-{{ section.id }} .ps-nav-divider {
       width: 1px;
       height: 24px;
@@ -315,7 +255,6 @@
     }
   }
 
-  /* Hide mobile slider on desktop */
   @media screen and (min-width: 768px) {
     .ps-{{ section.id }} .ps-mobile { display: none; }
   }
@@ -323,14 +262,10 @@
 {%- endstyle -%}
 
 
-{%- comment -%} Collect info_card blocks into accessible data {%- endcomment -%}
-
 <div class="ps-{{ section.id }}">
 
-  <!-- ══ DESKTOP: 2-column layout ══════════════════════════════ -->
   <div class="ps-wrapper">
 
-    <!-- Left: heading + crossfade image frame -->
     <div class="ps-left">
       {%- if section.settings.heading != blank -%}
         <h2 class="ps-heading">{{ section.settings.heading }}</h2>
@@ -355,7 +290,6 @@
       </div>
     </div>
 
-    <!-- Right: stacked info cards -->
     <div class="ps-cards" id="ps-cards-{{ section.id }}">
       {%- assign card_idx = 0 -%}
       {%- for block in section.blocks -%}
@@ -377,17 +311,15 @@
       {%- endfor -%}
     </div>
 
-  </div><!-- /ps-wrapper -->
+  </div>
 
 
-  <!-- ══ MOBILE: full-screen slider carousel ════════════════════ -->
   <div class="ps-mobile" id="ps-mobile-{{ section.id }}">
 
     {%- if section.settings.heading != blank -%}
       <h2 class="ps-mobile-heading">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
-    <!-- Crossfade image -->
     <div class="ps-mobile-img" id="ps-mobile-img-{{ section.id }}">
       {%- assign img_idx = 0 -%}
       {%- for block in section.blocks -%}
@@ -404,19 +336,18 @@
       {%- endfor -%}
     </div>
 
-    <!-- Text content for active slide -->
     <div class="ps-mobile-content" id="ps-mobile-content-{{ section.id }}">
       <p class="ps-mobile-title" id="ps-mob-title-{{ section.id }}"></p>
       <p class="ps-mobile-body"  id="ps-mob-body-{{ section.id }}"></p>
     </div>
 
-    <!-- Prev / Next arrows -->
     <div class="ps-mobile-nav">
       <button class="ps-nav-btn" id="ps-prev-{{ section.id }}" aria-label="Previous" disabled>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"/>
         </svg>
       </button>
+      <span class="ps-nav-divider" aria-hidden="true"></span>
       <button class="ps-nav-btn" id="ps-next-{{ section.id }}" aria-label="Next">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 6 15 12 9 18"/>
@@ -424,16 +355,15 @@
       </button>
     </div>
 
-  </div><!-- /ps-mobile -->
+  </div>
 
-</div><!-- /section -->
+</div>
 
 
 <script>
 (function () {
   'use strict';
 
-  /* ─── Card data from Liquid ─────────────────────────────── */
   var CARDS = [
     {%- assign first = true -%}
     {%- for block in section.blocks -%}
@@ -452,50 +382,39 @@
   var TOTAL = CARDS.length;
   var current = 0;
 
-  /* ─── Element refs ──────────────────────────────────────── */
   var root       = document.querySelector('.ps-{{ section.id }}');
   if (!root) return;
 
-  /* Desktop */
   var deskCards  = root.querySelectorAll('.ps-card');
   var deskImages = root.querySelectorAll('.ps-img-frame img');
 
-  /* Mobile */
   var mobImages  = root.querySelectorAll('.ps-mobile-img img');
   var mobTitle   = root.querySelector('#ps-mob-title-{{ section.id }}');
   var mobBody    = root.querySelector('#ps-mob-body-{{ section.id }}');
   var prevBtn    = root.querySelector('#ps-prev-{{ section.id }}');
   var nextBtn    = root.querySelector('#ps-next-{{ section.id }}');
 
-  /* ─── Activate by index ─────────────────────────────────── */
   function activate(idx) {
     current = idx;
 
-    /* Desktop: toggle active class on cards */
     deskCards.forEach(function (c) { c.classList.remove('ps-card-active'); });
     if (deskCards[idx]) deskCards[idx].classList.add('ps-card-active');
 
-    /* Desktop: crossfade images */
     deskImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
     if (deskImages[idx]) deskImages[idx].classList.add('ps-img-active');
 
-    /* Mobile: crossfade images */
     mobImages.forEach(function (img) { img.classList.remove('ps-img-active'); });
     if (mobImages[idx]) mobImages[idx].classList.add('ps-img-active');
 
-    /* Mobile: update text */
     if (mobTitle && CARDS[idx]) mobTitle.textContent = CARDS[idx].title;
     if (mobBody  && CARDS[idx]) mobBody.textContent  = CARDS[idx].body;
 
-    /* Mobile: button states */
     if (prevBtn) prevBtn.disabled = (idx === 0);
     if (nextBtn) nextBtn.disabled = (idx === TOTAL - 1);
   }
 
-  /* ─── Initial state ─────────────────────────────────────── */
   activate(0);
 
-  /* ─── Desktop: hover + click on cards ──────────────────── */
   deskCards.forEach(function (card) {
     card.addEventListener('mouseenter', function () {
       activate(parseInt(card.dataset.psCard, 10));
@@ -505,7 +424,6 @@
     });
   });
 
-  /* Restore first card when mouse leaves the cards column */
   var col = root.querySelector('.ps-cards');
   if (col) {
     col.addEventListener('mouseleave', function () {
@@ -513,7 +431,6 @@
     });
   }
 
-  /* ─── Mobile: arrow navigation ──────────────────────────── */
   if (prevBtn) {
     prevBtn.addEventListener('click', function () {
       if (current > 0) activate(current - 1);
@@ -525,7 +442,6 @@
     });
   }
 
-  /* ─── Mobile: swipe support ─────────────────────────────── */
   var mobImgFrame = root.querySelector('.ps-mobile-img');
   if (mobImgFrame) {
     var touchStartX = 0;
@@ -534,7 +450,7 @@
     }, { passive: true });
     mobImgFrame.addEventListener('touchend', function (e) {
       var dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) < 40) return;           /* ignore micro-swipes */
+      if (Math.abs(dx) < 40) return;
       if (dx < 0 && current < TOTAL - 1) activate(current + 1);
       if (dx > 0 && current > 0)         activate(current - 1);
     }, { passive: true });
