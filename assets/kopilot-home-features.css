@@ -241,6 +241,7 @@
     height: auto;
     aspect-ratio: 744 / 711;
     flex-shrink: 0;
+    min-height: -webkit-fill-available;
   }
 
   .kopilot-home-features__media--mobile {
