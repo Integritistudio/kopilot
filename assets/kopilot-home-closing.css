@@ -273,6 +273,8 @@
     width: 62.5rem;
     max-width: 62.5rem;
     padding-top: 77px;
+    padding-left: 0;
+    padding-right: 0;
     gap: 3.6rem;
   }
 
