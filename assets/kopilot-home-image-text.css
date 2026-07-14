@@ -111,7 +111,7 @@
 
   .kopilot-home-image-text__media--desktop {
     display: block;
-    width: min(48%, 42rem);
+    min-widthwidth: 48%;
     height: auto;
     aspect-ratio: 696 / 704;
     flex-shrink: 0;
