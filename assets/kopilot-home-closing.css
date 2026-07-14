@@ -254,7 +254,7 @@
   .kopilot-home-closing__bg-image--desktop {
     display: block;
     left: 0;
-    top: 25.6rem;
+    bottom: 0;
     width: 100%;
     height: auto;
     transform: none;
