@@ -191,6 +191,7 @@
     flex: 0 1 min(56rem, 48%);
     align-items: flex-start;
     min-width: 0;
+    padding: 34px 0;
   }
 
   .kopilot-home-features__intro {
