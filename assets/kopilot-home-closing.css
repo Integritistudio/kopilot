@@ -31,7 +31,7 @@
 .kopilot-home-closing__bg-image--mobile {
   display: block;
   width: 240.833vw;
-  max-width: 86.7rem;
+  /* max-width: 86.7rem; */
   height: auto;
   aspect-ratio: 867 / 494;
   left: calc(50% - 120.417vw - 7.361vw);
