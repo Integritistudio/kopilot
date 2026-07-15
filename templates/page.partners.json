@@ -183,7 +183,9 @@
       "settings": {
         "bg_color": "#ffffff",
         "heading": "Here's what you need to know.",
-        "more_label": "More questions"
+        "more_label": "More questions",
+        "icon_plus": "shopify://shop_images/SVG.svg",
+        "icon_minus": "shopify://shop_images/SVG_1_c906b6dc-bbf5-4337-8c93-e5050bab26c9.svg"
       }
     },
     "partners_tab_3ArRxU": {
