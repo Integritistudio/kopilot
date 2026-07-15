@@ -107,7 +107,10 @@
     padding: 0;
   }
 
-  .ps-{{ section.id }} .ps-card-body {
+  /* FORCING INHERITANCE ON RICHTEXT <p> AND <a> TAGS */
+  .ps-{{ section.id }} .ps-card-body,
+  .ps-{{ section.id }} .ps-card-body p,
+  .ps-{{ section.id }} .ps-card-body a {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
     font-size: 20px;
@@ -117,11 +120,10 @@
     margin: 0;
     padding: 0;
   }
-  
-  /* Ensuring the inner p tag from richtext inherits the margin reset */
-  .ps-{{ section.id }} .ps-card-body p,
-  .ps-{{ section.id }} .ps-mobile-body p {
-    margin: 0;
+
+  .ps-{{ section.id }} .ps-card-body a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
@@ -132,7 +134,9 @@
     .ps-{{ section.id }} .ps-cards { width: 340px; }
     .ps-{{ section.id }} .ps-card { width: 340px; min-height: auto; padding: 28px; }
     .ps-{{ section.id }} .ps-card-title,
-    .ps-{{ section.id }} .ps-card-body { font-size: 17px; }
+    .ps-{{ section.id }} .ps-card-body,
+    .ps-{{ section.id }} .ps-card-body p,
+    .ps-{{ section.id }} .ps-card-body a { font-size: 17px; }
   }
 
   @media screen and (max-width: 767px) {
@@ -208,7 +212,10 @@
       margin: 0;
     }
 
-    .ps-{{ section.id }} .ps-mobile-body {
+    /* FORCING INHERITANCE ON MOBILE RICHTEXT <p> AND <a> TAGS */
+    .ps-{{ section.id }} .ps-mobile-body,
+    .ps-{{ section.id }} .ps-mobile-body p,
+    .ps-{{ section.id }} .ps-mobile-body a {
       font-family: 'Elza', sans-serif;
       font-weight: 300;
       font-size: 18px;
@@ -216,6 +223,11 @@
       letter-spacing: 0;
       color: #000000;
       margin: 0;
+    }
+
+    .ps-{{ section.id }} .ps-mobile-body a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .ps-{{ section.id }} .ps-mobile-nav {
