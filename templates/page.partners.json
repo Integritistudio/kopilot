@@ -21,6 +21,131 @@
         "bottom_spacing": 40
       }
     },
+    "partners_stories_tPDkHm": {
+      "type": "partners-stories",
+      "blocks": {
+        "story_card_qdG4Qr": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "100 people"
+          }
+        },
+        "story_card_CKgK8c": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        "story_card_A6UqMm": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        "story_card_gieXAQ": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        }
+      },
+      "block_order": [
+        "story_card_qdG4Qr",
+        "story_card_CKgK8c",
+        "story_card_A6UqMm",
+        "story_card_gieXAQ"
+      ],
+      "name": "Partners Stories",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "See how our partners use KOPILOT.ID."
+      }
+    },
+    "partners_need_to_know_arB3pd": {
+      "type": "partners-need-to-know",
+      "blocks": {
+        "faq_item_XHecWw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is a KOPILOT.ID NFC tag and how does it work?",
+            "answer": "<p>KOPILOT.ID is a smart NFC tag linked to a participant's digital medical ID profile. When someone taps the tag with a smartphone, it instantly opens their profile with critical medical information and emergency contacts. In an emergency, this gives first responders, medics, or bystanders access to the information they need to make faster, more informed decisions when every second counts.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        "faq_item_3zpKMQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does KOPILOT.ID NFC tag require batteries, charging, or a subscription?",
+            "answer": "<p>No. KOPILOT.ID NFC tags are completely battery-free and never need charging. There are also no ongoing subscription fees required for participants to use their profile, making it a simple and dependable solution for everyday use.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        "faq_item_KYRCin": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does KOPILOT.ID work without signal or cell service?",
+            "answer": "<p>Yes. The NFC tag itself works without signal, batteries, or charging, making it ideal for remote environments. When a tag is scanned, participants also receive a notification with the GPS location of the scan, helping friends and family know where the interaction took place.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        "faq_item_B3bMyV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who can see a participant's information?",
+            "answer": "<p>The profile is meant to be accessible in an emergency, so a first responder, bystander, or medic can act immediately by scanning the tag with a phone. The participant controls what appears on their profile and can update or deactivate the tag at any time from their account.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_yEzKUY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does the scan session stay open?",
+            "answer": "<p>No. The browser session that opens when a tag is scanned times out automatically after a few minutes. Whoever scanned it cannot return to the profile later — once the session closes, access is gone. There is no persistent link to reopen.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_LpC6GG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens to the data after the event?",
+            "answer": "<p>For event-integrated tags, the participant's data lives in their own KOPILOT.ID account, never with your organization. You receive nothing beyond the registration data you already collect. The tag becomes the participant's own after the event, or can be set as single-use and deactivated.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_XHecWw",
+        "faq_item_3zpKMQ",
+        "faq_item_KYRCin",
+        "faq_item_B3bMyV",
+        "faq_item_yEzKUY",
+        "faq_item_LpC6GG"
+      ],
+      "name": "Partners Need to Know",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "heading": "Here's what you need to know.",
+        "more_label": "More questions"
+      }
+    },
     "partners_tab_3ArRxU": {
       "type": "partners-tab",
       "blocks": {
@@ -82,63 +207,12 @@
         "call_availability_label": "Available",
         "call_hours": "12:00/CET"
       }
-    },
-    "partners_stories_tPDkHm": {
-      "type": "partners-stories",
-      "blocks": {
-        "story_card_qdG4Qr": {
-          "type": "story_card",
-          "settings": {
-            "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "One-line story context",
-            "people_label": "100 people"
-          }
-        },
-        "story_card_CKgK8c": {
-          "type": "story_card",
-          "settings": {
-            "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "One-line story context",
-            "people_label": "240 people"
-          }
-        },
-        "story_card_A6UqMm": {
-          "type": "story_card",
-          "settings": {
-            "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "One-line story context",
-            "people_label": "240 people"
-          }
-        },
-        "story_card_gieXAQ": {
-          "type": "story_card",
-          "settings": {
-            "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "One-line story context",
-            "people_label": "240 people"
-          }
-        }
-      },
-      "block_order": [
-        "story_card_qdG4Qr",
-        "story_card_CKgK8c",
-        "story_card_A6UqMm",
-        "story_card_gieXAQ"
-      ],
-      "name": "Partners Stories",
-      "settings": {
-        "bg_color": "#FFFFFF",
-        "heading": "See how our partners use KOPILOT.ID."
-      }
     }
   },
   "order": [
     "main",
     "partners_stories_tPDkHm",
+    "partners_need_to_know_arB3pd",
     "partners_tab_3ArRxU",
     "partners_contact_JzbgUW"
   ]
