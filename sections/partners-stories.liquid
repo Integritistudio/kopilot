@@ -1,0 +1,611 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+
+{%- style -%}
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .ppst-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
+    padding: 50px 0 50px 61px;
+    overflow: hidden;
+  }
+
+  .ppst-{{ section.id }} *,
+  .ppst-{{ section.id }} *::before,
+  .ppst-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .ppst-{{ section.id }} .ppst-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .ppst-{{ section.id }} .ppst-heading {
+    flex: 0 0 413px;
+    width: 413px;
+    max-width: 413px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  .ppst-{{ section.id }} .ppst-carousel {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    width: 100%;
+  }
+
+  .ppst-{{ section.id }} .ppst-track {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    padding-right: 61px;
+  }
+
+  .ppst-{{ section.id }} .ppst-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ppst-{{ section.id }} .ppst-track.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  .ppst-{{ section.id }} .ppst-card {
+    flex: 0 0 400px;
+    width: 400px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    border-radius: 8.363px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    position: relative;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-media {
+    position: relative;
+    width: 100%;
+    height: 254.154px;
+    background-color: #9a9a9a;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-logo {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 84px;
+    min-height: 31px;
+    padding: 10px 24px;
+    background-color: #ffffff;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-logo img {
+    position: static;
+    width: auto;
+    height: 11px;
+    max-height: 11px;
+    max-width: 80px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-logo-text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    padding: 20px 40px;
+    background-color: #eeeeee;
+    min-height: 134px;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000000;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-context {
+    margin: 0;
+    padding: 0;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.42;
+    color: #6e6e6e;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid #000000;
+    background: transparent;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.42;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .ppst-{{ section.id }} .ppst-progress {
+    position: relative;
+    width: 100%;
+    max-width: 821px;
+    height: 5px;
+  }
+
+  .ppst-{{ section.id }} .ppst-progress-track {
+    position: absolute;
+    left: 24.61px;
+    top: 0.15px;
+    width: calc(100% - 24.61px);
+    max-width: 796.394px;
+    height: 4.57px;
+    background-color: #d9d9d9;
+  }
+
+  .ppst-{{ section.id }} .ppst-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 400px;
+    max-width: 100%;
+    height: 5px;
+    background-color: #7a7a7a;
+    transition: width 0.05s linear;
+  }
+
+  /* Tablet / mid sizes — keep desktop structure, allow wrap of heading */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .ppst-{{ section.id }} {
+      padding: 50px 0 50px clamp(24px, 4.236vw, 61px);
+    }
+
+    .ppst-{{ section.id }} .ppst-heading {
+      flex: 0 0 clamp(240px, 28.68vw, 413px);
+      width: clamp(240px, 28.68vw, 413px);
+      max-width: clamp(240px, 28.68vw, 413px);
+      font-size: clamp(36px, 4.167vw, 60px);
+    }
+
+    .ppst-{{ section.id }} .ppst-inner {
+      gap: clamp(24px, 4.167vw, 60px);
+    }
+
+    .ppst-{{ section.id }} .ppst-card {
+      flex: 0 0 clamp(320px, 27.78vw, 400px);
+      width: clamp(320px, 27.78vw, 400px);
+      max-width: clamp(320px, 27.78vw, 400px);
+    }
+
+    .ppst-{{ section.id }} .ppst-track {
+      padding-right: clamp(24px, 4.236vw, 61px);
+    }
+  }
+
+  /* Mobile — pixel perfect at 360px */
+  @media screen and (max-width: 767px) {
+    .ppst-{{ section.id }} {
+      padding: 50px 20px;
+    }
+
+    .ppst-{{ section.id }} .ppst-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .ppst-{{ section.id }} .ppst-heading-wrap {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 30px;
+    }
+
+    .ppst-{{ section.id }} .ppst-heading {
+      flex: none;
+      width: 258px;
+      max-width: 258px;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+
+    .ppst-{{ section.id }} .ppst-carousel {
+      gap: 27px;
+      width: 100%;
+    }
+
+    .ppst-{{ section.id }} .ppst-track {
+      gap: 30px;
+      padding-right: 0;
+      margin-right: -20px;
+      padding-right: 20px;
+      width: calc(100% + 20px);
+    }
+
+    .ppst-{{ section.id }} .ppst-card {
+      flex: 0 0 319px;
+      width: 319px;
+      max-width: 319px;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-media {
+      height: 254.154px;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-body {
+      padding: 20px 40px;
+      gap: 30px;
+      min-height: 128px;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-copy {
+      gap: 15px;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-title {
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-context {
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-tag {
+      font-size: 16px;
+    }
+
+    .ppst-{{ section.id }} .ppst-progress {
+      max-width: 319px;
+      width: 319px;
+    }
+
+    .ppst-{{ section.id }} .ppst-progress-track {
+      left: 9.56px;
+      width: calc(100% - 9.56px);
+      max-width: 309.44px;
+    }
+
+    .ppst-{{ section.id }} .ppst-progress-fill {
+      width: 155.42px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="ppst-{{ section.id }}" data-ppst-root>
+  <div class="ppst-inner">
+    <div class="ppst-heading-wrap">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ppst-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="ppst-carousel">
+      <div class="ppst-track" data-ppst-track>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'story_card' -%}
+            <article class="ppst-card" {{ block.shopify_attributes }}>
+              <div class="ppst-card-media">
+                {%- if block.settings.image != blank -%}
+                  {%- assign ppst_img_alt = block.settings.image.alt | default: block.settings.event_name -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', alt: ppst_img_alt
+                  }}
+                {%- endif -%}
+
+                {%- if block.settings.logo != blank or block.settings.logo_text != blank -%}
+                  <div class="ppst-card-logo">
+                    {%- if block.settings.logo != blank -%}
+                      {%- assign ppst_logo_alt = block.settings.logo.alt | default: block.settings.logo_text -%}
+                      {{
+                        block.settings.logo
+                        | image_url: width: 200
+                        | image_tag: loading: 'lazy', alt: ppst_logo_alt
+                      }}
+                    {%- else -%}
+                      <p class="ppst-card-logo-text">{{ block.settings.logo_text | escape }}</p>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="ppst-card-body">
+                <div class="ppst-card-copy">
+                  {%- if block.settings.event_name != blank -%}
+                    <h3 class="ppst-card-title">{{ block.settings.event_name | escape }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.context != blank -%}
+                    <p class="ppst-card-context">{{ block.settings.context | escape }}</p>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.people_label != blank -%}
+                  <span class="ppst-card-tag">{{ block.settings.people_label | escape }}</span>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="ppst-progress" aria-hidden="true">
+        <div class="ppst-progress-track"></div>
+        <div class="ppst-progress-fill" data-ppst-progress-fill></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.ppst-{{ section.id }}');
+  if (!root) return;
+
+  var track = root.querySelector('[data-ppst-track]');
+  var fill = root.querySelector('[data-ppst-progress-fill]');
+  if (!track || !fill) return;
+
+  function updateProgress() {
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    var ratio = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+    var trackWidth = track.clientWidth;
+    var minFill = Math.min(trackWidth * 0.48, trackWidth);
+    var maxFill = trackWidth;
+    var width = minFill + (maxFill - minFill) * ratio;
+
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      minFill = 155.42;
+      maxFill = 319;
+      width = minFill + (maxFill - minFill) * ratio;
+      width = Math.min(width, 319);
+    } else if (window.matchMedia('(min-width: 1440px)').matches) {
+      minFill = 400;
+      maxFill = 821;
+      width = minFill + (maxFill - minFill) * ratio;
+      width = Math.min(width, 821);
+    }
+
+    fill.style.width = width + 'px';
+  }
+
+  track.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  var isDown = false;
+  var startX = 0;
+  var scrollLeft = 0;
+  var moved = false;
+
+  track.addEventListener('mousedown', function (e) {
+    isDown = true;
+    moved = false;
+    track.classList.add('is-dragging');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', function () {
+    isDown = false;
+    track.classList.remove('is-dragging');
+  });
+
+  track.addEventListener('mouseleave', function () {
+    isDown = false;
+    track.classList.remove('is-dragging');
+  });
+
+  track.addEventListener('mousemove', function (e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - track.offsetLeft;
+    var walk = (x - startX) * 1.2;
+    if (Math.abs(walk) > 3) moved = true;
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+  track.addEventListener('click', function (e) {
+    if (moved) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+  updateProgress();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Partners Stories",
+  "tag": "section",
+  "class": "section-partners-stories",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See how our partners use KOPILOT.ID."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story_card",
+      "name": "Story card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "logo_text",
+          "label": "Logo text fallback",
+          "default": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "event_name",
+          "label": "Event name",
+          "default": "Name of the Event"
+        },
+        {
+          "type": "text",
+          "id": "context",
+          "label": "One-line story context",
+          "default": "One-line story context"
+        },
+        {
+          "type": "text",
+          "id": "people_label",
+          "label": "People label",
+          "default": "100 people"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Stories",
+      "blocks": [
+        {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "100 people"
+          }
+        },
+        {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
