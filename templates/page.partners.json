@@ -279,6 +279,21 @@
         "call_availability_label": "Available",
         "call_hours": "12:00/CET"
       }
+    },
+    "partners_newsletter_34TCdz": {
+      "type": "partners-newsletter",
+      "name": "Partners Newsletter",
+      "settings": {
+        "bg_color": "#F1F1F1",
+        "heading_bold": "Not ready to reach out?",
+        "heading_regular": "Stay in the loop on program updates and perks.",
+        "email_placeholder": "Email",
+        "button_label": "Keep me posted",
+        "button_color": "#000000",
+        "button_text_color": "#FFFFFF",
+        "customer_tag": "partners-newsletter",
+        "success_message": "Thanks — you're on the list."
+      }
     }
   },
   "order": [
@@ -287,6 +302,7 @@
     "partners_tab_3ArRxU",
     "partners_stories_tPDkHm",
     "partners_need_to_know_arB3pd",
-    "partners_contact_JzbgUW"
+    "partners_contact_JzbgUW",
+    "partners_newsletter_34TCdz"
   ]
 }
