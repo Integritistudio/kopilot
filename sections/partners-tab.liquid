@@ -117,6 +117,12 @@
     margin: 0;
     padding: 0;
   }
+  
+  /* Ensuring the inner p tag from richtext inherits the margin reset */
+  .ps-{{ section.id }} .ps-card-body p,
+  .ps-{{ section.id }} .ps-mobile-body p {
+    margin: 0;
+  }
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     .ps-{{ section.id }} { padding: 60px 40px; }
@@ -221,8 +227,6 @@
       width: auto;
       padding: 0;
     }
-
-
 
     .ps-{{ section.id }} .ps-nav-btn {
       width: 56px;
@@ -335,7 +339,7 @@
               <p class="ps-card-title">{{ block.settings.card_title | escape }}</p>
             {%- endif -%}
             {%- if block.settings.card_body != blank -%}
-              <p class="ps-card-body">{{ block.settings.card_body }}</p>
+              <div class="ps-card-body">{{ block.settings.card_body }}</div>
             {%- endif -%}
           </div>
           {%- assign card_idx = card_idx | plus: 1 -%}
@@ -372,7 +376,7 @@
 
     <div class="ps-mobile-content" id="ps-mobile-content-{{ section.id }}">
       <p class="ps-mobile-title" id="ps-mob-title-{{ section.id }}"></p>
-      <p class="ps-mobile-body"  id="ps-mob-body-{{ section.id }}"></p>
+      <div class="ps-mobile-body"  id="ps-mob-body-{{ section.id }}"></div>
     </div>
 
     <div class="ps-mobile-nav">
@@ -444,7 +448,7 @@
     if (deskDots[idx]) deskDots[idx].classList.add('ps-desk-dot-active');
 
     if (mobTitle && CARDS[idx]) mobTitle.textContent = CARDS[idx].title;
-    if (mobBody  && CARDS[idx]) mobBody.textContent  = CARDS[idx].body;
+    if (mobBody  && CARDS[idx]) mobBody.innerHTML  = CARDS[idx].body;
 
     if (prevBtn) prevBtn.disabled = (idx === 0);
     if (nextBtn) nextBtn.disabled = (idx === TOTAL - 1);
@@ -537,10 +541,10 @@
           "default": "Support your community."
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "card_body",
           "label": "Card Body Text (Elza Light 300)",
-          "default": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+          "default": "<p>Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization.</p>"
         }
       ]
     }
@@ -553,21 +557,21 @@
           "type": "info_card",
           "settings": {
             "card_title": "Support your community.",
-            "card_body": "Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization."
+            "card_body": "<p>Give participants and customers a practical safety tool they can carry every day, showing their wellbeing matters to your organization.</p>"
           }
         },
         {
           "type": "info_card",
           "settings": {
             "card_title": "Your brand goes home with them.",
-            "card_body": "Unlike traditional giveaways, KOPILOT.ID stays with participants long after the event or purchase, helping your brand stand out."
+            "card_body": "<p>Unlike traditional giveaways, KOPILOT.ID stays with participants long after the event or purchase, helping your brand stand out.</p>"
           }
         },
         {
           "type": "info_card",
           "settings": {
             "card_title": "No extra work for your team.",
-            "card_body": "We handle integration, fulfillment, and participant onboarding, making deployment simple from day one."
+            "card_body": "<p>We handle integration, fulfillment, and participant onboarding, making deployment simple from day one.</p>"
           }
         }
       ]
