@@ -106,8 +106,8 @@
         "faq_item_B3bMyV": {
           "type": "faq_item",
           "settings": {
-            "question": "Who can see a participant's information?",
-            "answer": "<p>The profile is meant to be accessible in an emergency, so a first responder, bystander, or medic can act immediately by scanning the tag with a phone. The participant controls what appears on their profile and can update or deactivate the tag at any time from their account.</p>",
+            "question": "What information can participants store on their profile?",
+            "answer": "<p>Participants can choose to store medical conditions, allergies, medications, emergency contacts, blood type, and any other information they want accessible in an emergency. There is no mandatory information required, and participants have complete control over what appears on their profile. Information can be updated, hidden, or removed at any time through the KOPILOT.ID app.</p>",
             "open_by_default": true,
             "in_more": true
           }
@@ -115,8 +115,8 @@
         "faq_item_yEzKUY": {
           "type": "faq_item",
           "settings": {
-            "question": "Does the scan session stay open?",
-            "answer": "<p>No. The browser session that opens when a tag is scanned times out automatically after a few minutes. Whoever scanned it cannot return to the profile later — once the session closes, access is gone. There is no persistent link to reopen.</p>",
+            "question": "Is the NFC tag waterproof?",
+            "answer": "<p>Yes. KOPILOT.ID NFC tags are built for harsh outdoor conditions and everyday use. They are waterproof, durable, and designed to withstand the environments commonly encountered in racing, riding, hiking, trail running, snow sports, and other outdoor activities.</p>",
             "open_by_default": true,
             "in_more": true
           }
@@ -124,8 +124,44 @@
         "faq_item_LpC6GG": {
           "type": "faq_item",
           "settings": {
-            "question": "What happens to the data after the event?",
-            "answer": "<p>For event-integrated tags, the participant's data lives in their own KOPILOT.ID account, never with your organization. You receive nothing beyond the registration data you already collect. The tag becomes the participant's own after the event, or can be set as single-use and deactivated.</p>",
+            "question": "Can the tags be custom branded?",
+            "answer": "<p>Yes. Tags can be customized with your organization's branding, colors, logos, and messaging to create a seamless extension of your event, product, or community.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_k3LG8X": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who owns and manages participant information?",
+            "answer": "<p>Participants create and manage their own KOPILOT.ID profile. Your organization does not receive or manage medical information, emergency contacts, or profile data.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_WMztTz": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who can access a participant's information?",
+            "answer": "<p>The profile is designed to be accessible in an emergency. A first responder, bystander, or medic can tap the tag with a smartphone to access the participant's information. Participants control what appears on their profile and can update or deactivate it at any time.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_GmBXbn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens to the participant's profile after the event?",
+            "answer": "<p>Participants keep ownership of their profile and can continue using it across future events, products, and tags. </p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        "faq_item_GiJqQG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there a minimum order quantity?",
+            "answer": "<p>We offer solutions for organizations of all sizes. Contact us to discuss your specific needs and partnership goals.</p>",
             "open_by_default": true,
             "in_more": true
           }
@@ -137,11 +173,15 @@
         "faq_item_KYRCin",
         "faq_item_B3bMyV",
         "faq_item_yEzKUY",
-        "faq_item_LpC6GG"
+        "faq_item_LpC6GG",
+        "faq_item_k3LG8X",
+        "faq_item_WMztTz",
+        "faq_item_GmBXbn",
+        "faq_item_GiJqQG"
       ],
       "name": "Partners Need to Know",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "heading": "Here's what you need to know.",
         "more_label": "More questions"
       }
