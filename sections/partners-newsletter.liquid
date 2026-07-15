@@ -239,7 +239,8 @@
       </p>
     {%- endif -%}
 
-    {%- form 'customer', id: 'ppnl-form-' | append: section.id, class: 'ppnl-form' -%}
+    {%- assign ppnl_form_id = 'ppnl-form-' | append: section.id -%}
+    {%- form 'customer', id: ppnl_form_id, class: 'ppnl-form' -%}
       <input type="hidden" name="contact[tags]" value="{{ section.settings.customer_tag | escape }}">
 
       {%- if form.posted_successfully? -%}
