@@ -314,7 +314,7 @@
 
     .pc-{{ section.id }} .pc-call-label,
     .pc-{{ section.id }} .pc-call-value {
-      font-size: 12px;
+      font-size: 14px;
       white-space: nowrap;
     }
 
@@ -325,7 +325,14 @@
       gap:19px;
     }
   }
+@media screen and (max-width: 320px) {
+ .pc-{{ section.id }} .pc-call-label,
+    .pc-{{ section.id }} .pc-call-value {
+      font-size: 12px;
+      white-space: nowrap;
+    }
 
+}
   /* ─── Large screens (≥1440px): cap width ─── */
   @media screen and (min-width: 1440px) {
     .pc-{{ section.id }} .pc-wrapper {
@@ -359,7 +366,6 @@
   }
 
 {%- endstyle -%}
-
 
 <section class="pc-{{ section.id }}">
   <div class="pc-wrapper">
