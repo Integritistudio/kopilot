@@ -21,6 +21,75 @@
         "bottom_spacing": 40
       }
     },
+    "partners_custom_solutions_yzJbRf": {
+      "type": "partners-custom-solutions",
+      "blocks": {
+        "solution_card_EjdHDn": {
+          "type": "solution_card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_68.svg",
+            "title": "Race & Event Integration",
+            "text": "Tags can be embedded into race bibs, helmets, wristbands, participant kits, and more. Once set up, participants can use the same profile across future events."
+          }
+        },
+        "solution_card_6w3P9f": {
+          "type": "solution_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_13.15.23_1.svg",
+            "title": "Brand & Product Integration",
+            "text": "Integrate KOPILOT.ID directly into apparel, helmets, packs, or gear. Custom branded, permanently attached, and designed to add lasting value to your product line."
+          }
+        }
+      },
+      "block_order": [
+        "solution_card_EjdHDn",
+        "solution_card_6w3P9f"
+      ],
+      "name": "Partners Custom Solutions",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "heading": "Custom solutions for every partnership."
+      }
+    },
+    "partners_tab_3ArRxU": {
+      "type": "partners-tab",
+      "blocks": {
+        "info_card_8R4jnr": {
+          "type": "info_card",
+          "settings": {
+            "card_image": "shopify://shop_images/IMG_3288_1.svg",
+            "card_title": "Support your customers.",
+            "card_body": "<p>Add a new layer of safety to your event or product that translates to meaningful value for your customers.</p>"
+          }
+        },
+        "info_card_nWm4af": {
+          "type": "info_card",
+          "settings": {
+            "card_image": "shopify://shop_images/IMG_3288_1_3.svg",
+            "card_title": "A custom branded digital experience.",
+            "card_body": "<p>Feature your brand logos, event name, product images, and relevant safety information in the <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID  </a>onboarding and gear management experience.</p>"
+          }
+        },
+        "info_card_6KQpCx": {
+          "type": "info_card",
+          "settings": {
+            "card_image": "shopify://shop_images/IMG_3288_1_4.svg",
+            "card_title": "Low lift – high value.",
+            "card_body": "<p>Setup only takes a few moments, and adds an enduring and invaluable layer of safety to the experience of your event or brand.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "info_card_8R4jnr",
+        "info_card_nWm4af",
+        "info_card_6KQpCx"
+      ],
+      "name": "Partnership Section",
+      "settings": {
+        "bg_color": "#f1f1f1",
+        "heading": "What a KOPILOT.ID partnership delivers."
+      }
+    },
     "partners_stories_tPDkHm": {
       "type": "partners-stories",
       "blocks": {
@@ -188,45 +257,6 @@
         "icon_minus": "shopify://shop_images/SVG_1_c906b6dc-bbf5-4337-8c93-e5050bab26c9.svg"
       }
     },
-    "partners_tab_3ArRxU": {
-      "type": "partners-tab",
-      "blocks": {
-        "info_card_8R4jnr": {
-          "type": "info_card",
-          "settings": {
-            "card_image": "shopify://shop_images/IMG_3288_1.svg",
-            "card_title": "Support your customers.",
-            "card_body": "<p>Add a new layer of safety to your event or product that translates to meaningful value for your customers.</p>"
-          }
-        },
-        "info_card_nWm4af": {
-          "type": "info_card",
-          "settings": {
-            "card_image": "shopify://shop_images/IMG_3288_1_3.svg",
-            "card_title": "A custom branded digital experience.",
-            "card_body": "<p>Feature your brand logos, event name, product images, and relevant safety information in the <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID  </a>onboarding and gear management experience.</p>"
-          }
-        },
-        "info_card_6KQpCx": {
-          "type": "info_card",
-          "settings": {
-            "card_image": "shopify://shop_images/IMG_3288_1_4.svg",
-            "card_title": "Low lift – high value.",
-            "card_body": "<p>Setup only takes a few moments, and adds an enduring and invaluable layer of safety to the experience of your event or brand.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "info_card_8R4jnr",
-        "info_card_nWm4af",
-        "info_card_6KQpCx"
-      ],
-      "name": "Partnership Section",
-      "settings": {
-        "bg_color": "#f1f1f1",
-        "heading": "What a KOPILOT.ID partnership delivers."
-      }
-    },
     "partners_contact_JzbgUW": {
       "type": "partners-contact",
       "name": "Partnership Contact",
@@ -248,34 +278,6 @@
         "call_number": "xx xx xx",
         "call_availability_label": "Available",
         "call_hours": "12:00/CET"
-      }
-    },
-    "partners_custom_solutions_yzJbRf": {
-      "type": "partners-custom-solutions",
-      "blocks": {
-        "solution_card_EjdHDn": {
-          "type": "solution_card",
-          "settings": {
-            "title": "Race & Event Integration",
-            "text": "Tags can be embedded into race bibs, helmets, wristbands, participant kits, and more. Once set up, participants can use the same profile across future events."
-          }
-        },
-        "solution_card_6w3P9f": {
-          "type": "solution_card",
-          "settings": {
-            "title": "Brand & Product Integration",
-            "text": "Integrate KOPILOT.ID directly into apparel, helmets, packs, or gear. Custom branded, permanently attached, and designed to add lasting value to your product line."
-          }
-        }
-      },
-      "block_order": [
-        "solution_card_EjdHDn",
-        "solution_card_6w3P9f"
-      ],
-      "name": "Partners Custom Solutions",
-      "settings": {
-        "bg_color": "#FFFFFF",
-        "heading": "Custom solutions for every partnership."
       }
     }
   },
