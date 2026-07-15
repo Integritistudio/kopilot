@@ -1,0 +1,630 @@
+{%- style -%}
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .pntk-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    padding: 105px 51px;
+    box-sizing: border-box;
+  }
+
+  .pntk-{{ section.id }} *,
+  .pntk-{{ section.id }} *::before,
+  .pntk-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .pntk-{{ section.id }} .pntk-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 39px;
+    width: 100%;
+    max-width: 955px;
+    margin: 0 auto;
+  }
+
+  .pntk-{{ section.id }} .pntk-heading {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 721px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 60px;
+    color: #000000;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .pntk-{{ section.id }} .pntk-list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    max-width: 954px;
+  }
+
+  .pntk-{{ section.id }} .pntk-item {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    overflow: hidden;
+  }
+
+  .pntk-{{ section.id }} .pntk-trigger {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    margin: 0;
+    padding: 15px 23.5px 0 24.5px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-trigger {
+    padding-bottom: 18px;
+  }
+
+  .pntk-{{ section.id }} .pntk-item:not(.is-open) .pntk-trigger {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+  }
+
+  .pntk-{{ section.id }} .pntk-question {
+    margin: 0;
+    padding: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.36px;
+    color: #000000;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon {
+    position: relative;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+  }
+
+  .pntk-{{ section.id }} .pntk-item:not(.is-open) .pntk-icon {
+    margin-top: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon::before,
+  .pntk-{{ section.id }} .pntk-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #000000;
+    border-radius: 1px;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon::before {
+    left: 3.125px;
+    right: 3.125px;
+    top: 50%;
+    height: 1.5px;
+    transform: translateY(-50%);
+  }
+
+  .pntk-{{ section.id }} .pntk-icon::after {
+    top: 3.125px;
+    bottom: 3.125px;
+    left: 50%;
+    width: 1.5px;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-icon::after {
+    opacity: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .pntk-{{ section.id }} .pntk-panel-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-divider {
+    display: block;
+    width: calc(100% - 48.28px);
+    max-width: 905.72px;
+    height: 1px;
+    margin: 0 23.78px 0 24.5px;
+    background-color: rgba(0, 0, 0, 0.94);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-divider {
+    opacity: 1;
+  }
+
+  .pntk-{{ section.id }} .pntk-answer {
+    margin: 0;
+    padding: 5.83px 70px 28px 24.5px;
+    max-width: 884.5px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+  }
+
+  .pntk-{{ section.id }} .pntk-answer p {
+    margin: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-answer p + p {
+    margin-top: 0.75em;
+  }
+
+  /* More questions — closed look matches Figma grey bar */
+  .pntk-{{ section.id }} .pntk-more {
+    width: 100%;
+    max-width: 954px;
+    border: 0;
+    background-color: #eaeaea;
+    overflow: hidden;
+  }
+
+  .pntk-{{ section.id }} .pntk-more-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    min-height: 70px;
+    margin: 0;
+    padding: 20px 24px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .pntk-{{ section.id }} .pntk-more-label {
+    margin: 0;
+    padding: 0;
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.36px;
+    color: #000000;
+  }
+
+  .pntk-{{ section.id }} .pntk-more .pntk-icon {
+    margin-top: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-more.is-open .pntk-icon::after {
+    opacity: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-extra {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 954px;
+    padding-top: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-extra.is-visible {
+    display: flex;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .pntk-{{ section.id }} {
+      padding: clamp(60px, 7.292vw, 105px) clamp(24px, 3.542vw, 51px);
+    }
+
+    .pntk-{{ section.id }} .pntk-heading {
+      font-size: clamp(36px, 3.819vw, 55px);
+      line-height: 1.09;
+    }
+  }
+
+  /* Mobile — pixel perfect at 360px */
+  @media screen and (max-width: 767px) {
+    .pntk-{{ section.id }} {
+      padding: 60px 30px;
+    }
+
+    .pntk-{{ section.id }} .pntk-inner {
+      gap: 39px;
+      max-width: 301px;
+    }
+
+    .pntk-{{ section.id }} .pntk-heading {
+      max-width: 233px;
+      font-weight: 300;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .pntk-{{ section.id }} .pntk-list,
+    .pntk-{{ section.id }} .pntk-extra {
+      gap: 15px;
+      max-width: 301px;
+    }
+
+    .pntk-{{ section.id }} .pntk-item {
+      border: 1px solid #000000;
+    }
+
+    .pntk-{{ section.id }} .pntk-trigger {
+      align-items: center;
+      gap: 12px;
+      padding: 18px 15px 0 15px;
+    }
+
+    .pntk-{{ section.id }} .pntk-item.is-open .pntk-trigger {
+      padding-bottom: 10px;
+    }
+
+    .pntk-{{ section.id }} .pntk-item:not(.is-open) .pntk-trigger {
+      padding: 18px 15px;
+    }
+
+    .pntk-{{ section.id }} .pntk-question {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1.12;
+      letter-spacing: -0.36px;
+    }
+
+    .pntk-{{ section.id }} .pntk-icon {
+      flex: 0 0 13.75px;
+      width: 13.75px;
+      height: 13.75px;
+      margin-top: 0;
+    }
+
+    .pntk-{{ section.id }} .pntk-icon::before {
+      left: 0;
+      right: 0;
+      height: 1.5px;
+    }
+
+    .pntk-{{ section.id }} .pntk-icon::after {
+      top: 0;
+      bottom: 0;
+      width: 1.5px;
+    }
+
+    .pntk-{{ section.id }} .pntk-divider {
+      width: 270.5px;
+      max-width: calc(100% - 30px);
+      margin: 0 15px;
+    }
+
+    .pntk-{{ section.id }} .pntk-answer {
+      padding: 10px 15px 18px 15px;
+      max-width: none;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .pntk-{{ section.id }} .pntk-more {
+      max-width: 301px;
+      background-color: #eaeaea;
+    }
+
+    .pntk-{{ section.id }} .pntk-more-trigger {
+      min-height: 40px;
+      padding: 10px 19px;
+    }
+
+    .pntk-{{ section.id }} .pntk-more-label {
+      font-size: 15px;
+      line-height: 1.2;
+      letter-spacing: -0.36px;
+    }
+
+    .pntk-{{ section.id }} .pntk-more .pntk-icon {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pntk-{{ section.id }}" data-pntk-root>
+  <div class="pntk-inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pntk-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="pntk-list" data-pntk-list>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' and block.settings.in_more == false -%}
+          <div
+            class="pntk-item{% if block.settings.open_by_default %} is-open{% endif %}"
+            data-pntk-item
+            {{ block.shopify_attributes }}
+          >
+            <button
+              type="button"
+              class="pntk-trigger"
+              data-pntk-trigger
+              aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+            >
+              <span class="pntk-question">{{ block.settings.question | escape }}</span>
+              <span class="pntk-icon" aria-hidden="true"></span>
+            </button>
+            <div class="pntk-panel" data-pntk-panel>
+              <div class="pntk-panel-inner">
+                <span class="pntk-divider" aria-hidden="true"></span>
+                {%- if block.settings.answer != blank -%}
+                  <div class="pntk-answer">{{ block.settings.answer }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- assign pntk_has_more = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' and block.settings.in_more == true -%}
+          {%- assign pntk_has_more = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if pntk_has_more -%}
+        <div class="pntk-extra" data-pntk-extra hidden>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq_item' and block.settings.in_more == true -%}
+              <div
+                class="pntk-item{% if block.settings.open_by_default %} is-open{% endif %}"
+                data-pntk-item
+                {{ block.shopify_attributes }}
+              >
+                <button
+                  type="button"
+                  class="pntk-trigger"
+                  data-pntk-trigger
+                  aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+                >
+                  <span class="pntk-question">{{ block.settings.question | escape }}</span>
+                  <span class="pntk-icon" aria-hidden="true"></span>
+                </button>
+                <div class="pntk-panel" data-pntk-panel>
+                  <div class="pntk-panel-inner">
+                    <span class="pntk-divider" aria-hidden="true"></span>
+                    {%- if block.settings.answer != blank -%}
+                      <div class="pntk-answer">{{ block.settings.answer }}</div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="pntk-more" data-pntk-more>
+          <button
+            type="button"
+            class="pntk-more-trigger"
+            data-pntk-more-trigger
+            aria-expanded="false"
+          >
+            <span class="pntk-more-label">{{ section.settings.more_label | escape }}</span>
+            <span class="pntk-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.pntk-{{ section.id }}');
+  if (!root) return;
+
+  root.querySelectorAll('[data-pntk-trigger]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('[data-pntk-item]');
+      if (!item) return;
+      var open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  var moreBtn = root.querySelector('[data-pntk-more-trigger]');
+  var moreWrap = root.querySelector('[data-pntk-more]');
+  var extra = root.querySelector('[data-pntk-extra]');
+
+  if (moreBtn && moreWrap && extra) {
+    moreBtn.addEventListener('click', function () {
+      var open = !extra.classList.contains('is-visible');
+      if (open) {
+        extra.hidden = false;
+        extra.classList.add('is-visible');
+        moreWrap.classList.add('is-open');
+        moreBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        extra.classList.remove('is-visible');
+        extra.hidden = true;
+        moreWrap.classList.remove('is-open');
+        moreBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Partners Need to Know",
+  "tag": "section",
+  "class": "section-partners-need-to-know",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Here's what you need to know."
+    },
+    {
+      "type": "text",
+      "id": "more_label",
+      "label": "More questions label",
+      "default": "More questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is a KOPILOT.ID NFC tag and how does it work?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>KOPILOT.ID is a smart NFC tag linked to a participant's digital medical ID profile. When someone taps the tag with a smartphone, it instantly opens their profile with critical medical information and emergency contacts. In an emergency, this gives first responders, medics, or bystanders access to the information they need to make faster, more informed decisions when every second counts.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "in_more",
+          "label": "Hide under “More questions”",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Need to Know",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is a KOPILOT.ID NFC tag and how does it work?",
+            "answer": "<p>KOPILOT.ID is a smart NFC tag linked to a participant's digital medical ID profile. When someone taps the tag with a smartphone, it instantly opens their profile with critical medical information and emergency contacts. In an emergency, this gives first responders, medics, or bystanders access to the information they need to make faster, more informed decisions when every second counts.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does KOPILOT.ID NFC tag require batteries, charging, or a subscription?",
+            "answer": "<p>No. KOPILOT.ID NFC tags are completely battery-free and never need charging. There are also no ongoing subscription fees required for participants to use their profile, making it a simple and dependable solution for everyday use.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does KOPILOT.ID work without signal or cell service?",
+            "answer": "<p>Yes. The NFC tag itself works without signal, batteries, or charging, making it ideal for remote environments. When a tag is scanned, participants also receive a notification with the GPS location of the scan, helping friends and family know where the interaction took place.</p>",
+            "open_by_default": true,
+            "in_more": false
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who can see a participant's information?",
+            "answer": "<p>The profile is meant to be accessible in an emergency, so a first responder, bystander, or medic can act immediately by scanning the tag with a phone. The participant controls what appears on their profile and can update or deactivate the tag at any time from their account.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does the scan session stay open?",
+            "answer": "<p>No. The browser session that opens when a tag is scanned times out automatically after a few minutes. Whoever scanned it cannot return to the profile later — once the session closes, access is gone. There is no persistent link to reopen.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens to the data after the event?",
+            "answer": "<p>For event-integrated tags, the participant's data lives in their own KOPILOT.ID account, never with your organization. You receive nothing beyond the registration data you already collect. The tag becomes the participant's own after the event, or can be set as single-use and deactivated.</p>",
+            "open_by_default": true,
+            "in_more": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
