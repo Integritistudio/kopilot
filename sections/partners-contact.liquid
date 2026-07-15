@@ -464,11 +464,11 @@
           {%- if section.settings.show_call_bar -%}
             <div class="pc-call-bar">
               <span class="pc-call-label">{{ section.settings.call_label | default: 'Prefer to call?' }}</span>
-              <div class="pc-call-divider"></div>
+              {% comment %} <div class="pc-call-divider"></div> {% endcomment %}
               <span class="pc-call-value">{{ section.settings.call_number | default: 'xx xx xx' }}</span>
               <div class="pc-call-divider"></div>
               <span class="pc-call-label">{{ section.settings.call_availability_label | default: 'Available' }}</span>
-              <div class="pc-call-divider"></div>
+              {% comment %} <div class="pc-call-divider"></div> {% endcomment %}
               <span class="pc-call-value">{{ section.settings.call_hours | default: '12:00/CET' }}</span>
             </div>
           {%- endif -%}
