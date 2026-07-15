@@ -82,10 +82,63 @@
         "call_availability_label": "Available",
         "call_hours": "12:00/CET"
       }
+    },
+    "partners_stories_tPDkHm": {
+      "type": "partners-stories",
+      "blocks": {
+        "story_card_qdG4Qr": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "100 people"
+          }
+        },
+        "story_card_CKgK8c": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        "story_card_A6UqMm": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        },
+        "story_card_gieXAQ": {
+          "type": "story_card",
+          "settings": {
+            "logo_text": "Logo",
+            "event_name": "Name of the Event",
+            "context": "One-line story context",
+            "people_label": "240 people"
+          }
+        }
+      },
+      "block_order": [
+        "story_card_qdG4Qr",
+        "story_card_CKgK8c",
+        "story_card_A6UqMm",
+        "story_card_gieXAQ"
+      ],
+      "name": "Partners Stories",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "heading": "See how our partners use KOPILOT.ID."
+      }
     }
   },
   "order": [
     "main",
+    "partners_stories_tPDkHm",
     "partners_tab_3ArRxU",
     "partners_contact_JzbgUW"
   ]
