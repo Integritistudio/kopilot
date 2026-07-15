@@ -161,7 +161,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is there a minimum order quantity?",
-            "answer": "<p>We offer solutions for organizations of all sizes. <a href=\"/pages/contact\" title=\"Contact\">Contact us<em> </em></a>to discuss your specific needs and partnership goals.</p>",
+            "answer": "<p>We offer solutions for organizations of all sizes. <span style=\"text-decoration:underline\">Contact us </span> to discuss your specific needs and partnership goals.</p>",
             "open_by_default": true,
             "in_more": true
           }
