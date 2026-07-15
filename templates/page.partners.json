@@ -65,6 +65,7 @@
       "name": "Partnership Contact",
       "settings": {
         "bg_color": "#ffffff",
+        "section_image": "shopify://shop_images/Rectangle_71.png",
         "heading": "Let's talk about your event or brand.",
         "description": "Tell us a little about your organization and what you're looking for. We'll follow up within 24 hours.",
         "label_name": "Name",
