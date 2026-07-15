@@ -29,7 +29,7 @@
           "settings": {
             "image": "shopify://shop_images/Rectangle_68.svg",
             "title": "Race & Event Integration",
-            "text": "Equip your race bibs, number plates, helmets, wristbands, and more with KOPILOT.ID tags to elevate your event's safety standards."
+            "text": "<p>Equip your race bibs, number plates, helmets, wristbands, and more with <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID </a>tags to elevate your event's safety standards.</p>"
           }
         },
         "solution_card_6w3P9f": {
@@ -37,7 +37,7 @@
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_13.15.23_1.svg",
             "title": "Brand & Product Integration",
-            "text": "Not just a new colorway - simple, bulletproof and high-value tech that differentiates your product and protects your customer."
+            "text": "<p>Not just a new colorway - simple, bulletproof and high-value tech that differentiates your product and protects your customer.</p>"
           }
         }
       },
@@ -47,7 +47,7 @@
       ],
       "name": "Partners Custom Solutions",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "heading": "Custom solutions for every partnership."
       }
     },
