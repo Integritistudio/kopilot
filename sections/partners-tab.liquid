@@ -72,6 +72,7 @@
     box-sizing: border-box;
   }
 
+  /* SCOPED CARD STYLING - INACTIVE STATE (60% OPACITY BACKGROUND) */
   .ps-{{ section.id }} .ps-card {
     width: 485px;
     min-height: 177px;
@@ -80,9 +81,15 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 11px;
-    background: #D6D6D6;
+    background: rgba(214, 214, 214, 0.6); /* #D6D6D6 at 60% opacity */
     box-sizing: border-box;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background fade */
+  }
+
+  /* SCOPED CARD STYLING - ACTIVE STATE (SOLID BACKGROUND) */
+  .ps-{{ section.id }} .ps-card.ps-card-active {
+    background: #D6D6D6; /* Solid #D6D6D6 when active */
   }
 
   .ps-{{ section.id }} .ps-card .ps-card-title,
@@ -107,7 +114,7 @@
     padding: 0;
   }
 
-  /* STRICTLY SCOPED CARD BODY STYLING (ONLY FOR THIS SECTION ID) */
+  /* STRICTLY SCOPED CARD BODY STYLING */
   .ps-{{ section.id }} .ps-card-body {
     font-family: 'Elza', sans-serif;
     font-weight: 300;
@@ -144,7 +151,13 @@
     .ps-{{ section.id }} .ps-heading { font-size: 44px; }
     .ps-{{ section.id }} .ps-img-frame { min-height: 300px; }
     .ps-{{ section.id }} .ps-cards { width: 340px; }
-    .ps-{{ section.id }} .ps-card { width: 340px; min-height: auto; padding: 28px; }
+    
+    .ps-{{ section.id }} .ps-card { 
+      width: 340px; 
+      min-height: auto; 
+      padding: 28px; 
+    }
+    
     .ps-{{ section.id }} .ps-card-title,
     .ps-{{ section.id }} .ps-card-body { font-size: 17px; }
     
@@ -225,7 +238,7 @@
       margin: 0;
     }
 
-    /* STRICTLY SCOPED MOBILE BODY STYLING (ONLY FOR THIS SECTION ID) */
+    /* STRICTLY SCOPED MOBILE BODY STYLING */
     .ps-{{ section.id }} .ps-mobile-body {
       font-family: 'Elza', sans-serif;
       font-weight: 300;
