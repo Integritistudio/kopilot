@@ -127,15 +127,15 @@
     margin-top: 0;
   }
 
-  .pntk-{{ section.id }} .pntk-icon::before,
-  .pntk-{{ section.id }} .pntk-icon::after {
+  .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::before,
+  .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::after {
     content: '';
     position: absolute;
     background-color: #000000;
     border-radius: 1px;
   }
 
-  .pntk-{{ section.id }} .pntk-icon::before {
+  .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::before {
     left: 3.125px;
     right: 3.125px;
     top: 50%;
@@ -143,7 +143,7 @@
     transform: translateY(-50%);
   }
 
-  .pntk-{{ section.id }} .pntk-icon::after {
+  .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::after {
     top: 3.125px;
     bottom: 3.125px;
     left: 50%;
@@ -152,8 +152,36 @@
     opacity: 1;
   }
 
-  .pntk-{{ section.id }} .pntk-item.is-open .pntk-icon::after {
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-icon:not(.pntk-icon--custom)::after {
     opacity: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon--custom .pntk-icon-plus,
+  .pntk-{{ section.id }} .pntk-icon--custom .pntk-icon-minus {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon--custom .pntk-icon-minus {
+    opacity: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-icon--custom .pntk-icon-plus {
+    opacity: 1;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-icon--custom .pntk-icon-plus,
+  .pntk-{{ section.id }} .pntk-more.is-open .pntk-icon--custom .pntk-icon-plus {
+    opacity: 0;
+  }
+
+  .pntk-{{ section.id }} .pntk-item.is-open .pntk-icon--custom .pntk-icon-minus,
+  .pntk-{{ section.id }} .pntk-more.is-open .pntk-icon--custom .pntk-icon-minus {
+    opacity: 1;
   }
 
   .pntk-{{ section.id }} .pntk-panel {
@@ -245,7 +273,7 @@
     margin-top: 0;
   }
 
-  .pntk-{{ section.id }} .pntk-more.is-open .pntk-icon::after {
+  .pntk-{{ section.id }} .pntk-more.is-open .pntk-icon:not(.pntk-icon--custom)::after {
     opacity: 0;
   }
 
@@ -331,13 +359,13 @@
       margin-top: 0;
     }
 
-    .pntk-{{ section.id }} .pntk-icon::before {
+    .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::before {
       left: 0;
       right: 0;
       height: 1.5px;
     }
 
-    .pntk-{{ section.id }} .pntk-icon::after {
+    .pntk-{{ section.id }} .pntk-icon:not(.pntk-icon--custom)::after {
       top: 0;
       bottom: 0;
       width: 1.5px;
@@ -383,6 +411,17 @@
   }
 {%- endstyle -%}
 
+{%- capture pntk_icon -%}
+  <span class="pntk-icon{% if section.settings.icon_plus != blank or section.settings.icon_minus != blank %} pntk-icon--custom{% endif %}" aria-hidden="true">
+    {%- if section.settings.icon_plus != blank -%}
+      {{ section.settings.icon_plus | image_url: width: 40 | image_tag: class: 'pntk-icon-plus', loading: 'lazy', alt: '' }}
+    {%- endif -%}
+    {%- if section.settings.icon_minus != blank -%}
+      {{ section.settings.icon_minus | image_url: width: 40 | image_tag: class: 'pntk-icon-minus', loading: 'lazy', alt: '' }}
+    {%- endif -%}
+  </span>
+{%- endcapture -%}
+
 <div class="pntk-{{ section.id }}" data-pntk-root>
   <div class="pntk-inner">
     {%- if section.settings.heading != blank -%}
@@ -404,7 +443,7 @@
               aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
             >
               <span class="pntk-question">{{ block.settings.question | escape }}</span>
-              <span class="pntk-icon" aria-hidden="true"></span>
+              {{ pntk_icon }}
             </button>
             <div class="pntk-panel" data-pntk-panel>
               <div class="pntk-panel-inner">
@@ -442,7 +481,7 @@
                   aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
                 >
                   <span class="pntk-question">{{ block.settings.question | escape }}</span>
-                  <span class="pntk-icon" aria-hidden="true"></span>
+                  {{ pntk_icon }}
                 </button>
                 <div class="pntk-panel" data-pntk-panel>
                   <div class="pntk-panel-inner">
@@ -465,7 +504,7 @@
             aria-expanded="false"
           >
             <span class="pntk-more-label">{{ section.settings.more_label | escape }}</span>
-            <span class="pntk-icon" aria-hidden="true"></span>
+            {{ pntk_icon }}
           </button>
         </div>
       {%- endif -%}
@@ -533,6 +572,20 @@
       "id": "more_label",
       "label": "More questions label",
       "default": "More questions"
+    },
+    {
+      "type": "header",
+      "content": "FAQ icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_plus",
+      "label": "Plus (+) icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_minus",
+      "label": "Minus (−) icon"
     }
   ],
   "blocks": [
