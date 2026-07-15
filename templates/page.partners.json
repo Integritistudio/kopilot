@@ -29,7 +29,7 @@
           "settings": {
             "card_image": "shopify://shop_images/IMG_3288_1.svg",
             "card_title": "Support your customers.",
-            "card_body": "Add a new layer of safety to your event or product that translates to meaningful value for your customers."
+            "card_body": "<p>Add a new layer of safety to your event or product that translates to meaningful value for your customers.</p>"
           }
         },
         "info_card_nWm4af": {
@@ -37,7 +37,7 @@
           "settings": {
             "card_image": "shopify://shop_images/IMG_3288_1_3.svg",
             "card_title": "A custom branded digital experience.",
-            "card_body": "Feature your brand logos, event name, product images, and relevant safety information in the KOPILOT.ID onboarding and gear management experience."
+            "card_body": "<p>Feature your brand logos, event name, product images, and relevant safety information in the <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID  </a>onboarding and gear management experience.</p>"
           }
         },
         "info_card_6KQpCx": {
@@ -45,7 +45,7 @@
           "settings": {
             "card_image": "shopify://shop_images/IMG_3288_1_4.svg",
             "card_title": "Low lift – high value.",
-            "card_body": "Setup only takes a few moments, and adds an enduring and invaluable layer of safety to the experience of your event or brand."
+            "card_body": "<p>Setup only takes a few moments, and adds an enduring and invaluable layer of safety to the experience of your event or brand.</p>"
           }
         }
       },
