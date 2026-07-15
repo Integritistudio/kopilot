@@ -1,0 +1,309 @@
+{%- style -%}
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .pcsl-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    padding: 70px 0;
+    box-sizing: border-box;
+  }
+
+  .pcsl-{{ section.id }} *,
+  .pcsl-{{ section.id }} *::before,
+  .pcsl-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 192.5px;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-heading {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 970px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #000000;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 39px;
+    width: 100%;
+    max-width: 1055px;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card {
+    flex: 0 0 508px;
+    width: 508px;
+    max-width: 508px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card-media {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #d6d6d6;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 30px;
+    background-color: #f1f1f1;
+    min-height: 170px;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card-title {
+    margin: 0;
+    padding: 0;
+    max-width: 456px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  .pcsl-{{ section.id }} .pcsl-card-text {
+    margin: 0;
+    padding: 0;
+    max-width: 456px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .pcsl-{{ section.id }} .pcsl-inner {
+      padding: 0 clamp(24px, 13.368vw, 192.5px);
+      gap: clamp(40px, 4.444vw, 64px);
+    }
+
+    .pcsl-{{ section.id }} .pcsl-heading {
+      font-size: clamp(36px, 4.167vw, 60px);
+      max-width: min(970px, 100%);
+    }
+
+    .pcsl-{{ section.id }} .pcsl-grid {
+      flex-wrap: wrap;
+      max-width: 100%;
+      gap: clamp(24px, 2.708vw, 39px);
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card {
+      flex: 1 1 calc(50% - 19.5px);
+      width: auto;
+      max-width: 508px;
+      min-width: 280px;
+    }
+  }
+
+  /* Mobile — pixel perfect at 360px */
+  @media screen and (max-width: 767px) {
+    .pcsl-{{ section.id }} {
+      padding: 50px 0;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-inner {
+      gap: 28px;
+      padding: 0 23px;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-heading {
+      max-width: 310px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 19px;
+      max-width: 314px;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card {
+      flex: none;
+      width: 314px;
+      max-width: 314px;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card-media {
+      height: 250px;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card-body {
+      min-height: 140px;
+      padding: 20px 30px;
+      gap: 10px;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card-title {
+      max-width: 266px;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .pcsl-{{ section.id }} .pcsl-card-text {
+      max-width: 266px;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pcsl-{{ section.id }}">
+  <div class="pcsl-inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pcsl-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="pcsl-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'solution_card' -%}
+          <article class="pcsl-card" {{ block.shopify_attributes }}>
+            <div class="pcsl-card-media">
+              {%- if block.settings.image != blank -%}
+                {%- assign pcsl_img_alt = block.settings.image.alt | default: block.settings.title -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1200
+                  | image_tag: loading: 'lazy', alt: pcsl_img_alt
+                }}
+              {%- endif -%}
+            </div>
+
+            <div class="pcsl-card-body">
+              {%- if block.settings.title != blank -%}
+                <h3 class="pcsl-card-title">{{ block.settings.title | escape }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <p class="pcsl-card-text">{{ block.settings.text | escape }}</p>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Partners Custom Solutions",
+  "tag": "section",
+  "class": "section-partners-custom-solutions",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Custom solutions for every partnership."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "solution_card",
+      "name": "Solution card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Race & Event Integration"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Tags can be embedded into race bibs, helmets, wristbands, participant kits, and more. Once set up, participants can use the same profile across future events."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Custom Solutions",
+      "blocks": [
+        {
+          "type": "solution_card",
+          "settings": {
+            "title": "Race & Event Integration",
+            "text": "Tags can be embedded into race bibs, helmets, wristbands, participant kits, and more. Once set up, participants can use the same profile across future events."
+          }
+        },
+        {
+          "type": "solution_card",
+          "settings": {
+            "title": "Brand & Product Integration",
+            "text": "Integrate KOPILOT.ID directly into apparel, helmets, packs, or gear. Custom branded, permanently attached, and designed to add lasting value to your product line."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
