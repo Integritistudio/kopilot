@@ -31,8 +31,109 @@
         "text": "<p><a href=\"https://kopilot.id/\" target=\"_blank\">KOPILOT.ID</a> digital emergency ID tags provide instant access to critical information with the tap of any smartphone. Integration is available for events, race series, gear brands, and outdoor organizations.</p>",
         "button_label": "Partner with us",
         "button_link": "",
-        "button_color": "#EF0008",
-        "button_text_color": "#FFFFFF"
+        "button_color": "#ef0008",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "partners_logo_strip_jmbeqi": {
+      "type": "partners-logo-strip",
+      "blocks": {
+        "logo_kRFMpy": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659484_2.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_zN8Ugk": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659485_1.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_dQkBFA": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659500_2_f7479640-cb3c-4bce-af18-4bdbf126f9b6.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_eCajXX": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659502_2.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_Fe7FEr": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659501_1.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_eQw7UD": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659503_1.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_n4FmDJ": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659486_1.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_q8mEhA": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659505.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
+        "logo_WT69JJ": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659506.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "logo_kRFMpy",
+        "logo_zN8Ugk",
+        "logo_dQkBFA",
+        "logo_eCajXX",
+        "logo_Fe7FEr",
+        "logo_eQw7UD",
+        "logo_n4FmDJ",
+        "logo_q8mEhA",
+        "logo_WT69JJ"
+      ],
+      "name": "Partners Logo Strip",
+      "settings": {
+        "bg_color": "#FFFFFF"
       }
     },
     "partners_community_split_BLa8cn": {
@@ -329,6 +430,7 @@
   "order": [
     "main",
     "partners_hero_banner_xdRN8x",
+    "partners_logo_strip_jmbeqi",
     "partners_community_split_BLa8cn",
     "partners_custom_solutions_yzJbRf",
     "partners_tab_3ArRxU",
