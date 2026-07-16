@@ -25,6 +25,11 @@
     padding: 0 24px;
   }
 
+  /* Desktop: rows dissolve so all logos sit in one horizontal line */
+  .ppls-{{ section.id }} .ppls-row {
+    display: contents;
+  }
+
   .ppls-{{ section.id }} .ppls-item {
     display: flex;
     align-items: center;
@@ -58,10 +63,6 @@
     background-color: transparent;
   }
 
-  .ppls-{{ section.id }} .ppls-break {
-    display: none;
-  }
-
   /* Tablet */
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     .ppls-{{ section.id }} .ppls-inner {
@@ -81,7 +82,7 @@
     }
   }
 
-  /* Mobile — pixel perfect at 360px: 4 + 3 + 3 */
+  /* Mobile — pixel perfect at 360px: forced rows 4 + 3 + 3 */
   @media screen and (max-width: 767px) {
     .ppls-{{ section.id }} {
       padding: 30px 0;
@@ -89,11 +90,11 @@
 
     .ppls-{{ section.id }} .ppls-inner {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
-      column-gap: 20px;
-      row-gap: 0;
+      gap: 20px;
       width: 279px;
       max-width: 279px;
       margin-left: auto;
@@ -101,74 +102,108 @@
       padding: 0;
     }
 
-    .ppls-{{ section.id }} .ppls-break {
-      display: block;
-      flex-basis: 100%;
+    .ppls-{{ section.id }} .ppls-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      height: 0;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      border: 0;
+      gap: 20px;
     }
 
-    /* 20px between row 1 and row 2 */
-    .ppls-{{ section.id }} .ppls-break--after-4 {
-      margin-bottom: 20px;
-    }
-
-    /* 15px between row 2 and row 3 */
-    .ppls-{{ section.id }} .ppls-break--after-7 {
-      margin-bottom: 15px;
+    /* 15px between row 2 and row 3 (Figma) */
+    .ppls-{{ section.id }} .ppls-row--3 {
+      margin-top: -5px; /* 20px column gap above → net 15px */
+      gap: 12.875px;
+      width: auto;
     }
 
     .ppls-{{ section.id }} .ppls-item {
+      flex: 0 0 auto;
       height: auto;
       max-height: none;
+      min-width: 0;
     }
 
-    /* Row 1 — 4 logos */
-    .ppls-{{ section.id }} .ppls-item--row-1 {
+    .ppls-{{ section.id }} .ppls-item img {
+      display: block;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Row 1 — exactly 4 logos, sized to fit 279px with 20px gaps */
+    .ppls-{{ section.id }} .ppls-row--1 .ppls-item {
       height: 47.47px;
     }
 
-    .ppls-{{ section.id }} .ppls-item--row-1 img {
-      width: auto;
-      height: 100%;
+    .ppls-{{ section.id }} .ppls-row--1 .ppls-item:nth-child(1) img,
+    .ppls-{{ section.id }} .ppls-row--1 .ppls-item:nth-child(2) img {
+      width: 52.52px;
+      max-width: 52.52px;
+      height: 47.47px;
       max-height: 47.47px;
+    }
+
+    .ppls-{{ section.id }} .ppls-row--1 .ppls-item:nth-child(3) img {
+      width: 42.7px;
+      max-width: 42.7px;
+      height: 42.7px;
+      max-height: 42.7px;
+    }
+
+    .ppls-{{ section.id }} .ppls-row--1 .ppls-item:nth-child(4) img {
+      width: 71px;
       max-width: 71px;
-      object-fit: contain;
+      height: 38px;
+      max-height: 38px;
     }
 
     /* Row 2 — 3 logos */
-    .ppls-{{ section.id }} .ppls-item--row-2 {
+    .ppls-{{ section.id }} .ppls-row--2 .ppls-item {
       height: 53px;
     }
 
-    .ppls-{{ section.id }} .ppls-item--row-2 img {
-      width: auto;
-      height: 100%;
+    .ppls-{{ section.id }} .ppls-row--2 .ppls-item:nth-child(1) img {
+      width: 105.1px;
+      max-width: 105.1px;
+      height: 38.11px;
+      max-height: 38.11px;
+    }
+
+    .ppls-{{ section.id }} .ppls-row--2 .ppls-item:nth-child(2) img {
+      width: 56px;
+      max-width: 56px;
+      height: 47px;
+      max-height: 47px;
+    }
+
+    .ppls-{{ section.id }} .ppls-row--2 .ppls-item:nth-child(3) img {
+      width: 43px;
+      max-width: 43px;
+      height: 53px;
       max-height: 53px;
-      max-width: 105px;
-      object-fit: contain;
     }
 
     /* Row 3 — 3 logos */
-    .ppls-{{ section.id }} .ppls-item--row-3 {
+    .ppls-{{ section.id }} .ppls-row--3 .ppls-item {
       height: 70.38px;
     }
 
-    .ppls-{{ section.id }} .ppls-item--row-3 img {
-      width: auto;
-      height: 100%;
-      max-height: 70.38px;
+    .ppls-{{ section.id }} .ppls-row--3 .ppls-item:nth-child(1) img {
+      width: 63.52px;
       max-width: 63.52px;
-      object-fit: contain;
+      height: 70.38px;
+      max-height: 70.38px;
     }
 
-    /* Row 3 horizontal gap ≈ 12.875px */
-    .ppls-{{ section.id }} .ppls-break--after-7 ~ .ppls-item--row-3 + .ppls-item--row-3 {
-      margin-left: -7.125px;
+    .ppls-{{ section.id }} .ppls-row--3 .ppls-item:nth-child(2) img,
+    .ppls-{{ section.id }} .ppls-row--3 .ppls-item:nth-child(3) img {
+      width: 58.37px;
+      max-width: 58.37px;
+      height: 70.38px;
+      max-height: 70.38px;
     }
 
     .ppls-{{ section.id }} .ppls-placeholder {
@@ -179,53 +214,110 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign ppls_logos = section.blocks | where: 'type', 'logo'
+-%}
+
 <div class="ppls-{{ section.id }}">
   <div class="ppls-inner">
-    {%- assign ppls_logo_index = 0 -%}
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'logo' -%}
-        {%- assign ppls_logo_index = ppls_logo_index | plus: 1 -%}
-        {%- liquid
-          assign ppls_row_class = 'ppls-item--row-1'
-          if ppls_logo_index > 7
-            assign ppls_row_class = 'ppls-item--row-3'
-          elsif ppls_logo_index > 4
-            assign ppls_row_class = 'ppls-item--row-2'
-          endif
-        -%}
-        <div class="ppls-item {{ ppls_row_class }}" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            {%- assign ppls_alt = block.settings.image.alt | default: block.settings.alt_text | default: 'Partner logo' -%}
-            {%- if block.settings.link != blank -%}
-              <a
-                class="ppls-link"
-                href="{{ block.settings.link }}"
-                {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-              >
+    <div class="ppls-row ppls-row--1">
+      {%- for block in ppls_logos -%}
+        {%- if forloop.index <= 4 -%}
+          <div class="ppls-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {%- assign ppls_alt = block.settings.image.alt | default: block.settings.alt_text | default: 'Partner logo' -%}
+              {%- if block.settings.link != blank -%}
+                <a
+                  class="ppls-link"
+                  href="{{ block.settings.link }}"
+                  {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                >
+                  {{
+                    block.settings.image
+                    | image_url: width: 400
+                    | image_tag: loading: 'lazy', alt: ppls_alt
+                  }}
+                </a>
+              {%- else -%}
                 {{
                   block.settings.image
                   | image_url: width: 400
                   | image_tag: loading: 'lazy', alt: ppls_alt
                 }}
-              </a>
+              {%- endif -%}
             {%- else -%}
-              {{
-                block.settings.image
-                | image_url: width: 400
-                | image_tag: loading: 'lazy', alt: ppls_alt
-              }}
+              <span class="ppls-placeholder" aria-hidden="true"></span>
             {%- endif -%}
-          {%- else -%}
-            <span class="ppls-placeholder" aria-hidden="true"></span>
-          {%- endif -%}
-        </div>
-        {%- if ppls_logo_index == 4 -%}
-          <div class="ppls-break ppls-break--after-4" aria-hidden="true"></div>
-        {%- elsif ppls_logo_index == 7 -%}
-          <div class="ppls-break ppls-break--after-7" aria-hidden="true"></div>
+          </div>
         {%- endif -%}
-      {%- endif -%}
-    {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="ppls-row ppls-row--2">
+      {%- for block in ppls_logos -%}
+        {%- if forloop.index > 4 and forloop.index <= 7 -%}
+          <div class="ppls-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {%- assign ppls_alt = block.settings.image.alt | default: block.settings.alt_text | default: 'Partner logo' -%}
+              {%- if block.settings.link != blank -%}
+                <a
+                  class="ppls-link"
+                  href="{{ block.settings.link }}"
+                  {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                >
+                  {{
+                    block.settings.image
+                    | image_url: width: 400
+                    | image_tag: loading: 'lazy', alt: ppls_alt
+                  }}
+                </a>
+              {%- else -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag: loading: 'lazy', alt: ppls_alt
+                }}
+              {%- endif -%}
+            {%- else -%}
+              <span class="ppls-placeholder" aria-hidden="true"></span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="ppls-row ppls-row--3">
+      {%- for block in ppls_logos -%}
+        {%- if forloop.index > 7 -%}
+          <div class="ppls-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {%- assign ppls_alt = block.settings.image.alt | default: block.settings.alt_text | default: 'Partner logo' -%}
+              {%- if block.settings.link != blank -%}
+                <a
+                  class="ppls-link"
+                  href="{{ block.settings.link }}"
+                  {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                >
+                  {{
+                    block.settings.image
+                    | image_url: width: 400
+                    | image_tag: loading: 'lazy', alt: ppls_alt
+                  }}
+                </a>
+              {%- else -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag: loading: 'lazy', alt: ppls_alt
+                }}
+              {%- endif -%}
+            {%- else -%}
+              <span class="ppls-placeholder" aria-hidden="true"></span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
   </div>
 </div>
 
