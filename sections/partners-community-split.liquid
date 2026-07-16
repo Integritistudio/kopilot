@@ -1,0 +1,358 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400&display=swap" rel="stylesheet">
+
+{%- liquid
+  assign pscm_media_type = section.settings.media_type | default: 'image'
+  assign pscm_has_video = false
+  if section.settings.video != blank or section.settings.video_url != blank
+    assign pscm_has_video = true
+  endif
+  assign pscm_has_image = false
+  if section.settings.image != blank
+    assign pscm_has_image = true
+  endif
+-%}
+
+{%- style -%}
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .pscm-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .pscm-{{ section.id }} *,
+  .pscm-{{ section.id }} *::before,
+  .pscm-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .pscm-{{ section.id }} .pscm-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 94px;
+    min-height: 704px;
+  }
+
+  .pscm-{{ section.id }} .pscm-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    flex: 0 0 561px;
+    width: 561px;
+    max-width: 561px;
+  }
+
+  .pscm-{{ section.id }} .pscm-heading {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  .pscm-{{ section.id }} .pscm-text {
+    margin: 0;
+    padding: 0;
+    max-width: 451px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  .pscm-{{ section.id }} .pscm-text,
+  .pscm-{{ section.id }} .pscm-text * {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #000000;
+  }
+
+  .pscm-{{ section.id }} .pscm-text p,
+  .pscm-{{ section.id }} .pscm-text ul,
+  .pscm-{{ section.id }} .pscm-text ol,
+  .pscm-{{ section.id }} .pscm-text li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .pscm-{{ section.id }} .pscm-text a {
+    color: #000000;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .pscm-{{ section.id }} .pscm-media {
+    position: relative;
+    flex: 0 0 696px;
+    width: 696px;
+    max-width: 696px;
+    height: 704px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    margin-left: auto;
+  }
+
+  .pscm-{{ section.id }} .pscm-media img,
+  .pscm-{{ section.id }} .pscm-media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .pscm-{{ section.id }} .pscm-media-placeholder {
+    position: absolute;
+    inset: 0;
+    background-color: #d6d6d6;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .pscm-{{ section.id }} .pscm-inner {
+      gap: clamp(32px, 6.25vw, 90px);
+      padding-left: clamp(24px, 6.528vw, 94px);
+      min-height: auto;
+    }
+
+    .pscm-{{ section.id }} .pscm-copy {
+      flex: 1 1 40%;
+      width: auto;
+      max-width: 561px;
+      min-width: 260px;
+    }
+
+    .pscm-{{ section.id }} .pscm-heading {
+      font-size: clamp(36px, 4.167vw, 60px);
+    }
+
+    .pscm-{{ section.id }} .pscm-media {
+      flex: 0 0 clamp(360px, 48.333vw, 696px);
+      width: clamp(360px, 48.333vw, 696px);
+      max-width: 48.333%;
+      height: clamp(420px, 48.889vw, 704px);
+    }
+  }
+
+  /* Mobile — pixel perfect at 360px */
+  @media screen and (max-width: 767px) {
+    .pscm-{{ section.id }} .pscm-inner {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 50px 0 0;
+      min-height: 0;
+      max-width: 360px;
+    }
+
+    .pscm-{{ section.id }} .pscm-copy {
+      flex: none;
+      align-items: center;
+      width: 309px;
+      max-width: 309px;
+      gap: 25px;
+      text-align: center;
+    }
+
+    .pscm-{{ section.id }} .pscm-heading {
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+
+    .pscm-{{ section.id }} .pscm-text,
+    .pscm-{{ section.id }} .pscm-text * {
+      max-width: 282px;
+      font-size: 15px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .pscm-{{ section.id }} .pscm-media {
+      flex: none;
+      width: 100%;
+      max-width: 360px;
+      height: 364px;
+      margin-left: 0;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pscm-{{ section.id }}">
+  <div class="pscm-inner">
+    <div class="pscm-copy">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pscm-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="pscm-text">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="pscm-media">
+      {%- if pscm_media_type == 'video' and pscm_has_video -%}
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              class: 'pscm-video',
+              autoplay: section.settings.video_autoplay,
+              loop: section.settings.video_loop,
+              muted: section.settings.video_muted,
+              controls: section.settings.video_controls,
+              playsinline: true,
+              preload: 'metadata',
+              image_size: '1400x'
+          }}
+        {%- elsif section.settings.video_url != blank -%}
+          <video
+            class="pscm-video"
+            playsinline
+            preload="metadata"
+            {% if section.settings.video_autoplay %}autoplay{% endif %}
+            {% if section.settings.video_loop %}loop{% endif %}
+            {% if section.settings.video_muted %}muted{% endif %}
+            {% if section.settings.video_controls %}controls{% endif %}
+            {% if section.settings.image != blank %}poster="{{ section.settings.image | image_url: width: 1400 }}"{% endif %}
+          >
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {%- endif -%}
+      {%- elsif pscm_has_image -%}
+        {%- assign pscm_img_alt = section.settings.image.alt | default: section.settings.heading -%}
+        {{
+          section.settings.image
+          | image_url: width: 1400
+          | image_tag:
+            loading: 'lazy',
+            alt: pscm_img_alt,
+            widths: '360, 696, 1000, 1400',
+            sizes: '(max-width: 767px) 360px, 696px'
+        }}
+      {%- else -%}
+        <div class="pscm-media-placeholder" aria-hidden="true"></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Partners Community Split",
+  "tag": "section",
+  "class": "section-partners-community-split",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A better way to support your community."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>When an accident happens, the first person on the scene is often a complete stranger. KOPILOT.ID gives them instant access to critical medical information and emergency contacts through a smartphone tap. Integrated into your event or product, it gives participants, customers, and members a better way to be prepared.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image",
+      "info": "Choose whether this section shows an image or a video."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Used when Media type is Image. Also used as video poster when a Video URL is set."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify video",
+      "info": "Used when Media type is Video. Takes priority over Video URL."
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (.mp4)",
+      "info": "Used when Media type is Video and no Shopify video is selected."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute video",
+      "default": true,
+      "info": "Required for autoplay in most browsers."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Show video controls",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Community Split"
+    }
+  ]
+}
+{% endschema %}
