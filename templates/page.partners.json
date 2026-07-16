@@ -21,11 +21,25 @@
         "bottom_spacing": 40
       }
     },
+    "partners_hero_banner_xdRN8x": {
+      "type": "partners-hero-banner",
+      "name": "Partners Hero Banner",
+      "settings": {
+        "image_desktop": "shopify://shop_images/A743797_3_1_2_2.png",
+        "image_mobile": "shopify://shop_images/A743797_3_1_2_3.png",
+        "heading": "<p>A new way to <strong>elevate safety standards</strong>.</p>",
+        "text": "<p><a href=\"https://kopilot.id/\" target=\"_blank\">KOPILOT.ID</a> digital emergency ID tags provide instant access to critical information with the tap of any smartphone. Integration is available for events, race series, gear brands, and outdoor organizations.</p>",
+        "button_label": "Partner with us",
+        "button_link": "",
+        "button_color": "#EF0008",
+        "button_text_color": "#FFFFFF"
+      }
+    },
     "partners_community_split_BLa8cn": {
       "type": "partners-community-split",
       "name": "Partners Community Split",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "heading": "A better way to support your customers.",
         "text": "<p>When an accident happens, the first to respond is often a complete stranger. With the tap of any smartphone, <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives them instant access to emergency contact and critical medical information. When integrated with your event or product, it provides an additional layer of safety and streamlined emergency response.</p>",
         "media_type": "image",
@@ -314,6 +328,7 @@
   },
   "order": [
     "main",
+    "partners_hero_banner_xdRN8x",
     "partners_community_split_BLa8cn",
     "partners_custom_solutions_yzJbRf",
     "partners_tab_3ArRxU",
