@@ -1,0 +1,423 @@
+{%- style -%}
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .pphr-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    min-height: 723.69px;
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .pphr-{{ section.id }} *,
+  .pphr-{{ section.id }} *::before,
+  .pphr-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .pphr-{{ section.id }} .pphr-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .pphr-{{ section.id }} .pphr-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .pphr-{{ section.id }} .pphr-bg-img--desktop {
+    display: block;
+  }
+
+  .pphr-{{ section.id }} .pphr-bg-img--mobile {
+    display: none;
+  }
+
+  .pphr-{{ section.id }} .pphr-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      90.18deg,
+      rgba(0, 0, 0, 0.4) 14.615%,
+      rgba(0, 0, 0, 0) 50.029%
+    );
+  }
+
+  .pphr-{{ section.id }} .pphr-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 723.69px;
+    margin: 0 auto;
+    padding: 171px 111px;
+  }
+
+  .pphr-{{ section.id }} .pphr-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 70px;
+    width: 100%;
+    max-width: 509px;
+  }
+
+  .pphr-{{ section.id }} .pphr-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    width: 100%;
+  }
+
+  .pphr-{{ section.id }} .pphr-heading {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 509px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #ffffff;
+    word-break: break-word;
+  }
+
+  .pphr-{{ section.id }} .pphr-heading,
+  .pphr-{{ section.id }} .pphr-heading * {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #ffffff;
+  }
+
+  .pphr-{{ section.id }} .pphr-heading p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .pphr-{{ section.id }} .pphr-heading strong,
+  .pphr-{{ section.id }} .pphr-heading b {
+    font-weight: 500;
+  }
+
+  .pphr-{{ section.id }} .pphr-text {
+    margin: 0;
+    padding: 0;
+    max-width: 404px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #ffffff;
+    word-break: break-word;
+  }
+
+  .pphr-{{ section.id }} .pphr-text,
+  .pphr-{{ section.id }} .pphr-text * {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #ffffff;
+  }
+
+  .pphr-{{ section.id }} .pphr-text p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .pphr-{{ section.id }} .pphr-text a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-skip-ink: none;
+  }
+
+  .pphr-{{ section.id }} .pphr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 18.344px 64px;
+    min-height: 60.69px;
+    background-color: {{ section.settings.button_color }};
+    border: 0;
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.25s ease, background-color 0.25s ease;
+  }
+
+  .pphr-{{ section.id }} .pphr-btn:hover {
+    opacity: 0.9;
+  }
+
+  .pphr-{{ section.id }} .pphr-btn-text {
+    font-family: 'Elza', sans-serif;
+    font-weight: 600;
+    font-size: 20.383px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: {{ section.settings.button_text_color }};
+    white-space: nowrap;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .pphr-{{ section.id }} {
+      min-height: clamp(520px, 50.256vw, 723.69px);
+    }
+
+    .pphr-{{ section.id }} .pphr-inner {
+      min-height: clamp(520px, 50.256vw, 723.69px);
+      padding: clamp(80px, 11.875vw, 171px) clamp(40px, 7.708vw, 111px);
+    }
+
+    .pphr-{{ section.id }} .pphr-heading,
+    .pphr-{{ section.id }} .pphr-heading * {
+      font-size: clamp(32px, 3.333vw, 48px);
+    }
+
+    .pphr-{{ section.id }} .pphr-text,
+    .pphr-{{ section.id }} .pphr-text * {
+      font-size: clamp(15px, 1.389vw, 20px);
+    }
+  }
+
+  /* Mobile — pixel perfect at 360px */
+  @media screen and (max-width: 767px) {
+    .pphr-{{ section.id }} {
+      min-height: 524px;
+    }
+
+    .pphr-{{ section.id }} .pphr-bg-img--desktop {
+      display: none;
+    }
+
+    .pphr-{{ section.id }} .pphr-bg-img--mobile {
+      display: block;
+    }
+
+    .pphr-{{ section.id }} .pphr-bg-overlay {
+      background-image: linear-gradient(
+        89.48deg,
+        rgba(0, 0, 0, 0.4) 34.132%,
+        rgba(0, 0, 0, 0) 55.533%
+      );
+    }
+
+    .pphr-{{ section.id }} .pphr-inner {
+      align-items: center;
+      justify-content: center;
+      min-height: 524px;
+      padding: 29px 23px;
+      max-width: 360px;
+    }
+
+    .pphr-{{ section.id }} .pphr-content {
+      align-items: center;
+      gap: 39px;
+      max-width: 322px;
+    }
+
+    .pphr-{{ section.id }} .pphr-copy {
+      align-items: center;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .pphr-{{ section.id }} .pphr-heading,
+    .pphr-{{ section.id }} .pphr-heading * {
+      max-width: 322px;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .pphr-{{ section.id }} .pphr-text,
+    .pphr-{{ section.id }} .pphr-text * {
+      max-width: 240px;
+      font-size: 15px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .pphr-{{ section.id }} .pphr-btn {
+      min-width: 254.51px;
+      min-height: 49.76px;
+      padding: 15.88px 61.756px;
+    }
+
+    .pphr-{{ section.id }} .pphr-btn-text {
+      font-size: 15px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign pphr_img_desktop = section.settings.image_desktop
+  assign pphr_img_mobile = section.settings.image_mobile
+  if pphr_img_mobile == blank
+    assign pphr_img_mobile = pphr_img_desktop
+  endif
+-%}
+
+<section class="pphr-{{ section.id }}">
+  <div class="pphr-bg" aria-hidden="true">
+    {%- if pphr_img_desktop != blank -%}
+      {{
+        pphr_img_desktop
+        | image_url: width: 2880
+        | image_tag:
+          class: 'pphr-bg-img pphr-bg-img--desktop',
+          loading: 'eager',
+          widths: '1440, 1920, 2880',
+          sizes: '100vw',
+          alt: ''
+      }}
+    {%- endif -%}
+
+    {%- if pphr_img_mobile != blank -%}
+      {{
+        pphr_img_mobile
+        | image_url: width: 1080
+        | image_tag:
+          class: 'pphr-bg-img pphr-bg-img--mobile',
+          loading: 'eager',
+          widths: '360, 720, 1080',
+          sizes: '100vw',
+          alt: ''
+      }}
+    {%- endif -%}
+
+    <div class="pphr-bg-overlay"></div>
+  </div>
+
+  <div class="pphr-inner">
+    <div class="pphr-content">
+      <div class="pphr-copy">
+        {%- if section.settings.heading != blank -%}
+          <div class="pphr-heading">{{ section.settings.heading }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="pphr-text">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a
+          class="pphr-btn"
+          href="{{ section.settings.button_link | default: '#' }}"
+          {% if section.settings.button_link == blank %}role="link" aria-disabled="true"{% endif %}
+        >
+          <span class="pphr-btn-text">{{ section.settings.button_label | escape }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Partners Hero Banner",
+  "tag": "section",
+  "class": "section-partners-hero-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "info": "Falls back to the desktop image if empty."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>A new way to <strong>elevate safety standards</strong>.</p>",
+      "info": "Use bold for the medium-weight phrase (e.g. “elevate safety standards”)."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p><a href=\"https://kopilot.id/\" target=\"_blank\">KOPILOT.ID</a> digital emergency ID tags provide instant access to critical information with the tap of any smartphone. Integration is available for events, race series, gear brands, and outdoor organizations.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Partner with us"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#EF0008"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners Hero Banner"
+    }
+  ]
+}
+{% endschema %}
