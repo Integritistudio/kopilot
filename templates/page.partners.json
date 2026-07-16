@@ -101,6 +101,15 @@
             "open_new_tab": true
           }
         },
+        "logo_GhMjwF": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/image_18659504_1.svg",
+            "alt_text": "Partner logo",
+            "link": "",
+            "open_new_tab": true
+          }
+        },
         "logo_q8mEhA": {
           "type": "logo",
           "settings": {
@@ -128,12 +137,13 @@
         "logo_Fe7FEr",
         "logo_eQw7UD",
         "logo_n4FmDJ",
+        "logo_GhMjwF",
         "logo_q8mEhA",
         "logo_WT69JJ"
       ],
       "name": "Partners Logo Strip",
       "settings": {
-        "bg_color": "#FFFFFF"
+        "bg_color": "#ffffff"
       }
     },
     "partners_community_split_BLa8cn": {
