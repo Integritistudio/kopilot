@@ -34,7 +34,50 @@
         <div class="kopilot-home-partner-cta__cards">
           <div class="kopilot-home-partner-cta__grid">
             {% for block in section.blocks %}
-              {% render 'kopilot-home-partner-card', block: block %}
+              <article class="kopilot-home-partner-cta__card" {{ block.shopify_attributes }}>
+                <div class="kopilot-home-partner-cta__card-media">
+                  <div
+                    class="kopilot-home-partner-cta__card-media-bg"
+                    {% if block.settings.image != blank %}
+                      style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
+                    {% endif %}
+                  >
+                    {% if block.settings.image != blank %}
+                      <img
+                        class="kopilot-home-partner-cta__card-media-img"
+                        src="{{ block.settings.image | image_url: width: 800 }}"
+                        alt="{{ block.settings.image_alt | escape }}"
+                        width="800"
+                        height="400"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="kopilot-home-partner-cta__card-body">
+                  <div class="kopilot-home-partner-cta__card-copy">
+                    {% if block.settings.name != blank or block.settings.role != blank %}
+                      <div class="kopilot-home-partner-cta__card-meta">
+                        {% if block.settings.name != blank %}
+                          <span class="kopilot-home-partner-cta__card-name">{{ block.settings.name }}</span>
+                        {% endif %}
+                        {% if block.settings.role != blank %}
+                          <span class="kopilot-home-partner-cta__card-role">{{ block.settings.role }}</span>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.quote != blank %}
+                      <p class="kopilot-home-partner-cta__card-quote">{{ block.settings.quote }}</p>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.stat != blank %}
+                    <p class="kopilot-home-partner-cta__card-stat">{{ block.settings.stat }}</p>
+                  {% endif %}
+                </div>
+              </article>
             {% endfor %}
           </div>
 
@@ -44,7 +87,50 @@
                 <div class="swiper-wrapper">
                   {% for block in section.blocks %}
                     <div class="swiper-slide">
-                      {% render 'kopilot-home-partner-card', block: block %}
+                      <article class="kopilot-home-partner-cta__card" {{ block.shopify_attributes }}>
+                        <div class="kopilot-home-partner-cta__card-media">
+                          <div
+                            class="kopilot-home-partner-cta__card-media-bg"
+                            {% if block.settings.image != blank %}
+                              style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
+                            {% endif %}
+                          >
+                            {% if block.settings.image != blank %}
+                              <img
+                                class="kopilot-home-partner-cta__card-media-img"
+                                src="{{ block.settings.image | image_url: width: 800 }}"
+                                alt="{{ block.settings.image_alt | escape }}"
+                                width="800"
+                                height="400"
+                                loading="lazy"
+                              >
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        <div class="kopilot-home-partner-cta__card-body">
+                          <div class="kopilot-home-partner-cta__card-copy">
+                            {% if block.settings.name != blank or block.settings.role != blank %}
+                              <div class="kopilot-home-partner-cta__card-meta">
+                                {% if block.settings.name != blank %}
+                                  <span class="kopilot-home-partner-cta__card-name">{{ block.settings.name }}</span>
+                                {% endif %}
+                                {% if block.settings.role != blank %}
+                                  <span class="kopilot-home-partner-cta__card-role">{{ block.settings.role }}</span>
+                                {% endif %}
+                              </div>
+                            {% endif %}
+
+                            {% if block.settings.quote != blank %}
+                              <p class="kopilot-home-partner-cta__card-quote">{{ block.settings.quote }}</p>
+                            {% endif %}
+                          </div>
+
+                          {% if block.settings.stat != blank %}
+                            <p class="kopilot-home-partner-cta__card-stat">{{ block.settings.stat }}</p>
+                          {% endif %}
+                        </div>
+                      </article>
                     </div>
                   {% endfor %}
                 </div>
