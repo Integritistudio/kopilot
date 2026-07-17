@@ -10,6 +10,7 @@
     font-weight: 700;
     line-height: 130%;
     letter-spacing: 0px;
+    text-transform: uppercase;
     color: #000;
 }
 .kopilot-pdp__tier-price-pdp {
@@ -36,11 +37,6 @@
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
     
-    /* Remove slider pagination indicators on mobile layout per image_8259ff.png */
-    .kopilot-pdp__carousel-dots {
-      display: none !important;
-    }
-
     /* Clean transparent layout structure for mobile gallery wrappers */
     .kopilot-pdp__gallery-mobile {
       background: transparent !important;
@@ -294,7 +290,7 @@
   }
    @media screen and (max-width: 767px) {
     .kopilot-pdp__special-banner{
-      display:none;
+      display:flex;
     }
    }
   
@@ -442,7 +438,6 @@ padding:7.25px 18.29px;
   </div>
 {% else %}
 <kopilot-pdp
-  id="pdp-top"
   class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }} color-{{ section.settings.color_scheme }}"
   data-product-id="{{ pdp_product.id }}"
   data-variant-id="{{ current_variant.id }}"
@@ -729,7 +724,7 @@ padding:7.25px 18.29px;
                   <p class="kopilot-pdp__tier-price-pdp">{{ tier_price }} USD</p>
                   {% if variant.compare_at_price > variant.price %}
                     <p class="kopilot-pdp__tier-compare-pdp">{{ tier_compare_price }}</p>
-                    <span class="kopilot-pdp__tier-save">Save {{ discount_percent_round }}%</span>
+                    <span class="kopilot-pdp__tier-save">SAVE {{ discount_percent_round }}%</span>
                   {% endif %}
                 </div>
               </div>
