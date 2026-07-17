@@ -262,10 +262,10 @@
   .kopilot-home-activities__card.is-expanded .kopilot-home-activities__text {
     text-align: center;
   }
-  .kopilot-home-activities__heading.rte,
+  /* .kopilot-home-activities__heading.rte,
 .kopilot-home-activities__heading.rte * {
   max-width: 100%;
-}
+} */
 }
 
 .kopilot-home-activities__nav {
@@ -316,6 +316,7 @@
 
   .kopilot-home-activities__heading.rte,
   .kopilot-home-activities__heading.rte * {
+    max-width:100%;
     font-size: clamp(3.6rem, 5vw, 5.2rem);
   }
 
