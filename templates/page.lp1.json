@@ -31,7 +31,8 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "video_url": "https://youtu.be/5uHicDPh1pg?si=LkZrZAgtOdyccSm6",
+        "background_video": "shopify://files/videos/KOPILOT ID Web Banner (Moto).mp4",
+        "video_url": "",
         "background_image": "shopify://shop_images/56e0395dc08933ec28c8cfb943bb109531af9fbf.png",
         "background_image_mobile": "shopify://shop_images/image_18659469.png",
         "show_overlay": true,
@@ -51,7 +52,7 @@
       "type": "kopilot-asymmetric-split",
       "name": "Kopilot Asymmetric Split",
       "settings": {
-        "image": "shopify://shop_images/kopilot-image-text.jpg",
+        "image": "shopify://shop_images/ezgif-4ed01f18e24aac64.gif",
         "heading": "If something goes wrong, first responders need more than your name.",
         "paragraph": "After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.",
         "bg_color_gradient": "#ffffff",
