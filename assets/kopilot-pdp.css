@@ -268,7 +268,7 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.02em;
-  /* text-transform: uppercase; */
+  text-transform: uppercase;
 }
 
 .kopilot-pdp__included {
@@ -612,25 +612,38 @@ font-family:'Elza';
   }
 
   .kopilot-pdp__carousel-dots {
-    display: none;
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    z-index: 3;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 8px;
+    margin: 0;
+    pointer-events: none;
   }
 
   .kopilot-pdp__carousel-dot {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: #d9d9d9;
+    background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
+    pointer-events: auto;
   }
 
   .kopilot-pdp__carousel-dot.is-active {
-    background: #000;
+    background: #fff;
+  }
+
+  /* Keep bottom slide captions above the pagination dots */
+  .kopilot-pdp__gallery-mobile .kopilot-pdp__gallery-text-container--bottom,
+  .kopilot-pdp__gallery-mobile .kopilot-pdp__gallery-text-container--bottom-center {
+    bottom: 44px;
   }
 
   .kopilot-pdp__mobile-head {
