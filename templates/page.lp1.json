@@ -52,7 +52,7 @@
       "type": "kopilot-asymmetric-split",
       "name": "Kopilot Asymmetric Split",
       "settings": {
-        "image": "shopify://shop_images/ezgif-4ed01f18e24aac64.gif",
+        "video": "shopify://files/videos/Tapping Tag.mp4",
         "heading": "If something goes wrong, first responders need more than your name.",
         "paragraph": "After a crash, you could be unconscious, disoriented, or unable to speak. The people helping you may not know about your allergies, medical conditions, medications, or who to contact when every minute matters. KOPILOT.ID exists for exactly that moment.",
         "bg_color_gradient": "#ffffff",
