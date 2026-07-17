@@ -438,7 +438,7 @@ padding:7.25px 18.29px;
 %}
 
 {% if pdp_product == blank %}
-  <div id="pdp-top" class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }}">
+  <div class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }}">
     <p class="kopilot-pdp__missing-product">Select a product in the Kopilot PDP section settings.</p>
   </div>
 {% else %}
@@ -448,7 +448,7 @@ padding:7.25px 18.29px;
   data-variant-id="{{ current_variant.id }}"
   data-default-button-label="{{ section.settings.button_label | default: 'ADD TO CART - 1 TAG' }}"
 >
-  <div class="kopilot-pdp__inner">
+  <div class="kopilot-pdp__inner" id="pdp-top">
     <div class="kopilot-pdp__mobile-head">
       <h1 class="kopilot-pdp__title">
         {% if section.settings.title != blank %}
