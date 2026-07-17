@@ -61,7 +61,7 @@
 {{ 'kopilot-home-video.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-home-video.js' | asset_url }}" defer></script>
 
-<section class="kopilot-section kopilot-home-video kopilot-home-video--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section id="your-medical-info" class="kopilot-section kopilot-home-video kopilot-home-video--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-video__inner">
     <div class="kopilot-home-video__frame" data-kopilot-home-video>
       {% if section.settings.video != blank %}
