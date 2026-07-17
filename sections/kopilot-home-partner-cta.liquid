@@ -2,8 +2,6 @@
 {{ 'kopilot-home-partner-cta.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-home-partner-cta.js' | asset_url }}" defer></script>
 
-{% assign partner_card_fallbacks = 'kopilot-home-partner-1.png,kopilot-home-partner-2.png,kopilot-home-partner-3.png,kopilot-home-partner-4.png' | split: ',' %}
-
 <section class="kopilot-section kopilot-home-partner-cta kopilot-home-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-partner-cta__inner">
     <div class="kopilot-home-partner-cta__layout">
@@ -36,11 +34,7 @@
         <div class="kopilot-home-partner-cta__cards">
           <div class="kopilot-home-partner-cta__grid">
             {% for block in section.blocks %}
-              {% assign fallback_index = forloop.index0 | modulo: partner_card_fallbacks.size %}
-              {% render 'kopilot-home-partner-card',
-                block: block,
-                fallback: partner_card_fallbacks[fallback_index]
-              %}
+              {% render 'kopilot-home-partner-card', block: block %}
             {% endfor %}
           </div>
 
@@ -49,12 +43,8 @@
               <div class="swiper kopilot-home-partner-cta__swiper">
                 <div class="swiper-wrapper">
                   {% for block in section.blocks %}
-                    {% assign fallback_index = forloop.index0 | modulo: partner_card_fallbacks.size %}
                     <div class="swiper-slide">
-                      {% render 'kopilot-home-partner-card',
-                        block: block,
-                        fallback: partner_card_fallbacks[fallback_index]
-                      %}
+                      {% render 'kopilot-home-partner-card', block: block %}
                     </div>
                   {% endfor %}
                 </div>
@@ -124,7 +114,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Image",
+          "info": "Fills the grey media area. No logo overlay."
         },
         {
           "type": "text",
