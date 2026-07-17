@@ -487,6 +487,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image_hover": "shopify://shop_images/Rectangle_62.jpg",
             "badge": "",
             "card_style": "bordered",
             "title": "1 TAG",
@@ -506,6 +507,7 @@
           "type": "tier",
           "settings": {
             "product": "",
+            "image_hover": "shopify://shop_images/Group_2106667225.jpg",
             "badge": "",
             "card_style": "gray",
             "title": "2 TAGS",

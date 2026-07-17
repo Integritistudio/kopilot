@@ -284,6 +284,7 @@
         },
         "card_NqX3iE": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "badge": "Ambassador",
             "name": "Marcus Reid",
