@@ -162,6 +162,11 @@
   object-fit: cover;
 }
 
+/* Kill legacy centered logo overlay if old markup is cached */
+.kopilot-home-partner-cta__card-logo {
+  display: none !important;
+}
+
 .kopilot-home-partner-cta__card-body {
   display: flex;
   flex-direction: column;
