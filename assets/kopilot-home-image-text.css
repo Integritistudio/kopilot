@@ -43,7 +43,7 @@
   flex-direction: column;
   gap: 2.5rem;
   width: min(28.8rem, calc(100% - 3.2rem));
-  padding: 0 1.6rem;
+  /* padding: 0 1.6rem; */
   box-sizing: border-box;
 }
 
