@@ -66,7 +66,7 @@
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-home-image-text.css' | asset_url | stylesheet_tag }}
 
-<section class="kopilot-section kopilot-home-image-text kopilot-home-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section id="you-need-help" class="kopilot-section kopilot-home-image-text kopilot-home-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-image-text__inner">
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--desktop">
       {% render 'kopilot-image',
