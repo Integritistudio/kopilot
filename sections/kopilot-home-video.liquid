@@ -1,3 +1,23 @@
+{% style %}
+.kopilot-home-video--{{ section.id }} .kopilot-home-video__yt-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: #000;
+}
+
+.kopilot-home-video--{{ section.id }} .kopilot-home-video__yt-wrap iframe,
+.kopilot-home-video--{{ section.id }} #KopilotHomeYt-{{ section.id }} {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+{% endstyle %}
+
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-home-video.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-home-video.js' | asset_url }}" defer></script>
@@ -6,7 +26,7 @@
   <div class="kopilot-home-video__inner">
     <div class="kopilot-home-video__frame" data-kopilot-home-video>
       {% assign has_video = false %}
-      {% if section.settings.video != blank or section.settings.video_url != blank %}
+      {% if section.settings.video != blank or section.settings.video_url != blank or section.settings.youtube_video_url != blank %}
         {% assign has_video = true %}
       {% endif %}
 
@@ -24,6 +44,63 @@
         <video class="kopilot-home-video__video" playsinline preload="metadata">
           <source src="{{ section.settings.video_url }}" type="video/mp4">
         </video>
+      {% elsif section.settings.youtube_video_url != blank and section.settings.youtube_video_url.type == 'youtube' %}
+        <div class="kopilot-home-video__yt-wrap" data-kopilot-home-youtube>
+          <div
+            id="KopilotHomeYt-{{ section.id }}"
+            data-youtube-id="{{ section.settings.youtube_video_url.id }}"
+          ></div>
+        </div>
+        <script>
+          (function () {
+            var sectionId = {{ section.id | json }};
+            var videoId = {{ section.settings.youtube_video_url.id | json }};
+            var playerId = 'KopilotHomeYt-' + sectionId;
+
+            function createPlayer() {
+              if (!window.YT || !window.YT.Player) return;
+              var mount = document.getElementById(playerId);
+              if (!mount || mount.dataset.ytReady === '1') return;
+              mount.dataset.ytReady = '1';
+
+              var wrap = mount.closest('[data-kopilot-home-youtube]');
+
+              new YT.Player(playerId, {
+                videoId: videoId,
+                playerVars: {
+                  autoplay: 0,
+                  controls: 1,
+                  rel: 0,
+                  modestbranding: 1,
+                  playsinline: 1,
+                  iv_load_policy: 3,
+                  fs: 1
+                },
+                events: {
+                  onReady: function (event) {
+                    if (wrap) wrap._ytPlayer = event.target;
+                  }
+                }
+              });
+            }
+
+            if (window.YT && window.YT.Player) {
+              createPlayer();
+            } else {
+              var previous = window.onYouTubeIframeAPIReady;
+              window.onYouTubeIframeAPIReady = function () {
+                if (typeof previous === 'function') previous();
+                createPlayer();
+              };
+              if (!document.getElementById('youtube-iframe-api')) {
+                var tag = document.createElement('script');
+                tag.id = 'youtube-iframe-api';
+                tag.src = 'https://www.youtube.com/iframe_api';
+                document.head.appendChild(tag);
+              }
+            }
+          })();
+        </script>
       {% endif %}
 
       <div class="kopilot-home-video__poster" data-kopilot-home-video-poster>
@@ -104,6 +181,13 @@
       "id": "video_url",
       "label": "Video URL (.mp4)",
       "info": "Used when no Shopify video is selected."
+    },
+    {
+      "type": "video_url",
+      "id": "youtube_video_url",
+      "label": "YouTube Video URL",
+      "accept": ["youtube"],
+      "info": "Used when no Shopify video or .mp4 URL is set. Paste your YouTube link here."
     },
     {
       "type": "image_picker",
