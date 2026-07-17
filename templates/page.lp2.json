@@ -15,7 +15,7 @@
         "color_scheme": "scheme-1",
         "background_image": "shopify://shop_images/image_18659473.png",
         "background_image_mobile": "shopify://shop_images/image_18659473_1.png",
-        "video": "",
+        "video": "https://cdn.shopify.com/videos/c/o/v/4ad4e367cb964e85b8f8a991be22dd02.mp4",
         "video_url": "",
         "heading": "This could help someone save your life.",
         "body": "You could be unconscious or unable to speak. Would responders know your allergies, medications, medical conditions, or who to contact? KOPILOT.ID keeps that information with you.",
@@ -27,8 +27,9 @@
       "type": "kopilot-asymmetric-split",
       "name": "Kopilot Asymmetric Split",
       "settings": {
+        "video": "shopify://files/videos/Tapping Tag.mp4",
         "image": "shopify://shop_images/image_18659467.png",
-        "heading": "The gear you never <br>think about…<br> until you need it.",
+        "heading": "The gear you never think about… until you need it.",
         "paragraph": "You’re miles into a trail run. Hours into a remote ride. Alone, off-route, before sunrise. You planned everything; hydration, nutrition, and gear. But if something happens out there, how long until someone has the information they need to help you?",
         "bg_color_gradient": "#ffffff",
         "column_gap": 90

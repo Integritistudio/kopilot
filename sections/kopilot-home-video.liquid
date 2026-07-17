@@ -35,31 +35,13 @@
     assign yt_id = section.settings.youtube_video_url.id | strip
   endif
 
-  if yt_id == blank and section.settings.video_url != blank
-    assign raw_url = section.settings.video_url | strip
-    if raw_url contains 'youtube.com' or raw_url contains 'youtu.be'
-      if raw_url contains 'youtu.be/'
-        assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first | strip
-      elsif raw_url contains 'v='
-        assign yt_id = raw_url | split: 'v=' | last | split: '&' | first | split: '?' | first | strip
-      elsif raw_url contains 'embed/'
-        assign yt_id = raw_url | split: 'embed/' | last | split: '?' | first | split: '&' | first | strip
-      endif
-    endif
-  endif
-
   assign has_youtube = false
   if yt_id != blank
     assign has_youtube = true
   endif
 
-  assign has_mp4_url = false
-  if section.settings.video_url != blank and has_youtube == false
-    assign has_mp4_url = true
-  endif
-
   assign has_video = false
-  if section.settings.video != blank or has_youtube or has_mp4_url
+  if section.settings.video != blank or has_youtube
     assign has_video = true
   endif
 -%}
@@ -89,10 +71,6 @@
         >
           <div id="KopilotHomeYt-{{ section.id }}"></div>
         </div>
-      {% elsif has_mp4_url %}
-        <video class="kopilot-home-video__video" playsinline preload="metadata">
-          <source src="{{ section.settings.video_url }}" type="video/mp4">
-        </video>
       {% endif %}
 
       <div class="kopilot-home-video__poster" data-kopilot-home-video-poster>
@@ -174,12 +152,6 @@
       "label": "YouTube Video URL",
       "accept": ["youtube"],
       "info": "Takes priority over overlay images. Used when no Shopify video is selected."
-    },
-    {
-      "type": "text",
-      "id": "video_url",
-      "label": "Video URL (.mp4)",
-      "info": "Used when no Shopify video or YouTube URL is set. YouTube links pasted here also work."
     },
     {
       "type": "image_picker",
