@@ -487,7 +487,7 @@
       "name": "Adventure Hero",
       "settings": {
         "video_url": "",
-        "image_desktop": "shopify://shop_images/image_18659496_6df5ec64-c501-4068-ab8e-971c38161502.png",
+        "image_desktop": "shopify://shop_images/image_18659496.svg",
         "image_mobile": "shopify://shop_images/image_18659496_1.png",
         "heading": "Don't let your next adventure be your last.",
         "button_label": "GET KOPILOT.ID",
