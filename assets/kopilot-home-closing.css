@@ -132,7 +132,7 @@
 @media screen and (max-width: 767px) {
   .kopilot-home-closing__inner {
     min-height: 71.1rem;
-    padding: 0 !important;
+    padding: 77px 0px;
   }
 
   .kopilot-home-closing__content {
