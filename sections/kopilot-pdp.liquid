@@ -438,11 +438,12 @@ padding:7.25px 18.29px;
 %}
 
 {% if pdp_product == blank %}
-  <div class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }}" id="pdp-top">
+  <div class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }}">
     <p class="kopilot-pdp__missing-product">Select a product in the Kopilot PDP section settings.</p>
   </div>
 {% else %}
 <kopilot-pdp
+  id="pdp-top"
   class="kopilot-section kopilot-pdp kopilot-pdp--{{ section.id }} color-{{ section.settings.color_scheme }}"
   data-product-id="{{ pdp_product.id }}"
   data-variant-id="{{ current_variant.id }}"
