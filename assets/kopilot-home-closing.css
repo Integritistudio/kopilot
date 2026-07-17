@@ -301,9 +301,9 @@
     margin-top: 0;
   }
 }
-@media screen and (min-width: 1501px) {
+/* @media screen and (min-width: 1501px) {
   .kopilot-home-closing__inner {
     min-height: clamp(90rem, 70vw, 120rem);
     padding: 0;
   }
-}
+} */
