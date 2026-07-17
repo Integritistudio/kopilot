@@ -250,7 +250,7 @@
   .kopilot-home-testimonials__heading.rte,
   .kopilot-home-testimonials__heading.rte * {
     font-size: clamp(3.6rem, 5vw, 5.2rem);
-    max-width: min(58.6rem, 90%);
+    max-width: 58.6rem;
   }
 
   .kopilot-home-testimonials__slider-wrap {
