@@ -1,21 +1,41 @@
 {% doc %}
 Renders a partner spotlight card for kopilot-home-partner-cta.
 @param {block} block - Section block
-@param {string} fallback - Asset filename fallback for partner logo
+@param {image} [media_image] - Optional explicit image override
 {% enddoc %}
+
+{%- liquid
+  assign card_image = media_image
+  if card_image == blank
+    assign card_image = block.settings.image
+  endif
+  if card_image == blank
+    assign card_image = block.settings.logo
+  endif
+
+  assign card_alt = block.settings.image_alt | default: block.settings.name | default: ''
+-%}
 
 <article class="kopilot-home-partner-cta__card" {{ block.shopify_attributes }}>
   <div class="kopilot-home-partner-cta__card-media">
-    <div class="kopilot-home-partner-cta__card-media-bg" aria-hidden="true"></div>
-    <div class="kopilot-home-partner-cta__card-logo">
-      {% render 'kopilot-image',
-        image: block.settings.logo,
-        fallback: fallback,
-        alt: block.settings.logo_alt | default: block.settings.name,
-        width: 534,
-        widths: '267,534',
-        sizes: '(min-width: 768px) 267px, 161px'
-      %}
+    <div
+      class="kopilot-home-partner-cta__card-media-bg"
+      {% if card_image != blank %}
+        style="background-image: url('{{ card_image | image_url: width: 800 }}');"
+      {% endif %}
+      role="img"
+      {% if card_alt != blank %}aria-label="{{ card_alt | escape }}"{% else %}aria-hidden="true"{% endif %}
+    >
+      {% if card_image != blank %}
+        <img
+          class="kopilot-home-partner-cta__card-media-img"
+          src="{{ card_image | image_url: width: 800 }}"
+          alt="{{ card_alt | escape }}"
+          width="800"
+          height="400"
+          loading="lazy"
+        >
+      {% endif %}
     </div>
   </div>
 
