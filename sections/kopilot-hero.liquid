@@ -63,6 +63,28 @@
     justify-content: center;
   }
 }
+/* --- YouTube Background Iframe Fix --- */
+.kopilot-hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* This crops the overlapping video */
+  pointer-events: none !important; /* Completely disables clicking/UI popups */
+}
+
+.kopilot-hero__bg iframe.kopilot-hero__bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* Forces a 16:9 aspect ratio */
+  min-height: 100%;
+  min-width: 177.77vh; /* Ensures it stretches to cover height on tall screens */
+  transform: translate(-50%, -50%);
+  border: none;
+}
 {% endstyle %}
 
 {%- liquid
