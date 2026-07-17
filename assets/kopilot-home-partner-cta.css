@@ -149,20 +149,25 @@
 }
 
 .kopilot-home-partner-cta__card-media-bg {
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #d9d9d9;
+  background-color: #d9d9d9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.kopilot-home-partner-cta__card-media-bg img {
+.kopilot-home-partner-cta__card-media-img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Kill legacy centered logo overlay if old markup is cached */
 .kopilot-home-partner-cta__card-logo {
   display: none !important;
 }
