@@ -176,7 +176,7 @@
                 playerVars: {
                   autoplay: 1,
                   mute: 1,
-                  controls: 0,
+                  controls: 1,
                   disablekb: 1,
                   fs: 0,
                   iv_load_policy: 3,
@@ -210,15 +210,26 @@
               });
 
               /* Safety: if YouTube pauses itself, resume */
-              setInterval(function () {
-                try {
-                  if (player && typeof player.getPlayerState === 'function') {
-                    if (player.getPlayerState() === YT.PlayerState.PAUSED) {
-                      player.playVideo();
-                    }
-                  }
-                } catch (e) {}
-              }, 1000);
+              /* Safety & Seamless Loop: resume on pause, and seek before ENDED state */
+setInterval(function () {
+  try {
+    if (player && typeof player.getPlayerState === 'function') {
+      // 1. Force play if paused
+      if (player.getPlayerState() === YT.PlayerState.PAUSED) {
+        player.playVideo();
+      }
+      
+      // 2. Seamless manual looping
+      var duration = player.getDuration();
+      var currentTime = player.getCurrentTime();
+      // If within 0.3 seconds of the end, restart to avoid the "Ended" pause state
+      if (duration > 0 && currentTime >= (duration - 0.3)) {
+        player.seekTo(0);
+        player.playVideo();
+      }
+    }
+  } catch (e) {}
+}, 250); /* Sped up interval for accurate time checking */
             }
 
             if (window.YT && window.YT.Player) {
