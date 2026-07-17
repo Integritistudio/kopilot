@@ -1,9 +1,151 @@
+{%- liquid
+  assign yt_id = blank
+  assign raw_video = section.settings.video
+
+  if raw_video != blank
+    if raw_video contains 'youtube.com' or raw_video contains 'youtu.be'
+      if raw_video contains 'youtu.be/'
+        assign yt_id = raw_video | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first | strip
+      elsif raw_video contains 'v='
+        assign yt_id = raw_video | split: 'v=' | last | split: '&' | first | split: '?' | first | strip
+      elsif raw_video contains 'embed/'
+        assign yt_id = raw_video | split: 'embed/' | last | split: '?' | first | split: '&' | first | strip
+      endif
+    endif
+  endif
+
+  assign has_youtube = false
+  if yt_id != blank
+    assign has_youtube = true
+  endif
+
+  assign has_mp4 = false
+  if raw_video != blank and has_youtube == false
+    assign has_mp4 = true
+  endif
+-%}
+
+{% style %}
+.kopilot-home-hero--{{ section.id }} .kopilot-home-hero__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.kopilot-home-hero--{{ section.id }} .kopilot-home-hero__yt-wrap iframe,
+.kopilot-home-hero--{{ section.id }} #KopilotHomeHeroYt-{{ section.id }} {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100%;
+  min-width: 177.77vh;
+  border: none;
+  pointer-events: none !important;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.kopilot-home-hero--{{ section.id }} .kopilot-home-hero__yt-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  background: transparent;
+}
+{% endstyle %}
+
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-home-hero.css' | asset_url | stylesheet_tag }}
 
 <section class="kopilot-section kopilot-home-hero kopilot-home-hero--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-hero__bg" aria-hidden="true">
-    {% if section.settings.video != blank %}
+    {% if has_youtube %}
+      <div class="kopilot-home-hero__yt-wrap">
+        <div
+          id="KopilotHomeHeroYt-{{ section.id }}"
+          data-youtube-id="{{ yt_id }}"
+        ></div>
+        <div class="kopilot-home-hero__yt-shield" aria-hidden="true"></div>
+      </div>
+      <script>
+        (function () {
+          var videoId = {{ yt_id | json }};
+          var playerId = 'KopilotHomeHeroYt-{{ section.id }}';
+
+          function createPlayer() {
+            if (!window.YT || !window.YT.Player) return;
+            var mount = document.getElementById(playerId);
+            if (!mount || mount.dataset.ytReady === '1') return;
+            mount.dataset.ytReady = '1';
+
+            var player = new YT.Player(playerId, {
+              videoId: videoId,
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                playsinline: 1,
+                rel: 0,
+                cc_load_policy: 0,
+                showinfo: 0
+              },
+              events: {
+                onReady: function (event) {
+                  event.target.mute();
+                  event.target.playVideo();
+                  var iframe = event.target.getIframe && event.target.getIframe();
+                  if (iframe) {
+                    iframe.setAttribute('tabindex', '-1');
+                    iframe.style.pointerEvents = 'none';
+                  }
+                },
+                onStateChange: function (event) {
+                  if (event.data === YT.PlayerState.PAUSED) {
+                    event.target.playVideo();
+                  }
+                  if (event.data === YT.PlayerState.ENDED) {
+                    event.target.seekTo(0);
+                    event.target.playVideo();
+                  }
+                }
+              }
+            });
+
+            setInterval(function () {
+              try {
+                if (player && typeof player.getPlayerState === 'function') {
+                  if (player.getPlayerState() === YT.PlayerState.PAUSED) {
+                    player.playVideo();
+                  }
+                }
+              } catch (e) {}
+            }, 1000);
+          }
+
+          if (window.YT && window.YT.Player) {
+            createPlayer();
+          } else {
+            var previous = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = function () {
+              if (typeof previous === 'function') previous();
+              createPlayer();
+            };
+            if (!document.getElementById('youtube-iframe-api')) {
+              var tag = document.createElement('script');
+              tag.id = 'youtube-iframe-api';
+              tag.src = 'https://www.youtube.com/iframe_api';
+              document.head.appendChild(tag);
+            }
+          }
+        })();
+      </script>
+    {% elsif has_mp4 %}
       <video
         class="kopilot-home-hero__media kopilot-home-hero__media--video"
         autoplay
@@ -116,8 +258,8 @@
     {
       "type": "text",
       "id": "video",
-      "label": "Background video URL (.mp4)",
-      "info": "Optional. Overrides background images when set."
+      "label": "Background video URL",
+      "info": "Optional. Paste a YouTube link or a direct .mp4 URL. Overrides background images when set."
     },
     {
       "type": "header",
