@@ -4,6 +4,21 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
+/* Hide the iframe wrapper by default */
+.kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease; /* Smooth crossfade */
+}
+
+/* Only show the iframe when YouTube confirms it is actively playing */
+.kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap.is-playing {
+  opacity: 1;
+}
+
 @media screen and (max-width: 1024px) {
   .kopilot-hero--{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -196,17 +211,26 @@
                       iframe.style.pointerEvents = 'none';
                     }
                   },
-                  onStateChange: function (event) {
-                    /* Keep playing — pause state shows the big center button */
-                    if (event.data === YT.PlayerState.PAUSED) {
-                      event.target.playVideo();
-                    }
-                    if (event.data === YT.PlayerState.ENDED) {
-                      event.target.seekTo(0);
-                      event.target.playVideo();
-                    }
-                  }
-                }
+             onStateChange: function (event) {
+  var wrap = document.querySelector('.kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap');
+  
+  /* State 1 = PLAYING. Reveal the video. */
+  if (event.data === YT.PlayerState.PLAYING) {
+    if (wrap) wrap.classList.add('is-playing');
+  } else {
+    /* Any other state (Paused, Buffering, Ended). Hide the video. */
+    if (wrap) wrap.classList.remove('is-playing');
+    
+    /* Keep trying to force play */
+    if (event.data === YT.PlayerState.PAUSED) {
+      event.target.playVideo();
+    }
+    if (event.data === YT.PlayerState.ENDED) {
+      event.target.seekTo(0);
+      event.target.playVideo();
+    }
+  }
+}
               });
 
               /* Safety: if YouTube pauses itself, resume */
