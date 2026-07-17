@@ -1,3 +1,42 @@
+{% style %}
+/* --- YouTube Background Iframe Fix --- */
+.kopilot-hero2--{{ section.id }} .kopilot-hero2__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none !important;
+}
+
+.kopilot-hero2--{{ section.id }} .kopilot-hero2__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.kopilot-hero2--{{ section.id }} .kopilot-hero2__yt-wrap iframe,
+.kopilot-hero2--{{ section.id }} #KopilotHero2Yt-{{ section.id }} {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 */
+  min-height: 100%;
+  min-width: 177.77vh;
+  border: none;
+  pointer-events: none !important;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.kopilot-hero2--{{ section.id }} .kopilot-hero2__yt-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  background: transparent;
+}
+{% endstyle %}
+
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-hero2.css' | asset_url | stylesheet_tag }}
 
@@ -15,6 +54,95 @@
       >
         <source src="{{ section.settings.video }}" type="video/mp4">
       </video>
+    {% elsif section.settings.video_url != blank and section.settings.video_url.type == 'youtube' %}
+      {%- comment -%}
+        Do NOT use playlist= for looping — that is what shows the center prev/pause/next controls.
+        Loop is handled by the YouTube IFrame API on ENDED below.
+      {%- endcomment -%}
+      <div class="kopilot-hero2__yt-wrap">
+        <div
+          id="KopilotHero2Yt-{{ section.id }}"
+          data-youtube-id="{{ section.settings.video_url.id }}"
+        ></div>
+        <div class="kopilot-hero2__yt-shield" aria-hidden="true"></div>
+      </div>
+      <script>
+        (function () {
+          var sectionId = {{ section.id | json }};
+          var videoId = {{ section.settings.video_url.id | json }};
+          var playerId = 'KopilotHero2Yt-' + sectionId;
+
+          function createPlayer() {
+            if (!window.YT || !window.YT.Player) return;
+            var mount = document.getElementById(playerId);
+            if (!mount || mount.dataset.ytReady === '1') return;
+            mount.dataset.ytReady = '1';
+
+            var player = new YT.Player(playerId, {
+              videoId: videoId,
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                playsinline: 1,
+                rel: 0,
+                cc_load_policy: 0,
+                showinfo: 0
+              },
+              events: {
+                onReady: function (event) {
+                  event.target.mute();
+                  event.target.playVideo();
+                  var iframe = event.target.getIframe && event.target.getIframe();
+                  if (iframe) {
+                    iframe.setAttribute('tabindex', '-1');
+                    iframe.style.pointerEvents = 'none';
+                  }
+                },
+                onStateChange: function (event) {
+                  if (event.data === YT.PlayerState.PAUSED) {
+                    event.target.playVideo();
+                  }
+                  if (event.data === YT.PlayerState.ENDED) {
+                    event.target.seekTo(0);
+                    event.target.playVideo();
+                  }
+                }
+              }
+            });
+
+            setInterval(function () {
+              try {
+                if (player && typeof player.getPlayerState === 'function') {
+                  if (player.getPlayerState() === YT.PlayerState.PAUSED) {
+                    player.playVideo();
+                  }
+                }
+              } catch (e) {}
+            }, 1000);
+          }
+
+          if (window.YT && window.YT.Player) {
+            createPlayer();
+          } else {
+            var previous = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = function () {
+              if (typeof previous === 'function') previous();
+              createPlayer();
+            };
+            if (!document.getElementById('youtube-iframe-api')) {
+              var tag = document.createElement('script');
+              tag.id = 'youtube-iframe-api';
+              tag.src = 'https://www.youtube.com/iframe_api';
+              document.head.appendChild(tag);
+            }
+          }
+        })();
+      </script>
     {% else %}
       {% assign mobile_img = section.settings.background_image_mobile %}
       {% assign desktop_img = section.settings.background_image %}
@@ -124,6 +252,13 @@
       "id": "video",
       "label": "Background video URL (.mp4)",
       "info": "Paste a direct .mp4 URL. Video overrides the background image."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube Background Video",
+      "accept": ["youtube"],
+      "info": "YouTube may still show a center pause icon. For a clean background with zero player UI, use the .mp4 URL above instead (mp4 takes priority)."
     },
     {
       "type": "text",
