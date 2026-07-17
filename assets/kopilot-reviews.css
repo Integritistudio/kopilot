@@ -76,7 +76,9 @@
   letter-spacing: 0;
   vertical-align: middle;
 }
-
+.kopilot-reviews__inner {
+  padding:23px 0px;
+}
 .kopilot-reviews__based-on-icon {
   display: block;
   width: 1.7rem;
