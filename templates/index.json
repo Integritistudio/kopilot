@@ -405,6 +405,7 @@
         "pc1": {
           "type": "partner",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_62.jpg",
             "image_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
