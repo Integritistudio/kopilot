@@ -151,29 +151,15 @@
 .kopilot-home-partner-cta__card-media-bg {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background: #d9d9d9;
 }
 
-.kopilot-home-partner-cta__card-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(16.1rem, 88%);
-  max-height: 2.1rem;
-}
-
-.kopilot-home-partner-cta__card-logo img {
+.kopilot-home-partner-cta__card-media-bg img {
   display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 2.1rem;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .kopilot-home-partner-cta__card-body {
@@ -357,15 +343,6 @@
     padding: 2rem 1.2rem;
   }
 
-  .kopilot-home-partner-cta__card-logo {
-    width: min(26.7rem, 88%);
-    max-height: 3.6rem;
-  }
-
-  .kopilot-home-partner-cta__card-logo img {
-    max-height: 3.6rem;
-  }
-
   .kopilot-home-partner-cta__card-name,
   .kopilot-home-partner-cta__card-role,
   .kopilot-home-partner-cta__card-quote {
@@ -506,15 +483,6 @@
     width: 100%;
     max-width: 38.2rem;
     height: 16rem;
-  }
-
-  .kopilot-home-partner-cta__card-logo {
-    width: 26.7rem;
-    max-height: 3.6rem;
-  }
-
-  .kopilot-home-partner-cta__card-logo img {
-    max-height: 3.6rem;
   }
 
   .kopilot-home-partner-cta__card-name,
