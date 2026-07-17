@@ -21,22 +21,29 @@
 .kopilot-home-video--{{ section.id }} .kopilot-home-video__frame.is-playing .kopilot-home-video__poster {
   display: none !important;
 }
+
+.kopilot-home-video--{{ section.id }}.is-playing .kopilot-home-video__yt-wrap,
+.kopilot-home-video--{{ section.id }} .kopilot-home-video__frame.is-playing .kopilot-home-video__yt-wrap {
+  z-index: 2;
+}
 {% endstyle %}
 
 {%- liquid
   assign yt_id = blank
 
   if section.settings.youtube_video_url != blank and section.settings.youtube_video_url.type == 'youtube'
-    assign yt_id = section.settings.youtube_video_url.id
-  elsif section.settings.video_url != blank
-    assign raw_url = section.settings.video_url
+    assign yt_id = section.settings.youtube_video_url.id | strip
+  endif
+
+  if yt_id == blank and section.settings.video_url != blank
+    assign raw_url = section.settings.video_url | strip
     if raw_url contains 'youtube.com' or raw_url contains 'youtu.be'
       if raw_url contains 'youtu.be/'
-        assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first
+        assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first | strip
       elsif raw_url contains 'v='
-        assign yt_id = raw_url | split: 'v=' | last | split: '&' | first | split: '?' | first
+        assign yt_id = raw_url | split: 'v=' | last | split: '&' | first | split: '?' | first | strip
       elsif raw_url contains 'embed/'
-        assign yt_id = raw_url | split: 'embed/' | last | split: '?' | first | split: '&' | first
+        assign yt_id = raw_url | split: 'embed/' | last | split: '?' | first | split: '&' | first | strip
       endif
     endif
   endif
@@ -61,7 +68,7 @@
 {{ 'kopilot-home-video.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-home-video.js' | asset_url }}" defer></script>
 
-<section id="your-medical-info" class="kopilot-section kopilot-home-video kopilot-home-video--{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section class="kopilot-section kopilot-home-video kopilot-home-video--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-video__inner">
     <div class="kopilot-home-video__frame" data-kopilot-home-video>
       {% if section.settings.video != blank %}
