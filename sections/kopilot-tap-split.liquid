@@ -5,7 +5,14 @@
     
     <!-- COLUMN 1: LEFT MEDIA BLOCK -->
     <div class="kopilot-tap-media-col">
-      {% if section.settings.image != blank %}
+      {% if section.settings.gif != blank %}
+        <img 
+          src="{{ section.settings.gif | img_url: '1500x' }}" 
+          alt="{{ section.settings.heading | escape }}" 
+          loading="lazy"
+          class="kopilot-tap-hero-img"
+        >
+      {% elsif section.settings.image != blank %}
         <img 
           src="{{ section.settings.image | img_url: '1500x' }}" 
           alt="{{ section.settings.heading | escape }}" 
@@ -135,6 +142,12 @@
 {
   "name": "Kopilot Tap Split",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "gif",
+      "label": "GIF",
+      "info": "Takes priority over Square Image when set."
+    },
     {
       "type": "image_picker",
       "id": "image",
