@@ -23,7 +23,7 @@
   line-height: 95%;
   color: #000;
   text-align: center;
-  /* max-width: 20.7rem; */
+  max-width: 20.7rem;
 }
 
 .kopilot-home-activities__grid {
@@ -262,6 +262,10 @@
   .kopilot-home-activities__card.is-expanded .kopilot-home-activities__text {
     text-align: center;
   }
+  .kopilot-home-activities__heading.rte,
+.kopilot-home-activities__heading.rte * {
+  max-width: 100%;
+}
 }
 
 .kopilot-home-activities__nav {
