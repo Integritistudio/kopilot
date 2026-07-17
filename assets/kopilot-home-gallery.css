@@ -119,7 +119,7 @@
   .kopilot-home-gallery__heading.rte,
   .kopilot-home-gallery__heading.rte * {
     font-size: clamp(3.6rem, 5vw, 5.2rem);
-    max-width: min(98.5rem, 90%);
+    max-width:98.5rem;
   }
 
   .kopilot-home-gallery__item {
