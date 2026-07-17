@@ -64,7 +64,6 @@
   }
 }
 /* --- YouTube Background Iframe Fix --- */
-/* Scale + crop hides title bar, controls, and YouTube branding YouTube still injects */
 .kopilot-hero--{{ section.id }} .kopilot-hero__bg {
   position: absolute;
   inset: 0;
@@ -72,7 +71,15 @@
   pointer-events: none !important;
 }
 
-.kopilot-hero--{{ section.id }} .kopilot-hero__bg iframe.kopilot-hero__bg-video {
+.kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none !important;
+}
+
+.kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap iframe,
+.kopilot-hero--{{ section.id }} #KopilotHeroYt-{{ section.id }} {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,7 +89,7 @@
   min-width: 177.77vh;
   border: none;
   pointer-events: none !important;
-  /* Scale past the frame so top title + bottom chrome sit outside the crop */
+  /* Crop top title / bottom branding YouTube still draws at the edges */
   transform: translate(-50%, -50%) scale(1.5);
 }
 {% endstyle %}
@@ -131,16 +138,76 @@
       }}
    {% elsif has_video_url %}
       {% if section.settings.video_url.type == 'youtube' %}
-        <iframe
-          class="kopilot-hero__bg-video"
-          src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&disablekb=1&fs=0&cc_load_policy=0&playlist={{ section.settings.video_url.id }}&enablejsapi=1"
-          title="Background video"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          tabindex="-1"
-          aria-hidden="true"
-        ></iframe>
+        {%- comment -%}
+          Do NOT use playlist= for looping — that is what shows the center prev/pause/next controls.
+          Loop is handled by the YouTube IFrame API on ENDED below.
+        {%- endcomment -%}
+        <div class="kopilot-hero__yt-wrap">
+          <div
+            id="KopilotHeroYt-{{ section.id }}"
+            data-youtube-id="{{ section.settings.video_url.id }}"
+          ></div>
+        </div>
+        <script>
+          (function () {
+            var sectionId = {{ section.id | json }};
+            var videoId = {{ section.settings.video_url.id | json }};
+            var playerId = 'KopilotHeroYt-' + sectionId;
+
+            function createPlayer() {
+              if (!window.YT || !window.YT.Player) return;
+              var mount = document.getElementById(playerId);
+              if (!mount || mount.dataset.ytReady === '1') return;
+              mount.dataset.ytReady = '1';
+
+              new YT.Player(playerId, {
+                videoId: videoId,
+                playerVars: {
+                  autoplay: 1,
+                  mute: 1,
+                  controls: 0,
+                  disablekb: 1,
+                  fs: 0,
+                  iv_load_policy: 3,
+                  modestbranding: 1,
+                  playsinline: 1,
+                  rel: 0,
+                  cc_load_policy: 0,
+                  showinfo: 0
+                },
+                events: {
+                  onReady: function (event) {
+                    event.target.mute();
+                    event.target.playVideo();
+                  },
+                  onStateChange: function (event) {
+                    /* Restart without playlist= so prev/next UI never appears */
+                    if (event.data === YT.PlayerState.ENDED) {
+                      event.target.seekTo(0);
+                      event.target.playVideo();
+                    }
+                  }
+                }
+              });
+            }
+
+            if (window.YT && window.YT.Player) {
+              createPlayer();
+            } else {
+              var previous = window.onYouTubeIframeAPIReady;
+              window.onYouTubeIframeAPIReady = function () {
+                if (typeof previous === 'function') previous();
+                createPlayer();
+              };
+              if (!document.getElementById('youtube-iframe-api')) {
+                var tag = document.createElement('script');
+                tag.id = 'youtube-iframe-api';
+                tag.src = 'https://www.youtube.com/iframe_api';
+                document.head.appendChild(tag);
+              }
+            }
+          })();
+        </script>
       {% endif %}
     {% else %}
       <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
