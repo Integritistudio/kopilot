@@ -107,20 +107,17 @@
           image_size: '1920x',
           preload: 'metadata'
       }}
-    {% elsif has_video_url %}
-      <video
-        class="kopilot-hero__bg-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        {% if hero_video_poster != blank %}
-          poster="{{ hero_video_poster | image_url: width: 1920 }}"
-        {% endif %}
-      >
-        <source src="{{ section.settings.video_url }}" type="video/mp4">
-      </video>
+   {% elsif has_video_url %}
+      {% if section.settings.video_url.type == 'youtube' %}
+        <iframe
+          class="kopilot-hero__bg-video"
+          src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&controls=0&playlist={{ section.settings.video_url.id }}&playsinline=1&modestbranding=1"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          style="pointer-events: none;"
+        ></iframe>
+      {% endif %}
     {% else %}
       <div class="kopilot-hero__bg-image kopilot-hero__bg-image--desktop">
         {% render 'kopilot-image',
