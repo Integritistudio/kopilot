@@ -303,7 +303,7 @@
 }
 @media screen and (min-width: 1441px) {
   .kopilot-home-closing__inner {
-    min-height: 140rem; /* Increase as needed */
+    min-height: 100rem;
     padding: 0;
   }
 }
