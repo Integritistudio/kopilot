@@ -75,7 +75,8 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  pointer-events: none !important;
+  /* Allow the shield above the iframe to catch hover (re-enabled on child) */
+  pointer-events: auto;
 }
 
 .kopilot-hero--{{ section.id }} .kopilot-hero__yt-wrap iframe,
@@ -91,6 +92,15 @@
   pointer-events: none !important;
   /* Crop top title / bottom branding YouTube still draws at the edges */
   transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Blocks hover so YouTube never paints the center pause button */
+.kopilot-hero--{{ section.id }} .kopilot-hero__yt-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  background: transparent;
 }
 {% endstyle %}
 
@@ -147,6 +157,7 @@
             id="KopilotHeroYt-{{ section.id }}"
             data-youtube-id="{{ section.settings.video_url.id }}"
           ></div>
+          <div class="kopilot-hero__yt-shield" aria-hidden="true"></div>
         </div>
         <script>
           (function () {
@@ -160,7 +171,7 @@
               if (!mount || mount.dataset.ytReady === '1') return;
               mount.dataset.ytReady = '1';
 
-              new YT.Player(playerId, {
+              var player = new YT.Player(playerId, {
                 videoId: videoId,
                 playerVars: {
                   autoplay: 1,
@@ -179,9 +190,17 @@
                   onReady: function (event) {
                     event.target.mute();
                     event.target.playVideo();
+                    var iframe = event.target.getIframe && event.target.getIframe();
+                    if (iframe) {
+                      iframe.setAttribute('tabindex', '-1');
+                      iframe.style.pointerEvents = 'none';
+                    }
                   },
                   onStateChange: function (event) {
-                    /* Restart without playlist= so prev/next UI never appears */
+                    /* Keep playing — pause state shows the big center button */
+                    if (event.data === YT.PlayerState.PAUSED) {
+                      event.target.playVideo();
+                    }
                     if (event.data === YT.PlayerState.ENDED) {
                       event.target.seekTo(0);
                       event.target.playVideo();
@@ -189,6 +208,17 @@
                   }
                 }
               });
+
+              /* Safety: if YouTube pauses itself, resume */
+              setInterval(function () {
+                try {
+                  if (player && typeof player.getPlayerState === 'function') {
+                    if (player.getPlayerState() === YT.PlayerState.PAUSED) {
+                      player.playVideo();
+                    }
+                  }
+                } catch (e) {}
+              }, 1000);
             }
 
             if (window.YT && window.YT.Player) {
@@ -356,7 +386,7 @@
       "id": "video_url",
       "label": "YouTube Background Video",
       "accept": ["youtube"],
-      "info": "Paste your YouTube link here."
+      "info": "YouTube may still show a center pause icon. For a clean background with zero player UI, upload the video above instead (upload takes priority)."
     },
     {
       "type": "header",
