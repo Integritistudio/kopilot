@@ -6,7 +6,15 @@
     
     <!-- COLUMN 1: LEFT MEDIA BLOCK -->
     <div class="kopilot-split-media-col">
-      {% if section.settings.image != blank %}
+      {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: 
+            autoplay: true, 
+            loop: true, 
+            muted: true, 
+            playsinline: true, 
+            class: 'kopilot-split-hero-video' 
+        }}
+      {% elsif section.settings.image != blank %}
         <img 
           src="{{ section.settings.image | img_url: '1500x' }}" 
           alt="{{ section.settings.heading | escape }}" 
@@ -60,7 +68,7 @@
     gap: {{ section.settings.column_gap }}px; /* Fully Dynamic Column Spacing Gap Control */
   }
 
-  /* Column 1: Asymmetric Left Image Structure */
+  /* Column 1: Asymmetric Left Image/Video Structure */
   .kopilot-split-media-col {
     width: 636px; /* Exact Spec Boundary Box */
     height: 550px;
@@ -68,7 +76,8 @@
     flex-shrink: 0;
   }
 
-  .kopilot-split-hero-img {
+  .kopilot-split-hero-img,
+  .kopilot-split-hero-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -188,7 +197,7 @@
       max-width: 360px;
     }
 
-    /* Left Image goes completely full-bleed edge to edge */
+    /* Left Image/Video goes completely full-bleed edge to edge */
     .kopilot-split-media-col {
       width: 100%;
       height: 300px;
@@ -231,9 +240,15 @@
   "name": "Kopilot Asymmetric Split",
   "settings": [
     {
+      "type": "video",
+      "id": "video",
+      "label": "Left Hero Video (Overrides Image)",
+      "info": "Upload an MP4 to loop like a GIF."
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Left Hero Image"
+      "label": "Left Hero Image Fallback"
     },
     {
       "type": "text",
