@@ -405,7 +405,7 @@
         "pc1": {
           "type": "partner",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_62.jpg",
+            "image": "shopify://shop_images/Group_2106667225.jpg",
             "image_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
@@ -416,6 +416,7 @@
         "pc2": {
           "type": "partner",
           "settings": {
+            "image": "shopify://shop_images/IMG_3288_1_3.svg",
             "image_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
@@ -447,6 +448,44 @@
         "button_link": "shopify://products/emergency-nfc-tag-testing-product",
         "tagline": "The tag that brings you home."
       }
+    },
+    "kopilot_home_partner_cta_7pRjgm": {
+      "type": "kopilot-home-partner-cta",
+      "blocks": {
+        "partner_DhQrxV": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_62.jpg",
+            "image_alt": "",
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        },
+        "partner_BLVpDV": {
+          "type": "partner",
+          "settings": {
+            "image_alt": "",
+            "name": "Name",
+            "role": "Role at partner organization",
+            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
+            "stat": "Embedded into 5,000 race bibs across the 2025 series"
+          }
+        }
+      },
+      "block_order": [
+        "partner_DhQrxV",
+        "partner_BLVpDV"
+      ],
+      "name": "Kopilot Home Partner CTA",
+      "settings": {
+        "color_scheme": "",
+        "heading": "<p>Partner with KOPILOT.ID.</p>",
+        "text": "<p>Integrate custom digital emergency ID's with your event, brand, or organization.</p>",
+        "button_label": "Become a partner",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -460,6 +499,7 @@
     "kopilot_home_gallery",
     "kopilot_home_outdoors",
     "kopilot_home_partner_cta",
-    "kopilot_home_closing"
+    "kopilot_home_closing",
+    "kopilot_home_partner_cta_7pRjgm"
   ]
 }
