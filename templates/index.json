@@ -20,7 +20,7 @@
         "heading_mobile": "<p>Your Critical Emergency Information <span>Just A Tap Away</span></p>",
         "description": "KOPILOT.ID emergency medical ID uses NFC technology to store your medical + emergency contact information and make it easily accessible in the event of an emergency.",
         "button_primary_label": "Get KOPILOT.ID",
-        "button_primary_link": "#kopilot-product-tiers",
+        "button_primary_link": "shopify://products/emergency-nfc-tag-testing-product",
         "button_secondary_label": "See how it works",
         "button_secondary_link": ""
       }
@@ -192,6 +192,7 @@
       "type": "kopilot-home-video",
       "settings": {
         "color_scheme": "scheme-1",
+        "youtube_video_url": "",
         "video_url": "",
         "overlay_image": "shopify://shop_images/Screenshot_2026-04-23-12-11-20-277_com.kopilotid.kopilot_3_2.png",
         "overlay_image_mobile": "shopify://shop_images/Group_2106667203_2.png",
@@ -405,8 +406,7 @@
         "pc1": {
           "type": "partner",
           "settings": {
-            "logo": "shopify://shop_images/Polygon_1.svg",
-            "logo_alt": "",
+            "image_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
@@ -416,8 +416,7 @@
         "pc2": {
           "type": "partner",
           "settings": {
-            "logo": "shopify://shop_images/Polygon_1.svg",
-            "logo_alt": "",
+            "image_alt": "",
             "name": "Name",
             "role": "Role at partner organization",
             "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
