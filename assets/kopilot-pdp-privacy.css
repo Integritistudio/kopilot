@@ -55,10 +55,8 @@
   line-height: 1.5;
   color: #000;
 }
-
-/* Nudge body text down so its cap height optically matches the large Elza heading */
 .kopilot-pdp-privacy__text {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 /* Tablet: 768px–1439px */
