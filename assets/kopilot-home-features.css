@@ -400,18 +400,7 @@
   }
 
   .kopilot-home-features__media--desktop {
-    position: relative;
-    aspect-ratio: unset;
+    aspect-ratio: auto;
     height: auto;
-    min-height: 0;
-    align-self: stretch;
-  }
-
-  .kopilot-home-features__media--desktop img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 }
