@@ -390,3 +390,17 @@
     display: none;
   }
 }
+
+/* Laptop: 1024px–1439px — flush media top & right like 1440 */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .kopilot-home-features__inner {
+    align-items: stretch;
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  .kopilot-home-features__media--desktop {
+    aspect-ratio: auto;
+    height: auto;
+  }
+}
