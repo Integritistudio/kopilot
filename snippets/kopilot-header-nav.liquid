@@ -1,6 +1,6 @@
 <div class="header_navigation_inner {{ logo_position }}">
 <ul class="parent_wrapper">
-    {% if request.page_type == 'index' %}
+    {% if request.page_type == 'index' or request.page_type == 'product' %}
         {% for link in home_menu.links %}
 <li class="parent_li">
 <a class="parent_link text_decoration" aria-label="{{ link.title }}" href="{{ link.url }}">
