@@ -20,7 +20,7 @@
     <div class="mobile_menu_drawer_content_wrapper">
 <ul class="mobile_parent_ul">
         {% if kopilot_nav %}
-          {% if request.page_type == 'index' %}
+          {% if request.page_type == 'index' or request.page_type == 'product' %}
 <li class="mobile_parent_li">
 <a href="/#kopilot-what-is-kopilot" aria-label="What Is Kopilot" class="mobile_parent_link">What Is Kopilot</a>
 </li>
