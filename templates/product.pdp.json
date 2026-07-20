@@ -142,6 +142,20 @@
         "bg_color": "#ffffff"
       }
     },
+    "kopilot_pdp_privacy_mjFtVk": {
+      "type": "kopilot-pdp-privacy",
+      "settings": {
+        "visibility": "mobile",
+        "color_scheme": "scheme-1",
+        "icon": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_2.png",
+        "heading": "Built with privacy in mind.",
+        "text": "<p>Choose what's visible, update your profile anytime, and manage everything directly from the app. If a tag is ever lost, you can deactivate it instantly.</p>",
+        "padding_top": 47,
+        "padding_bottom": 47,
+        "padding_top_mobile": 31,
+        "padding_bottom_mobile": 31
+      }
+    },
     "features_grid_3UECwt": {
       "type": "features-grid",
       "blocks": {
@@ -207,6 +221,7 @@
     "kopilot_pdp_privacy_64q4yR": {
       "type": "kopilot-pdp-privacy",
       "settings": {
+        "visibility": "desktop",
         "color_scheme": "scheme-1",
         "icon": "shopify://shop_images/Screenshot_2026-04-21_at_17.17.14_2.png",
         "heading": "Built with privacy in mind.",
@@ -504,6 +519,7 @@
     "kopilot_home_partners_chryza",
     "kopilot_emergencies_split_tJELqh",
     "kopilot_tap_split_A6Lbhy",
+    "kopilot_pdp_privacy_mjFtVk",
     "features_grid_3UECwt",
     "kopilot_pdp_privacy_64q4yR",
     "kopilot_home_testimonials_tnMUzC",
