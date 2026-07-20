@@ -51,13 +51,45 @@ class KopilotHomeTestimonials {
       watchOverflow: true,
       resistanceRatio: 0,
       navigation,
+      on: {
+        init: (swiper) => this.updateNavButtons(swiper),
+        slideChange: (swiper) => this.updateNavButtons(swiper),
+        reachEnd: (swiper) => this.updateNavButtons(swiper),
+        fromEdge: (swiper) => this.updateNavButtons(swiper),
+        resize: (swiper) => this.updateNavButtons(swiper),
+      },
     });
+  }
+
+  updateNavButtons(swiper) {
+    const atStart = swiper.isBeginning || swiper.activeIndex <= 0;
+    const atEnd =
+      swiper.isEnd ||
+      swiper.activeIndex >= swiper.slides.length - 1 ||
+      Math.abs(swiper.translate - swiper.maxTranslate()) < 1;
+
+    if (this.prevBtn) {
+      this.prevBtn.disabled = atStart;
+      this.prevBtn.setAttribute('aria-disabled', String(atStart));
+    }
+    if (this.nextBtn) {
+      this.nextBtn.disabled = atEnd;
+      this.nextBtn.setAttribute('aria-disabled', String(atEnd));
+    }
   }
 
   destroySwiper() {
     if (!this.swiper) return;
     this.swiper.destroy(true, true);
     this.swiper = null;
+    if (this.prevBtn) {
+      this.prevBtn.disabled = false;
+      this.prevBtn.removeAttribute('aria-disabled');
+    }
+    if (this.nextBtn) {
+      this.nextBtn.disabled = false;
+      this.nextBtn.removeAttribute('aria-disabled');
+    }
   }
 
   destroy() {
