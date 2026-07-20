@@ -268,7 +268,7 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.02em;
-  /* text-transform: uppercase; */
+  text-transform: uppercase;
 }
 
 .kopilot-pdp__included {
@@ -524,7 +524,8 @@ font-family:'Elza';
   .kopilot-pdp__gallery-cell {
     min-height: clamp(220px, 28vw, 340px);
   }
-   .kopilot-pdp__included-pills {
+
+  .kopilot-pdp__included-pills {
     width: 100%;
   }
 }
@@ -533,6 +534,10 @@ font-family:'Elza';
   .kopilot-pdp__layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, min(516px, 42vw));
     align-items: start;
+  }
+
+  .kopilot-pdp__included-pills {
+    width: 100%;
   }
 }
 
