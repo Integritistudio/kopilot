@@ -85,6 +85,47 @@
   .kopilot-features-media-col { width: 733px; height: 710px; flex-shrink: 0; }
   .kopilot-features-hero-img { width: 100%; height: 100%; object-fit: cover; }
 
+  /* Mid desktop: keep side-by-side but let the image scale */
+  @media screen and (min-width: 1025px) and (max-width: 1370px) {
+    .kopilot-features-container {
+      padding-left: clamp(24px, 5vw, 72px);
+      gap: clamp(24px, 3.5vw, 73px);
+    }
+
+    .kopilot-features-text-col {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .kopilot-features-heading {
+      font-size: clamp(36px, 4vw, 60px);
+      margin-bottom: clamp(24px, 3vw, 40px);
+    }
+
+    .kopilot-features-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(12px, 1.5vw, 20px);
+      width: 100%;
+    }
+
+    .kopilot-feature-item {
+      width: 100%;
+    }
+
+    .kopilot-feature-text {
+      font-size: clamp(14px, 1.5vw, 20px);
+    }
+
+    .kopilot-features-media-col {
+      width: clamp(320px, 48vw, 733px);
+      height: auto;
+      aspect-ratio: 733 / 710;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+  }
+
   @media screen and (max-width: 1024px) {
     #kopilot-features-section-{{ section.id }} {
       padding-top: 37px;
