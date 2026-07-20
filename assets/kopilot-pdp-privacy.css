@@ -56,6 +56,11 @@
   color: #000;
 }
 
+/* Nudge body text down so its cap height optically matches the large Elza heading */
+.kopilot-pdp-privacy__text {
+  margin-top: 5px;
+}
+
 /* Tablet: 768px–1439px */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .kopilot-pdp-privacy__inner {
