@@ -25,69 +25,63 @@
         "button_secondary_link": "#your-medical-info"
       }
     },
-    "kopilot_home_partners": {
+    "kopilot_home_partners_G9RAUW": {
       "type": "kopilot-home-partners",
       "blocks": {
-        "hp1": {
+        "logo_AJRxp6": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/Group_2106667238.png",
-            "logo_alt": "Breck EPIC",
+            "logo_alt": "",
             "logo_width": 185,
             "logo_height": 68,
             "logo_width_mobile": 116,
             "logo_height_mobile": 44
           }
         },
-        "hp2": {
+        "logo_gxh8KK": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659501.png",
-            "logo_alt": "Transrockies Race Series",
+            "logo_alt": "",
             "logo_width": 185,
             "logo_height": 68,
             "logo_width_mobile": 116,
             "logo_height_mobile": 44
           }
         },
-        "hp3": {
+        "logo_AgmMcL": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659503_a31b3f09-1333-498c-8ce3-32d6e74556cd.png",
-            "logo_alt": "Bighorn Gravel",
+            "logo_alt": "",
             "logo_width": 110,
             "logo_height": 84,
             "logo_width_mobile": 68,
             "logo_height_mobile": 52
           }
         },
-        "hp4": {
+        "logo_jHwykp": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659500_150d60a6-0d01-4b9b-b2ef-9a02f3f87d09.png",
-            "logo_alt": "NHHA",
+            "logo_alt": "",
             "logo_width": 70,
             "logo_height": 68,
             "logo_width_mobile": 44,
             "logo_height_mobile": 44
           }
         },
-        "hp5": {
+        "logo_p4Qmcy": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659484_75719cfe-6034-4e6f-9950-edc3598fb3d2.png",
-            "logo_alt": "National Hare and Hound",
+            "logo_alt": "",
             "logo_width": 95,
             "logo_height": 84,
             "logo_width_mobile": 56,
             "logo_height_mobile": 52
           }
         },
-        "hp6": {
+        "logo_LEEnQY": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/image_18659485_73b9c127-eef5-444f-94a4-d2ebbc6776e5.png",
-            "logo_alt": "West Hare Scrambles",
+            "logo_alt": "",
             "logo_width": 95,
             "logo_height": 84,
             "logo_width_mobile": 56,
@@ -96,15 +90,16 @@
         }
       },
       "block_order": [
-        "hp1",
-        "hp2",
-        "hp3",
-        "hp4",
-        "hp5",
-        "hp6"
+        "logo_AJRxp6",
+        "logo_gxh8KK",
+        "logo_AgmMcL",
+        "logo_jHwykp",
+        "logo_p4Qmcy",
+        "logo_LEEnQY"
       ],
+      "name": "Kopilot Home Partners",
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "",
         "text": "Trusted by riders, racers, and event partners across North America."
       }
     },
@@ -452,7 +447,7 @@
   },
   "order": [
     "kopilot_home_hero",
-    "kopilot_home_partners",
+    "kopilot_home_partners_G9RAUW",
     "kopilot_home_image_text",
     "kopilot_home_features",
     "kopilot_home_video",
