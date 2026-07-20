@@ -49,6 +49,7 @@ class KopilotHomeTestimonials {
       spaceBetween: 55,
       grabCursor: true,
       watchOverflow: true,
+      resistanceRatio: 0,
       navigation,
     });
   }
