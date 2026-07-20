@@ -71,8 +71,10 @@
   display: block;
 }
 
-.kopilot-home-partners__logos > .kopilot-home-partners__logos-row:first-child > .kopilot-home-partners__logo:first-child .kopilot-home-partners__logo-media {
-  height: 55px;
+@media screen and (max-width: 767px) {
+  .kopilot-home-partners__logos > .kopilot-home-partners__logos-row:first-child > .kopilot-home-partners__logo:first-child .kopilot-home-partners__logo-media {
+    height: 55px;
+  }
 }
 
 /* Tablet: 768px–1439px */
