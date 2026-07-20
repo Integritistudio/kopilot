@@ -268,7 +268,7 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .kopilot-pdp__included {
