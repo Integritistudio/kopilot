@@ -524,6 +524,9 @@ font-family:'Elza';
   .kopilot-pdp__gallery-cell {
     min-height: clamp(220px, 28vw, 340px);
   }
+   .kopilot-pdp__included-pills {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1439px) {
