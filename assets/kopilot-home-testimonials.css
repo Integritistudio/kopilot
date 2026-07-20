@@ -46,7 +46,7 @@
 .kopilot-home-testimonials__swiper {
   overflow: visible;
   padding-left: 0;
-  padding-right: max(0px, calc((100vw - 30.338rem) / 2));
+  padding-right: 0;
   box-sizing: border-box;
 }
 
