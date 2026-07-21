@@ -23,11 +23,19 @@
           "settings": {
             "logo_alt": ""
           }
+        },
+        "logo_93yRbn": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/US_Hard_Enduro_Logo.avif",
+            "logo_alt": ""
+          }
         }
       },
       "block_order": [
         "logo_pcH7Wc",
-        "logo_1"
+        "logo_1",
+        "logo_93yRbn"
       ],
       "settings": {
         "color_scheme": "scheme-1",
