@@ -201,7 +201,7 @@
         "act1": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/566132510237f8fa9b256333ddcd9473c0f0f8b8.jpg",
+            "image": "shopify://shop_images/attachment_6.webp",
             "category": "Motorcycling",
             "title": "Go full throttle.",
             "text": "Built tough to handle crashes, weather, and high speeds.",
@@ -211,7 +211,7 @@
         "act2": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/cfa934cdf8509285f4bfc2b669d85f66ee0fa1e1.png",
+            "image": "shopify://shop_images/attachment_7.webp",
             "category": "Trail running",
             "title": "Cover the distance.",
             "text": "GPS location helps them find you faster, even deep on a trail.",
@@ -221,7 +221,7 @@
         "act3": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/fa196ced4c739163317d576728c38c965d398f7e.png",
+            "image": "shopify://shop_images/attachment_8.webp",
             "category": "Cycling",
             "title": "Ride out of range.",
             "text": "Ready for crashes, weather, and long rides.",
@@ -231,7 +231,7 @@
         "act4": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/7ae75e7e50dba8f99bfe22484d263ca67f2d4064.png",
+            "image": "shopify://shop_images/attachment_9.webp",
             "category": "Mountain biking",
             "title": "Send it harder.",
             "text": "GPS helps them find you, even in dense brush and remote terrain.",
@@ -242,7 +242,7 @@
           "type": "activity",
           "settings": {
             "image": "shopify://shop_images/2d63660181a7fdb29fb2601f0eeeb015ff5f633a.jpg",
-            "category": "Winter sports",
+            "category": "Snow sports",
             "title": "Drop in deeper.",
             "text": "Accessible even in remote mountains without signal.",
             "overlay_opacity": 30
@@ -251,7 +251,7 @@
         "act6": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/24eca08e58d941ac868506142b419dc640df4e27.png",
+            "image": "shopify://shop_images/attachment_10.webp",
             "category": "Hiking",
             "title": "Push further out.",
             "text": "Built for long days off-grid without charging or batteries.",
