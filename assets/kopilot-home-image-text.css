@@ -1,333 +1,247 @@
-{% liquid
-  assign align_desktop = section.settings.text_alignment_desktop
-  assign align_mobile = section.settings.text_alignment_mobile
-
-  if align_desktop == 'left'
-    assign items_desktop = 'flex-start'
-  elsif align_desktop == 'right'
-    assign items_desktop = 'flex-end'
-  else
-    assign items_desktop = 'center'
-  endif
-
-  if align_mobile == 'left'
-    assign items_mobile = 'flex-start'
-  elsif align_mobile == 'right'
-    assign items_mobile = 'flex-end'
-  else
-    assign items_mobile = 'center'
-  endif
-
-  /* --- MOBILE VIDEO FALLBACK --- */
-  if section.settings.video_mobile != blank
-    assign active_mobile_video = section.settings.video_mobile
-  else
-    assign active_mobile_video = section.settings.video
-  endif
-
-  /* --- INTRINSIC RATIO CALCULATIONS (PREVENTS COLLAPSE) --- */
-  assign desktop_aspect = 1.0
-  if section.settings.video != blank
-    assign desktop_aspect = section.settings.video.aspect_ratio | default: 1.0
-  elsif section.settings.image != blank
-    assign desktop_aspect = section.settings.image.aspect_ratio | default: 1.0
-  endif
-  assign desktop_padding = 100.0 | divided_by: desktop_aspect
-
-  assign mobile_aspect = 1.0
-  if active_mobile_video != blank
-    assign mobile_aspect = active_mobile_video.aspect_ratio | default: 1.0
-  elsif section.settings.image_mobile != blank
-    assign mobile_aspect = section.settings.image_mobile.aspect_ratio | default: 1.0
-  elsif section.settings.image != blank
-    assign mobile_aspect = section.settings.image.aspect_ratio | default: 1.0
-  endif
-  assign mobile_padding = 100.0 | divided_by: mobile_aspect
-%}
-
-{% style %}
-  /* --- NUKE ALL BOTTOM GAPS --- */
-  .kopilot-home-image-text--{{ section.id }} {
-    padding-bottom: 0px !important;
-    margin-bottom: 0px !important;
-  }
-  
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__inner {
-    padding-bottom: 0px !important;
-    margin-bottom: 0px !important;
-  }
-
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
-    align-items: {{ items_mobile }};
-    text-align: {{ align_mobile }};
-  }
-
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading *,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text * {
-    text-align: {{ align_mobile }};
-  }
-
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte p,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte ul li,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte ol li,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text.rte strong {
-    font-family: {{ section.settings.text_font_family }}, sans-serif;
-  }
-
-  /* --- STRIP INHERENT SPACING & OVERRIDE HARDCODED THEME RATIOS --- */
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media {
-    aspect-ratio: auto !important;
-    height: auto !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-    display: flex !important; /* Disables baseline rendering completely */
-  }
-
-  /* --- BULLETPROOF INTRINSIC VIDEO WRAPPER --- */
-  .kopilot-intrinsic-video-wrapper {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: var(--video-padding-mobile); /* Forces height based on width */
-    overflow: hidden;
-    display: block;
-    margin: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-  }
-
-  /* Target the video, and any fallback images directly */
-  .kopilot-intrinsic-video,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media img,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-    display: block !important;
-    margin: 0 !important;
-    vertical-align: bottom !important; /* Kills the tiny 4px baseline gap */
-  }
-
-  @media screen and (min-width: 768px) {
-    .kopilot-home-image-text--{{ section.id }} {
-      padding-bottom: 0px !important; 
-    }
-
-    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
-      align-items: {{ items_desktop }};
-      text-align: {{ align_desktop }};
-    }
-
-    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading,
-    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__heading *,
-    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text,
-    .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text * {
-      text-align: {{ align_desktop }};
-    }
-
-    .kopilot-intrinsic-video-wrapper {
-      padding-bottom: var(--video-padding-desktop);
-    }
-  }
-{% endstyle %}
-
-{{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
-{{ 'kopilot-home-image-text.css' | asset_url | stylesheet_tag }}
-
-<section id="you-need-help" class="kopilot-section kopilot-home-image-text kopilot-home-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="kopilot-home-image-text__inner">
-    
-    <!-- DESKTOP MEDIA -->
-    <div class="kopilot-home-image-text__media kopilot-home-image-text__media--desktop">
-      {% if section.settings.video != blank %}
-        <div class="kopilot-intrinsic-video-wrapper" style="--video-padding-desktop: {{ desktop_padding }}%; --video-padding-mobile: {{ mobile_padding }}%;">
-          {{ section.settings.video | video_tag: 
-            autoplay: true, 
-            loop: true, 
-            muted: true, 
-            playsinline: true, 
-            controls: false,
-            class: 'kopilot-intrinsic-video' 
-          }}
-        </div>
-      {% else %}
-        {% render 'kopilot-image',
-          image: section.settings.image,
-          fallback: 'image18659487.png',
-          alt: section.settings.image_alt,
-          width: 1392,
-          widths: '696,1100,1392',
-          sizes: '(min-width: 768px) 696px, 0px'
-        %}
-      {% endif %}
-    </div>
-
-    <!-- MOBILE MEDIA -->
-    <div class="kopilot-home-image-text__media kopilot-home-image-text__media--mobile">
-      {% if active_mobile_video != blank %}
-        <div class="kopilot-intrinsic-video-wrapper" style="--video-padding-desktop: {{ desktop_padding }}%; --video-padding-mobile: {{ mobile_padding }}%;">
-          {{ active_mobile_video | video_tag: 
-            autoplay: true, 
-            loop: true, 
-            muted: true, 
-            playsinline: true, 
-            controls: false,
-            class: 'kopilot-intrinsic-video' 
-          }}
-        </div>
-      {% else %}
-        {% render 'kopilot-image',
-          image: section.settings.image_mobile,
-          fallback: 'image18659487.png',
-          alt: section.settings.image_alt,
-          width: 806,
-          widths: '360,403,750,806',
-          sizes: '(max-width: 767px) 403px, 0px'
-        %}
-      {% endif %}
-    </div>
-
-    <div class="kopilot-home-image-text__content">
-      {% if section.settings.heading != blank %}
-        <div class="kopilot-home-image-text__heading rte">
-          {{ section.settings.heading }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.text != blank %}
-        <div class="kopilot-home-image-text__text rte">
-          {{ section.settings.text }}
-        </div>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-{% schema %}
-{
-  "name": "Kopilot Home Image Text",
-  "tag": "section",
-  "class": "kopilot-home-image-text-section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "video",
-      "id": "video",
-      "label": "Video (desktop & default mobile)",
-      "info": "Takes priority over desktop image. If mobile video is blank, this will also be used on mobile."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image (desktop)"
-    },
-    {
-      "type": "video",
-      "id": "video_mobile",
-      "label": "Video (mobile override)",
-      "info": "Optional. Shown on screens ≤767px. Falls back to desktop video if empty."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Image (mobile override)",
-      "info": "Optional. Shown on screens ≤767px. Falls back to desktop image if empty."
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "label": "Image/Video alt text",
-      "default": "Mountain biker receiving help after a fall"
-    },
-    {
-      "type": "select",
-      "id": "text_alignment_desktop",
-      "label": "Text alignment (desktop)",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "select",
-      "id": "text_alignment_mobile",
-      "label": "Text alignment (mobile)",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "text_font_family",
-      "label": "Text font family",
-      "options": [
-        { "value": "Figtree", "label": "Figtree" },
-        { "value": "Elza", "label": "Elza" },
-        { "value": "Inter", "label": "Inter" },
-        { "value": "Roboto", "label": "Roboto" },
-        { "value": "Open Sans", "label": "Open Sans" },
-        { "value": "Lato", "label": "Lato" }
-      ],
-      "default": "Figtree"
-    },
-    {
-      "type": "richtext",
-      "id": "heading",
-      "label": "Heading",
-      "default": "<p>When you need help, every second counts.</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Your phone is locked. Your wallet is buried in your gear. The people trying to help may have no way to know your allergies, medical conditions, medications, or who to contact. A smartphone tap on your NFC tag changes that instantly.</p><p><strong>KOPILOT.ID removes the guesswork.</strong></p>"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom padding (desktop)",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "default": 0,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Bottom padding (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "default": 0,
-      "unit": "px"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kopilot Home Image Text"
-    }
-  ]
+.kopilot-home-image-text {
+  background: #fff;
 }
-{% endschema %}
+
+.kopilot-home-image-text__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.6rem;
+  width: 100%;
+  max-width: 144rem;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.kopilot-home-image-text__media {
+  flex: none;
+  overflow: hidden;
+  display: flex; /* Kills baseline gap natively */
+}
+
+.kopilot-home-image-text__media--desktop {
+  display: none;
+}
+
+.kopilot-home-image-text__media--mobile {
+  display: block;
+  width: min(40.3rem, 100%);
+  height: auto; /* Fixed: Removed rigid 40.8rem height */
+}
+
+.kopilot-home-image-text__media img,
+.kopilot-home-image-text__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.kopilot-home-image-text__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: min(28.8rem, calc(100% - 3.2rem));
+  box-sizing: border-box;
+}
+
+.kopilot-home-image-text__heading,
+.kopilot-home-image-text__heading p {
+  margin: 0;
+  width: 100%;
+  max-width: 27.1rem;
+  font-family: Elza, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 110%;
+  letter-spacing: -0.1rem;
+  color: #000;
+}
+
+.kopilot-home-image-text__text,
+.kopilot-home-image-text__text p {
+  margin: 0;
+  width: 100%;
+  max-width: 28.8rem;
+  font-family: Figtree, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 120%;
+  color: #000;
+}
+
+.kopilot-home-image-text__text p + p {
+  margin-top: 0;
+}
+
+.kopilot-home-image-text__text strong {
+  font-weight: 700;
+  line-height: 220%;
+}
+
+.kopilot-home-image-text__text.rte a,
+.kopilot-home-image-text__text.rte a * {
+  font-family: Elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: inherit;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: auto;
+  text-decoration-skip-ink: auto;
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablet: 768px–1439px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .kopilot-home-image-text__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(3.2rem, 5vw, 6rem);
+    min-height: 0;
+  }
+
+  .kopilot-home-image-text__media--desktop {
+    display: block;
+    min-width: 48%;
+    height: auto;
+    aspect-ratio: auto; /* Fixed: Prevents aspect-ratio blowout */
+    flex-shrink: 0;
+  }
+
+  .kopilot-home-image-text__media--mobile {
+    display: none;
+  }
+
+  .kopilot-home-image-text__content {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: min(48%, 48rem);
+    padding: 0;
+  }
+
+  .kopilot-home-image-text__heading,
+  .kopilot-home-image-text__heading p {
+    max-width: 100%;
+    font-size: clamp(3.2rem, 4.2vw, 4.8rem);
+    line-height: 110%;
+    letter-spacing: -0.1rem;
+  }
+
+  .kopilot-home-image-text__text,
+  .kopilot-home-image-text__text p {
+    max-width: 100%;
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    line-height: 120%;
+  }
+}
+
+/* Small Tablet Override: 768px–1023px */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .kopilot-home-image-text__inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.6rem;
+    padding: 0 clamp(1.6rem, 4vw, 3.2rem);
+  }
+
+  .kopilot-home-image-text__media--desktop {
+    display: none;
+  }
+
+  .kopilot-home-image-text__media--mobile {
+    display: block;
+    width: min(40.3rem, 100%);
+    height: auto;
+    aspect-ratio: auto; /* Fixed: Prevents mobile blowout */
+  }
+
+  .kopilot-home-image-text__content {
+    flex: none;
+    width: min(32rem, calc(100% - 3.2rem));
+    max-width: 32rem;
+    padding: 0 1.6rem;
+  }
+
+  .kopilot-home-image-text__heading,
+  .kopilot-home-image-text__heading p {
+    max-width: 27.1rem;
+    font-size: clamp(2.8rem, 4.5vw, 3.4rem);
+  }
+
+  .kopilot-home-image-text__text,
+  .kopilot-home-image-text__text p {
+    max-width: 28.8rem;
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+  }
+}
+
+/* Transition Layout */
+@media screen and (min-width: 700px) and (max-width: 768px) {
+  .kopilot-home-image-text__inner {
+    flex-direction: row;
+    padding-left: 0;
+  }
+}
+
+/* Desktop: 1440px+ */
+@media screen and (min-width: 1440px) {
+  .kopilot-home-image-text__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9rem;
+    padding: 0 9.4rem 0 0;
+    min-height: auto; /* Fixed: Removed 70.4rem rigid height */
+  }
+
+  .kopilot-home-image-text__media--desktop {
+    display: block;
+    width: 69.6rem;
+    height: auto; /* Fixed: Removed 70.4rem rigid height */
+    flex-shrink: 0;
+  }
+
+  .kopilot-home-image-text__media--mobile {
+    display: none;
+  }
+
+  .kopilot-home-image-text__content {
+    flex: 0 1 56.1rem;
+    width: min(56.1rem, 39%);
+    max-width: 56.1rem;
+    padding: 0;
+  }
+
+  .kopilot-home-image-text__heading,
+  .kopilot-home-image-text__heading p {
+    max-width: 56.1rem;
+    font-size: 6rem;
+    line-height: 110%;
+    letter-spacing: -0.1rem;
+  }
+
+  .kopilot-home-image-text__text,
+  .kopilot-home-image-text__text p {
+    max-width: 40.7rem;
+    font-size: 2rem;
+    line-height: 120%;
+  }
+
+  .kopilot-home-image-text__text.rte a,
+  .kopilot-home-image-text__text.rte a * {
+    font-size: 2rem;
+    line-height: 100%;
+  }
+}
