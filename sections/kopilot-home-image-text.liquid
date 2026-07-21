@@ -17,6 +17,32 @@
   else
     assign items_mobile = 'center'
   endif
+
+  if section.settings.image != blank
+    assign desktop_aspect = section.settings.image.aspect_ratio
+  elsif section.settings.video != blank
+    assign desktop_aspect = section.settings.video.aspect_ratio
+  else
+    assign desktop_aspect = 1.33
+  endif
+
+  if section.settings.image_mobile != blank
+    assign mobile_aspect = section.settings.image_mobile.aspect_ratio
+  elsif section.settings.image != blank
+    assign mobile_aspect = section.settings.image.aspect_ratio
+  elsif section.settings.video_mobile != blank
+    assign mobile_aspect = section.settings.video_mobile.aspect_ratio
+  elsif section.settings.video != blank
+    assign mobile_aspect = section.settings.video.aspect_ratio
+  else
+    assign mobile_aspect = 1.0
+  endif
+
+  if section.settings.video_mobile != blank
+    assign active_mobile_video = section.settings.video_mobile
+  else
+    assign active_mobile_video = section.settings.video
+  endif
 %}
 
 {% style %}
@@ -45,36 +71,21 @@
   }
 
   /* --- MEDIA LOCK SIZING --- */
-  /* Ensures the video behaves exactly like the standard image sizes */
   .kopilot-media-video {
     width: 100%;
-    height: auto;
     display: block;
+    object-fit: cover;
   }
 
-  /* Force desktop video to match the exact proportion of the desktop image */
-  {% if section.settings.image != blank %}
   .kopilot-home-image-text__media--desktop .kopilot-media-video {
-    aspect-ratio: {{ section.settings.image.aspect_ratio }};
+    aspect-ratio: {{ desktop_aspect }};
     height: 100%;
-    object-fit: cover;
   }
-  {% endif %}
 
-  /* Force mobile video to match mobile image proportion (or fallback to desktop proportion) */
-  {% if section.settings.image_mobile != blank %}
   .kopilot-home-image-text__media--mobile .kopilot-media-video {
-    aspect-ratio: {{ section.settings.image_mobile.aspect_ratio }};
+    aspect-ratio: {{ mobile_aspect }};
     height: 100%;
-    object-fit: cover;
   }
-  {% elsif section.settings.image != blank %}
-  .kopilot-home-image-text__media--mobile .kopilot-media-video {
-    aspect-ratio: {{ section.settings.image.aspect_ratio }};
-    height: 100%;
-    object-fit: cover;
-  }
-  {% endif %}
 
   @media screen and (min-width: 768px) {
     .kopilot-home-image-text--{{ section.id }} {
@@ -126,8 +137,8 @@
 
     <!-- MOBILE MEDIA -->
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--mobile">
-      {% if section.settings.video_mobile != blank %}
-        {{ section.settings.video_mobile | video_tag: 
+      {% if active_mobile_video != blank %}
+        {{ active_mobile_video | video_tag: 
           autoplay: true, 
           loop: true, 
           muted: true, 
@@ -181,8 +192,8 @@
     {
       "type": "video",
       "id": "video",
-      "label": "Video (desktop)",
-      "info": "Takes priority over desktop image. Leave an image selected below to lock the exact layout size."
+      "label": "Video (desktop & default mobile)",
+      "info": "Takes priority over desktop image. If mobile video is blank, this will also be used on mobile."
     },
     {
       "type": "image_picker",
@@ -192,14 +203,14 @@
     {
       "type": "video",
       "id": "video_mobile",
-      "label": "Video (mobile)",
-      "info": "Shown on screens ≤767px. Takes priority over mobile image."
+      "label": "Video (mobile override)",
+      "info": "Optional. Shown on screens ≤767px. Falls back to desktop video if empty."
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Image (mobile)",
-      "info": "Shown on screens ≤767px. Falls back to desktop image if empty."
+      "label": "Image (mobile override)",
+      "info": "Optional. Shown on screens ≤767px. Falls back to desktop image if empty."
     },
     {
       "type": "text",
