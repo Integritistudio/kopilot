@@ -107,6 +107,7 @@
       "type": "kopilot-home-image-text",
       "settings": {
         "color_scheme": "scheme-1",
+        "video": "shopify://files/videos/Tapping Tag.mp4",
         "image": "shopify://shop_images/image_18659487_1.png",
         "image_mobile": "shopify://shop_images/image_18659487_2.png",
         "image_alt": "Mountain biker receiving help after a fall",
@@ -175,8 +176,8 @@
       ],
       "settings": {
         "color_scheme": "scheme-4",
-        "image": "shopify://shop_images/e93c4dc51c024f4cd0e81f6d48f78e58f1f63925.jpg",
-        "image_mobile": "shopify://shop_images/image_18659468_1.png",
+        "image": "shopify://shop_images/attachment_5.webp",
+        "image_mobile": "shopify://shop_images/image_18659468.png",
         "image_alt": "KOPILOT.ID tag on helmet",
         "heading": "<p>Designed for any conditions you're willing to brave.</p>",
         "show_heading_mobile": false,

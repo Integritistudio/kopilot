@@ -44,13 +44,37 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
-  /* Ensures native video tags match image behavior */
+  /* --- MEDIA LOCK SIZING --- */
+  /* Ensures the video behaves exactly like the standard image sizes */
   .kopilot-media-video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
+
+  /* Force desktop video to match the exact proportion of the desktop image */
+  {% if section.settings.image != blank %}
+  .kopilot-home-image-text__media--desktop .kopilot-media-video {
+    aspect-ratio: {{ section.settings.image.aspect_ratio }};
+    height: 100%;
+    object-fit: cover;
+  }
+  {% endif %}
+
+  /* Force mobile video to match mobile image proportion (or fallback to desktop proportion) */
+  {% if section.settings.image_mobile != blank %}
+  .kopilot-home-image-text__media--mobile .kopilot-media-video {
+    aspect-ratio: {{ section.settings.image_mobile.aspect_ratio }};
+    height: 100%;
+    object-fit: cover;
+  }
+  {% elsif section.settings.image != blank %}
+  .kopilot-home-image-text__media--mobile .kopilot-media-video {
+    aspect-ratio: {{ section.settings.image.aspect_ratio }};
+    height: 100%;
+    object-fit: cover;
+  }
+  {% endif %}
 
   @media screen and (min-width: 768px) {
     .kopilot-home-image-text--{{ section.id }} {
@@ -158,7 +182,7 @@
       "type": "video",
       "id": "video",
       "label": "Video (desktop)",
-      "info": "Takes priority over desktop image when set."
+      "info": "Takes priority over desktop image. Leave an image selected below to lock the exact layout size."
     },
     {
       "type": "image_picker",
