@@ -137,6 +137,7 @@
       "type": "kopilot-tap-split",
       "name": "Kopilot Tap Split",
       "settings": {
+        "video": "shopify://files/videos/Tapping Tag.mp4",
         "image": "shopify://shop_images/kopilot-pdp-tap.jpg",
         "heading": "Your critical emergency information in one tap.",
         "bg_color": "#ffffff"
