@@ -211,7 +211,7 @@
 
   .kopilot-home-hero__inner {
     min-height: clamp(58rem, 53.7vw, 77.369rem);
-    padding: clamp(8rem, 11.875vw, 17.1rem) clamp(2.4rem, 7.7vw, 11.1rem);
+    /* padding: clamp(8rem, 11.875vw, 17.1rem) clamp(2.4rem, 7.7vw, 11.1rem); */
     justify-content: flex-start;
   }
 
@@ -274,10 +274,6 @@
     width: auto;
     min-width: 27.7rem;
     border-width: 0.1rem;
-  }
-  .kopilot-home-hero__inner {
-    padding:0px 0px;
-    margin: 0 auto !important;
   }
 }
 
