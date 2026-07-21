@@ -46,7 +46,7 @@
 {% style %}
   /* --- NUKE ALL BOTTOM GAPS --- */
   .kopilot-home-image-text--{{ section.id }} {
-    padding-bottom: 0px !important;
+    padding-bottom: 0px !important; /* Overrides saved Shopify slider settings */
     margin-bottom: 0px !important;
   }
   
@@ -75,15 +75,12 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
-  /* --- STRIP INHERENT SPACING & OVERRIDE HARDCODED THEME RATIOS --- */
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media {
-    aspect-ratio: auto !important;
-    height: auto !important;
+  /* --- STRIP ALL INHERENT MEDIA SPACING --- */
+  .kopilot-home-image-text__media {
     line-height: 0 !important;
     font-size: 0 !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
-    display: flex !important; /* Disables baseline rendering completely */
   }
 
   /* --- BULLETPROOF INTRINSIC VIDEO WRAPPER --- */
@@ -96,27 +93,22 @@
     display: block;
     margin: 0 !important;
     line-height: 0 !important;
-    font-size: 0 !important;
   }
 
-  /* Target the video, and any fallback images directly */
-  .kopilot-intrinsic-video,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media img,
-  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media video {
+  .kopilot-intrinsic-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    display: block !important;
+    display: block;
     margin: 0 !important;
-    vertical-align: bottom !important; /* Kills the tiny 4px baseline gap */
   }
 
   @media screen and (min-width: 768px) {
     .kopilot-home-image-text--{{ section.id }} {
-      padding-bottom: 0px !important; 
+      padding-bottom: 0px !important; /* Overrides saved Shopify slider settings */
     }
 
     .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
