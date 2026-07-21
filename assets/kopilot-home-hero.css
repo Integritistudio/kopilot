@@ -317,3 +317,8 @@
     padding: 1.834rem 4rem;
   }
 }
+@media screen and (max-width: 768px) {
+.kopilot-home-hero__inner {
+  margin:0 auto;
+}
+}
