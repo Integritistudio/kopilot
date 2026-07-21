@@ -214,11 +214,19 @@
         <div class="header_action_wrapper">
           <div class="header_kopilot_actions">
             <!-- KOPILOT CTA BUTTON -->
-            {% if section.settings.cta_button_url != blank %}
-              {% assign cta_href = section.settings.cta_button_url %}
-            {% else %}
-              {% assign cta_href = '/#kopilot-product-tiers' %}
-            {% endif %}
+            {% liquid
+              assign cta_href = section.settings.cta_button_url
+
+              if template.suffix == 'lp1' and section.settings.cta_button_url_lp1 != blank
+                assign cta_href = section.settings.cta_button_url_lp1
+              elsif template.suffix == 'lp2' and section.settings.cta_button_url_lp2 != blank
+                assign cta_href = section.settings.cta_button_url_lp2
+              endif
+
+              if cta_href == blank
+                assign cta_href = '/#kopilot-product-tiers'
+              endif
+            %}
             <a
               href="{{ cta_href }}"
               class="header_kopilot_cta"
@@ -699,8 +707,20 @@
     {
       "type": "url",
       "id": "cta_button_url",
-      "label": "CTA button link",
-      "info": "Leave blank to scroll to product tiers on the homepage"
+      "label": "CTA button link (default)",
+      "info": "Used on all pages except LP1 and LP2. Leave blank to scroll to product tiers on the homepage."
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url_lp1",
+      "label": "CTA button link — LP1 page",
+      "info": "Used only on the LP1 landing page (page.lp1 template). Leave blank to use the default link."
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url_lp2",
+      "label": "CTA button link — LP2 page",
+      "info": "Used only on the LP2 landing page (page.lp2 template). Leave blank to use the default link."
     },
     {
       "type": "color",
