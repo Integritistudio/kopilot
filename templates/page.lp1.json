@@ -310,6 +310,7 @@
         "c1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/attachment_1.webp",
             "title": "Your Information, Ready in Seconds",
             "text": "<p>Your profile stores your medical information and emergency contacts. Anyone with a smartphone can access it in an emergency.</p>"
           }
@@ -317,6 +318,7 @@
         "c2": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/attachment_2.webp",
             "title": "Quick to Set Up & Easy to Attach",
             "text": "<p>Setup takes a minute, and you only need to add the information you're willing to share. Then, attach it to your gear with one of the included mounts.</p>"
           }
