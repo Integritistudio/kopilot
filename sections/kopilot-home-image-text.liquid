@@ -18,26 +18,6 @@
     assign items_mobile = 'center'
   endif
 
-  if section.settings.image != blank
-    assign desktop_aspect = section.settings.image.aspect_ratio
-  elsif section.settings.video != blank
-    assign desktop_aspect = section.settings.video.aspect_ratio
-  else
-    assign desktop_aspect = 1.33
-  endif
-
-  if section.settings.image_mobile != blank
-    assign mobile_aspect = section.settings.image_mobile.aspect_ratio
-  elsif section.settings.image != blank
-    assign mobile_aspect = section.settings.image.aspect_ratio
-  elsif section.settings.video_mobile != blank
-    assign mobile_aspect = section.settings.video_mobile.aspect_ratio
-  elsif section.settings.video != blank
-    assign mobile_aspect = section.settings.video.aspect_ratio
-  else
-    assign mobile_aspect = 1.0
-  endif
-
   if section.settings.video_mobile != blank
     assign active_mobile_video = section.settings.video_mobile
   else
@@ -70,22 +50,19 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
-  /* --- MEDIA LOCK SIZING --- */
+  /* --- BULLETPROOF VIDEO LOCK --- */
+  /* This prevents the video from blowing out the flexbox layout */
+  .kopilot-home-image-text__media {
+    min-width: 0 !important; 
+    flex-shrink: 1 !important;
+  }
+  
   .kopilot-media-video {
-    width: 100%;
-    height: auto; /* Changed from 100% to auto */
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important; 
     display: block;
     object-fit: cover;
-  }
-
-  .kopilot-home-image-text__media--desktop .kopilot-media-video {
-    aspect-ratio: {{ desktop_aspect }};
-    /* Removed height: 100% */
-  }
-
-  .kopilot-home-image-text__media--mobile .kopilot-media-video {
-    aspect-ratio: {{ mobile_aspect }};
-    /* Removed height: 100% */
   }
 
   @media screen and (min-width: 768px) {
