@@ -15,12 +15,14 @@
         "logo_pcH7Wc": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/image_18659484_2.svg",
             "logo_alt": ""
           }
         },
         "logo_1": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/image_18659485_1.svg",
             "logo_alt": ""
           }
         },
