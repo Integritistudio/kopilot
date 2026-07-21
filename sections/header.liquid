@@ -215,20 +215,19 @@
           <div class="header_kopilot_actions">
             <!-- KOPILOT CTA BUTTON -->
             {% liquid
-              assign cta_href = section.settings.cta_button_url
-
-              if template.suffix == 'lp1' and section.settings.cta_button_url_lp1 != blank
+              if template.suffix == 'lp1'
                 assign cta_href = section.settings.cta_button_url_lp1
-              elsif template.suffix == 'lp2' and section.settings.cta_button_url_lp2 != blank
+              elsif template.suffix == 'lp2'
                 assign cta_href = section.settings.cta_button_url_lp2
-              endif
-
-              if cta_href == blank
-                assign cta_href = '/#kopilot-product-tiers'
+              else
+                assign cta_href = section.settings.cta_button_url
+                if cta_href == blank
+                  assign cta_href = '/#kopilot-product-tiers'
+                endif
               endif
             %}
             <a
-              href="{{ cta_href }}"
+              {% if cta_href != blank %}href="{{ cta_href }}"{% endif %}
               class="header_kopilot_cta"
               aria-label="{{ section.settings.cta_button_text }}"
             >
