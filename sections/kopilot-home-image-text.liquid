@@ -68,6 +68,13 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
+  /* --- STRIP ALL INHERENT MEDIA SPACING --- */
+  .kopilot-home-image-text__media {
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   /* --- BULLETPROOF INTRINSIC VIDEO WRAPPER --- */
   .kopilot-intrinsic-video-wrapper {
     position: relative;
@@ -76,6 +83,8 @@
     padding-bottom: var(--video-padding-mobile); /* Forces height based on width */
     overflow: hidden;
     display: block;
+    margin: 0;
+    line-height: 0;
   }
 
   .kopilot-intrinsic-video {
@@ -85,6 +94,8 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
+    display: block;
+    margin: 0;
   }
 
   @media screen and (min-width: 768px) {
@@ -291,7 +302,7 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 48,
+      "default": 0,
       "unit": "px"
     }
   ],
