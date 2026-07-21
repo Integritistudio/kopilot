@@ -23,6 +23,24 @@
   else
     assign active_mobile_video = section.settings.video
   endif
+
+  assign desktop_aspect = 1.0
+  if section.settings.video != blank
+    assign desktop_aspect = section.settings.video.aspect_ratio | default: 1.0
+  elsif section.settings.image != blank
+    assign desktop_aspect = section.settings.image.aspect_ratio | default: 1.0
+  endif
+  assign desktop_padding = 100.0 | divided_by: desktop_aspect
+
+  assign mobile_aspect = 1.0
+  if active_mobile_video != blank
+    assign mobile_aspect = active_mobile_video.aspect_ratio | default: 1.0
+  elsif section.settings.image_mobile != blank
+    assign mobile_aspect = section.settings.image_mobile.aspect_ratio | default: 1.0
+  elsif section.settings.image != blank
+    assign mobile_aspect = section.settings.image.aspect_ratio | default: 1.0
+  endif
+  assign mobile_padding = 100.0 | divided_by: mobile_aspect
 %}
 
 {% style %}
@@ -50,18 +68,22 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
-  /* --- BULLETPROOF VIDEO LOCK --- */
-  /* This prevents the video from blowing out the flexbox layout */
-  .kopilot-home-image-text__media {
-    min-width: 0 !important; 
-    flex-shrink: 1 !important;
-  }
-  
-  .kopilot-media-video {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important; 
+  /* --- BULLETPROOF INTRINSIC VIDEO WRAPPER --- */
+  .kopilot-intrinsic-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: var(--video-padding-mobile); /* Forces height based on width */
+    overflow: hidden;
     display: block;
+  }
+
+  .kopilot-intrinsic-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
   }
 
@@ -81,6 +103,10 @@
     .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__text * {
       text-align: {{ align_desktop }};
     }
+
+    .kopilot-intrinsic-video-wrapper {
+      padding-bottom: var(--video-padding-desktop);
+    }
   }
 {% endstyle %}
 
@@ -93,14 +119,16 @@
     <!-- DESKTOP MEDIA -->
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--desktop">
       {% if section.settings.video != blank %}
-        {{ section.settings.video | video_tag: 
-          autoplay: true, 
-          loop: true, 
-          muted: true, 
-          playsinline: true, 
-          controls: false,
-          class: 'kopilot-media-video' 
-        }}
+        <div class="kopilot-intrinsic-video-wrapper" style="--video-padding-desktop: {{ desktop_padding }}%; --video-padding-mobile: {{ mobile_padding }}%;">
+          {{ section.settings.video | video_tag: 
+            autoplay: true, 
+            loop: true, 
+            muted: true, 
+            playsinline: true, 
+            controls: false,
+            class: 'kopilot-intrinsic-video' 
+          }}
+        </div>
       {% else %}
         {% render 'kopilot-image',
           image: section.settings.image,
@@ -116,14 +144,16 @@
     <!-- MOBILE MEDIA -->
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--mobile">
       {% if active_mobile_video != blank %}
-        {{ active_mobile_video | video_tag: 
-          autoplay: true, 
-          loop: true, 
-          muted: true, 
-          playsinline: true, 
-          controls: false,
-          class: 'kopilot-media-video' 
-        }}
+        <div class="kopilot-intrinsic-video-wrapper" style="--video-padding-desktop: {{ desktop_padding }}%; --video-padding-mobile: {{ mobile_padding }}%;">
+          {{ active_mobile_video | video_tag: 
+            autoplay: true, 
+            loop: true, 
+            muted: true, 
+            playsinline: true, 
+            controls: false,
+            class: 'kopilot-intrinsic-video' 
+          }}
+        </div>
       {% else %}
         {% render 'kopilot-image',
           image: section.settings.image_mobile,
