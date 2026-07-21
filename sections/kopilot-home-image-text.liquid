@@ -73,18 +73,19 @@
   /* --- MEDIA LOCK SIZING --- */
   .kopilot-media-video {
     width: 100%;
+    height: auto; /* Changed from 100% to auto */
     display: block;
     object-fit: cover;
   }
 
   .kopilot-home-image-text__media--desktop .kopilot-media-video {
     aspect-ratio: {{ desktop_aspect }};
-    height: 100%;
+    /* Removed height: 100% */
   }
 
   .kopilot-home-image-text__media--mobile .kopilot-media-video {
     aspect-ratio: {{ mobile_aspect }};
-    height: 100%;
+    /* Removed height: 100% */
   }
 
   @media screen and (min-width: 768px) {
