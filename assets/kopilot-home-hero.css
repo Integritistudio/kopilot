@@ -317,7 +317,7 @@
     padding: 1.834rem 4rem;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 .kopilot-home-hero__inner {
   padding:0px;
   margin:0px auto;
