@@ -44,8 +44,15 @@
 %}
 
 {% style %}
+  /* --- NUKE ALL BOTTOM GAPS --- */
   .kopilot-home-image-text--{{ section.id }} {
-    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-bottom: 0px !important; /* Overrides saved Shopify slider settings */
+    margin-bottom: 0px !important;
+  }
+  
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__inner {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
   }
 
   .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
@@ -73,6 +80,7 @@
     line-height: 0 !important;
     font-size: 0 !important;
     margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   /* --- BULLETPROOF INTRINSIC VIDEO WRAPPER --- */
@@ -83,8 +91,8 @@
     padding-bottom: var(--video-padding-mobile); /* Forces height based on width */
     overflow: hidden;
     display: block;
-    margin: 0;
-    line-height: 0;
+    margin: 0 !important;
+    line-height: 0 !important;
   }
 
   .kopilot-intrinsic-video {
@@ -95,12 +103,12 @@
     height: 100% !important;
     object-fit: cover;
     display: block;
-    margin: 0;
+    margin: 0 !important;
   }
 
   @media screen and (min-width: 768px) {
     .kopilot-home-image-text--{{ section.id }} {
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-bottom: 0px !important; /* Overrides saved Shopify slider settings */
     }
 
     .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__content {
