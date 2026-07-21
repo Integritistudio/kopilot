@@ -170,6 +170,7 @@
         "c1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/attachment_4.webp",
             "title": "Your Emergency Information, Delivered Instantly",
             "text": "<p>Your profile contains your medical and emergency contact information. Anyone with a smartphone can access it in an emergency.</p>"
           }
@@ -184,6 +185,7 @@
         "c3": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_61.jpg",
             "title": "Everything Managed in One App",
             "text": "<p>Manage tags, gear setups, family members, and receive scan notifications with location — all in one free, easy-to-use app.</p>"
           }
