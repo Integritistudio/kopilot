@@ -275,6 +275,10 @@
     min-width: 27.7rem;
     border-width: 0.1rem;
   }
+  .kopilot-home-hero__inner {
+    padding:0px 0px;
+    margin: 0 auto !important;
+  }
 }
 
 @media screen and (min-width: 1440px) {
