@@ -3,15 +3,16 @@
 <div class="kopilot-tap-section" id="kopilot-tap-section-{{ section.id }}">
   <div class="kopilot-tap-container">
     
-    <!-- COLUMN 1: LEFT MEDIA BLOCK -->
     <div class="kopilot-tap-media-col">
-      {% if section.settings.gif != blank %}
-        <img 
-          src="{{ section.settings.gif | img_url: '1500x' }}" 
-          alt="{{ section.settings.heading | escape }}" 
-          loading="lazy"
-          class="kopilot-tap-hero-img"
-        >
+      {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: 
+          autoplay: true, 
+          loop: true, 
+          muted: true, 
+          playsinline: true, 
+          controls: false,
+          class: 'kopilot-tap-hero-img' 
+        }}
       {% elsif section.settings.image != blank %}
         <img 
           src="{{ section.settings.image | img_url: '1500x' }}" 
@@ -24,7 +25,6 @@
       {% endif %}
     </div>
 
-    <!-- COLUMN 2: RIGHT TEXT CONTENT -->
     <div class="kopilot-tap-text-col">
       <div class="kopilot-tap-content-wrapper">
         <h2 class="kopilot-tap-heading">{{ section.settings.heading }}</h2>
@@ -65,6 +65,7 @@
     flex-shrink: 0;
   }
 
+  /* Applies perfectly to both <img> and <video> tags due to object-fit: cover */
   .kopilot-tap-hero-img {
     width: 100%;
     height: 100%;
@@ -143,10 +144,10 @@
   "name": "Kopilot Tap Split",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "gif",
-      "label": "GIF",
-      "info": "Takes priority over Square Image when set."
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Takes priority over Square Image when set. Acts like a seamless GIF."
     },
     {
       "type": "image_picker",
