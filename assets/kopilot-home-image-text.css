@@ -29,6 +29,11 @@
   width: min(40.3rem, 100%);
   height: 40.8rem;
 }
+/* --- OVERRIDE HARDCODED THEME ASPECT RATIOS --- */
+  .kopilot-home-image-text--{{ section.id }} .kopilot-home-image-text__media {
+    aspect-ratio: auto !important;
+    height: auto !important;
+  }
 
 .kopilot-home-image-text__media img {
   width: 100%;
