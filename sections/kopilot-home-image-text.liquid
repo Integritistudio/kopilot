@@ -44,6 +44,14 @@
     font-family: {{ section.settings.text_font_family }}, sans-serif;
   }
 
+  /* Ensures native video tags match image behavior */
+  .kopilot-media-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   @media screen and (min-width: 768px) {
     .kopilot-home-image-text--{{ section.id }} {
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -68,25 +76,51 @@
 
 <section id="you-need-help" class="kopilot-section kopilot-home-image-text kopilot-home-image-text--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-image-text__inner">
+    
+    <!-- DESKTOP MEDIA -->
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--desktop">
-      {% render 'kopilot-image',
-        image: section.settings.image,
-        fallback: 'image18659487.png',
-        alt: section.settings.image_alt,
-        width: 1392,
-        widths: '696,1100,1392',
-        sizes: '(min-width: 768px) 696px, 0px'
-      %}
+      {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: 
+          autoplay: true, 
+          loop: true, 
+          muted: true, 
+          playsinline: true, 
+          controls: false,
+          class: 'kopilot-media-video' 
+        }}
+      {% else %}
+        {% render 'kopilot-image',
+          image: section.settings.image,
+          fallback: 'image18659487.png',
+          alt: section.settings.image_alt,
+          width: 1392,
+          widths: '696,1100,1392',
+          sizes: '(min-width: 768px) 696px, 0px'
+        %}
+      {% endif %}
     </div>
+
+    <!-- MOBILE MEDIA -->
     <div class="kopilot-home-image-text__media kopilot-home-image-text__media--mobile">
-      {% render 'kopilot-image',
-        image: section.settings.image_mobile,
-        fallback: 'image18659487.png',
-        alt: section.settings.image_alt,
-        width: 806,
-        widths: '360,403,750,806',
-        sizes: '(max-width: 767px) 403px, 0px'
-      %}
+      {% if section.settings.video_mobile != blank %}
+        {{ section.settings.video_mobile | video_tag: 
+          autoplay: true, 
+          loop: true, 
+          muted: true, 
+          playsinline: true, 
+          controls: false,
+          class: 'kopilot-media-video' 
+        }}
+      {% else %}
+        {% render 'kopilot-image',
+          image: section.settings.image_mobile,
+          fallback: 'image18659487.png',
+          alt: section.settings.image_alt,
+          width: 806,
+          widths: '360,403,750,806',
+          sizes: '(max-width: 767px) 403px, 0px'
+        %}
+      {% endif %}
     </div>
 
     <div class="kopilot-home-image-text__content">
@@ -121,9 +155,21 @@
       "default": "scheme-1"
     },
     {
+      "type": "video",
+      "id": "video",
+      "label": "Video (desktop)",
+      "info": "Takes priority over desktop image when set."
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "Image (desktop)"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video (mobile)",
+      "info": "Shown on screens ≤767px. Takes priority over mobile image."
     },
     {
       "type": "image_picker",
@@ -134,7 +180,7 @@
     {
       "type": "text",
       "id": "image_alt",
-      "label": "Image alt text",
+      "label": "Image/Video alt text",
       "default": "Mountain biker receiving help after a fall"
     },
     {
