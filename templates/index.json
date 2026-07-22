@@ -13,7 +13,6 @@
       "type": "kopilot-home-hero",
       "settings": {
         "color_scheme": "scheme-1",
-        "background_image": "shopify://shop_images/image_18659494_4.png",
         "background_image_mobile": "shopify://shop_images/image_18659494_6.png",
         "video": "https://cdn.shopify.com/videos/c/o/v/cd7a1e6e89a242cd9664a1730b1bf501.mp4",
         "heading_desktop": "<p>Your Critical Emergency<br>Information<br><span>Just A Tap Away</span></p>",
@@ -410,7 +409,7 @@
         "pc2": {
           "type": "partner",
           "settings": {
-            "image": "shopify://shop_images/IMG_3288_1_3.svg",
+            "image": "shopify://shop_images/Rectangle_64_1.png",
             "image_alt": "",
             "name": "Matt Musgrove",
             "role": "",
