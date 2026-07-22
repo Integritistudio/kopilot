@@ -426,8 +426,8 @@ padding:7.25px 18.29px;
     }
   }
 
-  /* 376–425: other slides need more height so bottom text isn’t cropped */
-  @media screen and (min-width: 376px) and (max-width: 425px) {
+  /* 376–767: same as 425 — taller other slides so bottom text isn’t cropped */
+  @media screen and (min-width: 376px) and (max-width: 767px) {
     .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) {
       min-height: 450px;
     }
@@ -436,17 +436,6 @@ padding:7.25px 18.29px;
     .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) .kopilot-pdp__gallery-image {
       height: 450px !important;
       min-height: 450px !important;
-      object-fit: cover !important;
-      width: 100% !important;
-    }
-  }
-
-  /* 426–767: other slides */
-  @media screen and (min-width: 426px) and (max-width: 767px) {
-    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) img,
-    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) .kopilot-pdp__gallery-image {
-      height: 400px !important;
-      min-height: 400px !important;
       object-fit: cover !important;
       width: 100% !important;
     }
