@@ -9,28 +9,35 @@
     background-color: transparent !important;
   }
 
-  /* 2. Force equal heights on Swiper slides and Grid items */
-  .kopilot-home-partner-cta--{{ section.id }} .swiper-slide {
-    height: auto !important; /* Crucial for Swiper to match the tallest slide */
-    display: flex;
-  }
+  /* 2. Force grid and swiper wrappers to stretch their children to equal heights */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__grid {
-    align-items: stretch;
+    align-items: stretch !important;
+  }
+  
+  .kopilot-home-partner-cta--{{ section.id }} .swiper-wrapper {
+    align-items: stretch !important;
+  }
+  
+  .kopilot-home-partner-cta--{{ section.id }} .swiper-slide {
+    height: auto !important; /* Overrides default Swiper fixed heights */
+    display: flex !important;
+    align-items: stretch !important;
   }
 
-  /* 3. Card layout: Stretch to full height of parent */
+  /* 3. Card layout: Stretch to full height of parent slide/grid item */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    flex: 1 1 auto !important; /* Forces the article to fill the slide space */
     width: 100%;
   }
 
-  /* 4. Body layout: Fill remaining space */
+  /* 4. Body layout: Fill remaining space inside the card */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
   }
 
   /* 5. Align stat line boxes to the bottom */
