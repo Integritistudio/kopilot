@@ -9,7 +9,18 @@
     background-color: transparent !important;
   }
 
-  /* 2. Force grid and swiper wrappers to stretch their children to equal heights */
+  /* 2. Prevent image cropping by forcing it to contain within the area */
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-media-bg {
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-media-img {
+    object-fit: contain !important;
+  }
+
+  /* 3. Force grid and swiper wrappers to stretch their children to equal heights */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__grid {
     align-items: stretch !important;
   }
@@ -24,7 +35,7 @@
     align-items: stretch !important;
   }
 
-  /* 3. Card layout: Stretch to full height of parent slide/grid item */
+  /* 4. Card layout: Stretch to full height of parent slide/grid item */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card {
     display: flex !important;
     flex-direction: column !important;
@@ -33,14 +44,14 @@
     width: 100%;
   }
 
-  /* 4. Body layout: Fill remaining space inside the card */
+  /* 5. Body layout: Fill remaining space inside the card */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-body {
     display: flex !important;
     flex-direction: column !important;
     flex-grow: 1 !important;
   }
 
-  /* 5. Align stat line boxes to the bottom */
+  /* 6. Align stat line boxes to the bottom */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-stat {
     margin-top: auto !important; /* Pushes the stat block to the very bottom */
   }
