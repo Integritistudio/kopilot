@@ -9,22 +9,33 @@
     background-color: transparent !important;
   }
 
-  /* 2. Align stat line boxes to the bottom */
+  /* 2. Force equal heights on Swiper slides and Grid items */
+  .kopilot-home-partner-cta--{{ section.id }} .swiper-slide {
+    height: auto !important; /* Crucial for Swiper to match the tallest slide */
+    display: flex;
+  }
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__grid {
+    align-items: stretch;
+  }
+
+  /* 3. Card layout: Stretch to full height of parent */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
   }
+
+  /* 4. Body layout: Fill remaining space */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
-  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-copy {
-    flex-grow: 1;
-  }
+
+  /* 5. Align stat line boxes to the bottom */
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-stat {
-    margin-top: auto;
+    margin-top: auto !important; /* Pushes the stat block to the very bottom */
   }
 </style>
 
