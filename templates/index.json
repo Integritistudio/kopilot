@@ -13,7 +13,8 @@
       "type": "kopilot-home-hero",
       "settings": {
         "color_scheme": "scheme-1",
-        "background_image_mobile": "shopify://shop_images/image_18659494_6.png",
+        "background_image": "shopify://shop_images/videoframe_0.png",
+        "background_image_mobile": "shopify://shop_images/videoframe_0.png",
         "video": "https://cdn.shopify.com/videos/c/o/v/cd7a1e6e89a242cd9664a1730b1bf501.mp4",
         "heading_desktop": "<p>Your Critical Emergency<br>Information<br><span>Just A Tap Away</span></p>",
         "heading_mobile": "<p>Your Critical Emergency Information <span>Just A Tap Away</span></p>",
