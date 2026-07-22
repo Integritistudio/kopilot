@@ -55,6 +55,22 @@
   .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-stat {
     margin-top: auto !important; /* Pushes the stat block to the very bottom */
   }
+
+  /* 7. Mobile optimizations for almost full-width cards */
+  @media screen and (max-width: 768px) {
+    .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__inner {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
+    
+    .kopilot-home-partner-cta--{{ section.id }} .swiper-slide {
+      width: 100% !important; /* Forces Swiper to let the slide fill the container */
+    }
+    
+    .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card {
+      max-width: 100% !important; /* Overrides any max-width constraints on mobile */
+    }
+  }
 </style>
 
 <section class="kopilot-section kopilot-home-partner-cta kopilot-home-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
