@@ -399,12 +399,12 @@
         "pc1": {
           "type": "partner",
           "settings": {
-            "image": "shopify://shop_images/Group_2106667225.jpg",
+            "image": "shopify://shop_images/Rectangle_64_8ae31a05-c969-4510-b4c1-132d8c3caca3.png",
             "image_alt": "",
-            "name": "Name",
-            "role": "Role at partner organization",
-            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
-            "stat": "e.g. \"Embedded into 5,000 race bibs across the 2025 series\""
+            "name": "Breck Epic",
+            "role": "",
+            "quote": "The universe sometimes makes its own plans, so we make safety a point of emphasis. That's we provide every Breck Epic rider with a KOPILOT.ID. So if the consequences of pinner-ism come knocking, our medical staff get a head start in the info department. When seconds may matter.",
+            "stat": "Breck Epic made KOPILOT.ID an essential part of their emergency response."
           }
         },
         "pc2": {
@@ -412,10 +412,10 @@
           "settings": {
             "image": "shopify://shop_images/IMG_3288_1_3.svg",
             "image_alt": "",
-            "name": "Name",
-            "role": "Role at partner organization",
-            "quote": "One-line testimonial from the partner (quote about what KOPILOT.ID does for their event or gear)",
-            "stat": "e.g. \"Embedded into 5,000 race bibs across the 2025 series\""
+            "name": "Matt Musgrove",
+            "role": "",
+            "quote": "The first race weekend that we implemented KOPILOT.ID as a part of our emergency response, it was used to quickly obtain an injured racer's emergency contact info. KOPILOT.ID is a simple solution that just makes sense.",
+            "stat": "KOPILOT.ID is found on every US Hard Enduro racer's helmet"
           }
         }
       },
