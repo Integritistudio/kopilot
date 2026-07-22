@@ -38,7 +38,7 @@
         "cta_button_text": "Get KOPILOT.ID",
         "cta_button_url": "shopify://products/emergency-nfc-tag-testing-product",
         "cta_button_url_lp1": "#kopilot-product-tiers",
-        "cta_button_url_lp2": "#",
+        "cta_button_url_lp2": "#kopilot-product-tiers",
         "cta_bg_color": "#ef0008",
         "cta_text_color": "#ffffff",
         "cart_icon": "shopify://shop_images/iconoir_cart.svg",
