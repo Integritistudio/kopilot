@@ -378,7 +378,8 @@ padding:7.25px 18.29px;
     }
   }
 
-  @media screen and (max-width: 767px) {
+  /* ≤360: all slides match the designed first-image framing */
+  @media screen and (max-width: 360px) {
     .kopilot-pdp__gallery-image,
     .kopilot-pdp__gallery-image img,
     .kopilot-pdp__gallery-mobile img,
@@ -389,8 +390,68 @@ padding:7.25px 18.29px;
       width: 100% !important;
     }
   }
-{% endstyle %}
 
+  /*
+    361–767: first slide scales with width (no cover crop).
+    Other slides use stepped heights by viewport width.
+  */
+  @media screen and (min-width: 361px) and (max-width: 767px) {
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide--first {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      min-height: 380px;
+    }
+
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide--first > .kopilot-pdp__gallery-image,
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide--first > img {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: 380px !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+  }
+
+  /* 361–375: other slides — 400px works */
+  @media screen and (min-width: 361px) and (max-width: 375px) {
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) img,
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) .kopilot-pdp__gallery-image {
+      height: 400px !important;
+      min-height: 400px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+  }
+
+  /* 376–425: other slides need more height so bottom text isn’t cropped */
+  @media screen and (min-width: 376px) and (max-width: 425px) {
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) {
+      min-height: 450px;
+    }
+
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) img,
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) .kopilot-pdp__gallery-image {
+      height: 450px !important;
+      min-height: 450px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+  }
+
+  /* 426–767: other slides */
+  @media screen and (min-width: 426px) and (max-width: 767px) {
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) img,
+    .kopilot-pdp__gallery-mobile .kopilot-pdp__carousel-slide:not(.kopilot-pdp__carousel-slide--first) .kopilot-pdp__gallery-image {
+      height: 400px !important;
+      min-height: 400px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
+  }
+{% endstyle %}
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-pdp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-pdp.js' | asset_url }}" defer></script>
