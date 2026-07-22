@@ -516,7 +516,7 @@ font-family:'Elza';
 
 @media screen and (min-width: 900px) and (max-width: 1024px) {
    .kopilot-pdp__layout {
-    grid-template-columns: 65% 35%;
+    grid-template-columns: 65% 30%;
     gap: clamp(20px, 3vw, 32px);
     align-items: start;
   }
