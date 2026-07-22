@@ -2,6 +2,32 @@
 {{ 'kopilot-home-partner-cta.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'kopilot-home-partner-cta.js' | asset_url }}" defer></script>
 
+<style>
+  /* 1. Remove grey background from the media area behind PNG logos */
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-media,
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-media-bg {
+    background-color: transparent !important;
+  }
+
+  /* 2. Align stat line boxes to the bottom */
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-copy {
+    flex-grow: 1;
+  }
+  .kopilot-home-partner-cta--{{ section.id }} .kopilot-home-partner-cta__card-stat {
+    margin-top: auto;
+  }
+</style>
+
 <section class="kopilot-section kopilot-home-partner-cta kopilot-home-partner-cta--{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div class="kopilot-home-partner-cta__inner">
     <div class="kopilot-home-partner-cta__layout">
@@ -201,7 +227,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image",
-          "info": "Fills the grey media area. No logo overlay."
+          "info": "Fills the media area. No logo overlay."
         },
         {
           "type": "text",
