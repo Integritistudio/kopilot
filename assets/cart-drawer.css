@@ -25,11 +25,12 @@
 
 
 .cart_drawer_wrapper.drawer_wrapper .drawer_wrapper_inner.cart_drawer_inner {
-  max-width: 390px;
+  max-width: 410px;
   width: 100%;
   background: #ffffff;
   color: #000000;
   font-family: 'Elza', sans-serif;
+  --cd-pad-x: 20px;
 }
 
 .cart_drawer_inner {
@@ -109,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 10px 0;
+  padding: 20px var(--cd-pad-x) 0;
   margin: 0;
   gap: 11px;
   flex-shrink: 0;
@@ -118,8 +119,8 @@
 .cart_drawer_wrapper .cart_drawer_header::after {
   content: "";
   position: absolute;
-  left: 10px;
-  right: 10px;
+  left: var(--cd-pad-x);
+  right: var(--cd-pad-x);
   bottom: -11px;
   height: 1px;
   background: #e5e5e5;
@@ -175,7 +176,7 @@
 
 /* Free shipping */
 .cart_drawer_wrapper .free_shipping_bar {
-  padding: 28px 10px 0;
+  padding: 28px var(--cd-pad-x) 0;
   border: none;
   overflow: visible;
   flex-shrink: 0;
@@ -253,6 +254,13 @@
   width: 23px;
   height: 15px;
   display: block;
+  overflow: visible;
+}
+
+.cart_drawer_wrapper .free_shipping_bar_truck svg path,
+.cart_drawer_wrapper .free_shipping_bar_truck svg circle {
+  stroke: #000000;
+  fill: none;
 }
 
 /* Content layout */
@@ -262,7 +270,7 @@
   display: flex;
   flex-flow: column;
   overflow: hidden;
-  padding: 31px 10px 20px;
+  padding: 31px var(--cd-pad-x) 20px;
 }
 
 .cart_drawer_body {
@@ -344,17 +352,18 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 3;
   background: #f20008;
   color: #ffffff;
   font-family: 'Elza', sans-serif;
   font-weight: 500;
-  font-size: 5px;
+  font-size: 7px;
   line-height: 1.3;
   text-transform: uppercase;
   text-align: center;
-  padding: 2px 4px;
+  padding: 3px 6px;
   pointer-events: none;
+  letter-spacing: 0.01em;
 }
 
 .cart_drawer_item_info_block {
@@ -478,7 +487,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background: #efefef;
   border: none;
   border-radius: 0;
   padding: 0;
@@ -486,12 +495,13 @@
 }
 
 .cart_drawer_wrapper item-remove a svg {
-  width: 14px;
+  width: 16px;
   height: 16px;
+  display: block;
 }
 
 .cart_drawer_wrapper item-remove a svg path {
-  fill: #000000;
+  fill: #000000 !important;
 }
 
 .cdi_quantity_picker {
@@ -882,8 +892,8 @@ cart-pack-upgrade {
 .cdi_action_buttons_wrapper form button.btn {
   width: 100%;
   height: auto;
-  min-height: 0;
-  padding: 10px 16px;
+  min-height: 44px;
+  padding: 12px 16px;
   border: none !important;
   border-radius: 0 !important;
   background: #ef0008 !important;
@@ -894,6 +904,9 @@ cart-pack-upgrade {
   line-height: normal !important;
   text-transform: uppercase !important;
   letter-spacing: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart_drawer_checkout_btn:hover,
@@ -937,15 +950,11 @@ cart-pack-upgrade {
 @media screen and (max-width: 767px) {
   .cart_drawer_wrapper.drawer_wrapper .drawer_wrapper_inner.cart_drawer_inner {
     max-width: 100%;
+    --cd-pad-x: 20px;
   }
 
   .cart_drawer_wrapper .cart_drawer_header.drawer_header {
-    padding: 20px 20px 0;
-  }
-
-  .cart_drawer_wrapper .cart_drawer_header::after {
-    left: 20px;
-    right: 14px;
+    padding: 20px var(--cd-pad-x) 0;
   }
 
   .cart_drawer_wrapper .cart_drawer_heading,
@@ -954,7 +963,7 @@ cart-pack-upgrade {
   }
 
   .cart_drawer_wrapper .free_shipping_bar {
-    padding: 28px 20px 0;
+    padding: 28px var(--cd-pad-x) 0;
   }
 
   .cart_drawer_wrapper .free_shipping_bar_message {
@@ -962,7 +971,7 @@ cart-pack-upgrade {
   }
 
   .cart_drawer_content_wrapper {
-    padding: 31px 20px 20px;
+    padding: 31px var(--cd-pad-x) 20px;
   }
 
   .cdi_title p a {
@@ -979,20 +988,6 @@ cart-pack-upgrade {
 
   .cart_drawer_item_info_block {
     gap: 25px;
-  }
-
-  .cdi_top_row + .cdi_mid_row {
-    margin-top: 0;
-  }
-
-  .cart_drawer_item_info_block .cdi_top_row {
-    width: 211px;
-    max-width: 100%;
-  }
-
-  .cdi_title p a {
-    max-width: 149px;
-    display: inline-block;
   }
 
   .cart_drawer_wrapper item-remove a {
@@ -1030,11 +1025,5 @@ cart-pack-upgrade {
 
   .cart_drawer_guarantee_text {
     font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .cart_drawer_wrapper .free_shipping_bar + .cart_drawer_content_wrapper {
-    padding-top: 20px;
   }
 }

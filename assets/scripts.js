@@ -4117,73 +4117,6 @@ class CartDrawer extends HTMLElement {
 
 customElements.define("cart-drawer", CartDrawer);
 
-class CartPackUpgrade extends HTMLElement {
-  connectedCallback() {
-    this.button = this.querySelector("button");
-    this.onClick = this.onClick.bind(this);
-    this.button?.addEventListener("click", this.onClick);
-  }
-
-  disconnectedCallback() {
-    this.button?.removeEventListener("click", this.onClick);
-  }
-
-  async onClick(e) {
-    e.preventDefault();
-    if (this.button?.disabled) return;
-
-    const line = Number(this.dataset.line);
-    const variantId = Number(this.dataset.variantId);
-    if (!line || !variantId) return;
-
-    this.button.disabled = true;
-
-    try {
-      CartController.startLoading();
-
-      await fetch(`${window.Shopify.routes.root}cart/change.js`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ line, quantity: 0 }),
-      });
-
-      const addRes = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: [{ id: variantId, quantity: 1 }],
-          sections: "cart-drawer,cart,cart-bubble",
-        }),
-      });
-
-      const addData = await addRes.json();
-      if (!addRes.ok) {
-        throw new Error(addData.description || addData.message || "Upgrade failed");
-      }
-
-      if (addData.sections) {
-        CartController.dispatchUpdate(addData);
-      } else {
-        const sectionsRes = await fetch(
-          `${window.Shopify.routes.root}?sections=cart-drawer,cart,cart-bubble`
-        );
-        const sections = await sectionsRes.json();
-        CartController.dispatchUpdate({
-          ...addData,
-          sections,
-        });
-      }
-    } catch (err) {
-      console.error("Cart pack upgrade failed:", err);
-    } finally {
-      CartController.stopLoading();
-      if (this.button) this.button.disabled = false;
-    }
-  }
-}
-
-customElements.define("cart-pack-upgrade", CartPackUpgrade);
-
 function getFreeShippingCurrencyRate(fallbackRate = 1) {
   const storefrontRate =
     window.Shopify?.currency?.rate || window.Shopify?.Currency?.rate;
@@ -4293,10 +4226,10 @@ function refreshFreeShippingBar(totalPrice) {
   const progressBar = freeShippingBar.querySelector(".free_shipping_bar_fill");
   const spendMoreTemplate =
     freeShippingBar.dataset.spendMoreTemplate ||
-    "You're [amount] away from free shipping";
+    "Spend [amount] more for free shipping!";
   const qualifiedText =
     freeShippingBar.dataset.qualifiedText ||
-    "You've unlocked free shipping";
+    "You've qualified for free shipping!";
   const isQualified = remaining <= 0;
   const wasQualified = freeShippingBar.dataset.qualified === "true";
 
@@ -4312,7 +4245,7 @@ function refreshFreeShippingBar(totalPrice) {
       );
       shippingMessage.innerHTML = spendMoreTemplate.replace(
         "[amount]",
-        formattedAmount
+        `<strong>${formattedAmount}</strong>`
       );
     } else {
       shippingMessage.innerHTML = `<span class="free_shipping_bar_qualified">${qualifiedText}</span>`;
