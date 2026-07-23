@@ -194,15 +194,40 @@
     font-weight: 300;
     font-size: 20px;
     line-height: 1.3;
+    letter-spacing: 0;
     color: #6e6e6e;
+    word-break: break-word;
+    text-align: left;
   }
 
-  .ppst-{{ section.id }} .ppst-card-context p {
+  .ppst-{{ section.id }} .ppst-card-context,
+  .ppst-{{ section.id }} .ppst-card-context * {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: #6e6e6e;
+    text-align: left;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-context p,
+  .ppst-{{ section.id }} .ppst-card-context ul,
+  .ppst-{{ section.id }} .ppst-card-context ol,
+  .ppst-{{ section.id }} .ppst-card-context li {
     margin: 0;
+    padding: 0;
+    text-indent: 0;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-context p + p {
+    margin-top: 0;
   }
 
   .ppst-{{ section.id }} .ppst-card-context a {
     color: inherit;
+    font: inherit;
+    line-height: inherit;
     text-decoration: underline;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
@@ -355,7 +380,8 @@
       line-height: 1.2;
     }
 
-    .ppst-{{ section.id }} .ppst-card-context {
+    .ppst-{{ section.id }} .ppst-card-context,
+    .ppst-{{ section.id }} .ppst-card-context * {
       font-size: 15px;
       line-height: 1.3;
     }
@@ -445,7 +471,7 @@
                     <h3 class="ppst-card-title">{{ block.settings.event_name | escape }}</h3>
                   {%- endif -%}
                   {%- if block.settings.context != blank -%}
-                    <div class="ppst-card-context">{{ block.settings.context }}</div>
+                    <div class="ppst-card-context rte">{{ block.settings.context }}</div>
                   {%- endif -%}
                 </div>
                 {%- if block.settings.people_label != blank -%}
