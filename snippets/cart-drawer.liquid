@@ -147,7 +147,7 @@
                               href="{{ item.url_to_remove }}"
                               data-remove
                               data-quantity="0">
-                              {{ 'cart-drawer-trash.svg' | inline_asset_content }}
+                              {{ 'icon-trash.svg' | inline_asset_content }}
                             </a>
                           </item-remove>
                         </div>
@@ -210,128 +210,128 @@
                 </div>
               {% endfor %}
             </div>
-
-            {%- comment -%} Pack upgrade offers (1 tag → Set of 2 / Set of 3; Set of 2 → Set of 3; Set of 3 → none) {%- endcomment -%}
-            {%- liquid
-              assign upsell_item = nil
-              assign upsell_line = 0
-              assign upsell_pack = 0
-
-              for item in cart.items
-                assign pq = 1
-                if item.variant.metafields.custom.quantity != blank
-                  assign pq = item.variant.metafields.custom.quantity | plus: 0
-                else
-                  assign td = item.variant.title | downcase
-                  if td contains '3'
-                    assign pq = 3
-                  elsif td contains '2'
-                    assign pq = 2
-                  endif
-                endif
-
-                assign has_higher = false
-                for v in item.product.variants
-                  assign vq = 1
-                  if v.metafields.custom.quantity != blank
-                    assign vq = v.metafields.custom.quantity | plus: 0
-                  else
-                    assign vtd = v.title | downcase
-                    if vtd contains '3'
-                      assign vq = 3
-                    elsif vtd contains '2'
-                      assign vq = 2
-                    endif
-                  endif
-                  if vq > pq
-                    assign has_higher = true
-                  endif
-                endfor
-
-                if has_higher and pq >= upsell_pack
-                  assign upsell_item = item
-                  assign upsell_line = forloop.index
-                  assign upsell_pack = pq
-                endif
-              endfor
-            -%}
-
-            {%- if upsell_item != nil and upsell_pack < 3 -%}
-              <div class="cart_drawer_upsell">
-                <div class="cart_drawer_upsell_head">
-                  <p class="cart_drawer_upsell_title">Save more when you add extra tags.</p>
-                </div>
-
-                <div class="cart_drawer_upsell_list">
-                  {%- for v in upsell_item.product.variants -%}
-                    {%- liquid
-                      assign vq = 1
-                      if v.metafields.custom.quantity != blank
-                        assign vq = v.metafields.custom.quantity | plus: 0
-                      else
-                        assign vtd = v.title | downcase
-                        if vtd contains '3'
-                          assign vq = 3
-                        elsif vtd contains '2'
-                          assign vq = 2
-                        endif
-                      endif
-
-                      assign add_count = vq | minus: upsell_pack
-                      assign show_offer = false
-                      if vq > upsell_pack
-                        if upsell_pack == 1 and vq <= 3
-                          assign show_offer = true
-                        endif
-                        if upsell_pack == 2 and vq == 3
-                          assign show_offer = true
-                        endif
-                      endif
-
-                      assign save_pct = 0
-                      if v.compare_at_price > v.price
-                        assign save_pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
-                      endif
-                    -%}
-
-                    {%- if show_offer and add_count > 0 -%}
-                      <div class="cart_drawer_upsell_card">
-                        <div class="cart_drawer_upsell_copy">
-                          <div class="cart_drawer_upsell_label_row">
-                            <p class="cart_drawer_upsell_label">
-                              {%- if add_count == 1 -%}
-                                Add 1 tag
-                              {%- else -%}
-                                Add 2 tags
-                              {%- endif -%}
-                            </p>
-                            {%- if save_pct > 0 -%}
-                              <span class="cart_drawer_upsell_badge">Save {{ save_pct }}%</span>
-                            {%- endif -%}
-                          </div>
-                          <p class="cart_drawer_upsell_price">
-                            <span class="cart_drawer_upsell_price_sale">{{ v.price | money }}</span>
-                            {%- if v.compare_at_price > v.price -%}
-                              <s class="cart_drawer_upsell_price_compare">{{ v.compare_at_price | money }}</s>
-                            {%- endif -%}
-                          </p>
-                        </div>
-                        <cart-pack-upgrade
-                          data-line="{{ upsell_line }}"
-                          data-variant-id="{{ v.id }}"
-                          data-product-id="{{ upsell_item.product.id }}">
-                          <button type="button" class="cart_drawer_upsell_btn">Upgrade</button>
-                        </cart-pack-upgrade>
-                      </div>
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
-              </div>
-            {%- endif -%}
           </div>
 
           <div class="cart_drawer_footer">
             <div class="cart_drawer_footer_inner">
+              {%- comment -%} Upsells sit above checkout (Figma bottom stack) {%- endcomment -%}
+              {%- liquid
+                assign upsell_item = nil
+                assign upsell_line = 0
+                assign upsell_pack = 0
+
+                for item in cart.items
+                  assign pq = 1
+                  if item.variant.metafields.custom.quantity != blank
+                    assign pq = item.variant.metafields.custom.quantity | plus: 0
+                  else
+                    assign td = item.variant.title | downcase
+                    if td contains '3'
+                      assign pq = 3
+                    elsif td contains '2'
+                      assign pq = 2
+                    endif
+                  endif
+
+                  assign has_higher = false
+                  for v in item.product.variants
+                    assign vq = 1
+                    if v.metafields.custom.quantity != blank
+                      assign vq = v.metafields.custom.quantity | plus: 0
+                    else
+                      assign vtd = v.title | downcase
+                      if vtd contains '3'
+                        assign vq = 3
+                      elsif vtd contains '2'
+                        assign vq = 2
+                      endif
+                    endif
+                    if vq > pq
+                      assign has_higher = true
+                    endif
+                  endfor
+
+                  if has_higher and pq >= upsell_pack
+                    assign upsell_item = item
+                    assign upsell_line = forloop.index
+                    assign upsell_pack = pq
+                  endif
+                endfor
+              -%}
+
+              {%- if upsell_item != nil and upsell_pack < 3 -%}
+                <div class="cart_drawer_upsell">
+                  <div class="cart_drawer_upsell_head">
+                    <p class="cart_drawer_upsell_title">Save more when you add extra tags.</p>
+                  </div>
+
+                  <div class="cart_drawer_upsell_list">
+                    {%- for v in upsell_item.product.variants -%}
+                      {%- liquid
+                        assign vq = 1
+                        if v.metafields.custom.quantity != blank
+                          assign vq = v.metafields.custom.quantity | plus: 0
+                        else
+                          assign vtd = v.title | downcase
+                          if vtd contains '3'
+                            assign vq = 3
+                          elsif vtd contains '2'
+                            assign vq = 2
+                          endif
+                        endif
+
+                        assign add_count = vq | minus: upsell_pack
+                        assign show_offer = false
+                        if vq > upsell_pack
+                          if upsell_pack == 1 and vq <= 3
+                            assign show_offer = true
+                          endif
+                          if upsell_pack == 2 and vq == 3
+                            assign show_offer = true
+                          endif
+                        endif
+
+                        assign save_pct = 0
+                        if v.compare_at_price > v.price
+                          assign save_pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
+                        endif
+                      -%}
+
+                      {%- if show_offer and add_count > 0 -%}
+                        <div class="cart_drawer_upsell_card">
+                          <div class="cart_drawer_upsell_copy">
+                            <div class="cart_drawer_upsell_label_row">
+                              <p class="cart_drawer_upsell_label">
+                                {%- if add_count == 1 -%}
+                                  Add 1 tag
+                                {%- else -%}
+                                  Add 2 tags
+                                {%- endif -%}
+                              </p>
+                              {%- if save_pct > 0 -%}
+                                <span class="cart_drawer_upsell_badge">Save {{ save_pct }}%</span>
+                              {%- endif -%}
+                            </div>
+                            <p class="cart_drawer_upsell_price">
+                              <span class="cart_drawer_upsell_price_sale">{{ v.price | money }}</span>
+                              {%- if v.compare_at_price > v.price -%}
+                                <s class="cart_drawer_upsell_price_compare">{{ v.compare_at_price | money }}</s>
+                              {%- endif -%}
+                            </p>
+                          </div>
+                          <cart-pack-upgrade
+                            data-line="{{ upsell_line }}"
+                            data-variant-id="{{ v.id }}"
+                            data-product-id="{{ upsell_item.product.id }}">
+                            <button type="button" class="cart_drawer_upsell_btn">Upgrade</button>
+                          </cart-pack-upgrade>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+
               {%- if cart.cart_level_discount_applications.size > 0 -%}
                 <div class="cdi_cart_level_discount_wrapper" aria-label="{{ 'sections.cart.cart_level_discount_heading' | t }}">
                   {%- for discount in cart.cart_level_discount_applications -%}
@@ -363,7 +363,11 @@
 
               <div class="cart_drawer_guarantee">
                 <span class="cart_drawer_guarantee_icon" aria-hidden="true">
-                  {{ 'cart-drawer-guarantee.svg' | inline_asset_content }}
+                  <svg width="17" height="19" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16.24 10.81a7.5 7.5 0 1 0-11.4-.94" stroke="#000" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12.7 9.09A2.5 2.5 0 0 1 10.86 10.34c-1.19 0-2.15-1.15-2.15-2.57V6.3c0-1.42.96-2.57 2.15-2.57.78 0 1.47.5 1.84 1.25M7.51 7.03h3.56" stroke="#000" stroke-width="0.85" stroke-linecap="round"/>
+                    <path d="M.43 11.76h2.26c.28 0 .55.06.8.18l1.93.93c.25.12.52.18.8.18h.98c.95 0 1.73.75 1.73 1.67 0 .04-.03.07-.06.08l-2.4.66a2 2 0 0 1-1 .13l-2.06-1M8.92 14.12l4.34-1.33c.38-.12.78-.11 1.16.02.37.13.7.37.92.69.35.48.21 1.17-.3 1.47l-7.1 4.1a2 2 0 0 1-.72.24 2 2 0 0 1-.76-.06L.43 17.44" stroke="#000" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </span>
                 <span class="cart_drawer_guarantee_text">30-day money-back guarantee</span>
               </div>
