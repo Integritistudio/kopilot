@@ -276,11 +276,13 @@
         "story_card_gieXAQ": {
           "type": "story_card",
           "settings": {
-            "logo_width": 149,
-            "logo_height": 44,
+            "image": "shopify://shop_images/image_3.svg",
+            "logo": "shopify://shop_images/Rectangle_81_4_302bd542-3d52-49f2-841c-fc12cd5ea5ae.svg",
+            "logo_width": 71,
+            "logo_height": 70,
             "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "<p>One-line story context</p>",
+            "event_name": "US Hard Enduro",
+            "context": "<p>\"Navigating some of the most challenging and technical off-road terrain, USHE racers all sport a <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> tag on their helmets.\"</p>",
             "people_label": "240 people"
           }
         }
