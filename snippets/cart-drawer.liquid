@@ -215,16 +215,16 @@
           <div class="cart_drawer_footer">
             <div class="cart_drawer_footer_inner">
               {%- comment -%}
-                Upsell by effective tag count (= pack size × line qty, or line qty for qty-packs):
-                - 1 → Set of 2 + Set of 3
-                - 2 → 1 Tag only
-                - 3+ → none
-                Same rule when qty is changed with +/- .
+                Variant-based pack upsell (replace, never add on top):
+                - 1 Tag → Set of 2 + Set of 3 ("Save more when you add extra tags.")
+                - Set of 2 → Set of 3 only ("Save even more by upgrading to Set of 3.")
+                - Set of 3 / 3+ total tags → hide all upsell UI
               {%- endcomment -%}
               {%- liquid
                 assign upsell_item = nil
                 assign upsell_line = 0
-                assign effective_qty = 0
+                assign current_pack = 0
+                assign total_tags = 0
                 assign is_qty_pack_setup = false
 
                 for item in cart.items
@@ -267,8 +267,11 @@
 
                   if item.product.has_only_default_variant or item.product.variants.size <= 1 or distinct_packs <= 1
                     assign item_is_qty_setup = true
-                    assign variant_pack = 1
-                    assign item_effective = item.quantity
+                    assign variant_pack = item.quantity
+                    if variant_pack > 3
+                      assign variant_pack = 3
+                    endif
+                    assign item_total = item.quantity
                   else
                     assign item_is_qty_setup = false
                     assign variant_pack = 1
@@ -286,27 +289,43 @@
                         assign variant_pack = 2
                       endif
                     endif
-                    assign item_effective = variant_pack | times: item.quantity
+                    assign item_total = variant_pack | times: item.quantity
                   endif
 
-                  if upsell_item == nil or item_effective >= effective_qty
+                  if upsell_item == nil or item_total >= total_tags
                     assign upsell_item = item
                     assign upsell_line = forloop.index
-                    assign effective_qty = item_effective
+                    assign current_pack = variant_pack
+                    assign total_tags = item_total
                     assign is_qty_pack_setup = item_is_qty_setup
                   endif
                 endfor
+
+                assign upsell_tier = 0
+                if total_tags >= 3 or current_pack >= 3
+                  assign upsell_tier = 3
+                elsif current_pack == 2 or total_tags == 2
+                  assign upsell_tier = 2
+                elsif current_pack == 1 or total_tags == 1
+                  assign upsell_tier = 1
+                endif
               -%}
 
-              {%- if upsell_item != nil and effective_qty > 0 and effective_qty < 3 -%}
+              {%- if upsell_item != nil and upsell_tier > 0 and upsell_tier < 3 -%}
                 <div class="cart_drawer_upsell">
                   <div class="cart_drawer_upsell_head">
-                    <p class="cart_drawer_upsell_title">Save more when you add extra tags.</p>
+                    <p class="cart_drawer_upsell_title">
+                      {%- if upsell_tier == 2 -%}
+                        Save even more by upgrading to Set of 3.
+                      {%- else -%}
+                        Save more when you add extra tags.
+                      {%- endif -%}
+                    </p>
                   </div>
 
                   <div class="cart_drawer_upsell_list">
                     {%- if is_qty_pack_setup -%}
-                      {%- if effective_qty == 1 -%}
+                      {%- if upsell_tier == 1 -%}
                         {%- for target_qty in (2..3) -%}
                           {%- assign offer_price = upsell_item.variant.price | times: target_qty -%}
                           <div class="cart_drawer_upsell_card">
@@ -331,24 +350,25 @@
                             </cart-pack-upgrade>
                           </div>
                         {%- endfor -%}
-                      {%- elsif effective_qty == 2 -%}
+                      {%- elsif upsell_tier == 2 -%}
+                        {%- assign offer_price = upsell_item.variant.price | times: 3 -%}
                         <div class="cart_drawer_upsell_card">
                           <div class="cart_drawer_upsell_copy">
                             <div class="cart_drawer_upsell_label_row">
-                              <p class="cart_drawer_upsell_label">1 Tag</p>
+                              <p class="cart_drawer_upsell_label">Set of 3</p>
                             </div>
                             <p class="cart_drawer_upsell_price">
-                              <span class="cart_drawer_upsell_price_sale">{{ upsell_item.variant.price | money }}</span>
+                              <span class="cart_drawer_upsell_price_sale">{{ offer_price | money }}</span>
                             </p>
                           </div>
                           <cart-pack-upgrade
                             data-key="{{ upsell_item.key }}"
                             data-line="{{ upsell_line }}"
                             data-variant-id="{{ upsell_item.variant_id }}"
-                            data-quantity="1"
+                            data-quantity="3"
                             data-same-variant="true"
                             data-product-id="{{ upsell_item.product.id }}">
-                            <button type="button" class="cart_drawer_upsell_btn">Select</button>
+                            <button type="button" class="cart_drawer_upsell_btn">Upgrade</button>
                           </cart-pack-upgrade>
                         </div>
                       {%- endif -%}
@@ -374,12 +394,12 @@
                           endif
 
                           assign show_offer = false
-                          if effective_qty == 1
+                          if upsell_tier == 1
                             if vq == 2 or vq == 3
                               assign show_offer = true
                             endif
-                          elsif effective_qty == 2
-                            if vq == 1
+                          elsif upsell_tier == 2
+                            if vq == 3
                               assign show_offer = true
                             endif
                           endif
@@ -402,8 +422,6 @@
                             assign offer_label = 'Set of 2'
                           elsif vq == 3
                             assign offer_label = 'Set of 3'
-                          elsif vq == 1
-                            assign offer_label = '1 Tag'
                           else
                             assign offer_label = v.title
                           endif
@@ -414,7 +432,7 @@
                             <div class="cart_drawer_upsell_copy">
                               <div class="cart_drawer_upsell_label_row">
                                 <p class="cart_drawer_upsell_label">{{ offer_label }}</p>
-                                {%- if save_pct > 0 and effective_qty == 1 -%}
+                                {%- if save_pct > 0 -%}
                                   <span class="cart_drawer_upsell_badge">Save {{ save_pct }}%</span>
                                 {%- endif -%}
                               </div>
@@ -431,9 +449,7 @@
                               data-variant-id="{{ v.id }}"
                               data-quantity="1"
                               data-product-id="{{ upsell_item.product.id }}">
-                              <button type="button" class="cart_drawer_upsell_btn">
-                                {%- if effective_qty == 2 -%}Select{%- else -%}Upgrade{%- endif -%}
-                              </button>
+                              <button type="button" class="cart_drawer_upsell_btn">Upgrade</button>
                             </cart-pack-upgrade>
                           </div>
                         {%- endif -%}
