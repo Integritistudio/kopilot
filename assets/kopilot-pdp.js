@@ -231,6 +231,15 @@ class KopilotPdp extends HTMLElement {
         }, 2000);
       }
 
+      const cartDrawer =
+        document.getElementById('cart_drawer') ||
+        document.querySelector('.cart_drawer_wrapper');
+
+      if (cartDrawer && typeof openDrawer === 'function') {
+        openDrawer(cartDrawer, this.addButton);
+        if (typeof AddScrollLock === 'function') AddScrollLock();
+      }
+
       const sections = await fetch(
         `${Shopify.routes.root}?sections=cart-drawer,cart,cart-bubble`,
       ).then((response) => response.json());
@@ -241,11 +250,6 @@ class KopilotPdp extends HTMLElement {
           bubbles: true,
         }),
       );
-
-      const cartDrawer = document.querySelector('cart-drawer');
-      if (typeof openDrawer === 'function' && cartDrawer) {
-        openDrawer(cartDrawer, this.addButton);
-      }
     } catch (error) {
       const message = error?.description || error?.message || 'Unable to add to cart.';
       window.alert(message);
