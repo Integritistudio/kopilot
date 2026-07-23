@@ -222,6 +222,10 @@ class KopilotPdp extends HTMLElement {
         throw addData;
       }
 
+      // Show ADDED first, then load cart while it's visible
+      this.addButton.classList.remove('is-loading');
+      this.addButton.removeAttribute('aria-busy');
+
       if (this.addLabel) {
         this.addLabel.textContent = 'ADDED';
         setTimeout(() => {
@@ -231,6 +235,23 @@ class KopilotPdp extends HTMLElement {
         }, 2000);
       }
 
+      const sectionsPromise = fetch(
+        `${Shopify.routes.root}?sections=cart-drawer,cart,cart-bubble`,
+      ).then((response) => response.json());
+
+      // Keep ADDED on screen briefly while cart HTML loads
+      const [, sections] = await Promise.all([
+        new Promise((resolve) => setTimeout(resolve, 650)),
+        sectionsPromise,
+      ]);
+
+      document.dispatchEvent(
+        new CustomEvent('cart-updated', {
+          detail: { sections },
+          bubbles: true,
+        }),
+      );
+
       const cartDrawer =
         document.getElementById('cart_drawer') ||
         document.querySelector('.cart_drawer_wrapper');
@@ -239,17 +260,6 @@ class KopilotPdp extends HTMLElement {
         openDrawer(cartDrawer, this.addButton);
         if (typeof AddScrollLock === 'function') AddScrollLock();
       }
-
-      const sections = await fetch(
-        `${Shopify.routes.root}?sections=cart-drawer,cart,cart-bubble`,
-      ).then((response) => response.json());
-
-      document.dispatchEvent(
-        new CustomEvent('cart-updated', {
-          detail: { sections },
-          bubbles: true,
-        }),
-      );
     } catch (error) {
       const message = error?.description || error?.message || 'Unable to add to cart.';
       window.alert(message);
