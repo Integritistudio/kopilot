@@ -250,11 +250,13 @@
         "story_card_CKgK8c": {
           "type": "story_card",
           "settings": {
+            "image": "shopify://shop_images/image_1.svg",
+            "logo": "shopify://shop_images/Rectangle_81_2.svg",
             "logo_width": 149,
             "logo_height": 44,
             "logo_text": "Logo",
-            "event_name": "Name of the Event",
-            "context": "<p>One-line story context</p>",
+            "event_name": "AMA National Hare & Hound",
+            "context": "<p>\"Facing one of the highest-risk forms of motorsport, racers utilize a <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> PRO Tag, specifically designed for use on carbon fiber helmets.\"</p>",
             "people_label": "240 people"
           }
         },
