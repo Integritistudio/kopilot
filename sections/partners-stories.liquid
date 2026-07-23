@@ -1,7 +1,3 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
-
 {%- style -%}
   @font-face {
     font-family: 'Elza';
@@ -12,6 +8,12 @@
   @font-face {
     font-family: 'Elza';
     font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Elza';
+    font-weight: 600;
     font-style: normal;
   }
 
@@ -110,7 +112,7 @@
     flex-shrink: 0;
   }
 
-  .ppst-{{ section.id }} .ppst-card-media img {
+  .ppst-{{ section.id }} .ppst-card-media > img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -124,31 +126,33 @@
     top: 13px;
     left: 13px;
     z-index: 2;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 84px;
-    min-height: 31px;
-    padding: 10px 24px;
+    width: var(--ppst-logo-w, 149px);
+    height: var(--ppst-logo-h, 44px);
+    padding: 0;
     background-color: #ffffff;
+    overflow: hidden;
   }
 
   .ppst-{{ section.id }} .ppst-card-logo img {
-    position: static;
-    width: auto;
-    height: 11px;
-    max-height: 11px;
-    max-width: 80px;
+    position: relative;
+    inset: auto;
+    width: 63.49%;
+    height: 78.35%;
+    max-width: none;
+    max-height: none;
     object-fit: contain;
     display: block;
   }
 
   .ppst-{{ section.id }} .ppst-card-logo-text {
     margin: 0;
-    padding: 0;
-    font-family: 'Outfit', sans-serif;
+    padding: 0 8px;
+    font-family: 'Elza', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
     color: #000000;
     white-space: nowrap;
@@ -160,9 +164,8 @@
     align-items: flex-start;
     gap: 30px;
     width: 100%;
-    padding: 20px 40px;
+    padding: 20px;
     background-color: #eeeeee;
-    min-height: 134px;
   }
 
   .ppst-{{ section.id }} .ppst-card-copy {
@@ -176,7 +179,7 @@
   .ppst-{{ section.id }} .ppst-card-title {
     margin: 0;
     padding: 0;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Elza', sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 1.2;
@@ -189,8 +192,19 @@
     font-family: 'Elza', sans-serif;
     font-weight: 300;
     font-size: 20px;
-    line-height: 1.42;
+    line-height: 1.3;
     color: #6e6e6e;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-context p {
+    margin: 0;
+  }
+
+  .ppst-{{ section.id }} .ppst-card-context a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
   }
 
   .ppst-{{ section.id }} .ppst-card-tag {
@@ -297,36 +311,42 @@
     }
 
     .ppst-{{ section.id }} .ppst-carousel {
-      gap: 27px;
+      gap: 27.16px;
       width: 100%;
     }
 
     .ppst-{{ section.id }} .ppst-track {
-      gap: 30px;
-      padding-right: 0;
+      gap: 23.964px;
       margin-right: -20px;
       padding-right: 20px;
       width: calc(100% + 20px);
     }
 
     .ppst-{{ section.id }} .ppst-card {
-      flex: 0 0 319px;
-      width: 319px;
-      max-width: 319px;
+      flex: 0 0 319.527px;
+      width: 319.527px;
+      max-width: 319.527px;
+      border-radius: 6.681px;
     }
 
     .ppst-{{ section.id }} .ppst-card-media {
-      height: 254.154px;
+      height: 203.022px;
+    }
+
+    .ppst-{{ section.id }} .ppst-card-logo {
+      top: 10.38px;
+      left: 10.39px;
+      width: calc(var(--ppst-logo-w, 149px) * 0.799);
+      height: calc(var(--ppst-logo-h, 44px) * 0.799);
     }
 
     .ppst-{{ section.id }} .ppst-card-body {
-      padding: 20px 40px;
-      gap: 30px;
-      min-height: 128px;
+      padding: 15.976px;
+      gap: 23.964px;
     }
 
     .ppst-{{ section.id }} .ppst-card-copy {
-      gap: 15px;
+      gap: 11.982px;
     }
 
     .ppst-{{ section.id }} .ppst-card-title {
@@ -336,26 +356,32 @@
 
     .ppst-{{ section.id }} .ppst-card-context {
       font-size: 15px;
-      line-height: 1.42;
+      line-height: 1.3;
     }
 
     .ppst-{{ section.id }} .ppst-card-tag {
-      font-size: 16px;
+      padding: 3.994px 7.988px;
+      border-width: 0.799px;
+      font-size: 12px;
     }
 
     .ppst-{{ section.id }} .ppst-progress {
-      max-width: 319px;
-      width: 319px;
+      max-width: 319.527px;
+      width: 319.527px;
+      height: 3.994px;
     }
 
     .ppst-{{ section.id }} .ppst-progress-track {
-      left: 9.56px;
-      width: calc(100% - 9.56px);
-      max-width: 309.44px;
+      left: 19.66px;
+      top: 0.13px;
+      width: calc(100% - 19.66px);
+      max-width: 636.172px;
+      height: 3.651px;
     }
 
     .ppst-{{ section.id }} .ppst-progress-fill {
-      width: 155.42px;
+      width: 319.527px;
+      height: 3.994px;
     }
   }
 {%- endstyle -%}
@@ -372,6 +398,16 @@
       <div class="ppst-track" data-ppst-track>
         {%- for block in section.blocks -%}
           {%- if block.type == 'story_card' -%}
+            {%- liquid
+              assign ppst_logo_w = 149
+              assign ppst_logo_h = 44
+              if block.settings.logo_width > 0
+                assign ppst_logo_w = block.settings.logo_width
+              endif
+              if block.settings.logo_height > 0
+                assign ppst_logo_h = block.settings.logo_height
+              endif
+            -%}
             <article class="ppst-card" {{ block.shopify_attributes }}>
               <div class="ppst-card-media">
                 {%- if block.settings.image != blank -%}
@@ -384,12 +420,15 @@
                 {%- endif -%}
 
                 {%- if block.settings.logo != blank or block.settings.logo_text != blank -%}
-                  <div class="ppst-card-logo">
+                  <div
+                    class="ppst-card-logo"
+                    style="--ppst-logo-w: {{ ppst_logo_w }}px; --ppst-logo-h: {{ ppst_logo_h }}px;"
+                  >
                     {%- if block.settings.logo != blank -%}
                       {%- assign ppst_logo_alt = block.settings.logo.alt | default: block.settings.logo_text -%}
                       {{
                         block.settings.logo
-                        | image_url: width: 200
+                        | image_url: width: 400
                         | image_tag: loading: 'lazy', alt: ppst_logo_alt
                       }}
                     {%- else -%}
@@ -405,7 +444,7 @@
                     <h3 class="ppst-card-title">{{ block.settings.event_name | escape }}</h3>
                   {%- endif -%}
                   {%- if block.settings.context != blank -%}
-                    <p class="ppst-card-context">{{ block.settings.context | escape }}</p>
+                    <div class="ppst-card-context">{{ block.settings.context }}</div>
                   {%- endif -%}
                 </div>
                 {%- if block.settings.people_label != blank -%}
@@ -443,10 +482,10 @@
     var width = minFill + (maxFill - minFill) * ratio;
 
     if (window.matchMedia('(max-width: 767px)').matches) {
-      minFill = 155.42;
-      maxFill = 319;
+      minFill = 319.527;
+      maxFill = 655.832;
       width = minFill + (maxFill - minFill) * ratio;
-      width = Math.min(width, 319);
+      width = Math.min(width, 655.832);
     } else if (window.matchMedia('(min-width: 1440px)').matches) {
       minFill = 400;
       maxFill = 821;
@@ -538,6 +577,20 @@
           "label": "Logo image (optional)"
         },
         {
+          "type": "number",
+          "id": "logo_width",
+          "label": "Logo badge width (px)",
+          "default": 149,
+          "info": "Figma default 149. Use 71 for square logos (e.g. US Hard Enduro)."
+        },
+        {
+          "type": "number",
+          "id": "logo_height",
+          "label": "Logo badge height (px)",
+          "default": 44,
+          "info": "Figma default 44. Use 70 for square logos (e.g. US Hard Enduro)."
+        },
+        {
           "type": "text",
           "id": "logo_text",
           "label": "Logo text fallback",
@@ -550,10 +603,10 @@
           "default": "Name of the Event"
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "context",
           "label": "One-line story context",
-          "default": "One-line story context"
+          "default": "<p>One-line story context</p>"
         },
         {
           "type": "text",
@@ -572,8 +625,10 @@
           "type": "story_card",
           "settings": {
             "logo_text": "Logo",
+            "logo_width": 149,
+            "logo_height": 44,
             "event_name": "Name of the Event",
-            "context": "One-line story context",
+            "context": "<p>One-line story context</p>",
             "people_label": "100 people"
           }
         },
@@ -581,8 +636,10 @@
           "type": "story_card",
           "settings": {
             "logo_text": "Logo",
+            "logo_width": 149,
+            "logo_height": 44,
             "event_name": "Name of the Event",
-            "context": "One-line story context",
+            "context": "<p>One-line story context</p>",
             "people_label": "240 people"
           }
         },
@@ -590,8 +647,10 @@
           "type": "story_card",
           "settings": {
             "logo_text": "Logo",
+            "logo_width": 149,
+            "logo_height": 44,
             "event_name": "Name of the Event",
-            "context": "One-line story context",
+            "context": "<p>One-line story context</p>",
             "people_label": "240 people"
           }
         },
@@ -599,8 +658,10 @@
           "type": "story_card",
           "settings": {
             "logo_text": "Logo",
+            "logo_width": 71,
+            "logo_height": 70,
             "event_name": "Name of the Event",
-            "context": "One-line story context",
+            "context": "<p>One-line story context</p>",
             "people_label": "240 people"
           }
         }
