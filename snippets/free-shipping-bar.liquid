@@ -8,7 +8,7 @@
   {%- if threshold_cents > 0 -%}
     {%- if cart.total_price < threshold_cents -%}
       {%- assign fsb_remaining = threshold_cents | minus: cart.total_price -%}
-      {%- assign fsb_progress = cart.total_price | times: 100 | divided_by: threshold_cents -%}
+      {%- assign fsb_progress = cart.total_price | times: 100.0 | divided_by: threshold_cents -%}
       {%- assign fsb_qualified = false -%}
     {%- else -%}
       {%- assign fsb_remaining = 0 -%}
@@ -21,7 +21,7 @@
     {%- endif -%}
 
     <div
-      class="free_shipping_bar"
+      class="free_shipping_bar{% if fsb_qualified %} is-qualified{% endif %}"
       data-threshold="{{ fsb_base_threshold }}"
       data-cart-total="{{ cart.total_price | divided_by: 100.0 }}"
       data-exchange-rate="{{ fsb_exchange_rate }}"
@@ -30,7 +30,7 @@
       data-spend-more-template="{{ fsb_spend_more_template | escape }}"
       data-qualified-text="{{ fsb_qualified_text | escape }}">
       <div class="free_shipping_bar_inner">
-        <div class="free_shipping_bar_header">          
+        <div class="free_shipping_bar_header">
           <div class="free_shipping_bar_copy">
             <div class="free_shipping_bar_message">
               {%- if fsb_qualified -%}
@@ -42,8 +42,13 @@
             </div>
           </div>
         </div>
-        <div class="free_shipping_bar_track" aria-hidden="true">
-          <div class="free_shipping_bar_fill" style="width: {{ fsb_progress }}%;"></div>
+        <div class="free_shipping_bar_track_row" aria-hidden="true">
+          <div class="free_shipping_bar_track">
+            <div class="free_shipping_bar_fill" style="width: {{ fsb_progress }}%;"></div>
+          </div>
+          <div class="free_shipping_bar_truck">
+            {{ 'cart-drawer-truck.svg' | inline_asset_content }}
+          </div>
         </div>
       </div>
     </div>

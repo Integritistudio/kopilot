@@ -6,10 +6,10 @@
     aria-hidden="true">
     <div class="drawer_wrapper_inner cart_drawer_inner" tabindex="-1">
       <div class="cart_drawer_confetti_layer" aria-hidden="true"></div>
+
       <div class="drawer_header cart_drawer_header">
-        <h2 class="h4">
+        <h2 class="cart_drawer_heading">
           {{ 'drawers.cart_drawer.heading' | t }}
-          {{ cart.item_count | prepend: '(' | append: ')' }}
         </h2>
 
         <div class="drawer_close_btn_wrapper">
@@ -24,7 +24,6 @@
       {% endif %}
 
       <div class="cart_drawer_content_wrapper" data-lenis-prevent>
-
         {% if cart == empty %}
           <div class="empty_cart_drawer_wrapper">
             <h3 class="h4">{{ 'drawers.cart_drawer.empty_drawer_heading' | t }}</h3>
@@ -35,133 +34,125 @@
               {{- 'general.continue_shopping' | t -}}
             </a>
           </div>
-        {% endif %}
+        {% else %}
+          <div class="cart_drawer_body">
+            <div class="cart_drawer_content_inner">
+              {% for item in cart.items %}
+                {%- liquid
+                  assign cart_img = item.image
+                  if item.product.featured_image != blank
+                    assign cart_img = item.product.featured_image
+                  endif
+                  if item.product.images.size > 0
+                    assign cart_img = item.product.images.first
+                  endif
 
-        {% if cart != empty %}
-          <div class="cart_drawer_content_inner">
-            {% for item in cart.items %}
-              <div class="cart_drawer_item_block">
-                <div class="cdi_block_inner">
-                  <div class="cart_drawer_item_img_block">
-                    <a href="{{ item.url }}" aria-label="{{ item.title }}">{{ item.title }}</a>
-                    {% if item.image != blank %}
-                      {{ item.image | image_url: width: 500 | image_tag }}
-                    {% else %}
-                      {% assign img_index = forloop.index0 | modulo: 3 %}
+                  assign pack_qty = 1
+                  if item.variant.metafields.custom.quantity != blank
+                    assign pack_qty = item.variant.metafields.custom.quantity | plus: 0
+                  else
+                    assign title_downcase = item.variant.title | downcase
+                    if title_downcase contains '3'
+                      assign pack_qty = 3
+                    elsif title_downcase contains '2'
+                      assign pack_qty = 2
+                    endif
+                  endif
+                -%}
 
-                      {% if img_index == 0 %}
-                        {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
-                      {% elsif img_index == 1 %}
-                        {{ 'product-2' | placeholder_svg_tag: 'placeholder_svg' }}
+                <div class="cart_drawer_item_block" data-pack-qty="{{ pack_qty }}">
+                  <div class="cdi_block_inner">
+                    <div class="cart_drawer_item_img_block">
+                      <a href="{{ item.url }}" aria-label="{{ item.product.title | escape }}"></a>
+                      {% if cart_img != blank %}
+                        {{ cart_img | image_url: width: 400 | image_tag: loading: 'lazy', alt: item.product.title }}
                       {% else %}
-                        {{ 'product-3' | placeholder_svg_tag: 'placeholder_svg' }}
+                        {{ 'product-1' | placeholder_svg_tag: 'placeholder_svg' }}
                       {% endif %}
-                    {% endif %}
-                  </div>
+                      <div class="cart_drawer_item_badge" aria-hidden="true">
+                        {{ 'drawers.cart_drawer.special_offer_badge' | t }}
+                      </div>
+                    </div>
 
-                  <div class="cart_drawer_item_info_block">
-                    <div class="cart_drawer_item_info_title_options">
-                      <div class="cdi_item_input_inner">
+                    <div class="cart_drawer_item_info_block">
+                      <div class="cdi_top_row">
                         <div class="cdi_title">
                           <p>
-                            <a href="{{ item.url }}" aria-label="{{ item.title }}">{{ item.product.title }}</a>
+                            <a href="{{ item.url }}">{{ item.product.title }}</a>
                           </p>
                         </div>
-
                         <div class="cdi_price">
                           {% if item.original_price != item.final_price %}
                             <div class="cdi_price_inner">
                               <span>{{ item.final_price | money }}</span>
                               <s>{{ item.original_price | money }}</s>
                             </div>
-                            <span class="cdi_price_discount_list">
-                              {%- for discount in item.line_level_discount_allocations -%}
-                                <span class="cdi_discount">
-                                  {{ 'icon-discount.svg' | inline_asset_content }}
-                                  {{ discount.discount_application.title }}
-                                </span>
-                              {% endfor %}
-                            </span>
                           {% else %}
                             <div class="cdi_price_inner">
                               <span>{{ item.final_price | money }}</span>
                               {% if item.variant.compare_at_price != blank
- and item.variant.compare_at_price > 0
- and item.variant.compare_at_price > item.variant.price
+                                and item.variant.compare_at_price > item.variant.price
                               %}
                                 <s>{{ item.variant.compare_at_price | money }}</s>
                               {% endif %}
                             </div>
                           {% endif %}
-
-                          {%- if item.variant.available and item.unit_price_measurement -%}
-                            <p class="cdi_unit_price">
-                              <span>{{ 'products.product.price.unit_price' | t }}:
-                              </span>
-                              {{ item.unit_price | money }}
-                              <span>/</span>
-                              <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
-                              {%- if item.unit_price_measurement.reference_value != 1 -%}
-                                {{- item.unit_price_measurement.reference_value -}}
-                              {%- endif -%}
-                              {{ item.unit_price_measurement.reference_unit }}
-                            </p>
-                          {%- endif -%}
                         </div>
                       </div>
 
-                      <div class="cdi_options_wrapper">
-                        {% unless item.product.has_only_default_variant %}
-                          <p class="cdi_product_options">
-                            {% for option in item.options_with_values %}
-                              <span>{{- option.value -}}</span>
-                            {% endfor %}
-                          </p>
-                        {% endunless %}
+                      <div class="cdi_mid_row">
+                        <div class="cdi_options_wrapper">
+                          {% unless item.product.has_only_default_variant %}
+                            <p class="cdi_product_options">
+                              {% for option in item.options_with_values %}
+                                <span>{{- option.value -}}</span>
+                              {% endfor %}
+                            </p>
+                          {% else %}
+                            <p class="cdi_product_options">
+                              <span>{{ item.quantity }} {% if item.quantity == 1 %}{{ 'drawers.cart_drawer.product_singular' | t }}{% else %}{{ 'drawers.cart_drawer.product_plural' | t }}{% endif %}</span>
+                            </p>
+                          {% endunless %}
 
-                        {% if item.properties.size != 0 %}
-                          {%- for property in item.properties -%}
-                            {%- assign property_first_char = property.first | slice: 0 -%}
-                            {%- if property.last != blank and property_first_char != '_' -%}
-                              <div class="cdi_properties_wrapper">
-                                <div class="cdi_property_name">{{ property.first }}:</div>
-                                <div class="cdi_property_value">
-                                  {%- if property.last contains '/uploads/' -%}
-                                    <a
-                                      href="{{ property.last }}"
-                                      class="link"
-                                      target="_blank"
-                                      aria-describedby="a11y-new-window-message">
-                                      {{ property.last | split: '/' | last }}
-                                    </a>
-                                  {%- else -%}
-                                    {{ property.last }}
-                                  {%- endif -%}
+                          {% if item.properties.size != 0 %}
+                            {%- for property in item.properties -%}
+                              {%- assign property_first_char = property.first | slice: 0 -%}
+                              {%- if property.last != blank and property_first_char != '_' -%}
+                                <div class="cdi_properties_wrapper">
+                                  <div class="cdi_property_name">{{ property.first }}:</div>
+                                  <div class="cdi_property_value">
+                                    {%- if property.last contains '/uploads/' -%}
+                                      <a href="{{ property.last }}" class="link" target="_blank">
+                                        {{ property.last | split: '/' | last }}
+                                      </a>
+                                    {%- else -%}
+                                      {{ property.last }}
+                                    {%- endif -%}
+                                  </div>
                                 </div>
-                              </div>
-                            {%- endif -%}
-                          {%- endfor -%}
-                        {% endif %}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {% endif %}
 
-                        {% if item.selling_plan_allocation != null %}
-                          <p class="cdi_selling_plan">
-                            {{ item.selling_plan_allocation.selling_plan.name }}
-                          </p>
-                        {% endif %}
-                      </div>
-                    </div>
-                    <div class="cart_drawer_item_actions">
-                      <div class="cdi_item_remove">
-                        <item-remove data-line="{{ forloop.index }}">
-                          <a
-                            aria-label="{{- 'drawers.cart_drawer.remove' | t -}}"
-                            class="item_remove_btn"
-                            href="{{ item.url_to_remove }}"
-                            data-remove
-                            data-quantity="0">
-                            {{ 'icon-trash.svg' | inline_asset_content }}
-                          </a>
-                        </item-remove>
+                          {% if item.selling_plan_allocation != null %}
+                            <p class="cdi_selling_plan">
+                              {{ item.selling_plan_allocation.selling_plan.name }}
+                            </p>
+                          {% endif %}
+                        </div>
+
+                        <div class="cdi_item_remove">
+                          <item-remove data-line="{{ forloop.index }}">
+                            <a
+                              aria-label="{{- 'drawers.cart_drawer.remove' | t -}}"
+                              class="item_remove_btn"
+                              href="{{ item.url_to_remove }}"
+                              data-remove
+                              data-quantity="0">
+                              {{ 'cart-drawer-trash.svg' | inline_asset_content }}
+                            </a>
+                          </item-remove>
+                        </div>
                       </div>
 
                       <div class="cdi_quantity_picker">
@@ -185,10 +176,10 @@
                             min="{{ item.variant.quantity_rule.min }}"
                             data-min="{{ item.variant.quantity_rule.min }}"
                             {% if item.variant.quantity_rule.max %}
-                            data-max="{{item.variant.quantity_rule.max }}"
+                            data-max="{{ item.variant.quantity_rule.max }}"
                             max="{{ item.variant.quantity_rule.max }}"
                             {% endif %}
-                            step="{{item.variant.quantity_rule.increment }}"
+                            step="{{ item.variant.quantity_rule.increment }}"
                             value="{{ item.quantity }}"
                             id="Item_quantity-{{ forloop.index }}">
                           <label class="visually-hidden" for="Item_quantity-{{ forloop.index }}">
@@ -211,16 +202,136 @@
                       </div>
                     </div>
                   </div>
+
+                  <div
+                    class="cart_drawer_error"
+                    data-line="{{ forloop.index }}"
+                    hidden>
+                    A maximum of 5 items are added due to availability.
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            {%- comment -%} Pack upgrade offers (1 tag → Set of 2 / Set of 3; Set of 2 → Set of 3; Set of 3 → none) {%- endcomment -%}
+            {%- liquid
+              assign upsell_item = nil
+              assign upsell_line = 0
+              assign upsell_pack = 0
+
+              for item in cart.items
+                assign pq = 1
+                if item.variant.metafields.custom.quantity != blank
+                  assign pq = item.variant.metafields.custom.quantity | plus: 0
+                else
+                  assign td = item.variant.title | downcase
+                  if td contains '3'
+                    assign pq = 3
+                  elsif td contains '2'
+                    assign pq = 2
+                  endif
+                endif
+
+                assign has_higher = false
+                for v in item.product.variants
+                  assign vq = 1
+                  if v.metafields.custom.quantity != blank
+                    assign vq = v.metafields.custom.quantity | plus: 0
+                  else
+                    assign vtd = v.title | downcase
+                    if vtd contains '3'
+                      assign vq = 3
+                    elsif vtd contains '2'
+                      assign vq = 2
+                    endif
+                  endif
+                  if vq > pq
+                    assign has_higher = true
+                  endif
+                endfor
+
+                if has_higher and pq >= upsell_pack
+                  assign upsell_item = item
+                  assign upsell_line = forloop.index
+                  assign upsell_pack = pq
+                endif
+              endfor
+            -%}
+
+            {%- if upsell_item != nil and upsell_pack < 3 -%}
+              <div class="cart_drawer_upsell">
+                <div class="cart_drawer_upsell_head">
+                  <p class="cart_drawer_upsell_title">{{ 'drawers.cart_drawer.upsell_heading' | t }}</p>
                 </div>
 
-                <div
-                  class="cart_drawer_error"
-                  data-line="{{ forloop.index }}"
-                  hidden>
-                  A maximum of 5 items are added due to availability.
+                <div class="cart_drawer_upsell_list">
+                  {%- for v in upsell_item.product.variants -%}
+                    {%- liquid
+                      assign vq = 1
+                      if v.metafields.custom.quantity != blank
+                        assign vq = v.metafields.custom.quantity | plus: 0
+                      else
+                        assign vtd = v.title | downcase
+                        if vtd contains '3'
+                          assign vq = 3
+                        elsif vtd contains '2'
+                          assign vq = 2
+                        endif
+                      endif
+
+                      assign add_count = vq | minus: upsell_pack
+                      assign show_offer = false
+                      if vq > upsell_pack
+                        if upsell_pack == 1 and vq <= 3
+                          assign show_offer = true
+                        endif
+                        if upsell_pack == 2 and vq == 3
+                          assign show_offer = true
+                        endif
+                      endif
+
+                      assign save_pct = 0
+                      if v.compare_at_price > v.price
+                        assign save_pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
+                      endif
+                    -%}
+
+                    {%- if show_offer and add_count > 0 -%}
+                      <div class="cart_drawer_upsell_card">
+                        <div class="cart_drawer_upsell_copy">
+                          <div class="cart_drawer_upsell_label_row">
+                            <p class="cart_drawer_upsell_label">
+                              {%- if add_count == 1 -%}
+                                {{ 'drawers.cart_drawer.upsell_add_one' | t }}
+                              {%- else -%}
+                                {{ 'drawers.cart_drawer.upsell_add_two' | t }}
+                              {%- endif -%}
+                            </p>
+                            {%- if save_pct > 0 -%}
+                              <span class="cart_drawer_upsell_badge">Save {{ save_pct }}%</span>
+                            {%- endif -%}
+                          </div>
+                          <p class="cart_drawer_upsell_price">
+                            <span class="cart_drawer_upsell_price_sale">{{ v.price | money }}</span>
+                            {%- if v.compare_at_price > v.price -%}
+                              <s class="cart_drawer_upsell_price_compare">{{ v.compare_at_price | money }}</s>
+                            {%- endif -%}
+                          </p>
+                        </div>
+                        <cart-pack-upgrade
+                          data-line="{{ upsell_line }}"
+                          data-variant-id="{{ v.id }}"
+                          data-product-id="{{ upsell_item.product.id }}">
+                          <button type="button" class="cart_drawer_upsell_btn">
+                            {{ 'drawers.cart_drawer.upsell_upgrade' | t }}
+                          </button>
+                        </cart-pack-upgrade>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
               </div>
-            {% endfor %}
+            {%- endif -%}
           </div>
 
           <div class="cart_drawer_footer">
@@ -229,12 +340,8 @@
                 <cart-discount-input>
                   <div class="cdi_discount_wrapper">
                     <h3 class="small-text">{{ 'sections.cart.discount_heading' | t }}</h3>
-
                     <div class="cdi_discount_form_wrapper">
-                      <form
-                        method="post"
-                        action="{{ routes.cart_update_url }}"
-                        id="cart_discount_form">
+                      <form method="post" action="{{ routes.cart_update_url }}" id="cart_discount_form">
                         <div class="cdi_form_inner">
                           <div class="input_field_wrapper">
                             <input
@@ -246,7 +353,6 @@
                               {{- 'sections.cart.discount_label' | t | append: ' *' -}}
                             </label>
                           </div>
-
                           <div class="cdi_form_button">
                             <button
                               class="btn"
@@ -268,7 +374,6 @@
                             endif
                           endfor
                         endfor
-
                         assign discount_codes = discount_codes | uniq
                       %}
 
@@ -300,19 +405,18 @@
                     <div class="cdi_cart_note_inner">
                       <div class="cdi_cart_note_head">
                         <h3 class="small-text">{{ 'sections.cart.cart_note_heading' | t }}</h3>
-                        <button class="cdi_cart_note_btn">
+                        <button class="cdi_cart_note_btn" type="button">
                           <span class="cdi_cn_hori"></span>
                           <span class="cdi_cn_vert"></span>
                         </button>
                       </div>
-
                       <div class="cdi_cart_note_content">
                         <div class="cdi_cart_note_content_inner">
-                          <label for="cart_note-{{ section.id }}" class="visually-hidden">{{ 'sections.cart.cart_note_placeholder' | t }}</label>
+                          <label for="cart_note-drawer" class="visually-hidden">{{ 'sections.cart.cart_note_placeholder' | t }}</label>
                           <textarea
                             name="note"
                             form="cart"
-                            id="cart_note-{{ section.id }}"
+                            id="cart_note-drawer"
                             width="100%"
                             rows="6"
                             inert
@@ -341,47 +445,9 @@
 
               <div class="cdi_subtotals_wrapper">
                 <div class="cdi_subtotal_inner">
-                  <h3 class="h5" class="cdi_subtotal">{{ 'sections.cart.subtotal' | t }}</h3>
-                  <h3 class="h5">{{ cart.total_price | money }}</h3>
+                  <span class="cdi_subtotal_label">{{ 'sections.cart.subtotal' | t }}</span>
+                  <span class="cdi_subtotal_value">{{ cart.total_price | money }}</span>
                 </div>
-
-                {% if settings.show_tax_info %}
-                  <span class="cart_items_tax_info">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {%- if shop.shipping_policy.body == blank -%}
-                        {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
-                      {%- else -%}
-                        {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
- | t: link: shop.shipping_policy.url
-                        }}
-                      {%- endif -%}
-                    {%- elsif cart.duties_included == false and cart.taxes_included -%}
-                      {%- if shop.shipping_policy.body == blank -%}
-                        {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
-                      {%- else -%}
-                        {{ 'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
- | t: link: shop.shipping_policy.url
-                        }}
-                      {%- endif -%}
-                    {%- elsif cart.duties_included and cart.taxes_included == false -%}
-                      {%- if shop.shipping_policy.body == blank -%}
-                        {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
-                      {%- else -%}
-                        {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
- | t: link: shop.shipping_policy.url
-                        }}
-                      {%- endif -%}
-                    {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
-                      {%- if shop.shipping_policy.body == blank -%}
-                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
-                      {%- else -%}
-                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
- | t: link: shop.shipping_policy.url
-                        }}
-                      {%- endif -%}
-                    {%- endif -%}
-                  </span>
-                {% endif %}
               </div>
 
               <div class="cdi_action_buttons_wrapper">
@@ -393,11 +459,17 @@
                 </a>
 
                 <form action="{{ routes.cart_url }}" method="post">
-                  <button
-                    class="btn"
-                    type="submit"
-                    name="checkout">{{ 'sections.cart.checkout' | t }}</button>
+                  <button class="btn cart_drawer_checkout_btn" type="submit" name="checkout">
+                    {{ 'sections.cart.checkout' | t }}
+                  </button>
                 </form>
+              </div>
+
+              <div class="cart_drawer_guarantee">
+                <span class="cart_drawer_guarantee_icon" aria-hidden="true">
+                  {{ 'cart-drawer-guarantee.svg' | inline_asset_content }}
+                </span>
+                <span class="cart_drawer_guarantee_text">{{ 'drawers.cart_drawer.money_back' | t }}</span>
               </div>
             </div>
           </div>
