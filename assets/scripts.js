@@ -4620,7 +4620,9 @@ class ProductForm extends HTMLElement {
     this.button = this.querySelector(".product_form_submit_btn");
     this.btnText = this.button?.querySelector(".btn_text");
     this.loader = this.button?.querySelector(".loader");
-    this.cart = document.querySelector(".cart_drawer_wrapper");
+    this.cart =
+      document.getElementById("cart_drawer") ||
+      document.querySelector(".cart_drawer_wrapper");
     this.openDrawer = false;
   }
 
@@ -4676,7 +4678,15 @@ class ProductForm extends HTMLElement {
         throw data;
       }
 
+      this.cart =
+        document.getElementById("cart_drawer") ||
+        document.querySelector(".cart_drawer_wrapper");
+
       if (this.cart) {
+        openDrawer(this.cart, this.button);
+        AddScrollLock();
+        this.openDrawer = true;
+
         const sections = await fetch(
           `${Shopify.routes.root}?sections=cart-drawer,cart,cart-bubble`,
         ).then((r) => r.json());
@@ -4687,8 +4697,6 @@ class ProductForm extends HTMLElement {
             bubbles: true,
           }),
         );
-
-        this.openDrawer = true;
       } else {
         window.location.href = `${Shopify.routes.root}cart`;
       }
