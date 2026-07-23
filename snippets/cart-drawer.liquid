@@ -214,52 +214,51 @@
 
           <div class="cart_drawer_footer">
             <div class="cart_drawer_footer_inner">
-              {%- comment -%} Upsells sit above checkout (Figma bottom stack) {%- endcomment -%}
+              {%- comment -%}
+                Upsell by effective tag count (= variant pack size × line qty):
+                - 1 → show Set of 2 + Set of 3
+                - 2 → show 1 Tag
+                - 3+ → show nothing
+              {%- endcomment -%}
               {%- liquid
                 assign upsell_item = nil
                 assign upsell_line = 0
-                assign upsell_pack = 0
+                assign effective_qty = 0
 
                 for item in cart.items
-                  assign pq = 1
+                  assign variant_pack = 1
                   if item.variant.metafields.custom.quantity != blank
-                    assign pq = item.variant.metafields.custom.quantity | plus: 0
+                    assign variant_pack = item.variant.metafields.custom.quantity | plus: 0
                   else
                     assign td = item.variant.title | downcase
-                    if td contains '3'
-                      assign pq = 3
+                    assign tn = item.variant.title | downcase
+                    if item.product.has_only_default_variant
+                      assign variant_pack = 1
+                    elsif td contains 'set of 3' or td contains '3 tag' or td contains '3-pack' or td contains '3 pack'
+                      assign variant_pack = 3
+                    elsif td contains 'set of 2' or td contains '2 tag' or td contains '2-pack' or td contains '2 pack'
+                      assign variant_pack = 2
+                    elsif td contains '3'
+                      assign variant_pack = 3
                     elsif td contains '2'
-                      assign pq = 2
+                      assign variant_pack = 2
                     endif
                   endif
 
-                  assign has_higher = false
-                  for v in item.product.variants
-                    assign vq = 1
-                    if v.metafields.custom.quantity != blank
-                      assign vq = v.metafields.custom.quantity | plus: 0
-                    else
-                      assign vtd = v.title | downcase
-                      if vtd contains '3'
-                        assign vq = 3
-                      elsif vtd contains '2'
-                        assign vq = 2
-                      endif
-                    endif
-                    if vq > pq
-                      assign has_higher = true
-                    endif
-                  endfor
+                  assign item_effective = variant_pack | times: item.quantity
 
-                  if has_higher and pq >= upsell_pack
-                    assign upsell_item = item
-                    assign upsell_line = forloop.index
-                    assign upsell_pack = pq
+                  if item.product.variants.size > 1 or item_effective > 0
+                    if upsell_item == nil or item_effective > effective_qty
+                      assign upsell_item = item
+                      assign upsell_line = forloop.index
+                      assign effective_qty = item_effective
+                      assign upsell_variant_pack = variant_pack
+                    endif
                   endif
                 endfor
               -%}
 
-              {%- if upsell_item != nil and upsell_pack < 3 -%}
+              {%- if upsell_item != nil and effective_qty > 0 and effective_qty < 3 -%}
                 <div class="cart_drawer_upsell">
                   <div class="cart_drawer_upsell_head">
                     <p class="cart_drawer_upsell_title">Save more when you add extra tags.</p>
@@ -273,20 +272,24 @@
                           assign vq = v.metafields.custom.quantity | plus: 0
                         else
                           assign vtd = v.title | downcase
-                          if vtd contains '3'
+                          if vtd contains 'set of 3' or vtd contains '3 tag' or vtd contains '3-pack' or vtd contains '3 pack'
+                            assign vq = 3
+                          elsif vtd contains 'set of 2' or vtd contains '2 tag' or vtd contains '2-pack' or vtd contains '2 pack'
+                            assign vq = 2
+                          elsif vtd contains '3'
                             assign vq = 3
                           elsif vtd contains '2'
                             assign vq = 2
                           endif
                         endif
 
-                        assign add_count = vq | minus: upsell_pack
                         assign show_offer = false
-                        if vq > upsell_pack
-                          if upsell_pack == 1 and vq <= 3
+                        if effective_qty == 1
+                          if vq == 2 or vq == 3
                             assign show_offer = true
                           endif
-                          if upsell_pack == 2 and vq == 3
+                        elsif effective_qty == 2
+                          if vq == 1
                             assign show_offer = true
                           endif
                         endif
@@ -295,34 +298,35 @@
                         if v.compare_at_price > v.price
                           assign save_pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
                         endif
+
+                        assign offer_label = ''
+                        if v.metafields.custom.variant_name.value != blank
+                          assign offer_label = v.metafields.custom.variant_name.value
+                        elsif v.metafields.custom.variant_name != blank
+                          assign offer_label = v.metafields.custom.variant_name
+                        elsif v.metafields.custom.title.value != blank
+                          assign offer_label = v.metafields.custom.title.value
+                        elsif v.metafields.custom.title != blank
+                          assign offer_label = v.metafields.custom.title
+                        elsif vq == 2
+                          assign offer_label = 'Set of 2'
+                        elsif vq == 3
+                          assign offer_label = 'Set of 3'
+                        elsif vq == 1
+                          assign offer_label = '1 Tag'
+                        else
+                          assign offer_label = v.title
+                        endif
+
+                        assign upgrade_qty = 1
                       -%}
 
-                      {%- if show_offer and add_count > 0 -%}
-                        {%- liquid
-                          assign offer_label = ''
-                          if v.metafields.custom.variant_name.value != blank
-                            assign offer_label = v.metafields.custom.variant_name.value
-                          elsif v.metafields.custom.variant_name != blank
-                            assign offer_label = v.metafields.custom.variant_name
-                          elsif v.metafields.custom.title.value != blank
-                            assign offer_label = v.metafields.custom.title.value
-                          elsif v.metafields.custom.title != blank
-                            assign offer_label = v.metafields.custom.title
-                          elsif vq == 2
-                            assign offer_label = 'Set of 2'
-                          elsif vq == 3
-                            assign offer_label = 'Set of 3'
-                          elsif vq == 1
-                            assign offer_label = '1 Tag'
-                          else
-                            assign offer_label = v.title
-                          endif
-                        -%}
+                      {%- if show_offer -%}
                         <div class="cart_drawer_upsell_card">
                           <div class="cart_drawer_upsell_copy">
                             <div class="cart_drawer_upsell_label_row">
                               <p class="cart_drawer_upsell_label">{{ offer_label }}</p>
-                              {%- if save_pct > 0 -%}
+                              {%- if save_pct > 0 and effective_qty == 1 -%}
                                 <span class="cart_drawer_upsell_badge">Save {{ save_pct }}%</span>
                               {%- endif -%}
                             </div>
@@ -337,8 +341,11 @@
                             data-key="{{ upsell_item.key }}"
                             data-line="{{ upsell_line }}"
                             data-variant-id="{{ v.id }}"
+                            data-quantity="{{ upgrade_qty }}"
                             data-product-id="{{ upsell_item.product.id }}">
-                            <button type="button" class="cart_drawer_upsell_btn">Upgrade</button>
+                            <button type="button" class="cart_drawer_upsell_btn">
+                              {%- if effective_qty == 2 -%}Select{%- else -%}Upgrade{%- endif -%}
+                            </button>
                           </cart-pack-upgrade>
                         </div>
                       {%- endif -%}
