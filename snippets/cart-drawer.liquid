@@ -76,7 +76,7 @@
                       <div class="cdi_top_row">
                         <div class="cdi_title">
                           <p>
-                            <a href="{{ item.url }}">{{ item.product.title }}</a>
+                            <a href="{{ item.url }}">The piece of gear you don't think about until you need it.</a>
                           </p>
                         </div>
                         <div class="cdi_price">
@@ -165,7 +165,9 @@
                             {% if item.quantity == item.variant.quantity_rule.min %}
                             disabled
                             {% endif %}>
-                            <span class="cq_hori"></span>
+                            <svg class="cq_icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                              <path d="M2.5 6h7" stroke="#000" stroke-width="1.25" stroke-linecap="square"/>
+                            </svg>
                           </button>
 
                           <input
@@ -193,8 +195,9 @@
                             {% if item.quantity == item.variant.quantity_rule.max %}
                             disabled
                             {% endif %}>
-                            <span class="cq_hori"></span>
-                            <span class="cq_vert"></span>
+                            <svg class="cq_icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                              <path d="M2.5 6h7M6 2.5v7" stroke="#000" stroke-width="1.25" stroke-linecap="square"/>
+                            </svg>
                           </button>
                         </cart-quantity-picker>
                       </div>
