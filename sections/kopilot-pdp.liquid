@@ -10,7 +10,7 @@
     font-weight: 700;
     line-height: 130%;
     letter-spacing: 0px;
-    /* text-transform: uppercase; */
+    text-transform: none;
     color: #000;
 }
 .kopilot-pdp__tier-price-pdp {
@@ -742,7 +742,16 @@ padding:7.25px 18.29px;
               elsif variant.metafields.custom.title != blank
                 assign tier_title = variant.metafields.custom.title
               else
-                assign tier_title = variant.title | replace: 'product', 'TAG' | replace: 'Product', 'TAG' | upcase
+                assign tier_title = variant.title | replace: 'product', 'TAG' | replace: 'Product', 'TAG'
+              endif
+
+              assign tier_title_down = tier_title | downcase
+              if tier_title_down contains 'set of 3' or tier_title_down contains '3 tag' or variant_qty == 3
+                assign tier_title = 'Set of 3'
+              elsif tier_title_down contains 'set of 2' or tier_title_down contains '2 tag' or variant_qty == 2
+                assign tier_title = 'Set of 2'
+              elsif tier_title_down contains '1 tag' or variant_qty == 1
+                assign tier_title = '1 TAG'
               endif
             %}
 
