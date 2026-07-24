@@ -385,6 +385,7 @@
 }
 
 .cdi_title {
+  max-width:175px;
   flex: 1;
   min-width: 0;
 }
