@@ -225,7 +225,7 @@
   border-radius: 0;
   overflow: hidden;
   background: #efefef;
-  margin-right: 8px;
+  margin-right: -10px;
 }
 
 .cart_drawer_wrapper .free_shipping_bar_fill {
