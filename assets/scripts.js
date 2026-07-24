@@ -4133,13 +4133,11 @@ class CartPackUpgrade extends HTMLElement {
     e.stopPropagation();
     if (this.button?.disabled || this.isUpgrading) return;
 
-    const lineKey = this.dataset.key;
     const variantId = Number(this.dataset.variantId);
     const quantity = Math.max(1, Number(this.dataset.quantity) || 1);
-    const sameVariant = this.dataset.sameVariant === "true";
 
-    if (!lineKey || !variantId) {
-      console.error("Cart pack upgrade missing key or variant id", this.dataset);
+    if (!variantId) {
+      console.error("Cart pack upgrade missing variant id", this.dataset);
       return;
     }
 
@@ -4149,57 +4147,22 @@ class CartPackUpgrade extends HTMLElement {
     try {
       CartController.startLoading();
 
-      if (sameVariant) {
-        const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-          },
-          body: JSON.stringify({
-            id: lineKey,
-            quantity,
-          }),
-        });
+      // Always add the upsell bundle on top of existing cart items (never replace).
+      const addRes = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity,
+        }),
+      });
 
-        if (!changeRes.ok) {
-          const changeErr = await changeRes.json().catch(() => ({}));
-          throw new Error(changeErr.description || changeErr.message || "Unable to update quantity");
-        }
-      } else {
-        const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-          },
-          body: JSON.stringify({
-            id: lineKey,
-            quantity: 0,
-          }),
-        });
-
-        if (!changeRes.ok) {
-          const changeErr = await changeRes.json().catch(() => ({}));
-          throw new Error(changeErr.description || changeErr.message || "Unable to remove current item");
-        }
-
-        const addRes = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-          },
-          body: JSON.stringify({
-            id: variantId,
-            quantity,
-          }),
-        });
-
-        const addData = await addRes.json();
-        if (!addRes.ok) {
-          throw new Error(addData.description || addData.message || "Upgrade failed");
-        }
+      const addData = await addRes.json();
+      if (!addRes.ok) {
+        throw new Error(addData.description || addData.message || "Upgrade failed");
       }
 
       const sections = await fetch(
