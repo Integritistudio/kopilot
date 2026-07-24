@@ -1029,7 +1029,7 @@ cart-pack-upgrade {
     (space-between), then 25px to quantity — keeps options beside the image.
   */
   .cart_drawer_item_info_block {
-    gap: 25px;
+    gap: 10px;
   }
 
   .cdi_info_main {
