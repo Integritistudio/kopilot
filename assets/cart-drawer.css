@@ -376,6 +376,11 @@
   align-items: stretch;
 }
 
+/* Desktop: wrapper is layout-transparent so existing gaps stay unchanged */
+.cdi_info_main {
+  display: contents;
+}
+
 .cdi_top_row {
   display: flex;
   align-items: flex-start;
@@ -635,7 +640,7 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 20px 13px 20px 20px;
+  padding: 20px;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
@@ -1019,17 +1024,27 @@ cart-pack-upgrade {
     line-height: 1.06;
   }
 
-  /* Figma: 34px title→options, 25px options→qty */
+  /*
+    Figma mobile: title + "1 Product" share a column matching image height
+    (space-between), then 25px to quantity — keeps options beside the image.
+  */
   .cart_drawer_item_info_block {
-    gap: 0;
+    gap: 25px;
   }
 
-  .cart_drawer_item_info_block .cdi_top_row {
-    margin-bottom: 34px;
+  .cdi_info_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 97.181px;
+    gap: 8px;
+    width: 100%;
   }
 
+  .cart_drawer_item_info_block .cdi_top_row,
   .cart_drawer_item_info_block .cdi_mid_row {
-    margin-bottom: 25px;
+    margin-bottom: 0;
   }
 
   .cart_drawer_wrapper item-remove a.item_remove_btn,
