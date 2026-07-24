@@ -157,8 +157,20 @@
   padding: 0;
 }
 
+.cart_drawer_wrapper button.drawer_close_btn.has_custom_icon {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+}
+
 .cart_drawer_wrapper button.drawer_close_btn:hover {
   background: #000000;
+}
+
+.cart_drawer_wrapper button.drawer_close_btn.has_custom_icon:hover {
+  background: transparent;
+  opacity: 0.7;
 }
 
 .cart_drawer_wrapper button.drawer_close_btn svg {
@@ -172,6 +184,13 @@
 
 .cart_drawer_wrapper button.drawer_close_btn:hover svg path {
   fill: #ffffff;
+}
+
+.cart_drawer_wrapper button.drawer_close_btn .drawer_close_btn_icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
 }
 
 /* Free shipping */
@@ -225,7 +244,7 @@
   border-radius: 0;
   overflow: hidden;
   background: #efefef;
-  margin-right: -10px;
+  margin-right: 8px;
 }
 
 .cart_drawer_wrapper .free_shipping_bar_fill {
@@ -938,17 +957,19 @@ cart-pack-upgrade {
 .cart_drawer_guarantee_icon {
   width: 31.18px;
   height: 31.18px;
-  background: #efefef;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
+.cart_drawer_guarantee_icon img,
 .cart_drawer_guarantee_icon svg {
-  width: 17px;
-  height: 19px;
+  width: 31.18px;
+  height: 31.18px;
   display: block;
+  object-fit: contain;
 }
 
 .cart_drawer_guarantee_text {
@@ -1150,9 +1171,10 @@ cart-pack-upgrade {
     height: 22.594px;
   }
 
+  .cart_drawer_guarantee_icon img,
   .cart_drawer_guarantee_icon svg {
-    width: 12.321px;
-    height: 13.685px;
+    width: 22.594px;
+    height: 22.594px;
   }
 
   .cart_drawer_guarantee_text {
