@@ -4138,8 +4138,8 @@ class CartPackUpgrade extends HTMLElement {
     const quantity = Math.max(1, Number(this.dataset.quantity) || 1);
     const sameVariant = this.dataset.sameVariant === "true";
 
-    if (!lineKey || !variantId) {
-      console.error("Cart pack upgrade missing key or variant id", this.dataset);
+    if (!variantId || !lineKey) {
+      console.error("Cart pack upgrade missing variant id or line key", this.dataset);
       return;
     }
 
@@ -4150,6 +4150,7 @@ class CartPackUpgrade extends HTMLElement {
       CartController.startLoading();
 
       if (sameVariant) {
+        // Single-SKU: set line quantity to 3.
         const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
           method: "POST",
           headers: {
@@ -4167,6 +4168,7 @@ class CartPackUpgrade extends HTMLElement {
           throw new Error(changeErr.description || changeErr.message || "Unable to update quantity");
         }
       } else {
+        // Replace current pack with Set of 3 (1+2 or 2+1 → one Set of 3 line).
         const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
           method: "POST",
           headers: {
