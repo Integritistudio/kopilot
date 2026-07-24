@@ -229,7 +229,7 @@
               {%- comment -%}
                 Pack upsell (UI = complementary pack, result = single Set of 3):
                 - 1 Tag → show "Set of 2" → Upgrade replaces cart with Set of 3 (1+2=3)
-                - Set of 2 → show "Add 1 Tag" → Upgrade replaces cart with Set of 3 (2+1=3)
+                - Set of 2 → show "Add 1 tag" → Upgrade replaces cart with Set of 3 (2+1=3)
                 - Already Set of 3 / total tags >= 3 → hide upsell
               {%- endcomment -%}
               {%- liquid
@@ -318,7 +318,7 @@
                 elsif total_tags == 2
                   assign upsell_tier = 2
                   assign display_pack = 1
-                  assign offer_label = 'Add 1 Tag'
+                  assign offer_label = 'Add 1 tag'
                 elsif total_tags == 1
                   assign upsell_tier = 1
                   assign display_pack = 2
@@ -455,8 +455,8 @@
                 <span class="cart_drawer_guarantee_icon" aria-hidden="true">
                   <img
                     src="https://cdn.shopify.com/s/files/1/0598/6471/1277/files/Frame_2106667239.svg?v=1784921058"
-                    width="17"
-                    height="19"
+                    width="32"
+                    height="32"
                     alt=""
                     loading="lazy"
                   >
