@@ -428,6 +428,15 @@
                           else
                             assign offer_label = v.title
                           endif
+
+                          assign offer_label_down = offer_label | downcase
+                          if offer_label_down contains 'set of 3' or offer_label_down contains '3 tag' or vq == 3
+                            assign offer_label = 'Set of 3'
+                          elsif offer_label_down contains 'set of 2' or offer_label_down contains '2 tag' or vq == 2
+                            assign offer_label = 'Set of 2'
+                          elsif offer_label_down contains '1 tag' or vq == 1
+                            assign offer_label = '1 TAG'
+                          endif
                         -%}
 
                         {%- if show_offer -%}
