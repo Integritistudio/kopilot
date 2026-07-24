@@ -635,7 +635,7 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 20px;
+  padding: 20px 13px 20px 20px;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
@@ -663,6 +663,7 @@
   line-height: 1.3;
   color: #000000;
   white-space: nowrap;
+  text-transform: none;
 }
 
 .cart_drawer_upsell_badge {
@@ -953,7 +954,7 @@ cart-pack-upgrade {
   color: #000000;
 }
 
-/* Mobile 360 */
+/* Mobile 360 — Figma node 3321:197 */
 @media screen and (max-width: 767px) {
   .cart_drawer_wrapper.drawer_wrapper .drawer_wrapper_inner.cart_drawer_inner {
     max-width: 100%;
@@ -962,11 +963,16 @@ cart-pack-upgrade {
 
   .cart_drawer_wrapper .cart_drawer_header.drawer_header {
     padding: 20px var(--cd-pad-x) 0;
+    gap: 11px;
   }
 
   .cart_drawer_wrapper .cart_drawer_heading,
   .cart_drawer_wrapper .cart_drawer_header h2 {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
     font-size: 18px;
+    line-height: 1.06;
+    letter-spacing: -1px;
   }
 
   .cart_drawer_wrapper .free_shipping_bar {
@@ -974,36 +980,78 @@ cart-pack-upgrade {
   }
 
   .cart_drawer_wrapper .free_shipping_bar_message {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
     font-size: 15px;
+    line-height: 1.06;
   }
 
   .cart_drawer_content_wrapper {
     padding: 31px var(--cd-pad-x) 20px;
   }
 
+  .cart_drawer_item_block .cdi_block_inner {
+    gap: 12px;
+  }
+
+  .cdi_title {
+    max-width: 149px;
+  }
+
   .cdi_title p a {
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
     font-size: 15px;
+    line-height: 1.06;
   }
 
   .cdi_price_inner span {
+    font-family: 'Elza', sans-serif;
+    font-weight: 600;
     font-size: 15px;
+    line-height: 1.06;
   }
 
   .cdi_product_options span {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
     font-size: 15px;
+    line-height: 1.06;
   }
 
+  /* Figma: 34px title→options, 25px options→qty */
   .cart_drawer_item_info_block {
-    gap: 25px;
+    gap: 0;
   }
 
+  .cart_drawer_item_info_block .cdi_top_row {
+    margin-bottom: 34px;
+  }
+
+  .cart_drawer_item_info_block .cdi_mid_row {
+    margin-bottom: 25px;
+  }
+
+  .cart_drawer_wrapper item-remove a.item_remove_btn,
   .cart_drawer_wrapper item-remove a {
     width: 26.18px;
     height: 26.18px;
   }
 
+  .cart_drawer_wrapper item-remove a svg {
+    width: 13.56px;
+    height: 16.79px;
+  }
+
+  .cart_drawer_upsell {
+    gap: 11px;
+  }
+
   .cart_drawer_upsell_title {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
     font-size: 15px;
+    line-height: 1.06;
   }
 
   .cart_drawer_upsell_card {
@@ -1012,12 +1060,74 @@ cart-pack-upgrade {
   }
 
   .cart_drawer_upsell_label_row {
-    gap: 2px;
+    gap: 10px;
+  }
+
+  .cart_drawer_upsell_label {
+    font-family: 'Elza', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.3;
+    text-transform: none;
+  }
+
+  .cart_drawer_upsell_btn {
+    width: 106px;
+    min-width: 106px;
+    height: 34px;
+    padding: 6.483px 22px;
+  }
+
+  .cart_drawer_footer {
+    padding: 0;
+  }
+
+  .cart_drawer_footer_inner {
+    gap: 0;
+  }
+
+  .cart_drawer_footer_inner > .cart_drawer_upsell {
+    margin-bottom: 20px;
+  }
+
+  .cart_drawer_footer_inner > .cdi_cart_level_discount_wrapper {
+    margin-bottom: 20px;
+  }
+
+  .cart_drawer_footer_inner > .cdi_subtotals_wrapper {
+    margin-bottom: 15px;
+  }
+
+  .cart_drawer_footer_inner > .cdi_action_buttons_wrapper {
+    margin-bottom: 10px;
   }
 
   .cdi_subtotal_label,
   .cdi_subtotal_value {
+    font-family: 'Elza', sans-serif;
     font-size: 15px;
+    line-height: 1.06;
+  }
+
+  .cdi_subtotal_label {
+    font-weight: 300;
+  }
+
+  .cdi_subtotal_value {
+    font-weight: 600;
+  }
+
+  .cart_drawer_checkout_btn,
+  .cdi_action_buttons_wrapper form button.btn {
+    min-height: 39px;
+    height: 39px;
+    padding: 10px 16px !important;
+    font-size: 16px !important;
+    line-height: normal !important;
+  }
+
+  .cart_drawer_guarantee {
+    gap: 10px;
   }
 
   .cart_drawer_guarantee_icon {
@@ -1026,11 +1136,14 @@ cart-pack-upgrade {
   }
 
   .cart_drawer_guarantee_icon svg {
-    width: 12px;
-    height: 14px;
+    width: 12.321px;
+    height: 13.685px;
   }
 
   .cart_drawer_guarantee_text {
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
     font-size: 15px;
+    line-height: 1.06;
   }
 }
