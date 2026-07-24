@@ -418,7 +418,7 @@
           "type": "question",
           "settings": {
             "question": "Does KOPILOT.ID work without cell service?",
-            "answer": "<p>Yes. KOPILOT.ID is waterproof, battery-free, and designed to work in real-world conditions without charging or cell signal</p>"
+            "answer": "<p>Yes. KOPILOT.ID is waterproof, battery-free, and designed to work in real-world conditions without charging or cell signal.</p>"
           }
         },
         "question_Caw83F": {
