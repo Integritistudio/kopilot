@@ -119,7 +119,7 @@
                     {% unless item.product.has_only_default_variant %}
                       <p class="main_cart_item_product_options">
                         {% for option in item.options_with_values %}
-                          <span>{{- option.value -}}</span>
+                          <span>{{- option.value | replace: 'product', 'Product' -}}</span>
                           {% unless forloop.last %}
                             <span class="separator">|</span>
                           {% endunless %}
