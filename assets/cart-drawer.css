@@ -515,16 +515,24 @@
   display: grid;
   grid-template-columns: 31px 31px 31px;
   border: none;
+  align-items: stretch;
 }
 
 .cart_drawer_wrapper cart-quantity-picker button {
   width: 31px;
   height: 31px;
-  background: transparent;
+  background: #ffffff;
   border: 0.861px solid #000000;
   border-radius: 0;
   padding: 0;
+  margin: 0;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  box-shadow: none;
+  color: #000000;
 }
 
 .cart_drawer_wrapper cart-quantity-picker button.btn_minus {
@@ -545,9 +553,12 @@
   font-family: 'Elza', sans-serif;
   font-weight: 300;
   font-size: 17.222px;
-  line-height: 1.06;
+  line-height: 31px;
   padding: 0;
+  margin: 0;
+  border-radius: 0;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .cart_drawer_wrapper cart-quantity-picker input::-webkit-outer-spin-button,
@@ -556,22 +567,17 @@
   margin: 0;
 }
 
-.cart_drawer_wrapper cart-quantity-picker button .cq_hori,
-.cart_drawer_wrapper cart-quantity-picker button .cq_vert {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5.322px;
-  height: 0.964px;
-  background: #000000;
-  border-radius: 0;
+.cart_drawer_wrapper cart-quantity-picker button .cq_icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
+.cart_drawer_wrapper cart-quantity-picker button .cq_hori,
 .cart_drawer_wrapper cart-quantity-picker button .cq_vert {
-  width: 0.964px;
-  height: 7.578px;
-  transform: translate(-50%, -50%);
+  display: none;
 }
 
 .cart_drawer_wrapper cart-quantity-picker button:disabled {
