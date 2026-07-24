@@ -395,22 +395,23 @@
     }
 
     .ppst-{{ section.id }} .ppst-progress {
-      max-width: 319.527px;
-      width: 319.527px;
-      height: 3.994px;
+      max-width: none;
+      width: 100%;
+      height: 4px;
     }
 
     .ppst-{{ section.id }} .ppst-progress-track {
-      left: 19.66px;
-      top: 0.13px;
-      width: calc(100% - 19.66px);
-      max-width: 636.172px;
-      height: 3.651px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      max-width: none;
+      height: 4px;
+      background-color: #d9d9d9;
     }
 
     .ppst-{{ section.id }} .ppst-progress-fill {
-      width: 319.527px;
-      height: 3.994px;
+      width: 48%;
+      height: 4px;
     }
   }
 {%- endstyle -%}
@@ -511,10 +512,12 @@
     var width = minFill + (maxFill - minFill) * ratio;
 
     if (window.matchMedia('(max-width: 767px)').matches) {
-      minFill = 319.527;
-      maxFill = 655.832;
+      var progressEl = fill.parentElement;
+      var progressWidth = progressEl ? progressEl.clientWidth : trackWidth;
+      minFill = progressWidth * 0.48;
+      maxFill = progressWidth;
       width = minFill + (maxFill - minFill) * ratio;
-      width = Math.min(width, 655.832);
+      width = Math.min(width, progressWidth);
     } else if (window.matchMedia('(min-width: 1440px)').matches) {
       minFill = 400;
       maxFill = 821;
