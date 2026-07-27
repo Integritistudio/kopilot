@@ -1,3 +1,4 @@
-.get-started-emergency{
-    background:red ;
+.get-started-emergency .kopilot-features-heading {
+  width: 100%;
+  max-width: 100px;
 }
