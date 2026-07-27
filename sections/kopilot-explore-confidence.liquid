@@ -23,6 +23,7 @@
     box-sizing: border-box;
   }
 
+  /* Desktop — Figma 2335:253 — 1440 frame */
   #kopilot-explore-confidence-{{ section.id }} .kec-inner {
     display: flex;
     flex-direction: row;
@@ -44,7 +45,7 @@
 
   #kopilot-explore-confidence-{{ section.id }} .kec-media video,
   #kopilot-explore-confidence-{{ section.id }} .kec-media img,
-  #kopilot-explore-confidence-{{ section.id }} .kec-media .kec-media-el {
+  #kopilot-explore-confidence-{{ section.id }} .kec-media-el {
     display: block;
     width: 100%;
     height: 100%;
@@ -67,7 +68,6 @@
     color: var(--kec-text);
   }
 
-  /* Heading — beat global h2 / span rules */
   #kopilot-explore-confidence-{{ section.id }} h2.kec-heading,
   #kopilot-explore-confidence-{{ section.id }} h2.kec-heading span {
     margin: 0 !important;
@@ -97,9 +97,7 @@
     width: 100%;
   }
 
-  /* Description — beat global p / rte / span rules */
   #kopilot-explore-confidence-{{ section.id }} .kec-text,
-  #kopilot-explore-confidence-{{ section.id }} p.kec-text,
   #kopilot-explore-confidence-{{ section.id }} .kec-text p,
   #kopilot-explore-confidence-{{ section.id }} .kec-text span,
   #kopilot-explore-confidence-{{ section.id }} .kec-text a,
@@ -124,9 +122,7 @@
     text-underline-offset: 2px;
   }
 
-  /* Tagline — beat global p rules */
-  #kopilot-explore-confidence-{{ section.id }} p.kec-tagline,
-  #kopilot-explore-confidence-{{ section.id }} .kec-tagline {
+  #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
     margin: 0 !important;
     padding: 0 !important;
     font-family: 'Elza', sans-serif !important;
@@ -138,7 +134,6 @@
     color: var(--kec-text) !important;
     text-align: left !important;
     text-transform: none !important;
-    white-space: pre-line;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
@@ -166,17 +161,15 @@
     }
 
     #kopilot-explore-confidence-{{ section.id }} .kec-text,
-    #kopilot-explore-confidence-{{ section.id }} p.kec-text,
     #kopilot-explore-confidence-{{ section.id }} .kec-text p,
     #kopilot-explore-confidence-{{ section.id }} .kec-text span,
     #kopilot-explore-confidence-{{ section.id }} .kec-text *,
-    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline,
-    #kopilot-explore-confidence-{{ section.id }} .kec-tagline {
+    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
       font-size: clamp(16px, 1.389vw, 20px) !important;
     }
   }
 
-  /* Mobile ≤767px — Figma 360px frame */
+  /* Mobile — Figma 2335:724 — 360 frame */
   @media screen and (max-width: 767px) {
     #kopilot-explore-confidence-{{ section.id }} {
       overflow: visible;
@@ -230,7 +223,6 @@
     }
 
     #kopilot-explore-confidence-{{ section.id }} .kec-text,
-    #kopilot-explore-confidence-{{ section.id }} p.kec-text,
     #kopilot-explore-confidence-{{ section.id }} .kec-text p,
     #kopilot-explore-confidence-{{ section.id }} .kec-text span,
     #kopilot-explore-confidence-{{ section.id }} .kec-text * {
@@ -240,8 +232,7 @@
       text-align: center !important;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline,
-    #kopilot-explore-confidence-{{ section.id }} .kec-tagline {
+    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
       font-size: 16px !important;
       line-height: 1.2 !important;
       text-align: center !important;
@@ -413,7 +404,7 @@
       "type": "text",
       "id": "extra_class",
       "label": "Extra class",
-      "info": "Optional CSS class for this section instance (e.g. explore-app). Use in Custom CSS to style one page without affecting another."
+      "info": "Optional CSS class for this section instance."
     }
   ],
   "presets": [
