@@ -122,7 +122,8 @@
         "heading": "KOPILOT.ID inemergency",
         "image": "shopify://shop_images/image_18659467_1.png",
         "bg_color": "#ffffff",
-        "bg_color_mobile": "#ffffff"
+        "bg_color_mobile": "#ffffff",
+        "extraclass": "get-started-emergency"
       }
     },
     "kopilot_easy_to_use_7R4Eiq": {
