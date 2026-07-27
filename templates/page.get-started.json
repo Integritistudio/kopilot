@@ -161,84 +161,6 @@
         "extra_class": ""
       }
     },
-    "kopilot_home_activities_W83Fpi": {
-      "type": "kopilot-home-activities",
-      "blocks": {
-        "activity_bnK8Tq": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/fa196ced4c739163317d576728c38c965d398f7e_ae3ddcd8-8bd9-4c55-82bd-1ac2c6a68241.png",
-            "category": "Cycling",
-            "title": "Ride out of range.",
-            "text": "Ready for crashes, weather, and long rides.",
-            "overlay_opacity": 30
-          }
-        },
-        "activity_F6AA6R": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/566132510237f8fa9b256333ddcd9473c0f0f8b8_78681ac7-3561-438f-841e-66f93b3b75ae.jpg",
-            "category": "Motorcycling",
-            "title": "Go full throttle.",
-            "text": "Built tough to handle crashes, weather, and high speeds.",
-            "overlay_opacity": 20
-          }
-        },
-        "activity_ERFqCe": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/cfa934cdf8509285f4bfc2b669d85f66ee0fa1e1_09f6d15d-f601-49b3-b95b-7d73059571a7.png",
-            "category": "Trail running",
-            "title": "Cover the distance.",
-            "text": "GPS location helps them find you faster, even deep on a trail.",
-            "overlay_opacity": 30
-          }
-        },
-        "activity_PftkCP": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/7ae75e7e50dba8f99bfe22484d263ca67f2d4064_4fa5de3f-6d97-41cb-9c0b-0aadf5e82acf.png",
-            "category": "Mountain biking",
-            "title": "Send it harder.",
-            "text": "GPS helps them find you, even in dense brush and remote terrain.",
-            "overlay_opacity": 30
-          }
-        },
-        "activity_3jAiiD": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/2d63660181a7fdb29fb2601f0eeeb015ff5f633a_f870fdee-9dd1-49c0-9fd3-56852915e6a8.jpg",
-            "category": "Winter sports",
-            "title": "Drop in deeper.",
-            "text": "Accessible even in remote mountains without signal.",
-            "overlay_opacity": 30
-          }
-        },
-        "activity_rP9xKK": {
-          "type": "activity",
-          "settings": {
-            "image": "shopify://shop_images/24eca08e58d941ac868506142b419dc640df4e27_d6fc4477-7902-4fa3-bef8-7afff7d97a22.png",
-            "category": "Hiking",
-            "title": "Push further out.",
-            "text": "Built for long days off-grid without charging or batteries.",
-            "overlay_opacity": 30
-          }
-        }
-      },
-      "block_order": [
-        "activity_bnK8Tq",
-        "activity_F6AA6R",
-        "activity_ERFqCe",
-        "activity_PftkCP",
-        "activity_3jAiiD",
-        "activity_rP9xKK"
-      ],
-      "name": "Kopilot Home Activities",
-      "settings": {
-        "color_scheme": "",
-        "heading": "<p>KOPILOT.ID speaks for you</p>"
-      }
-    },
     "kopilot_faq_jmWn4N": {
       "type": "kopilot-faq",
       "blocks": {
@@ -343,6 +265,84 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "kopilot_home_activities_W83Fpi": {
+      "type": "kopilot-home-activities",
+      "blocks": {
+        "activity_bnK8Tq": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/fa196ced4c739163317d576728c38c965d398f7e_ae3ddcd8-8bd9-4c55-82bd-1ac2c6a68241.png",
+            "category": "Cycling",
+            "title": "Ride out of range.",
+            "text": "Ready for crashes, weather, and long rides.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_F6AA6R": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/566132510237f8fa9b256333ddcd9473c0f0f8b8_78681ac7-3561-438f-841e-66f93b3b75ae.jpg",
+            "category": "Motorcycling",
+            "title": "Go full throttle.",
+            "text": "Built tough to handle crashes, weather, and high speeds.",
+            "overlay_opacity": 20
+          }
+        },
+        "activity_ERFqCe": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/cfa934cdf8509285f4bfc2b669d85f66ee0fa1e1_09f6d15d-f601-49b3-b95b-7d73059571a7.png",
+            "category": "Trail running",
+            "title": "Cover the distance.",
+            "text": "GPS location helps them find you faster, even deep on a trail.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_PftkCP": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/7ae75e7e50dba8f99bfe22484d263ca67f2d4064_4fa5de3f-6d97-41cb-9c0b-0aadf5e82acf.png",
+            "category": "Mountain biking",
+            "title": "Send it harder.",
+            "text": "GPS helps them find you, even in dense brush and remote terrain.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_3jAiiD": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/2d63660181a7fdb29fb2601f0eeeb015ff5f633a_f870fdee-9dd1-49c0-9fd3-56852915e6a8.jpg",
+            "category": "Winter sports",
+            "title": "Drop in deeper.",
+            "text": "Accessible even in remote mountains without signal.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_rP9xKK": {
+          "type": "activity",
+          "settings": {
+            "image": "shopify://shop_images/24eca08e58d941ac868506142b419dc640df4e27_d6fc4477-7902-4fa3-bef8-7afff7d97a22.png",
+            "category": "Hiking",
+            "title": "Push further out.",
+            "text": "Built for long days off-grid without charging or batteries.",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "activity_bnK8Tq",
+        "activity_F6AA6R",
+        "activity_ERFqCe",
+        "activity_PftkCP",
+        "activity_3jAiiD",
+        "activity_rP9xKK"
+      ],
+      "name": "Kopilot Home Activities",
+      "settings": {
+        "color_scheme": "",
+        "heading": "<p>KOPILOT.ID speaks for you</p>"
+      }
     }
   },
   "order": [
@@ -352,7 +352,7 @@
     "features_grid_ApyDnk",
     "kopilot_easy_to_use_7R4Eiq",
     "kopilot_explore_confidence_ndyKbm",
-    "kopilot_home_activities_W83Fpi",
-    "kopilot_faq_jmWn4N"
+    "kopilot_faq_jmWn4N",
+    "kopilot_home_activities_W83Fpi"
   ]
 }
