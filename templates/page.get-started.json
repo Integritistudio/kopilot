@@ -252,43 +252,64 @@
         "question_GJ7DJF": {
           "type": "question",
           "settings": {
-            "question": "Do NFC tags work without cell service?",
-            "answer": "<p>Yes. Once your profile is set up, the tag works without cell service or battery power on the tag itself.</p>"
+            "question": "Can I use a KOPILOT.ID app without purchasing an NFC tag?",
+            "answer": ""
           }
         },
         "question_hmnezf": {
           "type": "question",
           "settings": {
-            "question": "What information can I store on my NFC medical ID?",
+            "question": "Do I have to purchase a subscription?",
             "answer": "<p>You control what you share — medical conditions, allergies, medications, emergency contacts, and more.</p>"
           }
         },
         "question_AtRrhW": {
           "type": "question",
           "settings": {
-            "question": "How do I use an NFC tag like KOPILOT.ID?",
+            "question": "Do I have to download an app?",
             "answer": "<p>Set up your profile in the app, attach the tag to your gear, and anyone can tap it with a smartphone in an emergency.</p>"
           }
         },
         "question_TJ4jQG": {
           "type": "question",
           "settings": {
-            "question": "Where should I place my NFC emergency tag?",
+            "question": "What gear and equipment is compatible with KOPILOT.ID nfc tag?",
             "answer": "<p>Helmet, gear, or anywhere first responders are likely to find it. Mounting options are included.</p>"
           }
         },
         "question_dKEK76": {
           "type": "question",
           "settings": {
-            "question": "How long do NFC tags last? Do they need charging?",
+            "question": "Privacy and personal health information in the KOPILOT.ID app?",
             "answer": "<p>NFC tags have no battery and are designed to last for years of regular use.</p>"
           }
         },
         "question_7dbhkR": {
           "type": "question",
           "settings": {
-            "question": "Is this useful even if I already ride with safety gear?",
+            "question": "Do I have to have internet or cell connection for my ID to work?",
             "answer": "<p>Yes. Safety gear protects your body — KOPILOT.ID ensures responders have the information they need to help you.</p>"
+          }
+        },
+        "question_EQ8yQm": {
+          "type": "question",
+          "settings": {
+            "question": "How do you use AI?",
+            "answer": ""
+          }
+        },
+        "question_b6ryAt": {
+          "type": "question",
+          "settings": {
+            "question": "IIs KOPILOT.ID available any where in the world?",
+            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
+          }
+        },
+        "question_KzxfMg": {
+          "type": "question",
+          "settings": {
+            "question": "Is the app available in any language?",
+            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
           }
         }
       },
@@ -299,7 +320,10 @@
         "question_AtRrhW",
         "question_TJ4jQG",
         "question_dKEK76",
-        "question_7dbhkR"
+        "question_7dbhkR",
+        "question_EQ8yQm",
+        "question_b6ryAt",
+        "question_KzxfMg"
       ],
       "name": "Kopilot FAQ",
       "settings": {
