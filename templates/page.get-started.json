@@ -145,6 +145,22 @@
         "google_play_link": ""
       }
     },
+    "kopilot_explore_confidence_ndyKbm": {
+      "type": "kopilot-explore-confidence",
+      "name": "Explore with Confidence",
+      "settings": {
+        "image_desktop": "shopify://shop_images/Group_2106667241.png",
+        "image_mobile": "shopify://shop_images/IMG_3288_1_4.png",
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000",
+        "media_bg_color": "#F5F5F5",
+        "heading_line_1": "Explore with",
+        "heading_line_2": "Confidence",
+        "text": "<p>Quick access to your unique health information can be critical in an emergency. KOPILOT.ID uses NFC technology combined with simple-to-use AI to provide you with peace of mind and those helping you with details that may save your life.</p>",
+        "tagline": "Explore with Confidence.\nWe've got your back!",
+        "extra_class": ""
+      }
+    },
     "kopilot_home_activities_W83Fpi": {
       "type": "kopilot-home-activities",
       "blocks": {
@@ -230,6 +246,7 @@
     "kopilot_intelligent_safety_gErdRa",
     "features_grid_ApyDnk",
     "kopilot_easy_to_use_7R4Eiq",
+    "kopilot_explore_confidence_ndyKbm",
     "kopilot_home_activities_W83Fpi"
   ]
 }
