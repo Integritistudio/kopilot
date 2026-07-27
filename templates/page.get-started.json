@@ -33,18 +33,31 @@
         "bg_color": "#000000",
         "image_desktop": "shopify://shop_images/IMG_3285_1_1.png",
         "image_mobile": "shopify://shop_images/IMG_3285_1_2.png",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "heading": "Help is only\na tap away",
         "product_label": "Digital\nEmergency\nID Tag",
         "started_text": "Get started by downloading out app!",
         "button_label": "download the app",
         "button_link": "",
-        "button_color": "#EF0008",
-        "button_text_color": "#FFFFFF",
+        "button_color": "#ef0008",
+        "button_text_color": "#ffffff",
         "google_play_badge": "shopify://shop_images/image_4.svg",
         "google_play_link": "",
         "app_store_badge": "shopify://shop_images/app-store_svg.svg",
         "app_store_link": ""
+      }
+    },
+    "kopilot_intelligent_safety_gErdRa": {
+      "type": "kopilot-intelligent-safety",
+      "name": "Intelligent Safety",
+      "settings": {
+        "image_desktop": "shopify://shop_images/Group_2106667241_0a3e88cc-317e-4352-94b4-64d9f005fe1e.svg",
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000",
+        "heading_line_1": "Intelligent",
+        "heading_line_2": "Safety",
+        "brand_label": "KOPILOT.ID",
+        "text": "<p>is a thumbnail size AI powered medical emergency assistant. It can be read with any modern phone, with or without the free app, online or offline.</p>"
       }
     },
     "kopilot_home_activities_W83Fpi": {
@@ -129,6 +142,7 @@
   "order": [
     "main",
     "kopilot_app_download_hero_xkHDPp",
+    "kopilot_intelligent_safety_gErdRa",
     "kopilot_home_activities_W83Fpi"
   ]
 }
