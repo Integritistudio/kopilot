@@ -1,56 +1,63 @@
 {{ 'Elza.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-  .kah-{{ section.id }} {
+  .shopify-section:has(#kopilot-app-download-hero-{{ section.id }}) {
+    padding: 0;
+  }
+
+  #kopilot-app-download-hero-{{ section.id }} {
     --kah-bg: {{ section.settings.bg_color }};
     --kah-text: {{ section.settings.text_color }};
     --kah-btn-bg: {{ section.settings.button_color }};
     --kah-btn-text: {{ section.settings.button_text_color }};
     position: relative;
     width: 100%;
-    min-height: 819.27px;
+    min-height: 819px;
     background-color: var(--kah-bg);
     color: var(--kah-text);
     box-sizing: border-box;
     overflow: hidden;
   }
 
-  .kah-{{ section.id }} *,
-  .kah-{{ section.id }} *::before,
-  .kah-{{ section.id }} *::after {
+  #kopilot-app-download-hero-{{ section.id }} *,
+  #kopilot-app-download-hero-{{ section.id }} *::before,
+  #kopilot-app-download-hero-{{ section.id }} *::after {
     box-sizing: border-box;
   }
 
-  .kah-{{ section.id }} .kah-bg {
+  #kopilot-app-download-hero-{{ section.id }} .kah-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
   }
 
-  .kah-{{ section.id }} .kah-bg-img {
+  #kopilot-app-download-hero-{{ section.id }} .kah-bg-img {
     position: absolute;
-    left: 50%;
-    top: -359px;
-    width: 1488px;
-    height: 1913px;
-    max-width: none;
-    transform: translateX(-50%);
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: center center;
     display: block;
   }
 
-  .kah-{{ section.id }} .kah-bg-img--mobile {
+  #kopilot-app-download-hero-{{ section.id }} .kah-bg-img--mobile {
     display: none;
   }
 
-  .kah-{{ section.id }} .kah-bg-overlay {
+  #kopilot-app-download-hero-{{ section.id }} .kah-bg-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(107.9deg, rgba(0, 0, 0, 0.5) 38.3%, rgba(0, 0, 0, 0) 72.228%);
+    background: linear-gradient(
+      107.9deg,
+      rgba(0, 0, 0, 0.55) 28%,
+      rgba(0, 0, 0, 0.25) 55%,
+      rgba(0, 0, 0, 0.05) 78%
+    );
   }
 
-  .kah-{{ section.id }} .kah-header {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header {
     position: absolute;
     top: 0;
     left: 0;
@@ -61,14 +68,16 @@
     padding: 37px 111px 0;
   }
 
-  .kah-{{ section.id }} .kah-header-inner {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: 1218px;
+    margin: 0 auto;
   }
 
-  .kah-{{ section.id }} .kah-logo {
+  #kopilot-app-download-hero-{{ section.id }} .kah-logo {
     display: block;
     width: 172px;
     height: 19px;
@@ -76,21 +85,21 @@
     line-height: 0;
   }
 
-  .kah-{{ section.id }} .kah-logo img {
+  #kopilot-app-download-hero-{{ section.id }} .kah-logo img {
     display: block;
     width: 172px;
     height: 19px;
     object-fit: contain;
   }
 
-  .kah-{{ section.id }} .kah-header-cta {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header-cta {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     color: var(--kah-text);
   }
 
-  .kah-{{ section.id }} .kah-header-cta-label {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header-cta-label {
     margin: 0;
     padding: 0 16px 0 0;
     font-family: 'Elza', sans-serif;
@@ -103,35 +112,37 @@
     white-space: nowrap;
   }
 
-  .kah-{{ section.id }} .kah-header-icon {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header-icon {
     display: block;
-    width: 24.02px;
+    width: 24px;
     height: 24px;
     flex-shrink: 0;
     overflow: hidden;
   }
 
-  .kah-{{ section.id }} .kah-header-icon img {
+  #kopilot-app-download-hero-{{ section.id }} .kah-header-icon img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
 
-  .kah-{{ section.id }} .kah-inner {
+  #kopilot-app-download-hero-{{ section.id }} .kah-inner {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 41px;
     width: 100%;
     max-width: 1440px;
+    min-height: 819px;
     margin: 0 auto;
     padding: 167px 104px 127px;
   }
 
-  .kah-{{ section.id }} .kah-copy {
+  #kopilot-app-download-hero-{{ section.id }} .kah-copy {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -140,7 +151,7 @@
     color: var(--kah-text);
   }
 
-  .kah-{{ section.id }} .kah-heading {
+  #kopilot-app-download-hero-{{ section.id }} .kah-heading {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -153,7 +164,7 @@
     word-break: break-word;
   }
 
-  .kah-{{ section.id }} .kah-subcopy {
+  #kopilot-app-download-hero-{{ section.id }} .kah-subcopy {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -162,7 +173,7 @@
     max-width: 100%;
   }
 
-  .kah-{{ section.id }} .kah-product {
+  #kopilot-app-download-hero-{{ section.id }} .kah-product {
     margin: 0;
     padding: 0;
     width: 160px;
@@ -173,7 +184,7 @@
     color: var(--kah-text);
   }
 
-  .kah-{{ section.id }} .kah-started {
+  #kopilot-app-download-hero-{{ section.id }} .kah-started {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -184,20 +195,20 @@
     color: var(--kah-text);
   }
 
-  .kah-{{ section.id }} .kah-actions {
+  #kopilot-app-download-hero-{{ section.id }} .kah-actions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
 
-  .kah-{{ section.id }} .kah-btn {
+  #kopilot-app-download-hero-{{ section.id }} .kah-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 18.344px 64px;
-    min-height: 60.69px;
+    padding: 18px 64px;
+    min-height: 61px;
     background-color: var(--kah-btn-bg);
     border: 0;
     border-radius: 0;
@@ -206,44 +217,44 @@
     transition: opacity 0.25s ease;
   }
 
-  .kah-{{ section.id }} .kah-btn:hover {
+  #kopilot-app-download-hero-{{ section.id }} .kah-btn:hover {
     opacity: 0.9;
   }
 
-  .kah-{{ section.id }} .kah-btn-text {
+  #kopilot-app-download-hero-{{ section.id }} .kah-btn-text {
     font-family: 'Elza', sans-serif;
     font-weight: 600;
-    font-size: 20.383px;
+    font-size: 20px;
     line-height: normal;
     text-transform: uppercase;
     color: var(--kah-btn-text);
     white-space: nowrap;
   }
 
-  .kah-{{ section.id }} .kah-stores {
+  #kopilot-app-download-hero-{{ section.id }} .kah-stores {
     display: flex;
     align-items: center;
     gap: 30px;
-    padding-top: 5.364px;
+    padding-top: 5px;
   }
 
-  .kah-{{ section.id }} .kah-store {
+  #kopilot-app-download-hero-{{ section.id }} .kah-store {
     display: block;
     line-height: 0;
     text-decoration: none;
   }
 
-  .kah-{{ section.id }} .kah-store--google {
-    width: 101.064px;
-    height: 30.215px;
+  #kopilot-app-download-hero-{{ section.id }} .kah-store--google {
+    width: 101px;
+    height: 30px;
   }
 
-  .kah-{{ section.id }} .kah-store--apple {
-    width: 89.604px;
-    height: 30.215px;
+  #kopilot-app-download-hero-{{ section.id }} .kah-store--apple {
+    width: 90px;
+    height: 30px;
   }
 
-  .kah-{{ section.id }} .kah-store img {
+  #kopilot-app-download-hero-{{ section.id }} .kah-store img {
     display: block;
     width: 100%;
     height: 100%;
@@ -251,148 +262,146 @@
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    .kah-{{ section.id }} {
-      min-height: clamp(624px, 56.894vw, 819.27px);
+    #kopilot-app-download-hero-{{ section.id }},
+    #kopilot-app-download-hero-{{ section.id }} .kah-inner {
+      min-height: clamp(624px, 56.9vw, 819px);
     }
 
-    .kah-{{ section.id }} .kah-header {
-      padding: 37px clamp(40px, 7.708vw, 111px) 0;
+    #kopilot-app-download-hero-{{ section.id }} .kah-header {
+      padding: 37px clamp(40px, 7.7vw, 111px) 0;
     }
 
-    .kah-{{ section.id }} .kah-inner {
-      gap: clamp(29px, 2.847vw, 41px);
-      padding: clamp(127px, 11.597vw, 167px) clamp(40px, 7.222vw, 104px) clamp(100px, 8.819vw, 127px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-inner {
+      gap: clamp(29px, 2.85vw, 41px);
+      padding: clamp(127px, 11.6vw, 167px) clamp(40px, 7.2vw, 104px) clamp(100px, 8.8vw, 127px);
     }
 
-    .kah-{{ section.id }} .kah-heading {
-      font-size: clamp(50px, 8.333vw, 120px);
-      line-height: clamp(50px, 8.056vw, 116px);
-      letter-spacing: clamp(-2.4px, -0.338vw, -4.86px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-heading {
+      font-size: clamp(50px, 8.33vw, 120px);
+      line-height: clamp(50px, 8.06vw, 116px);
+      letter-spacing: clamp(-2.4px, -0.34vw, -4.86px);
     }
 
-    .kah-{{ section.id }} .kah-product,
-    .kah-{{ section.id }} .kah-started {
-      font-size: clamp(16px, 1.389vw, 20px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-product,
+    #kopilot-app-download-hero-{{ section.id }} .kah-started {
+      font-size: clamp(16px, 1.39vw, 20px);
     }
 
-    .kah-{{ section.id }} .kah-btn {
-      min-height: clamp(49.76px, 4.215vw, 60.69px);
-      padding: clamp(15.88px, 1.274vw, 18.344px) clamp(48px, 4.444vw, 64px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-btn {
+      min-height: clamp(50px, 4.2vw, 61px);
+      padding: clamp(16px, 1.27vw, 18px) clamp(48px, 4.44vw, 64px);
     }
 
-    .kah-{{ section.id }} .kah-btn-text {
-      font-size: clamp(15px, 1.415vw, 20.383px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-btn-text {
+      font-size: clamp(15px, 1.4vw, 20px);
     }
 
-    .kah-{{ section.id }} .kah-stores {
-      gap: clamp(12.342px, 2.083vw, 30px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-stores {
+      gap: clamp(12px, 2.08vw, 30px);
     }
 
-    .kah-{{ section.id }} .kah-store--google {
-      width: clamp(101.064px, 7.018vw, 110.07px);
-      height: clamp(30.215px, 2.098vw, 32.908px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-store--google {
+      width: clamp(101px, 7vw, 110px);
+      height: clamp(30px, 2.1vw, 33px);
     }
 
-    .kah-{{ section.id }} .kah-store--apple {
-      width: clamp(89.604px, 6.222vw, 97.589px);
-      height: clamp(30.215px, 2.098vw, 32.908px);
+    #kopilot-app-download-hero-{{ section.id }} .kah-store--apple {
+      width: clamp(90px, 6.2vw, 98px);
+      height: clamp(30px, 2.1vw, 33px);
     }
   }
 
   @media screen and (max-width: 767px) {
-    .kah-{{ section.id }} {
-      min-height: 623.77px;
+    #kopilot-app-download-hero-{{ section.id }},
+    #kopilot-app-download-hero-{{ section.id }} .kah-inner {
+      min-height: 624px;
     }
 
-    .kah-{{ section.id }} .kah-bg-img--desktop {
+    #kopilot-app-download-hero-{{ section.id }} .kah-bg-img--desktop {
       display: none;
     }
 
-    .kah-{{ section.id }} .kah-bg-img--mobile {
+    #kopilot-app-download-hero-{{ section.id }} .kah-bg-img--mobile {
       display: block;
-      left: calc(50% + 40.39px);
-      top: 50%;
-      width: 521px;
-      height: 670px;
-      transform: translate(-50%, -50%);
     }
 
-    .kah-{{ section.id }} .kah-header {
+    #kopilot-app-download-hero-{{ section.id }} .kah-header {
       justify-content: center;
-      padding: 35px 0 0;
+      padding: 35px 26px 0;
     }
 
-    .kah-{{ section.id }} .kah-header-inner {
+    #kopilot-app-download-hero-{{ section.id }} .kah-header-inner {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       width: 172px;
       height: 58px;
+      max-width: 172px;
     }
 
-    .kah-{{ section.id }} .kah-inner {
+    #kopilot-app-download-hero-{{ section.id }} .kah-inner {
       align-items: center;
       gap: 29px;
       max-width: 360px;
       padding: 127px 26px;
     }
 
-    .kah-{{ section.id }} .kah-copy {
+    #kopilot-app-download-hero-{{ section.id }} .kah-copy {
       align-items: center;
       text-align: center;
     }
 
-    .kah-{{ section.id }} .kah-heading {
+    #kopilot-app-download-hero-{{ section.id }} .kah-heading {
       font-size: 50px;
       line-height: 1;
       letter-spacing: -4.86px;
       text-align: center;
     }
 
-    .kah-{{ section.id }} .kah-subcopy {
+    #kopilot-app-download-hero-{{ section.id }} .kah-subcopy {
       align-items: center;
       width: 316px;
     }
 
-    .kah-{{ section.id }} .kah-product,
-    .kah-{{ section.id }} .kah-started {
+    #kopilot-app-download-hero-{{ section.id }} .kah-product,
+    #kopilot-app-download-hero-{{ section.id }} .kah-started {
       text-align: center;
     }
 
-    .kah-{{ section.id }} .kah-actions {
+    #kopilot-app-download-hero-{{ section.id }} .kah-actions {
       align-items: center;
       gap: 15px;
-      padding-top: 7.1px;
-      max-width: 274.51px;
+      padding-top: 7px;
+      max-width: 275px;
       width: 100%;
     }
 
-    .kah-{{ section.id }} .kah-btn {
+    #kopilot-app-download-hero-{{ section.id }} .kah-btn {
       width: 100%;
-      min-width: 274.51px;
-      min-height: 49.76px;
-      padding: 15.88px 61.756px;
+      min-width: 275px;
+      min-height: 50px;
+      padding: 16px 62px;
     }
 
-    .kah-{{ section.id }} .kah-btn-text {
+    #kopilot-app-download-hero-{{ section.id }} .kah-btn-text {
       font-size: 15px;
     }
 
-    .kah-{{ section.id }} .kah-stores {
-      gap: 12.342px;
+    #kopilot-app-download-hero-{{ section.id }} .kah-stores {
+      gap: 12px;
       padding-top: 0;
       width: 220px;
       justify-content: flex-start;
     }
 
-    .kah-{{ section.id }} .kah-store--google {
-      width: 110.07px;
-      height: 32.908px;
+    #kopilot-app-download-hero-{{ section.id }} .kah-store--google {
+      width: 110px;
+      height: 33px;
     }
 
-    .kah-{{ section.id }} .kah-store--apple {
-      width: 97.589px;
-      height: 32.908px;
+    #kopilot-app-download-hero-{{ section.id }} .kah-store--apple {
+      width: 98px;
+      height: 33px;
     }
   }
 {% endstyle %}
@@ -407,7 +416,7 @@
   {% assign kah_img_mobile = kah_img_desktop %}
 {% endif %}
 
-<section class="kah-{{ section.id }}" id="kopilot-app-download-hero">
+<section class="full-width" id="kopilot-app-download-hero-{{ section.id }}">
   <div class="kah-bg" aria-hidden="true">
     {% if kah_img_desktop != blank %}
       <img
@@ -447,6 +456,8 @@
               height="19"
             >
           </a>
+        {% else %}
+          <span class="kah-logo" aria-hidden="true"></span>
         {% endif %}
 
         {% if section.settings.header_cta_label != blank %}
@@ -622,7 +633,7 @@
       "type": "text",
       "id": "started_text",
       "label": "Supporting text",
-      "default": "Get started by downloading out app!"
+      "default": "Get started by downloading our app!"
     },
     {
       "type": "text",
