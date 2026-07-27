@@ -138,12 +138,35 @@
         "color_scheme": "",
         "heading": "<p>KOPILOT.ID speaks for you</p>"
       }
+    },
+    "features_grid_ApyDnk": {
+      "type": "features-grid",
+      "blocks": {
+        "feature_gBfXq6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        }
+      },
+      "block_order": [
+        "feature_gBfXq6"
+      ],
+      "name": "Kopilot Features Grid",
+      "settings": {
+        "heading": "The details that matter.",
+        "image": "shopify://shop_images/image_18659467_1.png",
+        "bg_color": "#ffffff",
+        "bg_color_mobile": "#ffffff"
+      }
     }
   },
   "order": [
     "main",
     "kopilot_app_download_hero_xkHDPp",
     "kopilot_intelligent_safety_gErdRa",
+    "features_grid_ApyDnk",
     "kopilot_home_activities_W83Fpi"
   ]
 }
