@@ -61,6 +61,28 @@
         "text": "<p>is a thumbnail size AI powered medical emergency assistant. It can be read with any modern phone, with or without the free app, online or offline.</p>"
       }
     },
+    "features_grid_ApyDnk": {
+      "type": "features-grid",
+      "blocks": {
+        "feature_gBfXq6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        }
+      },
+      "block_order": [
+        "feature_gBfXq6"
+      ],
+      "name": "Kopilot Features Grid",
+      "settings": {
+        "heading": "KOPILOT.ID in<br>emergency",
+        "image": "shopify://shop_images/image_18659467_1.png",
+        "bg_color": "#ffffff",
+        "bg_color_mobile": "#ffffff"
+      }
+    },
     "kopilot_home_activities_W83Fpi": {
       "type": "kopilot-home-activities",
       "blocks": {
@@ -137,28 +159,6 @@
       "settings": {
         "color_scheme": "",
         "heading": "<p>KOPILOT.ID speaks for you</p>"
-      }
-    },
-    "features_grid_ApyDnk": {
-      "type": "features-grid",
-      "blocks": {
-        "feature_gBfXq6": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
-            "title": "Durable and waterproof"
-          }
-        }
-      },
-      "block_order": [
-        "feature_gBfXq6"
-      ],
-      "name": "Kopilot Features Grid",
-      "settings": {
-        "heading": "The details that matter.",
-        "image": "shopify://shop_images/image_18659467_1.png",
-        "bg_color": "#ffffff",
-        "bg_color_mobile": "#ffffff"
       }
     }
   },
