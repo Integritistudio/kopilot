@@ -533,6 +533,10 @@
   var extra = root.querySelector('[data-pntk-extra]');
 
   if (moreBtn && moreWrap && extra) {
+    var moreLabel = moreBtn.querySelector('.pntk-more-label');
+    var moreText = moreLabel ? moreLabel.textContent : 'More questions';
+    var lessText = 'Less Questions';
+
     moreBtn.addEventListener('click', function () {
       var open = !extra.classList.contains('is-visible');
       if (open) {
@@ -540,11 +544,13 @@
         extra.classList.add('is-visible');
         moreWrap.classList.add('is-open');
         moreBtn.setAttribute('aria-expanded', 'true');
+        if (moreLabel) moreLabel.textContent = lessText;
       } else {
         extra.classList.remove('is-visible');
         extra.hidden = true;
         moreWrap.classList.remove('is-open');
         moreBtn.setAttribute('aria-expanded', 'false');
+        if (moreLabel) moreLabel.textContent = moreText;
       }
     });
   }
@@ -611,7 +617,7 @@
           "type": "checkbox",
           "id": "open_by_default",
           "label": "Open by default",
-          "default": true
+          "default": false
         },
         {
           "type": "checkbox",
@@ -640,7 +646,7 @@
           "settings": {
             "question": "Does KOPILOT.ID NFC tag require batteries, charging, or a subscription?",
             "answer": "<p>No. KOPILOT.ID NFC tags are completely battery-free and never need charging. There are also no ongoing subscription fees required for participants to use their profile, making it a simple and dependable solution for everyday use.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": false
           }
         },
@@ -649,7 +655,7 @@
           "settings": {
             "question": "Does KOPILOT.ID work without signal or cell service?",
             "answer": "<p>Yes. The NFC tag itself works without signal, batteries, or charging, making it ideal for remote environments. When a tag is scanned, participants also receive a notification with the GPS location of the scan, helping friends and family know where the interaction took place.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": false
           }
         },
@@ -658,7 +664,7 @@
           "settings": {
             "question": "Who can see a participant's information?",
             "answer": "<p>The profile is meant to be accessible in an emergency, so a first responder, bystander, or medic can act immediately by scanning the tag with a phone. The participant controls what appears on their profile and can update or deactivate the tag at any time from their account.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": true
           }
         },
@@ -667,7 +673,7 @@
           "settings": {
             "question": "Does the scan session stay open?",
             "answer": "<p>No. The browser session that opens when a tag is scanned times out automatically after a few minutes. Whoever scanned it cannot return to the profile later — once the session closes, access is gone. There is no persistent link to reopen.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": true
           }
         },
@@ -676,7 +682,7 @@
           "settings": {
             "question": "What happens to the data after the event?",
             "answer": "<p>For event-integrated tags, the participant's data lives in their own KOPILOT.ID account, never with your organization. You receive nothing beyond the registration data you already collect. The tag becomes the participant's own after the event, or can be set as single-use and deactivated.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": true
           }
         }
