@@ -20,9 +20,82 @@
         "top_spacing": 40,
         "bottom_spacing": 40
       }
+    },
+    "kopilot_home_activities_W83Fpi": {
+      "type": "kopilot-home-activities",
+      "blocks": {
+        "activity_F6AA6R": {
+          "type": "activity",
+          "settings": {
+            "category": "Motorcycling",
+            "title": "Go full throttle.",
+            "text": "Built tough to handle crashes, weather, and high speeds.",
+            "overlay_opacity": 20
+          }
+        },
+        "activity_ERFqCe": {
+          "type": "activity",
+          "settings": {
+            "category": "Trail running",
+            "title": "Cover the distance.",
+            "text": "GPS location helps them find you faster, even deep on a trail.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_bnK8Tq": {
+          "type": "activity",
+          "settings": {
+            "category": "Cycling",
+            "title": "Ride out of range.",
+            "text": "Ready for crashes, weather, and long rides.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_PftkCP": {
+          "type": "activity",
+          "settings": {
+            "category": "Mountain biking",
+            "title": "Send it harder.",
+            "text": "GPS helps them find you, even in dense brush and remote terrain.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_3jAiiD": {
+          "type": "activity",
+          "settings": {
+            "category": "Winter sports",
+            "title": "Drop in deeper.",
+            "text": "Accessible even in remote mountains without signal.",
+            "overlay_opacity": 30
+          }
+        },
+        "activity_rP9xKK": {
+          "type": "activity",
+          "settings": {
+            "category": "Hiking",
+            "title": "Push further out.",
+            "text": "Built for long days off-grid without charging or batteries.",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "activity_F6AA6R",
+        "activity_ERFqCe",
+        "activity_bnK8Tq",
+        "activity_PftkCP",
+        "activity_3jAiiD",
+        "activity_rP9xKK"
+      ],
+      "name": "Kopilot Home Activities",
+      "settings": {
+        "color_scheme": "",
+        "heading": "<p>Push your limits. Not your luck.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "kopilot_home_activities_W83Fpi"
   ]
 }
