@@ -1,6 +1,6 @@
 {{ 'section-kopilot-features-grid.css' | asset_url | stylesheet_tag }}
 
-<div class="kopilot-features-section" id="kopilot-features-section-{{ section.id }}">
+<div class="kopilot-features-section {% if section.settings.extraclass != blank %}{{ section.settings.extraclass }}{% endif %}" id="kopilot-features-section-{{ section.id }}">
   <div class="kopilot-features-container">
     
     <!-- LEFT: TEXT AND GRID -->
@@ -185,7 +185,8 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "The details that matter." },
     { "type": "image_picker", "id": "image", "label": "Right Image" },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
-    { "type": "color", "id": "bg_color_mobile", "label": "Background (Mobile)", "default": "#ffffff" }
+    { "type": "color", "id": "bg_color_mobile", "label": "Background (Mobile)", "default": "#ffffff" },
+    { "type": "text", "id": "extraclass", "label": "Extra Classes", "default": "Use space for multiple classes." }
   ],
   "presets": [{ "name": "Kopilot Features Grid" }]
 }
