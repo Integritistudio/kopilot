@@ -186,11 +186,20 @@
             "name": "MARK",
             "role": "Co-founder"
           }
+        },
+        "team_member_GGEy6p": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_59_1_42cd451c-30fc-4644-856c-e16e4faf4081.png",
+            "name": "Testing",
+            "role": "Testing"
+          }
         }
       },
       "block_order": [
         "team_member_mBFACn",
-        "team_member_MTQcVw"
+        "team_member_MTQcVw",
+        "team_member_GGEy6p"
       ],
       "name": "Team Profiles",
       "settings": {
