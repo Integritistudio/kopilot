@@ -36,34 +36,38 @@
     "partners_slider_WXzAQj": {
       "type": "partners-slider",
       "blocks": {
-        "image_card_rm9DxH": {
-          "type": "image_card",
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1.png"
-          }
-        },
         "image_card_MrEUQ9": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1.png"
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1_1.png",
+            "name": "JAKE"
+          }
+        },
+        "image_card_rm9DxH": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1_1.png",
+            "name": "BLAKE"
           }
         },
         "image_card_aGi9GW": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.02_1.png"
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.02_1_1.png",
+            "name": "BROOK"
           }
         },
         "image_card_fdY3BU": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.37.01_1.png"
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.37.01_1_1.png",
+            "name": "MARK"
           }
         }
       },
       "block_order": [
-        "image_card_rm9DxH",
         "image_card_MrEUQ9",
+        "image_card_rm9DxH",
         "image_card_aGi9GW",
         "image_card_fdY3BU"
       ],
