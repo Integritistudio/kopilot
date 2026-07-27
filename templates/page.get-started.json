@@ -311,6 +311,7 @@
         "heading_line_height_mobile": "",
         "question_font_weight": "",
         "question_font_weight_mobile": "",
+        "open_first_question": false,
         "enable_first_active_bold": false,
         "active_question_font_weight": "700",
         "padding_top": 0,
