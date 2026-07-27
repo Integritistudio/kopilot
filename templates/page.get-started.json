@@ -30,6 +30,7 @@
         "logo_link": "",
         "header_cta_label": "get kopilot.id",
         "header_cta_link": "",
+        "header_icon": "shopify://shop_images/Button.svg",
         "bg_color": "#000000",
         "image_desktop": "shopify://shop_images/IMG_3285_1_1.png",
         "image_mobile": "shopify://shop_images/IMG_3285_1_2.png",
@@ -52,7 +53,7 @@
       "name": "Intelligent Safety",
       "settings": {
         "image_desktop": "shopify://shop_images/Group_2106667241_0a3e88cc-317e-4352-94b4-64d9f005fe1e.svg",
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "text_color": "#000000",
         "heading_line_1": "Intelligent",
         "heading_line_2": "Safety",
