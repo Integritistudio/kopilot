@@ -316,7 +316,7 @@
           "settings": {
             "question": "Does KOPILOT.ID NFC tag require batteries, charging, or a subscription?",
             "answer": "<p>No. KOPILOT.ID NFC tags are completely battery-free and never need charging. There are also no ongoing subscription fees required for participants to use their profile, making it a simple and dependable solution for everyday use.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": false
           }
         },
@@ -325,7 +325,7 @@
           "settings": {
             "question": "Does KOPILOT.ID work without signal or cell service?",
             "answer": "<p>Yes. The NFC tag itself works without signal, batteries, or charging, making it ideal for remote environments. When a tag is scanned, participants also receive a notification with the GPS location of the scan, helping friends and family know where the interaction took place.</p>",
-            "open_by_default": true,
+            "open_by_default": false,
             "in_more": false
           }
         },
