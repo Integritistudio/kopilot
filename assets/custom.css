@@ -15,4 +15,7 @@
   .get-started-emergency .kopilot-features-media-col{
     width:100%;
 }
+.get-started-emergency .kopilot-features-container{
+    padding-left:0px;
+}
 }
