@@ -21,6 +21,28 @@
         "bottom_spacing": 40
       }
     },
+    "kopilot_app_download_hero_xkHDPp": {
+      "type": "kopilot-app-download-hero",
+      "name": "App Download Hero",
+      "settings": {
+        "show_header": true,
+        "logo": "shopify://shop_images/Link.png",
+        "logo_link": "",
+        "header_cta_label": "get kopilot.id",
+        "header_cta_link": "",
+        "bg_color": "#000000",
+        "text_color": "#FFFFFF",
+        "heading": "Help is only\na tap away",
+        "product_label": "Digital\nEmergency\nID Tag",
+        "started_text": "Get started by downloading out app!",
+        "button_label": "download the app",
+        "button_link": "",
+        "button_color": "#EF0008",
+        "button_text_color": "#FFFFFF",
+        "google_play_link": "",
+        "app_store_link": ""
+      }
+    },
     "kopilot_home_activities_W83Fpi": {
       "type": "kopilot-home-activities",
       "blocks": {
@@ -102,6 +124,7 @@
   },
   "order": [
     "main",
+    "kopilot_app_download_hero_xkHDPp",
     "kopilot_home_activities_W83Fpi"
   ]
 }
