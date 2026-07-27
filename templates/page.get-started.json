@@ -31,6 +31,8 @@
         "header_cta_label": "get kopilot.id",
         "header_cta_link": "",
         "bg_color": "#000000",
+        "image_desktop": "shopify://shop_images/IMG_3285_1_1.png",
+        "image_mobile": "shopify://shop_images/IMG_3285_1_2.png",
         "text_color": "#FFFFFF",
         "heading": "Help is only\na tap away",
         "product_label": "Digital\nEmergency\nID Tag",
@@ -39,7 +41,9 @@
         "button_link": "",
         "button_color": "#EF0008",
         "button_text_color": "#FFFFFF",
+        "google_play_badge": "shopify://shop_images/image_4.svg",
         "google_play_link": "",
+        "app_store_badge": "shopify://shop_images/app-store_svg.svg",
         "app_store_link": ""
       }
     },
