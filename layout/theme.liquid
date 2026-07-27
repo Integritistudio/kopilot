@@ -39,8 +39,6 @@
     <!-- GLOBAL CSS -->
     {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'kopilot-responsive.css' | asset_url | stylesheet_tag }}
-    {{ 'custom.css' | asset_url | stylesheet_tag }}
-
 
     <!-- LENIS CSS -->
     {{ 'lenis.css' | asset_url | stylesheet_tag: preload: true }}
@@ -76,12 +74,20 @@
   {% render 'wsg-custom' %}
 </head>
 
-  <body class="{% if template.suffix == 'pdp' or template.name == 'product' %}kopilot-pdp-page {% endif %}">
+  {%- liquid
+    assign hide_site_header = false
+    if request.page_type == 'page' and page.handle == 'get-started'
+      assign hide_site_header = true
+    endif
+  -%}
+  <body class="{% if hide_site_header %}kopilot-no-header {% endif %}{% if template.suffix == 'pdp' or template.name == 'product' %}kopilot-pdp-page {% endif %}">
     <a class="skip-to-content-link btn visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
 
-    {% sections 'header-group' %}
+    {% unless hide_site_header %}
+      {% sections 'header-group' %}
+    {% endunless %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
