@@ -123,11 +123,6 @@
     font-weight: 500;
   }
 
-  .kopilot-explore-confidence-{{ section.id }} .kec-text--mobile,
-  .kopilot-explore-confidence-{{ section.id }} .kec-tagline--mobile {
-    display: none;
-  }
-
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     .kopilot-explore-confidence-{{ section.id }} .kec-inner {
       gap: clamp(40px, 6.806vw, 98px);
@@ -214,16 +209,6 @@
     .kopilot-explore-confidence-{{ section.id }} .kec-body > p.kec-text {
       max-width: 340px;
     }
-
-    .kopilot-explore-confidence-{{ section.id }} .kec-text--desktop,
-    .kopilot-explore-confidence-{{ section.id }} .kec-tagline--desktop {
-      display: none;
-    }
-
-    .kopilot-explore-confidence-{{ section.id }} .kec-text--mobile,
-    .kopilot-explore-confidence-{{ section.id }} .kec-tagline--mobile {
-      display: block;
-    }
   }
 {% endstyle %}
 
@@ -233,16 +218,6 @@
   assign kec_img_mobile = section.settings.image_mobile
   if kec_img_mobile == blank
     assign kec_img_mobile = kec_img
-  endif
-
-  assign kec_text_mobile = section.settings.text_mobile
-  if kec_text_mobile == blank
-    assign kec_text_mobile = section.settings.text
-  endif
-
-  assign kec_tagline_mobile = section.settings.tagline_mobile
-  if kec_tagline_mobile == blank
-    assign kec_tagline_mobile = section.settings.tagline
   endif
 -%}
 
@@ -312,17 +287,11 @@
 
       <div class="kec-body">
         {% if section.settings.text != blank %}
-          <p class="kec-text kec-text--desktop">{{ section.settings.text | escape | newline_to_br }}</p>
-        {% endif %}
-        {% if kec_text_mobile != blank %}
-          <p class="kec-text kec-text--mobile">{{ kec_text_mobile | escape | newline_to_br }}</p>
+          <p class="kec-text">{{ section.settings.text | strip_html | newline_to_br }}</p>
         {% endif %}
 
         {% if section.settings.tagline != blank %}
-          <p class="kec-tagline kec-tagline--desktop">{{ section.settings.tagline | escape | newline_to_br }}</p>
-        {% endif %}
-        {% if kec_tagline_mobile != blank %}
-          <p class="kec-tagline kec-tagline--mobile">{{ kec_tagline_mobile | escape | newline_to_br }}</p>
+          <p class="kec-tagline">{{ section.settings.tagline | strip_html | newline_to_br }}</p>
         {% endif %}
       </div>
     </div>
@@ -393,28 +362,15 @@
     {
       "type": "textarea",
       "id": "text",
-      "label": "Description (desktop)",
-      "info": "Each new line = a line break, matching Figma desktop.",
+      "label": "Description",
+      "info": "Plain text only — do not type <p> tags. Each new line = a line break.",
       "default": "Quick access to your unique health\ninformation can be critical in an\nemergency. KOPILOT.ID uses NFC\ntechnology combined with simple-to-use\nAI to provide you with peace of mind and\nthose helping you with details that may\nsave your life."
     },
     {
       "type": "textarea",
       "id": "tagline",
-      "label": "Tagline (desktop)",
-      "default": "Explore with Confidence.\nWe've got your back!"
-    },
-    {
-      "type": "textarea",
-      "id": "text_mobile",
-      "label": "Description (mobile)",
-      "info": "Optional. Leave blank to use desktop text. Each new line = a line break.",
-      "default": "Quick access to your unique health information\ncan be critical in an emergency. KOPILOT.ID uses\nNFC technology combined with simple-to-use AI\nto provide you with peace of mind and those\nhelping you with details that may save your life."
-    },
-    {
-      "type": "textarea",
-      "id": "tagline_mobile",
-      "label": "Tagline (mobile)",
-      "info": "Optional. Leave blank to use desktop tagline.",
+      "label": "Tagline",
+      "info": "Plain text only. Put each line on its own row.",
       "default": "Explore with Confidence.\nWe've got your back!"
     },
     {
