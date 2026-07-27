@@ -1,0 +1,419 @@
+{{ 'Elza.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .kis-{{ section.id }} {
+    --kis-bg: {{ section.settings.bg_color }};
+    --kis-text: {{ section.settings.text_color }};
+    position: relative;
+    width: 100%;
+    background-color: var(--kis-bg);
+    color: var(--kis-text);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .kis-{{ section.id }} *,
+  .kis-{{ section.id }} *::before,
+  .kis-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .kis-{{ section.id }} .kis-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 99px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .kis-{{ section.id }} .kis-media {
+    position: relative;
+    flex: 0 0 720px;
+    width: 720px;
+    height: 655px;
+    overflow: hidden;
+    background-color: #e8e8e8;
+  }
+
+  .kis-{{ section.id }} .kis-media-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .kis-{{ section.id }} .kis-media-bg--mobile {
+    display: none;
+  }
+
+  .kis-{{ section.id }} .kis-phone-wrap {
+    position: absolute;
+    left: 159px;
+    top: 93.19px;
+    width: 460px;
+    height: 562px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .kis-{{ section.id }} .kis-phone {
+    display: block;
+    width: 342px;
+    height: 715px;
+    max-width: none;
+    object-fit: contain;
+    object-position: top center;
+    margin-top: 0.14px;
+  }
+
+  .kis-{{ section.id }} .kis-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    flex: 0 0 512px;
+    width: 512px;
+    max-width: 512px;
+    color: var(--kis-text);
+  }
+
+  .kis-{{ section.id }} .kis-heading {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Elza', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    color: var(--kis-text);
+    word-break: break-word;
+  }
+
+  .kis-{{ section.id }} .kis-heading-em {
+    font-weight: 500;
+  }
+
+  .kis-{{ section.id }} .kis-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    width: 100%;
+  }
+
+  .kis-{{ section.id }} .kis-brand {
+    margin: 0;
+    padding: 0;
+    font-family: 'Elza', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--kis-text);
+    white-space: nowrap;
+  }
+
+  .kis-{{ section.id }} .kis-text {
+    margin: 0;
+    padding: 0;
+    max-width: 405px;
+    font-family: 'Elza', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--kis-text);
+    word-break: break-word;
+  }
+
+  .kis-{{ section.id }} .kis-text p {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .kis-{{ section.id }} .kis-inner {
+      gap: clamp(40px, 6.875vw, 99px);
+      padding: 0 clamp(24px, 3.472vw, 50px);
+    }
+
+    .kis-{{ section.id }} .kis-media {
+      flex: 0 0 clamp(360px, 50vw, 720px);
+      width: clamp(360px, 50vw, 720px);
+      height: clamp(360px, 45.486vw, 655px);
+    }
+
+    .kis-{{ section.id }} .kis-phone-wrap {
+      left: clamp(80px, 11.042vw, 159px);
+      top: clamp(46px, 6.472vw, 93.19px);
+      width: clamp(230px, 31.944vw, 460px);
+      height: clamp(281px, 39.028vw, 562px);
+    }
+
+    .kis-{{ section.id }} .kis-phone {
+      width: clamp(171px, 23.75vw, 342px);
+      height: clamp(357px, 49.653vw, 715px);
+    }
+
+    .kis-{{ section.id }} .kis-copy {
+      flex: 1 1 auto;
+      width: auto;
+      max-width: 512px;
+      gap: clamp(24px, 2.778vw, 40px);
+    }
+
+    .kis-{{ section.id }} .kis-heading {
+      font-size: clamp(36px, 4.167vw, 60px);
+    }
+
+    .kis-{{ section.id }} .kis-brand,
+    .kis-{{ section.id }} .kis-text {
+      font-size: clamp(16px, 1.389vw, 20px);
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .kis-{{ section.id }} {
+      overflow: visible;
+      padding-bottom: 96.73px;
+    }
+
+    .kis-{{ section.id }} .kis-inner {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 64px;
+      max-width: 360px;
+      padding: 60px 0 0;
+    }
+
+    .kis-{{ section.id }} .kis-copy {
+      align-items: center;
+      flex: none;
+      width: 339px;
+      max-width: 339px;
+      gap: 17px;
+      text-align: center;
+      order: 1;
+    }
+
+    .kis-{{ section.id }} .kis-heading {
+      font-size: 30px;
+      line-height: 1.06;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+
+    .kis-{{ section.id }} .kis-body {
+      align-items: center;
+    }
+
+    .kis-{{ section.id }} .kis-text {
+      max-width: 339px;
+      text-align: center;
+    }
+
+    .kis-{{ section.id }} .kis-media {
+      flex: none;
+      order: 2;
+      width: 100%;
+      max-width: 360px;
+      height: 327.5px;
+      overflow: visible;
+      background-color: transparent;
+    }
+
+    .kis-{{ section.id }} .kis-media-bg--desktop {
+      display: none;
+    }
+
+    .kis-{{ section.id }} .kis-media-bg--mobile,
+    .kis-{{ section.id }} .kis-media-bg--desktop.kis-media-bg--only {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 327.5px;
+      object-fit: cover;
+    }
+
+    .kis-{{ section.id }} .kis-phone-wrap {
+      left: 96px;
+      top: 74.23px;
+      width: 168px;
+      height: 350px;
+      overflow: visible;
+      display: block;
+    }
+
+    .kis-{{ section.id }} .kis-phone {
+      width: 168px;
+      height: 350px;
+      margin-top: 0;
+      object-fit: contain;
+      object-position: top center;
+    }
+  }
+{% endstyle %}
+
+{% assign kis_bg = section.settings.image_desktop %}
+{% assign kis_bg_mobile = section.settings.image_mobile %}
+{% assign kis_phone = section.settings.phone_image %}
+{% if kis_bg_mobile == blank %}
+  {% assign kis_bg_mobile = kis_bg %}
+{% endif %}
+
+<section class="kis-{{ section.id }}" id="kopilot-intelligent-safety">
+  <div class="kis-inner">
+    <div class="kis-media">
+      {% if kis_bg != blank %}
+        {% if section.settings.image_mobile != blank %}
+          <img
+            class="kis-media-bg kis-media-bg--desktop"
+            src="{{ kis_bg | image_url: width: 1440 }}"
+            alt=""
+            loading="lazy"
+            width="720"
+            height="655"
+          >
+          <img
+            class="kis-media-bg kis-media-bg--mobile"
+            src="{{ kis_bg_mobile | image_url: width: 720 }}"
+            alt=""
+            loading="lazy"
+            width="360"
+            height="328"
+          >
+        {% else %}
+          <img
+            class="kis-media-bg kis-media-bg--desktop kis-media-bg--only"
+            src="{{ kis_bg | image_url: width: 1440 }}"
+            alt=""
+            loading="lazy"
+            width="720"
+            height="655"
+          >
+        {% endif %}
+      {% endif %}
+
+      {% if kis_phone != blank %}
+        <div class="kis-phone-wrap">
+          <img
+            class="kis-phone"
+            src="{{ kis_phone | image_url: width: 684 }}"
+            alt="{{ section.settings.heading_line_1 | escape }} {{ section.settings.heading_line_2 | escape }}"
+            loading="lazy"
+            width="342"
+            height="715"
+          >
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="kis-copy">
+      {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2 != blank %}
+        <h2 class="kis-heading">
+          {% if section.settings.heading_line_1 != blank %}
+            <span>{{ section.settings.heading_line_1 | escape }}</span>
+          {% endif %}
+          {% if section.settings.heading_line_1 != blank and section.settings.heading_line_2 != blank %}
+            <br>
+          {% endif %}
+          {% if section.settings.heading_line_2 != blank %}
+            <span class="kis-heading-em">{{ section.settings.heading_line_2 | escape }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      <div class="kis-body">
+        {% if section.settings.brand_label != blank %}
+          <p class="kis-brand">{{ section.settings.brand_label | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="kis-text">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Intelligent Safety",
+  "tag": "section",
+  "class": "section-kopilot-intelligent-safety",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Background image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "phone_image",
+      "label": "Phone / product image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Intelligent"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "Safety"
+    },
+    {
+      "type": "text",
+      "id": "brand_label",
+      "label": "Brand label",
+      "default": "KOPILOT.ID"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>is a thumbnail size AI powered medical emergency assistant. It can be read with any modern phone, with or without the free app, online or offline.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intelligent Safety"
+    }
+  ]
+}
+{% endschema %}
