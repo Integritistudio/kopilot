@@ -201,35 +201,36 @@
         "act1": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/attachment_6.webp",
-            "category": "Motorcycling",
+            "image": "shopify://shop_images/moto.jpg",
+            "category": "Moto",
             "title": "Go full throttle.",
-            "text": "Built tough to handle crashes, weather, and high speeds.",
+            "text": "Built tough and ready to ride.",
             "overlay_opacity": 20
           }
         },
         "act2": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/attachment_7.webp",
-            "category": "Trail running",
+            "image": "shopify://shop_images/running_c4ab233c-c3f0-483a-961d-2dd94d38c376.jpg",
+            "category": "Running",
             "title": "Cover the distance.",
-            "text": "GPS location helps them find you faster, even deep on a trail.",
+            "text": "Mile after mile, your critical information is one tap away.",
             "overlay_opacity": 30
           }
         },
         "act3": {
           "type": "activity",
           "settings": {
-            "image": "shopify://shop_images/attachment_8.webp",
+            "image": "shopify://shop_images/Frame_2106667228.jpg",
             "category": "Cycling",
             "title": "Ride out of range.",
-            "text": "Ready for crashes, weather, and long rides.",
+            "text": "The part of your kit you don't have to think about.",
             "overlay_opacity": 30
           }
         },
         "act4": {
           "type": "activity",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/attachment_9.webp",
             "category": "Mountain biking",
@@ -244,7 +245,7 @@
             "image": "shopify://shop_images/2d63660181a7fdb29fb2601f0eeeb015ff5f633a.jpg",
             "category": "Snow sports",
             "title": "Drop in deeper.",
-            "text": "Accessible even in remote mountains without signal.",
+            "text": "Waterproof and durable, all season long.",
             "overlay_opacity": 30
           }
         },
@@ -252,9 +253,9 @@
           "type": "activity",
           "settings": {
             "image": "shopify://shop_images/attachment_10.webp",
-            "category": "Hiking",
+            "category": "Outdoors",
             "title": "Push further out.",
-            "text": "Built for long days off-grid without charging or batteries.",
+            "text": "Battery-free and hassle-free, wherever your adventure takes you.",
             "overlay_opacity": 30
           }
         }
