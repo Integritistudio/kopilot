@@ -352,21 +352,21 @@
         "a1": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/image_b1dbe7b7-f818-40ba-afe5-b779970b57d6.png",
-            "badge": "Ambassador",
-            "name": "Hillary Allen",
-            "role": "Team USA // Ultra Marathon Trail Runner",
-            "quote": "<p><a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> gives me next-level peace of mind on every run. With one tap, my emergency info is instantly accessible, no batteries, no subscriptions, nothing to manage. It's simple, reliable protection that lets me stay present so I can push my limits, and focus fully on the trail.</p>"
+            "image": "shopify://shop_images/image_1.svg",
+            "badge": "Partner",
+            "name": "AMA National Hare & Hound",
+            "role": "",
+            "quote": "<p>\"Facing one of the highest-risk forms of motorsport, racers utilize a <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> PRO Tag, specifically designed for use on carbon fiber helmets.\"</p>"
           }
         },
         "a2": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/image_1.png",
-            "badge": "Event",
-            "name": "The Breck Epic",
-            "role": "Renowned Multi-Stage Mountain Bike Race",
-            "quote": "<p>One of the most legendary races in mountain biking, the Breck Epic relies on <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> as a critical part of their emergency response protocol.</p>"
+            "image": "shopify://shop_images/image_3.svg",
+            "badge": "Partner",
+            "name": "US Hard Enduro",
+            "role": "",
+            "quote": "<p>\"Navigating some of the most challenging and technical off-road terrain, USHE racers all sport a <a href=\"https://www.kopilot.id/\" title=\"https://www.kopilot.id/\">KOPILOT.ID</a> tag on their helmets.\"</p>"
           }
         },
         "a3": {
@@ -388,23 +388,13 @@
             "role": "Rocky",
             "quote": "<p>Rocky Mountain Gravel Adventure <br/>A world-class gravel event traversing some of the most rugged terrain a gravel bike is capable of rolling across, starting and ending in the western town of Gypsum, Colorado.</p>"
           }
-        },
-        "a5": {
-          "type": "card",
-          "settings": {
-            "badge": "Ambassador",
-            "name": "Marcus Reid",
-            "role": "Enduro Mountain Biker",
-            "quote": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
-          }
         }
       },
       "block_order": [
         "a1",
         "a2",
         "a3",
-        "a4",
-        "a5"
+        "a4"
       ],
       "settings": {
         "color_scheme": "scheme-1",
