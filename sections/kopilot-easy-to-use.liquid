@@ -1,0 +1,562 @@
+{{ 'Elza.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .shopify-section:has(#kopilot-easy-to-use-{{ section.id }}) {
+    padding: 0;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} {
+    --etu-bg: {{ section.settings.bg_color }};
+    --etu-text: {{ section.settings.text_color }};
+    --etu-media-bg: {{ section.settings.media_bg_color }};
+    --etu-stroke: {{ section.settings.text_color }};
+    position: relative;
+    width: 100%;
+    background-color: var(--etu-bg);
+    color: var(--etu-text);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} *,
+  #kopilot-easy-to-use-{{ section.id }} *::before,
+  #kopilot-easy-to-use-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 770px;
+    margin: 0 auto;
+    padding: 72px 147px 72px 163px;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+    flex: 0 0 504px;
+    width: 504px;
+    max-width: 504px;
+    color: var(--etu-text);
+  }
+
+  /* Heading — beat global h2 / p / span rules */
+  #kopilot-easy-to-use-{{ section.id }} h2.etu-heading,
+  #kopilot-easy-to-use-{{ section.id }} h2.etu-heading span,
+  #kopilot-easy-to-use-{{ section.id }} p.etu-heading {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto;
+    max-width: 100%;
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    font-size: 60px !important;
+    line-height: 1 !important;
+    letter-spacing: -2.88px !important;
+    color: var(--etu-text) !important;
+    text-align: left !important;
+    text-transform: none !important;
+    word-break: break-word;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 339px;
+    max-width: 339px;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Outlined numbers — beat global p / span rules */
+  #kopilot-easy-to-use-{{ section.id }} p.etu-num,
+  #kopilot-easy-to-use-{{ section.id }} .etu-num {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 100px !important;
+    line-height: 84px !important;
+    letter-spacing: -3px !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    -webkit-text-stroke: 1.5px var(--etu-stroke);
+    paint-order: stroke fill;
+    word-break: normal;
+  }
+
+  /* Step body — beat global p / rte / span rules */
+  #kopilot-easy-to-use-{{ section.id }} .etu-text,
+  #kopilot-easy-to-use-{{ section.id }} p.etu-text,
+  #kopilot-easy-to-use-{{ section.id }} .etu-text p,
+  #kopilot-easy-to-use-{{ section.id }} .etu-text span,
+  #kopilot-easy-to-use-{{ section.id }} .etu-text * {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    max-width: 300px;
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    color: var(--etu-text) !important;
+    text-align: left !important;
+    text-transform: none !important;
+    word-break: break-word;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-text--narrow,
+  #kopilot-easy-to-use-{{ section.id }} p.etu-text--narrow {
+    max-width: 227px !important;
+    width: 227px !important;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-stores {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding-top: 8.11px;
+    min-height: 36.11px;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} a.etu-store {
+    display: block;
+    line-height: 0;
+    text-decoration: none !important;
+    border: 0;
+    flex-shrink: 0;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} a.etu-store img,
+  #kopilot-easy-to-use-{{ section.id }} .etu-store img {
+    display: block;
+    width: auto;
+    height: 28px;
+    max-width: 100px;
+    object-fit: contain;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} a.etu-store--apple img {
+    width: 83.03px;
+    height: 28px;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} a.etu-store--google img {
+    width: 93.64px;
+    height: 28px;
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-media {
+    position: relative;
+    flex: 0 0 626px;
+    width: 626px;
+    height: 626px;
+    margin-left: auto;
+    overflow: hidden;
+    background-color: var(--etu-media-bg);
+  }
+
+  #kopilot-easy-to-use-{{ section.id }} .etu-media video,
+  #kopilot-easy-to-use-{{ section.id }} .etu-media img,
+  #kopilot-easy-to-use-{{ section.id }} .etu-media .etu-media-el {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    #kopilot-easy-to-use-{{ section.id }} .etu-inner {
+      gap: 0;
+      min-height: clamp(520px, 53.47vw, 770px);
+      padding: clamp(40px, 5vw, 72px) clamp(24px, 10.208vw, 147px) clamp(40px, 5vw, 72px) clamp(24px, 11.319vw, 163px);
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-copy {
+      flex: 1 1 auto;
+      width: auto;
+      max-width: 504px;
+      gap: clamp(28px, 3.472vw, 50px);
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading,
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading span,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-heading {
+      font-size: clamp(36px, 4.167vw, 60px) !important;
+      letter-spacing: clamp(-1.5px, -0.2vw, -2.88px) !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-steps {
+      width: min(339px, 100%);
+      max-width: 339px;
+      gap: clamp(16px, 1.389vw, 20px);
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} p.etu-num,
+    #kopilot-easy-to-use-{{ section.id }} .etu-num {
+      font-size: clamp(64px, 6.944vw, 100px) !important;
+      line-height: clamp(56px, 5.833vw, 84px) !important;
+      -webkit-text-stroke-width: clamp(1px, 0.104vw, 1.5px);
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-text,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-text,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text p,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text span,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text * {
+      font-size: clamp(16px, 1.389vw, 20px) !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-media {
+      flex: 0 0 clamp(320px, 43.47vw, 626px);
+      width: clamp(320px, 43.47vw, 626px);
+      height: clamp(320px, 43.47vw, 626px);
+    }
+  }
+
+  /* Mobile ≤767px — Figma 360px frame */
+  @media screen and (max-width: 767px) {
+    #kopilot-easy-to-use-{{ section.id }} {
+      overflow: visible;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-inner {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 34px;
+      max-width: 360px;
+      min-height: 0;
+      padding: 0 0 64px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-media {
+      order: -1;
+      flex: none;
+      width: 100%;
+      max-width: 360px;
+      height: 360px;
+      margin-left: 0;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-copy {
+      align-items: center;
+      flex: none;
+      width: 360px;
+      max-width: 360px;
+      gap: 30px;
+      text-align: center;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading,
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading span,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-heading {
+      font-size: 30px !important;
+      line-height: 1 !important;
+      letter-spacing: -2.88px !important;
+      text-align: center !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-steps {
+      align-items: center;
+      gap: 31px;
+      width: 339px;
+      max-width: 339px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-step {
+      align-items: center;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} p.etu-num,
+    #kopilot-easy-to-use-{{ section.id }} .etu-num {
+      font-size: 60px !important;
+      line-height: 84px !important;
+      letter-spacing: -3px !important;
+      text-align: center !important;
+      -webkit-text-stroke-width: 1.2px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-text,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-text,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text p,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text span,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text * {
+      max-width: 339px;
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-text--narrow,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-text--narrow {
+      max-width: 227px !important;
+      width: 227px !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-stores {
+      justify-content: center;
+      width: 188px;
+    }
+  }
+{% endstyle %}
+
+{%- liquid
+  assign etu_video = section.settings.media_video
+  assign etu_image = section.settings.media_image
+  assign etu_apple = section.settings.app_store_badge
+  assign etu_google = section.settings.google_play_badge
+  assign etu_apple_src = 'kopilot-badge-app-store.svg' | asset_url
+  assign etu_google_src = 'kopilot-badge-google-play.svg' | asset_url
+-%}
+
+<section class="full-width" id="kopilot-easy-to-use-{{ section.id }}">
+  <div class="etu-inner">
+    <div class="etu-copy">
+      {% if section.settings.heading != blank %}
+        <h2 class="etu-heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      <div class="etu-steps">
+        {% if section.settings.step_1_text != blank %}
+          <div class="etu-step">
+            <p class="etu-num" aria-hidden="true">1</p>
+            <p class="etu-text">{{ section.settings.step_1_text | escape | newline_to_br }}</p>
+          </div>
+        {% endif %}
+
+        {% if section.settings.step_2_text != blank %}
+          <div class="etu-step">
+            <p class="etu-num" aria-hidden="true">2</p>
+            <p class="etu-text etu-text--narrow">{{ section.settings.step_2_text | escape | newline_to_br }}</p>
+
+            {% if section.settings.show_store_badges %}
+              <div class="etu-stores">
+                <a
+                  class="etu-store etu-store--apple"
+                  href="{{ section.settings.app_store_link | default: '#' }}"
+                  {% if section.settings.app_store_link != blank %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  aria-label="Download on the App Store"
+                >
+                  {% if etu_apple != blank %}
+                    <img
+                      src="{{ etu_apple | image_url: width: 200 }}"
+                      alt="Download on the App Store"
+                      width="83"
+                      height="28"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <img
+                      src="{{ etu_apple_src }}"
+                      alt="Download on the App Store"
+                      width="83"
+                      height="28"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </a>
+
+                <a
+                  class="etu-store etu-store--google"
+                  href="{{ section.settings.google_play_link | default: '#' }}"
+                  {% if section.settings.google_play_link != blank %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  aria-label="Get it on Google Play"
+                >
+                  {% if etu_google != blank %}
+                    <img
+                      src="{{ etu_google | image_url: width: 200 }}"
+                      alt="Get it on Google Play"
+                      width="94"
+                      height="28"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <img
+                      src="{{ etu_google_src }}"
+                      alt="Get it on Google Play"
+                      width="94"
+                      height="28"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.step_3_text != blank %}
+          <div class="etu-step">
+            <p class="etu-num" aria-hidden="true">3</p>
+            <p class="etu-text">{{ section.settings.step_3_text | escape | newline_to_br }}</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="etu-media" aria-hidden="{% if etu_video == blank and etu_image == blank %}true{% else %}false{% endif %}">
+      {% if etu_video != blank %}
+        {{
+          etu_video
+          | video_tag:
+            class: 'etu-media-el',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            image_size: '1252x',
+            preload: 'metadata'
+        }}
+      {% elsif etu_image != blank %}
+        <img
+          class="etu-media-el"
+          src="{{ etu_image | image_url: width: 1252 }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="626"
+          height="626"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Easy to use",
+  "tag": "section",
+  "class": "section-kopilot-easy-to-use",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#D6DAE0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#232526"
+    },
+    {
+      "type": "color",
+      "id": "media_bg_color",
+      "label": "Media placeholder color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "video",
+      "id": "media_video",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Image / GIF",
+      "info": "Used when no video is set. Upload a GIF here if needed."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Easy to use"
+    },
+    {
+      "type": "textarea",
+      "id": "step_1_text",
+      "label": "Step 1 text",
+      "default": "Attach tag to any helmet, goggle strap or zipper pull (mounts included)."
+    },
+    {
+      "type": "textarea",
+      "id": "step_2_text",
+      "label": "Step 2 text",
+      "default": "Create emergency profile in the free app."
+    },
+    {
+      "type": "textarea",
+      "id": "step_3_text",
+      "label": "Step 3 text",
+      "default": "Tap with your phone to reveal emergency info."
+    },
+    {
+      "type": "header",
+      "content": "App stores"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_store_badges",
+      "label": "Show store badges under step 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "app_store_badge",
+      "label": "App Store badge",
+      "info": "Optional override. Theme SVG is used by default."
+    },
+    {
+      "type": "url",
+      "id": "app_store_link",
+      "label": "App Store link"
+    },
+    {
+      "type": "image_picker",
+      "id": "google_play_badge",
+      "label": "Google Play badge",
+      "info": "Optional override. Theme SVG is used by default."
+    },
+    {
+      "type": "url",
+      "id": "google_play_link",
+      "label": "Google Play link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Easy to use"
+    }
+  ]
+}
+{% endschema %}
