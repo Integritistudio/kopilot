@@ -1,12 +1,14 @@
-{%- style -%}
-  /* --- Custom Font Setup --- */
-  @font-face {
-    font-family: 'Elza';
-    font-weight: 400;
-    font-style: normal;
-  }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
 
+{%- style -%}
   .marquee-slider-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
     padding-top: 70px;
     padding-bottom: 70px;
     background-color: {{ section.settings.bg_color }};
@@ -15,11 +17,15 @@
     box-sizing: border-box;
   }
 
-  /* --- Text Container Styles --- */
   .marquee-slider-{{ section.id }} .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     text-align: center;
     margin: 0 auto;
     max-width: 620px;
+    width: 100%;
     box-sizing: border-box;
   }
 
@@ -27,25 +33,25 @@
     font-family: 'Elza', sans-serif;
     font-weight: 300;
     color: #000000;
-    margin: 0 0 20px 0; /* Gap between heading and paragraph: 20px */
+    margin: 0;
     padding: 0;
     font-size: 60px;
     line-height: 1.1;
-    letter-spacing: 0%;
+    letter-spacing: 0;
   }
 
   .marquee-slider-{{ section.id }} .marquee-paragraph {
     font-family: 'Elza', sans-serif;
     font-weight: 400;
     font-size: 20px;
-    line-height: 120%; /* 24px */
-    letter-spacing: 0%;
+    line-height: 1.2;
+    letter-spacing: 0;
     color: #000000;
-    margin: 0 0 40px 0; /* Gap between text container and slider: 40px */
+    margin: 0;
     padding: 0;
+    max-width: 620px;
   }
 
-  /* --- Slider Container & Infinite Track Styles --- */
   .marquee-slider-{{ section.id }} .slider-container {
     width: 100%;
     overflow: hidden;
@@ -55,10 +61,11 @@
 
   .marquee-slider-{{ section.id }} .marquee-track {
     display: flex;
+    align-items: center;
     user-select: none;
-    gap: 17.92px; /* Precision gap between slider cards */
-    animation: smoothMarquee {{ section.settings.speed }}s linear infinite;
-    will-change: transform; 
+    gap: 17.924px;
+    animation: smoothMarquee-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+    will-change: transform;
   }
 
   {% if section.settings.pause_on_hover %}
@@ -67,61 +74,105 @@
   }
   {% endif %}
 
-  /* --- Desktop Precision Sizing (1440px Framework) --- */
+  /* Desktop — 1440px */
   .marquee-slider-{{ section.id }} .slider-card {
+    position: relative;
     flex-shrink: 0;
-    height: 346px;  /* Exact height requested for 1440px */
-    width: 346.5px; /* Perfect split to show exactly 4 cards clean on 1440px viewport */
+    width: 346.556px;
+    height: 346.556px;
     overflow: hidden;
   }
 
-  .marquee-slider-{{ section.id }} .slider-card img {
+  .marquee-slider-{{ section.id }} .slider-card img,
+  .marquee-slider-{{ section.id }} .slider-card .placeholder-svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  /* Infinite Loop Keyframe */
-  @keyframes smoothMarquee {
+  .marquee-slider-{{ section.id }} .slider-card__name {
+    position: absolute;
+    right: 19.56px;
+    bottom: 18.24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 31px;
+    padding: 0 24px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #000000;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  @keyframes smoothMarquee-{{ section.id }} {
     0% {
-      transform: translateX(0%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-50% - 8.96px));
+      transform: translateX(calc(-50% - 8.962px));
     }
   }
 
-  /* --- Mobile Precision Sizing (360px Framework) --- */
+  /* Mobile — 360px */
   @media screen and (max-width: 767px) {
     .marquee-slider-{{ section.id }} {
       padding-top: 70px;
       padding-bottom: 70px;
+      gap: 40px;
     }
-    
+
     .marquee-slider-{{ section.id }} .text-container {
-      padding-left: 38px;  /* Text container boundary tracking */
-      padding-right: 38px; 
+      max-width: 292px;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .marquee-slider-{{ section.id }} .marquee-heading {
-      margin-bottom: 20px; 
       font-size: 30px;
     }
 
     .marquee-slider-{{ section.id }} .marquee-paragraph {
-      font-size: 15px;      
-      line-height: 120%;    
-      margin-bottom: 40px;  /* Mobile text container to slider gap: 40px */
+      font-size: 15px;
+      line-height: 1.2;
+      max-width: 292px;
     }
 
     .marquee-slider-{{ section.id }} .marquee-track {
-      gap: 17.92px;        
+      gap: 9.788px;
+      animation-name: smoothMarqueeMobile-{{ section.id }};
     }
 
     .marquee-slider-{{ section.id }} .slider-card {
-      height: 268px;        /* Changed to exact 268px square height */
-      width: 268px;         /* Changed to exact 268px square width */
+      width: 189.24px;
+      height: 189.24px;
+    }
+
+    .marquee-slider-{{ section.id }} .slider-card__name {
+      right: 10.94px;
+      bottom: 9.96px;
+      height: 16.92px;
+      padding: 0 13.105px;
+      border-width: 0.546px;
+      font-size: 8.737px;
+    }
+  }
+
+  @keyframes smoothMarqueeMobile-{{ section.id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 4.894px));
     }
   }
 {%- endstyle -%}
@@ -143,12 +194,19 @@
           {%- if block.type == 'image_card' -%}
             <div class="slider-card" {{ block.shopify_attributes }}>
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 800 | image_tag:
-                  loading: 'lazy',
-                  alt: block.settings.image.alt | escape
+                {%- liquid
+                  assign card_alt = block.settings.name | default: block.settings.image.alt
+                -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', alt: card_alt
                 }}
               {%- else -%}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              {%- if block.settings.name != blank -%}
+                <p class="slider-card__name">{{ block.settings.name | escape }}</p>
               {%- endif -%}
             </div>
           {%- endif -%}
@@ -160,19 +218,19 @@
 
 {% schema %}
 {
-  "name": "Infinite Marquee Slider",
+  "name": "Partners Slider Loop",
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "We get outside."
+      "default": "We live this industry."
     },
     {
       "type": "textarea",
       "id": "paragraph",
       "label": "Paragraph Text",
-      "default": "We ride, run, climb, and race trails and backcountry — and we built a tag we'd trust with our own families out there."
+      "default": "Our leadership team rides, runs, backpacks, climbs, and has spent countless days in the backcountry - we built something that we knew was missing."
     },
     {
       "type": "color",
@@ -206,18 +264,24 @@
           "type": "image_picker",
           "id": "image",
           "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name label",
+          "default": "NAME"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Infinite Marquee Slider",
+      "name": "Partners Slider Loop",
       "blocks": [
-        { "type": "image_card" },
-        { "type": "image_card" },
-        { "type": "image_card" },
-        { "type": "image_card" }
+        { "type": "image_card", "settings": { "name": "JAKE" } },
+        { "type": "image_card", "settings": { "name": "BLAKE" } },
+        { "type": "image_card", "settings": { "name": "BROOK" } },
+        { "type": "image_card", "settings": { "name": "MARK" } }
       ]
     }
   ]
