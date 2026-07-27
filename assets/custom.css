@@ -1,3 +1,8 @@
+.get-started-emergency .kopilot-features-media-col{
+    width:728px;
+}
+
+
 @media screen and (max-width: 767px) {
   .get-started-emergency .kopilot-features-heading {
     width: 100%;
