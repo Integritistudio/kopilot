@@ -184,19 +184,11 @@
             "name": "MARK",
             "role": "Co-founder"
           }
-        },
-        "team_member_DAHxg8": {
-          "type": "team_member",
-          "settings": {
-            "name": "BLAKE",
-            "role": "Community & Content"
-          }
         }
       },
       "block_order": [
         "team_member_mBFACn",
-        "team_member_MTQcVw",
-        "team_member_DAHxg8"
+        "team_member_MTQcVw"
       ],
       "name": "Team Profiles",
       "settings": {
