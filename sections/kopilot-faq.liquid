@@ -62,15 +62,19 @@
 
       <div class="kopilot-faq__list faq_inner">
         {% for block in section.blocks %}
+          {% assign open_first = false %}
+          {% if section.settings.open_first_question and forloop.first %}
+            {% assign open_first = true %}
+          {% endif %}
           <div class="faq_item" {{ block.shopify_attributes }}>
-            <button type="button" class="faq_question{% if forloop.first %} active{% endif %}">
+            <button type="button" class="faq_question{% if open_first %} active{% endif %}">
               <h3 class="h6 kopilot-body">{{ block.settings.question }}</h3>
               <span class="faq_arrow" aria-hidden="true">
                 <span class="faq_hori"></span>
                 <span class="faq_vert"></span>
               </span>
             </button>
-            <div class="faq_answer"{% if forloop.first %} style="height: auto;"{% endif %}>
+            <div class="faq_answer"{% if open_first %} style="height: auto;"{% endif %}>
               <div class="faq_answer_inner kopilot-body rte">
                 {{ block.settings.answer }}
               </div>
@@ -196,6 +200,16 @@
         { "value": "800", "label": "Extra-bold (800)" }
       ],
       "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_question",
+      "label": "Open first question by default",
+      "default": true
     },
     {
       "type": "header",
