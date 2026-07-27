@@ -174,6 +174,7 @@
         "team_member_mBFACn": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59_ad64b1e1-670f-47ab-ba2b-5119c279c005.png",
             "name": "JUSTIN",
             "role": "Co-founder"
           }
@@ -181,6 +182,7 @@
         "team_member_MTQcVw": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_59_1_42cd451c-30fc-4644-856c-e16e4faf4081.png",
             "name": "MARK",
             "role": "Co-founder"
           }
@@ -193,7 +195,7 @@
       "name": "Team Profiles",
       "settings": {
         "heading": "The people behind it.",
-        "paragraph": "<p>We're a small team with backgrounds in the outdoor and powersports industries. Building products for the outdoor community taught us a lot about adventure. KOPILOT.ID was born from what we learned along the way.</p>"
+        "paragraph": "<p>Our leadership team has an extensive background delivering technology solutions to the outdoor recreation and powersports industries. Lives spent in these spaces taught us a lot - KOPILOT.ID was born from what we learned along the way.</p>"
       }
     },
     "features_about_wcY6FD": {
