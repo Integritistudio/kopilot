@@ -75,7 +75,7 @@
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/Group_39.svg",
-            "title": "Durable and waterproof"
+            "title": "No battery /<br> No charging"
           }
         },
         "feature_xUmnRF": {
@@ -117,7 +117,7 @@
       ],
       "name": "Kopilot Features Grid",
       "settings": {
-        "heading": "KOPILOT.ID in<br>emergency",
+        "heading": "KOPILOT.ID inemergency",
         "image": "shopify://shop_images/image_18659467_1.png",
         "bg_color": "#ffffff",
         "bg_color_mobile": "#ffffff"
