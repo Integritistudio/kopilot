@@ -53,6 +53,7 @@
       "name": "Intelligent Safety",
       "settings": {
         "image_desktop": "shopify://shop_images/Group_2106667241_0a3e88cc-317e-4352-94b4-64d9f005fe1e.svg",
+        "image_mobile": "shopify://shop_images/image_18659508.svg",
         "bg_color": "#ffffff",
         "text_color": "#000000",
         "heading_line_1": "Intelligent",
@@ -115,6 +116,7 @@
         "feature_VgwC9k",
         "feature_7tUt8H"
       ],
+      "custom_css": [],
       "name": "Kopilot Features Grid",
       "settings": {
         "heading": "KOPILOT.ID inemergency",
@@ -127,9 +129,9 @@
       "type": "kopilot-easy-to-use",
       "name": "Easy to use",
       "settings": {
-        "bg_color": "#D6DAE0",
+        "bg_color": "#d6dae0",
         "text_color": "#232526",
-        "media_bg_color": "#FFFFFF",
+        "media_bg_color": "#ffffff",
         "media_video": "shopify://files/videos/Tapping Tag.mp4",
         "heading": "Easy to use",
         "step_1_text": "Attach tag to any helmet, goggle strap or zipper pull (mounts included).",
