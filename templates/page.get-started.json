@@ -70,10 +70,50 @@
             "icon": "shopify://shop_images/Group_39.svg",
             "title": "Durable and waterproof"
           }
+        },
+        "feature_3BA4TF": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        },
+        "feature_xUmnRF": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        },
+        "feature_YWEPRt": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        },
+        "feature_VgwC9k": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
+        },
+        "feature_7tUt8H": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39.svg",
+            "title": "Durable and waterproof"
+          }
         }
       },
       "block_order": [
-        "feature_gBfXq6"
+        "feature_gBfXq6",
+        "feature_3BA4TF",
+        "feature_xUmnRF",
+        "feature_YWEPRt",
+        "feature_VgwC9k",
+        "feature_7tUt8H"
       ],
       "name": "Kopilot Features Grid",
       "settings": {
