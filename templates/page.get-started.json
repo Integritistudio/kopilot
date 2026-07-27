@@ -151,9 +151,9 @@
       "settings": {
         "image_desktop": "shopify://shop_images/Group_2106667241.png",
         "image_mobile": "shopify://shop_images/IMG_3288_1_4.png",
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "text_color": "#000000",
-        "media_bg_color": "#F5F5F5",
+        "media_bg_color": "#f5f5f5",
         "heading_line_1": "Explore with",
         "heading_line_2": "Confidence",
         "text": "<p>Quick access to your unique health information can be critical in an emergency. KOPILOT.ID uses NFC technology combined with simple-to-use AI to provide you with peace of mind and those helping you with details that may save your life.</p>",
@@ -238,6 +238,86 @@
         "color_scheme": "",
         "heading": "<p>KOPILOT.ID speaks for you</p>"
       }
+    },
+    "kopilot_faq_jmWn4N": {
+      "type": "kopilot-faq",
+      "blocks": {
+        "question_nfTmwi": {
+          "type": "question",
+          "settings": {
+            "question": "How do I use KOPILOT.ID in an emergency situation?",
+            "answer": ""
+          }
+        },
+        "question_GJ7DJF": {
+          "type": "question",
+          "settings": {
+            "question": "Do NFC tags work without cell service?",
+            "answer": "<p>Yes. Once your profile is set up, the tag works without cell service or battery power on the tag itself.</p>"
+          }
+        },
+        "question_hmnezf": {
+          "type": "question",
+          "settings": {
+            "question": "What information can I store on my NFC medical ID?",
+            "answer": "<p>You control what you share — medical conditions, allergies, medications, emergency contacts, and more.</p>"
+          }
+        },
+        "question_AtRrhW": {
+          "type": "question",
+          "settings": {
+            "question": "How do I use an NFC tag like KOPILOT.ID?",
+            "answer": "<p>Set up your profile in the app, attach the tag to your gear, and anyone can tap it with a smartphone in an emergency.</p>"
+          }
+        },
+        "question_TJ4jQG": {
+          "type": "question",
+          "settings": {
+            "question": "Where should I place my NFC emergency tag?",
+            "answer": "<p>Helmet, gear, or anywhere first responders are likely to find it. Mounting options are included.</p>"
+          }
+        },
+        "question_dKEK76": {
+          "type": "question",
+          "settings": {
+            "question": "How long do NFC tags last? Do they need charging?",
+            "answer": "<p>NFC tags have no battery and are designed to last for years of regular use.</p>"
+          }
+        },
+        "question_7dbhkR": {
+          "type": "question",
+          "settings": {
+            "question": "Is this useful even if I already ride with safety gear?",
+            "answer": "<p>Yes. Safety gear protects your body — KOPILOT.ID ensures responders have the information they need to help you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_nfTmwi",
+        "question_GJ7DJF",
+        "question_hmnezf",
+        "question_AtRrhW",
+        "question_TJ4jQG",
+        "question_dKEK76",
+        "question_7dbhkR"
+      ],
+      "name": "Kopilot FAQ",
+      "settings": {
+        "color_scheme": "",
+        "heading": "Questions",
+        "heading_font_weight": "",
+        "heading_line_height": "",
+        "heading_font_weight_mobile": "",
+        "heading_line_height_mobile": "",
+        "question_font_weight": "",
+        "question_font_weight_mobile": "",
+        "enable_first_active_bold": false,
+        "active_question_font_weight": "700",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
     }
   },
   "order": [
@@ -247,6 +327,7 @@
     "features_grid_ApyDnk",
     "kopilot_easy_to_use_7R4Eiq",
     "kopilot_explore_confidence_ndyKbm",
-    "kopilot_home_activities_W83Fpi"
+    "kopilot_home_activities_W83Fpi",
+    "kopilot_faq_jmWn4N"
   ]
 }
