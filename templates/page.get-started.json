@@ -117,10 +117,29 @@
       ],
       "name": "Kopilot Features Grid",
       "settings": {
-        "heading": "KOPILOT.ID in<br>emergency",
+        "heading": "KOPILOT.ID inemergency",
         "image": "shopify://shop_images/image_18659467_1.png",
         "bg_color": "#ffffff",
         "bg_color_mobile": "#ffffff"
+      }
+    },
+    "kopilot_easy_to_use_7R4Eiq": {
+      "type": "kopilot-easy-to-use",
+      "name": "Easy to use",
+      "settings": {
+        "bg_color": "#D6DAE0",
+        "text_color": "#232526",
+        "media_bg_color": "#FFFFFF",
+        "media_video": "shopify://files/videos/Tapping Tag.mp4",
+        "heading": "Easy to use",
+        "step_1_text": "Attach tag to any helmet, goggle strap or zipper pull (mounts included).",
+        "step_2_text": "Create emergency profile in the free app.",
+        "step_3_text": "Tap with your phone to reveal emergency info.",
+        "show_store_badges": true,
+        "app_store_badge": "shopify://shop_images/app-store_svg.svg",
+        "app_store_link": "",
+        "google_play_badge": "shopify://shop_images/image_4.svg",
+        "google_play_link": ""
       }
     },
     "kopilot_home_activities_W83Fpi": {
@@ -207,6 +226,7 @@
     "kopilot_app_download_hero_xkHDPp",
     "kopilot_intelligent_safety_gErdRa",
     "features_grid_ApyDnk",
+    "kopilot_easy_to_use_7R4Eiq",
     "kopilot_home_activities_W83Fpi"
   ]
 }
