@@ -1,7 +1,11 @@
 {{ 'Elza.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-  .kis-{{ section.id }} {
+  .shopify-section:has(#kopilot-intelligent-safety-{{ section.id }}) {
+    padding: 0;
+  }
+
+  #kopilot-intelligent-safety-{{ section.id }} {
     --kis-bg: {{ section.settings.bg_color }};
     --kis-text: {{ section.settings.text_color }};
     position: relative;
@@ -12,13 +16,13 @@
     overflow: hidden;
   }
 
-  .kis-{{ section.id }} *,
-  .kis-{{ section.id }} *::before,
-  .kis-{{ section.id }} *::after {
+  #kopilot-intelligent-safety-{{ section.id }} *,
+  #kopilot-intelligent-safety-{{ section.id }} *::before,
+  #kopilot-intelligent-safety-{{ section.id }} *::after {
     box-sizing: border-box;
   }
 
-  .kis-{{ section.id }} .kis-inner {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-inner {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,7 +32,7 @@
     margin: 0 auto;
   }
 
-  .kis-{{ section.id }} .kis-media {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-media {
     position: relative;
     flex: 0 0 720px;
     width: 720px;
@@ -37,7 +41,7 @@
     background-color: #e8e8e8;
   }
 
-  .kis-{{ section.id }} .kis-media-bg {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-media-bg {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -47,11 +51,11 @@
     display: block;
   }
 
-  .kis-{{ section.id }} .kis-media-bg--mobile {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-media-bg--mobile {
     display: none;
   }
 
-  .kis-{{ section.id }} .kis-phone-wrap {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap {
     position: absolute;
     left: 159px;
     top: 93.19px;
@@ -63,7 +67,8 @@
     justify-content: center;
   }
 
-  .kis-{{ section.id }} .kis-phone {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap img,
+  #kopilot-intelligent-safety-{{ section.id }} img.kis-phone {
     display: block;
     width: 342px;
     height: 715px;
@@ -73,7 +78,7 @@
     margin-top: 0.14px;
   }
 
-  .kis-{{ section.id }} .kis-copy {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-copy {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -84,24 +89,27 @@
     color: var(--kis-text);
   }
 
-  .kis-{{ section.id }} .kis-heading {
-    margin: 0;
-    padding: 0;
+  /* Heading — beat global h2 / span rules */
+  #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading,
+  #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading span {
+    margin: 0 !important;
+    padding: 0 !important;
     width: 100%;
-    font-family: 'Elza', sans-serif;
-    font-weight: 300;
-    font-size: 60px;
-    line-height: 1.06;
-    letter-spacing: -1px;
-    color: var(--kis-text);
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    font-size: 60px !important;
+    line-height: 1.06 !important;
+    letter-spacing: -1px !important;
+    color: var(--kis-text) !important;
     word-break: break-word;
   }
 
-  .kis-{{ section.id }} .kis-heading-em {
-    font-weight: 500;
+  #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading span.kis-heading-em {
+    font-weight: 500 !important;
   }
 
-  .kis-{{ section.id }} .kis-body {
+  #kopilot-intelligent-safety-{{ section.id }} .kis-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -109,82 +117,97 @@
     width: 100%;
   }
 
-  .kis-{{ section.id }} .kis-brand {
-    margin: 0;
-    padding: 0;
-    font-family: 'Elza', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    color: var(--kis-text);
+  /* Brand — beat global p rules */
+  #kopilot-intelligent-safety-{{ section.id }} p.kis-brand {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    color: var(--kis-text) !important;
     white-space: nowrap;
   }
 
-  .kis-{{ section.id }} .kis-text {
-    margin: 0;
-    padding: 0;
+  /* Description richtext — beat global p / div / span / rte rules */
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text,
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text p,
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text span,
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text a,
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text * {
+    margin: 0 !important;
+    padding: 0 !important;
     max-width: 405px;
-    font-family: 'Elza', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.2;
-    color: var(--kis-text);
+    font-family: 'Elza', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    color: var(--kis-text) !important;
     word-break: break-word;
   }
 
-  .kis-{{ section.id }} .kis-text p {
-    margin: 0;
-    padding: 0;
+  #kopilot-intelligent-safety-{{ section.id }} .kis-text a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    .kis-{{ section.id }} .kis-inner {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-inner {
       gap: clamp(40px, 6.875vw, 99px);
       padding: 0 clamp(24px, 3.472vw, 50px);
     }
 
-    .kis-{{ section.id }} .kis-media {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-media {
       flex: 0 0 clamp(360px, 50vw, 720px);
       width: clamp(360px, 50vw, 720px);
       height: clamp(360px, 45.486vw, 655px);
     }
 
-    .kis-{{ section.id }} .kis-phone-wrap {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap {
       left: clamp(80px, 11.042vw, 159px);
       top: clamp(46px, 6.472vw, 93.19px);
       width: clamp(230px, 31.944vw, 460px);
       height: clamp(281px, 39.028vw, 562px);
     }
 
-    .kis-{{ section.id }} .kis-phone {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap img,
+    #kopilot-intelligent-safety-{{ section.id }} img.kis-phone {
       width: clamp(171px, 23.75vw, 342px);
       height: clamp(357px, 49.653vw, 715px);
     }
 
-    .kis-{{ section.id }} .kis-copy {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-copy {
       flex: 1 1 auto;
       width: auto;
       max-width: 512px;
       gap: clamp(24px, 2.778vw, 40px);
     }
 
-    .kis-{{ section.id }} .kis-heading {
-      font-size: clamp(36px, 4.167vw, 60px);
+    #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading,
+    #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading span {
+      font-size: clamp(36px, 4.167vw, 60px) !important;
     }
 
-    .kis-{{ section.id }} .kis-brand,
-    .kis-{{ section.id }} .kis-text {
-      font-size: clamp(16px, 1.389vw, 20px);
+    #kopilot-intelligent-safety-{{ section.id }} p.kis-brand,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text p,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text span,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text * {
+      font-size: clamp(16px, 1.389vw, 20px) !important;
     }
   }
 
   @media screen and (max-width: 767px) {
-    .kis-{{ section.id }} {
+    #kopilot-intelligent-safety-{{ section.id }} {
       overflow: visible;
       padding-bottom: 96.73px;
     }
 
-    .kis-{{ section.id }} .kis-inner {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-inner {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
@@ -193,7 +216,7 @@
       padding: 60px 0 0;
     }
 
-    .kis-{{ section.id }} .kis-copy {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-copy {
       align-items: center;
       flex: none;
       width: 339px;
@@ -203,23 +226,35 @@
       order: 1;
     }
 
-    .kis-{{ section.id }} .kis-heading {
-      font-size: 30px;
-      line-height: 1.06;
-      letter-spacing: -1px;
-      text-align: center;
+    #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading,
+    #kopilot-intelligent-safety-{{ section.id }} h2.kis-heading span {
+      font-size: 30px !important;
+      line-height: 1.06 !important;
+      letter-spacing: -1px !important;
+      text-align: center !important;
     }
 
-    .kis-{{ section.id }} .kis-body {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-body {
       align-items: center;
     }
 
-    .kis-{{ section.id }} .kis-text {
-      max-width: 339px;
-      text-align: center;
+    #kopilot-intelligent-safety-{{ section.id }} p.kis-brand {
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
     }
 
-    .kis-{{ section.id }} .kis-media {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text p,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text span,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-text * {
+      max-width: 339px;
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+    }
+
+    #kopilot-intelligent-safety-{{ section.id }} .kis-media {
       flex: none;
       order: 2;
       width: 100%;
@@ -229,12 +264,12 @@
       background-color: transparent;
     }
 
-    .kis-{{ section.id }} .kis-media-bg--desktop {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-media-bg--desktop {
       display: none;
     }
 
-    .kis-{{ section.id }} .kis-media-bg--mobile,
-    .kis-{{ section.id }} .kis-media-bg--desktop.kis-media-bg--only {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-media-bg--mobile,
+    #kopilot-intelligent-safety-{{ section.id }} .kis-media-bg--desktop.kis-media-bg--only {
       display: block;
       position: absolute;
       inset: 0;
@@ -243,7 +278,7 @@
       object-fit: cover;
     }
 
-    .kis-{{ section.id }} .kis-phone-wrap {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap {
       left: 96px;
       top: 74.23px;
       width: 168px;
@@ -252,7 +287,8 @@
       display: block;
     }
 
-    .kis-{{ section.id }} .kis-phone {
+    #kopilot-intelligent-safety-{{ section.id }} .kis-phone-wrap img,
+    #kopilot-intelligent-safety-{{ section.id }} img.kis-phone {
       width: 168px;
       height: 350px;
       margin-top: 0;
@@ -269,7 +305,7 @@
   {% assign kis_bg_mobile = kis_bg %}
 {% endif %}
 
-<section class="kis-{{ section.id }}" id="kopilot-intelligent-safety">
+<section class="full-width" id="kopilot-intelligent-safety-{{ section.id }}">
   <div class="kis-inner">
     <div class="kis-media">
       {% if kis_bg != blank %}
