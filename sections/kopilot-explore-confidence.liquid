@@ -1,15 +1,14 @@
 {{ 'Elza.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-  .shopify-section:has(#kopilot-explore-confidence-{{ section.id }}) {
+  .shopify-section:has(.kopilot-explore-confidence-{{ section.id }}) {
     padding: 0;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} {
+  .kopilot-explore-confidence-{{ section.id }} {
     --kec-bg: {{ section.settings.bg_color }};
     --kec-text: {{ section.settings.text_color }};
     --kec-media-bg: {{ section.settings.media_bg_color }};
-    position: relative;
     width: 100%;
     background-color: var(--kec-bg);
     color: var(--kec-text);
@@ -17,14 +16,7 @@
     overflow: hidden;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} *,
-  #kopilot-explore-confidence-{{ section.id }} *::before,
-  #kopilot-explore-confidence-{{ section.id }} *::after {
-    box-sizing: border-box;
-  }
-
-  /* Desktop — Figma 2335:253 — 1440 frame */
-  #kopilot-explore-confidence-{{ section.id }} .kec-inner {
+  .kopilot-explore-confidence-{{ section.id }} .kec-inner {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,20 +24,21 @@
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-media {
+  .kopilot-explore-confidence-{{ section.id }} .kec-media {
     position: relative;
     flex: 0 0 720px;
     width: 720px;
     height: 655px;
     overflow: hidden;
     background-color: var(--kec-media-bg);
+    box-sizing: border-box;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-media video,
-  #kopilot-explore-confidence-{{ section.id }} .kec-media img,
-  #kopilot-explore-confidence-{{ section.id }} .kec-media-el {
+  .kopilot-explore-confidence-{{ section.id }} .kec-media > img,
+  .kopilot-explore-confidence-{{ section.id }} .kec-media > video {
     display: block;
     width: 100%;
     height: 100%;
@@ -53,11 +46,11 @@
     object-position: center;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-media-el--mobile {
+  .kopilot-explore-confidence-{{ section.id }} .kec-media > .kec-media-el--mobile {
     display: none;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-copy {
+  .kopilot-explore-confidence-{{ section.id }} .kec-copy {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -66,117 +59,111 @@
     width: 512px;
     max-width: 512px;
     color: var(--kec-text);
+    box-sizing: border-box;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} h2.kec-heading,
-  #kopilot-explore-confidence-{{ section.id }} h2.kec-heading span {
-    margin: 0 !important;
-    padding: 0 !important;
+  .kopilot-explore-confidence-{{ section.id }} .kec-heading {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    font-family: 'Elza', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 300 !important;
-    font-size: 60px !important;
-    line-height: 1.06 !important;
-    letter-spacing: -1px !important;
-    color: var(--kec-text) !important;
-    text-align: left !important;
-    text-transform: none !important;
+    font-family: 'Elza', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    color: var(--kec-text);
+    text-align: left;
+    text-transform: none;
     word-break: break-word;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} h2.kec-heading span.kec-heading-em {
-    font-weight: 500 !important;
+  .kopilot-explore-confidence-{{ section.id }} .kec-heading > span {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    font-weight: 300;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-body {
+  .kopilot-explore-confidence-{{ section.id }} .kec-heading > .kec-heading-em {
+    font-weight: 500;
+  }
+
+  .kopilot-explore-confidence-{{ section.id }} .kec-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 7px;
     width: 100%;
+    box-sizing: border-box;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-text,
-  #kopilot-explore-confidence-{{ section.id }} .kec-text p,
-  #kopilot-explore-confidence-{{ section.id }} .kec-text span,
-  #kopilot-explore-confidence-{{ section.id }} .kec-text a,
-  #kopilot-explore-confidence-{{ section.id }} .kec-text * {
-    margin: 0 !important;
-    padding: 0 !important;
-    max-width: 405px;
-    font-family: 'Elza', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-    color: var(--kec-text) !important;
-    text-align: left !important;
-    text-transform: none !important;
+  .kopilot-explore-confidence-{{ section.id }} .kec-body > p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Elza', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--kec-text);
+    text-align: left;
+    text-transform: none;
     word-break: break-word;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} .kec-text a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+  .kopilot-explore-confidence-{{ section.id }} .kec-body > p.kec-text {
+    max-width: 405px;
+    font-weight: 400;
   }
 
-  #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-family: 'Elza', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    font-size: 20px !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-    color: var(--kec-text) !important;
-    text-align: left !important;
-    text-transform: none !important;
+  .kopilot-explore-confidence-{{ section.id }} .kec-body > p.kec-tagline {
+    font-weight: 500;
+  }
+
+  .kopilot-explore-confidence-{{ section.id }} .kec-text--mobile,
+  .kopilot-explore-confidence-{{ section.id }} .kec-tagline--mobile {
+    display: none;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    #kopilot-explore-confidence-{{ section.id }} .kec-inner {
+    .kopilot-explore-confidence-{{ section.id }} .kec-inner {
       gap: clamp(40px, 6.806vw, 98px);
       padding: 0 clamp(24px, 3.472vw, 50px);
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-media {
+    .kopilot-explore-confidence-{{ section.id }} .kec-media {
       flex: 0 0 clamp(360px, 50vw, 720px);
       width: clamp(360px, 50vw, 720px);
       height: clamp(360px, 45.486vw, 655px);
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-copy {
+    .kopilot-explore-confidence-{{ section.id }} .kec-copy {
       flex: 1 1 auto;
       width: auto;
       max-width: 512px;
       gap: clamp(24px, 2.778vw, 40px);
     }
 
-    #kopilot-explore-confidence-{{ section.id }} h2.kec-heading,
-    #kopilot-explore-confidence-{{ section.id }} h2.kec-heading span {
-      font-size: clamp(36px, 4.167vw, 60px) !important;
+    .kopilot-explore-confidence-{{ section.id }} .kec-heading {
+      font-size: clamp(36px, 4.167vw, 60px);
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-text,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text p,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text span,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text *,
-    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
-      font-size: clamp(16px, 1.389vw, 20px) !important;
+    .kopilot-explore-confidence-{{ section.id }} .kec-body > p {
+      font-size: clamp(16px, 1.389vw, 20px);
     }
   }
 
-  /* Mobile — Figma 2335:724 — 360 frame */
+  /* Mobile — Figma 360 */
   @media screen and (max-width: 767px) {
-    #kopilot-explore-confidence-{{ section.id }} {
+    .kopilot-explore-confidence-{{ section.id }} {
       overflow: visible;
       padding-bottom: 76px;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-inner {
+    .kopilot-explore-confidence-{{ section.id }} .kec-inner {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
@@ -185,23 +172,23 @@
       padding: 0;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-media {
+    .kopilot-explore-confidence-{{ section.id }} .kec-media {
       flex: none;
       width: 100%;
       max-width: 360px;
       height: 327.5px;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-media-el--desktop {
+    .kopilot-explore-confidence-{{ section.id }} .kec-media > .kec-media-el--desktop {
       display: none;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-media-el--mobile,
-    #kopilot-explore-confidence-{{ section.id }} .kec-media-el--desktop.kec-media-el--only {
+    .kopilot-explore-confidence-{{ section.id }} .kec-media > .kec-media-el--mobile,
+    .kopilot-explore-confidence-{{ section.id }} .kec-media > .kec-media-el--desktop.kec-media-el--only {
       display: block;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-copy {
+    .kopilot-explore-confidence-{{ section.id }} .kec-copy {
       align-items: center;
       flex: none;
       width: 100%;
@@ -210,32 +197,32 @@
       text-align: center;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} h2.kec-heading,
-    #kopilot-explore-confidence-{{ section.id }} h2.kec-heading span {
-      font-size: 30px !important;
-      line-height: 1.06 !important;
-      letter-spacing: -1px !important;
-      text-align: center !important;
+    .kopilot-explore-confidence-{{ section.id }} .kec-heading {
+      font-size: 30px;
+      text-align: center;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-body {
+    .kopilot-explore-confidence-{{ section.id }} .kec-body {
       align-items: center;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} .kec-text,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text p,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text span,
-    #kopilot-explore-confidence-{{ section.id }} .kec-text * {
-      max-width: 340px;
-      font-size: 16px !important;
-      line-height: 1.2 !important;
-      text-align: center !important;
+    .kopilot-explore-confidence-{{ section.id }} .kec-body > p {
+      font-size: 16px;
+      text-align: center;
     }
 
-    #kopilot-explore-confidence-{{ section.id }} p.kec-tagline {
-      font-size: 16px !important;
-      line-height: 1.2 !important;
-      text-align: center !important;
+    .kopilot-explore-confidence-{{ section.id }} .kec-body > p.kec-text {
+      max-width: 340px;
+    }
+
+    .kopilot-explore-confidence-{{ section.id }} .kec-text--desktop,
+    .kopilot-explore-confidence-{{ section.id }} .kec-tagline--desktop {
+      display: none;
+    }
+
+    .kopilot-explore-confidence-{{ section.id }} .kec-text--mobile,
+    .kopilot-explore-confidence-{{ section.id }} .kec-tagline--mobile {
+      display: block;
     }
   }
 {% endstyle %}
@@ -247,11 +234,20 @@
   if kec_img_mobile == blank
     assign kec_img_mobile = kec_img
   endif
+
+  assign kec_text_mobile = section.settings.text_mobile
+  if kec_text_mobile == blank
+    assign kec_text_mobile = section.settings.text
+  endif
+
+  assign kec_tagline_mobile = section.settings.tagline_mobile
+  if kec_tagline_mobile == blank
+    assign kec_tagline_mobile = section.settings.tagline
+  endif
 -%}
 
 <section
-  class="full-width{% if section.settings.extra_class != blank %} {{ section.settings.extra_class | strip | escape }}{% endif %}"
-  id="kopilot-explore-confidence-{{ section.id }}"
+  class="kopilot-explore-confidence kopilot-explore-confidence-{{ section.id }} full-width{% if section.settings.extra_class != blank %} {{ section.settings.extra_class | strip | escape }}{% endif %}"
 >
   <div class="kec-inner">
     <div class="kec-media">
@@ -316,11 +312,17 @@
 
       <div class="kec-body">
         {% if section.settings.text != blank %}
-          <div class="kec-text">{{ section.settings.text }}</div>
+          <p class="kec-text kec-text--desktop">{{ section.settings.text | escape | newline_to_br }}</p>
+        {% endif %}
+        {% if kec_text_mobile != blank %}
+          <p class="kec-text kec-text--mobile">{{ kec_text_mobile | escape | newline_to_br }}</p>
         {% endif %}
 
         {% if section.settings.tagline != blank %}
-          <p class="kec-tagline">{{ section.settings.tagline | escape | newline_to_br }}</p>
+          <p class="kec-tagline kec-tagline--desktop">{{ section.settings.tagline | escape | newline_to_br }}</p>
+        {% endif %}
+        {% if kec_tagline_mobile != blank %}
+          <p class="kec-tagline kec-tagline--mobile">{{ kec_tagline_mobile | escape | newline_to_br }}</p>
         {% endif %}
       </div>
     </div>
@@ -389,15 +391,30 @@
       "default": "Confidence"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "text",
-      "label": "Description",
-      "default": "<p>Quick access to your unique health information can be critical in an emergency. KOPILOT.ID uses NFC technology combined with simple-to-use AI to provide you with peace of mind and those helping you with details that may save your life.</p>"
+      "label": "Description (desktop)",
+      "info": "Each new line = a line break, matching Figma desktop.",
+      "default": "Quick access to your unique health\ninformation can be critical in an\nemergency. KOPILOT.ID uses NFC\ntechnology combined with simple-to-use\nAI to provide you with peace of mind and\nthose helping you with details that may\nsave your life."
     },
     {
       "type": "textarea",
       "id": "tagline",
-      "label": "Tagline",
+      "label": "Tagline (desktop)",
+      "default": "Explore with Confidence.\nWe've got your back!"
+    },
+    {
+      "type": "textarea",
+      "id": "text_mobile",
+      "label": "Description (mobile)",
+      "info": "Optional. Leave blank to use desktop text. Each new line = a line break.",
+      "default": "Quick access to your unique health information\ncan be critical in an emergency. KOPILOT.ID uses\nNFC technology combined with simple-to-use AI\nto provide you with peace of mind and those\nhelping you with details that may save your life."
+    },
+    {
+      "type": "textarea",
+      "id": "tagline_mobile",
+      "label": "Tagline (mobile)",
+      "info": "Optional. Leave blank to use desktop tagline.",
       "default": "Explore with Confidence.\nWe've got your back!"
     },
     {
