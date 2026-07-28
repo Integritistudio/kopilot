@@ -20,9 +20,17 @@
         "top_spacing": 40,
         "bottom_spacing": 40
       }
+    },
+    "emergency_banner_XxxReX": {
+      "type": "emergency-banner",
+      "name": "Emergency Banner",
+      "settings": {
+        "logo": "shopify://shop_images/Heading_d517a8db-79a9-4a32-84c2-b2dc4f7f5442.svg"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "emergency_banner_XxxReX"
   ]
 }
