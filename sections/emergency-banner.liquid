@@ -41,31 +41,33 @@
 
   <header class="emergency-banner__header">
     <a class="emergency-banner__logo" href="{{ routes.root_url }}">
-      {%- if logo != blank -%}
-        {{
-          logo
-          | image_url: height: 80
-          | image_tag: class: 'emergency-banner__logo-img', loading: 'eager', alt: shop.name
-        }}
-      {%- else -%}
-        <span class="emergency-banner__logo-fallback">KOPILOT<span>.</span>ID</span>
-      {%- endif -%}
+      {%- comment -%}
+        Figma header logo is wordmark text (KOPILOT + red ID), not the MEDICAL ID heading asset.
+      {%- endcomment -%}
+      <span class="emergency-banner__logo-mark" aria-label="KOPILOT.ID">
+        <span class="emergency-banner__logo-dot" aria-hidden="true"></span>
+        <span class="emergency-banner__logo-name">KOPILOT</span><span class="emergency-banner__logo-id">.ID</span>
+      </span>
     </a>
 
-    <p class="emergency-banner__page-title">MEDICAL ID</p>
+    <p class="emergency-banner__page-title" aria-hidden="true">
+      <span class="emergency-banner__page-title-solid">MEDICAL</span>
+      <span class="emergency-banner__page-title-outline">ID</span>
+    </p>
+    <h1 class="visually-hidden">Medical ID</h1>
 
     <a
       class="emergency-banner__cta"
       href="{% if cta_url != blank %}{{ cta_url }}{% else %}{{ routes.root_url }}{% endif %}"
     >
       <span class="emergency-banner__cta-text">{{ cta_label | escape }}</span>
-      <img
-        class="emergency-banner__cta-icon"
-        src="{{ 'tagbutton.svg' | asset_url }}"
-        alt=""
-        width="28"
-        height="28"
-      >
+      <span class="emergency-banner__cta-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="11" fill="#F20008"/>
+          <path d="M11 5.5V11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7.2 8.2a5.2 5.2 0 1 0 7.6 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
     </a>
   </header>
 
