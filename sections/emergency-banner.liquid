@@ -81,7 +81,7 @@
             loading: 'eager',
             alt: 'Medical ID',
             widths: '240, 360, 480',
-            sizes: '220px'
+            sizes: '(max-width: 767px) 240px, 0px'
         }}
       </div>
     {%- else -%}
@@ -93,7 +93,7 @@
         {{
           tag_image
           | image_url: width: 220
-          | image_tag: class: 'emergency-banner__tag-img', loading: 'eager', alt: '', widths: '110, 160, 220', sizes: '90px'
+          | image_tag: class: 'emergency-banner__tag-img', loading: 'eager', alt: '', widths: '110, 160, 220', sizes: '(max-width: 767px) 56px, 110px'
         }}
       {%- else -%}
         <img
