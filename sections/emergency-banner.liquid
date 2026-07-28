@@ -1,9 +1,7 @@
 {{ 'Elza.css' | asset_url | stylesheet_tag }}
-{{ 'emergency.css' | asset_url | stylesheet_tag }}
+{{ 'section-emergency.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign bg_image = section.settings.bg_image
-  assign mobile_image = section.settings.mobile_image
   assign logo = section.settings.logo
   assign title_image = section.settings.title_image
   assign cta_icon = section.settings.cta_icon
@@ -16,35 +14,6 @@
 -%}
 
 <section class="emergency-banner" data-emergency-banner>
-  <div class="emergency-banner__bg" aria-hidden="true">
-    <picture>
-      {%- if mobile_image != blank -%}
-        <source
-          media="(max-width: 767px)"
-          srcset="{{ mobile_image | image_url: width: 900 }}"
-        >
-      {%- endif -%}
-      {%- if bg_image != blank -%}
-        {{
-          bg_image
-          | image_url: width: 2880
-          | image_tag:
-            class: 'emergency-banner__bg-img',
-            loading: 'eager',
-            widths: '1440, 1920, 2400, 2880',
-            sizes: '100vw',
-            alt: ''
-        }}
-      {%- elsif mobile_image != blank -%}
-        {{
-          mobile_image
-          | image_url: width: 900
-          | image_tag: class: 'emergency-banner__bg-img', loading: 'eager', alt: ''
-        }}
-      {%- endif -%}
-    </picture>
-  </div>
-
   <header class="emergency-banner__header">
     {%- comment -%} Left — logo image {%- endcomment -%}
     <a class="emergency-banner__logo" href="{{ routes.root_url }}">
@@ -196,17 +165,7 @@
     },
     {
       "type": "header",
-      "content": "Background & tag"
-    },
-    {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Desktop background image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile background image"
+      "content": "Tag"
     },
     {
       "type": "image_picker",
