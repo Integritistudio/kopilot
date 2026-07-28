@@ -188,7 +188,7 @@ window.addEventListener('DOMContentLoaded', () => {
         phone.textContent = data.emergencyContactPhone !== "" ? data.emergencyContactPhone : empty;
 
         if (data.emergencyContactPhone === "") {
-            phone.style.color = '#000000'
+            phone.style.color = '#2f6fed'
         } else {
             phone.style.color = '#f20008'
         }
@@ -274,25 +274,6 @@ if (data.summary || data.emergencyContactName) {
         }
 
         return selected;
-    }
-
-    if (window.innerWidth <= 768) {
-        document.querySelector('.emergency-banner__container').addEventListener('click', () => {
-          window.scrollTo({
-                top: 160,
-                behavior: 'smooth'
-            });
-            // const section_emergency = document.querySelector('.emergency-banner__container');
-
-            // const emergencySection = document.querySelector('.emergency-section');
-
-            // section_emergency.classList.add('animate-in');
-
-            // if (emergencySection != null) {
-            //     emergencySection.classList.add('new_mobile')
-            // }
-
-        })
     }
 
 })
