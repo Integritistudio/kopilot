@@ -417,11 +417,14 @@
     text-transform: lowercase;
   }
   
-  body.page-emergency .emergency-section__desc.help,
+  body.page-emergency .emergency-section__desc.help {
+    color: var(--em-red);
+  }
+
   body.page-emergency .emergency-section__desc.medical-conditions,
   body.page-emergency .emergency-section__desc.allergies,
   body.page-emergency .emergency-section__desc.medications {
-    color: var(--em-red);
+    color: var(--em-text);
   }
   
   body.page-emergency .medical-content {
