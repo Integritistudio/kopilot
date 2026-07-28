@@ -34,10 +34,19 @@
         "mobile_image": "shopify://shop_images/landscape-mountains-covered-snow_1_e6f4e3c0-c8d0-4e5f-9a6f-341093827376.png",
         "image": "shopify://shop_images/block.red_1_1469bae8-60d0-4db6-adb8-02e337329b5f.png"
       }
+    },
+    "section_emergency_6B9n4z": {
+      "type": "section-emergency",
+      "name": "Emergency Section",
+      "settings": {
+        "button_txt": "Learn more",
+        "button_url": ""
+      }
     }
   },
   "order": [
     "main",
-    "emergency_banner_XxxReX"
+    "emergency_banner_XxxReX",
+    "section_emergency_6B9n4z"
   ]
 }
