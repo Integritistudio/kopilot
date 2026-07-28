@@ -40,6 +40,7 @@
       "type": "section-emergency",
       "name": "Emergency Section",
       "settings": {
+        "bg_image": "shopify://shop_images/ad8a5928d29c19f7320c6023f6fcbb1e80f85717.jpg",
         "button_txt": "Learn more",
         "button_url": ""
       }
