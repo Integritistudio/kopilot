@@ -638,7 +638,7 @@ body.page-emergency .emergency-button__block a {
   body.page-emergency .personal-header h3,
   body.page-emergency .medical-header h3,
   body.page-emergency .emergency-header h3 {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   body.page-emergency .personal-information svg,
