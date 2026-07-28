@@ -32,3 +32,10 @@
     width: 100%;
   }
 }
+@media screen and (max-width: 1024px) {
+    .get-started-emergency .kopilot-features-media-col {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 733 / 710;
+    }
+}
