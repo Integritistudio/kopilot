@@ -35,7 +35,7 @@
     position: relative;
   }
   
-  body.page-emergency .shopify-section-group-footer-group,
+  /* body.page-emergency .shopify-section-group-footer-group, */
   body.page-emergency #shopify-chat,
   body.page-emergency .scroll-to-top {
     display: none !important;
