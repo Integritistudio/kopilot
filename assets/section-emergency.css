@@ -385,8 +385,8 @@
   body.page-emergency .medical-information svg,
   body.page-emergency .emergency-notes svg {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
   }
   
   body.page-emergency .personal-information .name {
