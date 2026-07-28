@@ -36,6 +36,13 @@
     "partners_slider_WXzAQj": {
       "type": "partners-slider",
       "blocks": {
+        "image_card_Rc8g73": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.36.34_1_3.png",
+            "name": "BLAKE"
+          }
+        },
         "image_card_kzPLFz": {
           "type": "image_card",
           "settings": {
@@ -101,6 +108,7 @@
         }
       },
       "block_order": [
+        "image_card_Rc8g73",
         "image_card_kzPLFz",
         "image_card_6CErVF",
         "image_card_rdnWCk",
