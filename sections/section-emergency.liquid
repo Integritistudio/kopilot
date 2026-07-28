@@ -6,7 +6,8 @@
   assign mobile_image = section.settings.mobile_image
 -%}
 
-<div class="emergency-section-stack">
+<div class="emergency-section-wrapper">
+
   {%- comment -%} Full-bleed mountain background (desktop + mobile) {%- endcomment -%}
   <div class="emergency-section__bg" aria-hidden="true">
     <picture>
@@ -132,11 +133,12 @@
       </div>
     </div>
   </section>
+
 </div>
 
 {{ 'section-emergency.js' | asset_url | script_tag }}
 
-<script>
+{% comment %} <script>
   (function () {
     if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
 
@@ -169,7 +171,7 @@
       }
     });
   })();
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
