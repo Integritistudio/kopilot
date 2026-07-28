@@ -77,11 +77,16 @@
 
   {%- liquid
     assign hide_site_header = false
+    assign is_emergency_page = false
     if request.page_type == 'page' and page.handle == 'get-started'
       assign hide_site_header = true
     endif
+    if template.suffix == 'emergency'
+      assign hide_site_header = true
+      assign is_emergency_page = true
+    endif
   -%}
-  <body class="{% if hide_site_header %}kopilot-no-header {% endif %}{% if template.suffix == 'pdp' or template.name == 'product' %}kopilot-pdp-page {% endif %}">
+  <body class="{% if hide_site_header %}kopilot-no-header {% endif %}{% if is_emergency_page %}page-emergency {% endif %}{% if template.suffix == 'pdp' or template.name == 'product' %}kopilot-pdp-page {% endif %}">
     <a class="skip-to-content-link btn visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -94,7 +99,9 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% unless is_emergency_page %}
+      {% sections 'footer-group' %}
+    {% endunless %}
 
     {% render 'kopilot-contact-popup' %}
 
