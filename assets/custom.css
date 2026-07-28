@@ -12,10 +12,10 @@ padding-left:0px;
     }
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 767px) {
   .get-started-emergency .kopilot-features-heading {
     width: 100%;
-    max-width: 300px;
+    max-width: 316px;
   }
   .get-started-emergency .kopilot-features-media-col{
     width:100%;
