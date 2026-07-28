@@ -472,7 +472,7 @@
           {%- for block in section.blocks -%}
             {%- if block.type == 'faq_item' and block.settings.in_more == true -%}
               <div
-                class="pntk-item{% if block.settings.open_by_default %} is-open{% endif %}"
+                class="pntk-item"
                 data-pntk-item
                 {{ block.shopify_attributes }}
               >
@@ -480,7 +480,7 @@
                   type="button"
                   class="pntk-trigger"
                   data-pntk-trigger
-                  aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+                  aria-expanded="false"
                 >
                   <span class="pntk-question">{{ block.settings.question | escape }}</span>
                   {{ pntk_icon }}
