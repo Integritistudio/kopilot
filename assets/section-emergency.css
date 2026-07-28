@@ -35,10 +35,22 @@
     position: relative;
   }
   
-  /* body.page-emergency .shopify-section-group-footer-group, */
   body.page-emergency #shopify-chat,
   body.page-emergency .scroll-to-top {
     display: none !important;
+  }
+
+  body.page-emergency .shopify-section-group-footer-group,
+  body.page-emergency .shopify-section-group-footer-group .shopify-section,
+  body.page-emergency .footer {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  body.page-emergency .shopify-section-group-footer-group {
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
   }
   
   body.page-emergency .section-emergency-banner,
