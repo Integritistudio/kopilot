@@ -11,15 +11,17 @@
   --em-card-solid: #f2f2f2;
   --em-gap: 16px;
   --em-card-w: 343px;
-  --em-pad-x: 48px;
-  --em-header-h: 70px;
+  --em-pad-x: 0px;
+  --em-header-h: 64px;
+  --em-stage-gap: 273px;
+  --em-stage-w: 1440px;
   --em-font: 'Elza', sans-serif;
 }
 
 html:has(body.page-emergency),
 body.page-emergency {
   min-height: 100%;
-  background: #1a1c20;
+  background: #cfd1d8;
 }
 
 body.page-emergency {
@@ -29,10 +31,11 @@ body.page-emergency {
 }
 
 body.page-emergency.kopilot-no-header #MainContent {
+  position: relative;
   padding: 0;
   margin: 0;
   min-height: 100vh;
-  position: relative;
+  overflow-x: clip;
 }
 
 body.page-emergency .shopify-section-group-footer-group,
@@ -64,23 +67,34 @@ body.page-emergency .emergency-section *::after {
   box-sizing: border-box;
 }
 
-/* ---------- Full-bleed mountain (fixed behind everything) ---------- */
+/* ---------- Banner shell ---------- */
 
 body.page-emergency .emergency-banner {
-  position: relative;
+  /* static so stage bg/K position against #MainContent (covers cards too) */
+  position: static;
   z-index: 2;
   width: 100%;
   min-height: 0;
   pointer-events: none;
 }
 
+/*
+  Desktop mountain stage (Figma):
+  - starts 273px below header
+  - max 1440px wide, centered
+  - fills down through the cards column (#MainContent bottom)
+*/
 body.page-emergency .emergency-banner__bg {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: calc(var(--em-header-h) + var(--em-stage-gap));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, var(--em-stage-w));
+  bottom: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #2a2d33;
+  background: #cfd1d8;
 }
 
 body.page-emergency .emergency-banner__bg-img {
@@ -88,10 +102,11 @@ body.page-emergency .emergency-banner__bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  /* Peak fills the stage like Figma — avoid dumping mountain at the bottom */
+  object-position: center 28%;
 }
 
-/* ---------- Top bar: KOPILOT.ID | MEDICAL ID | GET KOPILOT.ID ---------- */
+/* ---------- Header: logo img | title img | CTA text + cart icon ---------- */
 
 body.page-emergency .emergency-banner__header {
   position: relative;
@@ -100,9 +115,9 @@ body.page-emergency .emergency-banner__header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: var(--em-header-h);
   min-height: var(--em-header-h);
-  padding: 0 var(--em-pad-x);
-  height: 64px;
+  padding: 0 48px;
   pointer-events: auto;
   background: #e4e5ea;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -112,125 +127,114 @@ body.page-emergency .emergency-banner__logo {
   display: flex;
   align-items: center;
   flex: 0 0 auto;
+  max-width: 180px;
   text-decoration: none;
-  color: #1a1a1a;
   z-index: 1;
 }
 
-body.page-emergency .emergency-banner__logo-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--em-font);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+body.page-emergency .emergency-banner__logo-img {
+  display: block;
+  height: 22px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-body.page-emergency .emergency-banner__logo-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #9a9a9a;
-  flex: 0 0 5px;
-}
-
-body.page-emergency .emergency-banner__logo-name {
-  color: #1a1a1a;
-}
-
-body.page-emergency .emergency-banner__logo-id {
-  color: var(--em-red);
-}
-
-body.page-emergency .emergency-banner__page-title {
+body.page-emergency .emergency-banner__title--header {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-family: var(--em-font);
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
-  white-space: nowrap;
+  max-width: 42vw;
 }
 
-body.page-emergency .emergency-banner__page-title-solid {
-  color: #1a1a1a;
+body.page-emergency .emergency-banner__title--header .emergency-banner__title-img {
+  display: block;
+  height: 28px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-body.page-emergency .emergency-banner__page-title-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.6px #1a1a1a;
-  paint-order: stroke fill;
-}
-
-body.page-emergency .emergency-banner__cta {
+body.page-emergency .emergency-banner__cta-group {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex: 0 0 auto;
   margin-left: auto;
-  text-decoration: none;
-  color: #3a3a3a;
   z-index: 1;
 }
 
 body.page-emergency .emergency-banner__cta-text {
   font-family: var(--em-font);
-  font-weight: 600;
-  font-size: 11px;
+  font-weight: 700;
+  font-size: 14px;
   line-height: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: #3a3a3a;
+  text-decoration: none;
+  color: #686a6a;
+  white-space: nowrap;
 }
 
 body.page-emergency .emergency-banner__cta-icon {
   display: flex;
-  width: 22px;
-  height: 22px;
-  flex: 0 0 22px;
-}
-
-body.page-emergency .emergency-banner__cta-icon svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* ---------- Red K — right side of viewport ---------- */
-
-body.page-emergency .emergency-banner__tag {
-  position: fixed;
-  top: 42%;
-  right: 72px;
-  z-index: 15;
-  display: block;
-  width: 110px;
-  height: 110px;
-  pointer-events: auto;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
   text-decoration: none;
-  transform: translateY(-50%);
 }
 
-body.page-emergency .emergency-banner__tag img {
+body.page-emergency .emergency-banner__cta-icon-img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* ---------- Cards column — left over the mountain ---------- */
+/* Mobile hero title (hidden on desktop) */
+body.page-emergency .emergency-banner__hero {
+  display: none;
+}
+
+/* ---------- Red K — top-right of 1440 stage (Figma) ---------- */
+
+body.page-emergency .emergency-banner__tag {
+  pointer-events: auto;
+  text-decoration: none;
+}
+
+body.page-emergency .emergency-banner__tag-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body.page-emergency .emergency-banner__tag--desktop {
+  position: absolute;
+  top: calc(var(--em-header-h) + var(--em-stage-gap));
+  left: 50%;
+  z-index: 15;
+  display: block;
+  width: 110px;
+  height: 110px;
+  /* Pin to right edge of the 1440 stage */
+  margin-left: min(calc(var(--em-stage-w) / 2), 50vw);
+  transform: translateX(-100%);
+}
+
+body.page-emergency .emergency-banner__tag--hero {
+  display: none;
+}
+
+/* ---------- Cards — start at top of stage, flush left of 1440 ---------- */
 
 body.page-emergency .emergency-section {
   position: relative;
@@ -240,9 +244,10 @@ body.page-emergency .emergency-section {
   align-items: flex-start;
   gap: var(--em-gap);
   width: 100%;
-  max-width: 1440px;
+  max-width: var(--em-stage-w);
   margin: 0 auto;
-  padding: 8px var(--em-pad-x) 48px;
+  /* 273px gap under header, then cards align with K top */
+  padding: var(--em-stage-gap) 0 64px;
   background: transparent;
 }
 
@@ -504,43 +509,100 @@ body.page-emergency .emergency-button__block a {
 
   body.page-emergency .emergency-banner__bg {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    z-index: 0;
+  }
+
+  body.page-emergency .emergency-banner__bg-img {
+    object-position: center 30%;
   }
 
   body.page-emergency .emergency-banner__header {
-    height: 48px;
-    min-height: 48px;
+    height: var(--em-header-h);
+    min-height: var(--em-header-h);
     padding: 0 var(--em-pad-x);
     background: #e4e5ea;
+    gap: 8px;
   }
 
-  body.page-emergency .emergency-banner__page-title {
+  /* Hide mid title image in header on mobile — it moves to hero */
+  body.page-emergency .emergency-banner__title--header {
     display: none;
   }
 
-  body.page-emergency .emergency-banner__logo-mark {
-    font-size: 13px;
-    gap: 5px;
+  body.page-emergency .emergency-banner__logo {
+    max-width: 120px;
   }
 
-  body.page-emergency .emergency-banner__logo-dot {
-    width: 4px;
-    height: 4px;
-    flex-basis: 4px;
+  body.page-emergency .emergency-banner__logo-img {
+    height: 16px;
   }
 
+  /* Figma: Elza Bold 14 / 100% / 1.4px / #686A6A */
   body.page-emergency .emergency-banner__cta-text {
-    font-size: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.4px;
+    color: #686a6a;
+  }
+
+  body.page-emergency .emergency-banner__cta-group {
+    gap: 10px;
   }
 
   body.page-emergency .emergency-banner__cta-icon {
-    width: 18px;
-    height: 18px;
-    flex-basis: 18px;
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
   }
 
-  /* Hide large right K on mobile — CTA icon in header is enough */
-  body.page-emergency .emergency-banner__tag {
+  /* Mobile hero row: MEDICAL ID image + red K on right edge */
+  body.page-emergency .emergency-banner__hero {
+    position: relative;
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 72px;
+    padding: 18px 0 12px var(--em-pad-x);
+    pointer-events: none;
+  }
+
+  body.page-emergency .emergency-banner__title--hero {
+    display: flex;
+    align-items: center;
+    max-width: calc(100% - 100px);
+    pointer-events: none;
+  }
+
+  body.page-emergency .emergency-banner__title--hero .emergency-banner__title-img {
+    display: block;
+    height: 34px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  body.page-emergency .emergency-banner__tag--desktop {
     display: none;
+  }
+
+  body.page-emergency .emergency-banner__tag--hero {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 90px;
+    height: 90px;
+    pointer-events: auto;
   }
 
   body.page-emergency .emergency-section {
@@ -611,13 +673,21 @@ body.page-emergency .emergency-button__block a {
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .page-emergency {
-    --em-pad-x: clamp(24px, 3.333vw, 48px);
+    --em-stage-gap: clamp(120px, 18.96vw, 273px);
     --em-card-w: clamp(300px, 23.82vw, 343px);
   }
 
-  body.page-emergency .emergency-banner__tag {
-    right: clamp(24px, 5vw, 72px);
+  body.page-emergency .emergency-banner__header {
+    padding: 0 clamp(24px, 3.333vw, 48px);
+  }
+
+  body.page-emergency .emergency-banner__tag--desktop {
     width: clamp(72px, 7.64vw, 110px);
     height: clamp(72px, 7.64vw, 110px);
+  }
+
+  body.page-emergency .emergency-banner__cta-text {
+    font-size: 14px;
+    letter-spacing: 1.4px;
   }
 }
