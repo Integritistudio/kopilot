@@ -619,7 +619,7 @@
   
     body.page-emergency .emergency-section {
       align-items: center;
-      padding: 12px var(--em-pad-x) 28px;
+      padding: 150px var(--em-pad-x) 28px;
       max-width: 360px;
     }
   
