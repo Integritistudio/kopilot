@@ -1,0 +1,8 @@
+{%- if image != blank -%}
+{%- liquid
+    assign image_width = width | default: image.width | at_most: 1200
+    assign url = image | image_url: width: image_width
+    assign media = media
+-%}
+<source srcset="{{ url }}"{% if media != blank %} media="({{ media }})"{% endif %}>
+{% endif %}
