@@ -100,31 +100,32 @@
 
 <script>
   (function () {
+    // Theme editor / preview — never redirect (breaks the customizer)
+    if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
+
     const redirectAfter = 600000;
     const targetUrl = '{{ shop.url }}';
 
-    // Set start time if not already stored
     if (!localStorage.getItem('redirectStartTime')) {
       localStorage.setItem('redirectStartTime', Date.now());
     }
 
     function checkRedirect() {
+      if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
+
       const startTime = parseInt(localStorage.getItem('redirectStartTime'), 10);
       const now = Date.now();
 
       if (now - startTime >= redirectAfter) {
-        localStorage.removeItem('redirectStartTime'); // optional: clean up
+        localStorage.removeItem('redirectStartTime');
         window.location.href = targetUrl;
       } else {
-        // Check again after a short delay
         setTimeout(checkRedirect, 500);
       }
     }
 
-    // Start checking
     checkRedirect();
 
-    // Handle tab visibility changes (phone lock, background)
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
         checkRedirect();
