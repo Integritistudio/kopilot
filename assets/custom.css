@@ -27,3 +27,8 @@ padding-left:0px;
     padding-top:57px;
 } */
 }
+@media screen and (min-width: 361px) and (max-width: 767px) {
+  .get-started-emergency .kopilot-features-heading {
+    width: 100%;
+  }
+}
