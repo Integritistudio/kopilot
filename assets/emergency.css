@@ -91,7 +91,7 @@ body.page-emergency .emergency-banner__bg-img {
   object-position: center center;
 }
 
-/* ---------- Top bar: logo | MEDICAL ID | GET KOPILOT.ID ---------- */
+/* ---------- Top bar: KOPILOT.ID | MEDICAL ID | GET KOPILOT.ID ---------- */
 
 body.page-emergency .emergency-banner__header {
   position: relative;
@@ -101,14 +101,11 @@ body.page-emergency .emergency-banner__header {
   justify-content: space-between;
   width: 100%;
   min-height: var(--em-header-h);
-  padding: 18px var(--em-pad-x);
+  padding: 0 var(--em-pad-x);
+  height: 64px;
   pointer-events: auto;
-  background: linear-gradient(
-    180deg,
-    rgba(210, 212, 218, 0.88) 0%,
-    rgba(210, 212, 218, 0.45) 65%,
-    rgba(210, 212, 218, 0) 100%
-  );
+  background: #e4e5ea;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 body.page-emergency .emergency-banner__logo {
@@ -116,24 +113,35 @@ body.page-emergency .emergency-banner__logo {
   align-items: center;
   flex: 0 0 auto;
   text-decoration: none;
-  color: #000;
+  color: #1a1a1a;
   z-index: 1;
 }
 
-body.page-emergency .emergency-banner__logo-img {
-  display: block;
-  height: 28px;
-  width: auto;
-}
-
-body.page-emergency .emergency-banner__logo-fallback {
+body.page-emergency .emergency-banner__logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--em-font);
   font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.02em;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
-body.page-emergency .emergency-banner__logo-fallback span {
+body.page-emergency .emergency-banner__logo-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9a9a9a;
+  flex: 0 0 5px;
+}
+
+body.page-emergency .emergency-banner__logo-name {
+  color: #1a1a1a;
+}
+
+body.page-emergency .emergency-banner__logo-id {
   color: var(--em-red);
 }
 
@@ -143,15 +151,27 @@ body.page-emergency .emergency-banner__page-title {
   top: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   font-family: var(--em-font);
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #000;
   pointer-events: none;
   white-space: nowrap;
+}
+
+body.page-emergency .emergency-banner__page-title-solid {
+  color: #1a1a1a;
+}
+
+body.page-emergency .emergency-banner__page-title-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.6px #1a1a1a;
+  paint-order: stroke fill;
 }
 
 body.page-emergency .emergency-banner__cta {
@@ -167,18 +187,25 @@ body.page-emergency .emergency-banner__cta {
 
 body.page-emergency .emergency-banner__cta-text {
   font-family: var(--em-font);
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 11px;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: #3a3a3a;
 }
 
 body.page-emergency .emergency-banner__cta-icon {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+
+body.page-emergency .emergency-banner__cta-icon svg {
   display: block;
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 /* ---------- Red K — right side of viewport ---------- */
@@ -480,30 +507,35 @@ body.page-emergency .emergency-button__block a {
   }
 
   body.page-emergency .emergency-banner__header {
-    min-height: var(--em-header-h);
-    padding: 14px var(--em-pad-x);
-    background: linear-gradient(
-      180deg,
-      rgba(200, 202, 210, 0.75) 0%,
-      rgba(200, 202, 210, 0.2) 100%
-    );
+    height: 48px;
+    min-height: 48px;
+    padding: 0 var(--em-pad-x);
+    background: #e4e5ea;
   }
 
   body.page-emergency .emergency-banner__page-title {
     display: none;
   }
 
-  body.page-emergency .emergency-banner__logo-img {
-    height: 22px;
+  body.page-emergency .emergency-banner__logo-mark {
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  body.page-emergency .emergency-banner__logo-dot {
+    width: 4px;
+    height: 4px;
+    flex-basis: 4px;
   }
 
   body.page-emergency .emergency-banner__cta-text {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   body.page-emergency .emergency-banner__cta-icon {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
+    flex-basis: 18px;
   }
 
   /* Hide large right K on mobile — CTA icon in header is enough */
