@@ -58,9 +58,6 @@ body.page-emergency .shopify-section {
 body.page-emergency .emergency-banner *,
 body.page-emergency .emergency-banner *::before,
 body.page-emergency .emergency-banner *::after,
-body.page-emergency .emergency-section-wrapper *,
-body.page-emergency .emergency-section-wrapper *::before,
-body.page-emergency .emergency-section-wrapper *::after,
 body.page-emergency .emergency-section *,
 body.page-emergency .emergency-section *::before,
 body.page-emergency .emergency-section *::after,
@@ -70,23 +67,16 @@ body.page-emergency .emergency-section__bg *::after {
   box-sizing: border-box;
 }
 
-/* ---------- Wrapper: owns the stacking context for bg + cards ---------- */
-/* Starts exactly where the section begins (below the banner), so the
-   background is never measured against the whole page height. */
-
-body.page-emergency .emergency-section-wrapper {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* ---------- Full-bleed mountain (fills the wrapper, not #MainContent) ---------- */
+/* ---------- Full-bleed mountain (owned by Section Emergency) ---------- */
 
 body.page-emergency .emergency-section__bg {
   position: absolute;
-  inset: 0;
-  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background: #2a2d33;
@@ -107,7 +97,11 @@ body.page-emergency .emergency-section__bg-img {
 }
 
 @media screen and (min-width: 1440px) {
-  body.page-emergency .emergency-section-wrapper {
+  body.page-emergency.kopilot-no-header #MainContent {
+    min-height: 1600px;
+  }
+
+  body.page-emergency .emergency-section__bg {
     min-height: 1600px;
   }
 }
@@ -251,6 +245,8 @@ body.page-emergency .emergency-banner__tag--hero {
 /* ---------- Cards column — left over the mountain ---------- */
 
 body.page-emergency .emergency-section {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
