@@ -18,6 +18,7 @@
   .get-started-emergency .kopilot-features-heading {
     width: 100%;
     max-width: 316px;
+    margin-bottom:41px;
   }
   .get-started-emergency .kopilot-features-media-col{
     width:100%;
@@ -32,6 +33,7 @@
 @media screen and (min-width: 361px) and (max-width: 767px) {
   .get-started-emergency .kopilot-features-heading {
     width: 100%;
+
   }
 }
 @media screen and (max-width: 1024px) {
