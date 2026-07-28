@@ -1,5 +1,40 @@
 {{ 'Elza.css' | asset_url | stylesheet_tag }}
-{% comment %} {{ 'emergency.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{{ 'section-emergency.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_image = section.settings.bg_image
+  assign mobile_image = section.settings.mobile_image
+-%}
+
+{%- comment -%} Full-bleed mountain background (desktop + mobile) {%- endcomment -%}
+<div class="emergency-section__bg" aria-hidden="true">
+  <picture>
+    {%- if mobile_image != blank -%}
+      <source
+        media="(max-width: 767px)"
+        srcset="{{ mobile_image | image_url: width: 900 }}"
+      >
+    {%- endif -%}
+    {%- if bg_image != blank -%}
+      {{
+        bg_image
+        | image_url: width: 2880
+        | image_tag:
+          class: 'emergency-section__bg-img',
+          loading: 'eager',
+          widths: '1440, 1920, 2400, 2880',
+          sizes: '100vw',
+          alt: ''
+      }}
+    {%- elsif mobile_image != blank -%}
+      {{
+        mobile_image
+        | image_url: width: 900
+        | image_tag: class: 'emergency-section__bg-img', loading: 'eager', alt: ''
+      }}
+    {%- endif -%}
+  </picture>
+</div>
 
 <section class="emergency-section">
   <div class="summary emergency-block">
@@ -140,6 +175,24 @@
   "tag": "div",
   "class": "section-emergency",
   "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
     {
       "type": "text",
       "id": "button_txt",
