@@ -23,6 +23,10 @@
     },
     "emergency_banner_XxxReX": {
       "type": "emergency-banner",
+      "custom_css": [
+        ".emergency-banner__container img {width: 33%; height: 33%;}",
+        ".emergency-banner__logo img {height: 40px;}"
+      ],
       "name": "Emergency Banner",
       "settings": {
         "logo": "shopify://shop_images/Heading_d517a8db-79a9-4a32-84c2-b2dc4f7f5442.svg"
