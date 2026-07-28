@@ -647,8 +647,8 @@
     body.page-emergency .personal-information svg,
     body.page-emergency .medical-information svg,
     body.page-emergency .emergency-notes svg {
-      width: 28px;
-      height: 28px;
+      width: 42px;
+      height: 42px;
     }
   
     body.page-emergency .personal-header,
