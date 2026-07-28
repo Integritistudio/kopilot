@@ -533,27 +533,29 @@
       flex-basis: 22px;
     }
   
-    /* Mobile hero: MEDICAL ID + red K — same row, matched height (Figma 360) */
+    /* Mobile hero: MEDICAL ID centered, red K flush right */
     body.page-emergency .emergency-banner__hero {
       position: relative;
       z-index: 12;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      justify-content: flex-end;
       width: 100%;
-      min-height: 0;
-      padding: 10px 0 10px var(--em-pad-x);
+      min-height: 56px;
+      padding: 10px 0;
       overflow: hidden;
       pointer-events: none;
     }
   
     body.page-emergency .emergency-banner__title--hero {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
-      flex: 1 1 auto;
-      min-width: 0;
-      max-width: none;
+      justify-content: center;
+      max-width: calc(100% - 120px);
       pointer-events: none;
     }
   
@@ -563,7 +565,7 @@
       width: auto;
       max-width: 100%;
       object-fit: contain;
-      object-position: left center;
+      object-position: center;
     }
   
     body.page-emergency .emergency-banner__tag--desktop {
@@ -571,10 +573,8 @@
     }
   
     body.page-emergency .emergency-banner__tag--hero {
-      position: static;
-      top: auto;
-      right: auto;
-      transform: none;
+      position: relative;
+      z-index: 1;
       display: block;
       flex: 0 0 56px;
       width: 56px;
