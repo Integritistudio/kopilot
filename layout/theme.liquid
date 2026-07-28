@@ -101,9 +101,8 @@
 
     {% unless is_emergency_page %}
       {% sections 'footer-group' %}
+      {% render 'kopilot-contact-popup' %}
     {% endunless %}
-
-    {% render 'kopilot-contact-popup' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
