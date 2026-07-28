@@ -75,35 +75,35 @@
         "feature_3BA4TF": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
-            "title": "No battery /<br> No charging"
+            "icon": "shopify://shop_images/Group_36_2.svg",
+            "title": "No battery / No charging"
           }
         },
         "feature_xUmnRF": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
+            "icon": "shopify://shop_images/Group_38_2.svg",
             "title": "No subscription required"
           }
         },
         "feature_YWEPRt": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
+            "icon": "shopify://shop_images/Group_35_a89fe844-e4e7-4d8d-9dde-0f23702f6d68.svg",
             "title": "Instantly access emergency info"
           }
         },
         "feature_VgwC9k": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
+            "icon": "shopify://shop_images/Group_37_63654694-a3e8-41d1-a63d-3268280ca33f.svg",
             "title": "Translates into 24 languages"
           }
         },
         "feature_7tUt8H": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Group_39.svg",
+            "icon": "shopify://shop_images/Group_34_1.svg",
             "title": "Works everywhere"
           }
         }
@@ -119,7 +119,7 @@
       "custom_css": [],
       "name": "Kopilot Features Grid",
       "settings": {
-        "heading": "KOPILOT.ID in <br>emergency",
+        "heading": "KOPILOT.ID in emergency",
         "image": "shopify://shop_images/image_18659467_1.png",
         "bg_color": "#ffffff",
         "bg_color_mobile": "#ffffff",
