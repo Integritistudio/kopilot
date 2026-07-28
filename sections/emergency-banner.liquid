@@ -1,0 +1,185 @@
+{%- liquid
+    assign bg_image = section.settings.bg_image
+    assign mobile_image = section.settings.mobile_image
+    assign heading_image = section.settings.image
+    assign logo = section.settings.logo
+-%}
+
+<section class="banner banner-safety js-banner-safety emergency-banner">
+    <div class="emergency-banner__logo">
+        <img src="{{ logo | img_url: 'master' }}" alt="">
+    </div>
+    <div style="position:relative;">
+        <div class="banner-image image-wrapper">
+            <picture>
+                {% render 'render-picture-source', image: mobile_image, media: 'max-width:767px' %}
+                {% render 'render-image', image: bg_image %}
+            </picture>
+        </div>
+        <div class="banner-content">
+            <div class="emergency-banner__container">
+                {% if heading_image != blank %}
+		<img src="{{ 'tagbutton.svg' | asset_url }}" alt="tag icon">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .page-emergency .banner-content {
+        position: unset;
+    }
+
+    .page-emergency .banner-image .image-wrapper {
+        display: block;
+    }
+
+    .emergency-banner__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
+
+    .emergency-banner .image-wrapper img {
+        object-position: 0 -47px;
+        display: block;
+    }
+
+    .emergency-banner__title strong {
+        color: transparent;
+        -webkit-text-stroke: 2px #000;
+    }
+
+    .emergency-banner__logo {
+        z-index: 999;
+        /* height: fit-content; */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 14px 0 16px 0;
+        margin: 0 auto;
+        text-align: center;
+        /* background-color: #bfc5ce; */
+        background: linear-gradient(to right, #cacdd5, #d2d4da, #d2d4da);
+    }
+
+
+    @media screen and (max-width: 768px) {
+        .page-emergency .banner-image .image-wrapper {
+            display: none;
+        }
+
+        body.page-emergency {
+            /* background-image: url("{{  mobile_image | img_url:'master' }}"); */
+            height: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .emergency-banner .image-wrapper img {
+            display: none;
+        }
+
+        .emergency-banner__logo {
+            opacity: 0;
+            animation: fadeLogo 3s  steps(1, end) forwards;
+        }
+
+        @keyframes fadeLogo {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveUp {
+            to {
+                top: -200px;
+            }
+        }
+
+        .emergency-banner__container.animate-in {
+            animation: moveUp 0.7s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 1;
+            top: 44px;
+        }
+
+        .emergency-banner__container {
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            animation: bannerSequence 3s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        @keyframes bannerSequence {
+    0% {
+        opacity: 0;
+        top: 50%;
+    }
+    8.3% {
+        opacity: 1;
+        top: 50%;
+    }
+    33.3% {
+        opacity: 1;
+        top: 50%;
+    }
+    50%, 100% {
+        opacity: 0;
+        top: 50%;
+        pointer-events: none; 
+    }
+}
+
+
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Emergency Banner",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Heading Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emergency Banner"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "footer",
+      "header"
+    ]
+  }
+}
+{% endschema %}
