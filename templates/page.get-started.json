@@ -168,84 +168,68 @@
           "type": "question",
           "settings": {
             "question": "How do I use KOPILOT.ID in an emergency situation?",
-            "answer": ""
+            "answer": "<p>KOPILOT.ID is a smart NFC tag linked to a participant's digital medical ID profile. When someone taps the tag with a smartphone, it instantly opens their profile with critical medical information and emergency contacts. In an emergency, this gives first responders, medics, or bystanders access to the information they need to make faster, more informed decisions when every second counts.</p>"
           }
         },
-        "question_GJ7DJF": {
+        "question_HxLLtj": {
           "type": "question",
           "settings": {
-            "question": "Can I use a KOPILOT.ID app without purchasing an NFC tag?",
-            "answer": ""
+            "question": "Does KOPILOT.ID NFC tag require batteries, charging, or a subscription?",
+            "answer": "<p>No. KOPILOT.ID NFC tags are completely battery-free and never need charging. There are also no ongoing subscription fees required for participants to use their profile, making it a simple and dependable solution for everyday use.</p>"
           }
         },
-        "question_hmnezf": {
+        "question_ANcAhf": {
           "type": "question",
           "settings": {
-            "question": "Do I have to purchase a subscription?",
-            "answer": "<p>You control what you share — medical conditions, allergies, medications, emergency contacts, and more.</p>"
+            "question": "Do people need to download an app to scan the tag?",
+            "answer": "<p>No app needed. Your profile opens directly in a smartphone browser when someone taps their phone on the NFC tag.</p>"
           }
         },
-        "question_AtRrhW": {
+        "question_8H4i3H": {
           "type": "question",
           "settings": {
-            "question": "Do I have to download an app?",
-            "answer": "<p>Set up your profile in the app, attach the tag to your gear, and anyone can tap it with a smartphone in an emergency.</p>"
+            "question": "What gear can I attach the NFC tag to?",
+            "answer": "<p>KOPILOT.ID is designed for helmets, goggles, packs, bikes, jackets, zipper pulls, keychains, and other everyday or outdoor gear using the included mounting options.</p>"
           }
         },
-        "question_TJ4jQG": {
+        "question_kfjQtP": {
           "type": "question",
           "settings": {
-            "question": "What gear and equipment is compatible with KOPILOT.ID nfc tag?",
-            "answer": "<p>Helmet, gear, or anywhere first responders are likely to find it. Mounting options are included.</p>"
+            "question": "Can anyone scan my tag and see my information?",
+            "answer": "<p>You control your profile completely. Choose what’s visible, update it anytime, or deactivate your NFC ID tag if needed. If your tag is scanned, you’re notified, and access sessions expire automatically.</p>"
           }
         },
-        "question_dKEK76": {
+        "question_9C3TAa": {
           "type": "question",
           "settings": {
-            "question": "Privacy and personal health information in the KOPILOT.ID app?",
-            "answer": "<p>NFC tags have no battery and are designed to last for years of regular use.</p>"
+            "question": "Do NFC tags work without cell service?",
+            "answer": "<p>Yes. The NFC tag itself works without cell service or battery. As long as the person scanning has a smartphone, they can access your information even in remote areas.</p>"
           }
         },
-        "question_7dbhkR": {
+        "question_987Hfa": {
           "type": "question",
           "settings": {
-            "question": "Do I have to have internet or cell connection for my ID to work?",
-            "answer": "<p>Yes. Safety gear protects your body — KOPILOT.ID ensures responders have the information they need to help you.</p>"
+            "question": "What if I lose my tag?",
+            "answer": "<p>You can deactivate your NFC tag instantly from the app. Your information becomes inaccessible from that tag, and you’ll be notified if someone scans it.</p>"
           }
         },
-        "question_EQ8yQm": {
+        "question_EtnDik": {
           "type": "question",
           "settings": {
-            "question": "How do you use AI?",
-            "answer": ""
-          }
-        },
-        "question_b6ryAt": {
-          "type": "question",
-          "settings": {
-            "question": "IIs KOPILOT.ID available any where in the world?",
-            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
-          }
-        },
-        "question_KzxfMg": {
-          "type": "question",
-          "settings": {
-            "question": "Is the app available in any language?",
-            "answer": "<p>An NFC tag is a small chip that can be scanned by most smartphones. When someone taps your KOPILOT.ID tag, it instantly opens your digital medical ID profile with your critical information—no app or signal required.</p>"
+            "question": "Can I manage multiple tags from one account?",
+            "answer": "<p>Yes. You can manage multiple profiles and tags for family members, friends, or your crew directly from the KOPILOT.ID app.</p>"
           }
         }
       },
       "block_order": [
         "question_nfTmwi",
-        "question_GJ7DJF",
-        "question_hmnezf",
-        "question_AtRrhW",
-        "question_TJ4jQG",
-        "question_dKEK76",
-        "question_7dbhkR",
-        "question_EQ8yQm",
-        "question_b6ryAt",
-        "question_KzxfMg"
+        "question_HxLLtj",
+        "question_ANcAhf",
+        "question_8H4i3H",
+        "question_kfjQtP",
+        "question_9C3TAa",
+        "question_987Hfa",
+        "question_EtnDik"
       ],
       "name": "Kopilot FAQ",
       "settings": {
