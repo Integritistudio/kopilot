@@ -1,283 +1,649 @@
-.page-emergency .shopify-section {
-    /*height: 900px;*/
-    /*height: 1500px;*/
+/* =========================================================
+   Emergency page — pixel-perfect to Figma 1440 / 360
+   ========================================================= */
+
+.page-emergency {
+  --em-red: #f20008;
+  --em-text: #232526;
+  --em-muted: #686a6a;
+  --em-card: rgba(242, 242, 242, 0.92);
+  --em-card-solid: #f2f2f2;
+  --em-white: #ffffff;
+  --em-gap: 16px;
+  --em-card-width: 343px;
+  --em-side: 48px;
+  --em-header-h: 64px;
+  --em-font: 'Elza', sans-serif;
 }
 
-.emergency-section {
+.page-emergency,
+.page-emergency body {
+  background-color: #d8d8de;
+}
+
+body.page-emergency {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--em-font);
+  color: var(--em-text);
+  background-color: #cfd1d8;
+}
+
+body.page-emergency.kopilot-no-header #MainContent {
+  padding: 0;
+  margin: 0;
+}
+
+.page-emergency #shopify-chat,
+.page-emergency .shopify-section-group-footer-group,
+.page-emergency .scroll-to-top {
+  display: none !important;
+}
+
+.page-emergency .section-emergency-banner,
+.page-emergency .section-emergency {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+/* ---------------------------------------------------------
+   Shared page shell: fixed mountain background
+   --------------------------------------------------------- */
+
+.page-emergency .emergency-banner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-emergency .emergency-banner *,
+.page-emergency .emergency-banner *::before,
+.page-emergency .emergency-banner *::after,
+.page-emergency .emergency-section *,
+.page-emergency .emergency-section *::before,
+.page-emergency .emergency-section *::after {
+  box-sizing: border-box;
+}
+
+.page-emergency .emergency-banner__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #cfd1d8;
+}
+
+.page-emergency .emergency-banner__bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------------------------------------------------------
+   Header — 1440
+   --------------------------------------------------------- */
+
+.page-emergency .emergency-banner__header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--em-header-h);
+  padding: 12px var(--em-side);
+  background: linear-gradient(180deg, rgba(207, 209, 216, 0.92) 0%, rgba(207, 209, 216, 0.55) 70%, rgba(207, 209, 216, 0) 100%);
+}
+
+.page-emergency .emergency-banner__logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  text-decoration: none;
+  color: var(--em-text);
+}
+
+.page-emergency .emergency-banner__logo-img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.page-emergency .emergency-banner__logo-text {
+  font-family: var(--em-font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.page-emergency .emergency-banner__logo-dot {
+  color: var(--em-red);
+}
+
+.page-emergency .emergency-banner__header-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  display: flex;
+  gap: 8px;
+  font-family: var(--em-font);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000;
+  pointer-events: none;
+}
+
+.page-emergency .emergency-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  text-decoration: none;
+  color: var(--em-text);
+}
+
+.page-emergency .emergency-banner__cta-label {
+  font-family: var(--em-font);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+}
+
+.page-emergency .emergency-banner__cta-icon {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+}
+
+.page-emergency .emergency-banner__cta-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Desktop: large MEDICAL ID lives in header, hide hero title */
+.page-emergency .emergency-banner__hero {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   Cards section — 1440
+   --------------------------------------------------------- */
+
+.page-emergency .emergency-section {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--em-gap);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px var(--em-side) 48px;
+}
+
+.page-emergency .emergency-info {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--em-gap);
+  width: var(--em-card-width);
+  max-width: 100%;
+  z-index: 3;
+}
+
+.page-emergency .emergency-block {
+  width: 100%;
+  max-width: var(--em-card-width);
+  opacity: 1;
+}
+
+.page-emergency .summary {
+  width: 100%;
+  max-width: var(--em-card-width);
+  margin: 0;
+  background: linear-gradient(var(--em-white), var(--em-white)) padding-box,
+    linear-gradient(90deg, #9c1f87, #fd8ca0, #351eeb) border-box;
+  border: 3px solid transparent;
+  overflow: hidden;
+}
+
+.page-emergency .summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 14px 16px;
+  background-color: var(--em-red);
+  text-transform: uppercase;
+}
+
+.page-emergency .summary-header__icon {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.page-emergency .summary-header__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-emergency .summary-header h3 {
+  margin: 0;
+  padding: 0;
+  font-family: var(--em-font);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.page-emergency .summary-header__icon sup {
+  top: -4px;
+  margin-left: 2px;
+  font-size: 0.55em;
+}
+
+.page-emergency .summary-header__icon-translate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 2px;
+}
+
+.page-emergency .summary-header__icon-translate img {
+  display: block;
+  width: 28px;
+  height: auto;
+}
+
+.page-emergency .summary-header__translate-text {
+  color: #fff;
+  font-family: var(--em-font);
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.page-emergency .summary-content {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--em-font);
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--em-text);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.page-emergency .summary-content p {
+  margin: 0;
+}
+
+.page-emergency .summary-emergency-snapshot {
+  margin-top: 16px;
+}
+
+.page-emergency .summary-emergency-snapshot h3 {
+  margin: 0 0 6px;
+  font-family: var(--em-font);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--em-text);
+}
+
+.page-emergency .summary-emergency-snapshot a {
+  color: var(--em-red);
+  text-decoration: underline;
+}
+
+.page-emergency .personal-information,
+.page-emergency .medical-information,
+.page-emergency .emergency-notes {
+  background: var(--em-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px 16px;
+}
+
+.page-emergency .personal-header,
+.page-emergency .medical-header,
+.page-emergency .emergency-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.page-emergency .personal-header h3,
+.page-emergency .medical-header h3,
+.page-emergency .emergency-header h3 {
+  margin: 0;
+  padding: 0;
+  color: var(--em-red);
+  font-family: var(--em-font);
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.page-emergency .personal-information svg,
+.page-emergency .medical-information svg,
+.page-emergency .emergency-notes svg {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.page-emergency .personal-information__content .name {
+  margin: 0 0 20px;
+  padding: 0;
+  font-family: var(--em-font);
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--em-text);
+}
+
+.page-emergency .personal-information__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 18px;
+}
+
+.page-emergency .emergency-section__note {
+  margin: 0 0 6px;
+  padding: 0;
+  font-family: var(--em-font);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--em-muted);
+}
+
+.page-emergency .emergency-section__desc {
+  display: block;
+  margin: 0 0 16px;
+  padding: 0;
+  font-family: var(--em-font);
+  font-size: 18px;
+  line-height: 1.15;
+  font-weight: 600;
+  text-transform: uppercase;
+  word-break: break-word;
+  color: var(--em-text);
+}
+
+.page-emergency .emergency-section__desc:last-child {
+  margin-bottom: 0;
+}
+
+.page-emergency .personal-information__grid .emergency-section__desc {
+  margin-bottom: 0;
+}
+
+.page-emergency .emergency-section__desc.age {
+  text-transform: lowercase;
+}
+
+.page-emergency .emergency-section__desc.help {
+  color: var(--em-red);
+}
+
+.page-emergency .medical-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page-emergency .emergency-section__desc.phone {
+  font-weight: 600;
+  color: #2f6fed;
+  text-decoration: none;
+}
+
+.page-emergency .emergency-button {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 16px;
+}
+
+.page-emergency .emergency-button__block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-emergency .emergency-button__text {
+  font-family: var(--em-font);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #5a5a5a;
+}
+
+.page-emergency .emergency-button__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--em-font);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--em-text);
+  text-decoration: none;
+  text-transform: none;
+}
+
+.page-emergency .emergency-button__btn b {
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   Mobile — 360
+   --------------------------------------------------------- */
+
+@media screen and (max-width: 767px) {
+  .page-emergency {
+    --em-side: 16px;
+    --em-card-width: 328px;
+    --em-gap: 15px;
+    --em-header-h: 48px;
+  }
+
+  body.page-emergency {
+    background-color: #8f9198;
+  }
+
+  .page-emergency .emergency-banner__bg {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 320px;
+  }
+
+  .page-emergency .emergency-banner__bg-img {
+    object-position: center 30%;
+  }
+
+  .page-emergency .emergency-banner {
+    min-height: 0;
+  }
+
+  .page-emergency .emergency-banner__header {
+    min-height: var(--em-header-h);
+    padding: 14px var(--em-side) 8px;
+    background: transparent;
+  }
+
+  .page-emergency .emergency-banner__header-title {
+    display: none;
+  }
+
+  .page-emergency .emergency-banner__logo-img {
+    height: 22px;
+  }
+
+  .page-emergency .emergency-banner__cta-label {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  .page-emergency .emergency-banner__cta-icon {
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
+  }
+
+  .page-emergency .emergency-banner__hero {
     display: flex;
-    flex-direction: column;
-    padding: 45px;
-}
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 4;
+    padding: 28px var(--em-side) 24px;
+  }
 
-/* .emergency-banner__logo img {
-    opacity: 0.8;
-}
- */
-.summary {
-    margin-bottom: 16px;
-    height: fit-content;
-    background: #ffffff;
-    border: 4px solid transparent;
-    background: linear-gradient(white, white) padding-box, /* inner white background */ linear-gradient(90deg, #9C1F87, #FD8CA0, #351EEB) border-box;
-}
-
-.summary .emergency-block {
-    padding: 16px;
-}
-
-.summary-content {
-    font-size: 18px;
-    line-height: 135%;
-    font-weight: 400;
-    padding: 0 16px 16px 16px;
-}
-
-.summary-header,
-.personal-header,
-.medical-header,
-.emergency-header {
+  .page-emergency .emergency-banner__title {
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-}
-
-.summary-header h3 {
-    font-size: 22px;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--em-font);
     font-weight: 600;
-    line-height: 100%;
-    text-transform: uppercase;
-    color: #ffffff; 
-    padding-left: 10px;
-}
-
-.summary-header {
-    margin-bottom: 6px;
-    background-color: red;
-    padding: 16px;
-}
-
-.personal-header h3,
-.medical-header h3,
-.emergency-header h3 {
-    color: #F20008;
-    font-size: 32px;
-    line-height: 100%;
-    font-weight: 600;
-}
-
-.emergency-info {
-    /* max-width: 100%; */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    z-index: 9999;
-}
-
-.emergency-block {
-    width: 343px;
-    /* max-width: 100%; */
-    z-index: 1;
-    opacity: 0.9;
-}
-
-@media screen and (max-width: 768px) {
-  .emergency-block {
-    width: 100%;
-}
-}
-.emergency-section__desc.help {
-    color: #F20008;
-}
-
-.emergency-section__desc:not(:last-child) {
-    margin-bottom: 16px;
-}
-
-.emergency-section__desc {
-    font-size: 20px;
-    line-height: 113%;
-    text-transform: uppercase;
-    word-break: break-word;
-}
-
-.emergency-section__desc.age {
-    text-transform: lowercase;
-}
-
-.emergency-section__note {
-    font-size: 14px;
-    line-height: 120%;
-    font-weight: 400;
-    margin-bottom: 8px;
-    color: #686A6A;
-}
-
-.personal-information__grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 20px;
-}
-
-.medical-content {
-    display: flex;
-    flex-direction: column;
-    /*gap: 12px;*/
-    width: fit-content;
-}
-
-.personal-information .name {
-    font-size: 32px;
-    line-height: 100%;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.summary-header__icon {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.summary-header__icon sup{
-      top: -4px;
-      margin-left: 2px;
-}
-
-.personal-information svg,
-.medical-information svg,
-.emergency-notes svg,
-.emergency-button svg {
-    flex-shrink: 0;
-}
-
-.personal-information,
-.medical-information,
-.emergency-notes{
-    background: #F2F2F2;
-    padding: 24px 16px;
-}
-
-.emergency-button {
-    height: fit-content;
-    margin-bottom: 24px;
-    background: #fff;
-    padding: 18px 16px;
-}
-
-.emergency-button__block {
-    display: flex;
-    gap: 6px;
-}
-
-.emergency-button__btn {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.emergency-button__text {
-    font-size: 18px;
-    line-height: 25px;
-    font-weight: 400;
-}
-
-.emergency-button__block a {
-    font-size: 18px;
-    line-height: 25px;
-    font-weight: 700;
-    color: #232526;
-    text-transform: capitalize;
-}
-
-.emergency-section__desc.phone {
-    font-weight: 600;
-}
-
-@media screen and (max-width: 768px) {
-
-    .emergency-section {
-        margin: unset;
-        padding: 3px 16px 10px 16px;
-        align-items: center;
-        z-index: 99;
-        position: absolute;
-        top: 16%;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeSlideIn 1s ease-out forwards;
-        animation-delay: 2.7s;
-    }
-
-    @keyframes fadeSlideIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeInCard {
-        from {
-            top: 218px;
-            opacity: 1;
-        }
-        to {
-            top: 80px;
-            opacity: 1;
-        }
-    }
-
-    .emergency-section.new_mobile {
-        animation: fadeInCard 0.7s ease forwards;
-        animation-delay: 0.2s;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .emergency-info {
-        justify-content: center;
-        z-index: 99;
-    }
-
-    .personal-information,
-    .medical-information,
-    .emergency-notes {
-        height: fit-content;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .emergency-section {
-        top: 18%;
-    }
-}
-
-@media screen and (max-width: 485px) {
-    .emergency-section {
-        top: 15%;
-    }
-}
-
-.page-emergency #shopify-chat {
-    display: none !important;
-}
-
-
-/* Translate icon label */
-.summary-header__icon-translate {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-}
-
-.summary-header__translate-text {
-    color: #ffffff;
-    font-size: 9px;
-    margin-top: 4px;
+    font-size: 34px;
     line-height: 1;
-    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .page-emergency .emergency-banner__title-main {
+    color: #1a1a1a;
+  }
+
+  .page-emergency .emergency-banner__title-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #1a1a1a;
+    paint-order: stroke fill;
+  }
+
+  .page-emergency .section-emergency {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(180deg, rgba(143, 145, 152, 0) 0%, #8f9198 48px, #8f9198 100%);
+  }
+
+  .page-emergency .emergency-section {
+    align-items: center;
+    padding: 0 var(--em-side) 24px;
+    max-width: 360px;
+  }
+
+  .page-emergency .emergency-info,
+  .page-emergency .summary,
+  .page-emergency .emergency-block {
+    width: 100%;
+    max-width: var(--em-card-width);
+  }
+
+  .page-emergency .personal-information,
+  .page-emergency .medical-information,
+  .page-emergency .emergency-notes {
+    background: var(--em-card-solid);
+    backdrop-filter: none;
+    padding: 20px 16px;
+  }
+
+  .page-emergency .personal-header h3,
+  .page-emergency .medical-header h3,
+  .page-emergency .emergency-header h3 {
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  .page-emergency .personal-information svg,
+  .page-emergency .medical-information svg,
+  .page-emergency .emergency-notes svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .page-emergency .personal-header,
+  .page-emergency .medical-header,
+  .page-emergency .emergency-header {
+    margin-bottom: 16px;
+  }
+
+  .page-emergency .personal-information__content .name {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .page-emergency .personal-information__grid {
+    column-gap: 20px;
+    row-gap: 16px;
+  }
+
+  .page-emergency .emergency-section__note {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .page-emergency .emergency-section__desc {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .page-emergency .emergency-button {
+    background: #fff;
+    padding: 14px 16px;
+  }
+
+  .page-emergency .emergency-button__text,
+  .page-emergency .emergency-button__btn {
+    font-size: 15px;
+  }
 }
 
+/* Tablet bridge */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .page-emergency {
+    --em-side: clamp(24px, 3.333vw, 48px);
+    --em-card-width: clamp(300px, 23.82vw, 343px);
+  }
+
+  .page-emergency .personal-header h3,
+  .page-emergency .medical-header h3,
+  .page-emergency .emergency-header h3 {
+    font-size: clamp(16px, 1.39vw, 20px);
+  }
+}
