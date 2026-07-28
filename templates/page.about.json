@@ -36,6 +36,20 @@
     "partners_slider_WXzAQj": {
       "type": "partners-slider",
       "blocks": {
+        "image_card_K83bGy": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.37.01_1_3.png",
+            "name": "MARK"
+          }
+        },
+        "image_card_kY74Vq": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_15.35.18_1_4.png",
+            "name": "JUSTIN"
+          }
+        },
         "image_card_Rc8g73": {
           "type": "image_card",
           "settings": {
@@ -108,6 +122,8 @@
         }
       },
       "block_order": [
+        "image_card_K83bGy",
+        "image_card_kY74Vq",
         "image_card_Rc8g73",
         "image_card_kzPLFz",
         "image_card_6CErVF",
