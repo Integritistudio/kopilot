@@ -11,17 +11,15 @@
   --em-card-solid: #f2f2f2;
   --em-gap: 16px;
   --em-card-w: 343px;
-  --em-pad-x: 0px;
-  --em-header-h: 64px;
-  --em-stage-gap: 273px;
-  --em-stage-w: 1440px;
+  --em-pad-x: 48px;
+  --em-header-h: 70px;
   --em-font: 'Elza', sans-serif;
 }
 
 html:has(body.page-emergency),
 body.page-emergency {
   min-height: 100%;
-  background: #cfd1d8;
+  background: #1a1c20;
 }
 
 body.page-emergency {
@@ -31,11 +29,10 @@ body.page-emergency {
 }
 
 body.page-emergency.kopilot-no-header #MainContent {
-  position: relative;
   padding: 0;
   margin: 0;
   min-height: 100vh;
-  overflow-x: clip;
+  position: relative;
 }
 
 body.page-emergency .shopify-section-group-footer-group,
@@ -67,34 +64,23 @@ body.page-emergency .emergency-section *::after {
   box-sizing: border-box;
 }
 
-/* ---------- Banner shell ---------- */
+/* ---------- Full-bleed mountain (fixed behind everything) ---------- */
 
 body.page-emergency .emergency-banner {
-  /* static so stage bg/K position against #MainContent (covers cards too) */
-  position: static;
+  position: relative;
   z-index: 2;
   width: 100%;
   min-height: 0;
   pointer-events: none;
 }
 
-/*
-  Desktop mountain stage (Figma):
-  - starts 273px below header
-  - max 1440px wide, centered
-  - fills down through the cards column (#MainContent bottom)
-*/
 body.page-emergency .emergency-banner__bg {
-  position: absolute;
-  top: calc(var(--em-header-h) + var(--em-stage-gap));
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(100%, var(--em-stage-w));
-  bottom: 0;
+  position: fixed;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #cfd1d8;
+  background: #2a2d33;
 }
 
 body.page-emergency .emergency-banner__bg-img {
@@ -102,8 +88,7 @@ body.page-emergency .emergency-banner__bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Peak fills the stage like Figma — avoid dumping mountain at the bottom */
-  object-position: center 28%;
+  object-position: center center;
 }
 
 /* ---------- Header: logo img | title img | CTA text + cart icon ---------- */
@@ -115,9 +100,9 @@ body.page-emergency .emergency-banner__header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: var(--em-header-h);
-  min-height: var(--em-header-h);
-  padding: 0 48px;
+  height: 64px;
+  min-height: 64px;
+  padding: 0 var(--em-pad-x);
   pointer-events: auto;
   background: #e4e5ea;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -203,7 +188,7 @@ body.page-emergency .emergency-banner__hero {
   display: none;
 }
 
-/* ---------- Red K — top-right of 1440 stage (Figma) ---------- */
+/* ---------- Red K — right side of viewport (desktop) ---------- */
 
 body.page-emergency .emergency-banner__tag {
   pointer-events: auto;
@@ -218,23 +203,21 @@ body.page-emergency .emergency-banner__tag-img {
 }
 
 body.page-emergency .emergency-banner__tag--desktop {
-  position: absolute;
-  top: calc(var(--em-header-h) + var(--em-stage-gap));
-  left: 50%;
+  position: fixed;
+  top: 42%;
+  right: 72px;
   z-index: 15;
   display: block;
   width: 110px;
   height: 110px;
-  /* Pin to right edge of the 1440 stage */
-  margin-left: min(calc(var(--em-stage-w) / 2), 50vw);
-  transform: translateX(-100%);
+  transform: translateY(-50%);
 }
 
 body.page-emergency .emergency-banner__tag--hero {
   display: none;
 }
 
-/* ---------- Cards — start at top of stage, flush left of 1440 ---------- */
+/* ---------- Cards column — left over the mountain ---------- */
 
 body.page-emergency .emergency-section {
   position: relative;
@@ -244,10 +227,9 @@ body.page-emergency .emergency-section {
   align-items: flex-start;
   gap: var(--em-gap);
   width: 100%;
-  max-width: var(--em-stage-w);
+  max-width: 1440px;
   margin: 0 auto;
-  /* 273px gap under header, then cards align with K top */
-  padding: var(--em-stage-gap) 0 64px;
+  padding: 8px var(--em-pad-x) 48px;
   background: transparent;
 }
 
@@ -509,22 +491,11 @@ body.page-emergency .emergency-button__block a {
 
   body.page-emergency .emergency-banner__bg {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform: none;
-    width: 100%;
-    z-index: 0;
-  }
-
-  body.page-emergency .emergency-banner__bg-img {
-    object-position: center 30%;
   }
 
   body.page-emergency .emergency-banner__header {
-    height: var(--em-header-h);
-    min-height: var(--em-header-h);
+    height: 48px;
+    min-height: 48px;
     padding: 0 var(--em-pad-x);
     background: #e4e5ea;
     gap: 8px;
@@ -673,15 +644,12 @@ body.page-emergency .emergency-button__block a {
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .page-emergency {
-    --em-stage-gap: clamp(120px, 18.96vw, 273px);
+    --em-pad-x: clamp(24px, 3.333vw, 48px);
     --em-card-w: clamp(300px, 23.82vw, 343px);
   }
 
-  body.page-emergency .emergency-banner__header {
-    padding: 0 clamp(24px, 3.333vw, 48px);
-  }
-
   body.page-emergency .emergency-banner__tag--desktop {
+    right: clamp(24px, 5vw, 72px);
     width: clamp(72px, 7.64vw, 110px);
     height: clamp(72px, 7.64vw, 110px);
   }
