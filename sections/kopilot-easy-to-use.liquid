@@ -191,7 +191,68 @@
     object-position: center;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
+  /* Tablet narrow 768–900 — tighter padding so two columns fit */
+  @media screen and (min-width: 768px) and (max-width: 900px) {
+    #kopilot-easy-to-use-{{ section.id }} .etu-inner {
+      align-items: center;
+      gap: clamp(20px, 3vw, 28px);
+      min-height: 0;
+      padding: 48px 24px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-copy {
+      flex: 1 1 0;
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      gap: 28px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading,
+    #kopilot-easy-to-use-{{ section.id }} h2.etu-heading span,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-heading {
+      font-size: clamp(32px, 4.5vw, 40px) !important;
+      letter-spacing: -1.5px !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-steps {
+      width: 100%;
+      max-width: 100%;
+      gap: 16px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} p.etu-num,
+    #kopilot-easy-to-use-{{ section.id }} .etu-num {
+      font-size: clamp(56px, 8vw, 72px) !important;
+      line-height: clamp(48px, 6.8vw, 60px) !important;
+      -webkit-text-stroke-width: 1.2px;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-text,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-text,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text p,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text span,
+    #kopilot-easy-to-use-{{ section.id }} .etu-text * {
+      max-width: 100%;
+      font-size: 16px !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-text--narrow,
+    #kopilot-easy-to-use-{{ section.id }} p.etu-text--narrow {
+      max-width: 100% !important;
+      width: auto !important;
+    }
+
+    #kopilot-easy-to-use-{{ section.id }} .etu-media {
+      flex: 0 0 clamp(280px, 38vw, 340px);
+      width: clamp(280px, 38vw, 340px);
+      height: clamp(280px, 38vw, 340px);
+      margin-left: 0;
+    }
+  }
+
+  /* Tablet wide 901–1439 — scale toward desktop */
+  @media screen and (min-width: 901px) and (max-width: 1439px) {
     #kopilot-easy-to-use-{{ section.id }} .etu-inner {
       gap: 0;
       min-height: clamp(520px, 53.47vw, 770px);
@@ -285,7 +346,7 @@
 
     #kopilot-easy-to-use-{{ section.id }} .etu-steps {
       align-items: center;
-      gap: 31px;
+      gap: 10px;
       width: 339px;
       max-width: 339px;
     }
