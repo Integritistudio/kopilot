@@ -98,11 +98,11 @@ body.page-emergency .emergency-section__bg-img {
 
 @media screen and (min-width: 1440px) {
   body.page-emergency.kopilot-no-header #MainContent {
-    min-height: 1600px;
+    min-height: 2835px;
   }
 
   body.page-emergency .emergency-section__bg {
-    min-height: 1600px;
+    min-height: 2835px;
   }
 }
 
