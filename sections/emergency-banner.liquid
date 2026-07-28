@@ -5,8 +5,14 @@
   assign bg_image = section.settings.bg_image
   assign mobile_image = section.settings.mobile_image
   assign logo = section.settings.logo
+  assign title_image = section.settings.title_image
+  assign cta_icon = section.settings.cta_icon
+  assign tag_image = section.settings.tag_image
   assign cta_label = section.settings.cta_label | default: 'GET KOPILOT.ID'
   assign cta_url = section.settings.cta_url
+  if cta_url == blank
+    assign cta_url = routes.root_url
+  endif
 -%}
 
 <section class="emergency-banner" data-emergency-banner>
@@ -40,43 +46,115 @@
   </div>
 
   <header class="emergency-banner__header">
+    {%- comment -%} Left — logo image {%- endcomment -%}
     <a class="emergency-banner__logo" href="{{ routes.root_url }}">
-      {%- comment -%}
-        Figma header logo is wordmark text (KOPILOT + red ID), not the MEDICAL ID heading asset.
-      {%- endcomment -%}
-      <span class="emergency-banner__logo-mark" aria-label="KOPILOT.ID">
-        <span class="emergency-banner__logo-dot" aria-hidden="true"></span>
-        <span class="emergency-banner__logo-name">KOPILOT</span><span class="emergency-banner__logo-id">.ID</span>
-      </span>
+      {%- if logo != blank -%}
+        {{
+          logo
+          | image_url: height: 80
+          | image_tag:
+            class: 'emergency-banner__logo-img',
+            loading: 'eager',
+            alt: shop.name,
+            widths: '120, 160, 240',
+            sizes: '(max-width: 767px) 110px, 140px'
+        }}
+      {%- endif -%}
     </a>
 
-    <p class="emergency-banner__page-title" aria-hidden="true">
-      <span class="emergency-banner__page-title-solid">MEDICAL</span>
-      <span class="emergency-banner__page-title-outline">ID</span>
-    </p>
-    <h1 class="visually-hidden">Medical ID</h1>
+    {%- comment -%} Mid — MEDICAL ID image (desktop header only) {%- endcomment -%}
+    {%- if title_image != blank -%}
+      <div class="emergency-banner__title emergency-banner__title--header">
+        {{
+          title_image
+          | image_url: height: 120
+          | image_tag:
+            class: 'emergency-banner__title-img',
+            loading: 'eager',
+            alt: 'Medical ID',
+            widths: '200, 320, 480',
+            sizes: '(max-width: 767px) 0px, 280px'
+        }}
+      </div>
+    {%- endif -%}
 
-    <a
-      class="emergency-banner__cta"
-      href="{% if cta_url != blank %}{{ cta_url }}{% else %}{{ routes.root_url }}{% endif %}"
-    >
-      <span class="emergency-banner__cta-text">{{ cta_label | escape }}</span>
-      <span class="emergency-banner__cta-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="11" cy="11" r="11" fill="#F20008"/>
-          <path d="M11 5.5V11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          <path d="M7.2 8.2a5.2 5.2 0 1 0 7.6 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </span>
-    </a>
+    {%- comment -%} Right — CTA text + uploadable cart/icon {%- endcomment -%}
+    <div class="emergency-banner__cta-group">
+      {%- if cta_label != blank -%}
+        <a class="emergency-banner__cta-text" href="{{ cta_url }}">{{ cta_label | escape }}</a>
+      {%- endif -%}
+      {%- if cta_icon != blank -%}
+        <a class="emergency-banner__cta-icon" href="{{ cta_url }}" aria-label="{{ cta_label | escape }}">
+          {{
+            cta_icon
+            | image_url: width: 64
+            | image_tag:
+              class: 'emergency-banner__cta-icon-img',
+              loading: 'eager',
+              alt: '',
+              widths: '32, 48, 64',
+              sizes: '24px'
+          }}
+        </a>
+      {%- endif -%}
+    </div>
   </header>
 
-  <a
-    class="emergency-banner__tag"
-    href="{% if cta_url != blank %}{{ cta_url }}{% else %}{{ routes.root_url }}{% endif %}"
-    aria-label="{{ cta_label | escape }}"
-  >
-    <img src="{{ 'tagbutton.svg' | asset_url }}" alt="" width="110" height="110">
+  {%- comment -%} Mobile hero: MEDICAL ID image + red K {%- endcomment -%}
+  <div class="emergency-banner__hero">
+    {%- if title_image != blank -%}
+      <div class="emergency-banner__title emergency-banner__title--hero">
+        {{
+          title_image
+          | image_url: height: 160
+          | image_tag:
+            class: 'emergency-banner__title-img',
+            loading: 'eager',
+            alt: 'Medical ID',
+            widths: '240, 360, 480',
+            sizes: '220px'
+        }}
+      </div>
+    {%- else -%}
+      <h1 class="visually-hidden">Medical ID</h1>
+    {%- endif -%}
+
+    <a class="emergency-banner__tag emergency-banner__tag--hero" href="{{ cta_url }}" aria-label="{{ cta_label | escape }}">
+      {%- if tag_image != blank -%}
+        {{
+          tag_image
+          | image_url: width: 220
+          | image_tag: class: 'emergency-banner__tag-img', loading: 'eager', alt: '', widths: '110, 160, 220', sizes: '90px'
+        }}
+      {%- else -%}
+        <img
+          class="emergency-banner__tag-img"
+          src="{{ 'tagbutton.svg' | asset_url }}"
+          alt=""
+          width="110"
+          height="110"
+        >
+      {%- endif -%}
+    </a>
+  </div>
+
+  {%- comment -%} Desktop floating red K {%- endcomment -%}
+  <a class="emergency-banner__tag emergency-banner__tag--desktop" href="{{ cta_url }}" aria-label="{{ cta_label | escape }}">
+    {%- if tag_image != blank -%}
+      {{
+        tag_image
+        | image_url: width: 220
+        | image_tag: class: 'emergency-banner__tag-img', loading: 'eager', alt: '', widths: '110, 160, 220', sizes: '110px'
+      }}
+    {%- else -%}
+      <img
+        class="emergency-banner__tag-img"
+        src="{{ 'tagbutton.svg' | asset_url }}"
+        alt=""
+        width="110"
+        height="110"
+      >
+    {%- endif -%}
   </a>
 </section>
 
@@ -87,9 +165,38 @@
   "class": "section-emergency-banner",
   "settings": [
     {
+      "type": "header",
+      "content": "Header"
+    },
+    {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo"
+      "label": "Left logo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_image",
+      "label": "Center title image (MEDICAL ID)"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_icon",
+      "label": "Right icon (cart)"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA text",
+      "default": "GET KOPILOT.ID"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "header",
+      "content": "Background & tag"
     },
     {
       "type": "image_picker",
@@ -102,20 +209,9 @@
       "label": "Mobile background image"
     },
     {
-      "type": "text",
-      "id": "cta_label",
-      "label": "Header CTA label",
-      "default": "GET KOPILOT.ID"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "CTA URL"
-    },
-    {
       "type": "image_picker",
-      "id": "image",
-      "label": "Heading image (legacy)"
+      "id": "tag_image",
+      "label": "Red K / tag button image"
     }
   ],
   "presets": [
