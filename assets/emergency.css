@@ -1,0 +1,283 @@
+.page-emergency .shopify-section {
+    /*height: 900px;*/
+    /*height: 1500px;*/
+}
+
+.emergency-section {
+    display: flex;
+    flex-direction: column;
+    padding: 45px;
+}
+
+/* .emergency-banner__logo img {
+    opacity: 0.8;
+}
+ */
+.summary {
+    margin-bottom: 16px;
+    height: fit-content;
+    background: #ffffff;
+    border: 4px solid transparent;
+    background: linear-gradient(white, white) padding-box, /* inner white background */ linear-gradient(90deg, #9C1F87, #FD8CA0, #351EEB) border-box;
+}
+
+.summary .emergency-block {
+    padding: 16px;
+}
+
+.summary-content {
+    font-size: 18px;
+    line-height: 135%;
+    font-weight: 400;
+    padding: 0 16px 16px 16px;
+}
+
+.summary-header,
+.personal-header,
+.medical-header,
+.emergency-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.summary-header h3 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #ffffff; 
+    padding-left: 10px;
+}
+
+.summary-header {
+    margin-bottom: 6px;
+    background-color: red;
+    padding: 16px;
+}
+
+.personal-header h3,
+.medical-header h3,
+.emergency-header h3 {
+    color: #F20008;
+    font-size: 32px;
+    line-height: 100%;
+    font-weight: 600;
+}
+
+.emergency-info {
+    /* max-width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    z-index: 9999;
+}
+
+.emergency-block {
+    width: 343px;
+    /* max-width: 100%; */
+    z-index: 1;
+    opacity: 0.9;
+}
+
+@media screen and (max-width: 768px) {
+  .emergency-block {
+    width: 100%;
+}
+}
+.emergency-section__desc.help {
+    color: #F20008;
+}
+
+.emergency-section__desc:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.emergency-section__desc {
+    font-size: 20px;
+    line-height: 113%;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+.emergency-section__desc.age {
+    text-transform: lowercase;
+}
+
+.emergency-section__note {
+    font-size: 14px;
+    line-height: 120%;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #686A6A;
+}
+
+.personal-information__grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+.medical-content {
+    display: flex;
+    flex-direction: column;
+    /*gap: 12px;*/
+    width: fit-content;
+}
+
+.personal-information .name {
+    font-size: 32px;
+    line-height: 100%;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.summary-header__icon {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.summary-header__icon sup{
+      top: -4px;
+      margin-left: 2px;
+}
+
+.personal-information svg,
+.medical-information svg,
+.emergency-notes svg,
+.emergency-button svg {
+    flex-shrink: 0;
+}
+
+.personal-information,
+.medical-information,
+.emergency-notes{
+    background: #F2F2F2;
+    padding: 24px 16px;
+}
+
+.emergency-button {
+    height: fit-content;
+    margin-bottom: 24px;
+    background: #fff;
+    padding: 18px 16px;
+}
+
+.emergency-button__block {
+    display: flex;
+    gap: 6px;
+}
+
+.emergency-button__btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.emergency-button__text {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 400;
+}
+
+.emergency-button__block a {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 700;
+    color: #232526;
+    text-transform: capitalize;
+}
+
+.emergency-section__desc.phone {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+
+    .emergency-section {
+        margin: unset;
+        padding: 3px 16px 10px 16px;
+        align-items: center;
+        z-index: 99;
+        position: absolute;
+        top: 16%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeSlideIn 1s ease-out forwards;
+        animation-delay: 2.7s;
+    }
+
+    @keyframes fadeSlideIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInCard {
+        from {
+            top: 218px;
+            opacity: 1;
+        }
+        to {
+            top: 80px;
+            opacity: 1;
+        }
+    }
+
+    .emergency-section.new_mobile {
+        animation: fadeInCard 0.7s ease forwards;
+        animation-delay: 0.2s;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .emergency-info {
+        justify-content: center;
+        z-index: 99;
+    }
+
+    .personal-information,
+    .medical-information,
+    .emergency-notes {
+        height: fit-content;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .emergency-section {
+        top: 18%;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .emergency-section {
+        top: 15%;
+    }
+}
+
+.page-emergency #shopify-chat {
+    display: none !important;
+}
+
+
+/* Translate icon label */
+.summary-header__icon-translate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.summary-header__translate-text {
+    color: #ffffff;
+    font-size: 9px;
+    margin-top: 4px;
+    line-height: 1;
+    font-weight: 600;
+}
+
