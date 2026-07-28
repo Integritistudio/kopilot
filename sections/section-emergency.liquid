@@ -1,3 +1,4 @@
+{{ 'Elza.css' | asset_url | stylesheet_tag }}
 {{ 'emergency.css' | asset_url | stylesheet_tag }}
 
 <section class="emergency-section">
@@ -7,7 +8,7 @@
         {% render 'icon-star-2' %}
         <h3>Emergency Snapshot<sup>&trade;</sup></h3>
       </div>
-      <a href="https://translate.google.com/?tl=en&text=" target="_blank" class="summary-header__icon-translate">
+      <a href="https://translate.google.com/?tl=en&text=" target="_blank" rel="noopener" class="summary-header__icon-translate">
         <img src="{{ 'icon.translate.png' | asset_url }}" alt="Translate" width="32" height="26">
         <span class="summary-header__translate-text">translate</span>
       </a>
@@ -48,13 +49,13 @@
         </div>
       </div>
     </div>
+
     <div class="medical-information emergency-block">
       <div class="medical-header">
         <h3>Medical information</h3>
         {% render 'icon-pill' %}
       </div>
-
-      <div class="medical-content emergency-block">
+      <div class="medical-content">
         <p class="emergency-section__note">Special Notes</p>
         <h3 class="emergency-section__desc help">&lt;None Specified&gt;</h3>
         <p class="emergency-section__note medical-conditions__heading">Medical Conditions</p>
@@ -65,6 +66,7 @@
         <h3 class="emergency-section__desc medications">&lt;None Specified&gt;</h3>
       </div>
     </div>
+
     <div class="emergency-notes emergency-block">
       <div class="emergency-header">
         <h3>Emergency Contact</h3>
@@ -73,34 +75,32 @@
       <div class="medical-content">
         <p class="emergency-section__note">Name</p>
         <b class="emergency-section__desc emergency-name">--</b>
-
-        {% comment %}<p class="emergency-section__note">Relations</p>{% endcomment %}
-        {% comment %}<b class="emergency-section__desc emergency-relations">--</b>{% endcomment %}
-
         <p class="emergency-section__note">Phone</p>
-        <a href="" class="emergency-section__desc phone"> -- </a>
+        <a href="" class="emergency-section__desc phone">--</a>
       </div>
     </div>
+
     <div class="emergency-button emergency-block">
       <span class="emergency-button__block">
-        <span class="emergency-button__text"> New to KOPILOT.ID? </span>
-        {% if section.settings.button_txt != blank and section.settings.button_url != blank %}
-          <span>
-            <a href="{{ section.settings.button_url }}" class="emergency-button__btn">
-              {{ section.settings.button_txt }}
-              <b> > </b>
-            </a>
-          </span>
+        <span class="emergency-button__text">New to KOPILOT.ID?</span>
+        {% if section.settings.button_txt != blank %}
+          <a
+            href="{% if section.settings.button_url != blank %}{{ section.settings.button_url }}{% else %}{{ routes.root_url }}{% endif %}"
+            class="emergency-button__btn"
+          >
+            {{ section.settings.button_txt }}
+            <b>&gt;</b>
+          </a>
         {% endif %}
       </span>
     </div>
   </div>
 </section>
+
 {{ 'section-emergency.js' | asset_url | script_tag }}
 
-<script>
+{% comment %} <script>
   (function () {
-    // Theme editor / preview — never redirect (breaks the customizer)
     if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
 
     const redirectAfter = 600000;
@@ -132,25 +132,27 @@
       }
     });
   })();
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
   "name": "Section Emergency",
+  "tag": "div",
+  "class": "section-emergency",
   "settings": [
     {
       "type": "text",
       "id": "button_txt",
-      "label": "button Text",
-      "default": "Learn more"
+      "label": "Button text",
+      "default": "Learn More"
     },
     {
       "type": "url",
       "id": "button_url",
-      "label": "Button Url"
+      "label": "Button URL"
     }
   ],
-"presets": [
+  "presets": [
     {
       "name": "Emergency Section"
     }
