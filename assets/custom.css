@@ -1,32 +1,34 @@
-/* Base */
-.get-started-emergency .kopilot-features-container {
-  padding-left: 102px;
+
+.get-started-emergency .kopilot-features-container{
+    padding-left:102px;
+}
+.get-started-emergency .kopilot-features-media-col{
+    width:720px;
 }
 
-.get-started-emergency .kopilot-features-media-col {
-  width: 720px;
+@media screen and (min-width:768px) {
+    .get-started-emergency .kopilot-features-container{
+padding-left:0px;
+    }
 }
 
-/* Tablet/Desktop */
-@media screen and (min-width: 768px) {
-  .get-started-emergency .kopilot-features-container {
-    padding-left: 0;
-  }
-}
-
-/* Mobile - Keep this LAST */
 @media screen and (max-width: 767px) {
-  .get-started-emergency .kopilot-features-container {
-    padding-left: 0;
-  }
-
-  .get-started-emergency .kopilot-features-media-col {
+  .get-started-emergency .kopilot-features-heading {
     width: 100%;
     max-width: 300px;
   }
-
+  .get-started-emergency .kopilot-features-media-col{
+    width:100%;
+}
+.get-started-emergency .kopilot-features-container{
+    padding-left:0px;
+}
+/* .get-started-emergency .kopilot-features-section{
+    padding-top:57px;
+} */
+}
+@media screen and (min-width: 361px) and (max-width: 767px) {
   .get-started-emergency .kopilot-features-heading {
     width: 100%;
-    max-width: 100%;
   }
 }
