@@ -1,0 +1,357 @@
+/* =========================================================
+   Emergency page — Get in Touch popup
+   Figma: 1440 desktop (1:2) / 360 mobile (1:38)
+   ========================================================= */
+
+body.page-emergency .em-contact-popup,
+body.page-emergency .em-contact-popup__overlay {
+  font-family: 'Elza', sans-serif;
+  box-sizing: border-box;
+}
+
+body.page-emergency .em-contact-popup *,
+body.page-emergency .em-contact-popup *::before,
+body.page-emergency .em-contact-popup *::after {
+  box-sizing: border-box;
+}
+
+body.page-emergency .em-contact-popup__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10099;
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #232526;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+body.page-emergency.em-contact-open .em-contact-popup__overlay {
+  display: block;
+}
+
+body.page-emergency .em-contact-popup {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 10100;
+  width: 100%;
+  max-width: 830px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 30px;
+  transition: right 0.3s ease;
+  pointer-events: none;
+}
+
+body.page-emergency .em-contact-popup.is-open {
+  right: 0;
+  pointer-events: auto;
+}
+
+body.page-emergency .em-contact-popup[hidden] {
+  display: block !important;
+}
+
+body.page-emergency .em-contact-popup__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 60px 28px 36px;
+  background: #bfc5ce;
+}
+
+body.page-emergency .em-contact-popup__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #686a6a;
+  transition: color 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__close:hover {
+  color: #232526;
+}
+
+body.page-emergency .em-contact-popup__close-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  transform: scaleY(-1);
+}
+
+body.page-emergency .em-contact-popup__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 48px;
+  font-size: 96px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 0.84;
+  letter-spacing: -2.88px;
+  text-transform: uppercase;
+  color: #232526;
+}
+
+body.page-emergency .em-contact-popup__title-fill,
+body.page-emergency .em-contact-popup__title-outline {
+  display: block;
+}
+
+body.page-emergency .em-contact-popup__title-outline {
+  margin-left: 200px;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #232526;
+}
+
+body.page-emergency .em-contact-popup__content {
+  margin-left: 200px;
+  margin-top: auto;
+  width: calc(100% - 200px);
+  max-width: 100%;
+}
+
+body.page-emergency .em-contact-popup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+body.page-emergency .em-contact-popup__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+body.page-emergency .em-contact-popup__field {
+  width: 100%;
+}
+
+body.page-emergency .em-contact-popup__input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 17px 24px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: #fff;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  color: #232526;
+  outline: none;
+  appearance: none;
+  transition: border-color 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__input::placeholder {
+  font-weight: 400;
+  color: #232526;
+  opacity: 1;
+}
+
+body.page-emergency .em-contact-popup__input:hover,
+body.page-emergency .em-contact-popup__input:focus {
+  border-color: #232526;
+}
+
+body.page-emergency .em-contact-popup__textarea {
+  height: 102px;
+  min-height: 102px;
+  resize: none;
+  overflow: auto;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  line-height: 1.2;
+}
+
+body.page-emergency .em-contact-popup__policy {
+  width: 100%;
+}
+
+body.page-emergency .em-contact-popup__policy input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+body.page-emergency .em-contact-popup__policy label {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #232526;
+}
+
+body.page-emergency .em-contact-popup__checkbox {
+  position: relative;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: #fff;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__checkbox::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: #f20008;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__policy input:checked + label .em-contact-popup__checkbox::after {
+  opacity: 1;
+}
+
+body.page-emergency .em-contact-popup__policy label:hover .em-contact-popup__checkbox {
+  border-color: #232526;
+}
+
+body.page-emergency .em-contact-popup__policy-text a {
+  color: #232526;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  transition: color 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__policy-text a:hover {
+  color: #f20008;
+}
+
+body.page-emergency .em-contact-popup__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 0;
+  background: #232526;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.page-emergency .em-contact-popup__submit:hover {
+  background: #f20008;
+}
+
+body.page-emergency.em-contact-open {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+  body.page-emergency .em-contact-popup__title {
+    font-size: 70px;
+  }
+
+  body.page-emergency .em-contact-popup__title-outline {
+    margin-left: 100px;
+  }
+
+  body.page-emergency .em-contact-popup__content {
+    margin-left: 100px;
+    width: calc(100% - 100px);
+  }
+}
+
+/* ---- 360px / mobile (Figma node 1:38) ---- */
+@media only screen and (max-width: 767px) {
+  body.page-emergency .em-contact-popup {
+    padding: 14px;
+    max-width: none;
+  }
+
+  body.page-emergency .em-contact-popup__panel {
+    min-height: 692px;
+    padding: 106px 14px 14px;
+  }
+
+  body.page-emergency .em-contact-popup__title {
+    margin-bottom: 0;
+    font-size: 40px;
+    line-height: 33.6px;
+    letter-spacing: -1.2px;
+  }
+
+  body.page-emergency .em-contact-popup__title-outline {
+    margin-left: 0;
+  }
+
+  body.page-emergency .em-contact-popup__content {
+    margin-left: 0;
+    margin-top: auto;
+    padding-top: 66px;
+    width: 100%;
+  }
+
+  body.page-emergency .em-contact-popup__fields {
+    gap: 16px;
+  }
+
+  body.page-emergency .em-contact-popup__input {
+    padding: 18px 25px;
+  }
+
+  body.page-emergency .em-contact-popup__textarea {
+    height: 102px;
+    padding-top: 17px;
+    line-height: 21.6px;
+  }
+
+  body.page-emergency .em-contact-popup__policy label {
+    align-items: center;
+  }
+
+  body.page-emergency .em-contact-popup__policy-text {
+    max-width: 256px;
+  }
+
+  body.page-emergency .em-contact-popup__submit {
+    padding: 14px 24px;
+  }
+}

@@ -18,21 +18,26 @@ function footerInstagramSlider() {
 function toggleContactModal(close) {
   const popup = document.querySelector('.contact-form-popup');
   const overflow = document.querySelector('.contact-form-popup-overflow');
+  if (!popup) return;
+
   const shouldClose = close === true;
 
   if (shouldClose) {
-    popup?.classList.remove('open');
+    popup.classList.remove('open');
     overflow?.classList.remove('active');
     document.body.classList.remove('disable-scroll');
     return;
   }
 
-  popup?.classList.add('open');
+  popup.classList.add('open');
   overflow?.classList.add('active');
   document.body.classList.add('disable-scroll');
 }
 
 function contactModalTrigger() {
+  const popup = document.querySelector('.contact-form-popup');
+  if (!popup) return;
+
   document.querySelectorAll('.js-open-contact').forEach((button) => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
