@@ -3,19 +3,19 @@
    Figma: 1440 desktop (1:2) / 360 mobile (1:38)
    ========================================================= */
 
-body.page-emergency .em-contact-popup,
-body.page-emergency .em-contact-popup__overlay {
+.em-contact-popup,
+.em-contact-popup__overlay {
   font-family: 'Elza', sans-serif;
   box-sizing: border-box;
 }
 
-body.page-emergency .em-contact-popup *,
-body.page-emergency .em-contact-popup *::before,
-body.page-emergency .em-contact-popup *::after {
+.em-contact-popup *,
+.em-contact-popup *::before,
+.em-contact-popup *::after {
   box-sizing: border-box;
 }
 
-body.page-emergency .em-contact-popup__overlay {
+.em-contact-popup__overlay {
   position: fixed;
   inset: 0;
   z-index: 10099;
@@ -28,11 +28,11 @@ body.page-emergency .em-contact-popup__overlay {
   cursor: pointer;
 }
 
-body.page-emergency.em-contact-open .em-contact-popup__overlay {
+body.em-contact-open .em-contact-popup__overlay {
   display: block;
 }
 
-body.page-emergency .em-contact-popup {
+.em-contact-popup {
   position: fixed;
   top: 0;
   right: -100%;
@@ -47,16 +47,16 @@ body.page-emergency .em-contact-popup {
   pointer-events: none;
 }
 
-body.page-emergency .em-contact-popup.is-open {
+.em-contact-popup.is-open {
   right: 0;
   pointer-events: auto;
 }
 
-body.page-emergency .em-contact-popup[hidden] {
+.em-contact-popup[hidden] {
   display: block !important;
 }
 
-body.page-emergency .em-contact-popup__panel {
+.em-contact-popup__panel {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@ body.page-emergency .em-contact-popup__panel {
   background: #bfc5ce;
 }
 
-body.page-emergency .em-contact-popup__close {
+.em-contact-popup__close {
   position: absolute;
   top: 24px;
   right: 24px;
@@ -86,11 +86,11 @@ body.page-emergency .em-contact-popup__close {
   transition: color 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__close:hover {
+.em-contact-popup__close:hover {
   color: #232526;
 }
 
-body.page-emergency .em-contact-popup__close-icon {
+.em-contact-popup__close-icon {
   display: block;
   width: 24px;
   height: 24px;
@@ -98,7 +98,7 @@ body.page-emergency .em-contact-popup__close-icon {
   transform: scaleY(-1);
 }
 
-body.page-emergency .em-contact-popup__title {
+.em-contact-popup__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -112,14 +112,14 @@ body.page-emergency .em-contact-popup__title {
   color: #232526;
 }
 
-body.page-emergency .em-contact-popup__title-fill {
+.em-contact-popup__title-fill {
   display: block;
   font-weight: 600;
   color: #232526;
 }
 
 /* Figma: Elza 600 / 96px / lh 80.64 / ls -2.88 / stroke 1px #232526 / w 370.66 */
-body.page-emergency .em-contact-popup__title-outline {
+.em-contact-popup__title-outline {
   display: block;
   width: 370.66px;
   max-width: calc(100% - 200px);
@@ -134,32 +134,32 @@ body.page-emergency .em-contact-popup__title-outline {
   -webkit-text-stroke: 1px #232526;
 }
 
-body.page-emergency .em-contact-popup__content {
+.em-contact-popup__content {
   margin-left: 200px;
   margin-top: auto;
   width: calc(100% - 200px);
   max-width: 100%;
 }
 
-body.page-emergency .em-contact-popup__form {
+.em-contact-popup__form {
   display: flex;
   flex-direction: column;
   gap: 24px;
   width: 100%;
 }
 
-body.page-emergency .em-contact-popup__fields {
+.em-contact-popup__fields {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-body.page-emergency .em-contact-popup__field {
+.em-contact-popup__field {
   width: 100%;
 }
 
-body.page-emergency .em-contact-popup__input {
+.em-contact-popup__input {
   display: block;
   width: 100%;
   margin: 0;
@@ -177,18 +177,18 @@ body.page-emergency .em-contact-popup__input {
   transition: border-color 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__input::placeholder {
+.em-contact-popup__input::placeholder {
   font-weight: 400;
   color: #232526;
   opacity: 1;
 }
 
-body.page-emergency .em-contact-popup__input:hover,
-body.page-emergency .em-contact-popup__input:focus {
+.em-contact-popup__input:hover,
+.em-contact-popup__input:focus {
   border-color: #232526;
 }
 
-body.page-emergency .em-contact-popup__textarea {
+.em-contact-popup__textarea {
   height: 102px;
   min-height: 102px;
   resize: none;
@@ -198,11 +198,11 @@ body.page-emergency .em-contact-popup__textarea {
   line-height: 1.2;
 }
 
-body.page-emergency .em-contact-popup__policy {
+.em-contact-popup__policy {
   width: 100%;
 }
 
-body.page-emergency .em-contact-popup__policy input {
+.em-contact-popup__policy input {
   position: absolute;
   opacity: 0;
   width: 1px;
@@ -211,7 +211,7 @@ body.page-emergency .em-contact-popup__policy input {
   clip: rect(0, 0, 0, 0);
 }
 
-body.page-emergency .em-contact-popup__policy label {
+.em-contact-popup__policy label {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -223,7 +223,7 @@ body.page-emergency .em-contact-popup__policy label {
   color: #232526;
 }
 
-body.page-emergency .em-contact-popup__checkbox {
+.em-contact-popup__checkbox {
   position: relative;
   flex: 0 0 32px;
   width: 32px;
@@ -234,7 +234,7 @@ body.page-emergency .em-contact-popup__checkbox {
   transition: border-color 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__checkbox::after {
+.em-contact-popup__checkbox::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -247,15 +247,15 @@ body.page-emergency .em-contact-popup__checkbox::after {
   transition: opacity 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__policy input:checked + label .em-contact-popup__checkbox::after {
+.em-contact-popup__policy input:checked + label .em-contact-popup__checkbox::after {
   opacity: 1;
 }
 
-body.page-emergency .em-contact-popup__policy label:hover .em-contact-popup__checkbox {
+.em-contact-popup__policy label:hover .em-contact-popup__checkbox {
   border-color: #232526;
 }
 
-body.page-emergency .em-contact-popup__policy-text a {
+.em-contact-popup__policy-text a {
   color: #232526;
   text-decoration: underline;
   text-underline-position: from-font;
@@ -263,11 +263,11 @@ body.page-emergency .em-contact-popup__policy-text a {
   transition: color 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__policy-text a:hover {
+.em-contact-popup__policy-text a:hover {
   color: #f20008;
 }
 
-body.page-emergency .em-contact-popup__submit {
+.em-contact-popup__submit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,11 +288,11 @@ body.page-emergency .em-contact-popup__submit {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body.page-emergency .em-contact-popup__submit:hover {
+.em-contact-popup__submit:hover {
   background: #f20008;
 }
 
-body.page-emergency.em-contact-open {
+body.em-contact-open {
   position: fixed;
   left: 0;
   right: 0;
@@ -301,11 +301,11 @@ body.page-emergency.em-contact-open {
 }
 
 @media only screen and (max-width: 1024px) {
-  body.page-emergency .em-contact-popup__title {
+  .em-contact-popup__title {
     font-size: 70px;
   }
 
-  body.page-emergency .em-contact-popup__title-outline {
+  .em-contact-popup__title-outline {
     margin-left: 100px;
     max-width: calc(100% - 100px);
     font-size: 70px;
@@ -314,7 +314,7 @@ body.page-emergency.em-contact-open {
     width: 270px;
   }
 
-  body.page-emergency .em-contact-popup__content {
+  .em-contact-popup__content {
     margin-left: 100px;
     width: calc(100% - 100px);
   }
@@ -322,7 +322,7 @@ body.page-emergency.em-contact-open {
 
 /* ---- 360px / mobile (Figma node 1:38) ---- */
 @media only screen and (max-width: 767px) {
-  body.page-emergency .em-contact-popup {
+  .em-contact-popup {
     top: 50%;
     left: 50%;
     right: auto;
@@ -339,27 +339,27 @@ body.page-emergency.em-contact-open {
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   }
 
-  body.page-emergency .em-contact-popup.is-open {
+  .em-contact-popup.is-open {
     right: auto;
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%);
   }
 
-  body.page-emergency .em-contact-popup__panel {
+  .em-contact-popup__panel {
     min-height: 0;
     height: auto;
     padding: 72px 14px 14px;
   }
 
-  body.page-emergency .em-contact-popup__title {
+  .em-contact-popup__title {
     margin-bottom: 110px;
     font-size: 40px;
     line-height: 33.6px;
     letter-spacing: -1.2px;
   }
 
-  body.page-emergency .em-contact-popup__title-outline {
+  .em-contact-popup__title-outline {
     width: auto;
     max-width: 100%;
     margin-left: 0;
@@ -369,36 +369,36 @@ body.page-emergency.em-contact-open {
     -webkit-text-stroke: 1px #232526;
   }
 
-  body.page-emergency .em-contact-popup__content {
+  .em-contact-popup__content {
     margin-left: 0;
     margin-top: 0;
     padding-top: 0;
     width: 100%;
   }
 
-  body.page-emergency .em-contact-popup__fields {
+  .em-contact-popup__fields {
     gap: 16px;
   }
 
-  body.page-emergency .em-contact-popup__input {
+  .em-contact-popup__input {
     padding: 18px 25px;
   }
 
-  body.page-emergency .em-contact-popup__textarea {
+  .em-contact-popup__textarea {
     height: 102px;
     padding-top: 17px;
     line-height: 21.6px;
   }
 
-  body.page-emergency .em-contact-popup__policy label {
+  .em-contact-popup__policy label {
     align-items: center;
   }
 
-  body.page-emergency .em-contact-popup__policy-text {
+  .em-contact-popup__policy-text {
     max-width: 256px;
   }
 
-  body.page-emergency .em-contact-popup__submit {
+  .em-contact-popup__submit {
     padding: 14px 24px;
   }
 }
