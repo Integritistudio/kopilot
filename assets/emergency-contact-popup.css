@@ -213,7 +213,7 @@ body.page-emergency .em-contact-popup__policy input {
 
 body.page-emergency .em-contact-popup__policy label {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   margin: 0;
   cursor: pointer;
