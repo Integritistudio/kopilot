@@ -42,6 +42,7 @@ body.page-emergency .em-contact-popup {
   height: 100vh;
   height: 100dvh;
   padding: 30px;
+  background: #fff;
   transition: right 0.3s ease;
   pointer-events: none;
 }
@@ -100,6 +101,7 @@ body.page-emergency .em-contact-popup__close-icon {
 body.page-emergency .em-contact-popup__title {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin: 0 0 48px;
   font-size: 96px;
   font-weight: 600;
@@ -110,16 +112,27 @@ body.page-emergency .em-contact-popup__title {
   color: #232526;
 }
 
-body.page-emergency .em-contact-popup__title-fill,
-body.page-emergency .em-contact-popup__title-outline {
+body.page-emergency .em-contact-popup__title-fill {
   display: block;
+  font-weight: 600;
+  color: #232526;
 }
 
 body.page-emergency .em-contact-popup__title-outline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-left: 200px;
+  font-weight: 600;
   color: transparent;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #232526;
+  paint-order: stroke fill;
+}
+
+body.page-emergency .em-contact-popup__title-with,
+body.page-emergency .em-contact-popup__title-us {
+  display: block;
 }
 
 body.page-emergency .em-contact-popup__content {
@@ -320,6 +333,14 @@ body.page-emergency.em-contact-open {
 
   body.page-emergency .em-contact-popup__title-outline {
     margin-left: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.28em;
+  }
+
+  body.page-emergency .em-contact-popup__title-with,
+  body.page-emergency .em-contact-popup__title-us {
+    display: inline;
   }
 
   body.page-emergency .em-contact-popup__content {
