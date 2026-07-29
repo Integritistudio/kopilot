@@ -92,8 +92,8 @@
   }
   
   /* ---------- Full-bleed mountain ----------
-     Main image = MainContent crop (hero stays correct).
-     Foot strip = same mountain under transparent footer. */
+     Image crop stays tied to MainContent (behind upper hero).
+     Container spills under the transparent footer without re-cropping. */
 
   body.page-emergency .emergency-section-wrapper {
     position: static;
@@ -110,24 +110,15 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-    background: transparent;
+    background: #d8dbe0;
   }
   
-  body.page-emergency .emergency-section__bg-main {
+  body.page-emergency .emergency-section__bg picture {
     display: block;
     width: 100%;
+    /* Same height as MainContent → original mountain crop */
     height: calc(100% - var(--em-footer-spill));
-    min-height: 0;
-  }
-
-  body.page-emergency .emergency-section__bg-foot {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: var(--em-footer-spill);
+    min-height: 100vh;
   }
   
   body.page-emergency .emergency-section__bg-img {
@@ -136,10 +127,6 @@
     height: 100%;
     object-fit: cover;
     object-position: 58% 28%;
-  }
-
-  body.page-emergency .emergency-section__bg-img--foot {
-    object-position: 50% 100%;
   }
   
   @media screen and (min-width: 1440px) {
@@ -151,23 +138,9 @@
       min-height: calc(2835px + var(--em-footer-spill));
     }
 
-    body.page-emergency .emergency-section__bg-main {
+    body.page-emergency .emergency-section__bg picture {
       height: 2835px;
       min-height: 2835px;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    body.page-emergency .emergency-section__bg {
-      --em-footer-spill: 560px;
-    }
-
-    body.page-emergency .emergency-section__bg-img {
-      object-position: 50% 22%;
-    }
-
-    body.page-emergency .emergency-section__bg-img--foot {
-      object-position: 50% 100%;
     }
   }
   
@@ -580,6 +553,10 @@
       --em-card-w: 328px;
       --em-gap: 15px;
       --em-header-h: 48px;
+    }
+  
+    body.page-emergency .emergency-section__bg-img {
+      object-position: 50% 22%;
     }
   
     body.page-emergency .emergency-banner__header {
