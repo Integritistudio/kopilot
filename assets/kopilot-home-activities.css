@@ -360,13 +360,12 @@
 }
 
 /* Desktop: 1440px+ */
-/* Desktop: 1440px+ */
 @media screen and (min-width: 1440px) {
   .kopilot-home-activities__inner {
     gap: 5rem;
-    min-height: 81.7rem;
-    padding: 5.9rem 0;
-    max-width: 144rem;
+    /* REMOVED: min-height: 81.7rem; - This eliminates the huge blank space at the bottom */
+    padding: 5.9rem 4rem; /* ADDED: 4rem side padding so the cards don't touch the absolute edge of the screen */
+    max-width: 100%; /* CHANGED: Increased from 144rem to 100% to match your wider hero layout */
     margin: 0 auto;
   }
 
@@ -383,19 +382,16 @@
 
   .kopilot-home-activities__grid {
     display: grid;
-    /* CHANGED: Forces 5 even columns instead of 3 */
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-    /* CHANGED: Allows the grid to span wider so 5 cards fit beautifully */
     width: 100%; 
     max-width: 100%;
   }
 
   .kopilot-home-activities__card {
-    /* CHANGED: Removes the hardcoded 36.6rem width so cards flex with the grid */
-    width: 100%; 
-    height: 29.3rem;
-    /* CHANGED: Slightly reduced side padding so text fits inside narrower cards */
+    width: 100%;
+    height: auto; /* CHANGED: Replaced the fixed height so it can flex dynamically */
+    aspect-ratio: 36.6 / 29.3; /* CHANGED: Enforces the exact mathematical ratio of your original 3-card layout */
     padding: 3rem 2.5rem; 
   }
 
