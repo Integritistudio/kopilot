@@ -106,7 +106,28 @@
 
     {% sections 'footer-group' %}
 
-    {% if is_emergency_page %}</div>{% endif %}
+    {% if is_emergency_page %}</div>
+    <style>
+      body.page-emergency footer.footer,
+      body.page-emergency footer.shopify-section.footer,
+      body.page-emergency .shopify-section-group-footer-group,
+      body.page-emergency .footer,
+      body.page-emergency .footer .container,
+      body.page-emergency .footer-bottom,
+      body.page-emergency .footer-instagram,
+      body.page-emergency .footer-menu-wrapper {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+      }
+      body.page-emergency footer.footer,
+      body.page-emergency .shopify-section-group-footer-group {
+        margin-top: -50px !important;
+        position: relative !important;
+        z-index: 2 !important;
+      }
+    </style>
+    {% endif %}
 
     {% unless is_emergency_page %}
       {% render 'kopilot-contact-popup' %}
