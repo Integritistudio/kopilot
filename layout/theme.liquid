@@ -98,9 +98,9 @@
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-
-    {% sections 'footer-group' %}
+{% sections 'footer-group' %}
     {% unless is_emergency_page %}
+      
       {% render 'kopilot-contact-popup' %}
     {% endunless %}
 
