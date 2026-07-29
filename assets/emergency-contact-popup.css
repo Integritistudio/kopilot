@@ -43,7 +43,7 @@ body.page-emergency .em-contact-popup {
   height: 100dvh;
   padding: 30px;
   background: #fff;
-  transition: right 0.3s ease;
+  transition: right 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
 
@@ -293,6 +293,10 @@ body.page-emergency .em-contact-popup__submit:hover {
 }
 
 body.page-emergency.em-contact-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -349,7 +353,7 @@ body.page-emergency.em-contact-open {
   }
 
   body.page-emergency .em-contact-popup__title {
-    margin-bottom: 24px;
+    margin-bottom: 110px;
     font-size: 40px;
     line-height: 33.6px;
     letter-spacing: -1.2px;
