@@ -37,6 +37,9 @@
     {% render 'color-schemes' %}
 
     <!-- GLOBAL CSS -->
+    {% if template.suffix == 'emergency' %}
+      {{ 'section-emergency.css' | asset_url | stylesheet_tag: preload: true }}
+    {% endif %}
     {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'kopilot-responsive.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
@@ -100,6 +103,7 @@
     </main>
 {% sections 'footer-group' %}
     {% unless is_emergency_page %}
+      
       {% render 'kopilot-contact-popup' %}
     {% endunless %}
 
