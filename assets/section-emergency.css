@@ -92,8 +92,8 @@
   }
   
   /* ---------- Full-bleed mountain ----------
-     Image crop stays tied to MainContent (behind upper hero).
-     Container spills under the transparent footer without re-cropping. */
+     Image = MainContent only (original crop behind hero).
+     Soft spill under footer so transparent footer isn’t black. */
 
   body.page-emergency .emergency-section-wrapper {
     position: static;
@@ -116,9 +116,8 @@
   body.page-emergency .emergency-section__bg picture {
     display: block;
     width: 100%;
-    /* Same height as MainContent → original mountain crop */
     height: calc(100% - var(--em-footer-spill));
-    min-height: 100vh;
+    min-height: 0;
   }
   
   body.page-emergency .emergency-section__bg-img {
@@ -141,6 +140,22 @@
     body.page-emergency .emergency-section__bg picture {
       height: 2835px;
       min-height: 2835px;
+    }
+  }
+
+  /* Mobile: keep mountain crop on content only — image does not enter footer */
+  @media screen and (max-width: 767px) {
+    body.page-emergency .emergency-section__bg {
+      --em-footer-spill: 520px;
+    }
+
+    body.page-emergency .emergency-section__bg picture {
+      height: calc(100% - var(--em-footer-spill));
+      min-height: 0;
+    }
+
+    body.page-emergency .emergency-section__bg-img {
+      object-position: 50% 22%;
     }
   }
   
@@ -553,10 +568,6 @@
       --em-card-w: 328px;
       --em-gap: 15px;
       --em-header-h: 48px;
-    }
-  
-    body.page-emergency .emergency-section__bg-img {
-      object-position: 50% 22%;
     }
   
     body.page-emergency .emergency-banner__header {
