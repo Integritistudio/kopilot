@@ -3,40 +3,50 @@
 
 {%- liquid
   assign bg_image = section.settings.bg_image
-  assign mobile_image = section.settings.mobile_image
 -%}
 
-<div class="emergency-section-wrapper">
+{%- if bg_image != blank -%}
+  <style>
+    /* Mountain on the shell (main + footer) — footer stays transparent over it */
+    body.page-emergency .emergency-page-shell {
+      background-image: url({{ bg_image | image_url: width: 2880 | json }});
+      background-size: cover;
+      background-position: 58% 28%;
+      background-repeat: no-repeat;
+      background-color: #2a2d33;
+    }
+    @media screen and (max-width: 767px) {
+      body.page-emergency .emergency-page-shell {
+        background-position: 50% 22%;
+      }
+    }
+    body.page-emergency footer.footer,
+    body.page-emergency footer.shopify-section.footer,
+    body.page-emergency .shopify-section-group-footer-group.footer,
+    body.page-emergency .shopify-section-group-footer-group,
+    body.page-emergency .footer,
+    body.page-emergency .footer .container,
+    body.page-emergency .footer-bottom,
+    body.page-emergency .footer-instagram,
+    body.page-emergency .footer-menu-wrapper {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+    }
+    body.page-emergency footer.footer,
+    body.page-emergency .shopify-section-group-footer-group {
+      margin-top: -50px !important;
+      position: relative !important;
+      z-index: 2 !important;
+    }
+    /* Hide old absolute mountain layers — shell bg owns the image now */
+    body.page-emergency .emergency-section__bg {
+      display: none !important;
+    }
+  </style>
+{%- endif -%}
 
-  {%- comment -%} Full-bleed mountain background (desktop + mobile) {%- endcomment -%}
-  <div class="emergency-section__bg" aria-hidden="true">
-    <picture>
-      {%- if mobile_image != blank -%}
-        <source
-          media="(max-width: 767px)"
-          srcset="{{ mobile_image | image_url: width: 900 }}"
-        >
-      {%- endif -%}
-      {%- if bg_image != blank -%}
-        {{
-          bg_image
-          | image_url: width: 2880
-          | image_tag:
-            class: 'emergency-section__bg-img',
-            loading: 'eager',
-            widths: '1440, 1920, 2400, 2880',
-            sizes: '100vw',
-            alt: ''
-        }}
-      {%- elsif mobile_image != blank -%}
-        {{
-          mobile_image
-          | image_url: width: 900
-          | image_tag: class: 'emergency-section__bg-img', loading: 'eager', alt: ''
-        }}
-      {%- endif -%}
-    </picture>
-  </div>
+<div class="emergency-section-wrapper">
 
   <section class="emergency-section">
     <div class="summary emergency-block">
