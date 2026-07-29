@@ -1,6 +1,4 @@
 (function () {
-  if (!document.body.classList.contains('page-emergency')) return;
-
   const popup = document.querySelector('[data-em-contact-popup]');
   const overlay = document.querySelector('.em-contact-popup__overlay');
   if (!popup || !overlay) return;
