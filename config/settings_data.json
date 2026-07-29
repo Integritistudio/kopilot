@@ -37,7 +37,7 @@
     "show_collection": false,
     "search_collection": "",
     "search_collection_img": "",
-    "free_shipping_threshold": 2000,
+    "free_shipping_threshold": 95,
     "new_tab": true,
     "social_facebook_link": "",
     "social_instagram_link": "",
