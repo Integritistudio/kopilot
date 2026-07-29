@@ -27,7 +27,7 @@
       "settings": {
         "show_header": true,
         "logo": "shopify://shop_images/Link.png",
-        "logo_link": "",
+        "logo_link": "https://apps.apple.com/us/app/kopilot-id/id6605922319",
         "header_cta_label": "get kopilot.id",
         "header_cta_link": "",
         "header_icon": "shopify://shop_images/Button.svg",
@@ -39,7 +39,7 @@
         "product_label": "Digital\nEmergency\nID Tag",
         "started_text": "Get started by downloading out app!",
         "button_label": "download the app",
-        "button_link": "",
+        "button_link": "https://apps.apple.com/us/app/kopilot-id/id6605922319",
         "button_color": "#ef0008",
         "button_text_color": "#ffffff",
         "google_play_badge": "shopify://shop_images/image_4.svg",
