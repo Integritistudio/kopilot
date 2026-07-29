@@ -8,24 +8,39 @@
   const openers = document.querySelectorAll('.js-open-contact, [data-em-contact-open]');
   const closers = document.querySelectorAll('[data-em-contact-close]');
   const firstField = popup.querySelector('input, textarea, button');
+  let lockedScrollY = 0;
+
+  function lockScroll() {
+    lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.classList.add('em-contact-open');
+    document.body.style.top = `-${lockedScrollY}px`;
+  }
+
+  function unlockScroll() {
+    document.body.classList.remove('em-contact-open');
+    document.body.style.top = '';
+    window.scrollTo(0, lockedScrollY);
+  }
 
   function openPopup(event) {
     if (event) event.preventDefault();
     popup.hidden = false;
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('em-contact-open');
-    window.setTimeout(() => firstField?.focus(), 50);
+    lockScroll();
+    window.setTimeout(() => {
+      firstField?.focus({ preventScroll: true });
+    }, 50);
   }
 
   function closePopup(event) {
     if (event) event.preventDefault();
     popup.classList.remove('is-open');
     popup.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('em-contact-open');
+    unlockScroll();
     window.setTimeout(() => {
       if (!popup.classList.contains('is-open')) popup.hidden = true;
-    }, 300);
+    }, 550);
   }
 
   openers.forEach((el) => {
