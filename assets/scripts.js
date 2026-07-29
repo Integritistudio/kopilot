@@ -4150,7 +4150,7 @@ class CartPackUpgrade extends HTMLElement {
       CartController.startLoading();
 
       if (sameVariant) {
-        // Single-SKU: set line quantity to 3.
+        // Single-SKU pack: set line quantity to target pack size (2 or 3).
         const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
           method: "POST",
           headers: {
@@ -4168,7 +4168,7 @@ class CartPackUpgrade extends HTMLElement {
           throw new Error(changeErr.description || changeErr.message || "Unable to update quantity");
         }
       } else {
-        // Replace current pack with Set of 3 (1+2 or 2+1 → one Set of 3 line).
+        // Replace current pack line with the target pack variant (Set of 2 or Set of 3).
         const changeRes = await fetch(`${window.Shopify.routes.root}cart/change.js`, {
           method: "POST",
           headers: {
