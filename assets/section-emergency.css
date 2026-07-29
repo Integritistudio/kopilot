@@ -92,8 +92,8 @@
   }
   
   /* ---------- Full-bleed mountain ----------
-     Image = MainContent only (original crop behind hero).
-     Soft spill under footer so transparent footer isn’t black. */
+     Main image = MainContent crop (hero stays correct).
+     Foot strip = same mountain under transparent footer. */
 
   body.page-emergency .emergency-section-wrapper {
     position: static;
@@ -110,14 +110,24 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-    background: #d8dbe0;
+    background: transparent;
   }
   
-  body.page-emergency .emergency-section__bg picture {
+  body.page-emergency .emergency-section__bg-main {
     display: block;
     width: 100%;
     height: calc(100% - var(--em-footer-spill));
     min-height: 0;
+  }
+
+  body.page-emergency .emergency-section__bg-foot {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--em-footer-spill);
   }
   
   body.page-emergency .emergency-section__bg-img {
@@ -126,6 +136,10 @@
     height: 100%;
     object-fit: cover;
     object-position: 58% 28%;
+  }
+
+  body.page-emergency .emergency-section__bg-img--foot {
+    object-position: 50% 100%;
   }
   
   @media screen and (min-width: 1440px) {
@@ -137,25 +151,23 @@
       min-height: calc(2835px + var(--em-footer-spill));
     }
 
-    body.page-emergency .emergency-section__bg picture {
+    body.page-emergency .emergency-section__bg-main {
       height: 2835px;
       min-height: 2835px;
     }
   }
 
-  /* Mobile: keep mountain crop on content only — image does not enter footer */
   @media screen and (max-width: 767px) {
     body.page-emergency .emergency-section__bg {
-      --em-footer-spill: 520px;
-    }
-
-    body.page-emergency .emergency-section__bg picture {
-      height: calc(100% - var(--em-footer-spill));
-      min-height: 0;
+      --em-footer-spill: 560px;
     }
 
     body.page-emergency .emergency-section__bg-img {
       object-position: 50% 22%;
+    }
+
+    body.page-emergency .emergency-section__bg-img--foot {
+      object-position: 50% 100%;
     }
   }
   
