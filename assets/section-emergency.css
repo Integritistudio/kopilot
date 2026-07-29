@@ -40,17 +40,21 @@
     display: none !important;
   }
 
+  /* Transparent footer pulled over the mountain bg */
+  body.page-emergency footer.footer,
   body.page-emergency .shopify-section-group-footer-group,
-  body.page-emergency .shopify-section-group-footer-group .shopify-section,
-  body.page-emergency .footer {
+  body.page-emergency .shopify-section-group-footer-group.footer,
+  body.page-emergency .footer,
+  body.page-emergency .footer .container {
     background: transparent !important;
     background-color: transparent !important;
   }
 
-  body.page-emergency .shopify-section-group-footer-group {
+  body.page-emergency footer.footer,
+  body.page-emergency .shopify-section-group-footer-group.footer {
     margin-top: -50px;
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
   
   body.page-emergency .section-emergency-banner,
@@ -86,8 +90,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    min-height: 100%;
+    /* Extend under transparent footer so body #1a1c20 doesn't show through */
+    height: calc(100% + 720px);
+    min-height: calc(100% + 720px);
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
@@ -114,7 +119,8 @@
     }
   
     body.page-emergency .emergency-section__bg {
-      min-height: 2835px;
+      min-height: calc(2835px + 720px);
+      height: calc(100% + 720px);
     }
   }
   

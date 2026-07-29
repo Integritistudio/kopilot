@@ -40,17 +40,21 @@
     display: none !important;
   }
 
+  /* Transparent footer pulled over the mountain bg */
+  body.page-emergency footer.footer,
   body.page-emergency .shopify-section-group-footer-group,
-  body.page-emergency .shopify-section-group-footer-group .shopify-section,
-  body.page-emergency .footer {
+  body.page-emergency .shopify-section-group-footer-group.footer,
+  body.page-emergency .footer,
+  body.page-emergency .footer .container {
     background: transparent !important;
     background-color: transparent !important;
   }
 
-  body.page-emergency .shopify-section-group-footer-group {
+  body.page-emergency footer.footer,
+  body.page-emergency .shopify-section-group-footer-group.footer {
     margin-top: -50px;
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
   
   body.page-emergency .section-emergency-banner,
