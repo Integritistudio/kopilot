@@ -820,6 +820,118 @@
         "label": "Free shipping threshold",
         "info": "Enter the minimum order amount in your store currency. It automatically converts to the shopper's selected market currency in the cart drawer.",
         "default": 50
+      },
+      {
+        "type": "header",
+        "content": "Cart upsell"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_heading",
+        "label": "Upsell heading",
+        "default": "Save more when you add extra tags."
+      },
+      {
+        "type": "header",
+        "content": "Case 1 — Cart has 1 tag (card 1 → Set of 2)"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card1_title",
+        "label": "Card 1 title",
+        "default": "Add 1 tag"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card1_price",
+        "label": "Card 1 price",
+        "default": "$31.00"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card1_compare_price",
+        "label": "Card 1 compare-at price",
+        "default": "$39.99"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card1_badge",
+        "label": "Card 1 discount label",
+        "default": "Save 10%"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card1_button",
+        "label": "Card 1 button text",
+        "default": "Upgrade"
+      },
+      {
+        "type": "header",
+        "content": "Case 1 — Cart has 1 tag (card 2 → Set of 3)"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card2_title",
+        "label": "Card 2 title",
+        "default": "Add 2 tags"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card2_price",
+        "label": "Card 2 price",
+        "default": "$56.00"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card2_compare_price",
+        "label": "Card 2 compare-at price",
+        "default": "$79.98"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card2_badge",
+        "label": "Card 2 discount label",
+        "default": "Save 20%"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c1_card2_button",
+        "label": "Card 2 button text",
+        "default": "Upgrade"
+      },
+      {
+        "type": "header",
+        "content": "Case 2 — Cart has Set of 2 (card → Set of 3)"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c2_card_title",
+        "label": "Card title",
+        "default": "Add 1 tag"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c2_card_price",
+        "label": "Card price",
+        "default": "$28.00"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c2_card_compare_price",
+        "label": "Card compare-at price",
+        "default": "$35.00"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c2_card_badge",
+        "label": "Card discount label",
+        "default": "Save 20%"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_c2_card_button",
+        "label": "Card button text",
+        "default": "Upgrade"
       }
     ]
   },
