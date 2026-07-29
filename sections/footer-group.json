@@ -13,7 +13,6 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "disabled": true,
       "settings": {
         "dev_by_text": "Developed by",
         "dev_by_url": "",
