@@ -98,12 +98,17 @@
       {% sections 'header-group' %}
     {% endunless %}
 
+    {% if is_emergency_page %}<div class="emergency-page-shell">{% endif %}
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-{% sections 'footer-group' %}
+
+    {% sections 'footer-group' %}
+
+    {% if is_emergency_page %}</div>{% endif %}
+
     {% unless is_emergency_page %}
-      
       {% render 'kopilot-contact-popup' %}
     {% endunless %}
 
