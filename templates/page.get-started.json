@@ -140,9 +140,9 @@
         "step_3_text": "Tap with your phone to reveal emergency info.",
         "show_store_badges": true,
         "app_store_badge": "shopify://shop_images/app-store_svg.svg",
-        "app_store_link": "",
+        "app_store_link": "https://apps.apple.com/us/app/kopilot-id/id6605922319",
         "google_play_badge": "shopify://shop_images/image_4.svg",
-        "google_play_link": ""
+        "google_play_link": "https://play.google.com/store/apps/details?id=com.kopilotid.kopilot&pcampaignid=web_share"
       }
     },
     "kopilot_explore_confidence_ndyKbm": {
