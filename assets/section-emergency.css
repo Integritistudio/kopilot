@@ -41,8 +41,11 @@
   }
 
   body.page-emergency .shopify-section-group-footer-group,
-  body.page-emergency .shopify-section-group-footer-group .shopify-section,
-  body.page-emergency .footer {
+  body.page-emergency footer.shopify-section.footer,
+  body.page-emergency footer.footer,
+  body.page-emergency .footer,
+  body.page-emergency .footer .container,
+  body.page-emergency .footer-bottom {
     background: transparent !important;
     background-color: transparent !important;
   }
@@ -50,7 +53,7 @@
   body.page-emergency .shopify-section-group-footer-group {
     margin-top: -50px;
     position: relative;
-    z-index: 2;
+    z-index: 10;
   }
   
   body.page-emergency .section-emergency-banner,
