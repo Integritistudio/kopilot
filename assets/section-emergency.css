@@ -27,12 +27,19 @@
     font-family: var(--em-font);
     color: var(--em-text);
   }
+
+  /* Shell wraps main + footer so mountain can cover both */
+  body.page-emergency .emergency-page-shell {
+    position: relative;
+    overflow: visible;
+  }
   
   body.page-emergency.kopilot-no-header #MainContent {
     padding: 0;
     margin: 0;
     min-height: 100vh;
-    position: relative;
+    position: static;
+    overflow: visible;
   }
   
   body.page-emergency #shopify-chat,
@@ -50,7 +57,8 @@
     background-color: transparent !important;
   }
 
-  body.page-emergency .shopify-section-group-footer-group {
+  body.page-emergency .shopify-section-group-footer-group,
+  body.page-emergency footer.footer {
     margin-top: -50px;
     position: relative;
     z-index: 10;
@@ -82,8 +90,12 @@
     box-sizing: border-box;
   }
   
-  /* ---------- Full-bleed mountain (owned by Section Emergency) ---------- */
+  /* ---------- Full-bleed mountain (covers shell = main + footer) ---------- */
   
+  body.page-emergency .emergency-section-wrapper {
+    position: static;
+  }
+
   body.page-emergency .emergency-section__bg {
     position: absolute;
     top: 0;
@@ -112,12 +124,16 @@
   }
   
   @media screen and (min-width: 1440px) {
+    body.page-emergency .emergency-page-shell {
+      min-height: 2835px;
+    }
+
     body.page-emergency.kopilot-no-header #MainContent {
       min-height: 2835px;
     }
   
     body.page-emergency .emergency-section__bg {
-      min-height: 2835px;
+      min-height: 100%;
     }
   }
   
