@@ -430,7 +430,7 @@
         "button_label": "Partner with us",
         "button_color": "#e8272a",
         "button_text_color": "#ffffff",
-        "show_call_bar": true,
+        "show_call_bar": false,
         "call_label": "Prefer to call?",
         "call_number": "xx xx xx",
         "call_availability_label": "Available",
