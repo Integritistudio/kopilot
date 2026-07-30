@@ -389,9 +389,9 @@
         "image_mobile": "shopify://shop_images/Rectangle_53_1.png",
         "image_alt": "Founders outdoors with powersports gear",
         "heading": "<p>Inspired by the outdoors.</p>",
-        "text_para1": "KOPILOT.ID started with a simple conviction: <span class=\"kopilot-home-outdoors__brand\">having</span> <strong>emergency information available the moment you need it.</strong>",
-        "text_para2": "We come from the outdoor and powersports world. We’ve watched friends go down at events, on trails, and on roads far past cell service.",
-        "text_quote": "“We built this for people who ride and explore. Whatever happens out there, we want everyone to make it home.”",
+        "text_para1": "KOPILOT.ID started with a simple conviction: <strong>making emergency information available the moment it is needed.</strong>",
+        "text_para2": "We live this industry, and understand the risks involved, whether you're on a day hike or racing for a national championship.",
+        "text_quote": "“We built this for people who get out there. We want everyone to make it home”",
         "text_attribution": "<strong class=\"kopilot-home-outdoors__name\">Mark Roebke</strong><span class=\"kopilot-home-outdoors__role\">Co Founder</span>"
       }
     },
