@@ -71,7 +71,7 @@
         "max_width": 1230,
         "columns": 3,
         "show_bg": true,
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "top_spacing": 40,
         "bottom_spacing": 20
       }
@@ -141,22 +141,22 @@
         "bottom_spacing": 80
       }
     },
-    "partners_contact_MeLM9U": {
-      "type": "partners-contact",
-      "name": "Partnership Contact",
+    "contact_custom_form_aJ9PCH": {
+      "type": "contact-custom-form",
+      "name": "Contact us Custom Form",
       "settings": {
         "bg_color": "#FFFFFF",
+        "section_image": "shopify://shop_images/IMG_3285_1_1.png",
         "heading": "Contact us",
         "description": "",
         "label_name": "Name",
-        "label_org": "",
         "label_email": "Email",
         "label_phone": "Phone",
         "label_message": "Message",
-        "button_label": "Partner with us",
+        "button_label": "Submit",
         "button_color": "#E8272A",
         "button_text_color": "#FFFFFF",
-        "show_call_bar": true,
+        "show_call_bar": false,
         "call_label": "Prefer to call?",
         "call_number": "xx xx xx",
         "call_availability_label": "Available",
@@ -168,6 +168,6 @@
     "main",
     "contact_blocks_KJpm3X",
     "main_contact_form_UHzUp9",
-    "partners_contact_MeLM9U"
+    "contact_custom_form_aJ9PCH"
   ]
 }
