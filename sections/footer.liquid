@@ -18,21 +18,15 @@
 
   assign corporate_block_heading = section.settings.corporate_block_heading
   assign corporate_menu = section.settings.corporate_menu
-  assign contact_us_label = section.settings.contact_us_label
-  assign wholesale_label = section.settings.wholesale_label
-  assign wholesale_url = section.settings.wholesale_url
 
   assign social_block_heading = section.settings.social_block_heading
   assign instagram_link = section.settings.instagram_link | default: settings.social_instagram_link
   assign instagram_url = settings.social_instagram_link | default: instagram_link
-  assign facebook_url = settings.social_facebook_link
+  assign facebook_url = section.settings.facebook_link | default: settings.social_facebook_link
 
   assign privacy_policy_url = section.settings.privacy_policy_url | default: shop.privacy_policy.url
   assign terms_url = section.settings.terms_url | default: shop.terms_of_service.url
   assign cookie_policy_url = section.settings.cookie_policy_url
-
-  assign pdf_link_label = section.settings.pdf_link_label
-  assign pdf_link_url = section.settings.pdf_link_url
 
   assign main_logo = section.settings.main_logo
   assign main_logo_link = section.settings.main_logo_link
@@ -123,36 +117,10 @@
       </div>
       <div class="footer-menu-contacts">
         {% for link in corporate_menu.links %}
-          {% assign link_title_downcase = link.title | downcase %}
-          {% assign is_search_link = false %}
-          {% assign is_wholesale_link = false %}
-          {% if link_title_downcase contains 'search' or link.url contains '/search' %}
-            {% assign is_search_link = true %}
-          {% endif %}
-          {% if link_title_downcase contains 'wholesale' %}
-            {% assign is_wholesale_link = true %}
-          {% endif %}
-          {% unless is_search_link or is_wholesale_link %}
-            <a href="{{ link.url }}" class="footer-menu-link">
-              {{ link.title }}
-            </a>
-          {% endunless %}
+          <a href="{{ link.url }}" class="footer-menu-link">
+            {{ link.title }}
+          </a>
         {% endfor %}
-        {% if wholesale_label != blank %}
-          <a href="{{ wholesale_url | default: '#' }}" class="footer-menu-link">
-            {{ wholesale_label }}
-          </a>
-        {% endif %}
-        {% if contact_us_label != blank %}
-          <a href="#" class="footer-menu-link js-open-contact">
-            {{ contact_us_label }}
-          </a>
-        {% endif %}
-        {% if pdf_link_label != blank and pdf_link_url != blank %}
-          <a href="{{ pdf_link_url }}" target="_blank" rel="nofollow" class="footer-menu-link">
-            {{ pdf_link_label }}
-          </a>
-        {% endif %}
       </div>
     </div>
     <div class="footer-menu">
@@ -298,23 +266,6 @@
       "label": "Menu"
     },
     {
-      "type": "text",
-      "id": "contact_us_label",
-      "label": "Contact us label",
-      "default": "Contact us"
-    },
-    {
-      "type": "text",
-      "id": "wholesale_label",
-      "label": "Wholesale label",
-      "default": "Wholesale"
-    },
-    {
-      "type": "url",
-      "id": "wholesale_url",
-      "label": "Wholesale link"
-    },
-    {
       "type": "header",
       "content": "Social block settings"
     },
@@ -323,6 +274,11 @@
       "id": "social_block_heading",
       "label": "Block heading",
       "default": "Social Media"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Facebook link"
     },
     {
       "type": "header",
@@ -342,17 +298,6 @@
       "type": "url",
       "id": "cookie_policy_url",
       "label": "Cookie policy URL"
-    },
-    {
-      "type": "text",
-      "id": "pdf_link_label",
-      "label": "PDF link label",
-      "default": "Retailers and Manufacturers"
-    },
-    {
-      "type": "url",
-      "id": "pdf_link_url",
-      "label": "PDF link url"
     }
   ],
   "blocks": [
