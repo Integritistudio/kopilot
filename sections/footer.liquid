@@ -34,7 +34,8 @@
   assign pdf_link_label = section.settings.pdf_link_label
   assign pdf_link_url = section.settings.pdf_link_url
 
-  assign instagram_block_heading = section.settings.instagram_block_heading
+  assign main_logo = section.settings.main_logo
+  assign main_logo_link = section.settings.main_logo_link
 %}
 <img
   src="{{ 'tagbutton_f.svg' | asset_url }}"
@@ -45,11 +46,10 @@
 >
 <div class="container">
   <div class="footer-instagram">
-    <a href="{{ instagram_link }}" class="footer-instagram-title">
-      <span class="icon icon-instagram"></span>
-      <span>
-        {{ instagram_block_heading }}
-      </span>
+    <a href="{{ main_logo_link | default: '/' }}" class="footer-main-logo-link" style="display: block; max-width: 150px; margin-bottom: 20px;">
+      {% if main_logo != blank %}
+        {% render 'render-image', image: main_logo %}
+      {% endif %}
     </a>
     <div class="footer-instagram-slider js-footer-instagram-slider">
       <div class="swiper-wrapper">
@@ -186,28 +186,6 @@
       <li class="footer-bottom-menu-item">
         <a href="{{ cookie_policy_url | default: '/policies/privacy-policy' }}">Cookie policy</a>
       </li>
-      <li class="footer-bottom-menu-item created-by">
-        <span>Designed by</span>
-        <a href="https://league.design/">LEAGUE DESIGN AGENCY</a>
-      </li>
-      <li class="footer-bottom-menu-item developed-by">
-        <span>{{ section.settings.dev_by_text | default: 'Developed by' }}</span>
-        <a
-          href="{{ section.settings.dev_by_url | default: 'https://web-systems.solutions/en/' }}"
-          target="_blank"
-          rel="noopener"
-          title="{{ section.settings.dev_by_tooltip }}"
-        >
-          <img
-            src="{{ 'wss_logo_Kopilot.svg' | asset_url }}"
-            alt="{{ section.settings.dev_by_text | default: 'Developed by' }}"
-            class="footer__dev-logo"
-            loading="lazy"
-            width="20"
-            height="20"
-          >
-        </a>
-      </li>
     </ul>
   </div>
 </div>
@@ -219,36 +197,22 @@
   "class": "footer",
   "settings": [
     {
-      "type": "text",
-      "id": "dev_by_text",
-      "label": "Label text",
-      "default": "Developed by"
+      "type": "header",
+      "content": "Main Logo Settings"
     },
     {
       "type": "image_picker",
-      "id": "dev_by_logo",
-      "label": "Developed logo"
+      "id": "main_logo",
+      "label": "Main Logo Image"
     },
     {
       "type": "url",
-      "id": "dev_by_url",
-      "label": "Developer link"
-    },
-    {
-      "type": "text",
-      "id": "dev_by_tooltip",
-      "label": "Logo tooltip",
-      "default": "eCommerce development without borders"
+      "id": "main_logo_link",
+      "label": "Main Logo Link"
     },
     {
       "type": "header",
-      "content": "Instagram block settings"
-    },
-    {
-      "type": "text",
-      "id": "instagram_block_heading",
-      "label": "Block heading",
-      "default": "kopilot.ID"
+      "content": "Instagram slider settings"
     },
     {
       "type": "url",
