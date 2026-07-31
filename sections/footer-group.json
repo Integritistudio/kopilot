@@ -14,7 +14,9 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "instagram_link": "",
+        "main_logo": "shopify://shop_images/Link.svg",
+        "main_logo_link": "https://kopilot.id",
+        "instagram_link": "https://www.instagram.com/kopilot.id.official/",
         "contact_block_heading": "Contact",
         "email_label": "email us",
         "email": "info.kopilot.id",
@@ -27,15 +29,11 @@
         "apple_store_logo": "shopify://shop_images/86118c9a-d122-4ad8-b62a-170e00b2107c.webp",
         "corporate_block_heading": "Corporate",
         "corporate_menu": "footer",
-        "contact_us_label": "About us",
-        "wholesale_label": "Partners",
-        "wholesale_url": "",
         "social_block_heading": "Social Media",
+        "facebook_link": "https://www.facebook.com/profile.php?id=61566759969165",
         "privacy_policy_url": "",
         "terms_url": "",
-        "cookie_policy_url": "",
-        "pdf_link_label": "",
-        "pdf_link_url": ""
+        "cookie_policy_url": ""
       }
     }
   },
