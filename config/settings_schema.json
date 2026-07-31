@@ -775,6 +775,12 @@
         "default": "drawer"
       },
       {
+        "type": "url",
+        "id": "continue_shopping_url",
+        "label": "Continue shopping link",
+        "info": "Used on the empty cart button. If blank, links to all products."
+      },
+      {
         "type": "checkbox",
         "id": "show_discount",
         "label": "Show discount code input",
