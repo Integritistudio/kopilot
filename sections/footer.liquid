@@ -1,6 +1,23 @@
 {{ 'kopilot-base.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-icons.css' | asset_url | stylesheet_tag }}
 {{ 'kopilot-footer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .footer-main-logo-link {
+    display: block;
+    max-width: 160px; /* Size for mobile */
+    margin-bottom: 15px; /* Spacing for mobile */
+  }
+  
+  /* Desktop specific adjustments */
+  @media screen and (min-width: 768px) {
+    .footer-main-logo-link {
+      max-width: 250px; /* Increased size for desktop */
+      margin-bottom: 0px; /* Reduced spacing around the logo */
+    }
+  }
+</style>
+
 <script src="{{ 'kopilot-footer.js' | asset_url }}" defer></script>
 
 {% liquid
@@ -40,7 +57,7 @@
 >
 <div class="container">
   <div class="footer-instagram">
-    <a href="{{ main_logo_link | default: '/' }}" class="footer-main-logo-link" style="display: block; max-width: 150px; margin-bottom: 20px;">
+    <a href="{{ main_logo_link | default: '/' }}" class="footer-main-logo-link">
       {% if main_logo != blank %}
         {% render 'render-image', image: main_logo %}
       {% endif %}
