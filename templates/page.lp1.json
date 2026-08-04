@@ -696,6 +696,7 @@
         "r7",
         "r8"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Customer Reviews.",
@@ -785,6 +786,7 @@
         "heading_line_height_mobile": "",
         "question_font_weight": "500",
         "question_font_weight_mobile": "",
+        "open_first_question": true,
         "enable_first_active_bold": false,
         "active_question_font_weight": "500",
         "padding_top": 0,
@@ -834,6 +836,23 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "1785873467fc103e64": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_homepage_AwtcLJ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "emergency-nfc-tag-testing-product",
+            "review_data": "real_data",
+            "max_width": 1200
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_homepage_AwtcLJ"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -850,6 +869,7 @@
     "kopilot_product_tiers",
     "kopilot_guarantees",
     "kopilot_reviews",
+    "1785873467fc103e64",
     "kopilot_faq",
     "kopilot_cta_banner"
   ]
