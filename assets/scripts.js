@@ -6203,6 +6203,7 @@ class MobileMenuDrawer extends HTMLElement {
   }
 
   getFocusable(container) {
+    if (!container) return [];
     return [...container.querySelectorAll(
       'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     )].filter((el) => {
@@ -6211,6 +6212,70 @@ class MobileMenuDrawer extends HTMLElement {
         el.offsetParent !== null && // visible in layout
         getComputedStyle(el).visibility !== 'hidden'
       );
+    });
+  }
+
+  getScrollOffset() {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssHeaderHeight = parseFloat(rootStyles.getPropertyValue('--header-height')) || 0;
+    const header = document.querySelector('.shopify-section-group-header-group');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    return Math.max(cssHeaderHeight, headerHeight, 0);
+  }
+
+  resolveHashTarget(href) {
+    if (!href || href === '#') return null;
+    try {
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin || !url.hash) return null;
+      const normalize = (path) => path.replace(/\/+$/, '') || '/';
+      // Only treat as in-page scroll when the path matches the current page
+      if (normalize(url.pathname) !== normalize(window.location.pathname)) return null;
+      const id = decodeURIComponent(url.hash.slice(1));
+      return id ? document.getElementById(id) : null;
+    } catch (e) {
+      if (!href.startsWith('#')) return null;
+      const id = decodeURIComponent(href.slice(1));
+      return id ? document.getElementById(id) : null;
+    }
+  }
+
+  scrollToTarget(target) {
+    const offset = -this.getScrollOffset();
+    if (typeof window.lenis !== 'undefined' && window.lenis?.scrollTo) {
+      window.lenis.scrollTo(target, { offset, duration: 1.2 });
+      return;
+    }
+    const top = target.getBoundingClientRect().top + window.scrollY + offset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+  }
+
+  closeDrawerPanel() {
+    const drawer = this.querySelector('.drawer_wrapper');
+    this.resetMenuState();
+    if (drawer && typeof closeDrawer === 'function') {
+      closeDrawer(drawer);
+    }
+    if (typeof RemoveScrollLock === 'function') {
+      RemoveScrollLock();
+    }
+  }
+
+  closeAndScrollTo(target, href) {
+    this.closeDrawerPanel();
+
+    const hash = href.includes('#') ? href.slice(href.indexOf('#')) : `#${target.id}`;
+
+    // Wait for scroll-lock / Lenis to unlock, then scroll
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.scrollToTarget(target);
+        if (window.history?.pushState) {
+          window.history.pushState(null, '', hash);
+        } else {
+          window.location.hash = hash;
+        }
+      });
     });
   }
 
@@ -6292,6 +6357,25 @@ class MobileMenuDrawer extends HTMLElement {
     const closeBtn = e.target.closest('.drawer_close_btn');
     if (closeBtn) {
       this.resetMenuState();
+      return;
+    }
+
+    // -------------------------
+    // Nav links (hash → close drawer, then scroll)
+    // -------------------------
+    const navLink = e.target.closest('a[href]');
+    if (navLink && this.contains(navLink)) {
+      const href = navLink.getAttribute('href');
+      const target = this.resolveHashTarget(href);
+
+      if (target) {
+        e.preventDefault();
+        this.closeAndScrollTo(target, href);
+        return;
+      }
+
+      // Leaving the page or no matching section — close drawer, allow navigation
+      this.closeDrawerPanel();
       return;
     }
 
