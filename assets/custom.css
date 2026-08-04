@@ -58,13 +58,8 @@
 }
 }
 
-.jdgm-prev-badge {
+#shopify-block-AaUllSG5HTjlla3lic__judge_me_reviews_preview_badge_RagLF9 .jdgm-prev-badge {
     display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-}
-
-.jdgm-prev-badge__stars,
-.jdgm-prev-badge__text {
-    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
 }
