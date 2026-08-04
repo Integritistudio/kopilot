@@ -43,12 +43,8 @@
         aspect-ratio: 733 / 710;
     }
 }
-@media only screen and (min-width: 992px) {
-    .jdgm-widget:not(.jdgm-review-widget--small,.jdgm-review-widget--medium) .jdgm-rev-widg__title
-Specificity: (0,3,0)
- {
-        margin-bottom: 49px !important;
-    }
+.jdgm-rev-widg__header .jdgm-rev-widg__title {
+    margin-bottom: 49px;
 }
 .jdgm-rev-widg{
   padding:24px 44px !important;
