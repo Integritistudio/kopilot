@@ -388,7 +388,12 @@
 </main-header>
 
 <mobile-menu-drawer>
-  {% render 'mobile-menu-drawer', menu: section.settings.menu, kopilot_nav: true %}
+  {% render 'mobile-menu-drawer',
+    menu: section.settings.menu,
+    home_menu: linklists[section.settings.menu],
+    inner_menu: linklists[section.settings.inner_menu],
+    kopilot_nav: true
+  %}
 </mobile-menu-drawer>
 
 <script>
