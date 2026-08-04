@@ -316,7 +316,7 @@ button.search_drawer_reset_btn svg {
 .search_drawer_input {
     border: 1px solid #959595 !important;
     border-radius: 0 !important;
-    background-color: transparent !important;
+    background-color: #FFF !important;
 }
 
 .search_drawer_input .input_field_wrapper {
