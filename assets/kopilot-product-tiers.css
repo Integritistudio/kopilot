@@ -215,6 +215,9 @@
 }
 
 .kopilot-product-tiers__reviews .kopilot-review-stars--tier {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
   gap: 2px;
 }
 
