@@ -328,6 +328,7 @@
           <search-drawer class="header_predictive_search">
             <form method="GET" action="{{ routes.search_url }}" class="search_drawer__form full-search-bar">
               <input type="hidden" value="last" name="options[prefix]">
+              <input type="hidden" name="type" value="product,article">
               <div class="search_drawer_input" style="border-radius:  {{ settings.search_drawer_border_radius }}px ;">
                 <div class="input_field_wrapper">
                   <input
