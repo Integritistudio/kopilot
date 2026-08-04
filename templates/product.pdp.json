@@ -380,6 +380,7 @@
         "r7",
         "r8"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Customer Reviews.",
@@ -397,6 +398,24 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "1785857170021b33bf": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_JyccmW": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JyccmW"
+      ],
+      "settings": {}
     },
     "kopilot_faq_mGbFjB": {
       "type": "kopilot-faq",
@@ -514,24 +533,6 @@
         "color_button_bg": "#ef0008",
         "color_button_text": "#ffffff"
       }
-    },
-    "1785857170021b33bf": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_JyccmW": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": true,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_JyccmW"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -545,9 +546,9 @@
     "kopilot_home_testimonials_tnMUzC",
     "kopilot_pdp_privacy_mjFtVk",
     "kopilot_reviews",
+    "1785857170021b33bf",
     "kopilot_faq_mGbFjB",
     "kopilot_pdp_partner_cta_7XUggC",
-    "hero_adventure_G6GAcy",
-    "1785857170021b33bf"
+    "hero_adventure_G6GAcy"
   ]
 }
