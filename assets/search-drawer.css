@@ -312,3 +312,51 @@ button.search_drawer_reset_btn svg {
         padding-inline: 1.5rem;
     }
 }
+/* ─── Search Input Overrides (Matches Contact Form) ─── */
+.search_drawer_input {
+    border: 1px solid #959595 !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+}
+
+.search_drawer_input .input_field_wrapper {
+    height: 44px !important;
+    border-radius: 0 !important;
+}
+
+.search_drawer_input .input_field_wrapper input {
+    border-radius: 0 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 20px !important;
+    color: #000000 !important;
+    padding-inline: 20px !important;
+    background: transparent !important;
+}
+
+/* Match the placeholder/label text to the form */
+.search_drawer_input .input_field_wrapper label {
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 20px !important;
+    color: #959595 !important;
+    left: 20px !important;
+}
+
+/* Remove rounding from the search button */
+button#search_drawer_btn {
+    border-radius: 0 !important;
+}
+
+/* ─── Hide History/Keywords Pills ─── */
+/* This hides the pill buttons themselves */
+.empty_search_drawer_keywords_inner,
+.empty_search_drawer_keyword {
+    display: none !important;
+}
+
+/* This targets and hides the "History" title located just above the pills */
+.search_drawer_empty:has(.empty_search_drawer_keywords_inner) > h2,
+.search_drawer_empty:has(.empty_search_drawer_keywords_inner) > h3,
+.search_drawer_empty:has(.empty_search_drawer_keywords_inner) > h4,
+.search_drawer_empty:has(.empty_search_drawer_keywords_inner) > p {
+    display: none !important;
+}
