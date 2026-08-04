@@ -60,11 +60,11 @@
 
 .jdgm-prev-badge {
     display: flex !important;
-    align-items: center;
-    gap: 10px;
+    align-items: center !important;
+    gap: 10px !important;
 }
 
 .jdgm-prev-badge__stars,
 .jdgm-prev-badge__text {
-    display: inline-flex;
+    display: inline-flex !important;
 }
