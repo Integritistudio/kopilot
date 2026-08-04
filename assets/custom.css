@@ -57,3 +57,14 @@
   padding:15px 15px !important;
 }
 }
+
+.jdgm-prev-badge {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.jdgm-prev-badge__stars,
+.jdgm-prev-badge__text {
+    display: inline-flex;
+}
