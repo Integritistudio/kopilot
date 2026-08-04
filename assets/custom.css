@@ -53,4 +53,7 @@
     .jdgm-rev-widg__header .jdgm-rev-widg__title {
         margin-bottom: 31px !important;
     }
+    .jdgm-rev-widg{
+  padding:15px 15px !important;
+}
 }
