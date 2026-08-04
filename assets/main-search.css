@@ -365,23 +365,19 @@ form#main_search_sort_form {
         margin: 0 1.5rem 2rem;
     }
 }
-/* ─── Search Page Input Styling (Matches Contact Form) ─── */
+/* ─── Search Page Input Styling (Corrected Selectors) ─── */
 
-/* Target the wrapper/form to remove existing backgrounds and rounding */
-.template-search form[action="/search"],
-.template-search .search-form,
-.template-search .field {
+/* Remove background and rounding from the wrapper */
+.main_search_form_wrapper .input_field_wrapper {
     background-color: transparent !important;
     border-radius: 0 !important;
     box-shadow: none !important;
 }
 
-/* Target the actual input field */
-.template-search form[action="/search"] input[type="search"],
-.template-search form[action="/search"] input[type="text"],
-.template-search .search__input {
+/* Target the actual input field using your theme's wrapper class */
+.main_search_form_wrapper input[type="search"] {
     border: 1px solid #959595 !important;
-    border-radius: 0 !important;
+    border-radius: 0 !important !important;
     background-color: transparent !important;
     height: 44px !important;
     font-family: 'Figtree', sans-serif !important;
@@ -389,17 +385,19 @@ form#main_search_sort_form {
     color: #000000 !important;
     padding-inline: 20px !important;
     box-shadow: none !important;
+    outline: none !important;
 }
 
 /* Match the placeholder text */
-.template-search form[action="/search"] input::placeholder {
+.main_search_form_wrapper input[type="search"]::placeholder {
     color: #959595 !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 20px !important;
 }
 
-/* Adjust the clear/search buttons to fit the new 44px height */
-.template-search form[action="/search"] button {
+/* Adjust the clear/search buttons to fit the new height */
+.main_search_form_wrapper button {
     height: 44px !important;
     border-radius: 0 !important;
+    background: transparent !important;
 }
