@@ -49,3 +49,8 @@
 .jdgm-rev-widg{
   padding:24px 44px !important;
 }
+@media (max-width: 767px) {
+    .jdgm-rev-widg__header .jdgm-rev-widg__title {
+        margin-bottom: 31px !important;
+    }
+}
