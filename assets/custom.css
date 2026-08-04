@@ -44,7 +44,7 @@
     }
 }
 .jdgm-rev-widg__header .jdgm-rev-widg__title {
-    margin-bottom: 49px;
+    margin-bottom: 49px !important;
 }
 .jdgm-rev-widg{
   padding:24px 44px !important;
