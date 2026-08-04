@@ -365,39 +365,48 @@ form#main_search_sort_form {
         margin: 0 1.5rem 2rem;
     }
 }
-/* ─── Search Page Input Styling (Corrected Selectors) ─── */
+/* ─── Search Page Input Styling (Corrected Layout) ─── */
 
-/* Remove background and rounding from the wrapper */
+/* 1. Apply the border, square corners, and height to the WRAPPER */
 .main_search_form_wrapper .input_field_wrapper {
-    background-color: transparent !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-/* Target the actual input field using your theme's wrapper class */
-.main_search_form_wrapper input[type="search"] {
     border: 1px solid #959595 !important;
-    border-radius: 0 !important !important;
+    border-radius: 0 !important;
     background-color: transparent !important;
     height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important; 
+}
+
+/* 2. Remove the border from the input itself so it blends into the wrapper */
+.main_search_form_wrapper input[type="search"] {
+    border: none !important;
+    background-color: transparent !important;
+    height: 100% !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 20px !important;
     color: #000000 !important;
-    padding-inline: 20px !important;
+    padding-left: 20px !important;
     box-shadow: none !important;
     outline: none !important;
+    flex-grow: 1 !important; /* Ensures the text area takes up the remaining space */
 }
 
-/* Match the placeholder text */
+/* 3. Match the placeholder text */
 .main_search_form_wrapper input[type="search"]::placeholder {
     color: #959595 !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 20px !important;
 }
 
-/* Adjust the clear/search buttons to fit the new height */
+/* 4. Fix the buttons so they sit cleanly inside the new border */
 .main_search_form_wrapper button {
-    height: 44px !important;
+    height: 100% !important;
+    border: none !important;
     border-radius: 0 !important;
     background: transparent !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
