@@ -415,6 +415,7 @@
           id="pc-name-{{ section.id }}"
           placeholder="{{ section.settings.label_name | default: 'Name' }}"
           autocomplete="name"
+          required
           value="{% if form.name %}{{ form.name }}{% endif %}"
         >
 
@@ -425,6 +426,7 @@
           id="pc-org-{{ section.id }}"
           placeholder="{{ section.settings.label_org | default: 'Organization' }}"
           autocomplete="organization"
+          required
           value="{% if form['Organization'] %}{{ form['Organization'] }}{% endif %}"
         >
 
