@@ -25,6 +25,15 @@
     },
     "kopilot_pdp_MXgD34": {
       "type": "kopilot-pdp",
+      "blocks": {
+        "judge_me_reviews_preview_badge_RagLF9": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_RagLF9"
+      ],
       "settings": {
         "gallery_image_limit": 6,
         "color_scheme": "",
