@@ -202,7 +202,8 @@
         "heading": "The details that matter.",
         "image": "shopify://shop_images/IMG_3285_1_45595bb2-5a79-447a-9a26-0b589ba709ac.png",
         "bg_color": "#f1f1f1",
-        "bg_color_mobile": "#ffffff"
+        "bg_color_mobile": "#ffffff",
+        "extraclass": ""
       }
     },
     "kopilot_pdp_privacy_64q4yR": {
@@ -379,6 +380,7 @@
         "r7",
         "r8"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "Customer Reviews.",
@@ -479,6 +481,7 @@
         "heading_line_height_mobile": "",
         "question_font_weight": "",
         "question_font_weight_mobile": "",
+        "open_first_question": true,
         "enable_first_active_bold": true,
         "active_question_font_weight": "700",
         "padding_top": 0,
@@ -512,6 +515,24 @@
         "color_button_bg": "#ef0008",
         "color_button_text": "#ffffff"
       }
+    },
+    "1785857170021b33bf": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_JyccmW": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JyccmW"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -527,6 +548,7 @@
     "kopilot_reviews",
     "kopilot_faq_mGbFjB",
     "kopilot_pdp_partner_cta_7XUggC",
-    "hero_adventure_G6GAcy"
+    "hero_adventure_G6GAcy",
+    "1785857170021b33bf"
   ]
 }
