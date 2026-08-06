@@ -249,9 +249,10 @@
             <div class="cart_drawer_footer_inner">
               {%- comment -%}
                 Pack upsell (static Theme Editor cards):
+                - Only when a single pack type is in the cart
                 - 1 Tag → Card 1 upgrades to Set of 2, Card 2 upgrades to Set of 3
                 - Set of 2 → one card upgrades to Set of 3
-                - Set of 3 / total tags >= 3 → hide upsell
+                - Set of 3 / total tags >= 3 / mixed packs (e.g. 1 Tag + Set of 2) → hide upsell
               {%- endcomment -%}
               {%- liquid
                 assign upsell_item = nil
@@ -260,6 +261,10 @@
                 assign is_qty_pack_setup = false
                 assign set_of_2_variant = nil
                 assign set_of_3_variant = nil
+                assign cart_seen_pack_1 = false
+                assign cart_seen_pack_2 = false
+                assign cart_seen_pack_3 = false
+                assign cart_distinct_pack_lines = 0
 
                 for item in cart.items
                   if upsell_item == nil
@@ -306,6 +311,10 @@
                   if item.product.has_only_default_variant or item.product.variants.size <= 1 or distinct_packs <= 1
                     assign is_qty_pack_setup = true
                     assign item_total = item.quantity
+                    assign variant_pack = item.quantity
+                    if item.quantity >= 3
+                      assign has_set_of_3 = true
+                    endif
                   else
                     assign variant_pack = 1
                     if item.variant.metafields.custom.quantity != blank
@@ -328,11 +337,22 @@
                     assign item_total = variant_pack | times: item.quantity
                   endif
 
+                  if variant_pack == 1 and cart_seen_pack_1 == false
+                    assign cart_seen_pack_1 = true
+                    assign cart_distinct_pack_lines = cart_distinct_pack_lines | plus: 1
+                  elsif variant_pack == 2 and cart_seen_pack_2 == false
+                    assign cart_seen_pack_2 = true
+                    assign cart_distinct_pack_lines = cart_distinct_pack_lines | plus: 1
+                  elsif variant_pack >= 3 and cart_seen_pack_3 == false
+                    assign cart_seen_pack_3 = true
+                    assign cart_distinct_pack_lines = cart_distinct_pack_lines | plus: 1
+                  endif
+
                   assign total_tags = total_tags | plus: item_total
                 endfor
 
                 assign upsell_tier = 0
-                if has_set_of_3 or total_tags >= 3
+                if has_set_of_3 or total_tags >= 3 or cart_distinct_pack_lines > 1
                   assign upsell_tier = 3
                 elsif total_tags == 2
                   assign upsell_tier = 2
@@ -369,7 +389,7 @@
                 endif
               -%}
 
-              {%- if upsell_item != nil and upsell_tier > 0 and upsell_tier < 3 -%}
+              {%- if upsell_item != nil and upsell_tier > 0 and upsell_tier < 3 and cart_distinct_pack_lines <= 1 -%}
                 {%- liquid
                   assign show_upsell = false
                   if is_qty_pack_setup
