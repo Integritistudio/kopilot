@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "favicon_img": "shopify://shop_images/app.icon.png",
     "type_header_font": "figtree_n4",
     "type_body_font": "libre_franklin_n4",
     "container_width": 1820,
