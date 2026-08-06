@@ -180,11 +180,20 @@
             "title": "Brand & Product Integration",
             "text": "<p>Not just a new colorway - simple, bulletproof and high-value tech that differentiates your product and protects your customer.</p>"
           }
+        },
+        "solution_card_7YHPKg": {
+          "type": "solution_card",
+          "settings": {
+            "image": "shopify://shop_images/image1_1.jpg",
+            "title": "Retail",
+            "text": "<p>Add a unique and valuable outdoor product to your store.</p>"
+          }
         }
       },
       "block_order": [
         "solution_card_EjdHDn",
-        "solution_card_6w3P9f"
+        "solution_card_6w3P9f",
+        "solution_card_7YHPKg"
       ],
       "name": "Partners Custom Solutions",
       "settings": {
