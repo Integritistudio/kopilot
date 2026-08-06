@@ -501,10 +501,19 @@
 
   var track = root.querySelector('[data-ppst-track]');
   var fill = root.querySelector('[data-ppst-progress-fill]');
-  if (!track || !fill) return;
+  var progressContainer = root.querySelector('.ppst-progress');
+  if (!track || !fill || !progressContainer) return;
 
   function updateProgress() {
     var maxScroll = track.scrollWidth - track.clientWidth;
+    
+    // Hide progress bar entirely if there is no overflow (cards fit on screen)
+    if (maxScroll <= 0) {
+      progressContainer.style.display = 'none';
+    } else {
+      progressContainer.style.display = 'block';
+    }
+
     var ratio = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
     var trackWidth = track.clientWidth;
     var minFill = Math.min(trackWidth * 0.48, trackWidth);
