@@ -36,7 +36,7 @@
             "price": "$39.99",
             "compare_price": "",
             "save_label": "",
-            "included_items": "KOPILOT.ID NFC tag\n1 Goggle mount\n1 Zipper mount\n1 Carbon helmet mount"
+            "included_items": "KOPILOT.ID NFC tag\n1 Goggle Mount\n1 Zipper Mount\n1 Carbon helmet Mount"
           }
         },
         "tier_BeADXP": {
@@ -168,7 +168,6 @@
         "gallery_slide_X7ze7k"
       ],
       "settings": {
-        "product": "kopilot-id",
         "color_scheme": "",
         "promo_text": "Special offer. Save up to 20% on multi-packs.",
         "title": "The piece of gear you don't think about until you need it.",
