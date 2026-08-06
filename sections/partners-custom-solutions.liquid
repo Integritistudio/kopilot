@@ -54,15 +54,20 @@
   .pcsl-{{ section.id }} .pcsl-grid {
     display: flex;
     flex-direction: row;
-    align-items: stretch; /* Changed to stretch so cards match height */
-    justify-content: flex-start; /* Changed to flex-start for proper scrolling */
+    align-items: stretch;
+    justify-content: flex-start;
     gap: 39px;
     width: 100%;
     max-width: 1055px;
-    overflow-x: auto; /* Enables horizontal scrolling */
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 24px; /* Space for scrollbar */
+    padding-bottom: 24px;
+    cursor: grab; /* Indicates the element is draggable */
+  }
+
+  .pcsl-{{ section.id }} .pcsl-grid:active {
+    cursor: grabbing; /* Changes cursor when actively dragging */
   }
 
   /* Custom Scrollbar styles matching image_a81dd8.png */
@@ -83,7 +88,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    scroll-snap-align: start; /* Snaps card to the beginning when scrolling */
+    scroll-snap-align: start;
+    user-select: none; /* Prevents text highlighting while dragging */
   }
 
   .pcsl-{{ section.id }} .pcsl-card-media {
@@ -103,6 +109,7 @@
     object-fit: cover;
     object-position: center center;
     display: block;
+    -webkit-user-drag: none; /* Prevents default browser image drag (ghost image) */
   }
 
   .pcsl-{{ section.id }} .pcsl-card-body {
@@ -113,7 +120,7 @@
     width: 100%;
     padding: 20px 22px 20px 30px;
     background-color: #f1f1f1;
-    flex-grow: 1; /* Fills remaining height if cards differ in content length */
+    flex-grow: 1;
   }
 
   .pcsl-{{ section.id }} .pcsl-card-title {
@@ -186,13 +193,13 @@
     }
 
     .pcsl-{{ section.id }} .pcsl-grid {
-      flex-wrap: nowrap; /* Prevent wrapping to allow scroll */
+      flex-wrap: nowrap;
       max-width: 100%;
       gap: clamp(24px, 2.708vw, 39px);
     }
 
     .pcsl-{{ section.id }} .pcsl-card {
-      flex: 0 0 380px; /* Fixed width to allow scrolling behavior */
+      flex: 0 0 380px;
       width: 380px;
       max-width: 100%;
     }
@@ -216,10 +223,10 @@
     }
 
     .pcsl-{{ section.id }} .pcsl-grid {
-      flex-direction: row; /* Keep as row instead of column for slider */
+      flex-direction: row;
       align-items: stretch;
       gap: 19px;
-      max-width: 100%; /* Must be 100% to scroll overflow */
+      max-width: 100%;
     }
 
     .pcsl-{{ section.id }} .pcsl-card {
@@ -259,7 +266,7 @@
       <h2 class="pcsl-heading">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
 
-    <div class="pcsl-grid">
+    <div class="pcsl-grid" id="pcsl-grid-{{ section.id }}">
       {%- for block in section.blocks -%}
         {%- if block.type == 'solution_card' -%}
           <article class="pcsl-card" {{ block.shopify_attributes }}>
@@ -269,7 +276,7 @@
                 {{
                   block.settings.image
                   | image_url: width: 1200
-                  | image_tag: loading: 'lazy', alt: pcsl_img_alt
+                  | image_tag: loading: 'lazy', alt: pcsl_img_alt, draggable: false
                 }}
               {%- endif -%}
             </div>
@@ -289,6 +296,43 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('pcsl-grid-{{ section.id }}');
+    if (!slider) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      // Temporarily disable scroll snapping so dragging is smooth
+      slider.style.scrollSnapType = 'none'; 
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.style.scrollSnapType = ''; // Restore CSS default
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.style.scrollSnapType = ''; // Restore CSS default
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // Multiply by 2 for faster scrolling speed
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "Partners Custom Solutions",
@@ -300,6 +344,12 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Custom solutions for every partnership."
     }
   ],
   "blocks": [
