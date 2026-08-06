@@ -753,7 +753,7 @@
         "image_mobile": "shopify://shop_images/Group_2106667189.png",
         "heading": "Be ready for the unexpected with KOPILOT.ID.",
         "button_label": "Get KOPILOT.ID",
-        "button_link": "",
+        "button_link": "shopify://products/kopilot-id",
         "media_margin_top": -54,
         "media_margin_top_mobile": -15,
         "padding_top": 0,
