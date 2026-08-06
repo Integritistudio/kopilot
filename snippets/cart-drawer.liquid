@@ -76,9 +76,11 @@
                       assign has_pack_label = true
                     endif
                   endif
+
+                  assign display_pack_qty = pack_qty | times: item.quantity
                 -%}
 
-                <div class="cart_drawer_item_block" data-pack-qty="{{ pack_qty }}">
+                <div class="cart_drawer_item_block" data-pack-qty="{{ display_pack_qty }}">
                   <div class="cdi_block_inner">
                     <div class="cart_drawer_item_img_block">
                       <a href="{{ item.url }}" aria-label="{{ item.product.title | escape }}"></a>
@@ -123,10 +125,10 @@
                           {% if has_pack_label %}
                             <p class="cdi_product_options">
                               <span>
-                                {%- if pack_qty == 1 -%}
+                                {%- if display_pack_qty == 1 -%}
                                   1 Product
                                 {%- else -%}
-                                  {{ pack_qty }} Products
+                                  {{ display_pack_qty }} Products
                                 {%- endif -%}
                               </span>
                             </p>
