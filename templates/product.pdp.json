@@ -34,6 +34,9 @@
       "block_order": [
         "judge_me_reviews_preview_badge_RagLF9"
       ],
+      "custom_css": [
+        ".kopilot-pdp__delivery{display:none!important}"
+      ],
       "settings": {
         "gallery_image_limit": 6,
         "color_scheme": "",
