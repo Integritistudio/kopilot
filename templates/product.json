@@ -78,19 +78,19 @@
         "i2": {
           "type": "included_item",
           "settings": {
-            "label": "1 Goggle mount"
+            "label": "1 Goggle Mount"
           }
         },
         "i3": {
           "type": "included_item",
           "settings": {
-            "label": "1 Zipper mount"
+            "label": "1 Zipper Mount"
           }
         },
         "i4": {
           "type": "included_item",
           "settings": {
-            "label": "1 Carbon helmet mount"
+            "label": "1 Carbon helmet Mount"
           }
         }
       },
@@ -538,15 +538,8 @@
     "kopilot_pdp_partner_cta": {
       "type": "kopilot-pdp-partner-cta",
       "settings": {
-        "color_scheme": "scheme-1",
         "heading": "Partner with KOPILOT.ID",
-        "text": "Bring KOPILOT.ID to your race, event, or gear line with custom-branded NFC emergency tags and direct integration support from our team.",
-        "link_label": "See partnerships",
-        "link_url": "",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
+        "link_url": ""
       }
     },
     "kopilot_hero2": {
