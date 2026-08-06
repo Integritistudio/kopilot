@@ -35,7 +35,7 @@
         "judge_me_reviews_preview_badge_RagLF9"
       ],
       "custom_css": [
-        ".kopilot-pdp__delivery{display:none!important}"
+        ".kopilot-pdp__delivery {display: none !important;}"
       ],
       "settings": {
         "gallery_image_limit": 6,
@@ -50,7 +50,7 @@
         "included_heading": "What's included:",
         "button_label": "ADD TO CART - 1 TAG",
         "shipping_heading": "Shipping & Returns",
-        "shipping_content": "<p>Free standard shipping on all orders. Returns accepted within 30 days if the product is unused and in original packaging.</p>",
+        "shipping_content": "<p>Free standard shipping on all purchases of 2 tags or more. Lifetime Warranty and Satisfaction Guarantee.</p>",
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
