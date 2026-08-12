@@ -47,9 +47,10 @@
     display: none !important;
   }
 
-  body.page-emergency .summary-header__icon svg {
-  fill: var(--em-red);
-  color: var(--em-red);
+body.page-emergency .summary-header__icon svg,
+body.page-emergency .summary-header__icon svg * {
+  fill: var(--em-red) !important;
+  color: var(--em-red) !important;
 }
 
   body.page-emergency .shopify-section-group-footer-group,
