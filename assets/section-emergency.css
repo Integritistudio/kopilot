@@ -307,25 +307,29 @@
   }
   
   /* Snapshot (only when JS keeps it) */
-  body.page-emergency .summary {
-    width: 100%;
-    max-width: var(--em-card-w);
-    margin: 0;
-    background: linear-gradient(#fff, #fff) padding-box,
-      linear-gradient(90deg, #9c1f87, #fd8ca0, #351eeb) border-box;
-    border: 3px solid transparent;
-    overflow: hidden;
-  }
+ body.page-emergency .summary {
+  width: 100%;
+  max-width: var(--em-card-w);
+  margin: 0;
+  /* Add frosted glass */
+  background: var(--em-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 16px;
+  /* Remove old gradient borders */
+  border: none;
+  overflow: hidden;
+}
   
-  body.page-emergency .summary-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 0;
-    padding: 14px 16px;
-    background-color: var(--em-red);
-    text-transform: uppercase;
-  }
+body.page-emergency .summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 22px; /* Matches the personal-header margin */
+  padding: 0; /* Removes old padding */
+  background-color: transparent; /* Removes the red background */
+  text-transform: uppercase;
+}
   
   body.page-emergency .summary-header h3 {
     margin: 0;
