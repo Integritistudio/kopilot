@@ -51,6 +51,7 @@ body.page-emergency .summary-header__icon svg,
 body.page-emergency .summary-header__icon svg * {
   fill: var(--em-red) !important;
   color: var(--em-red) !important;
+  stroke: var(--em-red) !important;
 }
 
   body.page-emergency .shopify-section-group-footer-group,
