@@ -90,18 +90,29 @@
  {% endcomment %}
 <script>
     const dest1 = 'https://www.kopilot.id/pages/emergency';
-    const dest2 = 'https://www.kopilot.id/pages/getstarted';
+    // Old page first; fall back to new theme page if it does not exist
+    const dest2Primary = 'https://www.kopilot.id/pages/getstarted';
+    const dest2Fallback = 'https://www.kopilot.id/pages/getstarted2';
 
     const url = new URL(location.href);
-   const isParam=url.searchParams.has('t');
-   const paramValue=url.searchParams.get('t');
+    const path = url.pathname.replace(/\/$/, '');
+    const isParam = url.searchParams.has('t');
+    const paramValue = url.searchParams.get('t');
+    const onEmergency = path === '/pages/emergency';
+    const onGetStarted = path === '/pages/getstarted' || path === '/pages/getstarted2';
 
-    if (location.href !== dest1 && location.href !== dest2) {
+    if (!onEmergency && !onGetStarted) {
         if (isParam && paramValue && paramValue.length > 0) {
-          localStorage.setItem('tagId',JSON.stringify(paramValue))
+            localStorage.setItem('tagId', JSON.stringify(paramValue));
             location.href = dest1;
         } else {
-            location.href = dest2;
+            fetch(dest2Primary, { method: 'HEAD', credentials: 'same-origin' })
+                .then(function (res) {
+                    location.href = res.ok ? dest2Primary : dest2Fallback;
+                })
+                .catch(function () {
+                    location.href = dest2Fallback;
+                });
         }
     }
 </script>
