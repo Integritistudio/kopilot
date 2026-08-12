@@ -1,0 +1,225 @@
+{% comment %} <section class="landing-section">
+    <div class="landing-header">
+        {% if section.settings.logo != blank %}
+            <div class="landing-logo">
+                <img src="{{ section.settings.logo | img_url: 'master' }}" alt="">
+            </div>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+            <h3>{{ section.settings.text }}</h3>
+        {% endif %}
+
+    </div>
+    <div>
+        {% if section.settings.subtitle != blank %}
+            <p class="landing-subtitle"> {{ section.settings.subtitle }}</p>
+        {% endif %}
+
+        <div class="landing-buttons">
+
+            {% if section.settings.button_1 != blank and section.settings.button_1-url != blank %}
+                <div class="landing-buttons__item">
+                    <button class="firstButton">
+                        <a href="{{ section.settings.button_1-url }}">{{ section.settings.button_1 }}</a>
+                        {% if section.settings.button_1_info != blank %}
+                            <br>
+                            <p class="landing-buttons__info">{{ section.settings.button_1_info }}</p>
+                        {% endif %}
+                    </button>
+                </div>
+
+                <div class="landing-buttons__item">
+                    <button class="secondButton">
+
+                        {% if section.settings.button_2 != blank and section.settings.button_2-url != blank %}
+                            <a href="{{ section.settings.button_2-url }}"> {{ section.settings.button_2 }} </a>
+                            {% if section.settings.button_2_info != blank %}
+                                <br>
+                                <p class="landing-buttons__info">{{ section.settings.button_2_info }}</p>
+                            {% endif %}
+                        {% endif %}
+
+                    </button>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="landing-buttons__getting">
+            {% if section.settings.button_img1 != blank and section.settings.button_img2 != blank %}
+                <div class="landing-button__images">
+                    <button class="emergency-btn">
+                        <img src="{{ section.settings.button_img1 | img_url: 'master' }}" width="150px">
+                    </button>
+
+                    <button>
+                        <img src="{{ section.settings.button_img2 | img_url: 'master' }}" width="150px">
+                    </button>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .firstButton {
+        color: {{ section.settings.button_1-txt_color }};
+        background-color: {{ section.settings.button_1-color }};
+        padding: {{section.settings.padding-btn1}}px !important;
+    }
+
+    .firstButton a {
+        color: {{ section.settings.button_1-txt_color }};
+
+    }
+
+    .secondButton a {
+        color: {{ section.settings.button_2-txt_color }};
+    }
+
+    .secondButton {
+        color: {{ section.settings.button_2-txt_color }};
+        background-color: {{ section.settings.button_2-color }};
+        padding: {{section.settings.padding-btn2}}px !important;
+    }
+
+
+</style>
+ {% endcomment %}
+<script>
+    const dest1 = 'https://www.kopilot.id/pages/emergency';
+    const dest2 = 'https://www.kopilot.id/pages/getstarted';
+
+    const url = new URL(location.href);
+   const isParam=url.searchParams.has('t');
+   const paramValue=url.searchParams.get('t');
+
+    if (location.href !== dest1 && location.href !== dest2) {
+        if (isParam && paramValue && paramValue.length > 0) {
+          localStorage.setItem('tagId',JSON.stringify(paramValue))
+            location.href = dest1;
+        } else {
+            location.href = dest2;
+        }
+    }
+</script>
+
+{% schema %}
+{
+  "name": "Landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Kopilot id"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Kopilot id"
+    },
+    {
+      "type": "text",
+      "id": "button_1",
+      "label": "Button 1",
+      "default": "Button One"
+    },
+    {
+      "type": "text",
+      "id": "button_1_info",
+      "label": "Button Info",
+      "default": "Button info"
+    },
+    {
+      "type": "url",
+      "id": "button_1-url",
+      "label": "First Button Url"
+    },
+    {
+      "type": "color",
+      "id": "button_1-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "button_1-txt_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "button_img1",
+      "label": "first Button Image"
+    },
+    {
+      "type": "range",
+      "id": "padding-btn1",
+      "label": "Button Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "second button"
+    },
+    {
+      "type": "text",
+      "id": "button_2",
+      "label": "Button 2",
+      "default": "Button One"
+    },
+    {
+      "type": "text",
+      "id": "button_2_info",
+      "label": "Button Info",
+      "default": "Button info"
+    },
+    {
+      "type": "url",
+      "id": "button_2-url",
+      "label": "Second Button Url"
+    },
+    {
+      "type": "color",
+      "id": "button_2-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "button_2-txt_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "button_img2",
+      "label": "Second Button Image"
+    },
+    {
+      "type": "range",
+      "id": "padding-btn2",
+      "label": "Top-Button Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing"
+    }
+  ]
+}
+{% endschema %}

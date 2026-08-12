@@ -8,24 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "default-page",
-      "custom_css": [
-        "h1 {font-family: \"Elza\" !important;}",
-        "p {font-family: \"Elza\" !important;}"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "show_breadcrumbs": true,
-        "show_title": true,
-        "head_align": "center",
-        "top_spacing": 40,
-        "bottom_spacing": 40
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+	"sections": {
+		"main": {
+			"type": "landing",
+			"settings": {}
+		}
+	},
+	"order": [
+		"main"
+	]
 }
