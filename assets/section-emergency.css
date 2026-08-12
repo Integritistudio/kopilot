@@ -47,6 +47,11 @@
     display: none !important;
   }
 
+  body.page-emergency .summary-header__icon svg {
+  fill: var(--em-red);
+  color: var(--em-red);
+}
+
   body.page-emergency .shopify-section-group-footer-group,
   body.page-emergency footer.shopify-section.footer,
   body.page-emergency footer.footer,
