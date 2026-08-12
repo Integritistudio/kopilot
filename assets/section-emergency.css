@@ -331,16 +331,17 @@ body.page-emergency .summary-header {
   text-transform: uppercase;
 }
   
-  body.page-emergency .summary-header h3 {
-    margin: 0;
-    padding: 0 0 0 8px;
-    font-family: var(--em-font);
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1;
-    color: #fff;
-    text-transform: uppercase;
-  }
+body.page-emergency .summary-header h3 {
+  margin: 0;
+  padding: 0 0 0 8px;
+  font-family: var(--em-font);
+  font-size: 32px; /* Matches personal-header */
+  font-weight: 600;
+  line-height: 1;
+  color: var(--em-red); /* Changes text to red */
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
   
   body.page-emergency .summary-header__icon {
     display: flex;
