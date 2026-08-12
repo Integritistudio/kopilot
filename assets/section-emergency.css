@@ -363,12 +363,12 @@ body.page-emergency .summary-header h3 {
     text-decoration: none;
   }
   
-  body.page-emergency .summary-header__translate-text {
-    color: #fff;
-    font-size: 9px;
-    line-height: 1;
-    font-weight: 600;
-  }
+body.page-emergency .summary-header__translate-text {
+  color: var(--em-muted); /* Changes the text to gray */
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 600;
+}
   
   body.page-emergency .summary-content {
   font-family: var(--font-body-family);
@@ -466,6 +466,10 @@ body.page-emergency .summary-header h3 {
     word-break: break-word;
     color: var(--em-text);
   }
+  body.page-emergency .summary-header__icon-translate img {
+  /* Inverts white to black, then softens it to a nice gray */
+  filter: invert(1) opacity(0.6); 
+}
   
   body.page-emergency .emergency-section__desc:last-child {
     margin-bottom: 0;
