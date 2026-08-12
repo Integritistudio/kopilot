@@ -28,7 +28,7 @@
     color: var(--em-text);
   }
 
-  /* Shell wraps main + footer (footer sits over mountain spill) */
+  /* Shell wraps main + footer so mountain can cover both */
   body.page-emergency .emergency-page-shell {
     position: relative;
     overflow: visible;
@@ -38,8 +38,7 @@
     padding: 0;
     margin: 0;
     min-height: 100vh;
-    /* Mountain positions against MainContent again (behind banner + cards) */
-    position: relative;
+    position: static;
     overflow: visible;
   }
   
@@ -91,34 +90,29 @@
     box-sizing: border-box;
   }
   
-  /* ---------- Full-bleed mountain ----------
-     Image crop stays tied to MainContent (behind upper hero).
-     Container spills under the transparent footer without re-cropping. */
-
+  /* ---------- Full-bleed mountain (covers shell = main + footer) ---------- */
+  
   body.page-emergency .emergency-section-wrapper {
     position: static;
   }
 
   body.page-emergency .emergency-section__bg {
-    --em-footer-spill: 720px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + var(--em-footer-spill));
-    min-height: calc(100% + var(--em-footer-spill));
+    height: 100%;
+    min-height: 100%;
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-    background: #d8dbe0;
+    background: #2a2d33;
   }
   
   body.page-emergency .emergency-section__bg picture {
     display: block;
     width: 100%;
-    /* Same height as MainContent → original mountain crop */
-    height: calc(100% - var(--em-footer-spill));
-    min-height: 100vh;
+    height: 100%;
   }
   
   body.page-emergency .emergency-section__bg-img {
@@ -130,17 +124,16 @@
   }
   
   @media screen and (min-width: 1440px) {
+    body.page-emergency .emergency-page-shell {
+      min-height: 2835px;
+    }
+
     body.page-emergency.kopilot-no-header #MainContent {
       min-height: 2835px;
     }
   
     body.page-emergency .emergency-section__bg {
-      min-height: calc(2835px + var(--em-footer-spill));
-    }
-
-    body.page-emergency .emergency-section__bg picture {
-      height: 2835px;
-      min-height: 2835px;
+      min-height: 100%;
     }
   }
   
@@ -373,6 +366,8 @@
   }
   
   body.page-emergency .summary-content {
+        font-family: var(--font-body-family);
+
     padding: 16px;
     font-size: 16px;
     line-height: 1.35;
