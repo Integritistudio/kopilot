@@ -371,14 +371,13 @@ body.page-emergency .summary-header h3 {
   }
   
   body.page-emergency .summary-content {
-        font-family: var(--font-body-family);
-
-    padding: 16px;
-    font-size: 16px;
-    line-height: 1.35;
-    font-weight: 400;
-    background: rgba(255, 255, 255, 0.94);
-  }
+  font-family: var(--font-body-family);
+  padding: 0; /* Padding is handled by the main .summary wrapper now */
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 400;
+  background: transparent; /* Removes solid white background */
+}
   
   body.page-emergency .summary-content p {
     margin: 0;
