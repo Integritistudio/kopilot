@@ -748,3 +748,8 @@ body.page-emergency .summary-header__translate-text {
       letter-spacing: 1.4px;
     }
   }
+  .summary-content,
+.ai-text-part,
+.emergency-contact-part {
+  font-family: 'Elza', sans-serif !important;
+}
