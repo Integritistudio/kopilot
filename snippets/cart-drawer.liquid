@@ -44,6 +44,14 @@
             <div class="cart_drawer_content_inner">
               {% for item in cart.items %}
                 {%- liquid
+                  assign cart_img = item.image
+                  if item.product.featured_image != blank
+                    assign cart_img = item.product.featured_image
+                  endif
+                  if item.product.images.size > 0
+                    assign cart_img = item.product.images.first
+                  endif
+
                   assign pack_qty = 1
                   assign has_pack_label = false
                   if item.variant.metafields.custom.quantity != blank
@@ -67,21 +75,6 @@
                       assign pack_qty = 2
                       assign has_pack_label = true
                     endif
-                  endif
-
-                  comment
-                    Prefer the selected variant image (e.g. Set of 2 / Set of 3).
-                    Fall back to product featured / first image when the variant has none.
-                  endcomment
-                  assign cart_img = item.image
-                  if item.variant.featured_image != blank
-                    assign cart_img = item.variant.featured_image
-                  elsif item.variant.image != blank
-                    assign cart_img = item.variant.image
-                  elsif item.product.featured_image != blank
-                    assign cart_img = item.product.featured_image
-                  elsif item.product.images.size > 0
-                    assign cart_img = item.product.images.first
                   endif
 
                   assign display_pack_qty = pack_qty | times: item.quantity
