@@ -44,6 +44,14 @@
             <div class="cart_drawer_content_inner">
               {% for item in cart.items %}
                 {%- liquid
+                  assign cart_img = item.image
+                  if item.product.featured_image != blank
+                    assign cart_img = item.product.featured_image
+                  endif
+                  if item.product.images.size > 0
+                    assign cart_img = item.product.images.first
+                  endif
+
                   assign pack_qty = 1
                   assign has_pack_label = false
                   if item.variant.metafields.custom.quantity != blank
@@ -69,18 +77,6 @@
                     endif
                   endif
 
-                  # Prefer selected variant image (Set of 2 / Set of 3); else product featured
-                  assign cart_img = item.image
-                  if item.variant.featured_image != blank
-                    assign cart_img = item.variant.featured_image
-                  elsif item.variant.image != blank
-                    assign cart_img = item.variant.image
-                  elsif item.product.featured_image != blank
-                    assign cart_img = item.product.featured_image
-                  elsif item.product.images.size > 0
-                    assign cart_img = item.product.images.first
-                  endif
-
                   assign display_pack_qty = pack_qty | times: item.quantity
                 -%}
 
@@ -102,7 +98,7 @@
                       <div class="cdi_top_row">
                         <div class="cdi_title">
                           <p>
-                            <a href="{{ item.url }}">{{ item.product.title }}</a>
+                            <a href="{{ item.url }}">The piece of gear you don't think about until you need it.</a>
                           </p>
                         </div>
                         <div class="cdi_price">
