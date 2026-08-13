@@ -69,7 +69,10 @@
                     endif
                   endif
 
-                  # Prefer selected variant image (Set of 2 / Set of 3); else product featured
+                  comment
+                    Prefer the selected variant image (e.g. Set of 2 / Set of 3).
+                    Fall back to product featured / first image when the variant has none.
+                  endcomment
                   assign cart_img = item.image
                   if item.variant.featured_image != blank
                     assign cart_img = item.variant.featured_image
@@ -102,7 +105,7 @@
                       <div class="cdi_top_row">
                         <div class="cdi_title">
                           <p>
-                            <a href="{{ item.url }}">{{ item.product.title }}</a>
+                            <a href="{{ item.url }}">The piece of gear you don't think about until you need it.</a>
                           </p>
                         </div>
                         <div class="cdi_price">
