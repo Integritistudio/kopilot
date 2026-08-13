@@ -378,7 +378,7 @@ body.page-emergency .summary-header__translate-text {
 }
  
   body.page-emergency .summary-content {
-  font-family: var(--em-font:);
+  font-family: var(--em-font);
   padding: 0; /* Padding is handled by the main .summary wrapper now */
   font-size: 16px;
   line-height: 1.35;
