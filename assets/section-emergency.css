@@ -292,7 +292,7 @@ body.page-emergency .summary-header__icon svg * {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 96px var(--em-pad-x) 48px;
+    padding: 273px var(--em-pad-x) 48px;
     background: transparent;
   }
   
@@ -667,7 +667,7 @@ body.page-emergency .summary-header__translate-text {
   
     body.page-emergency .emergency-section {
       align-items: center;
-      padding: 40px var(--em-pad-x) 28px;
+      padding: 150px var(--em-pad-x) 28px;
       max-width: 360px;
     }
   
