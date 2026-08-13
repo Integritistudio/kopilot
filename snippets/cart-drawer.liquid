@@ -6,10 +6,10 @@
     aria-hidden="true">
     <div class="drawer_wrapper_inner cart_drawer_inner" tabindex="-1">
       <div class="cart_drawer_confetti_layer" aria-hidden="true"></div>
-
+ 
       <div class="drawer_header cart_drawer_header">
         <h2 class="cart_drawer_heading">Your Cart</h2>
-
+ 
         <div class="drawer_close_btn_wrapper">
           <button class="drawer_close_btn has_custom_icon" aria-label="{{ 'accessibility.close' | t }}">
             <img
@@ -23,11 +23,11 @@
           </button>
         </div>
       </div>
-
+ 
       {% if cart != empty %}
         {% render 'free-shipping-bar' %}
       {% endif %}
-
+ 
       <div class="cart_drawer_content_wrapper" data-lenis-prevent>
         {% if cart == empty %}
           <div class="empty_cart_drawer_wrapper">
@@ -44,14 +44,6 @@
             <div class="cart_drawer_content_inner">
               {% for item in cart.items %}
                 {%- liquid
-                  assign cart_img = item.image
-                  if item.product.featured_image != blank
-                    assign cart_img = item.product.featured_image
-                  endif
-                  if item.product.images.size > 0
-                    assign cart_img = item.product.images.first
-                  endif
-
                   assign pack_qty = 1
                   assign has_pack_label = false
                   if item.variant.metafields.custom.quantity != blank
@@ -76,10 +68,22 @@
                       assign has_pack_label = true
                     endif
                   endif
-
+ 
+                  # Prefer selected variant image (Set of 2 / Set of 3); else product featured
+                  assign cart_img = item.image
+                  if item.variant.featured_image != blank
+                    assign cart_img = item.variant.featured_image
+                  elsif item.variant.image != blank
+                    assign cart_img = item.variant.image
+                  elsif item.product.featured_image != blank
+                    assign cart_img = item.product.featured_image
+                  elsif item.product.images.size > 0
+                    assign cart_img = item.product.images.first
+                  endif
+ 
                   assign display_pack_qty = pack_qty | times: item.quantity
                 -%}
-
+ 
                 <div class="cart_drawer_item_block" data-pack-qty="{{ display_pack_qty }}">
                   <div class="cdi_block_inner">
                     <div class="cart_drawer_item_img_block">
@@ -93,12 +97,12 @@
                         Special offer. Save up to 20% on multi-packs.
                       </div>
                     </div>
-
+ 
                     <div class="cart_drawer_item_info_block">
                       <div class="cdi_top_row">
                         <div class="cdi_title">
                           <p>
-                            <a href="{{ item.url }}">The piece of gear you don't think about until you need it.</a>
+                            <a href="{{ item.url }}">{{ item.product.title }}</a>
                           </p>
                         </div>
                         <div class="cdi_price">
@@ -119,7 +123,7 @@
                           {% endif %}
                         </div>
                       </div>
-
+ 
                       <div class="cdi_mid_row">
                         <div class="cdi_options_wrapper">
                           {% if has_pack_label %}
@@ -143,7 +147,7 @@
                               {% endfor %}
                             </p>
                           {% endif %}
-
+ 
                           {% if item.properties.size != 0 %}
                             {%- for property in item.properties -%}
                               {%- assign property_first_char = property.first | slice: 0 -%}
@@ -163,14 +167,14 @@
                               {%- endif -%}
                             {%- endfor -%}
                           {% endif %}
-
+ 
                           {% if item.selling_plan_allocation != null %}
                             <p class="cdi_selling_plan">
                               {{ item.selling_plan_allocation.selling_plan.name }}
                             </p>
                           {% endif %}
                         </div>
-
+ 
                         <div class="cdi_item_remove">
                           <item-remove data-line="{{ forloop.index }}">
                             <a
@@ -184,7 +188,7 @@
                           </item-remove>
                         </div>
                       </div>
-
+ 
                       <div class="cdi_quantity_picker">
                         <cart-quantity-picker data-line="{{ forloop.index }}">
                           <button
@@ -201,7 +205,7 @@
                               <path d="M2.5 6h7" stroke="#000" stroke-width="1.25" stroke-linecap="square"/>
                             </svg>
                           </button>
-
+ 
                           <input
                             type="text"
                             name="quantity"
@@ -217,7 +221,7 @@
                           <label class="visually-hidden" for="Item_quantity-{{ forloop.index }}">
                             {{- 'products.product.quantity' | t -}}
                           </label>
-
+ 
                           <button
                             type="button"
                             aria-label="{{ 'products.product.quantity_increase' | t }}"
@@ -235,7 +239,7 @@
                       </div>
                     </div>
                   </div>
-
+ 
                   <div
                     class="cart_drawer_error"
                     data-line="{{ forloop.index }}"
@@ -246,7 +250,7 @@
               {% endfor %}
             </div>
           </div>
-
+ 
           <div class="cart_drawer_footer">
             <div class="cart_drawer_footer_inner">
               {%- comment -%}
@@ -267,17 +271,17 @@
                 assign cart_seen_pack_2 = false
                 assign cart_seen_pack_3 = false
                 assign cart_distinct_pack_lines = 0
-
+ 
                 for item in cart.items
                   if upsell_item == nil
                     assign upsell_item = item
                   endif
-
+ 
                   assign seen_1 = false
                   assign seen_2 = false
                   assign seen_3 = false
                   assign distinct_packs = 0
-
+ 
                   for v in item.product.variants
                     assign vq = 1
                     if v.metafields.custom.quantity != blank
@@ -309,7 +313,7 @@
                       assign distinct_packs = distinct_packs | plus: 1
                     endif
                   endfor
-
+ 
                   if item.product.has_only_default_variant or item.product.variants.size <= 1 or distinct_packs <= 1
                     assign is_qty_pack_setup = true
                     assign item_total = item.quantity
@@ -338,7 +342,7 @@
                     endif
                     assign item_total = variant_pack | times: item.quantity
                   endif
-
+ 
                   if variant_pack == 1 and cart_seen_pack_1 == false
                     assign cart_seen_pack_1 = true
                     assign cart_distinct_pack_lines = cart_distinct_pack_lines | plus: 1
@@ -349,10 +353,10 @@
                     assign cart_seen_pack_3 = true
                     assign cart_distinct_pack_lines = cart_distinct_pack_lines | plus: 1
                   endif
-
+ 
                   assign total_tags = total_tags | plus: item_total
                 endfor
-
+ 
                 assign upsell_tier = 0
                 if has_set_of_3 or total_tags >= 3 or cart_distinct_pack_lines > 1
                   assign upsell_tier = 3
@@ -361,7 +365,7 @@
                 elsif total_tags == 1
                   assign upsell_tier = 1
                 endif
-
+ 
                 if upsell_item != nil and upsell_tier > 0 and upsell_tier < 3 and is_qty_pack_setup == false
                   for v in upsell_item.product.variants
                     assign vq = 1
@@ -390,7 +394,7 @@
                   endfor
                 endif
               -%}
-
+ 
               {%- if upsell_item != nil and upsell_tier > 0 and upsell_tier < 3 and cart_distinct_pack_lines <= 1 -%}
                 {%- liquid
                   assign show_upsell = false
@@ -413,7 +417,7 @@
                         {{ settings.cart_upsell_heading | default: 'Save more when you add extra tags.' }}
                       </p>
                     </div>
-
+ 
                     <div class="cart_drawer_upsell_list">
                       {%- if upsell_tier == 1 -%}
                         {%- if is_qty_pack_setup or set_of_2_variant != nil -%}
@@ -454,7 +458,7 @@
                             {%- endif -%}
                           </div>
                         {%- endif -%}
-
+ 
                         {%- if is_qty_pack_setup or set_of_3_variant != nil -%}
                           <div class="cart_drawer_upsell_card">
                             <div class="cart_drawer_upsell_copy">
@@ -537,7 +541,7 @@
                   </div>
                 {%- endif -%}
               {%- endif -%}
-
+ 
               {%- if cart.cart_level_discount_applications.size > 0 -%}
                 <div class="cdi_cart_level_discount_wrapper" aria-label="{{ 'sections.cart.cart_level_discount_heading' | t }}">
                   {%- for discount in cart.cart_level_discount_applications -%}
@@ -551,14 +555,14 @@
                   {%- endfor -%}
                 </div>
               {%- endif -%}
-
+ 
               <div class="cdi_subtotals_wrapper">
                 <div class="cdi_subtotal_inner">
                   <span class="cdi_subtotal_label">Subtotal</span>
                   <span class="cdi_subtotal_value">{{ cart.total_price | money }}</span>
                 </div>
               </div>
-
+ 
               <div class="cdi_action_buttons_wrapper">
                 <form action="{{ routes.cart_url }}" method="post">
                   <button class="btn cart_drawer_checkout_btn" type="submit" name="checkout">
@@ -566,7 +570,7 @@
                   </button>
                 </form>
               </div>
-
+ 
               <div class="cart_drawer_guarantee">
                 <span class="cart_drawer_guarantee_icon" aria-hidden="true">
                   <img

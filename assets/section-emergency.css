@@ -2,7 +2,7 @@
    Emergency page — full-bleed mountain + left cards + right K
    Matches Figma 1440 desktop / 360 mobile
    ========================================================= */
-
+ 
    .page-emergency {
     --em-red: #f20008;
     --em-text: #232526;
@@ -15,25 +15,25 @@
     --em-header-h: 70px;
     --em-font: 'Elza', sans-serif;
   }
-  
+ 
   html:has(body.page-emergency),
   body.page-emergency {
     min-height: 100%;
     background: #1a1c20;
   }
-  
+ 
   body.page-emergency {
     margin: 0;
     font-family: var(--em-font);
     color: var(--em-text);
   }
-
+ 
   /* Shell wraps main + footer so mountain can cover both */
   body.page-emergency .emergency-page-shell {
     position: relative;
     overflow: visible;
   }
-  
+ 
   body.page-emergency.kopilot-no-header #MainContent {
     padding: 0;
     margin: 0;
@@ -41,19 +41,19 @@
     position: static;
     overflow: visible;
   }
-  
+ 
   body.page-emergency #shopify-chat,
   body.page-emergency .scroll-to-top {
     display: none !important;
   }
-
+ 
 body.page-emergency .summary-header__icon svg,
 body.page-emergency .summary-header__icon svg * {
   fill: var(--em-red) !important;
   color: var(--em-red) !important;
   stroke: var(--em-red) !important;
 }
-
+ 
   body.page-emergency .shopify-section-group-footer-group,
   body.page-emergency footer.shopify-section.footer,
   body.page-emergency footer.footer,
@@ -63,14 +63,14 @@ body.page-emergency .summary-header__icon svg * {
     background: transparent !important;
     background-color: transparent !important;
   }
-
+ 
   body.page-emergency .shopify-section-group-footer-group,
   body.page-emergency footer.footer {
     margin-top: -50px;
     position: relative;
     z-index: 10;
   }
-  
+ 
   body.page-emergency .section-emergency-banner,
   body.page-emergency .section-emergency,
   body.page-emergency .shopify-section:has(.emergency-banner),
@@ -80,11 +80,11 @@ body.page-emergency .summary-header__icon svg * {
     max-width: none;
     background: transparent !important;
   }
-  
+ 
   body.page-emergency .shopify-section {
     background: transparent !important;
   }
-  
+ 
   body.page-emergency .emergency-banner *,
   body.page-emergency .emergency-banner *::before,
   body.page-emergency .emergency-banner *::after,
@@ -96,13 +96,13 @@ body.page-emergency .summary-header__icon svg * {
   body.page-emergency .emergency-section__bg *::after {
     box-sizing: border-box;
   }
-  
+ 
   /* ---------- Full-bleed mountain (covers shell = main + footer) ---------- */
-  
+ 
   body.page-emergency .emergency-section-wrapper {
     position: static;
   }
-
+ 
   body.page-emergency .emergency-section__bg {
     position: absolute;
     top: 0;
@@ -115,13 +115,13 @@ body.page-emergency .summary-header__icon svg * {
     pointer-events: none;
     background: #2a2d33;
   }
-  
+ 
   body.page-emergency .emergency-section__bg picture {
     display: block;
     width: 100%;
     height: 100%;
   }
-  
+ 
   body.page-emergency .emergency-section__bg-img {
     display: block;
     width: 100%;
@@ -129,23 +129,23 @@ body.page-emergency .summary-header__icon svg * {
     object-fit: cover;
     object-position: 58% 28%;
   }
-  
+ 
   @media screen and (min-width: 1440px) {
     body.page-emergency .emergency-page-shell {
       min-height: 2835px;
     }
-
+ 
     body.page-emergency.kopilot-no-header #MainContent {
       min-height: 2835px;
     }
-  
+ 
     body.page-emergency .emergency-section__bg {
       min-height: 100%;
     }
   }
-  
+ 
   /* ---------- Banner shell (header / hero / K only) ---------- */
-  
+ 
   body.page-emergency .emergency-banner {
     position: relative;
     z-index: 2;
@@ -153,9 +153,9 @@ body.page-emergency .summary-header__icon svg * {
     min-height: 0;
     pointer-events: none;
   }
-  
+ 
   /* ---------- Header: logo img | title img | CTA text + cart icon ---------- */
-  
+ 
   body.page-emergency .emergency-banner__header {
     position: relative;
     z-index: 20;
@@ -170,7 +170,7 @@ body.page-emergency .summary-header__icon svg * {
     background: #e4e5ea;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
-  
+ 
   body.page-emergency .emergency-banner__logo {
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@ body.page-emergency .summary-header__icon svg * {
     text-decoration: none;
     z-index: 1;
   }
-  
+ 
   body.page-emergency .emergency-banner__logo-img {
     display: block;
     height: 22px;
@@ -187,7 +187,7 @@ body.page-emergency .summary-header__icon svg * {
     max-width: 100%;
     object-fit: contain;
   }
-  
+ 
   body.page-emergency .emergency-banner__title--header {
     position: absolute;
     left: 50%;
@@ -199,7 +199,7 @@ body.page-emergency .summary-header__icon svg * {
     pointer-events: none;
     max-width: 42vw;
   }
-  
+ 
   body.page-emergency .emergency-banner__title--header .emergency-banner__title-img {
     display: block;
     height: 28px;
@@ -207,7 +207,7 @@ body.page-emergency .summary-header__icon svg * {
     max-width: 100%;
     object-fit: contain;
   }
-  
+ 
   body.page-emergency .emergency-banner__cta-group {
     display: inline-flex;
     align-items: center;
@@ -216,7 +216,7 @@ body.page-emergency .summary-header__icon svg * {
     margin-left: auto;
     z-index: 1;
   }
-  
+ 
   body.page-emergency .emergency-banner__cta-text {
     font-family: var(--em-font);
     font-weight: 700;
@@ -228,7 +228,7 @@ body.page-emergency .summary-header__icon svg * {
     color: #686a6a;
     white-space: nowrap;
   }
-  
+ 
   body.page-emergency .emergency-banner__cta-icon {
     display: flex;
     align-items: center;
@@ -238,33 +238,33 @@ body.page-emergency .summary-header__icon svg * {
     flex: 0 0 24px;
     text-decoration: none;
   }
-  
+ 
   body.page-emergency .emergency-banner__cta-icon-img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-  
+ 
   /* Mobile hero title (hidden on desktop) */
   body.page-emergency .emergency-banner__hero {
     display: none;
   }
-  
+ 
   /* ---------- Red K — right side of viewport (desktop) ---------- */
-  
+ 
   body.page-emergency .emergency-banner__tag {
     pointer-events: auto;
     text-decoration: none;
   }
-  
+ 
   body.page-emergency .emergency-banner__tag-img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-  
+ 
   body.page-emergency .emergency-banner__tag--desktop {
     position: fixed;
     top: 42%;
@@ -275,13 +275,13 @@ body.page-emergency .summary-header__icon svg * {
     height: 110px;
     transform: translateY(-50%);
   }
-  
+ 
   body.page-emergency .emergency-banner__tag--hero {
     display: none;
   }
-  
+ 
   /* ---------- Cards column — left over the mountain ---------- */
-  
+ 
   body.page-emergency .emergency-section {
     position: relative;
     z-index: 10;
@@ -292,10 +292,10 @@ body.page-emergency .summary-header__icon svg * {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 273px var(--em-pad-x) 48px;
+    padding: 96px var(--em-pad-x) 48px;
     background: transparent;
   }
-  
+ 
   body.page-emergency .emergency-info {
     display: flex;
     flex-direction: column;
@@ -305,14 +305,14 @@ body.page-emergency .summary-header__icon svg * {
     max-width: 100%;
     z-index: 10;
   }
-  
+ 
   body.page-emergency .emergency-block {
     width: 100%;
     max-width: var(--em-card-w);
     z-index: 1;
     opacity: 1;
   }
-  
+ 
   /* Snapshot (only when JS keeps it) */
  body.page-emergency .summary {
   width: 100%;
@@ -327,7 +327,7 @@ body.page-emergency .summary-header__icon svg * {
   border: none;
   overflow: hidden;
 }
-  
+ 
 body.page-emergency .summary-header {
   display: flex;
   justify-content: space-between;
@@ -337,7 +337,7 @@ body.page-emergency .summary-header {
   background-color: transparent; /* Removes the red background */
   text-transform: uppercase;
 }
-  
+ 
 body.page-emergency .summary-header h3 {
   margin: 0;
   padding: 0 0 0 8px;
@@ -349,19 +349,19 @@ body.page-emergency .summary-header h3 {
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
-  
+ 
   body.page-emergency .summary-header__icon {
     display: flex;
     gap: 8px;
     align-items: center;
   }
-  
+ 
   body.page-emergency .summary-header__icon sup {
     top: -4px;
     margin-left: 2px;
     font-size: 0.55em;
   }
-  
+ 
   body.page-emergency .summary-header__icon-translate {
     display: flex;
     flex-direction: column;
@@ -369,14 +369,14 @@ body.page-emergency .summary-header h3 {
     gap: 2px;
     text-decoration: none;
   }
-  
+ 
 body.page-emergency .summary-header__translate-text {
   color: var(--em-muted); /* Changes the text to gray */
   font-size: 9px;
   line-height: 1;
   font-weight: 600;
 }
-  
+ 
   body.page-emergency .summary-content {
   font-family: var(--font-body-family);
   padding: 0; /* Padding is handled by the main .summary wrapper now */
@@ -385,11 +385,11 @@ body.page-emergency .summary-header__translate-text {
   font-weight: 400;
   background: transparent; /* Removes solid white background */
 }
-  
+ 
   body.page-emergency .summary-content p {
     margin: 0;
   }
-  
+ 
   /* Glass info cards */
   body.page-emergency .personal-information,
   body.page-emergency .medical-information,
@@ -399,7 +399,7 @@ body.page-emergency .summary-header__translate-text {
     -webkit-backdrop-filter: blur(10px);
     padding: 24px 16px;
   }
-  
+ 
   body.page-emergency .personal-header,
   body.page-emergency .medical-header,
   body.page-emergency .emergency-header {
@@ -410,7 +410,7 @@ body.page-emergency .summary-header__translate-text {
     margin: 0 0 22px;
     text-transform: uppercase;
   }
-  
+ 
   body.page-emergency .personal-header h3,
   body.page-emergency .medical-header h3,
   body.page-emergency .emergency-header h3 {
@@ -424,7 +424,7 @@ body.page-emergency .summary-header__translate-text {
     letter-spacing: 0.02em;
     text-transform: uppercase;
   }
-  
+ 
   body.page-emergency .personal-information svg,
   body.page-emergency .medical-information svg,
   body.page-emergency .emergency-notes svg {
@@ -432,7 +432,7 @@ body.page-emergency .summary-header__translate-text {
     width: 41px;
     height: 40px;
   }
-  
+ 
   body.page-emergency .personal-information .name {
     margin: 0 0 18px;
     padding: 0;
@@ -443,14 +443,14 @@ body.page-emergency .summary-header__translate-text {
     text-transform: uppercase;
     color: var(--em-text);
   }
-  
+ 
   body.page-emergency .personal-information__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 24px;
     row-gap: 18px;
   }
-  
+ 
   body.page-emergency .emergency-section__note {
     margin: 0 0 6px;
     padding: 0;
@@ -460,7 +460,7 @@ body.page-emergency .summary-header__translate-text {
     font-weight: 400;
     color: var(--em-muted);
   }
-  
+ 
   body.page-emergency .emergency-section__desc {
     display: block;
     margin: 0 0 16px;
@@ -475,64 +475,64 @@ body.page-emergency .summary-header__translate-text {
   }
   body.page-emergency .summary-header__icon-translate img {
   /* Inverts white to black, then softens it to a nice gray */
-  filter: invert(1) opacity(0.6); 
+  filter: invert(1) opacity(0.6);
 }
-  
+ 
   body.page-emergency .emergency-section__desc:last-child {
     margin-bottom: 0;
   }
-  
+ 
   body.page-emergency .personal-information__grid .emergency-section__desc {
     margin-bottom: 0;
   }
-  
+ 
   body.page-emergency .emergency-section__desc.age {
     text-transform: lowercase;
   }
-  
+ 
   body.page-emergency .emergency-section__desc.help {
     color: var(--em-red);
   }
-
+ 
   body.page-emergency .emergency-section__desc.medical-conditions,
   body.page-emergency .emergency-section__desc.allergies,
   body.page-emergency .emergency-section__desc.medications {
     color: var(--em-text);
   }
-  
+ 
   body.page-emergency .medical-content {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
-  
+ 
   body.page-emergency .medical-content.emergency-block {
     width: 100%;
     max-width: none;
     background: transparent;
     padding: 0;
   }
-  
+ 
   body.page-emergency .emergency-section__desc.phone {
     font-weight: 600;
     color: #2f6fed;
     text-decoration: none;
   }
-  
+ 
   body.page-emergency .emergency-button {
     margin: 0;
     height: auto;
     background: rgba(255, 255, 255, 0.9);
     padding: 16px;
   }
-  
+ 
   body.page-emergency .emergency-button__block {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
   }
-  
+ 
   body.page-emergency .emergency-button__text {
     font-family: var(--em-font);
     font-size: 16px;
@@ -540,7 +540,7 @@ body.page-emergency .summary-header__translate-text {
     font-weight: 400;
     color: #5a5a5a;
   }
-  
+ 
   body.page-emergency .emergency-button__btn,
   body.page-emergency .emergency-button__block a {
     display: inline-flex;
@@ -554,9 +554,9 @@ body.page-emergency .summary-header__translate-text {
     text-decoration: none;
     text-transform: none;
   }
-  
+ 
   /* ---------- Mobile 360 ---------- */
-  
+ 
   @media screen and (max-width: 767px) {
     .page-emergency {
       --em-pad-x: 16px;
@@ -564,11 +564,11 @@ body.page-emergency .summary-header__translate-text {
       --em-gap: 15px;
       --em-header-h: 48px;
     }
-  
+ 
     body.page-emergency .emergency-section__bg-img {
       object-position: 50% 22%;
     }
-  
+ 
     body.page-emergency .emergency-banner__header {
       height: 48px;
       min-height: 48px;
@@ -576,20 +576,20 @@ body.page-emergency .summary-header__translate-text {
       background: #e4e5ea;
       gap: 8px;
     }
-  
+ 
     /* Hide mid title image in header on mobile — it moves to hero */
     body.page-emergency .emergency-banner__title--header {
       display: none;
     }
-  
+ 
     body.page-emergency .emergency-banner__logo {
       max-width: 120px;
     }
-  
+ 
     body.page-emergency .emergency-banner__logo-img {
       height: 16px;
     }
-  
+ 
     /* Figma: Elza Bold 14 / 100% / 1.4px / #686A6A */
     body.page-emergency .emergency-banner__cta-text {
       font-size: 14px;
@@ -598,17 +598,17 @@ body.page-emergency .summary-header__translate-text {
       letter-spacing: 1.4px;
       color: #686a6a;
     }
-  
+ 
     body.page-emergency .emergency-banner__cta-group {
       gap: 10px;
     }
-  
+ 
     body.page-emergency .emergency-banner__cta-icon {
       width: 22px;
       height: 22px;
       flex-basis: 22px;
     }
-  
+ 
     /* Mobile hero: MEDICAL ID centered, red K flush right */
     body.page-emergency .emergency-banner__hero {
       position: relative;
@@ -622,7 +622,7 @@ body.page-emergency .summary-header__translate-text {
       overflow: hidden;
       pointer-events: none;
     }
-  
+ 
     body.page-emergency .emergency-banner__title--hero {
       position: absolute;
       left: 50%;
@@ -634,7 +634,7 @@ body.page-emergency .summary-header__translate-text {
       max-width: calc(100% - 120px);
       pointer-events: none;
     }
-  
+ 
     body.page-emergency .emergency-banner__title--hero .emergency-banner__title-img {
       display: block;
       height: 48px;
@@ -643,11 +643,11 @@ body.page-emergency .summary-header__translate-text {
       object-fit: contain;
       object-position: center;
     }
-  
+ 
     body.page-emergency .emergency-banner__tag--desktop {
       display: none;
     }
-  
+ 
     body.page-emergency .emergency-banner__tag--hero {
       position: relative;
       z-index: 1;
@@ -657,27 +657,27 @@ body.page-emergency .summary-header__translate-text {
       height: 56px;
       pointer-events: auto;
     }
-  
+ 
     body.page-emergency .emergency-banner__tag--hero .emergency-banner__tag-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: center;
     }
-  
+ 
     body.page-emergency .emergency-section {
       align-items: center;
-      padding: 150px var(--em-pad-x) 28px;
+      padding: 40px var(--em-pad-x) 28px;
       max-width: 360px;
     }
-  
+ 
     body.page-emergency .emergency-info,
     body.page-emergency .summary,
     body.page-emergency .emergency-block {
       width: 100%;
       max-width: var(--em-card-w);
     }
-  
+ 
     body.page-emergency .personal-information,
     body.page-emergency .medical-information,
     body.page-emergency .emergency-notes {
@@ -685,67 +685,66 @@ body.page-emergency .summary-header__translate-text {
       backdrop-filter: none;
       padding: 20px 16px;
     }
-  
+ 
     body.page-emergency .personal-header h3,
     body.page-emergency .medical-header h3,
     body.page-emergency .emergency-header h3 {
       font-size: 32px;
     }
-  
+ 
     body.page-emergency .personal-information svg,
     body.page-emergency .medical-information svg,
     body.page-emergency .emergency-notes svg {
       width: 41px;
       height: 40px;
     }
-  
+ 
     body.page-emergency .personal-header,
     body.page-emergency .medical-header,
     body.page-emergency .emergency-header {
       margin-bottom: 16px;
     }
-  
+ 
     body.page-emergency .personal-information .name {
       font-size: 24px;
       margin-bottom: 16px;
     }
-  
+ 
     body.page-emergency .emergency-section__note {
       font-size: 13px;
     }
-  
+ 
     body.page-emergency .emergency-section__desc {
       font-size: 16px;
       margin-bottom: 14px;
     }
-  
+ 
     body.page-emergency .emergency-button {
       background: #fff;
       padding: 14px 16px;
     }
-  
+ 
     body.page-emergency .emergency-button__text,
     body.page-emergency .emergency-button__btn,
     body.page-emergency .emergency-button__block a {
       font-size: 15px;
     }
   }
-  
+ 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     .page-emergency {
       --em-pad-x: clamp(24px, 3.333vw, 48px);
       --em-card-w: clamp(300px, 23.82vw, 343px);
     }
-  
+ 
     body.page-emergency .emergency-banner__tag--desktop {
       right: 0;
       width: clamp(72px, 7.64vw, 110px);
       height: clamp(72px, 7.64vw, 110px);
     }
-  
+ 
     body.page-emergency .emergency-banner__cta-text {
       font-size: 14px;
       letter-spacing: 1.4px;
     }
   }
-  
