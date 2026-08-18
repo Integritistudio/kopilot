@@ -106,7 +106,7 @@
     if (!onEmergency && !onGetStarted) {
         if (isParam && paramValue) {
             localStorage.setItem('tagId', JSON.stringify(paramValue));
-            location.href = dest1;
+            location.href = dest1 + '?t=' + encodeURIComponent(paramValue);
         } else {
             location.href = dest2;
         }
