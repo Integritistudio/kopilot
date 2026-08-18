@@ -59,6 +59,8 @@ const medicationsEnum = [
 ];
 
 window.addEventListener('DOMContentLoaded', () => {
+    const DEFAULT_EMERGENCY_ERROR = 'Tag not found or Medical Id disabled';
+
     function getTagId() {
         try {
             const fromUrl = new URLSearchParams(window.location.search).get('t');
@@ -76,10 +78,65 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function readApiErrorMessage(payload) {
+        if (!payload || typeof payload !== 'object') return '';
+        return payload.message || payload.error || payload.errorMessage || payload.msg || '';
+    }
+
+    function showEmergencyError(err) {
+        try {
+            const raw = err && typeof err.message === 'string' ? err.message.trim() : '';
+            const isEngineError = /cannot read|undefined is not|null is not|failed to fetch|networkerror|missing tag|something went wrong/i.test(raw);
+            const message = raw && !isEngineError ? raw : DEFAULT_EMERGENCY_ERROR;
+
+            const banner = document.querySelector('[data-emergency-error-banner]');
+            const popup = document.querySelector('[data-emergency-error-popup]');
+            const texts = document.querySelectorAll('[data-emergency-error-text]');
+
+            texts.forEach((el) => {
+                el.textContent = message;
+            });
+
+            if (banner) {
+                banner.hidden = false;
+                banner.classList.add('is-visible');
+            }
+
+            if (popup) {
+                popup.hidden = false;
+                popup.classList.add('is-open');
+                popup.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('emergency-error-open');
+            }
+        } catch (e) {}
+    }
+
+    function closeEmergencyErrorPopup() {
+        try {
+            const popup = document.querySelector('[data-emergency-error-popup]');
+            if (!popup) return;
+            popup.classList.remove('is-open');
+            popup.setAttribute('aria-hidden', 'true');
+            popup.hidden = true;
+            document.body.classList.remove('emergency-error-open');
+        } catch (e) {}
+    }
+
+    document.querySelectorAll('[data-emergency-error-close]').forEach((el) => {
+        el.addEventListener('click', (event) => {
+            event.preventDefault();
+            closeEmergencyErrorPopup();
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeEmergencyErrorPopup();
+    });
+
     async function getToken() {
         const sectionTagId = getTagId();
         if (!sectionTagId) {
-            throw new Error('Missing tag id');
+            throw new Error(DEFAULT_EMERGENCY_ERROR);
         }
 
         const authToken = await fetch('https://api.kopilot.id/auth/token/scan', {
@@ -108,10 +165,13 @@ window.addEventListener('DOMContentLoaded', () => {
         const notSpecified = '<None Specified>';
 
         if (!response.data) {
-            throw new Error('something went wrong')
+            throw new Error(readApiErrorMessage(response) || DEFAULT_EMERGENCY_ERROR);
         }
 
         const data = response.data.medicalId;
+        if (!data) {
+            throw new Error(readApiErrorMessage(response) || DEFAULT_EMERGENCY_ERROR);
+        }
 
         const summary = document.querySelector('.summary-content');
         const summaryBlock = document.querySelector('.summary.emergency-block');
@@ -268,14 +328,18 @@ if (data.summary || data.emergencyContactName) {
 
 
     }).catch((err) => {
-        const summary = document.querySelector('.summary-content');
-        const summaryBlock = document.querySelector('.summary.emergency-block');
-        const personalInformation = document.querySelector('.emergency-info');
+        try {
+            const summary = document.querySelector('.summary-content');
+            const summaryBlock = document.querySelector('.summary.emergency-block');
+            const personalInformation = document.querySelector('.emergency-info');
 
-        if (summary.innerText.trim() === '-') {
-            summaryBlock.remove();
-            personalInformation.classList.add('empty-summary', 'emergency-block')
-        }
+            if (summary && summaryBlock && personalInformation && summary.innerText.trim() === '-') {
+                summaryBlock.remove();
+                personalInformation.classList.add('empty-summary', 'emergency-block');
+            }
+        } catch (e) {}
+
+        showEmergencyError(err);
     })
 
 
