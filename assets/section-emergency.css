@@ -753,3 +753,127 @@ body.page-emergency .summary-header__translate-text {
 .emergency-contact-part {
   font-family: 'Elza', sans-serif !important;
 }
+
+body.page-emergency .emergency-error-banner {
+  display: none;
+  width: 100%;
+  max-width: var(--em-card-w);
+  margin: 0 0 4px;
+  padding: 14px 16px;
+  background: rgba(242, 0, 8, 0.92);
+  color: #fff;
+  font-family: 'Elza', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+body.page-emergency .emergency-error-banner.is-visible,
+body.page-emergency .emergency-error-banner:not([hidden]) {
+  display: block;
+}
+
+body.page-emergency .emergency-error-banner p {
+  margin: 0;
+}
+
+.emergency-error-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: 'Elza', sans-serif;
+}
+
+.emergency-error-popup.is-open,
+.emergency-error-popup:not([hidden]) {
+  display: flex;
+}
+
+.emergency-error-popup[hidden] {
+  display: none !important;
+}
+
+.emergency-error-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 28, 32, 0.62);
+  cursor: pointer;
+}
+
+.emergency-error-popup__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 28px 28px;
+  background: #fff;
+  color: #232526;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.emergency-error-popup__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #232526;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.emergency-error-popup__kicker {
+  margin: 0 0 8px;
+  color: #f20008;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.emergency-error-popup__title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.emergency-error-popup__text {
+  margin: 0 0 24px;
+  color: #686a6a;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.emergency-error-popup__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  margin: 0;
+  padding: 12px 22px;
+  border: 0;
+  background: #f20008;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+body.emergency-error-open {
+  overflow: hidden;
+}

@@ -26,6 +26,10 @@
   </div>
 
   <section class="emergency-section">
+    <div class="emergency-error-banner" data-emergency-error-banner hidden>
+      <p data-emergency-error-text>Tag not found or Medical Id disabled</p>
+    </div>
+
     <div class="summary emergency-block">
       <div class="summary-header">
         <div class="summary-header__icon">
@@ -121,39 +125,106 @@
     </div>
   </section>
 
+  <div
+    class="emergency-error-popup"
+    data-emergency-error-popup
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="emergency-error-title"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="emergency-error-popup__overlay" data-emergency-error-close></div>
+    <div class="emergency-error-popup__dialog">
+      <button type="button" class="emergency-error-popup__close" data-emergency-error-close aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p class="emergency-error-popup__kicker">KOPILOT.ID</p>
+      <h2 class="emergency-error-popup__title" id="emergency-error-title">Unable to load emergency profile</h2>
+      <p class="emergency-error-popup__text" data-emergency-error-text>Tag not found or Medical Id disabled</p>
+      <button type="button" class="emergency-error-popup__btn" data-emergency-error-close>OK</button>
+    </div>
+  </div>
+
 </div>
 
 {{ 'section-emergency.js' | asset_url | script_tag }}
 
-{<script>
+<script>
   (function () {
     if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
 
-    const redirectAfter = 600000;
-    const targetUrl = '{{ shop.url }}';
+    var REDIRECT_AFTER_MS = 600000;
+    var START_KEY = 'emergencyViewStartedAt';
+    var TAG_KEY = 'emergencyViewTagId';
+    var targetUrl = {{ shop.url | json }};
+    var timerId = null;
 
-    if (!localStorage.getItem('redirectStartTime')) {
-      localStorage.setItem('redirectStartTime', Date.now());
+    function getTagId() {
+      try {
+        var fromUrl = new URLSearchParams(window.location.search).get('t');
+        if (fromUrl) return String(fromUrl);
+        var stored = localStorage.getItem('tagId');
+        if (!stored) return '';
+        var parsed = JSON.parse(stored);
+        return parsed == null ? '' : String(parsed);
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function startViewSession(tagId) {
+      sessionStorage.setItem(START_KEY, String(Date.now()));
+      if (tagId) sessionStorage.setItem(TAG_KEY, tagId);
+      try {
+        localStorage.removeItem('redirectStartTime');
+      } catch (e) {}
+    }
+
+    var tagId = getTagId();
+    if (tagId) {
+      try {
+        localStorage.setItem('tagId', JSON.stringify(tagId));
+      } catch (e) {}
+    }
+
+    var startedAt = parseInt(sessionStorage.getItem(START_KEY), 10);
+    var previousTag = sessionStorage.getItem(TAG_KEY) || '';
+    var expired = !startedAt || isNaN(startedAt) || Date.now() - startedAt >= REDIRECT_AFTER_MS;
+    var isNewTag = Boolean(tagId && tagId !== previousTag);
+
+    // New scan, first visit, or an already-expired window must start fresh.
+    // Never send someone home the moment they land on this page.
+    if (expired || isNewTag) {
+      startViewSession(tagId);
     }
 
     function checkRedirect() {
       if (window.Shopify && (Shopify.designMode || Shopify.visualPreviewMode)) return;
 
-      const startTime = parseInt(localStorage.getItem('redirectStartTime'), 10);
-      const now = Date.now();
-
-      if (now - startTime >= redirectAfter) {
-        localStorage.removeItem('redirectStartTime');
-        window.location.href = targetUrl;
-      } else {
-        setTimeout(checkRedirect, 500);
+      var started = parseInt(sessionStorage.getItem(START_KEY), 10);
+      if (!started || isNaN(started)) {
+        startViewSession(getTagId());
+        started = Date.now();
       }
+
+      if (Date.now() - started >= REDIRECT_AFTER_MS) {
+        try {
+          sessionStorage.removeItem(START_KEY);
+          localStorage.removeItem('redirectStartTime');
+        } catch (e) {}
+        window.location.href = targetUrl;
+        return;
+      }
+
+      timerId = setTimeout(checkRedirect, 1000);
     }
 
     checkRedirect();
 
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'visible') {
+        if (timerId) clearTimeout(timerId);
         checkRedirect();
       }
     });
