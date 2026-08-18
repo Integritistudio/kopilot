@@ -72,15 +72,10 @@ window.addEventListener('DOMContentLoaded', () => {
     function getTagId() {
         try {
             const fromUrl = getUrlTagId();
-            if (fromUrl) {
-                localStorage.setItem('tagId', JSON.stringify(fromUrl));
-                return fromUrl;
-            }
+            if (!fromUrl) return null;
 
-            const stored = localStorage.getItem('tagId');
-            if (!stored) return null;
-
-            return JSON.parse(stored);
+            localStorage.setItem('tagId', JSON.stringify(fromUrl));
+            return fromUrl;
         } catch (e) {
             return null;
         }
@@ -146,7 +141,7 @@ window.addEventListener('DOMContentLoaded', () => {
     async function getToken() {
         const sectionTagId = getTagId();
         if (!sectionTagId) {
-            throw new Error(DEFAULT_EMERGENCY_ERROR);
+            return null;
         }
 
         const authToken = await fetch('https://api.kopilot.id/auth/token/scan', {
@@ -173,6 +168,8 @@ window.addEventListener('DOMContentLoaded', () => {
     getToken().then((response) => {
         const empty = '--';
         const notSpecified = '<None Specified>';
+
+        if (!response) return;
 
         if (!response.data) {
             throw new Error(readApiErrorMessage(response) || DEFAULT_EMERGENCY_ERROR);
@@ -349,7 +346,9 @@ if (data.summary || data.emergencyContactName) {
             }
         } catch (e) {}
 
-        showEmergencyError(err);
+        if (urlTagId) {
+            showEmergencyError(err);
+        }
     })
 
 
