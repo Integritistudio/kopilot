@@ -59,7 +59,29 @@ const medicationsEnum = [
 ];
 
 window.addEventListener('DOMContentLoaded', () => {
+    function getTagId() {
+        try {
+            const fromUrl = new URLSearchParams(window.location.search).get('t');
+            if (fromUrl) {
+                localStorage.setItem('tagId', JSON.stringify(fromUrl));
+                return fromUrl;
+            }
+
+            const stored = localStorage.getItem('tagId');
+            if (!stored) return null;
+
+            return JSON.parse(stored);
+        } catch (e) {
+            return null;
+        }
+    }
+
     async function getToken() {
+        const sectionTagId = getTagId();
+        if (!sectionTagId) {
+            throw new Error('Missing tag id');
+        }
+
         const authToken = await fetch('https://api.kopilot.id/auth/token/scan', {
             method: 'POST',
             headers: {
@@ -70,7 +92,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const response = await authToken.json();
         const token = await response.data.token;
-        const sectionTagId = JSON.parse(localStorage.getItem('tagId'));
         const userInfo = await fetch(`https://api.kopilot.id/tag/scan/${sectionTagId}`, {
             method: 'POST',
             headers: {
