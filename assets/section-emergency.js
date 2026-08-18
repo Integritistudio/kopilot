@@ -83,24 +83,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const urlTagId = getUrlTagId();
 
-    function readApiErrorMessage(payload) {
-        if (!payload || typeof payload !== 'object') return '';
-        return payload.message || payload.error || payload.errorMessage || payload.msg || '';
-    }
-
-    function showEmergencyError(err) {
+    function showEmergencyError() {
         try {
-            const raw = err && typeof err.message === 'string' ? err.message.trim() : '';
-            const isEngineError = /cannot read|undefined is not|null is not|failed to fetch|networkerror|missing tag|something went wrong/i.test(raw);
-            const message = raw && !isEngineError ? raw : DEFAULT_EMERGENCY_ERROR;
-
             const banner = document.querySelector('[data-emergency-error-banner]');
             const popup = document.querySelector('[data-emergency-error-popup]');
-            const texts = document.querySelectorAll('[data-emergency-error-text]');
-
-            texts.forEach((el) => {
-                el.textContent = message;
-            });
 
             if (banner) {
                 banner.hidden = false;
@@ -172,12 +158,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!response) return;
 
         if (!response.data) {
-            throw new Error(readApiErrorMessage(response) || DEFAULT_EMERGENCY_ERROR);
+            throw new Error(DEFAULT_EMERGENCY_ERROR);
         }
 
         const data = response.data.medicalId;
         if (!data) {
-            throw new Error(readApiErrorMessage(response) || DEFAULT_EMERGENCY_ERROR);
+            throw new Error(DEFAULT_EMERGENCY_ERROR);
         }
 
         const summary = document.querySelector('.summary-content');
