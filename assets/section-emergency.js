@@ -61,9 +61,17 @@ const medicationsEnum = [
 window.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_EMERGENCY_ERROR = 'Tag not found or Medical Id disabled';
 
+    function getUrlTagId() {
+        try {
+            return new URLSearchParams(window.location.search).get('t') || '';
+        } catch (e) {
+            return '';
+        }
+    }
+
     function getTagId() {
         try {
-            const fromUrl = new URLSearchParams(window.location.search).get('t');
+            const fromUrl = getUrlTagId();
             if (fromUrl) {
                 localStorage.setItem('tagId', JSON.stringify(fromUrl));
                 return fromUrl;
@@ -77,6 +85,8 @@ window.addEventListener('DOMContentLoaded', () => {
             return null;
         }
     }
+
+    const urlTagId = getUrlTagId();
 
     function readApiErrorMessage(payload) {
         if (!payload || typeof payload !== 'object') return '';
